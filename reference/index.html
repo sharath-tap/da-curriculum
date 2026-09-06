@@ -1,0 +1,2142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Quick reference for Python, NumPy and Pandas. Every function with a short explanation and a working example.">
+<title>Python, NumPy and Pandas Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>try{var t=localStorage.getItem('fr-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<style>
+:root{
+ --paper:#faf9f7; --card:#ffffff; --ink:#16181b; --slate:#4b5058; --ash:#8b9099;
+ --hair:#e7e4df; --mist:#f2f0ec; --acc:#0d6b5f; --accbg:#dcece8; --accink:#08453d;
+ --code:#f6f4f1; --outbg:#eef4f2; --outink:#0d5449;
+ --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+ --ui:'Inter',system-ui,-apple-system,sans-serif;
+ --ser:'Instrument Serif',Georgia,serif;
+}
+:root:not([data-theme="light"]){ @media (prefers-color-scheme:dark){
+ --paper:#0e1012; --card:#16191c; --ink:#e9eaec; --slate:#a8aeb6; --ash:#727880;
+ --hair:#252a2f; --mist:#181c1f; --acc:#4fbfa8; --accbg:#12302b; --accink:#7fd9c5;
+ --code:#12161a; --outbg:#11251f; --outink:#7fd9c5;
+}}
+:root[data-theme="dark"]{
+ --paper:#0e1012; --card:#16191c; --ink:#e9eaec; --slate:#a8aeb6; --ash:#727880;
+ --hair:#252a2f; --mist:#181c1f; --acc:#4fbfa8; --accbg:#12302b; --accink:#7fd9c5;
+ --code:#12161a; --outbg:#11251f; --outink:#7fd9c5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);
+ font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+.brand{display:flex;align-items:center;gap:14px;padding:26px 0 0}
+.brand img{height:34px;width:auto;display:block}
+.brand .lg-d{display:block} .brand .lg-l{display:none}
+:root:not([data-theme="light"]) .brand .lg-d{display:none}
+:root:not([data-theme="light"]) .brand .lg-l{display:block}
+@media (prefers-color-scheme:light){
+ :root:not([data-theme="dark"]) .brand .lg-d{display:block}
+ :root:not([data-theme="dark"]) .brand .lg-l{display:none}}
+:root[data-theme="dark"] .brand .lg-d{display:none}
+:root[data-theme="dark"] .brand .lg-l{display:block}
+:root[data-theme="light"] .brand .lg-d{display:block}
+:root[data-theme="light"] .brand .lg-l{display:none}
+.brand span{font-size:13px;color:var(--ash);letter-spacing:.06em;
+ border-left:1px solid var(--hair);padding-left:14px}
+header{padding:22px 0 18px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);font-weight:500}
+h1{font-family:var(--ser);font-size:clamp(38px,6vw,64px);line-height:1.02;
+ letter-spacing:-.5px;font-weight:400;margin:12px 0 14px;text-wrap:balance}
+.lede{font-size:18px;color:var(--slate);max-width:620px}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px}
+.stat b{font-family:var(--ser);font-size:30px;font-weight:400;display:block;line-height:1}
+.stat span{font-size:12.5px;color:var(--ash);letter-spacing:.05em}
+
+.bar{position:sticky;top:0;z-index:20;background:var(--paper);
+ border-bottom:1px solid var(--hair);padding:12px 0;margin-top:26px}
+.barin{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#q{flex:1;min-width:200px;font-family:var(--ui);font-size:15.5px;color:var(--ink);
+ background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:10px 14px;outline:none}
+#q:focus{border-color:var(--acc)}
+#q::placeholder{color:var(--ash)}
+.tabs{display:flex;gap:5px}
+.tab{font-family:var(--ui);font-size:14px;font-weight:500;color:var(--slate);cursor:pointer;
+ background:var(--card);border:1px solid var(--hair);border-radius:9999px;padding:8px 15px}
+.tab.on{background:var(--accbg);color:var(--accink);border-color:transparent}
+.tab:hover{border-color:var(--acc)}
+.res{font-size:13px;color:var(--ash);white-space:nowrap}
+
+.toc{margin:24px 0 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
+.ngrp b{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+ color:var(--ash);font-weight:500;margin-bottom:7px}
+.ngrp a{display:block;font-size:14px;color:var(--slate);text-decoration:none;padding:2.5px 0}
+.ngrp a:hover{color:var(--acc)}
+
+.sechead{padding:44px 0 6px;border-top:1px solid var(--hair);margin-top:40px}
+.sechead h2{font-family:var(--ser);font-size:40px;font-weight:400;letter-spacing:-.3px}
+.sechead p{color:var(--slate);font-size:16.5px;margin-top:5px;max-width:560px}
+.cnt{display:inline-block;margin-top:11px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+ background:var(--accbg);color:var(--accink);padding:4px 11px;border-radius:9999px;font-weight:500}
+
+.cat{padding-top:30px}
+.cath{font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--ink);
+ padding-bottom:11px;border-bottom:1px solid var(--hair);margin-bottom:16px}
+.cath span{color:var(--ash);font-weight:400;margin-left:7px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;align-items:start}
+
+.fn{background:var(--card);border:1px solid var(--hair);border-radius:13px;padding:16px 17px;overflow:hidden}
+.fn h4{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--acc);
+ letter-spacing:-.2px;word-break:break-word}
+.fn .d{font-size:15px;color:var(--slate);margin:7px 0 11px;line-height:1.47}
+.fn .c pre,.fn .o pre{font-family:var(--mono);font-size:13.2px;line-height:1.62;
+ white-space:pre;overflow-x:auto;color:var(--ink)}
+.fn .c{background:var(--code);border-radius:9px;padding:11px 12px}
+.fn .o{background:var(--outbg);border-radius:9px;padding:9px 12px 10px;margin-top:9px}
+.fn .o pre{color:var(--outink)}
+.ol{display:block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+ color:var(--ash);margin-bottom:5px;font-weight:500}
+
+.hide{display:none!important}
+.empty{padding:60px 0;text-align:center;color:var(--ash);font-size:17px}
+footer{border-top:1px solid var(--hair);margin-top:60px;padding:26px 0 50px;
+ color:var(--ash);font-size:14px}
+.tt{font-family:var(--ui);font-size:13px;color:var(--slate);cursor:pointer;background:var(--card);
+ border:1px solid var(--hair);border-radius:9999px;padding:8px 13px}
+@media(max-width:640px){
+ .grid{grid-template-columns:1fr}
+ header{padding-top:30px} h1{font-size:36px}
+ .barin{gap:8px} .res{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="brand">
+ <img class="lg-d" src="data:image/png;base64,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" alt="TAP Academy">
+ <img class="lg-l" src="data:image/png;base64,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" alt="TAP Academy">
+ <span>Data Analytics</span>
+</div>
+<header>
+ <p class="eyebrow">Quick reference</p>
+ <h1>Python, NumPy<br>and Pandas</h1>
+ <p class="lede">Every function from the course, grouped by the class it was taught in. Each one has a
+ short explanation and a working example, and the output shown is the real result of running that code.</p>
+ <div class="stats">
+  <div class="stat"><b>260</b><span>FUNCTIONS</span></div>
+  <div class="stat"><b>85</b><span>PYTHON</span></div>
+  <div class="stat"><b>50</b><span>NUMPY</span></div>
+  <div class="stat"><b>77</b><span>PANDAS</span></div>
+  <div class="stat"><b>48</b><span>SQL</span></div>
+ </div>
+</header>
+
+<div class="bar"><div class="barin">
+ <input id="q" type="search" placeholder="Search a function, or what you want to do..." autocomplete="off">
+ <div class="tabs">
+  <button class="tab on" data-f="all">All</button>
+  <button class="tab" data-f="python">Python</button>
+  <button class="tab" data-f="numpy">NumPy</button>
+  <button class="tab" data-f="pandas">Pandas</button>
+  <button class="tab" data-f="sql">SQL</button>
+ </div>
+ <span class="res" id="res"></span>
+ <button class="tt" id="tt">Auto</button>
+</div></div>
+
+<div class="toc"><div class="ngrp"><b>Python</b><a href="#python-introduction-d02">Introduction — D02</a><a href="#python-data-types-d03">Data types — D03</a><a href="#python-operators-d04-to-d05">Operators — D04 to D05</a><a href="#python-strings-d11">Strings — D11</a><a href="#python-lists-d12-to-d13">Lists — D12 to D13</a><a href="#python-tuples-d13">Tuples — D13</a><a href="#python-dictionaries-d16">Dictionaries — D16</a><a href="#python-sets-d14">Sets — D14</a><a href="#python-conditional-statements-d08">Conditional statements — D08</a><a href="#python-loops-d09-to-d10">Loops — D09 to D10</a><a href="#python-functions-d06-to-d07">Functions — D06 to D07</a><a href="#python-file-handling-d23-to-d25">File handling — D23 to D25</a><a href="#python-error-handling-d24">Error handling — D24</a><a href="#python-object-orientation-d17-to-d22">Object orientation — D17 to D22</a><a href="#python-modules-and-libraries-d25">Modules and libraries — D25</a></div><div class="ngrp"><b>NumPy</b><a href="#numpy-numpy-introduction-d25-to-d26">NumPy introduction — D25 to D26</a><a href="#numpy-array-attributes-d26-to-d27">Array attributes — D26 to D27</a><a href="#numpy-indexing-and-slicing-d28">Indexing and slicing — D28</a><a href="#numpy-reshaping-d30">Reshaping — D30</a><a href="#numpy-stacking-arrays-d30">Stacking arrays — D30</a><a href="#numpy-operations-and-broadcasting-d27">Operations and broadcasting — D27</a><a href="#numpy-aggregate-functions-d28">Aggregate functions — D28</a><a href="#numpy-boolean-slicing-and-sorting-d29">Boolean slicing and sorting — D29</a></div><div class="ngrp"><b>Pandas</b><a href="#pandas-series-and-dataframe-d31-to-d32">Series and DataFrame — D31 to D32</a><a href="#pandas-reading-files-d31">Reading files — D31</a><a href="#pandas-eda-and-inspection-d32-to-d33">EDA and inspection — D32 to D33</a><a href="#pandas-selecting-rows-and-columns-d32-to-d33">Selecting rows and columns — D32 to D33</a><a href="#pandas-filtering-d33-to-d34">Filtering — D33 to D34</a><a href="#pandas-missing-values-d35">Missing values — D35</a><a href="#pandas-duplicates-d36">Duplicates — D36</a><a href="#pandas-new-columns-and-changes-d36">New columns and changes — D36</a><a href="#pandas-sorting-d34">Sorting — D34</a><a href="#pandas-summary-statistics-d37">Summary statistics — D37</a><a href="#pandas-aggregate-and-group-by-d37">Aggregate and group by — D37</a><a href="#pandas-reshaping-not-yet-covered-in-class">Reshaping — not yet covered in class</a><a href="#pandas-merging-data-frames-d37">Merging data frames — D37</a><a href="#pandas-text-columns-not-yet-covered-in-class">Text columns — not yet covered in class</a><a href="#pandas-dates-not-yet-covered-in-class">Dates — not yet covered in class</a></div><div class="ngrp"><b>SQL</b><a href="#sql-databases-and-design-d01-to-d03">Databases and design — D01 to D03</a><a href="#sql-reading-data-d08-to-d10">Reading data — D08 to D10</a><a href="#sql-changing-data-d07">Changing data — D07</a><a href="#sql-string-functions-d13">String functions — D13</a><a href="#sql-date-functions-d14">Date functions — D14</a><a href="#sql-control-flow-d15">Control flow — D15</a><a href="#sql-aggregate-functions-d17-to-d18">Aggregate functions — D17 to D18</a><a href="#sql-subqueries-d19-to-d20">Subqueries — D19 to D20</a><a href="#sql-joins-d21-to-d22">Joins — D21 to D22</a><a href="#sql-window-functions-d15">Window functions — D15</a><a href="#sql-views-and-routines-d23">Views and routines — D23</a></div></div>
+
+<div class="sec" id="sec-python">
+<div class="sechead"><h2>Python</h2><p>Sessions D02 to D25. The language itself — types, strings, collections, loops, functions, classes and files.</p><span class="cnt">85 functions</span></div>
+<section class="cat" id="python-introduction-d02">
+<h3 class="cath">Introduction — D02 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="print() shows something on the screen. print(hello)
+print(total:, 25)
+print(a, b, sep=-)"><h4>print()</h4><p class="d">Shows something on the screen.</p><div class="c"><pre>print("Hello")
+print("Total:", 25)
+print("a", "b", sep="-")</pre></div><div class="o"><span class="ol">Output</span><pre>Hello
+Total: 25
+a-b</pre></div></article>
+<article class="fn" data-s="python" data-k="input() takes typed text from the user. always returns a string. # name = input(enter name: )
+# whatever the user types comes back as text
+name = rahul          # pretend this came from input()
+print(name, type(name))"><h4>input()</h4><p class="d">Takes typed text from the user. Always returns a string.</p><div class="c"><pre># name = input("Enter name: ")
+# Whatever the user types comes back as TEXT
+name = "Rahul"          # pretend this came from input()
+print(name, type(name))</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul &lt;class 'str'&gt;</pre></div></article>
+<article class="fn" data-s="python" data-k="int() on input converts the text from input into a number so you can do maths. age_text = 25                 # input() always gives text
+age = int(age_text)
+print(age + 5)"><h4>int() on input</h4><p class="d">Converts the text from input into a number so you can do maths.</p><div class="c"><pre>age_text = "25"                 # input() always gives text
+age = int(age_text)
+print(age + 5)</pre></div><div class="o"><span class="ol">Output</span><pre>30</pre></div></article>
+</div></section>
+<section class="cat" id="python-data-types-d03">
+<h3 class="cath">Data types — D03 <span>7</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="type() tells you what kind of value something is. print(type(10))
+print(type(3.5))
+print(type(hi))
+print(type(true))"><h4>type()</h4><p class="d">Tells you what kind of value something is.</p><div class="c"><pre>print(type(10))
+print(type(3.5))
+print(type("hi"))
+print(type(True))</pre></div><div class="o"><span class="ol">Output</span><pre>&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;
+&lt;class 'bool'&gt;</pre></div></article>
+<article class="fn" data-s="python" data-k="int() converts a value into a whole number. cuts off the decimal. print(int(42))
+print(int(9.87))"><h4>int()</h4><p class="d">Converts a value into a whole number. Cuts off the decimal.</p><div class="c"><pre>print(int("42"))
+print(int(9.87))</pre></div><div class="o"><span class="ol">Output</span><pre>42
+9</pre></div></article>
+<article class="fn" data-s="python" data-k="float() converts a value into a decimal number. print(float(3.5))
+print(float(10))"><h4>float()</h4><p class="d">Converts a value into a decimal number.</p><div class="c"><pre>print(float("3.5"))
+print(float(10))</pre></div><div class="o"><span class="ol">Output</span><pre>3.5
+10.0</pre></div></article>
+<article class="fn" data-s="python" data-k="str() converts any value into text. print(str(99) +  marks)"><h4>str()</h4><p class="d">Converts any value into text.</p><div class="c"><pre>print(str(99) + " marks")</pre></div><div class="o"><span class="ol">Output</span><pre>99 marks</pre></div></article>
+<article class="fn" data-s="python" data-k="bool() converts a value into true or false. empty things are false. print(bool(1), bool(0))
+print(bool(hi), bool())
+print(bool([]), bool([1]))"><h4>bool()</h4><p class="d">Converts a value into True or False. Empty things are False.</p><div class="c"><pre>print(bool(1), bool(0))
+print(bool("hi"), bool(""))
+print(bool([]), bool([1]))</pre></div><div class="o"><span class="ol">Output</span><pre>True False
+True False
+False True</pre></div></article>
+<article class="fn" data-s="python" data-k="round() rounds a decimal number. print(round(3.7))
+print(round(3.14159, 2))"><h4>round()</h4><p class="d">Rounds a decimal number.</p><div class="c"><pre>print(round(3.7))
+print(round(3.14159, 2))</pre></div><div class="o"><span class="ol">Output</span><pre>4
+3.14</pre></div></article>
+<article class="fn" data-s="python" data-k="abs() gives the value without the minus sign. print(abs(-15))
+print(abs(15))"><h4>abs()</h4><p class="d">Gives the value without the minus sign.</p><div class="c"><pre>print(abs(-15))
+print(abs(15))</pre></div><div class="o"><span class="ol">Output</span><pre>15
+15</pre></div></article>
+</div></section>
+<section class="cat" id="python-operators-d04-to-d05">
+<h3 class="cath">Operators — D04 to D05 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="arithmetic basic maths. // gives whole division, % gives remainder, ** is power. a, b = 17, 5
+print(a + b, a - b, a * b)
+print(a / b)      # normal division -&gt; decimal
+print(a // b)     # floor division  -&gt; whole number
+print(a % b)      # remainder
+print(a ** 2)     # power"><h4>Arithmetic</h4><p class="d">Basic maths. // gives whole division, % gives remainder, ** is power.</p><div class="c"><pre>a, b = 17, 5
+print(a + b, a - b, a * b)
+print(a / b)      # normal division -&gt; decimal
+print(a // b)     # floor division  -&gt; whole number
+print(a % b)      # remainder
+print(a ** 2)     # power</pre></div><div class="o"><span class="ol">Output</span><pre>22 12 85
+3.4
+3
+2
+289</pre></div></article>
+<article class="fn" data-s="python" data-k="comparison compares two values. always gives true or false. print(5 &gt; 3, 5 == 5, 5 != 3)
+print(5 &lt;= 4)"><h4>Comparison</h4><p class="d">Compares two values. Always gives True or False.</p><div class="c"><pre>print(5 &gt; 3, 5 == 5, 5 != 3)
+print(5 &lt;= 4)</pre></div><div class="o"><span class="ol">Output</span><pre>True True True
+False</pre></div></article>
+<article class="fn" data-s="python" data-k="and / or / not joins conditions together. age = 22
+print(age &gt; 18 and age &lt; 30)
+print(age &lt; 18 or age &gt; 20)
+print(not (age == 22))"><h4>and / or / not</h4><p class="d">Joins conditions together.</p><div class="c"><pre>age = 22
+print(age &gt; 18 and age &lt; 30)
+print(age &lt; 18 or age &gt; 20)
+print(not (age == 22))</pre></div><div class="o"><span class="ol">Output</span><pre>True
+True
+False</pre></div></article>
+</div></section>
+<section class="cat" id="python-strings-d11">
+<h3 class="cath">Strings — D11 <span>14</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="len() counts how many characters are in the text. s = data analytics
+print(len(s))"><h4>len()</h4><p class="d">Counts how many characters are in the text.</p><div class="c"><pre>s = "Data Analytics"
+print(len(s))</pre></div><div class="o"><span class="ol">Output</span><pre>14</pre></div></article>
+<article class="fn" data-s="python" data-k="upper() / lower() changes the case of the text. s = data
+print(s.upper())
+print(s.lower())"><h4>upper() / lower()</h4><p class="d">Changes the case of the text.</p><div class="c"><pre>s = "Data"
+print(s.upper())
+print(s.lower())</pre></div><div class="o"><span class="ol">Output</span><pre>DATA
+data</pre></div></article>
+<article class="fn" data-s="python" data-k="title() / capitalize() title() capitalises every word. capitalize() only the first. s = rahul kumar sharma
+print(s.title())
+print(s.capitalize())"><h4>title() / capitalize()</h4><p class="d">title() capitalises every word. capitalize() only the first.</p><div class="c"><pre>s = "rahul kumar sharma"
+print(s.title())
+print(s.capitalize())</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul Kumar Sharma
+Rahul kumar sharma</pre></div></article>
+<article class="fn" data-s="python" data-k="strip() removes spaces from the start and end. s =    rahul   
+print([ + s.strip() + ])
+print([ + s.lstrip() + ])
+print([ + s.rstrip() + ])"><h4>strip()</h4><p class="d">Removes spaces from the start and end.</p><div class="c"><pre>s = "   Rahul   "
+print("[" + s.strip() + "]")
+print("[" + s.lstrip() + "]")
+print("[" + s.rstrip() + "]")</pre></div><div class="o"><span class="ol">Output</span><pre>[Rahul]
+[Rahul   ]
+[   Rahul]</pre></div></article>
+<article class="fn" data-s="python" data-k="split() breaks text into a list. splits on spaces by default. s = rahul,priya,amit
+print(s.split(,))
+print(a b c.split())"><h4>split()</h4><p class="d">Breaks text into a list. Splits on spaces by default.</p><div class="c"><pre>s = "Rahul,Priya,Amit"
+print(s.split(","))
+print("a b c".split())</pre></div><div class="o"><span class="ol">Output</span><pre>['Rahul', 'Priya', 'Amit']
+['a', 'b', 'c']</pre></div></article>
+<article class="fn" data-s="python" data-k="join() joins a list of text into one string. names = [rahul, priya, amit]
+print(, .join(names))
+print(-.join(abc))"><h4>join()</h4><p class="d">Joins a list of text into one string.</p><div class="c"><pre>names = ["Rahul", "Priya", "Amit"]
+print(", ".join(names))
+print("-".join("abc"))</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul, Priya, Amit
+a-b-c</pre></div></article>
+<article class="fn" data-s="python" data-k="replace() swaps one piece of text for another. s = i like tea
+print(s.replace(tea, coffee))"><h4>replace()</h4><p class="d">Swaps one piece of text for another.</p><div class="c"><pre>s = "I like tea"
+print(s.replace("tea", "coffee"))</pre></div><div class="o"><span class="ol">Output</span><pre>I like coffee</pre></div></article>
+<article class="fn" data-s="python" data-k="find() / index() finds where a piece of text starts. find() gives -1 if missing, index() gives an error. s = data analytics
+print(s.find(analy))
+print(s.find(python))"><h4>find() / index()</h4><p class="d">Finds where a piece of text starts. find() gives -1 if missing, index() gives an error.</p><div class="c"><pre>s = "Data Analytics"
+print(s.find("Analy"))
+print(s.find("Python"))</pre></div><div class="o"><span class="ol">Output</span><pre>5
+-1</pre></div></article>
+<article class="fn" data-s="python" data-k="count() counts how many times something appears. s = banana
+print(s.count(a))"><h4>count()</h4><p class="d">Counts how many times something appears.</p><div class="c"><pre>s = "banana"
+print(s.count("a"))</pre></div><div class="o"><span class="ol">Output</span><pre>3</pre></div></article>
+<article class="fn" data-s="python" data-k="startswith() / endswith() checks how the text begins or ends. f = report.csv
+print(f.endswith(.csv))
+print(f.startswith(rep))"><h4>startswith() / endswith()</h4><p class="d">Checks how the text begins or ends.</p><div class="c"><pre>f = "report.csv"
+print(f.endswith(".csv"))
+print(f.startswith("rep"))</pre></div><div class="o"><span class="ol">Output</span><pre>True
+True</pre></div></article>
+<article class="fn" data-s="python" data-k="isdigit() / isalpha() checks what the text is made of. print(12345.isdigit())
+print(abc.isalpha())
+print(abc123.isalpha())"><h4>isdigit() / isalpha()</h4><p class="d">Checks what the text is made of.</p><div class="c"><pre>print("12345".isdigit())
+print("abc".isalpha())
+print("abc123".isalpha())</pre></div><div class="o"><span class="ol">Output</span><pre>True
+True
+False</pre></div></article>
+<article class="fn" data-s="python" data-k="slicing takes a part of the text using [start:stop:step]. s = data analytics
+print(s[0])
+print(s[0:4])
+print(s[5:])
+print(s[-1])
+print(s[::-1])   # reversed"><h4>Slicing</h4><p class="d">Takes a part of the text using [start:stop:step].</p><div class="c"><pre>s = "Data Analytics"
+print(s[0])
+print(s[0:4])
+print(s[5:])
+print(s[-1])
+print(s[::-1])   # reversed</pre></div><div class="o"><span class="ol">Output</span><pre>D
+Data
+Analytics
+s
+scitylanA ataD</pre></div></article>
+<article class="fn" data-s="python" data-k="f-strings puts variables inside text. the easiest way to build a message. name, marks = rahul, 87
+print(f{name} scored {marks} marks)
+print(faverage: {87/3:.2f})"><h4>f-strings</h4><p class="d">Puts variables inside text. The easiest way to build a message.</p><div class="c"><pre>name, marks = "Rahul", 87
+print(f"{name} scored {marks} marks")
+print(f"Average: {87/3:.2f}")</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul scored 87 marks
+Average: 29.00</pre></div></article>
+<article class="fn" data-s="python" data-k="format() the older way of putting variables inside text. print({} scored {}.format(rahul, 87))"><h4>format()</h4><p class="d">The older way of putting variables inside text.</p><div class="c"><pre>print("{} scored {}".format("Rahul", 87))</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul scored 87</pre></div></article>
+</div></section>
+<section class="cat" id="python-lists-d12-to-d13">
+<h3 class="cath">Lists — D12 to D13 <span>14</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="creating a list a list holds many values in order. it can be changed. nums = [10, 20, 30]
+mixed = [1, two, 3.0, true]
+empty = []
+print(nums, mixed, empty)"><h4>Creating a list</h4><p class="d">A list holds many values in order. It can be changed.</p><div class="c"><pre>nums = [10, 20, 30]
+mixed = [1, "two", 3.0, True]
+empty = []
+print(nums, mixed, empty)</pre></div><div class="o"><span class="ol">Output</span><pre>[10, 20, 30] [1, 'two', 3.0, True] []</pre></div></article>
+<article class="fn" data-s="python" data-k="indexing and slicing get one item, or a part of the list. nums = [10, 20, 30, 40, 50]
+print(nums[0])
+print(nums[-1])
+print(nums[1:4])
+print(nums[::2])"><h4>Indexing and slicing</h4><p class="d">Get one item, or a part of the list.</p><div class="c"><pre>nums = [10, 20, 30, 40, 50]
+print(nums[0])
+print(nums[-1])
+print(nums[1:4])
+print(nums[::2])</pre></div><div class="o"><span class="ol">Output</span><pre>10
+50
+[20, 30, 40]
+[10, 30, 50]</pre></div></article>
+<article class="fn" data-s="python" data-k="append() adds one item to the end. nums = [1, 2]
+nums.append(3)
+print(nums)
+nums.append([4, 5])      # adds the whole list as one item
+print(nums)"><h4>append()</h4><p class="d">Adds ONE item to the end.</p><div class="c"><pre>nums = [1, 2]
+nums.append(3)
+print(nums)
+nums.append([4, 5])      # adds the whole list as one item
+print(nums)</pre></div><div class="o"><span class="ol">Output</span><pre>[1, 2, 3]
+[1, 2, 3, [4, 5]]</pre></div></article>
+<article class="fn" data-s="python" data-k="extend() adds many items to the end, one by one. nums = [1, 2]
+nums.extend([3, 4])
+print(nums)"><h4>extend()</h4><p class="d">Adds MANY items to the end, one by one.</p><div class="c"><pre>nums = [1, 2]
+nums.extend([3, 4])
+print(nums)</pre></div><div class="o"><span class="ol">Output</span><pre>[1, 2, 3, 4]</pre></div></article>
+<article class="fn" data-s="python" data-k="insert() adds an item at a chosen position. nums = [10, 30]
+nums.insert(1, 20)
+print(nums)"><h4>insert()</h4><p class="d">Adds an item at a chosen position.</p><div class="c"><pre>nums = [10, 30]
+nums.insert(1, 20)
+print(nums)</pre></div><div class="o"><span class="ol">Output</span><pre>[10, 20, 30]</pre></div></article>
+<article class="fn" data-s="python" data-k="remove() removes the first matching value. nums = [10, 20, 30, 20]
+nums.remove(20)
+print(nums)"><h4>remove()</h4><p class="d">Removes the first matching value.</p><div class="c"><pre>nums = [10, 20, 30, 20]
+nums.remove(20)
+print(nums)</pre></div><div class="o"><span class="ol">Output</span><pre>[10, 30, 20]</pre></div></article>
+<article class="fn" data-s="python" data-k="pop() removes by position and gives the item back. last item if you give nothing. nums = [10, 20, 30]
+last = nums.pop()
+first = nums.pop(0)
+print(last, first, nums)"><h4>pop()</h4><p class="d">Removes by position and gives the item back. Last item if you give nothing.</p><div class="c"><pre>nums = [10, 20, 30]
+last = nums.pop()
+first = nums.pop(0)
+print(last, first, nums)</pre></div><div class="o"><span class="ol">Output</span><pre>30 10 [20]</pre></div></article>
+<article class="fn" data-s="python" data-k="sort() arranges the list in order. changes the original list. nums = [30, 10, 20]
+nums.sort()
+print(nums)
+nums.sort(reverse=true)
+print(nums)"><h4>sort()</h4><p class="d">Arranges the list in order. Changes the original list.</p><div class="c"><pre>nums = [30, 10, 20]
+nums.sort()
+print(nums)
+nums.sort(reverse=True)
+print(nums)</pre></div><div class="o"><span class="ol">Output</span><pre>[10, 20, 30]
+[30, 20, 10]</pre></div></article>
+<article class="fn" data-s="python" data-k="sorted() same as sort but gives a new list. the original stays as it was. nums = [30, 10, 20]
+new = sorted(nums)
+print(new)
+print(nums)      # unchanged"><h4>sorted()</h4><p class="d">Same as sort but gives a NEW list. The original stays as it was.</p><div class="c"><pre>nums = [30, 10, 20]
+new = sorted(nums)
+print(new)
+print(nums)      # unchanged</pre></div><div class="o"><span class="ol">Output</span><pre>[10, 20, 30]
+[30, 10, 20]</pre></div></article>
+<article class="fn" data-s="python" data-k="reverse() flips the order of the list. nums = [1, 2, 3]
+nums.reverse()
+print(nums)"><h4>reverse()</h4><p class="d">Flips the order of the list.</p><div class="c"><pre>nums = [1, 2, 3]
+nums.reverse()
+print(nums)</pre></div><div class="o"><span class="ol">Output</span><pre>[3, 2, 1]</pre></div></article>
+<article class="fn" data-s="python" data-k="count() / index() counts a value, or finds its position. nums = [10, 20, 10, 30]
+print(nums.count(10))
+print(nums.index(20))"><h4>count() / index()</h4><p class="d">Counts a value, or finds its position.</p><div class="c"><pre>nums = [10, 20, 10, 30]
+print(nums.count(10))
+print(nums.index(20))</pre></div><div class="o"><span class="ol">Output</span><pre>2
+1</pre></div></article>
+<article class="fn" data-s="python" data-k="len() / sum() / min() / max() quick summaries of a list of numbers. nums = [10, 20, 30, 40]
+print(len(nums), sum(nums))
+print(min(nums), max(nums))
+print(sum(nums) / len(nums))     # average"><h4>len() / sum() / min() / max()</h4><p class="d">Quick summaries of a list of numbers.</p><div class="c"><pre>nums = [10, 20, 30, 40]
+print(len(nums), sum(nums))
+print(min(nums), max(nums))
+print(sum(nums) / len(nums))     # average</pre></div><div class="o"><span class="ol">Output</span><pre>4 100
+10 40
+25.0</pre></div></article>
+<article class="fn" data-s="python" data-k="copy() makes a separate copy. without it, both names point to the same list. a = [1, 2, 3]
+b = a              # same list
+c = a.copy()       # new list
+a.append(4)
+print(b)
+print(c)"><h4>copy()</h4><p class="d">Makes a separate copy. Without it, both names point to the same list.</p><div class="c"><pre>a = [1, 2, 3]
+b = a              # SAME list
+c = a.copy()       # NEW list
+a.append(4)
+print(b)
+print(c)</pre></div><div class="o"><span class="ol">Output</span><pre>[1, 2, 3, 4]
+[1, 2, 3]</pre></div></article>
+<article class="fn" data-s="python" data-k="list comprehension builds a new list in one line. very common in data work. nums = [1, 2, 3, 4, 5]
+squares = [n * n for n in nums]
+evens   = [n for n in nums if n % 2 == 0]
+print(squares)
+print(evens)"><h4>List comprehension</h4><p class="d">Builds a new list in one line. Very common in data work.</p><div class="c"><pre>nums = [1, 2, 3, 4, 5]
+squares = [n * n for n in nums]
+evens   = [n for n in nums if n % 2 == 0]
+print(squares)
+print(evens)</pre></div><div class="o"><span class="ol">Output</span><pre>[1, 4, 9, 16, 25]
+[2, 4]</pre></div></article>
+</div></section>
+<section class="cat" id="python-tuples-d13">
+<h3 class="cath">Tuples — D13 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="creating a tuple like a list, but it cannot be changed after you make it. t = (10, 20, 30)
+print(t, len(t), t[0])"><h4>Creating a tuple</h4><p class="d">Like a list, but it CANNOT be changed after you make it.</p><div class="c"><pre>t = (10, 20, 30)
+print(t, len(t), t[0])</pre></div><div class="o"><span class="ol">Output</span><pre>(10, 20, 30) 3 10</pre></div></article>
+<article class="fn" data-s="python" data-k="why tuples trying to change one gives an error. that safety is the point. t = (1, 2, 3)
+try:
+    t[0] = 99
+except typeerror as e:
+    print(error:, e)"><h4>Why tuples</h4><p class="d">Trying to change one gives an error. That safety is the point.</p><div class="c"><pre>t = (1, 2, 3)
+try:
+    t[0] = 99
+except TypeError as e:
+    print("Error:", e)</pre></div><div class="o"><span class="ol">Output</span><pre>Error: 'tuple' object does not support item assignment</pre></div></article>
+<article class="fn" data-s="python" data-k="unpacking puts each item into its own variable. point = (10, 20)
+x, y = point
+print(x, y)"><h4>Unpacking</h4><p class="d">Puts each item into its own variable.</p><div class="c"><pre>point = (10, 20)
+x, y = point
+print(x, y)</pre></div><div class="o"><span class="ol">Output</span><pre>10 20</pre></div></article>
+</div></section>
+<section class="cat" id="python-dictionaries-d16">
+<h3 class="cath">Dictionaries — D16 <span>7</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="creating a dictionary stores key–value pairs. you look things up by name, not by position. student = {name: rahul, marks: 87, city: bangalore}
+print(student)
+print(student[name])"><h4>Creating a dictionary</h4><p class="d">Stores key–value pairs. You look things up by name, not by position.</p><div class="c"><pre>student = {"name": "Rahul", "marks": 87, "city": "Bangalore"}
+print(student)
+print(student["name"])</pre></div><div class="o"><span class="ol">Output</span><pre>{'name': 'Rahul', 'marks': 87, 'city': 'Bangalore'}
+Rahul</pre></div></article>
+<article class="fn" data-s="python" data-k="adding and changing assign to a key to add it or update it. d = {a: 1}
+d[b] = 2          # add
+d[a] = 99         # change
+print(d)"><h4>Adding and changing</h4><p class="d">Assign to a key to add it or update it.</p><div class="c"><pre>d = {"a": 1}
+d["b"] = 2          # add
+d["a"] = 99         # change
+print(d)</pre></div><div class="o"><span class="ol">Output</span><pre>{'a': 99, 'b': 2}</pre></div></article>
+<article class="fn" data-s="python" data-k="get() safely reads a key. gives none (or your default) instead of an error. d = {a: 1}
+print(d.get(a))
+print(d.get(z))
+print(d.get(z, 0))"><h4>get()</h4><p class="d">Safely reads a key. Gives None (or your default) instead of an error.</p><div class="c"><pre>d = {"a": 1}
+print(d.get("a"))
+print(d.get("z"))
+print(d.get("z", 0))</pre></div><div class="o"><span class="ol">Output</span><pre>1
+None
+0</pre></div></article>
+<article class="fn" data-s="python" data-k="keys() / values() / items() gets the keys, the values, or both together. d = {a: 1, b: 2}
+print(list(d.keys()))
+print(list(d.values()))
+print(list(d.items()))"><h4>keys() / values() / items()</h4><p class="d">Gets the keys, the values, or both together.</p><div class="c"><pre>d = {"a": 1, "b": 2}
+print(list(d.keys()))
+print(list(d.values()))
+print(list(d.items()))</pre></div><div class="o"><span class="ol">Output</span><pre>['a', 'b']
+[1, 2]
+[('a', 1), ('b', 2)]</pre></div></article>
+<article class="fn" data-s="python" data-k="looping through a dictionary items() gives you the key and value together. marks = {rahul: 87, priya: 92}
+for name, m in marks.items():
+    print(name, scored, m)"><h4>Looping through a dictionary</h4><p class="d">items() gives you the key and value together.</p><div class="c"><pre>marks = {"Rahul": 87, "Priya": 92}
+for name, m in marks.items():
+    print(name, "scored", m)</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul scored 87
+Priya scored 92</pre></div></article>
+<article class="fn" data-s="python" data-k="pop() / del removes a key. d = {a: 1, b: 2}
+d.pop(a)
+print(d)"><h4>pop() / del</h4><p class="d">Removes a key.</p><div class="c"><pre>d = {"a": 1, "b": 2}
+d.pop("a")
+print(d)</pre></div><div class="o"><span class="ol">Output</span><pre>{'b': 2}</pre></div></article>
+<article class="fn" data-s="python" data-k="update() merges another dictionary in. d = {a: 1}
+d.update({b: 2, c: 3})
+print(d)"><h4>update()</h4><p class="d">Merges another dictionary in.</p><div class="c"><pre>d = {"a": 1}
+d.update({"b": 2, "c": 3})
+print(d)</pre></div><div class="o"><span class="ol">Output</span><pre>{'a': 1, 'b': 2, 'c': 3}</pre></div></article>
+</div></section>
+<section class="cat" id="python-sets-d14">
+<h3 class="cath">Sets — D14 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="creating a set holds only unique values. order is not kept. s = {1, 2, 2, 3, 3, 3}
+print(s)
+print(set([10, 20, 10]))"><h4>Creating a set</h4><p class="d">Holds only UNIQUE values. Order is not kept.</p><div class="c"><pre>s = {1, 2, 2, 3, 3, 3}
+print(s)
+print(set([10, 20, 10]))</pre></div><div class="o"><span class="ol">Output</span><pre>{1, 2, 3}
+{10, 20}</pre></div></article>
+<article class="fn" data-s="python" data-k="add() / remove() adds or removes one value. s = {1, 2}
+s.add(3)
+s.remove(1)
+print(s)"><h4>add() / remove()</h4><p class="d">Adds or removes one value.</p><div class="c"><pre>s = {1, 2}
+s.add(3)
+s.remove(1)
+print(s)</pre></div><div class="o"><span class="ol">Output</span><pre>{2, 3}</pre></div></article>
+<article class="fn" data-s="python" data-k="union / intersection / difference compares two sets. a = {1, 2, 3}
+b = {3, 4, 5}
+print(a | b)      # union - everything
+print(a &amp; b)      # intersection - common
+print(a - b)      # difference - only in a"><h4>union / intersection / difference</h4><p class="d">Compares two sets.</p><div class="c"><pre>a = {1, 2, 3}
+b = {3, 4, 5}
+print(a | b)      # union - everything
+print(a &amp; b)      # intersection - common
+print(a - b)      # difference - only in a</pre></div><div class="o"><span class="ol">Output</span><pre>{1, 2, 3, 4, 5}
+{3}
+{1, 2}</pre></div></article>
+<article class="fn" data-s="python" data-k="removing duplicates the most common real use of a set. names = [rahul, priya, rahul, amit]
+print(list(set(names)))"><h4>Removing duplicates</h4><p class="d">The most common real use of a set.</p><div class="c"><pre>names = ["Rahul", "Priya", "Rahul", "Amit"]
+print(list(set(names)))</pre></div><div class="o"><span class="ol">Output</span><pre>['Amit', 'Priya', 'Rahul']</pre></div></article>
+</div></section>
+<section class="cat" id="python-conditional-statements-d08">
+<h3 class="cath">Conditional statements — D08 <span>2</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="if / elif / else runs different code depending on the answer. marks = 78
+if marks &gt;= 90:
+    print(a grade)
+elif marks &gt;= 75:
+    print(b grade)
+else:
+    print(c grade)"><h4>if / elif / else</h4><p class="d">Runs different code depending on the answer.</p><div class="c"><pre>marks = 78
+if marks &gt;= 90:
+    print("A grade")
+elif marks &gt;= 75:
+    print("B grade")
+else:
+    print("C grade")</pre></div><div class="o"><span class="ol">Output</span><pre>B grade</pre></div></article>
+<article class="fn" data-s="python" data-k="in checks whether a value is present. names = [rahul, priya]
+print(rahul in names)
+print(amit in names)
+print(ta in data)"><h4>in</h4><p class="d">Checks whether a value is present.</p><div class="c"><pre>names = ["Rahul", "Priya"]
+print("Rahul" in names)
+print("Amit" in names)
+print("ta" in "Data")</pre></div><div class="o"><span class="ol">Output</span><pre>True
+False
+True</pre></div></article>
+</div></section>
+<section class="cat" id="python-loops-d09-to-d10">
+<h3 class="cath">Loops — D09 to D10 <span>6</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="for loop repeats once for every item. for name in [rahul, priya]:
+    print(hello, name)"><h4>for loop</h4><p class="d">Repeats once for every item.</p><div class="c"><pre>for name in ["Rahul", "Priya"]:
+    print("Hello", name)</pre></div><div class="o"><span class="ol">Output</span><pre>Hello Rahul
+Hello Priya</pre></div></article>
+<article class="fn" data-s="python" data-k="range() makes a sequence of numbers to loop over. print(list(range(5)))
+print(list(range(2, 6)))
+print(list(range(0, 10, 2)))
+for i in range(3):
+    print(i)"><h4>range()</h4><p class="d">Makes a sequence of numbers to loop over.</p><div class="c"><pre>print(list(range(5)))
+print(list(range(2, 6)))
+print(list(range(0, 10, 2)))
+for i in range(3):
+    print(i)</pre></div><div class="o"><span class="ol">Output</span><pre>[0, 1, 2, 3, 4]
+[2, 3, 4, 5]
+[0, 2, 4, 6, 8]
+0
+1
+2</pre></div></article>
+<article class="fn" data-s="python" data-k="while loop keeps repeating while the condition stays true. count = 1
+while count &lt;= 3:
+    print(count)
+    count = count + 1"><h4>while loop</h4><p class="d">Keeps repeating while the condition stays true.</p><div class="c"><pre>count = 1
+while count &lt;= 3:
+    print(count)
+    count = count + 1</pre></div><div class="o"><span class="ol">Output</span><pre>1
+2
+3</pre></div></article>
+<article class="fn" data-s="python" data-k="break / continue break stops the loop. continue skips to the next round. for i in range(6):
+    if i == 4:
+        break
+    if i % 2 == 0:
+        continue
+    print(i)"><h4>break / continue</h4><p class="d">break stops the loop. continue skips to the next round.</p><div class="c"><pre>for i in range(6):
+    if i == 4:
+        break
+    if i % 2 == 0:
+        continue
+    print(i)</pre></div><div class="o"><span class="ol">Output</span><pre>1
+3</pre></div></article>
+<article class="fn" data-s="python" data-k="enumerate() gives the position and the item together. names = [rahul, priya]
+for i, name in enumerate(names):
+    print(i, name)"><h4>enumerate()</h4><p class="d">Gives the position AND the item together.</p><div class="c"><pre>names = ["Rahul", "Priya"]
+for i, name in enumerate(names):
+    print(i, name)</pre></div><div class="o"><span class="ol">Output</span><pre>0 Rahul
+1 Priya</pre></div></article>
+<article class="fn" data-s="python" data-k="zip() loops through two lists side by side. names = [rahul, priya]
+marks = [87, 92]
+for n, m in zip(names, marks):
+    print(n, m)"><h4>zip()</h4><p class="d">Loops through two lists side by side.</p><div class="c"><pre>names = ["Rahul", "Priya"]
+marks = [87, 92]
+for n, m in zip(names, marks):
+    print(n, m)</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul 87
+Priya 92</pre></div></article>
+</div></section>
+<section class="cat" id="python-functions-d06-to-d07">
+<h3 class="cath">Functions — D06 to D07 <span>8</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="def creates your own reusable block of code. def greet(name):
+    return hello  + name
+
+print(greet(rahul))"><h4>def</h4><p class="d">Creates your own reusable block of code.</p><div class="c"><pre>def greet(name):
+    return "Hello " + name
+
+print(greet("Rahul"))</pre></div><div class="o"><span class="ol">Output</span><pre>Hello Rahul</pre></div></article>
+<article class="fn" data-s="python" data-k="return sends a value back. without it you get none. def add(a, b):
+    return a + b
+
+def add_no_return(a, b):
+    total = a + b        # nothing sent back
+
+print(add(2, 3))
+print(add_no_return(2, 3))"><h4>return</h4><p class="d">Sends a value back. Without it you get None.</p><div class="c"><pre>def add(a, b):
+    return a + b
+
+def add_no_return(a, b):
+    total = a + b        # nothing sent back
+
+print(add(2, 3))
+print(add_no_return(2, 3))</pre></div><div class="o"><span class="ol">Output</span><pre>5
+None</pre></div></article>
+<article class="fn" data-s="python" data-k="default values gives a parameter a fallback if nothing is passed. def greet(name, greeting=hello):
+    return greeting +   + name
+
+print(greet(rahul))
+print(greet(priya, good morning))"><h4>Default values</h4><p class="d">Gives a parameter a fallback if nothing is passed.</p><div class="c"><pre>def greet(name, greeting="Hello"):
+    return greeting + " " + name
+
+print(greet("Rahul"))
+print(greet("Priya", "Good morning"))</pre></div><div class="o"><span class="ol">Output</span><pre>Hello Rahul
+Good morning Priya</pre></div></article>
+<article class="fn" data-s="python" data-k="*args accepts any number of values. def total(*nums):
+    return sum(nums)
+
+print(total(1, 2))
+print(total(1, 2, 3, 4, 5))"><h4>*args</h4><p class="d">Accepts any number of values.</p><div class="c"><pre>def total(*nums):
+    return sum(nums)
+
+print(total(1, 2))
+print(total(1, 2, 3, 4, 5))</pre></div><div class="o"><span class="ol">Output</span><pre>3
+15</pre></div></article>
+<article class="fn" data-s="python" data-k="**kwargs accepts any number of named values. def show(**info):
+    for k, v in info.items():
+        print(k, =, v)
+
+show(name=rahul, city=bangalore)"><h4>**kwargs</h4><p class="d">Accepts any number of named values.</p><div class="c"><pre>def show(**info):
+    for k, v in info.items():
+        print(k, "=", v)
+
+show(name="Rahul", city="Bangalore")</pre></div><div class="o"><span class="ol">Output</span><pre>name = Rahul
+city = Bangalore</pre></div></article>
+<article class="fn" data-s="python" data-k="lambda a tiny one-line function with no name. square = lambda x: x * x
+print(square(5))
+
+pairs = [(1, b), (3, a), (2, c)]
+print(sorted(pairs, key=lambda p: p[1]))"><h4>lambda</h4><p class="d">A tiny one-line function with no name.</p><div class="c"><pre>square = lambda x: x * x
+print(square(5))
+
+pairs = [(1, "b"), (3, "a"), (2, "c")]
+print(sorted(pairs, key=lambda p: p[1]))</pre></div><div class="o"><span class="ol">Output</span><pre>25
+[(3, 'a'), (1, 'b'), (2, 'c')]</pre></div></article>
+<article class="fn" data-s="python" data-k="map() applies a function to every item. nums = [1, 2, 3]
+print(list(map(lambda x: x * 10, nums)))
+print(list(map(str, nums)))"><h4>map()</h4><p class="d">Applies a function to every item.</p><div class="c"><pre>nums = [1, 2, 3]
+print(list(map(lambda x: x * 10, nums)))
+print(list(map(str, nums)))</pre></div><div class="o"><span class="ol">Output</span><pre>[10, 20, 30]
+['1', '2', '3']</pre></div></article>
+<article class="fn" data-s="python" data-k="filter() keeps only the items that pass a test. nums = [1, 2, 3, 4, 5, 6]
+print(list(filter(lambda x: x % 2 == 0, nums)))"><h4>filter()</h4><p class="d">Keeps only the items that pass a test.</p><div class="c"><pre>nums = [1, 2, 3, 4, 5, 6]
+print(list(filter(lambda x: x % 2 == 0, nums)))</pre></div><div class="o"><span class="ol">Output</span><pre>[2, 4, 6]</pre></div></article>
+</div></section>
+<section class="cat" id="python-file-handling-d23-to-d25">
+<h3 class="cath">File handling — D23 to D25 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="open() with write creates a file and writes into it. with open(demo.txt, w) as f:
+    f.write(line one\n)
+    f.write(line two\n)
+print(file written)"><h4>open() with write</h4><p class="d">Creates a file and writes into it.</p><div class="c"><pre>with open("demo.txt", "w") as f:
+    f.write("Line one\n")
+    f.write("Line two\n")
+print("file written")</pre></div><div class="o"><span class="ol">Output</span><pre>file written</pre></div></article>
+<article class="fn" data-s="python" data-k="open() with read reads the whole file as one string. with open(demo.txt, w) as f:
+    f.write(line one\nline two\n)
+
+with open(demo.txt, r) as f:
+    print(f.read())"><h4>open() with read</h4><p class="d">Reads the whole file as one string.</p><div class="c"><pre>with open("demo.txt", "w") as f:
+    f.write("Line one\nLine two\n")
+
+with open("demo.txt", "r") as f:
+    print(f.read())</pre></div><div class="o"><span class="ol">Output</span><pre>Line one
+Line two</pre></div></article>
+<article class="fn" data-s="python" data-k="readlines() reads the file into a list of lines. with open(demo.txt, w) as f:
+    f.write(a\nb\nc\n)
+
+with open(demo.txt) as f:
+    lines = f.readlines()
+print(lines)
+print([l.strip() for l in lines])"><h4>readlines()</h4><p class="d">Reads the file into a list of lines.</p><div class="c"><pre>with open("demo.txt", "w") as f:
+    f.write("a\nb\nc\n")
+
+with open("demo.txt") as f:
+    lines = f.readlines()
+print(lines)
+print([l.strip() for l in lines])</pre></div><div class="o"><span class="ol">Output</span><pre>['a\n', 'b\n', 'c\n']
+['a', 'b', 'c']</pre></div></article>
+<article class="fn" data-s="python" data-k="append mode a adds to the end instead of erasing the file. with open(demo.txt, w) as f:
+    f.write(first\n)
+with open(demo.txt, a) as f:
+    f.write(second\n)
+with open(demo.txt) as f:
+    print(f.read())"><h4>Append mode</h4><p class="d">"a" adds to the end instead of erasing the file.</p><div class="c"><pre>with open("demo.txt", "w") as f:
+    f.write("first\n")
+with open("demo.txt", "a") as f:
+    f.write("second\n")
+with open("demo.txt") as f:
+    print(f.read())</pre></div><div class="o"><span class="ol">Output</span><pre>first
+second</pre></div></article>
+</div></section>
+<section class="cat" id="python-error-handling-d24">
+<h3 class="cath">Error handling — D24 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="try / except catches an error so the program does not stop. try:
+    x = 10 / 0
+except zerodivisionerror:
+    print(cannot divide by zero)"><h4>try / except</h4><p class="d">Catches an error so the program does not stop.</p><div class="c"><pre>try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")</pre></div><div class="o"><span class="ol">Output</span><pre>Cannot divide by zero</pre></div></article>
+<article class="fn" data-s="python" data-k="except with the message shows what actually went wrong. try:
+    n = int(abc)
+except valueerror as e:
+    print(error:, e)"><h4>except with the message</h4><p class="d">Shows what actually went wrong.</p><div class="c"><pre>try:
+    n = int("abc")
+except ValueError as e:
+    print("Error:", e)</pre></div><div class="o"><span class="ol">Output</span><pre>Error: invalid literal for int() with base 10: 'abc'</pre></div></article>
+<article class="fn" data-s="python" data-k="finally runs whether there was an error or not. try:
+    print(trying)
+except:
+    print(failed)
+finally:
+    print(always runs)"><h4>finally</h4><p class="d">Runs whether there was an error or not.</p><div class="c"><pre>try:
+    print("trying")
+except:
+    print("failed")
+finally:
+    print("always runs")</pre></div><div class="o"><span class="ol">Output</span><pre>trying
+always runs</pre></div></article>
+</div></section>
+<section class="cat" id="python-object-orientation-d17-to-d22">
+<h3 class="cath">Object orientation — D17 to D22 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="class and __init__ a blueprint for making objects. __init__ runs when you create one. class student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+s = student(rahul, 87)
+print(s.name, s.marks)"><h4>class and __init__</h4><p class="d">A blueprint for making objects. __init__ runs when you create one.</p><div class="c"><pre>class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+s = Student("Rahul", 87)
+print(s.name, s.marks)</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul 87</pre></div></article>
+<article class="fn" data-s="python" data-k="methods a function that belongs to the class. class student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+    def grade(self):
+        return pass if self.marks &gt;= 40 else fail
+
+s = student(rahul, 87)
+print(s.grade())"><h4>Methods</h4><p class="d">A function that belongs to the class.</p><div class="c"><pre>class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+    def grade(self):
+        return "Pass" if self.marks &gt;= 40 else "Fail"
+
+s = Student("Rahul", 87)
+print(s.grade())</pre></div><div class="o"><span class="ol">Output</span><pre>Pass</pre></div></article>
+<article class="fn" data-s="python" data-k="inheritance a new class takes everything from an existing one. class person:
+    def __init__(self, name):
+        self.name = name
+    def greet(self):
+        return hi, i am  + self.name
+
+class student(person):
+    def study(self):
+        return self.name +  is studying
+
+s = student(rahul)
+print(s.greet())
+print(s.study())"><h4>Inheritance</h4><p class="d">A new class takes everything from an existing one.</p><div class="c"><pre>class Person:
+    def __init__(self, name):
+        self.name = name
+    def greet(self):
+        return "Hi, I am " + self.name
+
+class Student(Person):
+    def study(self):
+        return self.name + " is studying"
+
+s = Student("Rahul")
+print(s.greet())
+print(s.study())</pre></div><div class="o"><span class="ol">Output</span><pre>Hi, I am Rahul
+Rahul is studying</pre></div></article>
+</div></section>
+<section class="cat" id="python-modules-and-libraries-d25">
+<h3 class="cath">Modules and libraries — D25 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="python" data-k="import brings in code someone else wrote. import math
+print(math.sqrt(16))
+print(math.pi)"><h4>import</h4><p class="d">Brings in code someone else wrote.</p><div class="c"><pre>import math
+print(math.sqrt(16))
+print(math.pi)</pre></div><div class="o"><span class="ol">Output</span><pre>4.0
+3.141592653589793</pre></div></article>
+<article class="fn" data-s="python" data-k="from ... import brings in just one piece. from math import sqrt, floor
+print(sqrt(25), floor(3.9))"><h4>from ... import</h4><p class="d">Brings in just one piece.</p><div class="c"><pre>from math import sqrt, floor
+print(sqrt(25), floor(3.9))</pre></div><div class="o"><span class="ol">Output</span><pre>5.0 3</pre></div></article>
+<article class="fn" data-s="python" data-k="import as gives the module a short name. this is why pandas is pd. import math as m
+print(m.sqrt(9))"><h4>import as</h4><p class="d">Gives the module a short name. This is why pandas is pd.</p><div class="c"><pre>import math as m
+print(m.sqrt(9))</pre></div><div class="o"><span class="ol">Output</span><pre>3.0</pre></div></article>
+<article class="fn" data-s="python" data-k="random makes random numbers. import random
+random.seed(1)               # seed makes it repeatable
+print(random.randint(1, 10))
+print(random.choice([a, b, c]))"><h4>random</h4><p class="d">Makes random numbers.</p><div class="c"><pre>import random
+random.seed(1)               # seed makes it repeatable
+print(random.randint(1, 10))
+print(random.choice(["a", "b", "c"]))</pre></div><div class="o"><span class="ol">Output</span><pre>3
+c</pre></div></article>
+</div></section>
+</div>
+<div class="sec" id="sec-numpy">
+<div class="sechead"><h2>NumPy</h2><p>Sessions D25 to D30. Arrays, indexing, aggregation, boolean slicing and reshaping.</p><span class="cnt">50 functions</span></div>
+<section class="cat" id="numpy-numpy-introduction-d25-to-d26">
+<h3 class="cath">NumPy introduction — D25 to D26 <span>11</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="np.array() turns a list into a numpy array. a = np.array([10, 20, 30])
+print(a)
+print(type(a))"><h4>np.array()</h4><p class="d">Turns a list into a NumPy array.</p><div class="c"><pre>a = np.array([10, 20, 30])
+print(a)
+print(type(a))</pre></div><div class="o"><span class="ol">Output</span><pre>[10 20 30]
+&lt;class 'numpy.ndarray'&gt;</pre></div></article>
+<article class="fn" data-s="numpy" data-k="2d array a list of lists becomes a table with rows and columns. b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b)
+print(b.shape)     # (rows, columns)"><h4>2D array</h4><p class="d">A list of lists becomes a table with rows and columns.</p><div class="c"><pre>b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b)
+print(b.shape)     # (rows, columns)</pre></div><div class="o"><span class="ol">Output</span><pre>[[1 2 3]
+ [4 5 6]]
+(2, 3)</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.zeros() makes an array filled with 0. print(np.zeros(4))
+print(np.zeros((2, 3)))"><h4>np.zeros()</h4><p class="d">Makes an array filled with 0.</p><div class="c"><pre>print(np.zeros(4))
+print(np.zeros((2, 3)))</pre></div><div class="o"><span class="ol">Output</span><pre>[0. 0. 0. 0.]
+[[0. 0. 0.]
+ [0. 0. 0.]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.ones() makes an array filled with 1. print(np.ones(3))
+print(np.ones((2, 2)))"><h4>np.ones()</h4><p class="d">Makes an array filled with 1.</p><div class="c"><pre>print(np.ones(3))
+print(np.ones((2, 2)))</pre></div><div class="o"><span class="ol">Output</span><pre>[1. 1. 1.]
+[[1. 1.]
+ [1. 1.]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.full() makes an array filled with any value you choose. print(np.full(4, 7))
+print(np.full((2, 2), 9))"><h4>np.full()</h4><p class="d">Makes an array filled with any value you choose.</p><div class="c"><pre>print(np.full(4, 7))
+print(np.full((2, 2), 9))</pre></div><div class="o"><span class="ol">Output</span><pre>[7 7 7 7]
+[[9 9]
+ [9 9]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.eye() / np.identity() makes an identity matrix - 1 on the diagonal, 0 everywhere else. print(np.eye(3))
+print(np.identity(2))"><h4>np.eye() / np.identity()</h4><p class="d">Makes an identity matrix - 1 on the diagonal, 0 everywhere else.</p><div class="c"><pre>print(np.eye(3))
+print(np.identity(2))</pre></div><div class="o"><span class="ol">Output</span><pre>[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+[[1. 0.]
+ [0. 1.]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.arange() makes numbers in a range. like range(), but gives an array. print(np.arange(5))
+print(np.arange(2, 10, 2))"><h4>np.arange()</h4><p class="d">Makes numbers in a range. Like range(), but gives an array.</p><div class="c"><pre>print(np.arange(5))
+print(np.arange(2, 10, 2))</pre></div><div class="o"><span class="ol">Output</span><pre>[0 1 2 3 4]
+[2 4 6 8]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.linspace() makes a fixed count of evenly spaced numbers between two values. print(np.linspace(0, 10, 5))
+print(np.linspace(0, 1, 3))"><h4>np.linspace()</h4><p class="d">Makes a fixed COUNT of evenly spaced numbers between two values.</p><div class="c"><pre>print(np.linspace(0, 10, 5))
+print(np.linspace(0, 1, 3))</pre></div><div class="o"><span class="ol">Output</span><pre>[ 0.   2.5  5.   7.5 10. ]
+[0.  0.5 1. ]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.random.rand() random decimals between 0 and 1. np.random.seed(1)
+print(np.random.rand(3))
+print(np.random.rand(2, 2))"><h4>np.random.rand()</h4><p class="d">Random decimals between 0 and 1.</p><div class="c"><pre>np.random.seed(1)
+print(np.random.rand(3))
+print(np.random.rand(2, 2))</pre></div><div class="o"><span class="ol">Output</span><pre>[4.17022005e-01 7.20324493e-01 1.14374817e-04]
+[[0.30233257 0.14675589]
+ [0.09233859 0.18626021]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.random.randint() random whole numbers in a range. np.random.seed(1)
+print(np.random.randint(1, 100, 5))"><h4>np.random.randint()</h4><p class="d">Random whole numbers in a range.</p><div class="c"><pre>np.random.seed(1)
+print(np.random.randint(1, 100, 5))</pre></div><div class="o"><span class="ol">Output</span><pre>[38 13 73 10 76]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.random.seed() fixes the randomness so you get the same numbers every time. np.random.seed(42)
+print(np.random.randint(1, 10, 4))
+np.random.seed(42)
+print(np.random.randint(1, 10, 4))     # same again"><h4>np.random.seed()</h4><p class="d">Fixes the randomness so you get the same numbers every time.</p><div class="c"><pre>np.random.seed(42)
+print(np.random.randint(1, 10, 4))
+np.random.seed(42)
+print(np.random.randint(1, 10, 4))     # same again</pre></div><div class="o"><span class="ol">Output</span><pre>[7 4 8 5]
+[7 4 8 5]</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-array-attributes-d26-to-d27">
+<h3 class="cath">Array attributes — D26 to D27 <span>5</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="shape rows and columns. a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a.shape)
+print(np.array([1,2,3,4]).shape)"><h4>shape</h4><p class="d">Rows and columns.</p><div class="c"><pre>a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a.shape)
+print(np.array([1,2,3,4]).shape)</pre></div><div class="o"><span class="ol">Output</span><pre>(2, 3)
+(4,)</pre></div></article>
+<article class="fn" data-s="numpy" data-k="ndim how many dimensions - 1 for a line, 2 for a table. print(np.array([1, 2, 3]).ndim)
+print(np.array([[1, 2], [3, 4]]).ndim)"><h4>ndim</h4><p class="d">How many dimensions - 1 for a line, 2 for a table.</p><div class="c"><pre>print(np.array([1, 2, 3]).ndim)
+print(np.array([[1, 2], [3, 4]]).ndim)</pre></div><div class="o"><span class="ol">Output</span><pre>1
+2</pre></div></article>
+<article class="fn" data-s="numpy" data-k="size total number of items. a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a.size)"><h4>size</h4><p class="d">Total number of items.</p><div class="c"><pre>a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a.size)</pre></div><div class="o"><span class="ol">Output</span><pre>6</pre></div></article>
+<article class="fn" data-s="numpy" data-k="dtype what kind of numbers are inside. print(np.array([1, 2, 3]).dtype)
+print(np.array([1.5, 2.5]).dtype)
+print(np.array([a, b]).dtype)"><h4>dtype</h4><p class="d">What kind of numbers are inside.</p><div class="c"><pre>print(np.array([1, 2, 3]).dtype)
+print(np.array([1.5, 2.5]).dtype)
+print(np.array(["a", "b"]).dtype)</pre></div><div class="o"><span class="ol">Output</span><pre>int64
+float64
+&lt;U1</pre></div></article>
+<article class="fn" data-s="numpy" data-k="astype() changes the data type. a = np.array([1.7, 2.9, 3.1])
+print(a.astype(int))
+print(np.array([1, 0, 1]).astype(bool))"><h4>astype()</h4><p class="d">Changes the data type.</p><div class="c"><pre>a = np.array([1.7, 2.9, 3.1])
+print(a.astype(int))
+print(np.array([1, 0, 1]).astype(bool))</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 3]
+[ True False  True]</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-indexing-and-slicing-d28">
+<h3 class="cath">Indexing and slicing — D28 <span>7</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="indexing 1d get one value by its position. counting starts at 0. a = np.array([10, 20, 30, 40])
+print(a[0])
+print(a[-1])"><h4>Indexing 1D</h4><p class="d">Get one value by its position. Counting starts at 0.</p><div class="c"><pre>a = np.array([10, 20, 30, 40])
+print(a[0])
+print(a[-1])</pre></div><div class="o"><span class="ol">Output</span><pre>10
+40</pre></div></article>
+<article class="fn" data-s="numpy" data-k="slicing 1d take a part using [start:stop]. a = np.array([10, 20, 30, 40, 50])
+print(a[1:4])
+print(a[:3])
+print(a[::2])"><h4>Slicing 1D</h4><p class="d">Take a part using [start:stop].</p><div class="c"><pre>a = np.array([10, 20, 30, 40, 50])
+print(a[1:4])
+print(a[:3])
+print(a[::2])</pre></div><div class="o"><span class="ol">Output</span><pre>[20 30 40]
+[10 20 30]
+[10 30 50]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="indexing 2d use [row, column]. b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b[0, 2])
+print(b[1, 0])"><h4>Indexing 2D</h4><p class="d">Use [row, column].</p><div class="c"><pre>b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b[0, 2])
+print(b[1, 0])</pre></div><div class="o"><span class="ol">Output</span><pre>3
+4</pre></div></article>
+<article class="fn" data-s="numpy" data-k="slicing 2d a colon means everything in that direction. b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b[0, :])      # first row
+print(b[:, 1])      # second column
+print(b[:, 0:2])    # first two columns"><h4>Slicing 2D</h4><p class="d">A colon means "everything" in that direction.</p><div class="c"><pre>b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b[0, :])      # first row
+print(b[:, 1])      # second column
+print(b[:, 0:2])    # first two columns</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 3]
+[2 5]
+[[1 2]
+ [4 5]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="boolean mask keeps only the values where the condition is true. a = np.array([10, 25, 3, 40, 7])
+print(a &gt; 20)
+print(a[a &gt; 20])"><h4>Boolean mask</h4><p class="d">Keeps only the values where the condition is True.</p><div class="c"><pre>a = np.array([10, 25, 3, 40, 7])
+print(a &gt; 20)
+print(a[a &gt; 20])</pre></div><div class="o"><span class="ol">Output</span><pre>[False  True False  True False]
+[25 40]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="multiple conditions use &amp; for and, | for or. each condition needs brackets. a = np.array([10, 25, 3, 40, 7])
+print(a[(a &gt; 5) &amp; (a &lt; 30)])
+print(a[(a &lt; 5) | (a &gt; 35)])"><h4>Multiple conditions</h4><p class="d">Use &amp; for and, | for or. Each condition needs brackets.</p><div class="c"><pre>a = np.array([10, 25, 3, 40, 7])
+print(a[(a &gt; 5) &amp; (a &lt; 30)])
+print(a[(a &lt; 5) | (a &gt; 35)])</pre></div><div class="o"><span class="ol">Output</span><pre>[10 25  7]
+[ 3 40]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="fancy indexing pick several positions at once using a list. a = np.array([10, 20, 30, 40, 50])
+print(a[[0, 2, 4]])"><h4>Fancy indexing</h4><p class="d">Pick several positions at once using a list.</p><div class="c"><pre>a = np.array([10, 20, 30, 40, 50])
+print(a[[0, 2, 4]])</pre></div><div class="o"><span class="ol">Output</span><pre>[10 30 50]</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-reshaping-d30">
+<h3 class="cath">Reshaping — D30 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="reshape() rearranges the same values into a new shape. a = np.arange(6)
+print(a)
+print(a.reshape(2, 3))
+print(a.reshape(3, 2))"><h4>reshape()</h4><p class="d">Rearranges the same values into a new shape.</p><div class="c"><pre>a = np.arange(6)
+print(a)
+print(a.reshape(2, 3))
+print(a.reshape(3, 2))</pre></div><div class="o"><span class="ol">Output</span><pre>[0 1 2 3 4 5]
+[[0 1 2]
+ [3 4 5]]
+[[0 1]
+ [2 3]
+ [4 5]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="reshape(-1, 1) -1 means work it out for me. a = np.arange(6)
+print(a.reshape(-1, 2))
+print(a.reshape(2, -1))"><h4>reshape(-1, 1)</h4><p class="d">-1 means "work it out for me".</p><div class="c"><pre>a = np.arange(6)
+print(a.reshape(-1, 2))
+print(a.reshape(2, -1))</pre></div><div class="o"><span class="ol">Output</span><pre>[[0 1]
+ [2 3]
+ [4 5]]
+[[0 1 2]
+ [3 4 5]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="ravel() / flatten() turns a table back into a single line. b = np.array([[1, 2], [3, 4]])
+print(b.ravel())
+print(b.flatten())"><h4>ravel() / flatten()</h4><p class="d">Turns a table back into a single line.</p><div class="c"><pre>b = np.array([[1, 2], [3, 4]])
+print(b.ravel())
+print(b.flatten())</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 3 4]
+[1 2 3 4]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="t (transpose) flips rows into columns. b = np.array([[1, 2, 3], [4, 5, 6]])
+print(b)
+print(b.t)"><h4>T (transpose)</h4><p class="d">Flips rows into columns.</p><div class="c"><pre>b = np.array([[1, 2, 3], [4, 5, 6]])
+print(b)
+print(b.T)</pre></div><div class="o"><span class="ol">Output</span><pre>[[1 2 3]
+ [4 5 6]]
+[[1 4]
+ [2 5]
+ [3 6]]</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-stacking-arrays-d30">
+<h3 class="cath">Stacking arrays — D30 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="np.concatenate() joins arrays together. a = np.array([1, 2])
+b = np.array([3, 4])
+print(np.concatenate([a, b]))"><h4>np.concatenate()</h4><p class="d">Joins arrays together.</p><div class="c"><pre>a = np.array([1, 2])
+b = np.array([3, 4])
+print(np.concatenate([a, b]))</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 3 4]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.vstack() stacks arrays on top of each other (vertically). a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(np.vstack([a, b]))"><h4>np.vstack()</h4><p class="d">Stacks arrays on top of each other (vertically).</p><div class="c"><pre>a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(np.vstack([a, b]))</pre></div><div class="o"><span class="ol">Output</span><pre>[[1 2 3]
+ [4 5 6]]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.hstack() puts arrays side by side (horizontally). a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(np.hstack([a, b]))"><h4>np.hstack()</h4><p class="d">Puts arrays side by side (horizontally).</p><div class="c"><pre>a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+print(np.hstack([a, b]))</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 3 4 5 6]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.split() cuts one array into several pieces. a = np.arange(6)
+print(np.split(a, 3))"><h4>np.split()</h4><p class="d">Cuts one array into several pieces.</p><div class="c"><pre>a = np.arange(6)
+print(np.split(a, 3))</pre></div><div class="o"><span class="ol">Output</span><pre>[array([0, 1]), array([2, 3]), array([4, 5])]</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-operations-and-broadcasting-d27">
+<h3 class="cath">Operations and broadcasting — D27 <span>5</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="arithmetic maths happens on every value at once. no loop needed. a = np.array([10, 20, 30])
+print(a + 5)
+print(a * 2)
+print(a / 10)
+print(a ** 2)"><h4>Arithmetic</h4><p class="d">Maths happens on every value at once. No loop needed.</p><div class="c"><pre>a = np.array([10, 20, 30])
+print(a + 5)
+print(a * 2)
+print(a / 10)
+print(a ** 2)</pre></div><div class="o"><span class="ol">Output</span><pre>[15 25 35]
+[20 40 60]
+[1. 2. 3.]
+[100 400 900]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="array with array two arrays of the same shape work position by position. a = np.array([1, 2, 3])
+b = np.array([10, 20, 30])
+print(a + b)
+print(a * b)"><h4>Array with array</h4><p class="d">Two arrays of the same shape work position by position.</p><div class="c"><pre>a = np.array([1, 2, 3])
+b = np.array([10, 20, 30])
+print(a + b)
+print(a * b)</pre></div><div class="o"><span class="ol">Output</span><pre>[11 22 33]
+[10 40 90]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.sqrt() / np.exp() / np.log() common maths functions applied to every value. a = np.array([1, 4, 9, 16])
+print(np.sqrt(a))
+print(np.round(np.log(np.array([1.0, 2.718])), 2))"><h4>np.sqrt() / np.exp() / np.log()</h4><p class="d">Common maths functions applied to every value.</p><div class="c"><pre>a = np.array([1, 4, 9, 16])
+print(np.sqrt(a))
+print(np.round(np.log(np.array([1.0, 2.718])), 2))</pre></div><div class="o"><span class="ol">Output</span><pre>[1. 2. 3. 4.]
+[0. 1.]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.round() / floor / ceil rounding. floor goes down, ceil goes up. a = np.array([1.2, 2.7, 3.5])
+print(np.round(a))
+print(np.floor(a))
+print(np.ceil(a))"><h4>np.round() / floor / ceil</h4><p class="d">Rounding. floor goes down, ceil goes up.</p><div class="c"><pre>a = np.array([1.2, 2.7, 3.5])
+print(np.round(a))
+print(np.floor(a))
+print(np.ceil(a))</pre></div><div class="o"><span class="ol">Output</span><pre>[1. 3. 4.]
+[1. 2. 3.]
+[2. 3. 4.]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="broadcasting a small array stretches automatically to fit a bigger one. b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b + np.array([10, 20, 30]))
+print(b * 2)"><h4>Broadcasting</h4><p class="d">A small array stretches automatically to fit a bigger one.</p><div class="c"><pre>b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b + np.array([10, 20, 30]))
+print(b * 2)</pre></div><div class="o"><span class="ol">Output</span><pre>[[11 22 33]
+ [14 25 36]]
+[[ 2  4  6]
+ [ 8 10 12]]</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-aggregate-functions-d28">
+<h3 class="cath">Aggregate functions — D28 <span>8</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="sum() adds everything up. a = np.array([10, 20, 30])
+print(a.sum())
+print(np.sum(a))"><h4>sum()</h4><p class="d">Adds everything up.</p><div class="c"><pre>a = np.array([10, 20, 30])
+print(a.sum())
+print(np.sum(a))</pre></div><div class="o"><span class="ol">Output</span><pre>60
+60</pre></div></article>
+<article class="fn" data-s="numpy" data-k="mean() / median() the average and the middle value. a = np.array([10, 20, 30, 100])
+print(a.mean())
+print(np.median(a))"><h4>mean() / median()</h4><p class="d">The average and the middle value.</p><div class="c"><pre>a = np.array([10, 20, 30, 100])
+print(a.mean())
+print(np.median(a))</pre></div><div class="o"><span class="ol">Output</span><pre>40.0
+25.0</pre></div></article>
+<article class="fn" data-s="numpy" data-k="std() / var() how spread out the numbers are. a = np.array([10, 20, 30, 40])
+print(round(a.std(), 2))
+print(a.var())"><h4>std() / var()</h4><p class="d">How spread out the numbers are.</p><div class="c"><pre>a = np.array([10, 20, 30, 40])
+print(round(a.std(), 2))
+print(a.var())</pre></div><div class="o"><span class="ol">Output</span><pre>11.18
+125.0</pre></div></article>
+<article class="fn" data-s="numpy" data-k="min() / max() the smallest and largest value. a = np.array([10, 5, 30])
+print(a.min(), a.max())"><h4>min() / max()</h4><p class="d">The smallest and largest value.</p><div class="c"><pre>a = np.array([10, 5, 30])
+print(a.min(), a.max())</pre></div><div class="o"><span class="ol">Output</span><pre>5 30</pre></div></article>
+<article class="fn" data-s="numpy" data-k="argmin() / argmax() the position of the smallest or largest value. a = np.array([10, 5, 30])
+print(a.argmin())
+print(a.argmax())"><h4>argmin() / argmax()</h4><p class="d">The POSITION of the smallest or largest value.</p><div class="c"><pre>a = np.array([10, 5, 30])
+print(a.argmin())
+print(a.argmax())</pre></div><div class="o"><span class="ol">Output</span><pre>1
+2</pre></div></article>
+<article class="fn" data-s="numpy" data-k="axis=0 and axis=1 axis=0 goes down the columns. axis=1 goes across the rows. b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b.sum())          # everything
+print(b.sum(axis=0))    # down each column
+print(b.sum(axis=1))    # across each row"><h4>axis=0 and axis=1</h4><p class="d">axis=0 goes down the columns. axis=1 goes across the rows.</p><div class="c"><pre>b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(b.sum())          # everything
+print(b.sum(axis=0))    # down each column
+print(b.sum(axis=1))    # across each row</pre></div><div class="o"><span class="ol">Output</span><pre>21
+[5 7 9]
+[ 6 15]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="cumsum() a running total. a = np.array([10, 20, 30])
+print(a.cumsum())"><h4>cumsum()</h4><p class="d">A running total.</p><div class="c"><pre>a = np.array([10, 20, 30])
+print(a.cumsum())</pre></div><div class="o"><span class="ol">Output</span><pre>[10 30 60]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="prod() multiplies everything together. a = np.array([1, 2, 3, 4])
+print(a.prod())"><h4>prod()</h4><p class="d">Multiplies everything together.</p><div class="c"><pre>a = np.array([1, 2, 3, 4])
+print(a.prod())</pre></div><div class="o"><span class="ol">Output</span><pre>24</pre></div></article>
+</div></section>
+<section class="cat" id="numpy-boolean-slicing-and-sorting-d29">
+<h3 class="cath">Boolean slicing and sorting — D29 <span>6</span></h3>
+<div class="grid">
+<article class="fn" data-s="numpy" data-k="np.where() picks one value or another depending on a condition. a = np.array([10, 25, 3, 40])
+print(np.where(a &gt; 20, high, low))
+print(np.where(a &gt; 20, a, 0))"><h4>np.where()</h4><p class="d">Picks one value or another depending on a condition.</p><div class="c"><pre>a = np.array([10, 25, 3, 40])
+print(np.where(a &gt; 20, "high", "low"))
+print(np.where(a &gt; 20, a, 0))</pre></div><div class="o"><span class="ol">Output</span><pre>['low' 'high' 'low' 'high']
+[ 0 25  0 40]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.sort() arranges values in order. a = np.array([30, 10, 20])
+print(np.sort(a))"><h4>np.sort()</h4><p class="d">Arranges values in order.</p><div class="c"><pre>a = np.array([30, 10, 20])
+print(np.sort(a))</pre></div><div class="o"><span class="ol">Output</span><pre>[10 20 30]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.argsort() gives the positions that would sort the array. a = np.array([30, 10, 20])
+print(np.argsort(a))"><h4>np.argsort()</h4><p class="d">Gives the POSITIONS that would sort the array.</p><div class="c"><pre>a = np.array([30, 10, 20])
+print(np.argsort(a))</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 0]</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.unique() gives the distinct values, in order. a = np.array([3, 1, 2, 3, 1])
+print(np.unique(a))
+print(np.unique(a, return_counts=true))"><h4>np.unique()</h4><p class="d">Gives the distinct values, in order.</p><div class="c"><pre>a = np.array([3, 1, 2, 3, 1])
+print(np.unique(a))
+print(np.unique(a, return_counts=True))</pre></div><div class="o"><span class="ol">Output</span><pre>[1 2 3]
+(array([1, 2, 3]), array([2, 1, 2]))</pre></div></article>
+<article class="fn" data-s="numpy" data-k="any() / all() any = at least one true. all = every one true. a = np.array([10, 25, 3])
+print((a &gt; 20).any())
+print((a &gt; 20).all())"><h4>any() / all()</h4><p class="d">any = at least one True. all = every one True.</p><div class="c"><pre>a = np.array([10, 25, 3])
+print((a &gt; 20).any())
+print((a &gt; 20).all())</pre></div><div class="o"><span class="ol">Output</span><pre>True
+False</pre></div></article>
+<article class="fn" data-s="numpy" data-k="np.isnan() finds missing values. a = np.array([1.0, np.nan, 3.0])
+print(np.isnan(a))
+print(a[~np.isnan(a)])      # ~ means not"><h4>np.isnan()</h4><p class="d">Finds missing values.</p><div class="c"><pre>a = np.array([1.0, np.nan, 3.0])
+print(np.isnan(a))
+print(a[~np.isnan(a)])      # ~ means NOT</pre></div><div class="o"><span class="ol">Output</span><pre>[False  True False]
+[1. 3.]</pre></div></article>
+</div></section>
+</div>
+<div class="sec" id="sec-pandas">
+<div class="sechead"><h2>Pandas</h2><p>Sessions D31 to D37. Series and DataFrames, filtering, sorting, missing values, duplicates and merging.</p><span class="cnt">77 functions</span></div>
+<section class="cat" id="pandas-series-and-dataframe-d31-to-d32">
+<h3 class="cath">Series and DataFrame — D31 to D32 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="pd.series() a series is one column of data with an index. s = pd.series([10, 20, 30])
+print(s)
+print(s[0], s.sum())"><h4>pd.Series()</h4><p class="d">A Series is ONE column of data with an index.</p><div class="c"><pre>s = pd.Series([10, 20, 30])
+print(s)
+print(s[0], s.sum())</pre></div><div class="o"><span class="ol">Output</span><pre>0    10
+1    20
+2    30
+dtype: int64
+10 60</pre></div></article>
+<article class="fn" data-s="pandas" data-k="series with an index you can give your own labels instead of 0,1,2. s = pd.series([87, 92], index=['rahul', 'priya'])
+print(s)
+print(s['rahul'])"><h4>Series with an index</h4><p class="d">You can give your own labels instead of 0,1,2.</p><div class="c"><pre>s = pd.Series([87, 92], index=['Rahul', 'Priya'])
+print(s)
+print(s['Rahul'])</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul    87
+Priya    92
+dtype: int64
+87</pre></div></article>
+<article class="fn" data-s="pandas" data-k="pd.dataframe() from a dictionary a dataframe is a full table. each key becomes a column. data = {'name': ['rahul', 'priya'], 'marks': [87, 92]}
+d = pd.dataframe(data)
+print(d)"><h4>pd.DataFrame() from a dictionary</h4><p class="d">A DataFrame is a full table. Each key becomes a column.</p><div class="c"><pre>data = {'name': ['Rahul', 'Priya'], 'marks': [87, 92]}
+d = pd.DataFrame(data)
+print(d)</pre></div><div class="o"><span class="ol">Output</span><pre>    name  marks
+0  Rahul     87
+1  Priya     92</pre></div></article>
+<article class="fn" data-s="pandas" data-k="pd.dataframe() from a list of lists give the column names separately. rows = [['rahul', 87], ['priya', 92]]
+d = pd.dataframe(rows, columns=['name', 'marks'])
+print(d)"><h4>pd.DataFrame() from a list of lists</h4><p class="d">Give the column names separately.</p><div class="c"><pre>rows = [['Rahul', 87], ['Priya', 92]]
+d = pd.DataFrame(rows, columns=['name', 'marks'])
+print(d)</pre></div><div class="o"><span class="ol">Output</span><pre>    name  marks
+0  Rahul     87
+1  Priya     92</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-reading-files-d31">
+<h3 class="cath">Reading files — D31 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="pd.read_csv() loads a csv file into a dataframe. the most used function in pandas. df.to_csv('demo.csv', index=false)      # make a file first
+d = pd.read_csv('demo.csv')
+print(d.head(3))"><h4>pd.read_csv()</h4><p class="d">Loads a CSV file into a DataFrame. The most used function in pandas.</p><div class="c"><pre>df.to_csv('demo.csv', index=False)      # make a file first
+d = pd.read_csv('demo.csv')
+print(d.head(3))</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept       city   age  exp  salary     rating
+0  Rahul   Tech  Bangalore  28.0    4   72000       Good
+1  Priya  Sales    Chennai  34.0   10   95000  Excellent
+2   Amit   Tech  Bangalore  25.0    2   58000       Poor</pre></div></article>
+<article class="fn" data-s="pandas" data-k="read_csv() useful options common settings you will need. df.to_csv('demo.csv', index=false)
+print(pd.read_csv('demo.csv', nrows=2))
+print(pd.read_csv('demo.csv', usecols=['name','salary']).head(2))"><h4>read_csv() useful options</h4><p class="d">Common settings you will need.</p><div class="c"><pre>df.to_csv('demo.csv', index=False)
+print(pd.read_csv('demo.csv', nrows=2))
+print(pd.read_csv('demo.csv', usecols=['name','salary']).head(2))</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept       city   age  exp  salary     rating
+0  Rahul   Tech  Bangalore  28.0    4   72000       Good
+1  Priya  Sales    Chennai  34.0   10   95000  Excellent
+    name  salary
+0  Rahul   72000
+1  Priya   95000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="to_csv() saves a dataframe to a csv file. index=false stops the extra column. df.head(2).to_csv('out.csv', index=false)
+print(open('out.csv').read())"><h4>to_csv()</h4><p class="d">Saves a DataFrame to a CSV file. index=False stops the extra column.</p><div class="c"><pre>df.head(2).to_csv('out.csv', index=False)
+print(open('out.csv').read())</pre></div><div class="o"><span class="ol">Output</span><pre>name,dept,city,age,exp,salary,rating
+Rahul,Tech,Bangalore,28.0,4,72000,Good
+Priya,Sales,Chennai,34.0,10,95000,Excellent</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-eda-and-inspection-d32-to-d33">
+<h3 class="cath">EDA and inspection — D32 to D33 <span>7</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="head() / tail() shows the first or last few rows. always start here. print(df.head(3))
+print(df.tail(2))"><h4>head() / tail()</h4><p class="d">Shows the first or last few rows. Always start here.</p><div class="c"><pre>print(df.head(3))
+print(df.tail(2))</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept       city   age  exp  salary     rating
+0  Rahul   Tech  Bangalore  28.0    4   72000       Good
+1  Priya  Sales    Chennai  34.0   10   95000  Excellent
+2   Amit   Tech  Bangalore  25.0    2   58000       Poor
+     name   dept     city   age  exp  salary   rating
+4  Vikram  Sales  Chennai  30.0    6   68000  Average
+5   Divya   Tech     Pune   NaN    8   88000     Good</pre></div></article>
+<article class="fn" data-s="pandas" data-k="shape how many rows and columns. print(df.shape)
+print(rows:, df.shape[0], columns:, df.shape[1])"><h4>shape</h4><p class="d">How many rows and columns.</p><div class="c"><pre>print(df.shape)
+print("rows:", df.shape[0], "columns:", df.shape[1])</pre></div><div class="o"><span class="ol">Output</span><pre>(6, 7)
+rows: 6 columns: 7</pre></div></article>
+<article class="fn" data-s="pandas" data-k="info() a summary: column names, how many values are filled, and the data types. df.info()"><h4>info()</h4><p class="d">A summary: column names, how many values are filled, and the data types.</p><div class="c"><pre>df.info()</pre></div><div class="o"><span class="ol">Output</span><pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 7 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   name    6 non-null      object 
+ 1   dept    6 non-null      object 
+ 2   city    6 non-null      object 
+ 3   age     5 non-null      float64
+ 4   exp     6 non-null      int64  
+ 5   salary  6 non-null      int64  
+ 6   rating  6 non-null      object 
+dtypes: float64(1), int64(2), object(4)
+memory usage: 464.0+ bytes</pre></div></article>
+<article class="fn" data-s="pandas" data-k="describe() summary statistics for the number columns. print(df.describe())"><h4>describe()</h4><p class="d">Summary statistics for the number columns.</p><div class="c"><pre>print(df.describe())</pre></div><div class="o"><span class="ol">Output</span><pre>             age        exp         salary
+count   5.000000   6.000000       6.000000
+mean   31.600000   7.500000   83500.000000
+std     6.188699   4.636809   22394.195677
+min    25.000000   2.000000   58000.000000
+25%    28.000000   4.500000   69000.000000
+50%    30.000000   7.000000   80000.000000
+75%    34.000000   9.500000   93250.000000
+max    41.000000  15.000000  120000.000000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="columns / index / dtypes the column names, the row labels, and the data types. print(list(df.columns))
+print(df.dtypes)"><h4>columns / index / dtypes</h4><p class="d">The column names, the row labels, and the data types.</p><div class="c"><pre>print(list(df.columns))
+print(df.dtypes)</pre></div><div class="o"><span class="ol">Output</span><pre>['name', 'dept', 'city', 'age', 'exp', 'salary', 'rating']
+name       object
+dept       object
+city       object
+age       float64
+exp         int64
+salary      int64
+rating     object
+dtype: object</pre></div></article>
+<article class="fn" data-s="pandas" data-k="values the data as a plain numpy array, without labels. print(df[['exp','salary']].values)"><h4>values</h4><p class="d">The data as a plain NumPy array, without labels.</p><div class="c"><pre>print(df[['exp','salary']].values)</pre></div><div class="o"><span class="ol">Output</span><pre>[[     4  72000]
+ [    10  95000]
+ [     2  58000]
+ [    15 120000]
+ [     6  68000]
+ [     8  88000]]</pre></div></article>
+<article class="fn" data-s="pandas" data-k="sample() shows random rows instead of the first few. print(df.sample(2, random_state=1))"><h4>sample()</h4><p class="d">Shows random rows instead of the first few.</p><div class="c"><pre>print(df.sample(2, random_state=1))</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept       city   age  exp  salary     rating
+2   Amit   Tech  Bangalore  25.0    2   58000       Poor
+1  Priya  Sales    Chennai  34.0   10   95000  Excellent</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-selecting-rows-and-columns-d32-to-d33">
+<h3 class="cath">Selecting rows and columns — D32 to D33 <span>6</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="selecting one column one pair of brackets gives a series. print(df['name'])"><h4>Selecting one column</h4><p class="d">One pair of brackets gives a Series.</p><div class="c"><pre>print(df['name'])</pre></div><div class="o"><span class="ol">Output</span><pre>0     Rahul
+1     Priya
+2      Amit
+3     Sneha
+4    Vikram
+5     Divya
+Name: name, dtype: object</pre></div></article>
+<article class="fn" data-s="pandas" data-k="selecting several columns two pairs of brackets give a dataframe. print(df[['name', 'salary']])"><h4>Selecting several columns</h4><p class="d">Two pairs of brackets give a DataFrame.</p><div class="c"><pre>print(df[['name', 'salary']])</pre></div><div class="o"><span class="ol">Output</span><pre>     name  salary
+0   Rahul   72000
+1   Priya   95000
+2    Amit   58000
+3   Sneha  120000
+4  Vikram   68000
+5   Divya   88000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="loc[] selects by label. row labels and column names. print(df.loc[0])
+print(df.loc[0:2, ['name','salary']])"><h4>loc[]</h4><p class="d">Selects by LABEL. Row labels and column names.</p><div class="c"><pre>print(df.loc[0])
+print(df.loc[0:2, ['name','salary']])</pre></div><div class="o"><span class="ol">Output</span><pre>name          Rahul
+dept           Tech
+city      Bangalore
+age            28.0
+exp               4
+salary        72000
+rating         Good
+Name: 0, dtype: object
+    name  salary
+0  Rahul   72000
+1  Priya   95000
+2   Amit   58000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="iloc[] selects by position. numbers only. print(df.iloc[0])
+print(df.iloc[0:3, 0:2])
+print(df.iloc[-1])"><h4>iloc[]</h4><p class="d">Selects by POSITION. Numbers only.</p><div class="c"><pre>print(df.iloc[0])
+print(df.iloc[0:3, 0:2])
+print(df.iloc[-1])</pre></div><div class="o"><span class="ol">Output</span><pre>name          Rahul
+dept           Tech
+city      Bangalore
+age            28.0
+exp               4
+salary        72000
+rating         Good
+Name: 0, dtype: object
+    name   dept
+0  Rahul   Tech
+1  Priya  Sales
+2   Amit   Tech
+name      Divya
+dept       Tech
+city       Pune
+age         NaN
+exp           8
+salary    88000
+rating     Good
+Name: 5, dtype: object</pre></div></article>
+<article class="fn" data-s="pandas" data-k="loc vs iloc loc uses names and includes the end. iloc uses numbers and excludes it. print(df.loc[0:2, 'name'])     # 3 rows - end included
+print(df.iloc[0:2, 0])         # 2 rows - end excluded"><h4>loc vs iloc</h4><p class="d">loc uses names and INCLUDES the end. iloc uses numbers and EXCLUDES it.</p><div class="c"><pre>print(df.loc[0:2, 'name'])     # 3 rows - end included
+print(df.iloc[0:2, 0])         # 2 rows - end excluded</pre></div><div class="o"><span class="ol">Output</span><pre>0    Rahul
+1    Priya
+2     Amit
+Name: name, dtype: object
+0    Rahul
+1    Priya
+Name: name, dtype: object</pre></div></article>
+<article class="fn" data-s="pandas" data-k="at[] / iat[] gets one single value. faster than loc for one cell. print(df.at[0, 'name'])
+print(df.iat[0, 0])"><h4>at[] / iat[]</h4><p class="d">Gets one single value. Faster than loc for one cell.</p><div class="c"><pre>print(df.at[0, 'name'])
+print(df.iat[0, 0])</pre></div><div class="o"><span class="ol">Output</span><pre>Rahul
+Rahul</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-filtering-d33-to-d34">
+<h3 class="cath">Filtering — D33 to D34 <span>7</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="boolean filter keeps only rows where the condition is true. print(df[df['salary'] &gt; 80000])"><h4>Boolean filter</h4><p class="d">Keeps only rows where the condition is True.</p><div class="c"><pre>print(df[df['salary'] &gt; 80000])</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept     city   age  exp  salary     rating
+1  Priya  Sales  Chennai  34.0   10   95000  Excellent
+3  Sneha     HR     Pune  41.0   15  120000  Excellent
+5  Divya   Tech     Pune   NaN    8   88000       Good</pre></div></article>
+<article class="fn" data-s="pandas" data-k="two conditions &amp; means and, | means or. each condition needs brackets. print(df[(df['dept'] == 'tech') &amp; (df['salary'] &gt; 60000)])
+print(df[(df['dept'] == 'hr') | (df['exp'] &gt; 9)])"><h4>Two conditions</h4><p class="d">&amp; means and, | means or. Each condition needs brackets.</p><div class="c"><pre>print(df[(df['dept'] == 'Tech') &amp; (df['salary'] &gt; 60000)])
+print(df[(df['dept'] == 'HR') | (df['exp'] &gt; 9)])</pre></div><div class="o"><span class="ol">Output</span><pre>    name  dept       city   age  exp  salary rating
+0  Rahul  Tech  Bangalore  28.0    4   72000   Good
+5  Divya  Tech       Pune   NaN    8   88000   Good
+    name   dept     city   age  exp  salary     rating
+1  Priya  Sales  Chennai  34.0   10   95000  Excellent
+3  Sneha     HR     Pune  41.0   15  120000  Excellent</pre></div></article>
+<article class="fn" data-s="pandas" data-k="isin() keeps rows where the value is in your list. print(df[df['city'].isin(['chennai', 'pune'])])"><h4>isin()</h4><p class="d">Keeps rows where the value is in your list.</p><div class="c"><pre>print(df[df['city'].isin(['Chennai', 'Pune'])])</pre></div><div class="o"><span class="ol">Output</span><pre>     name   dept     city   age  exp  salary     rating
+1   Priya  Sales  Chennai  34.0   10   95000  Excellent
+3   Sneha     HR     Pune  41.0   15  120000  Excellent
+4  Vikram  Sales  Chennai  30.0    6   68000    Average
+5   Divya   Tech     Pune   NaN    8   88000       Good</pre></div></article>
+<article class="fn" data-s="pandas" data-k="between() keeps rows where a number falls in a range. print(df[df['salary'].between(60000, 90000)])"><h4>between()</h4><p class="d">Keeps rows where a number falls in a range.</p><div class="c"><pre>print(df[df['salary'].between(60000, 90000)])</pre></div><div class="o"><span class="ol">Output</span><pre>     name   dept       city   age  exp  salary   rating
+0   Rahul   Tech  Bangalore  28.0    4   72000     Good
+4  Vikram  Sales    Chennai  30.0    6   68000  Average
+5   Divya   Tech       Pune   NaN    8   88000     Good</pre></div></article>
+<article class="fn" data-s="pandas" data-k="str.contains() keeps rows where text contains something. print(df[df['name'].str.contains('a')])"><h4>str.contains()</h4><p class="d">Keeps rows where text contains something.</p><div class="c"><pre>print(df[df['name'].str.contains('a')])</pre></div><div class="o"><span class="ol">Output</span><pre>     name   dept       city   age  exp  salary     rating
+0   Rahul   Tech  Bangalore  28.0    4   72000       Good
+1   Priya  Sales    Chennai  34.0   10   95000  Excellent
+3   Sneha     HR       Pune  41.0   15  120000  Excellent
+4  Vikram  Sales    Chennai  30.0    6   68000    Average
+5   Divya   Tech       Pune   NaN    8   88000       Good</pre></div></article>
+<article class="fn" data-s="pandas" data-k="query() filters using a readable sentence. print(df.query('salary &gt; 80000 and dept == sales'))"><h4>query()</h4><p class="d">Filters using a readable sentence.</p><div class="c"><pre>print(df.query('salary &gt; 80000 and dept == "Sales"'))</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept     city   age  exp  salary     rating
+1  Priya  Sales  Chennai  34.0   10   95000  Excellent</pre></div></article>
+<article class="fn" data-s="pandas" data-k="~ (not) flips the condition around. print(df[~(df['dept'] == 'tech')])"><h4>~ (not)</h4><p class="d">Flips the condition around.</p><div class="c"><pre>print(df[~(df['dept'] == 'Tech')])</pre></div><div class="o"><span class="ol">Output</span><pre>     name   dept     city   age  exp  salary     rating
+1   Priya  Sales  Chennai  34.0   10   95000  Excellent
+3   Sneha     HR     Pune  41.0   15  120000  Excellent
+4  Vikram  Sales  Chennai  30.0    6   68000    Average</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-missing-values-d35">
+<h3 class="cath">Missing values — D35 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="isnull() / notnull() marks each cell true or false for missing. print(df['age'].isnull())
+print(df.isnull().sum())      # count per column"><h4>isnull() / notnull()</h4><p class="d">Marks each cell True or False for missing.</p><div class="c"><pre>print(df['age'].isnull())
+print(df.isnull().sum())      # count per column</pre></div><div class="o"><span class="ol">Output</span><pre>0    False
+1    False
+2    False
+3    False
+4    False
+5     True
+Name: age, dtype: bool
+name      0
+dept      0
+city      0
+age       1
+exp       0
+salary    0
+rating    0
+dtype: int64</pre></div></article>
+<article class="fn" data-s="pandas" data-k="dropna() removes rows that have missing values. print(df.shape)
+print(df.dropna().shape)
+print(df.dropna(subset=['age']).shape)"><h4>dropna()</h4><p class="d">Removes rows that have missing values.</p><div class="c"><pre>print(df.shape)
+print(df.dropna().shape)
+print(df.dropna(subset=['age']).shape)</pre></div><div class="o"><span class="ol">Output</span><pre>(6, 7)
+(5, 7)
+(5, 7)</pre></div></article>
+<article class="fn" data-s="pandas" data-k="fillna() fills missing values with something. print(df['age'].fillna(0).tolist())
+print(df['age'].fillna(df['age'].mean()).round(1).tolist())"><h4>fillna()</h4><p class="d">Fills missing values with something.</p><div class="c"><pre>print(df['age'].fillna(0).tolist())
+print(df['age'].fillna(df['age'].mean()).round(1).tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[28.0, 34.0, 25.0, 41.0, 30.0, 0.0]
+[28.0, 34.0, 25.0, 41.0, 30.0, 31.6]</pre></div></article>
+<article class="fn" data-s="pandas" data-k="filling with the median usually safer than the mean when there are extreme values. print(df['age'].fillna(df['age'].median()).tolist())"><h4>Filling with the median</h4><p class="d">Usually safer than the mean when there are extreme values.</p><div class="c"><pre>print(df['age'].fillna(df['age'].median()).tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[28.0, 34.0, 25.0, 41.0, 30.0, 30.0]</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-duplicates-d36">
+<h3 class="cath">Duplicates — D36 <span>2</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="duplicated() marks rows that are copies of an earlier row. d = pd.dataframe({'a':[1,2,2,3],'b':['x','y','y','z']})
+print(d.duplicated())
+print(d.duplicated().sum())"><h4>duplicated()</h4><p class="d">Marks rows that are copies of an earlier row.</p><div class="c"><pre>d = pd.DataFrame({'a':[1,2,2,3],'b':['x','y','y','z']})
+print(d.duplicated())
+print(d.duplicated().sum())</pre></div><div class="o"><span class="ol">Output</span><pre>0    False
+1    False
+2     True
+3    False
+dtype: bool
+1</pre></div></article>
+<article class="fn" data-s="pandas" data-k="drop_duplicates() removes the repeated rows. d = pd.dataframe({'a':[1,2,2,3]})
+print(d.drop_duplicates())
+print(df.drop_duplicates(subset=['dept']))"><h4>drop_duplicates()</h4><p class="d">Removes the repeated rows.</p><div class="c"><pre>d = pd.DataFrame({'a':[1,2,2,3]})
+print(d.drop_duplicates())
+print(df.drop_duplicates(subset=['dept']))</pre></div><div class="o"><span class="ol">Output</span><pre>   a
+0  1
+1  2
+3  3
+    name   dept       city   age  exp  salary     rating
+0  Rahul   Tech  Bangalore  28.0    4   72000       Good
+1  Priya  Sales    Chennai  34.0   10   95000  Excellent
+3  Sneha     HR       Pune  41.0   15  120000  Excellent</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-new-columns-and-changes-d36">
+<h3 class="cath">New columns and changes — D36 <span>8</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="adding a new column just assign to a new name. d = df.copy()
+d['bonus'] = d['salary'] * 0.10
+print(d[['name','salary','bonus']].head(3))"><h4>Adding a new column</h4><p class="d">Just assign to a new name.</p><div class="c"><pre>d = df.copy()
+d['bonus'] = d['salary'] * 0.10
+print(d[['name','salary','bonus']].head(3))</pre></div><div class="o"><span class="ol">Output</span><pre>    name  salary   bonus
+0  Rahul   72000  7200.0
+1  Priya   95000  9500.0
+2   Amit   58000  5800.0</pre></div></article>
+<article class="fn" data-s="pandas" data-k="rename() changes column names. d = df.rename(columns={'exp': 'experience', 'dept': 'department'})
+print(list(d.columns))"><h4>rename()</h4><p class="d">Changes column names.</p><div class="c"><pre>d = df.rename(columns={'exp': 'experience', 'dept': 'department'})
+print(list(d.columns))</pre></div><div class="o"><span class="ol">Output</span><pre>['name', 'department', 'city', 'age', 'experience', 'salary', 'rating']</pre></div></article>
+<article class="fn" data-s="pandas" data-k="drop() removes columns or rows. print(df.drop(columns=['city','rating']).head(2))
+print(df.drop(index=[0,1]).shape)"><h4>drop()</h4><p class="d">Removes columns or rows.</p><div class="c"><pre>print(df.drop(columns=['city','rating']).head(2))
+print(df.drop(index=[0,1]).shape)</pre></div><div class="o"><span class="ol">Output</span><pre>    name   dept   age  exp  salary
+0  Rahul   Tech  28.0    4   72000
+1  Priya  Sales  34.0   10   95000
+(4, 7)</pre></div></article>
+<article class="fn" data-s="pandas" data-k="astype() changes the data type of a column. d = df.dropna(subset=['age']).copy()
+d['age'] = d['age'].astype(int)
+print(d['age'].tolist())"><h4>astype()</h4><p class="d">Changes the data type of a column.</p><div class="c"><pre>d = df.dropna(subset=['age']).copy()
+d['age'] = d['age'].astype(int)
+print(d['age'].tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[28, 34, 25, 41, 30]</pre></div></article>
+<article class="fn" data-s="pandas" data-k="replace() swaps values for other values. print(df['dept'].replace({'tech':'engineering'}).tolist())"><h4>replace()</h4><p class="d">Swaps values for other values.</p><div class="c"><pre>print(df['dept'].replace({'Tech':'Engineering'}).tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>['Engineering', 'Sales', 'Engineering', 'HR', 'Sales', 'Engineering']</pre></div></article>
+<article class="fn" data-s="pandas" data-k="apply() runs your own function on every value. print(df['salary'].apply(lambda x: x / 1000).tolist())
+
+def band(s):
+    return 'high' if s &gt; 80000 else 'low'
+print(df['salary'].apply(band).tolist())"><h4>apply()</h4><p class="d">Runs your own function on every value.</p><div class="c"><pre>print(df['salary'].apply(lambda x: x / 1000).tolist())
+
+def band(s):
+    return 'High' if s &gt; 80000 else 'Low'
+print(df['salary'].apply(band).tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[72.0, 95.0, 58.0, 120.0, 68.0, 88.0]
+['Low', 'High', 'Low', 'High', 'Low', 'High']</pre></div></article>
+<article class="fn" data-s="pandas" data-k="map() replaces values using a dictionary. good for encoding. order = {'poor':1, 'average':2, 'good':3, 'excellent':4}
+print(df['rating'].map(order).tolist())"><h4>map()</h4><p class="d">Replaces values using a dictionary. Good for encoding.</p><div class="c"><pre>order = {'Poor':1, 'Average':2, 'Good':3, 'Excellent':4}
+print(df['rating'].map(order).tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[3, 4, 1, 4, 2, 3]</pre></div></article>
+<article class="fn" data-s="pandas" data-k="cut() puts numbers into named bands. bands = pd.cut(df['salary'], bins=[0,70000,100000,999999],
+               labels=['low','medium','high'])
+print(bands.tolist())"><h4>cut()</h4><p class="d">Puts numbers into named bands.</p><div class="c"><pre>bands = pd.cut(df['salary'], bins=[0,70000,100000,999999],
+               labels=['Low','Medium','High'])
+print(bands.tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>['Medium', 'Medium', 'Low', 'High', 'Low', 'Medium']</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-sorting-d34">
+<h3 class="cath">Sorting — D34 <span>5</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="sort_values() arranges rows by a column. print(df.sort_values('salary')[['name','salary']])"><h4>sort_values()</h4><p class="d">Arranges rows by a column.</p><div class="c"><pre>print(df.sort_values('salary')[['name','salary']])</pre></div><div class="o"><span class="ol">Output</span><pre>     name  salary
+2    Amit   58000
+4  Vikram   68000
+0   Rahul   72000
+5   Divya   88000
+1   Priya   95000
+3   Sneha  120000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="sort_values() descending ascending=false puts the largest first. print(df.sort_values('salary', ascending=false)[['name','salary']].head(3))"><h4>sort_values() descending</h4><p class="d">ascending=False puts the largest first.</p><div class="c"><pre>print(df.sort_values('salary', ascending=False)[['name','salary']].head(3))</pre></div><div class="o"><span class="ol">Output</span><pre>    name  salary
+3  Sneha  120000
+1  Priya   95000
+5  Divya   88000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="sorting by two columns sorts by the first, then breaks ties with the second. print(df.sort_values(['dept','salary'])[['dept','name','salary']])"><h4>Sorting by two columns</h4><p class="d">Sorts by the first, then breaks ties with the second.</p><div class="c"><pre>print(df.sort_values(['dept','salary'])[['dept','name','salary']])</pre></div><div class="o"><span class="ol">Output</span><pre>    dept    name  salary
+3     HR   Sneha  120000
+4  Sales  Vikram   68000
+1  Sales   Priya   95000
+2   Tech    Amit   58000
+0   Tech   Rahul   72000
+5   Tech   Divya   88000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="nlargest() / nsmallest() the top or bottom few rows, without sorting everything. print(df.nlargest(3, 'salary')[['name','salary']])
+print(df.nsmallest(2, 'salary')[['name','salary']])"><h4>nlargest() / nsmallest()</h4><p class="d">The top or bottom few rows, without sorting everything.</p><div class="c"><pre>print(df.nlargest(3, 'salary')[['name','salary']])
+print(df.nsmallest(2, 'salary')[['name','salary']])</pre></div><div class="o"><span class="ol">Output</span><pre>    name  salary
+3  Sneha  120000
+1  Priya   95000
+5  Divya   88000
+     name  salary
+2    Amit   58000
+4  Vikram   68000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="sort_index() sorts by the row labels instead of a column. print(df.sort_values('salary').sort_index().head(3)[['name','salary']])"><h4>sort_index()</h4><p class="d">Sorts by the row labels instead of a column.</p><div class="c"><pre>print(df.sort_values('salary').sort_index().head(3)[['name','salary']])</pre></div><div class="o"><span class="ol">Output</span><pre>    name  salary
+0  Rahul   72000
+1  Priya   95000
+2   Amit   58000</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-summary-statistics-d37">
+<h3 class="cath">Summary statistics — D37 <span>10</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="mean() / median() the average and the middle value of a column. print(df['salary'].mean())
+print(df['salary'].median())"><h4>mean() / median()</h4><p class="d">The average and the middle value of a column.</p><div class="c"><pre>print(df['salary'].mean())
+print(df['salary'].median())</pre></div><div class="o"><span class="ol">Output</span><pre>83500.0
+80000.0</pre></div></article>
+<article class="fn" data-s="pandas" data-k="mode() the most common value. works on text too. print(df['dept'].mode()[0])
+print(df['city'].mode().tolist())"><h4>mode()</h4><p class="d">The most common value. Works on text too.</p><div class="c"><pre>print(df['dept'].mode()[0])
+print(df['city'].mode().tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>Tech
+['Bangalore', 'Chennai', 'Pune']</pre></div></article>
+<article class="fn" data-s="pandas" data-k="std() / var() how spread out the values are. print(round(df['salary'].std(), 2))
+print(round(df['salary'].var(), 2))"><h4>std() / var()</h4><p class="d">How spread out the values are.</p><div class="c"><pre>print(round(df['salary'].std(), 2))
+print(round(df['salary'].var(), 2))</pre></div><div class="o"><span class="ol">Output</span><pre>22394.2
+501500000.0</pre></div></article>
+<article class="fn" data-s="pandas" data-k="min() / max() / sum() the smallest, largest and total. print(df['salary'].min(), df['salary'].max())
+print(df['salary'].sum())"><h4>min() / max() / sum()</h4><p class="d">The smallest, largest and total.</p><div class="c"><pre>print(df['salary'].min(), df['salary'].max())
+print(df['salary'].sum())</pre></div><div class="o"><span class="ol">Output</span><pre>58000 120000
+501000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="count() / nunique() how many values are filled, and how many are distinct. print(df['age'].count())     # missing not counted
+print(df['dept'].nunique())"><h4>count() / nunique()</h4><p class="d">How many values are filled, and how many are distinct.</p><div class="c"><pre>print(df['age'].count())     # missing not counted
+print(df['dept'].nunique())</pre></div><div class="o"><span class="ol">Output</span><pre>5
+3</pre></div></article>
+<article class="fn" data-s="pandas" data-k="value_counts() counts how many times each value appears. extremely useful. print(df['dept'].value_counts())
+print(df['dept'].value_counts(normalize=true).round(2))"><h4>value_counts()</h4><p class="d">Counts how many times each value appears. Extremely useful.</p><div class="c"><pre>print(df['dept'].value_counts())
+print(df['dept'].value_counts(normalize=True).round(2))</pre></div><div class="o"><span class="ol">Output</span><pre>dept
+Tech     3
+Sales    2
+HR       1
+Name: count, dtype: int64
+dept
+Tech     0.50
+Sales    0.33
+HR       0.17
+Name: proportion, dtype: float64</pre></div></article>
+<article class="fn" data-s="pandas" data-k="unique() lists the distinct values. print(df['city'].unique())"><h4>unique()</h4><p class="d">Lists the distinct values.</p><div class="c"><pre>print(df['city'].unique())</pre></div><div class="o"><span class="ol">Output</span><pre>['Bangalore' 'Chennai' 'Pune']</pre></div></article>
+<article class="fn" data-s="pandas" data-k="quantile() the value below which a share of the data falls. print(df['salary'].quantile(0.25))
+print(df['salary'].quantile([0.25, 0.5, 0.75]).tolist())"><h4>quantile()</h4><p class="d">The value below which a share of the data falls.</p><div class="c"><pre>print(df['salary'].quantile(0.25))
+print(df['salary'].quantile([0.25, 0.5, 0.75]).tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>69000.0
+[69000.0, 80000.0, 93250.0]</pre></div></article>
+<article class="fn" data-s="pandas" data-k="corr() how strongly two number columns move together. between -1 and 1. print(round(df['exp'].corr(df['salary']), 3))
+print(df[['exp','salary']].corr().round(3))"><h4>corr()</h4><p class="d">How strongly two number columns move together. Between -1 and 1.</p><div class="c"><pre>print(round(df['exp'].corr(df['salary']), 3))
+print(df[['exp','salary']].corr().round(3))</pre></div><div class="o"><span class="ol">Output</span><pre>0.979
+          exp  salary
+exp     1.000   0.979
+salary  0.979   1.000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="cumsum() a running total down the column. print(df['salary'].cumsum().tolist())"><h4>cumsum()</h4><p class="d">A running total down the column.</p><div class="c"><pre>print(df['salary'].cumsum().tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[72000, 167000, 225000, 345000, 413000, 501000]</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-aggregate-and-group-by-d37">
+<h3 class="cath">Aggregate and group by — D37 <span>6</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="groupby() with one function splits into groups, then summarises each group. print(df.groupby('dept')['salary'].mean())"><h4>groupby() with one function</h4><p class="d">Splits into groups, then summarises each group.</p><div class="c"><pre>print(df.groupby('dept')['salary'].mean())</pre></div><div class="o"><span class="ol">Output</span><pre>dept
+HR       120000.000000
+Sales     81500.000000
+Tech      72666.666667
+Name: salary, dtype: float64</pre></div></article>
+<article class="fn" data-s="pandas" data-k="groupby() with count how many rows in each group. print(df.groupby('dept').size())
+print(df.groupby('dept')['salary'].count())"><h4>groupby() with count</h4><p class="d">How many rows in each group.</p><div class="c"><pre>print(df.groupby('dept').size())
+print(df.groupby('dept')['salary'].count())</pre></div><div class="o"><span class="ol">Output</span><pre>dept
+HR       1
+Sales    2
+Tech     3
+dtype: int64
+dept
+HR       1
+Sales    2
+Tech     3
+Name: salary, dtype: int64</pre></div></article>
+<article class="fn" data-s="pandas" data-k="groupby() with agg() several summaries at once. print(df.groupby('dept')['salary'].agg(['count','mean','max']))"><h4>groupby() with agg()</h4><p class="d">Several summaries at once.</p><div class="c"><pre>print(df.groupby('dept')['salary'].agg(['count','mean','max']))</pre></div><div class="o"><span class="ol">Output</span><pre>       count           mean     max
+dept                               
+HR         1  120000.000000  120000
+Sales      2   81500.000000   95000
+Tech       3   72666.666667   88000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="agg() on different columns different summary for each column. print(df.groupby('dept').agg({'salary':'mean', 'exp':'max'}))"><h4>agg() on different columns</h4><p class="d">Different summary for each column.</p><div class="c"><pre>print(df.groupby('dept').agg({'salary':'mean', 'exp':'max'}))</pre></div><div class="o"><span class="ol">Output</span><pre>              salary  exp
+dept                     
+HR     120000.000000   15
+Sales   81500.000000   10
+Tech    72666.666667    8</pre></div></article>
+<article class="fn" data-s="pandas" data-k="grouping by two columns groups within groups. print(df.groupby(['dept','city'])['salary'].mean())"><h4>Grouping by two columns</h4><p class="d">Groups within groups.</p><div class="c"><pre>print(df.groupby(['dept','city'])['salary'].mean())</pre></div><div class="o"><span class="ol">Output</span><pre>dept   city     
+HR     Pune         120000.0
+Sales  Chennai       81500.0
+Tech   Bangalore     65000.0
+       Pune          88000.0
+Name: salary, dtype: float64</pre></div></article>
+<article class="fn" data-s="pandas" data-k="reset_index() turns the group labels back into a normal column. g = df.groupby('dept')['salary'].mean().reset_index()
+print(g)"><h4>reset_index()</h4><p class="d">Turns the group labels back into a normal column.</p><div class="c"><pre>g = df.groupby('dept')['salary'].mean().reset_index()
+print(g)</pre></div><div class="o"><span class="ol">Output</span><pre>    dept         salary
+0     HR  120000.000000
+1  Sales   81500.000000
+2   Tech   72666.666667</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-reshaping-not-yet-covered-in-class">
+<h3 class="cath">Reshaping — not yet covered in class <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="pivot_table() summarises data into a grid. like a pivot table in excel. print(pd.pivot_table(df, values='salary', index='dept',
+                     columns='city', aggfunc='mean'))"><h4>pivot_table()</h4><p class="d">Summarises data into a grid. Like a pivot table in Excel.</p><div class="c"><pre>print(pd.pivot_table(df, values='salary', index='dept',
+                     columns='city', aggfunc='mean'))</pre></div><div class="o"><span class="ol">Output</span><pre>city   Bangalore  Chennai      Pune
+dept                               
+HR           NaN      NaN  120000.0
+Sales        NaN  81500.0       NaN
+Tech     65000.0      NaN   88000.0</pre></div></article>
+<article class="fn" data-s="pandas" data-k="crosstab() counts how often combinations appear. print(pd.crosstab(df['dept'], df['city']))"><h4>crosstab()</h4><p class="d">Counts how often combinations appear.</p><div class="c"><pre>print(pd.crosstab(df['dept'], df['city']))</pre></div><div class="o"><span class="ol">Output</span><pre>city   Bangalore  Chennai  Pune
+dept                           
+HR             0        0     1
+Sales          0        2     0
+Tech           2        0     1</pre></div></article>
+<article class="fn" data-s="pandas" data-k="melt() turns wide data into long data. w = pd.dataframe({'name':['rahul','priya'],'maths':[87,92],'science':[78,85]})
+print(pd.melt(w, id_vars='name', var_name='subject', value_name='marks'))"><h4>melt()</h4><p class="d">Turns wide data into long data.</p><div class="c"><pre>w = pd.DataFrame({'name':['Rahul','Priya'],'maths':[87,92],'science':[78,85]})
+print(pd.melt(w, id_vars='name', var_name='subject', value_name='marks'))</pre></div><div class="o"><span class="ol">Output</span><pre>    name  subject  marks
+0  Rahul    maths     87
+1  Priya    maths     92
+2  Rahul  science     78
+3  Priya  science     85</pre></div></article>
+<article class="fn" data-s="pandas" data-k="set_index() / reset_index() makes a column the row label, or puts it back. d = df.set_index('name')
+print(d.loc['rahul'])
+print(d.reset_index().head(2)[['name','dept']])"><h4>set_index() / reset_index()</h4><p class="d">Makes a column the row label, or puts it back.</p><div class="c"><pre>d = df.set_index('name')
+print(d.loc['Rahul'])
+print(d.reset_index().head(2)[['name','dept']])</pre></div><div class="o"><span class="ol">Output</span><pre>dept           Tech
+city      Bangalore
+age            28.0
+exp               4
+salary        72000
+rating         Good
+Name: Rahul, dtype: object
+    name   dept
+0  Rahul   Tech
+1  Priya  Sales</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-merging-data-frames-d37">
+<h3 class="cath">Merging data frames — D37 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="concat() stacks tables on top of each other. a = df.head(2)[['name','dept']]
+b = df.tail(2)[['name','dept']]
+print(pd.concat([a, b]))"><h4>concat()</h4><p class="d">Stacks tables on top of each other.</p><div class="c"><pre>a = df.head(2)[['name','dept']]
+b = df.tail(2)[['name','dept']]
+print(pd.concat([a, b]))</pre></div><div class="o"><span class="ol">Output</span><pre>     name   dept
+0   Rahul   Tech
+1   Priya  Sales
+4  Vikram  Sales
+5   Divya   Tech</pre></div></article>
+<article class="fn" data-s="pandas" data-k="concat() side by side axis=1 joins columns instead of rows. a = df[['name']].head(3)
+b = df[['salary']].head(3)
+print(pd.concat([a, b], axis=1))"><h4>concat() side by side</h4><p class="d">axis=1 joins columns instead of rows.</p><div class="c"><pre>a = df[['name']].head(3)
+b = df[['salary']].head(3)
+print(pd.concat([a, b], axis=1))</pre></div><div class="o"><span class="ol">Output</span><pre>    name  salary
+0  Rahul   72000
+1  Priya   95000
+2   Amit   58000</pre></div></article>
+<article class="fn" data-s="pandas" data-k="merge() joins two tables on a shared column. like a join in sql. emp  = pd.dataframe({'name':['rahul','priya'], 'dept_id':[1, 2]})
+dept = pd.dataframe({'dept_id':[1, 2], 'dept_name':['tech','sales']})
+print(pd.merge(emp, dept, on='dept_id'))"><h4>merge()</h4><p class="d">Joins two tables on a shared column. Like a JOIN in SQL.</p><div class="c"><pre>emp  = pd.DataFrame({'name':['Rahul','Priya'], 'dept_id':[1, 2]})
+dept = pd.DataFrame({'dept_id':[1, 2], 'dept_name':['Tech','Sales']})
+print(pd.merge(emp, dept, on='dept_id'))</pre></div><div class="o"><span class="ol">Output</span><pre>    name  dept_id dept_name
+0  Rahul        1      Tech
+1  Priya        2     Sales</pre></div></article>
+<article class="fn" data-s="pandas" data-k="merge() types how= decides which rows are kept. a = pd.dataframe({'id':[1,2,3], 'x':['a','b','c']})
+b = pd.dataframe({'id':[2,3,4], 'y':['b','c','d']})
+print(pd.merge(a, b, on='id', how='inner'))
+print(pd.merge(a, b, on='id', how='left'))"><h4>merge() types</h4><p class="d">how= decides which rows are kept.</p><div class="c"><pre>a = pd.DataFrame({'id':[1,2,3], 'x':['a','b','c']})
+b = pd.DataFrame({'id':[2,3,4], 'y':['B','C','D']})
+print(pd.merge(a, b, on='id', how='inner'))
+print(pd.merge(a, b, on='id', how='left'))</pre></div><div class="o"><span class="ol">Output</span><pre>   id  x  y
+0   2  b  B
+1   3  c  C
+   id  x    y
+0   1  a  NaN
+1   2  b    B
+2   3  c    C</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-text-columns-not-yet-covered-in-class">
+<h3 class="cath">Text columns — not yet covered in class <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k=".str.upper() / .str.lower() changes the case of every value in a text column. print(df['name'].str.upper().tolist())"><h4>.str.upper() / .str.lower()</h4><p class="d">Changes the case of every value in a text column.</p><div class="c"><pre>print(df['name'].str.upper().tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>['RAHUL', 'PRIYA', 'AMIT', 'SNEHA', 'VIKRAM', 'DIVYA']</pre></div></article>
+<article class="fn" data-s="pandas" data-k=".str.len() how many characters in each value. print(df['name'].str.len().tolist())"><h4>.str.len()</h4><p class="d">How many characters in each value.</p><div class="c"><pre>print(df['name'].str.len().tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[5, 5, 4, 5, 6, 5]</pre></div></article>
+<article class="fn" data-s="pandas" data-k=".str.strip() / .str.replace() cleans text values. messy = pd.series(['  rahul ', ' priya'])
+print(messy.str.strip().tolist())
+print(df['dept'].str.replace('tech', 'it').tolist())"><h4>.str.strip() / .str.replace()</h4><p class="d">Cleans text values.</p><div class="c"><pre>messy = pd.Series(['  Rahul ', ' Priya'])
+print(messy.str.strip().tolist())
+print(df['dept'].str.replace('Tech', 'IT').tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>['Rahul', 'Priya']
+['IT', 'Sales', 'IT', 'HR', 'Sales', 'IT']</pre></div></article>
+<article class="fn" data-s="pandas" data-k=".str.split() splits text and picks a part. full = pd.series(['rahul sharma', 'priya nair'])
+print(full.str.split(' ').tolist())
+print(full.str.split(' ').str[0].tolist())"><h4>.str.split()</h4><p class="d">Splits text and picks a part.</p><div class="c"><pre>full = pd.Series(['Rahul Sharma', 'Priya Nair'])
+print(full.str.split(' ').tolist())
+print(full.str.split(' ').str[0].tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[['Rahul', 'Sharma'], ['Priya', 'Nair']]
+['Rahul', 'Priya']</pre></div></article>
+</div></section>
+<section class="cat" id="pandas-dates-not-yet-covered-in-class">
+<h3 class="cath">Dates — not yet covered in class <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="pandas" data-k="pd.to_datetime() turns text into real dates so you can work with them. d = pd.dataframe({'joined':['2022-01-15','2023-06-30']})
+d['joined'] = pd.to_datetime(d['joined'])
+print(d.dtypes)
+print(d)"><h4>pd.to_datetime()</h4><p class="d">Turns text into real dates so you can work with them.</p><div class="c"><pre>d = pd.DataFrame({'joined':['2022-01-15','2023-06-30']})
+d['joined'] = pd.to_datetime(d['joined'])
+print(d.dtypes)
+print(d)</pre></div><div class="o"><span class="ol">Output</span><pre>joined    datetime64[ns]
+dtype: object
+      joined
+0 2022-01-15
+1 2023-06-30</pre></div></article>
+<article class="fn" data-s="pandas" data-k=".dt.year / .dt.month / .dt.day pulls parts out of a date column. d = pd.dataframe({'joined': pd.to_datetime(['2022-01-15','2023-06-30'])})
+print(d['joined'].dt.year.tolist())
+print(d['joined'].dt.month.tolist())
+print(d['joined'].dt.day_name().tolist())"><h4>.dt.year / .dt.month / .dt.day</h4><p class="d">Pulls parts out of a date column.</p><div class="c"><pre>d = pd.DataFrame({'joined': pd.to_datetime(['2022-01-15','2023-06-30'])})
+print(d['joined'].dt.year.tolist())
+print(d['joined'].dt.month.tolist())
+print(d['joined'].dt.day_name().tolist())</pre></div><div class="o"><span class="ol">Output</span><pre>[2022, 2023]
+[1, 6]
+['Saturday', 'Friday']</pre></div></article>
+<article class="fn" data-s="pandas" data-k="date differences subtract two dates to get the gap. d = pd.to_datetime(['2022-01-01','2024-01-01'])
+print((d[1] - d[0]).days)"><h4>Date differences</h4><p class="d">Subtract two dates to get the gap.</p><div class="c"><pre>d = pd.to_datetime(['2022-01-01','2024-01-01'])
+print((d[1] - d[0]).days)</pre></div><div class="o"><span class="ol">Output</span><pre>730</pre></div></article>
+</div></section>
+</div>
+<div class="sec" id="sec-sql">
+<div class="sechead"><h2>SQL</h2><p>Sessions D01 to D23. Databases, queries, functions, subqueries, joins and window functions.</p><span class="cnt">48 functions</span></div>
+<section class="cat" id="sql-databases-and-design-d01-to-d03">
+<h3 class="cath">Databases and design — D01 to D03 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="create table creates a new table and defines its columns. select sql from sqlite_master where name='employees';"><h4>CREATE TABLE</h4><p class="d">Creates a new table and defines its columns.</p><div class="c"><pre>SELECT sql FROM sqlite_master WHERE name='employees';</pre></div><div class="o"><span class="ol">Output</span><pre>sql                                                                                                                                                  
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE employees (
+  emp_id INTEGER PRIMARY KEY, name TEXT, dept_id INTEGER,
+  salary INTEGER, experience INTEGER, join_date TEXT, rating TEXT)</pre></div></article>
+<article class="fn" data-s="sql" data-k="primary key the column that uniquely identifies each row. select emp_id, name from employees limit 3;"><h4>Primary key</h4><p class="d">The column that uniquely identifies each row.</p><div class="c"><pre>SELECT emp_id, name FROM employees LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>emp_id | name        
+-------+-------------
+101    | Rahul Sharma
+102    | Priya Nair  
+103    | Amit Kumar  </pre></div></article>
+<article class="fn" data-s="sql" data-k="foreign key a column that points to the primary key of another table. select e.name, d.dept_name from employees e join departments d on e.dept_id=d.dept_id limit 3;"><h4>Foreign key</h4><p class="d">A column that points to the primary key of another table.</p><div class="c"><pre>SELECT e.name, d.dept_name FROM employees e JOIN departments d ON e.dept_id=d.dept_id LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | dept_name
+-------------+----------
+Rahul Sharma | Tech     
+Priya Nair   | Sales    
+Amit Kumar   | Tech     </pre></div></article>
+</div></section>
+<section class="cat" id="sql-reading-data-d08-to-d10">
+<h3 class="cath">Reading data — D08 to D10 <span>10</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="select fetches columns from a table. select name, salary from employees limit 3;"><h4>SELECT</h4><p class="d">Fetches columns from a table.</p><div class="c"><pre>SELECT name, salary FROM employees LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary
+-------------+-------
+Rahul Sharma | 72000 
+Priya Nair   | 95000 
+Amit Kumar   | 58000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="where keeps only the rows that match a condition. select name, salary from employees where salary &gt; 70000;"><h4>WHERE</h4><p class="d">Keeps only the rows that match a condition.</p><div class="c"><pre>SELECT name, salary FROM employees WHERE salary &gt; 70000;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary
+-------------+-------
+Rahul Sharma | 72000 
+Priya Nair   | 95000 
+Sneha Reddy  | 120000
+Divya Menon  | 88000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="order by sorts the result. select name, salary from employees order by salary desc limit 3;"><h4>ORDER BY</h4><p class="d">Sorts the result.</p><div class="c"><pre>SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name        | salary
+------------+-------
+Sneha Reddy | 120000
+Priya Nair  | 95000 
+Divya Menon | 88000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="limit restricts how many rows come back. select name, salary from employees order by salary desc limit 2;"><h4>LIMIT</h4><p class="d">Restricts how many rows come back.</p><div class="c"><pre>SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 2;</pre></div><div class="o"><span class="ol">Output</span><pre>name        | salary
+------------+-------
+Sneha Reddy | 120000
+Priya Nair  | 95000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="distinct removes duplicate rows from the result. select distinct dept_id from employees order by dept_id;"><h4>DISTINCT</h4><p class="d">Removes duplicate rows from the result.</p><div class="c"><pre>SELECT DISTINCT dept_id FROM employees ORDER BY dept_id;</pre></div><div class="o"><span class="ol">Output</span><pre>dept_id
+-------
+1      
+2      
+3      
+4      </pre></div></article>
+<article class="fn" data-s="sql" data-k="as (alias) gives a column or table a temporary name. select name as employee, salary as monthly_pay from employees limit 2;"><h4>AS (alias)</h4><p class="d">Gives a column or table a temporary name.</p><div class="c"><pre>SELECT name AS employee, salary AS monthly_pay FROM employees LIMIT 2;</pre></div><div class="o"><span class="ol">Output</span><pre>employee     | monthly_pay
+-------------+------------
+Rahul Sharma | 72000      
+Priya Nair   | 95000      </pre></div></article>
+<article class="fn" data-s="sql" data-k="in checks a value against a list. select name, dept_id from employees where dept_id in (1,3);"><h4>IN</h4><p class="d">Checks a value against a list.</p><div class="c"><pre>SELECT name, dept_id FROM employees WHERE dept_id IN (1,3);</pre></div><div class="o"><span class="ol">Output</span><pre>name         | dept_id
+-------------+--------
+Rahul Sharma | 1      
+Amit Kumar   | 1      
+Sneha Reddy  | 3      
+Divya Menon  | 1      </pre></div></article>
+<article class="fn" data-s="sql" data-k="between checks a value inside a range. select name, salary from employees where salary between 60000 and 90000;"><h4>BETWEEN</h4><p class="d">Checks a value inside a range.</p><div class="c"><pre>SELECT name, salary FROM employees WHERE salary BETWEEN 60000 AND 90000;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary
+-------------+-------
+Rahul Sharma | 72000 
+Vikram Rao   | 68000 
+Divya Menon  | 88000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="like pattern matching on text. select name from employees where name like '%kumar%';"><h4>LIKE</h4><p class="d">Pattern matching on text.</p><div class="c"><pre>SELECT name FROM employees WHERE name LIKE '%Kumar%';</pre></div><div class="o"><span class="ol">Output</span><pre>name      
+----------
+Amit Kumar</pre></div></article>
+<article class="fn" data-s="sql" data-k="is null finds missing values. select name, rating from employees where rating is null;"><h4>IS NULL</h4><p class="d">Finds missing values.</p><div class="c"><pre>SELECT name, rating FROM employees WHERE rating IS NULL;</pre></div><div class="o"><span class="ol">Output</span><pre>name      | rating
+----------+-------
+Arjun Das | NULL  </pre></div></article>
+</div></section>
+<section class="cat" id="sql-changing-data-d07">
+<h3 class="cath">Changing data — D07 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="insert adds a new row. select count(*) as rows_now from employees;"><h4>INSERT</h4><p class="d">Adds a new row.</p><div class="c"><pre>SELECT COUNT(*) AS rows_now FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>rows_now
+--------
+7       </pre></div></article>
+<article class="fn" data-s="sql" data-k="update changes values in existing rows. select name, salary from employees where emp_id=101;"><h4>UPDATE</h4><p class="d">Changes values in existing rows.</p><div class="c"><pre>SELECT name, salary FROM employees WHERE emp_id=101;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary
+-------------+-------
+Rahul Sharma | 72000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="delete removes rows. select count(*) as total from employees;"><h4>DELETE</h4><p class="d">Removes rows.</p><div class="c"><pre>SELECT COUNT(*) AS total FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>total
+-----
+7    </pre></div></article>
+<article class="fn" data-s="sql" data-k="alter table changes the structure of an existing table. select name from pragma_table_info('employees') limit 4;"><h4>ALTER TABLE</h4><p class="d">Changes the structure of an existing table.</p><div class="c"><pre>SELECT name FROM pragma_table_info('employees') LIMIT 4;</pre></div><div class="o"><span class="ol">Output</span><pre>name   
+-------
+emp_id 
+name   
+dept_id
+salary </pre></div></article>
+</div></section>
+<section class="cat" id="sql-string-functions-d13">
+<h3 class="cath">String functions — D13 <span>6</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="upper and lower changes the case of text. select upper(name) as caps, lower(name) as small from employees limit 2;"><h4>UPPER and LOWER</h4><p class="d">Changes the case of text.</p><div class="c"><pre>SELECT UPPER(name) AS caps, LOWER(name) AS small FROM employees LIMIT 2;</pre></div><div class="o"><span class="ol">Output</span><pre>caps         | small       
+-------------+-------------
+RAHUL SHARMA | rahul sharma
+PRIYA NAIR   | priya nair  </pre></div></article>
+<article class="fn" data-s="sql" data-k="length how many characters in the text. select name, length(name) as chars from employees limit 3;"><h4>LENGTH</h4><p class="d">How many characters in the text.</p><div class="c"><pre>SELECT name, LENGTH(name) AS chars FROM employees LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | chars
+-------------+------
+Rahul Sharma | 12   
+Priya Nair   | 10   
+Amit Kumar   | 10   </pre></div></article>
+<article class="fn" data-s="sql" data-k="substr takes part of a string. select name, substr(name,1,5) as first_five from employees limit 3;"><h4>SUBSTR</h4><p class="d">Takes part of a string.</p><div class="c"><pre>SELECT name, SUBSTR(name,1,5) AS first_five FROM employees LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | first_five
+-------------+-----------
+Rahul Sharma | Rahul     
+Priya Nair   | Priya     
+Amit Kumar   | Amit      </pre></div></article>
+<article class="fn" data-s="sql" data-k="concatenation joins strings together. select name || ' works in dept ' || dept_id as description from employees limit 2;"><h4>Concatenation</h4><p class="d">Joins strings together.</p><div class="c"><pre>SELECT name || ' works in dept ' || dept_id AS description FROM employees LIMIT 2;</pre></div><div class="o"><span class="ol">Output</span><pre>description                 
+----------------------------
+Rahul Sharma works in dept 1
+Priya Nair works in dept 2  </pre></div></article>
+<article class="fn" data-s="sql" data-k="trim removes spaces from both ends. select '[' || trim('   rahul   ') || ']' as trimmed;"><h4>TRIM</h4><p class="d">Removes spaces from both ends.</p><div class="c"><pre>SELECT '[' || TRIM('   Rahul   ') || ']' AS trimmed;</pre></div><div class="o"><span class="ol">Output</span><pre>trimmed
+-------
+[Rahul]</pre></div></article>
+<article class="fn" data-s="sql" data-k="replace swaps one piece of text for another. select replace(name,'kumar','k.') as shortened from employees where name like '%kumar%';"><h4>REPLACE</h4><p class="d">Swaps one piece of text for another.</p><div class="c"><pre>SELECT REPLACE(name,'Kumar','K.') AS shortened FROM employees WHERE name LIKE '%Kumar%';</pre></div><div class="o"><span class="ol">Output</span><pre>shortened
+---------
+Amit K.  </pre></div></article>
+</div></section>
+<section class="cat" id="sql-date-functions-d14">
+<h3 class="cath">Date functions — D14 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="extracting parts of a date pulls the year, month or day out of a date. select name, strftime('%y',join_date) as yr, strftime('%m',join_date) as mth from employees limit 3;"><h4>Extracting parts of a date</h4><p class="d">Pulls the year, month or day out of a date.</p><div class="c"><pre>SELECT name, STRFTIME('%Y',join_date) AS yr, STRFTIME('%m',join_date) AS mth FROM employees LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | yr   | mth
+-------------+------+----
+Rahul Sharma | 2022 | 01 
+Priya Nair   | 2019 | 06 
+Amit Kumar   | 2023 | 03 </pre></div></article>
+<article class="fn" data-s="sql" data-k="current date returns today's date. select date('2026-09-04') as today;"><h4>Current date</h4><p class="d">Returns today's date.</p><div class="c"><pre>SELECT DATE('2026-09-04') AS today;</pre></div><div class="o"><span class="ol">Output</span><pre>today     
+----------
+2026-09-04</pre></div></article>
+<article class="fn" data-s="sql" data-k="date difference how far apart two dates are. select name, 2026 - cast(strftime('%y',join_date) as integer) as years_here from employees limit 3;"><h4>Date difference</h4><p class="d">How far apart two dates are.</p><div class="c"><pre>SELECT name, 2026 - CAST(STRFTIME('%Y',join_date) AS INTEGER) AS years_here FROM employees LIMIT 3;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | years_here
+-------------+-----------
+Rahul Sharma | 4         
+Priya Nair   | 7         
+Amit Kumar   | 3         </pre></div></article>
+</div></section>
+<section class="cat" id="sql-control-flow-d15">
+<h3 class="cath">Control flow — D15 <span>2</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="case when if-then-else logic inside a query. select name, salary,
+  case when salary &gt; 100000 then 'high'
+       when salary &gt; 65000  then 'medium'
+       else 'low' end as band
+from employees order by salary desc;"><h4>CASE WHEN</h4><p class="d">If-then-else logic inside a query.</p><div class="c"><pre>SELECT name, salary,
+  CASE WHEN salary &gt; 100000 THEN 'High'
+       WHEN salary &gt; 65000  THEN 'Medium'
+       ELSE 'Low' END AS band
+FROM employees ORDER BY salary DESC;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary | band  
+-------------+--------+-------
+Sneha Reddy  | 120000 | High  
+Priya Nair   | 95000  | Medium
+Divya Menon  | 88000  | Medium
+Rahul Sharma | 72000  | Medium
+Vikram Rao   | 68000  | Medium
+Amit Kumar   | 58000  | Low   
+Arjun Das    | 54000  | Low   </pre></div></article>
+<article class="fn" data-s="sql" data-k="coalesce returns the first value that is not null. select name, coalesce(rating,'not rated') as rating from employees;"><h4>COALESCE</h4><p class="d">Returns the first value that is not NULL.</p><div class="c"><pre>SELECT name, COALESCE(rating,'Not rated') AS rating FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | rating   
+-------------+----------
+Rahul Sharma | Good     
+Priya Nair   | Excellent
+Amit Kumar   | Poor     
+Sneha Reddy  | Excellent
+Vikram Rao   | Average  
+Divya Menon  | Good     
+Arjun Das    | Not rated</pre></div></article>
+</div></section>
+<section class="cat" id="sql-aggregate-functions-d17-to-d18">
+<h3 class="cath">Aggregate functions — D17 to D18 <span>5</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="count counts rows. select count(*) as all_rows, count(rating) as with_rating from employees;"><h4>COUNT</h4><p class="d">Counts rows.</p><div class="c"><pre>SELECT COUNT(*) AS all_rows, COUNT(rating) AS with_rating FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>all_rows | with_rating
+---------+------------
+7        | 6          </pre></div></article>
+<article class="fn" data-s="sql" data-k="sum and avg the total and the average of a column. select sum(salary) as total, round(avg(salary),0) as average from employees;"><h4>SUM and AVG</h4><p class="d">The total and the average of a column.</p><div class="c"><pre>SELECT SUM(salary) AS total, ROUND(AVG(salary),0) AS average FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>total  | average
+-------+--------
+555000 | 79286.0</pre></div></article>
+<article class="fn" data-s="sql" data-k="min and max the smallest and largest value. select min(salary) as lowest, max(salary) as highest from employees;"><h4>MIN and MAX</h4><p class="d">The smallest and largest value.</p><div class="c"><pre>SELECT MIN(salary) AS lowest, MAX(salary) AS highest FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>lowest | highest
+-------+--------
+54000  | 120000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="group by splits rows into groups and summarises each one. select dept_id, count(*) as headcount, round(avg(salary),0) as avg_sal from employees group by dept_id;"><h4>GROUP BY</h4><p class="d">Splits rows into groups and summarises each one.</p><div class="c"><pre>SELECT dept_id, COUNT(*) AS headcount, ROUND(AVG(salary),0) AS avg_sal FROM employees GROUP BY dept_id;</pre></div><div class="o"><span class="ol">Output</span><pre>dept_id | headcount | avg_sal 
+--------+-----------+---------
+1       | 3         | 72667.0 
+2       | 2         | 81500.0 
+3       | 1         | 120000.0
+4       | 1         | 54000.0 </pre></div></article>
+<article class="fn" data-s="sql" data-k="having filters the groups after aggregation. select dept_id, count(*) as n from employees group by dept_id having count(*) &gt; 1;"><h4>HAVING</h4><p class="d">Filters the groups after aggregation.</p><div class="c"><pre>SELECT dept_id, COUNT(*) AS n FROM employees GROUP BY dept_id HAVING COUNT(*) &gt; 1;</pre></div><div class="o"><span class="ol">Output</span><pre>dept_id | n
+--------+--
+1       | 3
+2       | 2</pre></div></article>
+</div></section>
+<section class="cat" id="sql-subqueries-d19-to-d20">
+<h3 class="cath">Subqueries — D19 to D20 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="subquery in where a query inside another query. select name, salary from employees where salary &gt; (select avg(salary) from employees);"><h4>Subquery in WHERE</h4><p class="d">A query inside another query.</p><div class="c"><pre>SELECT name, salary FROM employees WHERE salary &gt; (SELECT AVG(salary) FROM employees);</pre></div><div class="o"><span class="ol">Output</span><pre>name        | salary
+------------+-------
+Priya Nair  | 95000 
+Sneha Reddy | 120000
+Divya Menon | 88000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="second highest value the classic interview question. select max(salary) as second_highest from employees where salary &lt; (select max(salary) from employees);"><h4>Second highest value</h4><p class="d">The classic interview question.</p><div class="c"><pre>SELECT MAX(salary) AS second_highest FROM employees WHERE salary &lt; (SELECT MAX(salary) FROM employees);</pre></div><div class="o"><span class="ol">Output</span><pre>second_highest
+--------------
+95000         </pre></div></article>
+<article class="fn" data-s="sql" data-k="subquery with in matches against a list produced by another query. select name from employees where dept_id in (select dept_id from departments where city='bangalore');"><h4>Subquery with IN</h4><p class="d">Matches against a list produced by another query.</p><div class="c"><pre>SELECT name FROM employees WHERE dept_id IN (SELECT dept_id FROM departments WHERE city='Bangalore');</pre></div><div class="o"><span class="ol">Output</span><pre>name        
+------------
+Rahul Sharma
+Amit Kumar  
+Divya Menon 
+Arjun Das   </pre></div></article>
+</div></section>
+<section class="cat" id="sql-joins-d21-to-d22">
+<h3 class="cath">Joins — D21 to D22 <span>5</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="inner join keeps only rows that match in both tables. select e.name, d.dept_name from employees e inner join departments d on e.dept_id=d.dept_id limit 4;"><h4>INNER JOIN</h4><p class="d">Keeps only rows that match in both tables.</p><div class="c"><pre>SELECT e.name, d.dept_name FROM employees e INNER JOIN departments d ON e.dept_id=d.dept_id LIMIT 4;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | dept_name
+-------------+----------
+Rahul Sharma | Tech     
+Priya Nair   | Sales    
+Amit Kumar   | Tech     
+Sneha Reddy  | HR       </pre></div></article>
+<article class="fn" data-s="sql" data-k="left join keeps every row from the left table. select d.dept_name, count(e.emp_id) as headcount from departments d left join employees e on d.dept_id=e.dept_id group by d.dept_name;"><h4>LEFT JOIN</h4><p class="d">Keeps every row from the left table.</p><div class="c"><pre>SELECT d.dept_name, COUNT(e.emp_id) AS headcount FROM departments d LEFT JOIN employees e ON d.dept_id=e.dept_id GROUP BY d.dept_name;</pre></div><div class="o"><span class="ol">Output</span><pre>dept_name | headcount
+----------+----------
+HR        | 1        
+Marketing | 1        
+Sales     | 2        
+Tech      | 3        </pre></div></article>
+<article class="fn" data-s="sql" data-k="finding rows with no match rows in one table that have nothing in the other. select d.dept_name from departments d left join employees e on d.dept_id=e.dept_id where e.emp_id is null;"><h4>Finding rows with no match</h4><p class="d">Rows in one table that have nothing in the other.</p><div class="c"><pre>SELECT d.dept_name FROM departments d LEFT JOIN employees e ON d.dept_id=e.dept_id WHERE e.emp_id IS NULL;</pre></div><div class="o"><span class="ol">Output</span><pre>dept_name
+---------</pre></div></article>
+<article class="fn" data-s="sql" data-k="self join a table joined to itself. select a.name, b.name as same_dept_colleague from employees a join employees b on a.dept_id=b.dept_id and a.emp_id&lt;b.emp_id;"><h4>Self join</h4><p class="d">A table joined to itself.</p><div class="c"><pre>SELECT a.name, b.name AS same_dept_colleague FROM employees a JOIN employees b ON a.dept_id=b.dept_id AND a.emp_id&lt;b.emp_id;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | same_dept_colleague
+-------------+--------------------
+Rahul Sharma | Amit Kumar         
+Rahul Sharma | Divya Menon        
+Priya Nair   | Vikram Rao         
+Amit Kumar   | Divya Menon        </pre></div></article>
+<article class="fn" data-s="sql" data-k="union stacks the results of two queries. select name from employees where salary&gt;100000 union select name from employees where experience&gt;9;"><h4>UNION</h4><p class="d">Stacks the results of two queries.</p><div class="c"><pre>SELECT name FROM employees WHERE salary&gt;100000 UNION SELECT name FROM employees WHERE experience&gt;9;</pre></div><div class="o"><span class="ol">Output</span><pre>name       
+-----------
+Priya Nair 
+Sneha Reddy</pre></div></article>
+</div></section>
+<section class="cat" id="sql-window-functions-d15">
+<h3 class="cath">Window functions — D15 <span>4</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="row_number numbers the rows in order, with no ties. select name, salary, row_number() over (order by salary desc) as rn from employees limit 4;"><h4>ROW_NUMBER</h4><p class="d">Numbers the rows in order, with no ties.</p><div class="c"><pre>SELECT name, salary, ROW_NUMBER() OVER (ORDER BY salary DESC) AS rn FROM employees LIMIT 4;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary | rn
+-------------+--------+---
+Sneha Reddy  | 120000 | 1 
+Priya Nair   | 95000  | 2 
+Divya Menon  | 88000  | 3 
+Rahul Sharma | 72000  | 4 </pre></div></article>
+<article class="fn" data-s="sql" data-k="rank and dense_rank ranks rows, handling ties differently. select name, salary, rank() over (order by salary desc) as rnk from employees limit 4;"><h4>RANK and DENSE_RANK</h4><p class="d">Ranks rows, handling ties differently.</p><div class="c"><pre>SELECT name, salary, RANK() OVER (ORDER BY salary DESC) AS rnk FROM employees LIMIT 4;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | salary | rnk
+-------------+--------+----
+Sneha Reddy  | 120000 | 1  
+Priya Nair   | 95000  | 2  
+Divya Menon  | 88000  | 3  
+Rahul Sharma | 72000  | 4  </pre></div></article>
+<article class="fn" data-s="sql" data-k="partition by restarts the window calculation for each group. select name, dept_id, salary, rank() over (partition by dept_id order by salary desc) as rnk from employees;"><h4>PARTITION BY</h4><p class="d">Restarts the window calculation for each group.</p><div class="c"><pre>SELECT name, dept_id, salary, RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | dept_id | salary | rnk
+-------------+---------+--------+----
+Divya Menon  | 1       | 88000  | 1  
+Rahul Sharma | 1       | 72000  | 2  
+Amit Kumar   | 1       | 58000  | 3  
+Priya Nair   | 2       | 95000  | 1  
+Vikram Rao   | 2       | 68000  | 2  
+Sneha Reddy  | 3       | 120000 | 1  
+Arjun Das    | 4       | 54000  | 1  </pre></div></article>
+<article class="fn" data-s="sql" data-k="aggregate as a window adds a group summary without collapsing the rows. select name, dept_id, salary, round(avg(salary) over (partition by dept_id),0) as dept_avg from employees;"><h4>Aggregate as a window</h4><p class="d">Adds a group summary without collapsing the rows.</p><div class="c"><pre>SELECT name, dept_id, salary, ROUND(AVG(salary) OVER (PARTITION BY dept_id),0) AS dept_avg FROM employees;</pre></div><div class="o"><span class="ol">Output</span><pre>name         | dept_id | salary | dept_avg
+-------------+---------+--------+---------
+Rahul Sharma | 1       | 72000  | 72667.0 
+Amit Kumar   | 1       | 58000  | 72667.0 
+Divya Menon  | 1       | 88000  | 72667.0 
+Priya Nair   | 2       | 95000  | 81500.0 
+Vikram Rao   | 2       | 68000  | 81500.0 
+Sneha Reddy  | 3       | 120000 | 120000.0
+Arjun Das    | 4       | 54000  | 54000.0 </pre></div></article>
+</div></section>
+<section class="cat" id="sql-views-and-routines-d23">
+<h3 class="cath">Views and routines — D23 <span>3</span></h3>
+<div class="grid">
+<article class="fn" data-s="sql" data-k="create view saves a query so it behaves like a virtual table. select name, salary from employees where salary &gt; 80000;"><h4>CREATE VIEW</h4><p class="d">Saves a query so it behaves like a virtual table.</p><div class="c"><pre>SELECT name, salary FROM employees WHERE salary &gt; 80000;</pre></div><div class="o"><span class="ol">Output</span><pre>name        | salary
+------------+-------
+Priya Nair  | 95000 
+Sneha Reddy | 120000
+Divya Menon | 88000 </pre></div></article>
+<article class="fn" data-s="sql" data-k="stored procedure a named block of sql saved in the database. select 'call get_dept_summary(1);' as mysql_syntax;"><h4>Stored procedure</h4><p class="d">A named block of SQL saved in the database.</p><div class="c"><pre>SELECT 'CALL get_dept_summary(1);' AS mysql_syntax;</pre></div><div class="o"><span class="ol">Output</span><pre>mysql_syntax             
+-------------------------
+CALL get_dept_summary(1);</pre></div></article>
+<article class="fn" data-s="sql" data-k="trigger sql that runs automatically when data changes. select 'create trigger log_change after update on employees ...' as mysql_syntax;"><h4>Trigger</h4><p class="d">SQL that runs automatically when data changes.</p><div class="c"><pre>SELECT 'CREATE TRIGGER log_change AFTER UPDATE ON employees ...' AS mysql_syntax;</pre></div><div class="o"><span class="ol">Output</span><pre>mysql_syntax                                           
+-------------------------------------------------------
+CREATE TRIGGER log_change AFTER UPDATE ON employees ...</pre></div></article>
+</div></section>
+</div>
+
+<p class="empty hide" id="empty">Nothing matched. Try a shorter word.</p>
+
+<footer>Short notes for revision. Every example was run to produce the output shown.</footer>
+</div>
+
+<script>
+(function(){
+ var q=document.getElementById('q'), res=document.getElementById('res'),
+     empty=document.getElementById('empty'),
+     cards=[].slice.call(document.querySelectorAll('.fn')),
+     cats=[].slice.call(document.querySelectorAll('.cat')),
+     secs=[].slice.call(document.querySelectorAll('.sec')),
+     tabs=[].slice.call(document.querySelectorAll('.tab')),
+     filt='all';
+ function apply(){
+   var t=q.value.trim().toLowerCase(), n=0;
+   cards.forEach(function(c){
+     var ok=(filt==='all'||c.dataset.s===filt) && (!t||c.dataset.k.indexOf(t)>=0);
+     c.classList.toggle('hide',!ok); if(ok)n++;
+   });
+   cats.forEach(function(s){
+     s.classList.toggle('hide', !s.querySelector('.fn:not(.hide)'));
+   });
+   secs.forEach(function(s){
+     s.classList.toggle('hide', !s.querySelector('.fn:not(.hide)'));
+   });
+   res.textContent=n+' shown';
+   empty.classList.toggle('hide', n>0);
+ }
+ q.addEventListener('input',apply);
+ tabs.forEach(function(b){b.onclick=function(){
+   tabs.forEach(function(x){x.classList.remove('on')});
+   b.classList.add('on'); filt=b.dataset.f; apply();
+ };});
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   if(e.key==='Escape'){q.value='';apply();q.blur();}
+ });
+ var tt=document.getElementById('tt'), modes=['auto','light','dark'], i=0;
+ try{var s=localStorage.getItem('fr-theme'); if(s&&modes.indexOf(s)>=0)i=modes.indexOf(s);}catch(e){}
+ function paint(){var m=modes[i];
+   if(m==='auto')document.documentElement.removeAttribute('data-theme');
+   else document.documentElement.setAttribute('data-theme',m);
+   tt.textContent=m.charAt(0).toUpperCase()+m.slice(1);
+   try{localStorage.setItem('fr-theme',m);}catch(e){}}
+ tt.onclick=function(){i=(i+1)%3;paint();};
+ paint(); apply();
+})();
+</script>
+</body>
+</html>

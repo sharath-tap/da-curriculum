@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Prepare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=Inter:wght@400;450;500&display=swap">
+<style>*{box-sizing:border-box}html,body{margin:0;padding:0}</style>
+</head>
+<body>
+<style>
+:root{
+  --ink:#17191c; --paper:#ffffff; --mist:#f2f2f3; --fog:#fafafb;
+  --slate:#777b86; --ash:#979799; --smoke:#a3a6af;
+  --peach:#fbe1d1; --sienna:#5d2a1a; --hair:#ececec;
+  --nav-bg:rgba(255,255,255,.86);
+  --accent-stroke:#5d2a1a;
+  --code-bg:#f7f8f9;
+  --serif:'Source Serif 4',ui-serif,Georgia,serif;
+  --sans:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+  --max:1120px;
+  --shadow-float:0 0 0 1px rgba(4,23,43,.05),0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#eceef1; --paper:#101215; --mist:#191c20; --fog:#141619;
+    --slate:#9ba2ae; --ash:#7c828c; --smoke:#6a707a; --hair:#282c32;
+    --nav-bg:rgba(16,18,21,.86); --accent-stroke:#fbe1d1; --code-bg:#0b0d10;
+    --shadow-float:0 0 0 1px rgba(255,255,255,.07),0 20px 25px -5px rgba(0,0,0,.5),0 8px 10px -6px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#eceef1; --paper:#101215; --mist:#191c20; --fog:#141619;
+  --slate:#9ba2ae; --ash:#7c828c; --smoke:#6a707a; --hair:#282c32;
+  --nav-bg:rgba(16,18,21,.86); --accent-stroke:#fbe1d1; --code-bg:#0b0d10;
+  --shadow-float:0 0 0 1px rgba(255,255,255,.07),0 20px 25px -5px rgba(0,0,0,.5),0 8px 10px -6px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.35;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+h1,h2,h3,h4,p{margin:0}
+a{color:var(--ink);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+
+.display{font-family:var(--serif);font-weight:400;font-size:74px;line-height:1.24;letter-spacing:-1.8px}
+.h{font-family:var(--serif);font-weight:400;font-size:44px;line-height:1.3;letter-spacing:-.66px}
+.h-sm{font-size:26px;line-height:1.2;letter-spacing:-.234px;font-weight:450}
+.sub{font-size:22px;line-height:1.5;color:var(--slate)}
+.body-lg{font-size:20px;line-height:1.4}
+.body{font-size:17px;line-height:1.45}
+.cap{font-size:15px;line-height:1.5;color:var(--slate)}
+.tag{font-size:14px;color:var(--ash)}
+em.it{font-style:italic}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+section{padding:72px 0}
+section.fog{background:var(--fog)}
+.grid{display:grid;gap:20px}
+.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sechead{max-width:760px;margin-bottom:36px}
+.sechead .h{margin-bottom:14px}
+.sec{font-size:19px;letter-spacing:-.02em;margin:0 0 18px;display:flex;align-items:center;gap:12px;
+  font-family:var(--sans);font-weight:450}
+.sec::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(14px)}
+.navin{max-width:var(--max);margin:0 auto;padding:18px 32px;display:flex;align-items:center;gap:28px}
+.logo{font-family:var(--serif);font-size:21px;letter-spacing:-.4px}
+.navlinks{display:flex;gap:24px;margin-left:auto}
+.navlinks a{font-size:16px;color:var(--ink)}
+
+.pill{display:inline-flex;align-items:center;justify-content:center;border-radius:9999px;
+  padding:12px 20px;font-family:var(--sans);font-size:16px;cursor:pointer;text-decoration:none;
+  white-space:nowrap;transition:opacity .15s;border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.pill:hover{text-decoration:none;opacity:.8}
+.pill-fill{background:var(--ink);color:var(--paper)}
+
+.card{background:var(--mist);border-radius:24px;padding:28px 24px;display:flex;flex-direction:column;gap:11px}
+.peachcard{background:var(--peach);color:var(--sienna);border-radius:24px;padding:36px;
+  display:flex;flex-direction:column;gap:14px}
+.peachcard *{color:var(--sienna)}
+.peachcard a{text-decoration:underline}
+.float{background:var(--paper);border-radius:20px;box-shadow:var(--shadow-float);padding:22px 24px}
+
+/* ---- progress ---- */
+.pbar{height:8px;border-radius:9999px;background:var(--hair);overflow:hidden;margin:14px 0 8px}
+.pbar > i{display:block;height:100%;background:var(--ink);border-radius:9999px;transition:width .3s}
+
+/* ---- track ---- */
+.phase{margin-bottom:36px}
+.phhead{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.phhead h3{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.45px}
+.phhead .pn{font-family:var(--mono);font-size:13px;color:var(--ash)}
+.phhead .line{flex:1;height:1px;background:var(--hair);min-width:16px}
+.step{background:var(--mist);border-radius:20px;padding:20px 22px;margin-bottom:12px;
+  display:grid;grid-template-columns:34px minmax(0,1fr);gap:16px;align-items:start}
+.step.done{opacity:.55}
+.chk{width:24px;height:24px;border-radius:9999px;border:1.5px solid var(--smoke);background:transparent;
+  cursor:pointer;display:grid;place-items:center;padding:0;margin-top:2px;flex:none;color:var(--paper);
+  font-size:13px;line-height:1;transition:background .15s,border-color .15s}
+.chk[aria-pressed="true"]{background:var(--ink);border-color:var(--ink)}
+.chk[aria-pressed="true"]::after{content:"\2713"}
+.stephead{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
+.stephead .sid{font-family:var(--mono);font-size:13px;color:var(--ash)}
+.stephead h4{font-size:19px;font-weight:450;letter-spacing:-.2px;line-height:1.3}
+.stephead .mins{font-family:var(--mono);font-size:13px;color:var(--ash);margin-left:auto}
+.step .why{font-size:15px;color:var(--slate);line-height:1.5;margin-bottom:12px}
+.watch{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.wrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:baseline;
+  font-size:15px;line-height:1.45;padding:8px 12px;background:var(--paper);border-radius:12px}
+.src{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 8px;border-radius:9999px;white-space:nowrap;background:var(--mist);color:var(--slate)}
+.src.yt{background:var(--peach);color:var(--sienna)}
+.wrow .dur{font-family:var(--mono);font-size:13px;color:var(--ash);white-space:nowrap}
+.wrow a{text-decoration:none}
+.wrow a:hover{text-decoration:underline}
+.prep{background:var(--paper);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5;color:var(--slate)}
+.prep b{color:var(--ink);font-weight:450}
+
+/* ---- link list ---- */
+.links{display:flex;flex-direction:column}
+.lrow{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:16px;padding:12px 0;
+  border-top:1px solid var(--hair);align-items:baseline;font-size:16px}
+.lrow:last-child{border-bottom:1px solid var(--hair)}
+.lrow .n{font-family:var(--mono);font-size:13px;color:var(--ash)}
+.lrow .dur{font-family:var(--mono);font-size:13px;color:var(--ash)}
+
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+.tblwrap{overflow-x:auto;background:var(--paper);border-radius:20px;box-shadow:var(--shadow-float)}
+th,td{text-align:left;padding:13px 18px;vertical-align:top;line-height:1.5;border-bottom:1px solid var(--hair)}
+th{font-size:14px;font-weight:450;color:var(--ash)}
+tr:last-child td{border-bottom:0}
+ul.list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.list li{font-size:16px;line-height:1.5;padding-left:20px;position:relative;color:var(--slate)}
+ul.list li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;
+  border-radius:9999px;background:var(--smoke)}
+ul.list li b{color:var(--ink);font-weight:450}
+.themetog{display:inline-flex;align-items:center;gap:7px;border-radius:9999px;padding:10px 15px;
+  background:transparent;color:var(--ink);border:1px solid var(--ink);font:inherit;font-size:15px;cursor:pointer}
+@media(max-width:900px){
+  .display{font-size:44px;letter-spacing:-1px}
+  .h{font-size:31px;letter-spacing:-.5px}
+  .c2,.c3{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .wrap{padding:0 18px}
+  section{padding:48px 0}
+  .step{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:16px}
+  .wrow{grid-template-columns:auto minmax(0,1fr);gap:8px}
+  .wrow .dur{grid-column:2}
+  .lrow{grid-template-columns:1fr;gap:4px}
+}
+
+/* keep everything inside the peach card ON peach - sienna never sits on paper */
+.peachcard .wrow{background:transparent;border:1px solid rgba(93,42,26,.22)}
+.peachcard .src{background:rgba(93,42,26,.12);color:var(--sienna)}
+.peachcard .src.yt{background:rgba(93,42,26,.2)}
+.peachcard .dur{color:rgba(93,42,26,.7)}
+
+.xnav{display:flex;gap:4px;margin-left:22px;background:var(--mist);border-radius:9999px;padding:3px}
+.xl{font-size:14.5px;padding:6px 15px;border-radius:9999px;color:var(--slate);text-decoration:none;white-space:nowrap}
+.xl:hover{color:var(--ink);text-decoration:none}
+.xl.on{background:var(--ink);color:var(--paper)}
+@media(max-width:820px){.xnav{margin-left:0;order:3;width:100%;justify-content:center}}
+</style>
+<script>
+const YT="https://www.youtube.com/watch?v=";
+const PL="&list=PLFTNjEnvvfYRwNNVxlfScGAWiy5lTbBh4";
+const UD="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/";
+const yt=(id,n,t,m)=>({src:"yt",label:"DS "+n,t:t,m:m,url:YT+id+PL});
+const ud=(sec,t,m)=>({src:"ud",label:"Udemy "+sec,t:t,m:m,url:UD});
+
+const TRACK=[
+{ph:"Phase 1 · Foundations",note:"Nothing here exists in your own playlists. All Udemy.",steps:[
+ {id:"S1",t:"Why Statistics, and Types of Data",mins:54,
+  why:"Sets up the rule that governs the whole module: the type of a column decides which statistic is legal.",
+  watch:[ud("§5","Introduction To Statistics","10:06"),
+          ud("§5","Types Of Statistics","12:36"),
+          ud("§5","Types Of Data","8:30"),
+          ud("§5","Scales Of Measurement Of Data","22:40")],
+  prep:"Open your teaching dataset and classify every column by scale. Find one column where a mean would be nonsense &mdash; that is your opening demo."},
+ {id:"S2",t:"Population, Sample and Sampling",mins:39,
+  why:"The parameter/statistic vocabulary interviews test, plus why bias is not fixed by more data.",
+  watch:[ud("§5","Population And Sample Data","15:59"),
+          ud("§5","Types Of Sampling Techniques","23:01")],
+  prep:"Run <b>df.sample(100)</b> five times with different seeds and note the five different means. That output is your S2 hook."}]},
+
+{ph:"Phase 2 · Descriptive",note:"All Udemy §6. Video DS 076 also recaps variance and standard deviation by hand.",steps:[
+ {id:"S3",t:"Central Tendency",mins:25,
+  why:"Mean, median and mode &mdash; and when each lies. Pays off the D35 fillna rule.",
+  watch:[ud("§6","Measure Of Central Tendency (Mean, Median, Mode)","25:20")],
+  prep:"Build the five-salary example with one outlier. Compute mean and median and have both on screen before you define either."},
+ {id:"S4",t:"Dispersion",mins:31,
+  why:"Spread is half the description. The n-1 lecture explains the ddof difference you will hit in code.",
+  watch:[ud("§6","Measures Of Dispersion (Range, Variance, SD)","23:05"),
+          ud("§6","Why Sample Variance is divided by n-1","8:27"),
+          yt("gq3lbtoq_LI","076","Probability Introduction &mdash; opens with variance/SD worked by hand","106 min")],
+  prep:"Check <b>df.std()</b> against <b>np.std(df)</b> on the same column and confirm they differ. Know why before class."},
+ {id:"S5",t:"Shape and the Five-Number Summary",mins:54,
+  why:"Read a distribution's shape from numbers alone. describe() is already showing them this.",
+  watch:[ud("§6","Percentiles And Quartiles","10:47"),
+          ud("§6","5 Number Summary","18:03"),
+          ud("§6","Histogram And Skewness","25:15")],
+  prep:"Print describe() and mark which five rows are the five-number summary. That is the whole opening."},
+ {id:"S6",t:"Correlation and Covariance",mins:39,
+  why:"The correlation-versus-causation discipline. Longest single lecture in the section.",
+  watch:[ud("§6","Covariance And Correlation","39:17")],
+  prep:"Build the six-point example where one outlier flips the correlation sign. It is the most valuable 30 seconds of the session."}]},
+
+{ph:"Phase 3 · Probability",note:"Your strongest own-source coverage. Watch the DS videos here before Udemy.",steps:[
+ {id:"S7",t:"Probability Foundations",mins:167,
+  why:"Sample space, types of probability, and the three rules. Your own trainer covers this thoroughly.",
+  watch:[yt("eklxrLQLO7I","075","Types of Probability","70 min"),
+          yt("4u-1-eJsWuo","074","Rules of Probability","97 min")],
+  prep:"Watch at 1.5&times;. Note how long he spends on sample space &mdash; more than you will have. Plan what to compress."},
+ {id:"S8",t:"Conditional Probability and Bayes",mins:107,
+  why:"The base-rate problem. Rehearse the counting version, not the algebra.",
+  watch:[yt("4u-1-eJsWuo","074","Rules of Probability &mdash; conditional section","97 min"),
+          ud("§8","Baye's Theorem","9:42")],
+  prep:"Work the medical-test problem on paper with 10,000 people. If you cannot explain it by counting, do not teach it by formula."},
+ {id:"S9",t:"Random Variables, Binomial and Poisson",mins:102,
+  why:"Not in your playlists at all. The four binomial conditions matter more than the formula.",
+  watch:[ud("§6","Random Variables","8:23"),
+          ud("§7","Pdf, PMF, CDF","31:33"),
+          ud("§7","Bernoulli Distribution","24:24"),
+          ud("§7","Binomial Distribution","16:33"),
+          ud("§7","Poisson Distribution","13:26")],
+  prep:"Run scipy.stats.binom.pmf against a simulation and confirm they agree. That side-by-side is your credibility moment."},
+ {id:"S10",t:"Normal Distribution and Z-Scores",mins:89,
+  why:"The one distribution everything downstream needs. Strong coverage in both sources.",
+  watch:[yt("VunA8E60_ks","073","Normal Distribution","60 min"),
+          ud("§7","Normal or Gaussian Distribution","14:53"),
+          ud("§7","Standard Normal Distribution","14:30"),
+          yt("FEnOuaPEt3c","072","Probability &mdash; more normal &amp; z-score work","118 min")],
+  prep:"Memorise that norm.ppf(0.975) is 1.96. It reappears in S12 and S13 constantly."}]},
+
+{ph:"Phase 4 · Inferential",note:"The hardest phase to teach. DS 071 and 070 are mislabelled &mdash; they are hypothesis testing.",steps:[
+ {id:"S11",t:"Sampling Distributions and the CLT",mins:18,
+  why:"The hinge of the module. Udemy is brief here, so the simulation carries the teaching.",
+  watch:[ud("§7","Central Limit Theorem","10:52"),
+          ud("§7","Estimates","6:57")],
+  prep:"Run the sampling-distribution simulation yourself. Watch skew collapse as n grows &mdash; you need to have seen it before they do."},
+ {id:"S12",t:"Confidence Intervals",mins:8,
+  why:"Short lecture, hard idea. The interpretation is the most-failed interview question in statistics.",
+  watch:[ud("§8","Confidence Interval And Margin Of Error","8:21")],
+  prep:"Write out both the correct and the wrong interpretation, word for word. You will say both in class, one crossed out."},
+ {id:"S13",t:"Hypothesis Testing Foundations",mins:119,
+  why:"Your own trainer spends two full sessions here with a live A/B example. Watch these.",
+  watch:[ud("§8","Hypothesis Testing And Mechanism","7:19"),
+          ud("§8","P value And Hypothesis Testing","12:08"),
+          ud("§8","Type1 And Type 2 Error","5:00"),
+          yt("BWSlPmV1m1s","071","Probability &mdash; hypothesis testing begins","63 min"),
+          yt("B8YMEvXN0eU","070","Probability &mdash; full hypothesis testing","95 min")],
+  prep:"Get the p-value sentence exact. Run the 1000-test Type&nbsp;I simulation so you can show ~50 false positives from nothing."},
+ {id:"S14",t:"t-tests, Chi-Square and ANOVA",mins:108,
+  why:"The practical payoff. Udemy covers every test you need; ANOVA gets four lectures.",
+  watch:[ud("§8","Z test Hypothesis Testing","27:02"),
+          ud("§8","Student t Distribution","5:19"),
+          ud("§8","T stats With T Test and Hypothesis Testing","10:39"),
+          ud("§8","Z test vs T test","3:37"),
+          ud("§8","What is Chi Square Test","8:19"),
+          ud("§8","Chi Square Goodness Of Fitness","12:03"),
+          ud("§8","What is Anova + Assumptions + Types","17:36"),
+          ud("§8","Partioning OF Annova","24:00")],
+  prep:"Build the five-line test-selection table. That sheet is what students photograph and keep."}]},
+
+{ph:"Phase 5 · Apply",note:"No lecture covers this. Build it from DS 070's worked example.",steps:[
+ {id:"S15",t:"A/B Testing Capstone",mins:95,
+  why:"DS 070 runs a real A/B example on a food-delivery app &mdash; red versus green button. Reuse the framing.",
+  watch:[yt("B8YMEvXN0eU","070","Probability &mdash; contains the A/B example","95 min")],
+  prep:"Prepare a dirty A/B dataset with unbalanced groups and one duplicated user. The sanity checks are the exam, not the t-test."}]}
+];
+</script>
+<script>
+try{var _t=localStorage.getItem("steep-theme");
+ if(_t==="dark"||_t==="light")document.documentElement.setAttribute("data-theme",_t);}catch(e){}
+</script>
+
+<nav>
+ <div class="navin">
+  <span class="logo">Prepare</span>
+  <div class="xnav">
+   <a class="xl" href="../teach/">Teach</a>
+   <a class="xl on" href="../prepare/">Prepare</a>
+   <a class="xl" href="../plan/">Reference</a>
+  </div>
+  <button class="themetog" id="themeTog" type="button" style="margin-left:auto">
+   <span id="themeLbl">Auto</span></button>
+ </div>
+</nav>
+
+<section style="padding-top:56px;padding-bottom:32px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:20px">June B3 &middot; 15 sessions &middot; prepare in order</p>
+  <h1 class="display">Watch this, <em class="it">then</em> teach that.</h1>
+  <p class="sub" style="margin-top:20px;max-width:620px">
+   Every session mapped to the exact videos that prepare you for it, in the order you should
+   watch them. Tick things off as you go &mdash; the page remembers, and always tells you what is next.
+  </p>
+ </div>
+</section>
+
+<section id="next" style="padding-top:0">
+ <div class="wrap">
+  <div class="peachcard" id="nextcard">
+   <p class="tag">Start here</p>
+   <h2 class="h" id="nextTitle" style="max-width:760px">&nbsp;</h2>
+   <p class="body-lg" id="nextWhy" style="max-width:640px"></p>
+   <div id="nextWatch" style="margin-top:4px"></div>
+  </div>
+
+  <div class="float" style="margin-top:24px">
+   <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
+    <span class="h-sm" id="progTxt">0 of 15 sessions prepared</span>
+    <span class="tag" id="progHrs"></span>
+   </div>
+   <div class="pbar"><i id="progBar" style="width:0"></i></div>
+   <p class="cap" id="progNote">Tick a session once you have watched its videos.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog" id="sources">
+ <div class="wrap">
+  <div class="sechead">
+   <h2 class="h">Your two sources, and what each is for</h2>
+   <p class="body-lg" style="color:var(--slate)">
+    Statistics appears in neither of your Python playlists. It exists in exactly two places, and
+    they are good at different things.
+   </p>
+  </div>
+  <div class="grid c2">
+   <div class="card">
+    <p class="tag">Source one</p>
+    <h3 class="h-sm">Data Science playlist &mdash; videos 070 to 076</h3>
+    <p class="body" style="color:var(--slate)">Seven videos, about 10 hours. Same organisation,
+    same teaching style, same 90&ndash;110 minute rhythm as your own classes.</p>
+    <ul class="list" style="margin-top:6px">
+     <li><b>Use it for</b> probability, the normal distribution, hypothesis testing, and the A/B example</li>
+     <li><b>Use it to learn delivery</b> &mdash; pacing, repetition, which analogies land with this cohort</li>
+     <li><b>Warning:</b> videos 070, 071 and 072 are titled &ldquo;Probability&rdquo; but are actually
+     normal distribution and hypothesis testing</li>
+    </ul>
+   </div>
+   <div class="card">
+    <p class="tag">Source two</p>
+    <h3 class="h-sm">Udemy &mdash; sections 5 to 8</h3>
+    <p class="body" style="color:var(--slate)">42 lectures, about 9 hours 43 minutes. Tightly
+    structured, short lectures, covers everything the playlist misses.</p>
+    <ul class="list" style="margin-top:6px">
+     <li><b>Use it for</b> foundations, all of descriptive statistics, distributions, CLT,
+     confidence intervals and the tests</li>
+     <li><b>Use it for structure</b> &mdash; the section order is close to the order you will teach</li>
+     <li><b>Warning:</b> §7 has four distribution lectures you can skip &mdash; listed at the bottom of this page</li>
+    </ul>
+   </div>
+  </div>
+
+  <h3 class="sec" style="margin-top:40px">Which source covers what</h3>
+  <div class="tblwrap">
+   <table>
+    <thead><tr><th>Topic</th><th>Playlist</th><th>Udemy</th><th>Watch</th></tr></thead>
+    <tbody>
+     <tr><td>Types of data, scales, sampling</td><td>&mdash;</td><td>§5, 6 lectures</td><td>Udemy only</td></tr>
+     <tr><td>Central tendency, dispersion, shape</td><td>partial (076)</td><td>§6, 8 lectures</td><td>Udemy</td></tr>
+     <tr><td>Correlation &amp; covariance</td><td>&mdash;</td><td>§6, 39 min</td><td>Udemy only</td></tr>
+     <tr><td>Probability rules, conditional</td><td><b>074, 075</b></td><td>§8 (Bayes)</td><td>Playlist first</td></tr>
+     <tr><td>Binomial, Poisson, PDF/CDF</td><td>&mdash;</td><td>§7, 5 lectures</td><td>Udemy only</td></tr>
+     <tr><td>Normal distribution, z-scores</td><td><b>072, 073</b></td><td>§7, 2 lectures</td><td>Both</td></tr>
+     <tr><td>Central limit theorem</td><td>&mdash;</td><td>§7, 11 min</td><td>Udemy only</td></tr>
+     <tr><td>Confidence intervals</td><td>&mdash;</td><td>§8, 8 min</td><td>Udemy only</td></tr>
+     <tr><td>Hypothesis testing, p-values</td><td><b>070, 071</b></td><td>§8, 3 lectures</td><td>Both</td></tr>
+     <tr><td>t-test, chi-square, ANOVA</td><td>glancing</td><td>§8, 8 lectures</td><td>Udemy</td></tr>
+     <tr><td>A/B testing worked example</td><td><b>070</b></td><td>&mdash;</td><td>Playlist only</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section id="track">
+ <div class="wrap">
+  <div class="sechead">
+   <h2 class="h">The prep track</h2>
+   <p class="body-lg" style="color:var(--slate)">
+    Fifteen steps in teaching order. Each one lists exactly what to watch, how long it takes,
+    and the one thing to prepare before you stand up.
+   </p>
+  </div>
+  <div id="trackout"></div>
+ </div>
+</section>
+
+<section class="fog" id="links">
+ <div class="wrap">
+  <h2 class="sec">Every playlist video, in watch order</h2>
+  <p class="cap" style="margin-bottom:20px">The playlist is reverse-chronological, so the numbers count down.</p>
+  <div class="links" id="linkout"></div>
+
+  <h2 class="sec" style="margin-top:48px">Udemy course</h2>
+  <div class="card">
+   <h3 class="h-sm">Complete Data Analyst Bootcamp</h3>
+   <p class="body" style="color:var(--slate)">Statistics lives in sections 5 through 8. Udemy does
+   not allow direct links to individual lectures, so open the course and use the section names.</p>
+   <p style="margin-top:8px"><a class="pill pill-fill" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener">Open the course &rarr;</a></p>
+  </div>
+
+  <h2 class="sec" style="margin-top:48px">Safe to skip</h2>
+  <div class="grid c2">
+   <div class="card">
+    <p class="tag">Udemy §7</p>
+    <h3 class="h-sm">Four distribution lectures</h3>
+    <p class="body" style="color:var(--slate)">Uniform, Log Normal, Power Law and Pareto &mdash; about
+    39 minutes. Real distributions, but not what a fresher analyst is hired on. Skip unless you
+    finish early.</p>
+   </div>
+   <div class="card">
+    <p class="tag">Playlist</p>
+    <h3 class="h-sm">Everything outside 070&ndash;076</h3>
+    <p class="body" style="color:var(--slate)">Videos 001&ndash;069 are machine learning and linear
+    algebra; 077&ndash;100 are Python fundamentals your batch already has. None of it is statistics.</p>
+   </div>
+  </div>
+
+  <div style="margin-top:40px;padding-top:28px;border-top:1px solid var(--hair)">
+   <p class="cap">Before session 9 you need <b>scipy</b> and <b>statsmodels</b> installed.
+   Run <code>pip install scipy statsmodels</code> and confirm the import works outside class.</p>
+   <p class="cap" style="margin-top:10px"><a href="../plan/">&larr; Back to the full syllabus</a></p>
+  </div>
+ </div>
+</section>
+<script>
+(function(){
+ var $=function(s){return document.querySelector(s)};
+ var ALL=[]; TRACK.forEach(function(p){ p.steps.forEach(function(s){ ALL.push(s); }); });
+
+ var done={};
+ try{ done=JSON.parse(localStorage.getItem("stats-prep")||"{}") || {}; }catch(e){ done={}; }
+ function save(){ try{ localStorage.setItem("stats-prep", JSON.stringify(done)); }catch(e){} }
+
+ function watchRows(list){
+   return '<div class="watch">'+list.map(function(w){
+     var cls = w.src==="yt" ? "src yt" : "src";
+     var inner = '<span class="'+cls+'">'+w.label+'</span>'+
+                 '<span>'+w.t+'</span><span class="dur">'+w.m+'</span>';
+     return '<a class="wrow" href="'+w.url+'" target="_blank" rel="noopener">'+inner+'</a>';
+   }).join("")+'</div>';
+ }
+
+ function renderTrack(){
+   $("#trackout").innerHTML = TRACK.map(function(p,pi){
+     return '<div class="phase"><div class="phhead"><span class="pn">'+
+       String(pi+1).padStart(2,"0")+'</span><h3>'+p.ph.replace(/^Phase \d+ · /,"")+
+       '</h3><span class="line"></span><span class="pn">'+p.steps.length+
+       (p.steps.length===1?" session":" sessions")+'</span></div>'+
+       '<p class="cap" style="margin:-6px 0 14px">'+p.note+'</p>'+
+       p.steps.map(function(s){
+         var d = !!done[s.id];
+         return '<div class="step'+(d?" done":"")+'" id="step-'+s.id+'">'+
+           '<button class="chk" data-id="'+s.id+'" aria-pressed="'+d+'" '+
+             'aria-label="Mark '+s.id+' prepared"></button>'+
+           '<div><div class="stephead"><span class="sid">'+s.id+'</span>'+
+           '<h4>'+s.t+'</h4><span class="mins">'+s.mins+' min</span></div>'+
+           '<p class="why">'+s.why+'</p>'+
+           watchRows(s.watch)+
+           '<div class="prep"><b>Before you teach it &middot; </b>'+s.prep+'</div>'+
+           '</div></div>';
+       }).join("")+'</div>';
+   }).join("");
+   bind();
+ }
+
+ function renderNext(){
+   var next=null;
+   for(var i=0;i<ALL.length;i++){ if(!done[ALL[i].id]){ next=ALL[i]; break; } }
+   var n=0, mins=0;
+   ALL.forEach(function(s){ if(done[s.id]){ n++; } else { mins+=s.mins; } });
+
+   if(next){
+     $("#nextTitle").innerHTML = next.id+" &middot; "+next.t;
+     $("#nextWhy").innerHTML   = next.why;
+     $("#nextWatch").innerHTML = watchRows(next.watch)+
+       '<p class="body" style="margin-top:10px"><b>Then:</b> '+next.prep+'</p>';
+     $("#nextcard").querySelector(".tag").textContent =
+       (n===0 ? "Start here" : "Next up");
+   } else {
+     $("#nextTitle").textContent = "All fifteen sessions prepared.";
+     $("#nextWhy").innerHTML = "Nothing left to watch. Reset below if you want to run through it again.";
+     $("#nextWatch").innerHTML =
+       '<button class="pill" id="resetBtn" type="button" style="border-color:var(--sienna);color:var(--sienna)">Reset progress</button>';
+     var rb=$("#resetBtn");
+     if(rb) rb.onclick=function(){ done={}; save(); renderTrack(); renderNext(); };
+   }
+   $("#progTxt").textContent = n+" of "+ALL.length+" sessions prepared";
+   $("#progBar").style.width = (n/ALL.length*100)+"%";
+   $("#progHrs").textContent = mins>0 ? (Math.round(mins/60*10)/10)+" hours of watching left" : "";
+   $("#progNote").textContent = n===0
+     ? "Tick a session once you have watched its videos."
+     : (n===ALL.length ? "Done." : "Keep going - the card above always shows what is next.");
+ }
+
+ function bind(){
+   [].forEach.call(document.querySelectorAll(".chk"),function(b){
+     b.onclick=function(){
+       var id=b.dataset.id;
+       done[id] = !done[id];
+       if(!done[id]) delete done[id];
+       save(); renderTrack(); renderNext();
+     };
+   });
+ }
+
+ // flat link list - playlist videos only, in watch order
+ var seen={}, rows=[];
+ ALL.forEach(function(s){ s.watch.forEach(function(w){
+   if(w.src==="yt" && !seen[w.url]){ seen[w.url]=1; rows.push(w); }
+ }); });
+ rows.sort(function(a,b){ return parseInt(b.label.split(" ")[1]) - parseInt(a.label.split(" ")[1]); });
+ $("#linkout").innerHTML = rows.map(function(w,i){
+   return '<div class="lrow"><span class="n">'+(i+1)+". &nbsp;"+w.label+'</span>'+
+     '<a href="'+w.url+'" target="_blank" rel="noopener">'+w.t+'</a>'+
+     '<span class="dur">'+w.m+'</span></div>';
+ }).join("");
+
+ // theme
+ var tb=$("#themeTog"), lbl=$("#themeLbl"), modes=["auto","light","dark"], ti=0;
+ try{ var sv=localStorage.getItem("steep-theme"); if(sv&&modes.indexOf(sv)>=0) ti=modes.indexOf(sv); }catch(e){}
+ function applyTheme(){
+   var m=modes[ti];
+   if(m==="auto") document.documentElement.removeAttribute("data-theme");
+   else document.documentElement.setAttribute("data-theme",m);
+   lbl.textContent=m.charAt(0).toUpperCase()+m.slice(1);
+   try{ localStorage.setItem("steep-theme",m); }catch(e){}
+ }
+ tb.onclick=function(){ ti=(ti+1)%3; applyTheme(); };
+ applyTheme();
+
+ renderTrack(); renderNext();
+})();
+</script>
+</body>
+</html>
