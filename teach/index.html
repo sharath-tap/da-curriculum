@@ -381,10 +381,10 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="foot">Delivered &middot; second half incomplete</span></button>
 
     <button class="dcard full" data-go="d3">
-     <span class="id">DAY 3</span><h3>How to Sample, and the Three Averages</h3>
-     <p>Day 2 stopped at population and sample. This picks up there &mdash; 45 minutes on the
-     sampling methods, then mean, median and mode.</p>
-     <span class="foot">Next &middot; 19 blocks &middot; 90 min</span></button>
+     <span class="id">DAY 3</span><h3>How to Build a Sample, and the Three Averages</h3>
+     <p>Day 2 ended without saying how you actually pick a sample. This fills that hole, then mean,
+     median and mode &mdash; and why the average can be correct and still describe nobody.</p>
+     <span class="foot">Next &middot; full script &middot; 34 speech blocks</span></button>
 
     <button class="dcard" data-go="d6">
      <span class="id">DAY 4</span><h3>Shape and Outliers</h3>
@@ -3214,26 +3214,26 @@ df[&quot;department&quot;].value_counts(normalize=True)          <span class="c"
 <div class="day" id="d3">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Statistics day 3 &middot; merged class &middot; 90 minutes</p>
-  <h1 class="display">How to sample,<br>and the three averages</h1>
-  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:660px">
-   Day 2 stopped at population and sample. This session picks up exactly there, teaches the sampling
-   methods properly, then moves into mean, median and mode. Small numbers first, then the real file.</p>
+  <p class="tag" style="margin-bottom:16px">Statistics day 3 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">How to build a sample,<br>and the three averages</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Day 2 finished on population and sample without saying how you actually pick one. This session fills
+   that hole, then turns to mean, median and mode &mdash; and why the average can be perfectly correct
+   and still describe nobody.</p>
+
   <div class="glance">
-   <div class="gcell"><b>19</b><span>blocks</span></div>
-   <div class="gcell"><b>45</b><span>min on sampling</span></div>
-   <div class="gcell"><b>3</b><span>averages</span></div>
    <div class="gcell"><b>90</b><span>minutes</span></div>
+   <div class="gcell"><b>60</b><span>min on sampling</span></div>
+   <div class="gcell"><b>8</b><span>methods</span></div>
+   <div class="gcell"><b>3</b><span>averages</span></div>
   </div>
 
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">Where day 2 actually stopped</h4>
-   <p style="color:var(--sienna)">Day 2 got as far as <b style="color:var(--sienna)">population and
-   sample</b>. The methods were never taught &mdash; not simple random, systematic, stratified or
-   cluster, and not the probability versus non-probability split. Neither was the archer, nor Literary
-   Digest, and the sentence <em>more data fixes noise but never bias</em> was never said.<br><br>
-   So the first forty-five minutes are not revision. They are the second half of day 2, taught for the
-   first time. Only then does today's own material begin.</p>
+   <h4 style="color:var(--sienna)">The two ideas today has to land</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">One &mdash; more data fixes noise, but
+   never bias.</b> A bigger broken sample just makes you confident about a wrong number.<br>
+   <b style="color:var(--sienna)">Two &mdash; the mean uses every value, so one extreme value can make
+   it describe nobody.</b> That is what the median is for.</p>
   </div>
  </div>
 </section>
@@ -3242,346 +3242,876 @@ df[&quot;department&quot;].value_counts(normalize=True)          <span class="c"
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Lead with the probability split, not the list.</b> It is the reason the four methods are
-   grouped the way they are, and it is the sentence that connects today to day 9.</li>
-   <li><b>Draw the archer.</b> Two targets, thirty seconds. It is the single most important idea in
-   the sampling half and it has not happened yet.</li>
-   <li><b>Small numbers first, every time.</b> Each average starts with five numbers they can add in
-   their head before the file appears. Do not skip that to save time.</li>
-   <li><b>The 52-lakh salary is the thread.</b> It explains the mean-median gap and the skew. Point at
-   it each time rather than treating them as separate problems.</li>
+   <li><b>Read &ldquo;Understand this yourself first&rdquo; below, slowly.</b> It teaches you the
+   material rather than the delivery. If statistics is new to you, that section is the one that matters
+   &mdash; the script will only feel natural once those five ideas are clear.</li>
+   <li><b>Run the five-seed block and the nsmallest block yourself.</b> The numbers carry the whole first
+   hour and you should not meet them for the first time in front of the room.</li>
+   <li><b>Rehearse the two archery targets out loud.</b> Thirty seconds of drawing, one question, and the
+   idea is permanent. It is the single most important thing in the session and it has never been taught.</li>
+   <li><b>Nothing in the first hour is revision.</b> Not one sampling method has been named in either
+   delivered session, and neither has bias, noise, or mode. Pace it as new material throughout.</li>
+   <li><b>Do not answer the outlier question at the end.</b> &ldquo;Should we remove the 52 lakh
+   salary?&rdquo; is day 4. Leave it hanging.</li>
   </ol>
  </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Read this once before you write anything on a board.
+  It teaches you the ideas, not the delivery. If statistics is new to you, this is the part that
+  matters &mdash; the script after it will make sense only once these five ideas are clear.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; why sampling has methods at all</h5>
+
+   <h6>The question the whole session answers</h6>
+   <p>Last session ended with population and sample. You told them a sample is the part you measured,
+   and a population is everyone you care about. Fine. But you left a hole, and a sharp student will
+   find it: <b>who decides which people end up in the sample?</b></p>
+   <p>That is what today is. Not <em>what</em> a sample is &mdash; <em>how</em> you build one, and why
+   two people building a sample from the same population can end up with completely different answers.</p>
+
+   <h6>The one idea underneath everything else</h6>
+   <p>There are two families of sampling method, and the difference between them is not a detail.</p>
+   <div class="keyline">
+    In <b>probability sampling</b>, every person has a <b>known, non-zero chance</b> of being picked.<br>
+    In <b>non-probability sampling</b>, they do not.
+   </div>
+   <p>Why does that matter so much? Because <b>every formula in the rest of this course assumes the
+   first kind.</b> On day 9 you will teach confidence intervals. The maths behind them works out how
+   much an estimate is likely to move, and it can only do that if it knows the chance each person had
+   of being selected. Take away that known chance and the formula has nothing to stand on.</p>
+   <p>So it is not that non-probability sampling is lazy. It is that you literally cannot compute a
+   valid p-value or confidence interval from it. You can still learn things &mdash; it is often all
+   you can afford &mdash; but you must not dress the result up in statistics that assume randomness
+   you never had.</p>
+   <p><b>Teach the split before the list of methods.</b> Otherwise the four methods look like four
+   arbitrary techniques to memorise, instead of four ways of achieving the same thing.</p>
+
+   <h6>The four probability methods, and what actually separates them</h6>
+   <p>Students memorise the definitions and still cannot tell them apart, because the definitions all
+   sound alike. What separates them is the <em>problem each one solves</em>.</p>
+   <div class="simple">
+    <span class="lab">Simple random &mdash; the baseline</span>
+    <p>Everyone has an equal chance. A computer picks from a full list.</p>
+    <p><b>The problem it solves:</b> nothing, really. It is the ideal that the others are measured
+    against. Every textbook formula assumes this.</p>
+    <p><b>What it costs you:</b> you need a complete list of everybody before you start, and pure luck
+    can still hand you a bad draw &mdash; 200 names that all happen to come from one department.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Systematic &mdash; solves a practical problem</span>
+    <p>Take every k-th person, where k is the group size divided by the sample size.</p>
+    <p><b>The problem it solves:</b> you do not need the full list up front. You can stand at a factory
+    line, or a shop door, and take every tenth thing that passes. Simple random cannot do that.</p>
+    <p><b>What it costs you:</b> if the list has a repeating rhythm that matches your step, you sample
+    the same kind of thing every single time. Every 10th item off a line where 10 machines take turns
+    means you have measured <em>one machine</em>. This failure mode is the entire reason it is taught
+    as a separate method.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Stratified &mdash; solves an accuracy problem</span>
+    <p>Split into groups that matter, then take a proportional share from every group.</p>
+    <p><b>The problem it solves:</b> a fluke draw. If HR is 22% of the company, simple random <em>might</em>
+    give you 22% HR, or it might give you three people. Stratified guarantees the proportion.</p>
+    <p><b>The part people miss:</b> this does not just guarantee representation, it makes the estimate
+    <b>genuinely more accurate than simple random with the same number of people.</b> You removed a
+    source of variation, so the answer wobbles less. That is a real statistical gain, not just tidiness.</p>
+    <p><b>What it costs you:</b> you must already know which group every person belongs to, for the
+    whole population, before you start.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Cluster &mdash; solves a money problem</span>
+    <p>Pick a few whole groups at random, then survey everyone inside them.</p>
+    <p><b>The problem it solves:</b> cost. Simple random across a whole state gives you people scattered
+    across two hundred villages. If you have to physically travel, that is unaffordable. Pick thirty
+    villages and survey everyone there instead.</p>
+    <p><b>What it costs you:</b> accuracy. People in one village resemble each other, so 500 people from
+    30 villages carry less information than 500 people from everywhere. You are trading precision for
+    affordability, deliberately.</p>
+   </div>
+
+   <h6>Stratified against cluster &mdash; why students confuse them</h6>
+   <p>Both start the same way: divide the population into groups. That shared first step is why they
+   blur together. The difference is entirely in <b>step two</b>.</p>
+   <div class="keyline">
+    Stratified &mdash; you use <b>every</b> group, and take <b>some</b> people from each.<br>
+    Cluster &mdash; you use <b>some</b> groups, and take <b>everyone</b> in them.
+   </div>
+   <p>And there is a second difference worth knowing, because it explains why one is more accurate.
+   In stratified sampling you want each group to be <b>internally similar</b> &mdash; all the engineers
+   together &mdash; because then a few from each tells you a lot. In cluster sampling you want the
+   opposite: each cluster should ideally be a <b>small copy of the whole population</b>, because you
+   are only visiting a few of them and you need each one to be representative on its own.</p>
+   <p>That is the deeper reason stratified beats simple random and cluster loses to it.</p>
+
+   <h6>Bias and noise &mdash; the idea the whole half is built on</h6>
+   <p>This is the one that matters most, and it is the one most likely to be skipped for time. Do not
+   skip it.</p>
+   <p>There are two completely different ways an estimate can be wrong, and students assume both are
+   fixed the same way. They are not.</p>
+   <div class="simple">
+    <span class="lab">Noise</span>
+    <p>Your method is fair, but any single sample happens to land off the true value. Draw another
+    sample and it lands somewhere else. The errors are scattered in every direction with no pattern.</p>
+    <p><b>More data fixes this.</b> The scatter averages out. This is exactly what day 8 is about.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Bias</span>
+    <p>Your method systematically favours a certain kind of person. Every sample you draw is wrong in
+    the <em>same direction</em>.</p>
+    <p><b>More data does not fix this at all.</b> A bigger broken sample gives you a tighter, more
+    confident answer that is still wrong. You end up more certain about something false, which is worse
+    than being uncertain.</p>
+   </div>
+   <p>The archery picture is the fastest way to make this land, and you will use it in the script: a
+   shaky hand scattering arrows all round the bullseye is noise; a steady hand with a crooked sight
+   putting them all in a tight bunch off to one side is bias. Firing more arrows helps the first archer
+   and does nothing for the second.</p>
+   <div class="keyline">
+    The sentence to say out loud, and the one they must leave with:
+    <b>more data fixes noise. It never fixes bias.</b>
+   </div>
+   <p>This has never been said in either delivered session. It is the point of the entire sampling half.</p>
+
+   <h6>Why sample size surprises everyone</h6>
+   <p>Students assume a bigger population needs a proportionally bigger sample. It does not. For 95%
+   confidence and a 3% margin of error you need about <b>1,068 people</b> &mdash; and that number is
+   almost identical whether the population is thirty million or 1.4 billion.</p>
+   <p>The reason, in plain terms: the accuracy of an estimate depends on <b>how many people you asked</b>,
+   not on what fraction of the population they represent. Once the population is large, adding more to it
+   changes nothing about how much your sample of 1,000 wobbles.</p>
+   <p>Do not derive it today. Just give them the number and let it be surprising. It closes the session
+   perfectly: <b>it was never about how many. It was about how you chose them.</b></p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the three averages</h5>
+
+   <h6>What an average is actually for</h6>
+   <p>An average answers one question: <b>if I had to describe this whole column with a single number,
+   what would it be?</b> There are three sensible answers, and which one is right depends on the data.</p>
+   <p>They already know the mean. They have seen the median as a row in <code>describe()</code>. They
+   have never heard the word <b>mode</b> &mdash; it appears zero times across both delivered sessions.</p>
+
+   <h6>Mean, median, mode &mdash; and when each one is the honest choice</h6>
+   <div class="simple">
+    <span class="lab">Mean</span>
+    <p>Add everything, divide by the count. It uses every value, which is its strength and its weakness:
+    <b>every value gets a vote, including the absurd ones.</b></p>
+   </div>
+   <div class="simple">
+    <span class="lab">Median</span>
+    <p>Sort, take the middle. It only cares about <em>position</em>, not size. Change the largest value
+    from 40 to 4,000,000 and the median does not move at all, because it is still the same value sitting
+    in the middle.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Mode</span>
+    <p>The most common value. The only one of the three that works on words. There is no mean department
+    and no median department, but there is definitely a most common one.</p>
+   </div>
+
+   <h6>Why this is not academic</h6>
+   <p>Your file has one person earning 52 lakh. That single row pulls the mean up to 95,648 while the
+   median sits at 68,647 &mdash; a gap of twenty-seven thousand rupees. <b>Almost nobody in that company
+   earns the mean.</b> If you reported it as the typical salary you would be wrong about nearly every
+   employee, and the number would still be arithmetically perfect.</p>
+   <p>That is why house prices and salaries are reported as medians in the news. Not convention &mdash;
+   necessity.</p>
+
+   <h6>Skew, in one sentence</h6>
+   <p>When the mean sits well above the median, it means a few very large values are dragging it up, and
+   the data is lopsided rather than symmetric. The word for that is <b>skew</b>. They have never heard it.</p>
+   <p>Do not teach the formula and do not show the curve today. One sentence is enough: <b>a big positive
+   gap between mean and median means a few very large values.</b> The shape of it is day 4, once they have
+   quartiles to describe it with.</p>
+  </div>
+
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They already have:</b> population and sample, parameter and statistic, the four scales of
+   measurement, and the mean, median and standard deviation as rows in the <code>describe()</code> output.</p>
+   <p><b>They have never heard:</b> any sampling method by name, probability versus non-probability,
+   bias against noise, mode, variance, quartiles, IQR, outlier, skew, or the empirical rule. Not one of
+   those words appears anywhere in the two recorded sessions.</p>
+   <p>So treat the first forty-five minutes as new teaching, not revision. Nothing in it has been said
+   before.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
 </section>
 
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <div class="bhead" style="margin:34px 0 4px"><span class="clock">0 – 45</span><h3>How to sample — the methods</h3></div>
+  <!-- 0-8 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 8</span><h3>Reopen, and find the hole</h3></div>
+   <p class="objective">Recover last session and turn it into today's question. Eight minutes.</p>
 
-   <div class="mth">
-    <h6>1. Why we take a sample at all</h6>
-    <div class="mrow"><b>What it is</b><div>Measuring everyone is called a census. We usually cannot do it.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Three reasons. The third one surprises people.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('1. COST     - you cannot survey 1.4 billion people')
-print('2. DESTROYS - testing how long every bulb lasts leaves no bulbs')
-print('3. ACCURACY - a small careful sample beats a big careless census')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">1. COST     - you cannot survey 1.4 billion people
-2. DESTROYS - testing how long every bulb lasts leaves no bulbs
-3. ACCURACY - a small careful sample beats a big careless census</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>For reason 3: with a fixed budget, 1,000 people done properly beats 50,000 done badly. You can chase the people who do not reply.</div></div>
+   <div class="stage">Do not re-teach day 2. Two minutes of recall, then straight into the gap.</div>
+
+   <div class="speak">
+    <p>Last time we finished on two words. Population and sample. Somebody remind me &mdash; what is the
+    population?</p>
+    <p>Right. Everyone you care about. And the sample?</p>
+    <p>The part you actually measured. Good. And I said the whole of statistics is one move: you use the
+    sample to say something about the population you can never fully see.</p>
+    <p>Now. I left something out, and I left it out on purpose.</p>
    </div>
 
-   <div class="mth">
-    <h6>2. The split that matters most</h6>
-    <div class="mrow"><b>What it is</b><div>Some methods give everyone a known chance of being picked. Some do not.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Teach this <b>before</b> the list of methods. It is the reason the list is divided the way it is.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('''
-PROBABILITY SAMPLING       everyone has a known chance
-                           -&gt; maths from day 8 onwards is valid
+   <div class="stage">Slow down here. This is the hinge of the session.</div>
+
+   <div class="speak">
+    <p>I told you what a sample <b>is</b>. I never told you <b>how you build one</b>.</p>
+    <p>Think about that for a second. If I ask you to survey a thousand people in Bangalore, who exactly
+    do you ask? The first thousand you meet? Your friends? People outside a mall? People who answer their
+    phone?</p>
+    <p>Every one of those gives you a thousand people. Every one of them is a sample. And they will give
+    you completely different answers.</p>
+    <p>So today is one question: <b>how do you choose who goes into the sample, and does it actually
+    matter?</b></p>
+    <p>Let me show you that it matters, before I tell you anything.</p>
+   </div>
+  </div>
+
+  <!-- 8-16 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">8 &ndash; 16</span><h3>Show them it matters</h3></div>
+   <p class="objective">Two demonstrations, no theory yet. Eight minutes.</p>
+
+   <div class="typeit">Type this. Do not explain it first.</div>
+<pre><code>pop = df[<span class="c">"salary"</span>].dropna()
+<span class="k">print</span>(<span class="c">"the real answer:"</span>, <span class="k">round</span>(pop.mean()))
+
+<span class="k">for</span> seed <span class="k">in</span> [1, 2, 3, 4, 5]:
+    s = pop.sample(30, random_state=seed)
+    <span class="k">print</span>(seed, <span class="k">round</span>(s.mean()))</code></pre>
+   <div class="screen">the real answer: 95648
+1 70032
+2 244006
+3 239817
+4 65149
+5 235447</div>
+
+   <div class="stage">Let it sit. Say nothing for a few seconds.</div>
+
+   <div class="speak">
+    <p>Same company. Same file. Thirty people picked completely at random, five separate times.</p>
+    <p>Sixty-five thousand. Two hundred and forty-four thousand. Two hundred and thirty-nine thousand.
+    Not one of them is the real answer of ninety-five thousand.</p>
+    <p>And listen &mdash; nobody made a mistake here. There is no bug. I did nothing wrong five times in
+    a row. <b>This is just what sampling is.</b> Every time you take a sample you get a slightly
+    different answer, and sometimes a very different one.</p>
+   </div>
+
+   <div class="stage">Now the second demo. This one is deliberately unfair. Ask before you run it.</div>
+
+   <div class="speak">
+    <p>Now watch this one. This time I am not going to pick at random. I am going to pick the thirty
+    lowest paid people in the company, on purpose.</p>
+    <p>Before I run it &mdash; what do you think the average will be?</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>bad = pop.nsmallest(30)
+<span class="k">print</span>(<span class="k">round</span>(bad.mean()))</code></pre>
+   <div class="screen">45179</div>
+
+   <div class="speak">
+    <p>Forty-five thousand, against a real answer of ninety-five. Off by more than half.</p>
+    <p>And here is the thing I want you to notice. <b>Every single salary in that sample is real.</b>
+    Nobody faked anything. The data is perfect. The arithmetic is perfect.</p>
+    <p><b>The method was broken.</b> That is the difference between these two demos, and it is what the
+    next forty minutes is about.</p>
+   </div>
+
+   <div class="stage">Write on the board and leave it there for the rest of the session:
+   <b>the data was fine. the method was broken.</b></div>
+  </div>
+
+  <!-- 16-22 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">16 &ndash; 22</span><h3>The split that organises everything</h3></div>
+   <p class="objective">Teach the division before the list. Six minutes, board only.</p>
+
+   <div class="speak">
+    <p>There are a lot of named sampling methods, and I am going to give you several. But before any of
+    the names, there is one division that matters more than all of them put together.</p>
+    <p>In some methods, <b>every person has a known chance of being picked.</b> I can tell you, before I
+    start, that Rahul has a one in ten chance. Those are called <b>probability sampling</b> methods.</p>
+    <p>In the others, I cannot. I have no idea what Rahul's chance was, because it depended on whether he
+    happened to walk past me.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>PROBABILITY SAMPLING       everyone has a KNOWN chance
+                           -> the maths of day 9 works
 
 NON-PROBABILITY SAMPLING   they do not
-                           -&gt; you can still learn things, but you
-                              cannot put a confidence interval on it
-''')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">
-PROBABILITY SAMPLING       everyone has a known chance
-                           -&gt; maths from day 8 onwards is valid
+                           -> you can still learn things,
+                              but no valid confidence interval</code></pre>
 
-NON-PROBABILITY SAMPLING   they do not
-                           -&gt; you can still learn things, but you
-                              cannot put a confidence interval on it</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>This is the sentence that connects today to day 9. Everything we do later assumes the first kind.</div></div>
+   <div class="speak">
+    <p>Why does this matter so much? Let me tell you where this comes back.</p>
+    <p>On day nine I am going to teach you confidence intervals &mdash; how to say &ldquo;the average is
+    ninety-five thousand, give or take four thousand.&rdquo; That give-or-take is calculated. And the
+    calculation only works if it knows what chance each person had of being in your sample.</p>
+    <p>Take that away and the formula has nothing to stand on. You can still do the survey. You just
+    cannot put statistics on top of it and pretend.</p>
+    <p>So this is not a small classification. <b>Everything we do from day eight onwards silently assumes
+    you sampled the first way.</b></p>
    </div>
 
-   <div class="mth">
-    <h6>3. 1. Simple random sampling</h6>
-    <div class="mrow"><b>What it is</b><div>Everyone has an equal chance of being picked.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Step 1 — get a full list of everyone.<br>Step 2 — let a computer pick the number you need.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc"># 2,000 employees. You need 200.
-print('chance for each person: 200 / 2000 =', 200/2000, '= 1 in 10')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">chance for each person: 200 / 2000 = 0.1 = 1 in 10</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>This is the baseline. Every formula in the course assumes you sampled this way. Its problem: you need the whole list first.</div></div>
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;the thirty lowest paid people &mdash; which family was that?&rdquo;</div>
+    <div class="a">Neither, strictly &mdash; it was not sampling at all, it was selection. But push them
+    towards the point: what chance did the highest paid person have of being picked? <b>Zero.</b> Not
+    small. Zero. That is what makes it useless for inference.</div>
+   </div>
+  </div>
+
+  <!-- 22-38 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">22 &ndash; 38</span><h3>The four probability methods</h3></div>
+   <p class="objective">Four methods, four minutes each. Use one running example throughout.</p>
+
+   <div class="stage">Use the same scenario for all four so the comparison is visible:
+   <b>a company of 2,000 employees, and you need to survey 200.</b> Write it on the board and leave it.</div>
+
+   <div class="speak">
+    <p>Same job every time, so you can see what actually changes. Two thousand employees. You need two
+    hundred of them. Only the way you pick changes.</p>
    </div>
 
-   <div class="mth">
-    <h6>4. 2. Systematic sampling</h6>
-    <div class="mrow"><b>What it is</b><div>Pick every k-th person from a list.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Step 1 — divide the group size by the sample size. That is your step.<br>Step 2 — pick a random start.<br>Step 3 — count forward.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">N, n = 2000, 200
-k = N // n
-print('step  =', N, '/', n, '=', k)
-print('start at 7 -&gt;', [7 + k*i for i in range(6)], '...')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">step  = 2000 / 200 = 10
-start at 7 -&gt; [7, 17, 27, 37, 47, 57] ...</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>The trap: if the list repeats a pattern every k items, you get the same type every time. On a factory line where every 10th item is from the same machine, you measure one machine.</div></div>
+   <div class="typeit">Method one &mdash; on the board</div>
+<pre><code>SIMPLE RANDOM
+   put all 2,000 names in, let the computer pick 200
+   every person: 200/2000 = 1 in 10 chance</code></pre>
+
+   <div class="speak">
+    <p>Simple random sampling. Every name goes into the computer, it picks two hundred. That is the whole
+    method. The old way to picture it is two thousand slips of paper in a drum &mdash; shake it, pull out
+    two hundred.</p>
+    <p>Everybody had exactly the same one in ten chance. Not because I was careful and fair-minded, but
+    because <b>the method makes it impossible for me to favour anybody.</b> That is the important part.
+    Fairness is built in, not promised.</p>
+    <p>This is the baseline. Every formula in this course assumes you did it this way, and every other
+    method gets compared back to it.</p>
+    <p>What does it cost you? You need a complete list of all two thousand people before you can start.
+    And bad luck is still possible &mdash; you could draw two hundred people who all happen to sit in
+    Sales.</p>
    </div>
 
-   <div class="mth">
-    <h6>5. 3. Stratified sampling</h6>
-    <div class="mrow"><b>What it is</b><div>Split into groups, then take a share from every group.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Step 1 — split by something that matters, like department.<br>Step 2 — work out each group's share.<br>Step 3 — take that share from each.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc"># 2,000 staff: 1,200 Tech, 500 Sales, 300 HR.  You need 200.
-for dept, size in [('Tech',1200), ('Sales',500), ('HR',300)]:
-    share = size/2000
-    print('%-6s %4d staff -&gt; %2d%% -&gt; take %3d' % (dept, size, share*100, share*200))</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">Tech   1200 staff -&gt; 60% -&gt; take 120
-Sales   500 staff -&gt; 25% -&gt; take  50
-HR      300 staff -&gt; 15% -&gt; take  30</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>The payoff: you get a MORE accurate answer than plain random sampling, using the same 200 people. You removed the risk of a fluke draw missing HR entirely.</div></div>
+   <div class="typeit">Method two &mdash; on the board</div>
+<pre><code>SYSTEMATIC
+   step k = 2000 / 200 = 10
+   random start between 1 and 10, say 7
+   take 7, 17, 27, 37, 47 ...</code></pre>
+
+   <div class="speak">
+    <p>Systematic sampling. Line everybody up. Two thousand divided by two hundred is ten, so ten is my
+    step. I pick a random starting point between one and ten &mdash; say seven &mdash; and then I take
+    person seven, seventeen, twenty-seven, and keep going.</p>
+    <p>Why would you do this instead of simple random? Because <b>you do not need the list up front.</b>
+    You can stand at a factory line and take every tenth item as it goes past. You can stand at a shop
+    door and take every tenth customer. Simple random sampling cannot do that &mdash; it needs everybody
+    listed before it starts.</p>
    </div>
 
-   <div class="mth">
-    <h6>6. 4. Cluster sampling</h6>
-    <div class="mrow"><b>What it is</b><div>Pick a few whole groups at random and survey everyone inside them.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Step 1 — divide into groups, usually by location.<br>Step 2 — pick a few groups at random.<br>Step 3 — survey everybody in those.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc"># 2,000 staff across 40 offices, 50 people each. You need 200.
-print('pick 4 offices out of 40, survey all 50 in each')
-print('4 x 50 =', 4*50, 'people, from 4 cities instead of 40')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">pick 4 offices out of 40, survey all 50 in each
-4 x 50 = 200 people, from 4 cities instead of 40</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>Much cheaper when you have to travel. The cost: people in one office resemble each other, so 200 from 4 offices tells you LESS than 200 from everywhere.</div></div>
+   <div class="stage">Now the failure mode. Ask before you tell them &mdash; it is the whole reason this
+   method is taught separately.</div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;when would taking every tenth item go badly wrong?&rdquo;</div>
+    <div class="a">If the list has a repeating pattern that matches your step. A factory line where ten
+    machines take turns &mdash; every tenth item comes off <b>the same machine</b>, so you have measured
+    one machine, not the factory. Or a seven-day shift roster sampled every seventh day: the same weekday,
+    forever. <b>Always look at how the list is ordered before you take every k-th thing.</b></div>
+   </div>
+  </div>
+
+  <!-- 38-46 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">38 &ndash; 46</span><h3>Stratified and cluster</h3></div>
+   <p class="objective">The two that get confused. Eight minutes, and leave the board up.</p>
+
+   <div class="typeit">Method three &mdash; on the board</div>
+<pre><code>STRATIFIED
+   2,000 staff = 1,200 Tech, 500 Sales, 300 HR
+   Tech  1200/2000 = 60%  -> take 120
+   Sales  500/2000 = 25%  -> take  50
+   HR     300/2000 = 15%  -> take  30
+                             --------
+                                  200</code></pre>
+
+   <div class="speak">
+    <p>Stratified sampling. Now I split the company into groups first &mdash; here, by department.</p>
+    <p>Tech is sixty percent of the staff, so I decide up front that sixty percent of my sample will be
+    Tech. That is a hundred and twenty people. Sales is twenty-five percent, so fifty. HR is fifteen
+    percent, so thirty. Then I do a simple random draw <em>inside each department separately</em>.</p>
+    <p>Why bother? Think back to simple random. If I draw two hundred at random, I might get only eight
+    people from HR just by bad luck. And then I cannot say anything at all about HR &mdash; which was
+    probably one of the things I was asked about.</p>
    </div>
 
-   <div class="mth">
-    <h6>7. Stratified against cluster</h6>
-    <div class="mrow"><b>What it is</b><div>Both split into groups. The difference is what you do next.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Put this on the board and leave it there. Students mix these two up constantly.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('''
-                  STRATIFIED           CLUSTER
+   <div class="stage">Now the part that is usually missed. Say it slowly.</div>
+
+   <div class="speak">
+    <p>But there is something better here than just guaranteed representation, and this is the bit people
+    skip.</p>
+    <p><b>Stratified sampling gives you a more accurate answer than simple random sampling, using exactly
+    the same two hundred people.</b></p>
+    <p>Same effort. Same cost. Better estimate. Why? Because I removed a source of randomness. With
+    simple random, part of the wobble in my answer comes from not knowing how many Tech people I happened
+    to draw. I have deleted that uncertainty by fixing it in advance.</p>
+    <p>What does it cost? I have to already know which department all two thousand people are in, before
+    I start.</p>
+   </div>
+
+   <div class="typeit">Method four &mdash; on the board</div>
+<pre><code>CLUSTER
+   2,000 staff across 40 offices, 50 people each
+   pick 4 offices at random, survey ALL 50 in each
+   4 x 50 = 200 people, from 4 cities instead of 40</code></pre>
+
+   <div class="speak">
+    <p>Cluster sampling. Change the situation slightly. Those two thousand people are now spread across
+    forty branch offices, fifty people in each, all over India. And you have to go in person.</p>
+    <p>Simple random sampling would give you two hundred people scattered across all forty cities. That
+    is forty trips to interview a handful of people each. Nobody is paying for that.</p>
+    <p>So instead: pick four offices at random, and survey everyone in them. Four times fifty is two
+    hundred. Same sample size, four cities instead of forty.</p>
+    <p>And you only needed a list of <em>offices</em> to start, not a list of every employee.</p>
+    <p>What does it cost you? Accuracy. People in one office share a manager, share a local culture, share
+    office conditions. So two hundred people from four offices genuinely tells you <b>less</b> than two
+    hundred people from everywhere. You are trading precision for affordability &mdash; and that is a
+    reasonable trade, as long as you know you are making it.</p>
+   </div>
+
+   <div class="stage">Now the highest-value board of the session. Students mix these two up constantly
+   because both start by dividing into groups. Take four minutes and leave it up.</div>
+
+   <div class="typeit">Leave this on the board</div>
+<pre><code>                  STRATIFIED           CLUSTER
 groups you use    ALL of them          SOME of them
-who you sample    a few from each      everyone inside
+who you sample    a few from each      EVERYONE inside
 accuracy          better than random   worse than random
 cost              higher               lower
-why do it         accuracy             money
-''')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">
-                  STRATIFIED           CLUSTER
-groups you use    ALL of them          SOME of them
-who you sample    a few from each      everyone inside
-accuracy          better than random   worse than random
-cost              higher               lower
-why do it         accuracy             money</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>One line to remember: you use EVERY stratum, but only SOME clusters.</div></div>
+why do it         accuracy             money</code></pre>
+
+   <div class="speak">
+    <p>Both of these start the same way &mdash; divide everyone into groups. That is why people mix them
+    up. The difference is entirely in what you do next.</p>
+    <p>One line. Remember this one line and you will never confuse them again:</p>
+    <p><b>You use every stratum, but only some clusters.</b></p>
+    <p>Every department appears in a stratified sample. Only four of the forty offices appear in a cluster
+    sample.</p>
    </div>
 
-   <div class="mth">
-    <h6>8. The non-probability four</h6>
-    <div class="mrow"><b>What it is</b><div>Used when nothing else is possible. Name them, do not linger.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Two minutes. Students should recognise the words, nothing more.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('''
-CONVENIENCE  whoever is easiest to reach   most real surveys
-QUOTA        "50 men, 50 women" - but the  the non-random
-             interviewer picks WHICH 50    cousin of stratified
-JUDGMENTAL   an expert chooses             fine if the expert is right
-SNOWBALL     people recruit their friends  for hard-to-find groups
-''')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">
-CONVENIENCE  whoever is easiest to reach   most real surveys
-QUOTA        "50 men, 50 women" - but the  the non-random
-             interviewer picks WHICH 50    cousin of stratified
-JUDGMENTAL   an expert chooses             fine if the expert is right
-SNOWBALL     people recruit their friends  for hard-to-find groups</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>You cannot compute a valid confidence interval from any of these. That is the whole reason they sit in a separate box.</div></div>
+   <div class="qbox">
+    <div class="q">Check they have it &mdash; ask both</div>
+    <div class="a">&ldquo;I want to survey students across Karnataka and I cannot travel much.&rdquo;
+    &rarr; <b>cluster</b>, pick some colleges and survey them fully.<br>
+    &ldquo;I want to be sure every department is fairly represented.&rdquo; &rarr; <b>stratified</b>,
+    take a share from each.</div>
+   </div>
+  </div>
+
+  <!-- 46-50 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">46 &ndash; 50</span><h3>The non-probability four</h3></div>
+   <p class="objective">Names only. Four minutes. Do not linger.</p>
+
+   <div class="stage">Fast. They need to recognise the words, nothing more.</div>
+
+   <div class="typeit">On the board</div>
+<pre><code>NOT valid for inference:
+
+CONVENIENCE  whoever is easiest to reach    most real surveys
+QUOTA        "50 men, 50 women" - but the   the non-random
+             interviewer picks WHICH 50     cousin of stratified
+JUDGMENTAL   an expert picks who to ask     fine if the expert is right
+SNOWBALL     people recruit their friends   for hard-to-find groups</code></pre>
+
+   <div class="speak">
+    <p>Four more, quickly, and these are the other family &mdash; the ones where you do not know
+    anybody's chance.</p>
+    <p>Convenience sampling is asking whoever is easiest. Standing outside your own office. A pop-up on
+    your website. This is what most real surveys actually are, if we are honest.</p>
+    <p>Quota sampling looks like stratified &mdash; get me fifty men and fifty women &mdash; but
+    <em>which</em> fifty is left to the interviewer. And interviewers approach people who look
+    approachable. So the groups are right and the people inside them are not random.</p>
+    <p>Judgmental is when an expert picks. Snowball is when the people you find introduce you to more,
+    which is often the only way to reach a hidden group.</p>
+    <p>All four are legitimate ways to learn something. None of them lets you compute a confidence
+    interval and call it valid. That is the only distinction I want you to hold on to.</p>
+   </div>
+  </div>
+
+  <!-- 50-60 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">50 &ndash; 60</span><h3>Bias against noise &mdash; the archer</h3></div>
+   <p class="objective">The most important ten minutes of the session. Do not cut this.</p>
+
+   <div class="stage">Draw two archery targets on the board before you say anything.</div>
+
+   <div class="speak">
+    <p>Two targets. Two archers.</p>
+    <p>The first archer's arrows are all over the place &mdash; above the bullseye, below it, left,
+    right. None of them are on it, but they are scattered evenly all the way round.</p>
+    <p>The second archer's arrows are in a tight little group. Beautiful grouping. All of them up and to
+    the left, nowhere near the centre.</p>
+    <p>Which archer is better?</p>
    </div>
 
-   <div class="mth">
-    <h6>9. Bias against noise — the archer</h6>
-    <div class="mrow"><b>What it is</b><div>Two ways to be wrong. Only one is fixed by collecting more data.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Draw two targets.<br><b>Target 1</b> — arrows scattered all round the bullseye. Shaky hand, true aim. That is <b>noise</b>.<br><b>Target 2</b> — arrows in a tight bunch, up and to the left. Steady hand, crooked sight. That is <b>bias</b>.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">pop = df['salary'].dropna()
-print('true average    :', round(pop.mean()))
-print('30 lowest paid  :', round(pop.nsmallest(30).mean()))
-print('100 lowest paid :', round(pop.nsmallest(100).mean()))</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">true average    : 95648
-30 lowest paid  : 45179
-100 lowest paid : 56689</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>Ask which archer more arrows help BEFORE you run the 100. Then say it plainly: more data fixes noise, it never fixes bias.</div></div>
+   <div class="stage">Let them argue for a moment. Most will say the second, because the grouping looks
+   skilful. That is exactly the intuition you want to break.</div>
+
+   <div class="speak">
+    <p>The first archer has a <b>true aim and a shaky hand.</b> Their mistakes go in every direction and
+    cancel each other out.</p>
+    <p>The second archer has a <b>perfectly steady hand and a crooked sight.</b> Every single shot is
+    wrong in the same direction.</p>
+    <p>Now the question that matters. <b>Which archer does firing a hundred more arrows help?</b></p>
    </div>
 
-   <div class="mth">
-    <h6>10. Literary Digest, 1936</h6>
-    <div class="mrow"><b>What it is</b><div>The story that makes bias stick.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Tell it in this order. Ask the question before you give the answer.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('surveys mailed   : 10,000,000')
-print('replies received :  2,400,000')
-print('their prediction : Landon wins')
-print('what happened    : Roosevelt won 46 of 48 states')
-print()
-print('Gallup asked     :     50,000   and got it right')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">surveys mailed   : 10,000,000
-replies received :  2,400,000
-their prediction : Landon wins
-what happened    : Roosevelt won 46 of 48 states
+   <div class="stage">Wait for the answer. Do not give it.</div>
 
-Gallup asked     :     50,000   and got it right</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>Ask 'what went wrong?' first. The addresses came from phone books and car registrations, in the Depression. They surveyed the rich, very thoroughly.</div></div>
+   <div class="speak">
+    <p>The first one. Fire enough arrows and their average lands right on the centre, because the errors
+    cancel.</p>
+    <p>The second one just gets a tighter bunch, in the same wrong place. More arrows makes them
+    <em>more confident</em> and no more correct.</p>
+    <p>The first archer is what we call <b>noise</b>. The second is <b>bias</b>. And this is the whole
+    lesson of today.</p>
    </div>
 
-   <div class="mth">
-    <h6>11. So how many people do I need?</h6>
-    <div class="mrow"><b>What it is</b><div>Far fewer than people expect, and the population size barely matters.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>The formula is day 9. Today just give them the number.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('for 95% confidence and a 3% margin of error: about 1,068 people')
-print()
-print('country of 30 million  -&gt; about 1,068')
-print('country of 1.4 billion -&gt; about 1,068')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">for 95% confidence and a 3% margin of error: about 1,068 people
+   <div class="stage">Now go back to the code from the start of the session and prove it. Ask before
+   you run it.</div>
 
-country of 30 million  -&gt; about 1,068
-country of 1.4 billion -&gt; about 1,068</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>That is why national polls ask about a thousand people whatever the country. It closes the whole session: it was never about how many, it was about how you chose them.</div></div>
+   <div class="speak">
+    <p>Remember the thirty lowest paid people? That gave us forty-five thousand instead of ninety-five.
+    That is archer number two &mdash; wrong in the same direction every time.</p>
+    <p>So here is my question. If I take a hundred of them instead of thirty, does it get better?</p>
    </div>
 
-  <div class="bhead" style="margin:34px 0 4px"><span class="clock">45 – 65</span><h3>The three averages</h3></div>
+   <div class="typeit">Ask first. Then run.</div>
+<pre><code><span class="k">print</span>(<span class="c">"30 lowest :"</span>, <span class="k">round</span>(pop.nsmallest(30).mean()))
+<span class="k">print</span>(<span class="c">"100 lowest:"</span>, <span class="k">round</span>(pop.nsmallest(100).mean()))
+<span class="k">print</span>(<span class="c">"the truth :"</span>, <span class="k">round</span>(pop.mean()))</code></pre>
+   <div class="screen">30 lowest : 45179
+100 lowest: 56689
+the truth : 95648</div>
 
-   <div class="mth">
-    <h6>12. Mean</h6>
-    <div class="mrow"><b>What it is</b><div>Add everything up, divide by how many.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>The one everybody already calls 'the average'.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">marks = [10, 20, 30, 40, 50]
-print('total :', sum(marks))
-print('count :', len(marks))
-print('mean  :', sum(marks)/len(marks))</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">total : 150
-count : 5
-mean  : 30.0</div></div></div>
+   <div class="speak">
+    <p>Forty-five thousand became fifty-six thousand. It moved a little. And it is still nowhere near
+    ninety-five.</p>
+    <p>I more than tripled the sample and I am still wrong by forty thousand rupees. <b>More data did not
+    fix it.</b></p>
    </div>
 
-   <div class="mth">
-    <h6>13. Median</h6>
-    <div class="mrow"><b>What it is</b><div>Sort the numbers. The middle one is the median.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Two in the middle? Take their average.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">a = [10, 20, 30, 40, 50]
-b = [10, 20, 30, 40]
-print('odd  count', a, '-&gt; middle is 30')
-print('even count', b, '-&gt; middle two are 20 and 30 -&gt;', (20+30)/2)</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">odd  count [10, 20, 30, 40, 50] -&gt; middle is 30
-even count [10, 20, 30, 40] -&gt; middle two are 20 and 30 -&gt; 25.0</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>You must sort first. Students take the middle of the unsorted list and get it wrong.</div></div>
+   <div class="keyline" style="margin:14px 0">
+    Say this, write it on the board, and leave it there:<br>
+    <b>More data fixes noise. It never fixes bias.</b>
    </div>
 
-   <div class="mth">
-    <h6>14. Mode</h6>
-    <div class="mrow"><b>What it is</b><div>The value that appears most often.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>The only average that works on words.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('most common department:', df['department'].mode()[0])
-print('most common rating    :', df['rating'].mode()[0])</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">most common department: Sales
-most common rating    : Poor</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>Never taught in day 1 or day 2. There is no mean department, but there IS a most common one.</div></div>
+   <div class="speak">
+    <p>A bigger broken sample does not get you closer to the truth. It just makes you <b>more confident
+    about a wrong number</b>, which is worse than being unsure.</p>
+    <p>So when somebody shows you a survey, the first question is never &ldquo;how many people did you
+    ask?&rdquo; It is <b>&ldquo;how did you choose them?&rdquo;</b></p>
+   </div>
+  </div>
+
+  <!-- 60-66 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">60 &ndash; 66</span><h3>Literary Digest, and how many people you need</h3></div>
+   <p class="objective">The story, then the number that surprises them. Six minutes.</p>
+
+   <div class="stage">Tell the story in this order. Ask the question before giving the answer.</div>
+
+   <div class="speak">
+    <p>Nineteen thirty-six. American presidential election. A magazine called the Literary Digest runs
+    the biggest poll anyone has ever attempted.</p>
+    <p>They mail out <b>ten million</b> surveys. They get back <b>two point four million</b> replies.</p>
+    <p>Two point four million people. That is not a poll, that is nearly a census. They predict Landon
+    wins comfortably.</p>
+    <p>Roosevelt won <b>forty-six of the forty-eight states.</b></p>
    </div>
 
-   <div class="mth">
-    <h6>15. All three, side by side</h6>
-    <div class="mrow"><b>What it is</b><div>Same column, three different answers.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Run them together so the difference is visible.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('mean   :', round(sal.mean()))
-print('median :', round(sal.median()))
-print('mode   :', df['department'].mode()[0], '  &lt;- text column')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">mean   : 95648
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;two point four million people. What could possibly go wrong?&rdquo;</div>
+    <div class="a">Let them try. The answer: the addresses came from <b>telephone directories and car
+    registration lists</b> &mdash; in the middle of the Great Depression. Who owned a telephone and a car
+    in 1936? The wealthy. They had surveyed rich people, extremely thoroughly.</div>
+   </div>
+
+   <div class="speak">
+    <p>And in the same election, a man called George Gallup asked about <b>fifty thousand</b> people using
+    proper random methods. He got it right.</p>
+    <p>So: <b>a biased sample of two point four million lost to an unbiased sample of fifty thousand.</b></p>
+    <p>That is the two archers, as a real historical fact.</p>
+   </div>
+
+   <div class="stage">Now close the sampling half with the number that surprises everyone.</div>
+
+   <div class="speak">
+    <p>Which brings me to the question you are all going to ask eventually. How many people do I actually
+    need?</p>
+    <p>The formula is day nine. But let me give you the answer now, because it will surprise you.</p>
+    <p>For ninety-five percent confidence and a three percent margin of error, you need about <b>one
+    thousand and sixty-eight people.</b></p>
+    <p>Now &mdash; how much bigger does that number get for a country of one point four billion instead
+    of thirty million?</p>
+   </div>
+
+   <div class="stage">Wait. Let them guess. They will guess much bigger.</div>
+
+   <div class="speak">
+    <p><b>It barely changes at all.</b> Still around a thousand.</p>
+    <p>That is why national opinion polls ask about a thousand people, whatever the size of the country.
+    The accuracy depends on <em>how many you asked</em>, not on what fraction of the population they
+    were.</p>
+    <p>Which is the whole of the last hour in one sentence: <b>it was never about how many. It was about
+    how you chose them.</b></p>
+   </div>
+  </div>
+
+  <!-- 66-78 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">66 &ndash; 78</span><h3>The three averages</h3></div>
+   <p class="objective">Switch topics cleanly. Small numbers only. Twelve minutes.</p>
+
+   <div class="stage">Change position in the room. Signal that a new topic is starting.</div>
+
+   <div class="speak">
+    <p>Right. Completely different thing for the last part of today.</p>
+    <p>You now know how to <em>get</em> a sample. Now: once you have your data, how do you describe it
+    with a single number?</p>
+    <p>There are three answers, and choosing the wrong one is how people mislead without lying.</p>
+   </div>
+
+   <div class="typeit">Write on the board, not the screen</div>
+<pre><code>marks = 10, 20, 30, 40, 50</code></pre>
+
+   <div class="speak">
+    <p>Five numbers. Small enough to do in your head.</p>
+    <p>The <b>mean</b> is the one you already call the average. Add everything up &mdash; that is a
+    hundred and fifty &mdash; and divide by how many there are, which is five. Thirty.</p>
+    <p>The <b>median</b> is different. Sort the numbers, then take the middle one. They are already
+    sorted, and the middle one is thirty.</p>
+    <p>Same answer here. Hold on to that, because it is about to stop being true.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;what if there are four numbers &mdash; 10, 20, 30, 40?&rdquo;</div>
+    <div class="a">There is no single middle, so take the two in the middle and average them:
+    twenty and thirty gives <b>twenty-five</b>. Note that twenty-five is not even in the list &mdash;
+    that is fine and normal.</div>
+   </div>
+
+   <div class="speak">
+    <p>And the third one is the <b>mode</b>. That is just the value that appears most often.</p>
+    <p>Now, mode looks like the boring one, but it is the only one of the three that works on
+    <b>words</b>. There is no mean department. There is no median department. But there is definitely a
+    most common one.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(df[<span class="c">"department"</span>].mode()[<span class="o">0</span>])
+<span class="k">print</span>(df[<span class="c">"rating"</span>].mode()[<span class="o">0</span>])</code></pre>
+   <div class="screen">Sales
+Poor</div>
+
+   <div class="speak">
+    <p>Remember day two, when I said you cannot take the mean of a department? This is what you do
+    instead.</p>
+   </div>
+  </div>
+
+  <!-- 78-88 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">78 &ndash; 88</span><h3>Why the mean can lie</h3></div>
+   <p class="objective">The centrepiece. Small numbers first, then the file. Ten minutes.</p>
+
+   <div class="stage">Board, not screen. This must be doable in their heads.</div>
+
+   <div class="typeit">Write these two rows on the board</div>
+<pre><code>20, 25, 30, 35, 40      ->  mean 30      median 30
+20, 25, 30, 35, 400     ->  mean ?       median ?</code></pre>
+
+   <div class="speak">
+    <p>Top row. Five salaries in thousands. Mean is thirty, median is thirty. They agree.</p>
+    <p>Now the bottom row. I have changed exactly one number. The forty became four hundred &mdash; one
+    person got a huge raise. Everything else is identical.</p>
+    <p>Work out the new mean. Add them up: twenty, forty-five, seventy-five, a hundred and ten, five
+    hundred and ten. Divided by five is <b>a hundred and two</b>.</p>
+    <p>Now the median. Sort them &mdash; already sorted. Middle one is <b>thirty</b>.</p>
+   </div>
+
+   <div class="stage">Let that land before saying anything else.</div>
+
+   <div class="speak">
+    <p>The mean jumped from thirty to a hundred and two. The median <b>did not move at all.</b></p>
+    <p>Why? Because the mean uses every single value, so one enormous number gets a vote. The median only
+    cares about <em>position</em>. Thirty is still the number sitting in the middle, whether the largest
+    value is forty or four hundred or four million.</p>
+    <p>And look at what the mean is now telling you. It says the typical salary here is a hundred and
+    two thousand. <b>Four of the five people earn less than half that.</b> The number is arithmetically
+    perfect and it describes nobody.</p>
+   </div>
+
+   <div class="stage">Now the same thing on the real file.</div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(<span class="c">"mean   :"</span>, <span class="k">round</span>(pop.mean()))
+<span class="k">print</span>(<span class="c">"median :"</span>, <span class="k">round</span>(pop.median()))
+<span class="k">print</span>(<span class="c">"gap    :"</span>, <span class="k">round</span>(pop.mean() - pop.median()))
+<span class="k">print</span>(<span class="c">"highest:"</span>, <span class="k">int</span>(pop.max()))</code></pre>
+   <div class="screen">mean   : 95648
 median : 68647
-mode   : Sales   &lt;- text column</div></div></div>
+gap    : 27001
+highest: 5200000</div>
+
+   <div class="speak">
+    <p>There it is in our own file. The mean says ninety-five thousand. The median says sixty-eight.
+    Twenty-seven thousand rupees apart.</p>
+    <p>And there is the reason, on the last line. One person in this company earns <b>fifty-two lakh</b>.</p>
+    <p>So if your manager asks what a typical employee earns and you say ninety-five thousand, you have
+    just been wrong about almost everybody in the building &mdash; using a number that is completely
+    correct.</p>
    </div>
 
-  <div class="bhead" style="margin:34px 0 4px"><span class="clock">65 – 90</span><h3>Why the mean can lie</h3></div>
+   <div class="stage">Put the three rules on the board. This is the takeaway.</div>
 
-   <div class="mth">
-    <h6>16. One big number changes everything</h6>
-    <div class="mrow"><b>What it is</b><div>The mean moves when one value is extreme. The median does not.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Five numbers you can add in your head. Change one and watch.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">import statistics as st
-small = [20, 25, 30, 35, 40]
-big   = [20, 25, 30, 35, 400]
+   <div class="typeit">On the board</div>
+<pre><code>numbers, evenly spread   ->  MEAN
+numbers, a few extreme   ->  MEDIAN
+words / categories       ->  MODE</code></pre>
 
-print('normal  -&gt; mean', st.mean(small), ' median', st.median(small))
-print('one big -&gt; mean', st.mean(big),  ' median', st.median(big))</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">normal  -&gt; mean 30  median 30
-one big -&gt; mean 102  median 30</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>The mean jumped from 30 to 102. The median did not move at all. That is the entire lesson.</div></div>
+   <div class="speak">
+    <p>Three rules. That is the whole decision.</p>
+    <p>And this is not a classroom rule. It is why house prices in the news are always reported as a
+    <em>median</em>, never an average. A handful of enormous properties would drag the mean somewhere
+    meaningless.</p>
+   </div>
+  </div>
+
+  <!-- 88-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">88 &ndash; 90</span><h3>Close</h3></div>
+   <p class="objective">Two minutes. Name the gap and leave it open.</p>
+
+   <div class="typeit">One last thing on screen</div>
+<pre><code><span class="k">print</span>(<span class="k">round</span>(pop.mean() - pop.median()))
+<span class="k">print</span>(<span class="k">round</span>(pop.skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">27001
+14.06</div>
+
+   <div class="speak">
+    <p>One word before you go. That gap between the mean and the median has a name. When the mean sits
+    well above the median, we say the data is <b>skewed</b>.</p>
+    <p>All it means is: lopsided. A few very large values pulling one side out into a long tail.</p>
+    <p>That second number, fourteen, is a measurement of how lopsided. You do not need the formula today.
+    Just know that big and positive means a few very large values.</p>
+    <p>And that leaves an obvious question hanging. I have shown you that the fifty-two lakh salary
+    wrecks the average. So &mdash; <b>should we remove it?</b></p>
+    <p>Hold that. It is a genuinely hard question and it is the whole of next session.</p>
    </div>
 
-   <div class="mth">
-    <h6>17. The same thing in our file</h6>
-    <div class="mrow"><b>What it is</b><div>One person earns 52 lakh and drags the average up.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Show the gap, then show the cause.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('mean    :', round(sal.mean()))
-print('median  :', round(sal.median()))
-print('gap     :', round(sal.mean() - sal.median()))
-print('highest :', int(sal.max()))</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">mean    : 95648
-median  : 68647
-gap     : 27001
-highest : 5200000</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>The mean says 95,648. Almost nobody earns that. The median, 68,647, describes a real person.</div></div>
-   </div>
+   <div class="warn"><b>Do not answer the outlier question today.</b> The open loop is what makes day 4
+   land. Resisting the urge to resolve it is the most useful thing you do in the last two minutes.</div>
+  </div>
+ </div>
+</section>
 
-   <div class="mth">
-    <h6>18. So which one do you use?</h6>
-    <div class="mrow"><b>What it is</b><div>Three rules. Put them on the board.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>This is the takeaway of the whole session.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('''
-numbers, evenly spread  -&gt;  MEAN
-numbers, a few extreme  -&gt;  MEDIAN
-words / categories      -&gt;  MODE
-''')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">
-numbers, evenly spread  -&gt;  MEAN
-numbers, a few extreme  -&gt;  MEDIAN
-words / categories      -&gt;  MODE</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>This is why house prices and salaries are always reported as medians in the news, never means.</div></div>
-   </div>
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
 
-   <div class="mth">
-    <h6>19. What the gap tells you</h6>
-    <div class="mrow"><b>What it is</b><div>If the mean sits well above the median, the data is lopsided.</div></div>
-    <div class="mrow"><b>How to do it</b><div><p>Do not teach the formula. Just teach how to read the number.</p></div></div>
-    <div class="mrow"><b>Type this</b><div><div class="mcalc">print('mean - median =', round(sal.mean() - sal.median()))
-print('skew          =', round(sal.skew(), 2))
-print()
-print('big and positive -&gt; a few very large values pulling the mean up')</div></div></div>
-    <div class="mrow"><b>You get</b><div><div class="mcalc">mean - median = 27001
-skew          = 14.06
+  <div class="qa"><h5>&ldquo;Why not just always use the median then?&rdquo;</h5>
+  <p>&ldquo;Because the mean uses every value, and when there are no extremes that is a strength &mdash;
+  it carries more information. The median throws most of the data away and keeps only the middle. Use the
+  mean when it is safe, and it usually is.&rdquo;</p></div>
 
-big and positive -&gt; a few very large values pulling the mean up</div></div></div>
-    <div class="mrow warn2"><b>Say this</b><div>The word is 'skew'. They have never heard it. One sentence is enough today - the shape of it is day 4.</div></div>
-   </div>
+  <div class="qa"><h5>&ldquo;How do I know if my data has extremes without checking every row?&rdquo;</h5>
+  <p>&ldquo;Compare the mean and the median. If they are close, you are fine. If they are far apart,
+  something is pulling. That one comparison is your early warning, and it takes two seconds.&rdquo;</p></div>
 
-  <div class="lbl" style="margin-top:34px">End of session &mdash; put this on screen</div>
+  <div class="qa"><h5>&ldquo;Can a dataset have more than one mode?&rdquo;</h5>
+  <p>&ldquo;Yes. If two values tie for most common, both are modes. That is why pandas gives you back a
+  list rather than a single value, and why we wrote mode()[0] to take the first one.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is stratified always better than simple random?&rdquo;</h5>
+  <p>&ldquo;Statistically yes, but only if you already know which group everybody belongs to. If you do
+  not have that information for the whole population, you cannot use it at all. Simple random needs
+  nothing but a list.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Our sample of thirty gave a wrong answer. Was thirty too small?&rdquo;</h5>
+  <p>&ldquo;Partly, and that is honest noise &mdash; it is why the five random samples all differed.
+  But notice the biased sample of a hundred was still wrong. Size and fairness are two separate problems,
+  and only one of them is fixed by asking more people.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Which method do companies actually use?&rdquo;</h5>
+  <p>&ldquo;Convenience, most of the time, and they rarely admit it. Which is exactly why you should ask
+  how a survey chose its people before you trust its numbers.&rdquo;</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="lbl">End of session &mdash; put this on screen</div>
   <div class="sumcard"><pre><code><span class="c"># ---- HOW TO SAMPLE ----</span>
-<span class="c"># PROBABILITY (inference is valid)</span>
-<span class="c">#   simple random   everyone has an equal chance      the baseline</span>
-<span class="c">#   systematic      every k-th, k = N/n               watch for repeating lists</span>
-<span class="c">#   stratified      a share from EVERY group          MORE accurate than random</span>
-<span class="c">#   cluster         SOME whole groups, everyone in    cheaper, LESS accurate</span>
+<span class="c"># PROBABILITY  (a known chance for everyone -&gt; day 9 maths is valid)</span>
+<span class="c">#   simple random   computer picks from a full list      the baseline</span>
+<span class="c">#   systematic      every k-th, k = N/n                  no list needed up front</span>
+<span class="c">#   stratified      a share from EVERY group             MORE accurate than random</span>
+<span class="c">#   cluster         SOME whole groups, everyone inside   cheaper, LESS accurate</span>
 <span class="c">#</span>
-<span class="c"># NON-PROBABILITY (inference is not valid)</span>
+<span class="c"># NON-PROBABILITY  (no known chance -&gt; no valid confidence interval)</span>
 <span class="c">#   convenience, quota, judgmental, snowball</span>
 <span class="c">#</span>
-<span class="c"># every stratum, but only some clusters</span>
+<span class="c"># you use EVERY stratum, but only SOME clusters</span>
 
 <span class="c"># ---- BIAS AGAINST NOISE ----</span>
-<span class="c"># noise = scattered around the target   -&gt; more data FIXES it</span>
-<span class="c"># bias  = tight bunch, off target       -&gt; more data does NOT</span>
-<span class="c"># Literary Digest: 2,400,000 biased lost to 50,000 unbiased</span>
+<span class="c"># noise  scattered round the target   -&gt; more data FIXES it</span>
+<span class="c"># bias   tight bunch, off to one side -&gt; more data does NOT</span>
+<span class="c"># Literary Digest 1936: 2,400,000 biased lost to 50,000 unbiased</span>
+<span class="c"># for 95% confidence and 3% error you need ~1,068 people, whatever the country</span>
+
+pop = df[&quot;salary&quot;].dropna()
+pop.sample(30, random_state=1).mean()   <span class="c"># 70,032   honest sample, still wrong</span>
+pop.nsmallest(30).mean()                <span class="c"># 45,179   biased sample</span>
+pop.nsmallest(100).mean()               <span class="c"># 56,689   3x the data, still wrong</span>
 
 <span class="c"># ---- THE THREE AVERAGES ----</span>
-df[&quot;salary&quot;].mean()            <span class="c"># add up, divide by count      95,648</span>
-df[&quot;salary&quot;].median()          <span class="c"># sort, take the middle        68,647</span>
-df[&quot;department&quot;].mode()[0]     <span class="c"># most common - works on words</span>
+df[&quot;salary&quot;].mean()            <span class="c"># 95,648   add up, divide by count</span>
+df[&quot;salary&quot;].median()          <span class="c"># 68,647   sort, take the middle</span>
+df[&quot;department&quot;].mode()[0]     <span class="c"># Sales    most common - the only one for words</span>
 
 <span class="c"># numbers, evenly spread  -&gt;  MEAN</span>
 <span class="c"># numbers, a few extreme  -&gt;  MEDIAN</span>
 <span class="c"># words / categories      -&gt;  MODE</span>
 
-df[&quot;salary&quot;].mean() - df[&quot;salary&quot;].median()   <span class="c"># the gap = how lopsided</span>
-df[&quot;salary&quot;].skew()            <span class="c"># big and positive = a few very large values</span></code></pre></div>
+df[&quot;salary&quot;].mean() - df[&quot;salary&quot;].median()   <span class="c"># 27,001  the gap</span>
+df[&quot;salary&quot;].max()                            <span class="c"># 5,200,000  the reason</span>
+df[&quot;salary&quot;].skew()                           <span class="c"># 14.06   big and positive = lopsided</span></code></pre></div>
 
   <div class="planbanner" style="margin-top:20px">
-   <b>Note on the plan.</b> Absorbing day 2's sampling half pushes <b>spread</b> &mdash; range, IQR,
-   variance, standard deviation, the n&minus;1 trap and the 68-95-99.7 rule &mdash; into day 4, and
-   shape and outliers into day 5. Everything after shifts by one session. Day 11 was booked as buffer
-   for exactly this.
+   <b>Note on the plan.</b> Absorbing day 2's sampling half means <b>spread</b> &mdash; range, IQR,
+   variance, standard deviation, the n&minus;1 trap and the 68-95-99.7 rule &mdash; moves to day 4,
+   and shape and outliers to day 5. Everything after shifts by one session. Day 11 was booked as
+   buffer for exactly this.
   </div>
  </div>
 </section>
