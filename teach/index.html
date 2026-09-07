@@ -382,17 +382,24 @@ try{var _t=localStorage.getItem("steep-theme");
 
     <button class="dcard full" data-go="d3">
      <span class="id">DAY 3</span><h3>How to Build a Sample, and the Three Averages</h3>
-     <p>Day 2 ended without saying how you actually pick a sample. This fills that hole, then mean,
-     median and mode &mdash; and why the average can be correct and still describe nobody.</p>
-     <span class="foot">Next &middot; full script &middot; 34 speech blocks</span></button>
+     <p>The sampling methods, taught properly, ending on the archer. Delivered 07-09 &mdash; stopped
+     after bias and noise, so Literary Digest onward moves to day 4.</p>
+     <span class="foot">Delivered &middot; stopped at the archer</span></button>
+
+    <button class="dcard full" data-go="d4">
+     <span class="id">DAY 4</span><h3>The Three Averages, and Why One Number Is Never Enough</h3>
+     <p>Closes the sampling story, then mean, median and mode &mdash; and the discovery that an average
+     can be perfectly correct and describe nobody. Ends on range, quartiles and IQR.</p>
+     <span class="foot">Next &middot; full script &middot; 33 speech blocks</span></button>
 
     <button class="dcard" data-go="d6">
-     <span class="id">DAY 4</span><h3>Shape and Outliers</h3>
-     <p>Five-number summary, skewness, the 1.5&times;IQR rule, and what to actually do about an outlier.</p>
+     <span class="id">DAY 5</span><h3>Shape and Outliers</h3>
+     <p>The box plot, the 1.5&times;IQR rule, variance and standard deviation. The 52-lakh salary
+     becomes the worked example.</p>
      <span class="foot">Outline &middot; 90 min</span></button>
 
     <button class="dcard" data-go="d7">
-     <span class="id">DAY 5</span><h3>Correlation</h3>
+     <span class="id">DAY 6</span><h3>Correlation</h3>
      <p>One row moves experience-vs-salary from 0.079 to 0.612. Spearman never notices.</p>
      <span class="foot">Outline &middot; 90 min</span></button>
 
@@ -4117,30 +4124,28 @@ df[&quot;salary&quot;].skew()                           <span class="c"># 14.06 
 </section>
 </div>
 <div class="day" id="d4">
-<div class="wrap" style="padding-top:22px"><div class="planbanner"><b>Day 3 &mdash; part 1 of 2</b> &middot; Pair this with <b>Dispersion</b> to make one 90-minute session on centre and spread.<button class="backlink" data-go="d5" style="margin-top:8px">Open part 2 &rarr;</button></div></div>
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Day 3, part 1 &middot; both batches merged &middot; 90 minutes</p>
-  <h1 class="display">Central Tendency,<br>and Which Average Lies</h1>
-  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:640px">
-   Day 1 left a 27,000-rupee gap between the mean and median salary hanging in the air.
-   Today you close it &mdash; and give students a rule for choosing an average that they will
-   use in every report they ever write.
-  </p>
+  <p class="tag" style="margin-bottom:16px">Statistics day 4 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">The three averages,<br>and why one number is never enough</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Fifteen minutes to close the sampling story, then mean, median and mode &mdash; and the discovery
+   that an average on its own can be perfectly correct and describe nobody. Ends on range, quartiles
+   and IQR, with the outlier question left open for day 5.</p>
 
   <div class="glance">
    <div class="gcell"><b>90</b><span>minutes</span></div>
-   <div class="gcell"><b>3</b><span>common averages</span></div>
-   <div class="gcell"><b>3</b><span>specialist averages</span></div>
-   <div class="gcell"><b>39%</b><span>the gap you explain</span></div>
+   <div class="gcell"><b>3</b><span>averages</span></div>
+   <div class="gcell"><b>3</b><span>spread measures</span></div>
+   <div class="gcell"><b>1</b><span>open question</span></div>
   </div>
 
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">The one idea today has to land</h4>
-   <p style="color:var(--sienna)"><b style="color:var(--sienna)">The mean uses every value, so every
-   value can drag it. The median only cares about position, so extremes cannot move it.</b>
-   A student who can look at a skewed column and say &ldquo;report the median, and here is why&rdquo;
-   has today's session.</p>
+   <h4 style="color:var(--sienna)">The two ideas today has to land</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">One &mdash; the mean uses every value,
+   so one extreme number can make it describe nobody.</b> That is what the median is for.<br>
+   <b style="color:var(--sienna)">Two &mdash; an average always needs a second number beside it.</b>
+   Two groups with the same average can be nothing alike.</p>
   </div>
  </div>
 </section>
@@ -4149,276 +4154,635 @@ df[&quot;salary&quot;].skew()                           <span class="c"># 14.06 
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Run the salary block.</b> Mean 95,648, median 68,647 &mdash; you need to be fluent with those two numbers.</li>
-   <li><b>Work the harmonic mean example on paper.</b> It is the one students most often get wrong, and you cannot fake it live.</li>
-   <li><b>Decide how deep to go on geometric and harmonic means.</b> They are genuinely useful but not examinable in most fresher interviews &mdash; see the contingency note.</li>
-   <li><b>Optional:</b> Udemy §6 &mdash; <em>Measure Of Central Tendency</em> (25:20).</li>
+   <li><b>You stopped on the archer yesterday.</b> The first fifteen minutes finish that story &mdash;
+   Literary Digest and how sample size is actually decided &mdash; then sampling is closed. Say so out
+   loud and change position in the room, or students carry the wrong frame into the second half.</li>
+   <li><b>Read &ldquo;Understand this yourself first&rdquo; below.</b> Four ideas, and the fourth
+   &mdash; why an average alone is never enough &mdash; is what the rest of the module rests on.</li>
+   <li><b>The board does the work in this session, not the screen.</b> Both centrepieces &mdash; the
+   400 demo and the two teams &mdash; are five numbers the students can add in their heads. That is
+   what makes them convincing. Do not move them to the screen to save time.</li>
+   <li><b>Warn them about the quartile discrepancy before they meet it.</b> By hand gives a different
+   IQR to pandas on small datasets, and somebody will otherwise spend the evening convinced their
+   computer is broken. The wording is in the script.</li>
+   <li><b>Do not answer the outlier question at the end.</b> &ldquo;Should we remove the 52 lakh
+   salary?&rdquo; is the whole hook for day 5. You can only teach the 1.5&times;IQR rule tomorrow
+   because they got the IQR today &mdash; that setup is deliberate.</li>
   </ol>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Primer &mdash; what you are actually teaching</h2>
-  <p class="cap" style="margin-bottom:24px">Enough to answer any student question without the video.</p>
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Read this before you write anything on a board. It teaches
+  you the ideas, not the delivery. Four ideas today, and the fourth one &mdash; why an average alone is
+  never enough &mdash; is the one the rest of the module is built on.</p>
 
-  <div class="primer">
-   <h4>Why the mean is sensitive and the median is not</h4>
-   <p>The mean is a sum divided by a count &mdash; so <b>every single value contributes to it</b>.
-   Change one value by a crore and the mean moves by a crore divided by n. The median is defined by
-   <b>position</b>: it is whatever value sits in the middle once sorted. Changing the largest value to
-   any larger number does not move which value is in the middle, so the median does not budge.</p>
-   <p>That is the whole difference, and it explains every recommendation that follows.</p>
+  <div class="understand">
+   <h5>Part one &middot; the three averages</h5>
+
+   <h6>What an average is actually for</h6>
+   <p>An average answers one question: <b>if I had to describe this whole column with a single number,
+   what would it be?</b> There are three sensible answers, and which one is honest depends on the data.</p>
+   <p>They already use the word mean. They have seen median as a row in <code>describe()</code>. They
+   have never heard the word <b>mode</b> &mdash; it appears zero times across all three delivered
+   sessions.</p>
+
+   <h6>The three, and what separates them</h6>
+   <div class="simple">
+    <span class="lab">Mean &mdash; uses every value</span>
+    <p>Add everything, divide by the count. Using every value is its strength <em>and</em> its weakness:
+    <b>every value gets a vote, including the absurd ones.</b></p>
+   </div>
+   <div class="simple">
+    <span class="lab">Median &mdash; cares only about position</span>
+    <p>Sort, take the middle. It does not care how big the biggest value is, only that it is the biggest.
+    Change the largest number from 40 to four million and the median does not move, because the same
+    value is still sitting in the middle.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Mode &mdash; the only one that works on words</span>
+    <p>The most common value. There is no mean department and no median department, but there is
+    certainly a most common one. This is what you reach for on any text column.</p>
+   </div>
+
+   <h6>Why this is not academic</h6>
+   <p>Your file has one person earning 52 lakh. That single row pulls the mean up to <b>95,648</b> while
+   the median sits at <b>68,647</b> &mdash; twenty-seven thousand rupees apart. Almost nobody in that
+   company earns the mean. Report it as the typical salary and you are wrong about nearly every
+   employee, using a number that is arithmetically perfect.</p>
+   <p>That is why house prices and salaries are reported as medians in the news. Not convention &mdash;
+   necessity.</p>
+
+   <h6>Skew, in one sentence</h6>
+   <p>When the mean sits well above the median, a few very large values are dragging it up and the data
+   is lopsided rather than symmetric. The word is <b>skew</b>. Do not teach the formula and do not draw
+   the curve today &mdash; one sentence is enough: <b>a big positive gap between mean and median means a
+   few very large values.</b></p>
   </div>
 
-  <div class="primer">
-   <h4>Two properties worth stating out loud</h4>
-   <p><b>Deviations from the mean always sum to zero.</b> &Sigma;(x &minus; x&#772;) = 0, exactly, every time.
-   This is not a coincidence &mdash; it is what &ldquo;balance point&rdquo; means. It is also why variance
-   squares the deviations tomorrow: without squaring, every dataset would have zero spread.</p>
-   <p><b>The mean minimises squared distance; the median minimises absolute distance.</b> Of all possible
-   values c, the mean is the one making &Sigma;(x &minus; c)&sup2; smallest, and the median is the one
-   making &Sigma;|x &minus; c| smallest. Worth one sentence, because the first fact is exactly what
-   linear regression optimises later.</p>
+  <div class="understand">
+   <h5>Part two &middot; why an average is never enough on its own</h5>
+
+   <h6>The idea the whole second half rests on</h6>
+   <p>This is the most important thing in the session, and it is easy to under-sell because it sounds
+   obvious once said.</p>
+   <div class="keyline">
+    Two groups can have <b>exactly the same average</b> and be nothing alike.
+   </div>
+   <p>Five people scoring 48, 49, 50, 51, 52 average fifty. Five people scoring 10, 30, 50, 70, 90 also
+   average fifty. Same number, completely different situations &mdash; one team is uniform, the other is
+   wildly inconsistent. If you report only the average you have hidden the more interesting fact.</p>
+   <p>So <b>every average needs a second number beside it</b> saying how spread out the values are. That
+   second number is what the rest of today, and much of day 5, is about.</p>
+
+   <h6>Range &mdash; the obvious one, and why it disappoints</h6>
+   <p>Largest minus smallest. Simple, and everybody invents it themselves.</p>
+   <p>The problem: it uses <b>only two numbers out of your entire dataset</b>, and by definition those
+   two are the most extreme ones you have. One data-entry error decides the whole answer.</p>
+   <p>On your file the range is <b>5,166,915</b> &mdash; driven entirely by the 52-lakh salary. It tells
+   you almost nothing about what a normal employee earns.</p>
+
+   <h6>Percentiles and quartiles &mdash; the fix</h6>
+   <p>A percentile is a cut point: the 25th percentile is the value that 25% of the data falls below.</p>
+   <p>Quartiles are just three specific percentiles that cut the sorted data into four equal parts.
+   <b>Q1</b> at 25%, <b>Q2</b> at 50% &mdash; which is the median, they are the same thing &mdash; and
+   <b>Q3</b> at 75%.</p>
+   <p>They have already seen these three. They are the 25%, 50% and 75% rows of the <code>describe()</code>
+   output you have been running since day one. Point at that output and name them; it lands much faster
+   than introducing them cold.</p>
+
+   <h6>IQR &mdash; the honest measure of spread</h6>
+   <p><b>Q3 minus Q1.</b> The range of the middle half of your data.</p>
+   <p>Why it matters: it deliberately ignores the top 25% and the bottom 25%, so <b>no extreme value can
+   affect it at all.</b> On your file, range is 5,166,915 and IQR is <b>21,596</b>. Same column. The
+   second number actually describes the company.</p>
+   <div class="keyline">
+    The pairing worth teaching explicitly:<br>
+    <b>mean goes with range</b> &mdash; both use every value, both get wrecked by extremes.<br>
+    <b>median goes with IQR</b> &mdash; both care about position, both ignore extremes.
+   </div>
+
+   <h6>One thing that will confuse them, so handle it first</h6>
+   <p>The textbook way to find Q1 by hand is: take the median, then take the median of the lower half.
+   For 10, 20, 30, 40, 50, 60, 70 that gives Q1 = 20, Q3 = 60, IQR = 40.</p>
+   <p><b>Pandas gives Q1 = 25, Q3 = 55, IQR = 30 for the same data.</b></p>
+   <p>Neither is wrong. There are several accepted methods for cutting a small dataset into quarters,
+   and pandas interpolates between the two nearest values rather than picking one. On seven numbers the
+   difference is visible; on two hundred it is negligible.</p>
+   <p>Tell them this <em>before</em> they run the code, or somebody will spend the evening convinced
+   their computer is broken.</p>
   </div>
 
-  <div class="primer">
-   <h4>The three specialist averages, and when each is the only correct one</h4>
-   <p><b>Weighted mean</b> &mdash; when observations carry different importance. Course grades where the
-   final exam counts more than the assignment; combining results from a stratified sample.</p>
-   <p><b>Geometric mean</b> &mdash; for <b>growth rates and multiplicative change</b>. If something grows
-   80% one year and falls 40% the next, the arithmetic mean says +20% and you have actually gained
-   only 8%. Multiply the growth factors and take the root; do not average the percentages.</p>
-   <p><b>Harmonic mean</b> &mdash; for <b>rates over a fixed quantity</b>. Average speed over equal
-   distances is not the average of the speeds, because you spend more time at the slower speed.
-   This is also what the F1 score does with precision and recall.</p>
-  </div>
-
-  <div class="primer">
-   <h4>Mode, and the signal it carries</h4>
-   <p>The mode is the most frequent value, and it is the <b>only</b> average legal on nominal data &mdash;
-   there is a most common department, but no average department. Day 2 established that.</p>
-   <p>More usefully: <b>two modes usually means two populations mixed together.</b> If app response
-   times peak at 200 ms and again at 3,000 ms, you are almost certainly looking at cache hits and cache
-   misses in one column. The mean of that data describes no actual request. Mean, median and standard
-   deviation are all blind to this &mdash; only a plot or the mode reveals it.</p>
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They now have:</b> population and sample, parameter and statistic, the four scales, all four
+   probability sampling methods, the non-probability family, and bias against noise &mdash; you finished
+   on the archer.</p>
+   <p><b>They have never heard:</b> Literary Digest, how sample size is decided, mode, quartiles, IQR,
+   percentile, variance, standard deviation as a calculation rather than a describe() row, outlier, or
+   skew.</p>
+   <p>The first fifteen minutes finish the sampling story you left open yesterday. Everything after that
+   is new.</p>
   </div>
  </div>
 </section>
 
 <section class="fog">
- <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2></div>
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
 </section>
 
 <section style="padding-top:8px">
  <div class="wrap">
 
+  <!-- 0-8 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 – 10</span><h3>Reopen the unanswered question</h3></div>
-   <p class="objective">Recover Day 1's hook and make it today's problem.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 8</span><h3>Finish the story &mdash; Literary Digest</h3></div>
+   <p class="objective">You ended yesterday on the archer. This is the proof. Eight minutes.</p>
 
-   <div class="lbl">Type this before saying anything</div>
-<pre><code>df[<span class="c">"salary"</span>].mean()      <span class="c"># <span class="o">95648</span></span>
-df[<span class="c">"salary"</span>].median()    <span class="c"># <span class="o">68647</span></span></code></pre>
+   <div class="stage">Open by recalling yesterday's last sentence in one line, then straight into the
+   story. Do not re-teach the archer.</div>
 
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>Two numbers. Same column, same 199 people. Twenty-seven thousand rupees apart &mdash;
-    the mean is <strong>thirty-nine per cent higher</strong> than the median.</p>
-    <p>Your manager asks what a typical employee here earns. <strong>Which number do you give,
-    and can you defend it?</strong></p>
+   <div class="speak">
+    <p>Yesterday we finished on one sentence. More data fixes noise, it never fixes bias.</p>
+    <p>Today I want to start by showing you that this is not a classroom idea. It has actually happened,
+    on the largest possible scale, and it is one of the most famous mistakes in the history of
+    statistics.</p>
+    <p>Nineteen thirty-six. American presidential election.</p>
+    <p>A magazine called the Literary Digest decides to run the biggest opinion poll anybody has ever
+    attempted. They mail out <b>ten million</b> surveys.</p>
+    <p>They get back <b>two point four million</b> replies.</p>
    </div>
 
-   <div class="do">Take a show of hands for each. Do not resolve it. Write both numbers in the corner
-   of the board and say you will come back to them at minute sixty.</div>
-  </div>
+   <div class="stage">Let that number sit. Two point four million is genuinely enormous &mdash; make sure
+   they feel it before the reveal.</div>
 
-  <div class="blk">
-   <div class="bhead"><span class="clock">10 – 26</span><h3>The three averages, defined properly</h3></div>
-   <p class="objective">Get the definitions and the arithmetic solid before arguing about which to use.</p>
-
-   <div class="lbl">Do &mdash; on the board, with a tiny dataset they can hold in their heads</div>
-   <div class="do">Use monthly food-delivery orders for eight customers:
-   <b>4, 6, 6, 7, 9, 11, 12, 17</b>. Small enough to compute by hand, and nothing like the salary data.</div>
-
-   <div class="lbl">Work all three live</div>
-<pre><code><span class="c"># Mean: add them up, divide by how many</span>
-(4+6+6+7+9+11+12+17) / 8       <span class="c"># 72/8 = <span class="o">9.0</span></span>
-
-<span class="c"># Median: sort, take the middle. n=8 is EVEN,</span>
-<span class="c"># so average the 4th and 5th values: (7+9)/2</span>
-                                <span class="c"># <span class="o">8.0</span></span>
-
-<span class="c"># Mode: most frequent value</span>
-                                <span class="c"># <span class="o">6</span> (appears twice)</span></code></pre>
-
-   <div class="expl">
-    <div class="erow"><span class="cd">odd n</span><span class="tx">The median is the single middle value, at position <b>(n+1)/2</b>.</span></div>
-    <div class="erow"><span class="cd">even n</span><span class="tx">There is no single middle, so <b>average the two middle values</b>. This is the step students forget.</span></div>
-    <div class="erow"><span class="cd">mode</span><span class="tx">Can be none, one, or several. A column where every value is unique has <b>no mode</b>.</span></div>
+   <div class="speak">
+    <p>Two point four million people. That is not a poll any more, that is close to a census.</p>
+    <p>Based on that, they confidently predict that a man called Landon will win comfortably.</p>
+    <p>Roosevelt won <b>forty-six of the forty-eight states.</b></p>
    </div>
 
-   <div class="lbl">Then in pandas, on the real file</div>
-<pre><code>df[<span class="c">"experience"</span>].mean()      <span class="c"># <span class="o">7.78</span></span>
-df[<span class="c">"experience"</span>].median()    <span class="c"># <span class="o">8.0</span></span>
-df[<span class="c">"experience"</span>].mode()[0]   <span class="c"># <span class="o">7</span></span></code></pre>
+   <div class="qbox">
+    <div class="q">Ask, and genuinely wait: &ldquo;two point four million people. What could possibly go wrong?&rdquo;</div>
+    <div class="a">Let them guess. Somebody usually says &ldquo;not enough people&rdquo; &mdash; point out
+    it was two point four million, so that cannot be it. The answer: the addresses came from
+    <b>telephone directories and car registration lists</b>. This was the middle of the Great Depression.
+    Who owned a telephone and a car in 1936? <b>They surveyed rich people, extremely thoroughly.</b></div>
+   </div>
 
-   <div class="expl">
-    <div class="erow"><span class="cd">.mode()[0]</span><span class="tx">Returns a <b>Series</b>, not a number, because a column can have two equally frequent values. The <code>[0]</code> takes the first.</span></div>
-    <div class="erow"><span class="cd">7.78 vs 8.0 vs 7</span><span class="tx">All three are close together. <b>That is the signature of a symmetric column</b> &mdash; and it is exactly what salary is not.</span></div>
+   <div class="speak">
+    <p>And here is the part that finishes it. In the same election, a man called George Gallup asked
+    about <b>fifty thousand</b> people, using proper random methods.</p>
+    <p>He got it right.</p>
+    <p>So a biased sample of two point four million <b>lost</b> to an unbiased sample of fifty thousand.</p>
+    <p>That is the two archers from yesterday, as a real historical fact. The Digest had a beautifully
+    steady hand and a crooked sight.</p>
    </div>
   </div>
 
+  <!-- 8-15 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">26 – 44</span><h3>Watch one value move the mean</h3></div>
-   <p class="objective">Demonstrate sensitivity rather than asserting it.</p>
+   <div class="bhead"><span class="clock">8 &ndash; 15</span><h3>So how many people do you need?</h3></div>
+   <p class="objective">The number that surprises everyone, and it closes the sampling half. Seven minutes.</p>
 
-   <div class="lbl">Do &mdash; go back to the eight delivery customers</div>
-   <div class="do">Change the last customer from <b>17</b> to <b>170</b> &mdash; one person who orders
-   constantly. Recompute both by hand with the class.</div>
-
-<pre><code><span class="c"># Original: 4, 6, 6, 7, 9, 11, 12, 17</span>
-<span class="c">#   mean 9.0    median 8.0</span>
-
-<span class="c"># One value changed: 4, 6, 6, 7, 9, 11, 12, 170</span>
-(4+6+6+7+9+11+12+170) / 8      <span class="c"># 225/8 = <span class="o">28.1</span></span>
-<span class="c">#   median is STILL (7+9)/2 = <span class="o">8.0</span></span></code></pre>
-
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>The mean went from nine to twenty-eight. <strong>Seven of the eight customers order fewer
-    than twelve times a month, and the mean now says twenty-eight.</strong> It describes nobody.</p>
-    <p>The median did not move at all. Not by a rounding error &mdash; <strong>not at all</strong>.
-    Because the middle of the list is still the middle of the list.</p>
+   <div class="speak">
+    <p>Which brings me to the question all of you are going to ask eventually. Fine &mdash; so how many
+    people <em>do</em> I need?</p>
+    <p>The actual formula is day nine. But let me give you the answer now, because it will surprise you.</p>
+    <p>For ninety-five percent confidence and a three percent margin of error &mdash; which is what most
+    professional surveys aim for &mdash; you need about <b>one thousand and sixty-eight people</b>.</p>
    </div>
 
-   <div class="chkq"><b>Ask:</b> &ldquo;How high would I have to push that last value before the median
-   changes?&rdquo;<br><b>It never changes</b>, no matter how large. That is what &ldquo;robust&rdquo;
-   means, and it is worth letting them sit with for a moment.</div>
+   <div class="stage">Now the question. Let them guess before you answer. They will guess much bigger.</div>
 
-   <div class="lbl">Then prove it on the real file</div>
-<pre><code>s = df[<span class="c">"salary"</span>].dropna()
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;how much bigger does that get for a country of 1.4 billion instead of 30 million?&rdquo;</div>
+    <div class="a">Almost everyone guesses a much larger number, often proportionally larger. The answer
+    is that <b>it barely changes at all</b> &mdash; still around a thousand.</div>
+   </div>
 
-s.mean()                    <span class="c"># <span class="o">95648</span></span>
-s.median()                  <span class="c"># <span class="o">68647</span></span>
+   <div class="speak">
+    <p>It barely changes. Still about a thousand people.</p>
+    <p>Why? Because the accuracy of your estimate depends on <b>how many people you asked</b>, not on
+    what fraction of the population they represent. Once the population is big, making it bigger does
+    not change how much a sample of a thousand wobbles.</p>
+    <p>That is why national opinion polls ask about a thousand people, whatever the size of the country.
+    It is not laziness. It is the maths.</p>
+   </div>
 
-<span class="c"># now drop the single 52-lakh earner</span>
-s[s &lt; 1000000].mean()       <span class="c"># <span class="o">69869</span>  &larr; collapsed</span>
-s[s &lt; 1000000].median()     <span class="c"># <span class="o">68494</span>  &larr; barely moved</span></code></pre>
+   <div class="stage">Close the sampling half here. Write the line on the board.</div>
 
-   <div class="expl">
-    <div class="erow"><span class="cd">mean: 95,648 &rarr; 69,869</span><span class="tx">Removing <b>one row out of 199</b> moved the mean by nearly 26,000 rupees.</span></div>
-    <div class="erow"><span class="cd">median: 68,647 &rarr; 68,494</span><span class="tx">Moved by 153 rupees. <b>Essentially nothing.</b></span></div>
+   <div class="speak">
+    <p>So that is the whole of the last two sessions in one sentence.</p>
+    <p><b>It was never about how many. It was about how you chose them.</b></p>
+   </div>
+
+   <div class="warn"><b>Sampling ends here.</b> Everything from this point is a new topic. Change position
+   in the room, clear the board, and say so out loud &mdash; otherwise students carry the sampling frame
+   of mind into a section where it does not apply.</div>
+  </div>
+
+  <!-- 15-30 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">15 &ndash; 30</span><h3>The three averages</h3></div>
+   <p class="objective">Small numbers only. Nothing on the screen yet. Fifteen minutes.</p>
+
+   <div class="speak">
+    <p>Completely different question now.</p>
+    <p>You know how to <em>get</em> a sample. Now: you have your data in front of you. How do you
+    describe the whole thing with a <b>single number</b>?</p>
+    <p>There are three sensible answers. And picking the wrong one is how people mislead other people
+    without ever telling a lie.</p>
+   </div>
+
+   <div class="typeit">On the board, not the screen</div>
+<pre><code>10, 20, 30, 40, 50</code></pre>
+
+   <div class="speak">
+    <p>Five numbers. Small enough that you can all do this in your head.</p>
+    <p>The <b>mean</b> is the one you already call the average. Add everything up &mdash; that is a
+    hundred and fifty. Divide by how many there are, which is five. <b>Thirty.</b></p>
+    <p>The <b>median</b> is a different idea. Sort the numbers first, then take the middle one. They are
+    already sorted, and the middle one is <b>thirty</b>.</p>
+    <p>Same answer. Remember that they agreed here, because in about ten minutes they are going to
+    stop agreeing very dramatically.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;what if I give you four numbers &mdash; 10, 20, 30, 40?&rdquo;</div>
+    <div class="a">There is no single middle value. Take the <b>two</b> in the middle, twenty and thirty,
+    and average them: <b>twenty-five</b>. Worth pointing out that twenty-five is not in the list at all
+    &mdash; that is completely normal and catches people out.</div>
+   </div>
+
+   <div class="speak">
+    <p>And the third one is the <b>mode</b>. That is simply the value that appears most often.</p>
+    <p>Now, mode looks like the boring one of the three. It is not, and here is why.</p>
+    <p>It is the only one of the three that works on <b>words</b>.</p>
+   </div>
+
+   <div class="typeit">Now go to the screen</div>
+<pre><code><span class="k">print</span>(df[<span class="c">"department"</span>].mode()[<span class="o">0</span>])
+<span class="k">print</span>(df[<span class="c">"rating"</span>].mode()[<span class="o">0</span>])</code></pre>
+   <div class="screen">Sales
+Poor</div>
+
+   <div class="speak">
+    <p>There is no mean department. There is no median department. But there is definitely a most common
+    one, and it is Sales.</p>
+    <p>Remember day two, when I showed you that the average department ID was two point three two and it
+    meant nothing? <b>This is what you do instead.</b></p>
+   </div>
+
+   <div class="stage">That callback matters. It closes a loop you opened five sessions ago and it is the
+   moment mode stops looking like the useless one.</div>
+  </div>
+
+  <!-- 30-48 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">30 &ndash; 48</span><h3>Why the mean can lie</h3></div>
+   <p class="objective">The centrepiece of the session. Board first, file second. Eighteen minutes.</p>
+
+   <div class="stage">Board only for the first five minutes. They must be able to do this arithmetic
+   themselves &mdash; that is what makes it convincing.</div>
+
+   <div class="typeit">Write both rows on the board</div>
+<pre><code>20, 25, 30, 35, 40      ->  mean 30    median 30
+20, 25, 30, 35, 400     ->  mean ?     median ?</code></pre>
+
+   <div class="speak">
+    <p>Top row. Five salaries, in thousands. Mean is thirty, median is thirty. They agree, like before.</p>
+    <p>Bottom row. I have changed <b>exactly one number</b>. The forty has become four hundred &mdash;
+    one person got an enormous raise. Everything else is identical.</p>
+    <p>Work out the new mean with me. Twenty. Forty-five. Seventy-five. A hundred and ten. Five hundred
+    and ten.</p>
+    <p>Five hundred and ten divided by five is <b>a hundred and two</b>.</p>
+    <p>Now the median. Sort them &mdash; they are already sorted. The middle one is <b>thirty</b>.</p>
+   </div>
+
+   <div class="stage">Stop. Let it land before you explain it.</div>
+
+   <div class="speak">
+    <p>The mean jumped from thirty to a hundred and two. The median <b>did not move at all.</b></p>
+    <p>Why? Two different reasons, and this is the whole idea.</p>
+    <p>The mean <b>uses every single value</b>. So one enormous number gets a vote, and it is a very
+    loud vote.</p>
+    <p>The median only cares about <b>position</b>. Thirty is still the number sitting in the middle
+    &mdash; whether the biggest value is forty, or four hundred, or four million. The median never even
+    looks at how big it is.</p>
+   </div>
+
+   <div class="stage">Now the part that makes it matter. Point at the bottom row.</div>
+
+   <div class="speak">
+    <p>Now look at what the mean is actually claiming. It says the typical salary here is a hundred and
+    two thousand.</p>
+    <p>Count how many of those five people earn less than half of that. <b>Four out of five.</b></p>
+    <p>So the mean is arithmetically perfect and it describes <b>nobody in the room.</b> Nobody earns a
+    hundred and two. Four people earn far less and one earns far more.</p>
+   </div>
+
+   <div class="stage">Now move to the screen and show the same thing on the real file.</div>
+
+   <div class="typeit">Type this</div>
+<pre><code>sal = df[<span class="c">"salary"</span>].dropna()
+
+<span class="k">print</span>(<span class="c">"mean   :"</span>, <span class="k">round</span>(sal.mean()))
+<span class="k">print</span>(<span class="c">"median :"</span>, <span class="k">round</span>(sal.median()))
+<span class="k">print</span>(<span class="c">"gap    :"</span>, <span class="k">round</span>(sal.mean() - sal.median()))
+<span class="k">print</span>(<span class="c">"highest:"</span>, <span class="k">int</span>(sal.max()))</code></pre>
+   <div class="screen">mean   : 95648
+median : 68647
+gap    : 27001
+highest: 5200000</div>
+
+   <div class="speak">
+    <p>There it is in our own file. The mean says ninety-five thousand. The median says sixty-eight
+    thousand. Twenty-seven thousand rupees apart.</p>
+    <p>And the last line is the reason. One person in this company earns <b>fifty-two lakh</b>.</p>
+    <p>One row. Out of two hundred. Moving the answer by twenty-seven thousand rupees.</p>
+   </div>
+
+   <div class="stage">Make it concrete with a scenario. This is the moment students realise it is not
+   an exam question.</div>
+
+   <div class="speak">
+    <p>So here is the situation you will actually be in. Your manager asks you: what does a typical
+    employee here earn?</p>
+    <p>You run <code>.mean()</code>, because that is what everybody does. You say ninety-five thousand.</p>
+    <p>You have just been <b>wrong about almost everybody in the building</b> &mdash; using a number
+    that is completely, provably correct.</p>
+    <p>That is the difference between computing something and understanding it. And it is roughly the
+    whole job.</p>
+   </div>
+
+   <div class="typeit">Put the three rules on the board and leave them there</div>
+<pre><code>numbers, evenly spread   ->  MEAN
+numbers, a few extreme   ->  MEDIAN
+words / categories       ->  MODE</code></pre>
+
+   <div class="speak">
+    <p>Three rules. That is the entire decision, every time.</p>
+    <p>And this is not a classroom rule. It is why house prices in the news are always reported as a
+    <b>median</b>, never an average. A handful of enormous properties would drag the mean somewhere
+    that describes no house anybody could buy.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Somebody will ask: &ldquo;why not just always use the median then?&rdquo;</div>
+    <div class="a">&ldquo;Because when there are no extremes, using every value is a <b>strength</b>
+    &mdash; the mean carries more information. The median throws most of your data away and keeps only
+    the middle. Use the mean when it is safe, and usually it is.&rdquo;</div>
    </div>
   </div>
 
+  <!-- 48-58 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">44 – 58</span><h3>The three specialist averages</h3></div>
-   <p class="objective">Show three situations where the ordinary mean is simply the wrong tool.</p>
+   <div class="bhead"><span class="clock">48 &ndash; 58</span><h3>An average is never enough on its own</h3></div>
+   <p class="objective">The hinge into the second half. Ten minutes.</p>
 
-   <div class="lbl">Weighted mean &mdash; when things count differently</div>
-<pre><code><span class="c"># Course: assignments 20%, mid-term 30%, final 50%</span>
-<span class="c"># Student scores: 90, 70, 60</span>
+   <div class="stage">Board, not screen. Two rows of five numbers.</div>
 
-(0.20*90 + 0.30*70 + 0.50*60)      <span class="c"># <span class="o">66.0</span></span>
-<span class="c"># plain average would be (90+70+60)/3 = <span class="o">73.3</span> - too generous</span></code></pre>
+   <div class="typeit">Write these two teams on the board</div>
+<pre><code>Team A:  48, 49, 50, 51, 52
+Team B:  10, 30, 50, 70, 90</code></pre>
 
-   <div class="lbl">Geometric mean &mdash; for growth</div>
-<pre><code><span class="c"># A startup's revenue: +80% in year 1, then -40% in year 2</span>
-<span class="c"># Arithmetic mean of the percentages: (80 - 40)/2 = +20%  ... WRONG</span>
-
-<span class="c"># What actually happened to 100 rupees:</span>
-100 * 1.80 * 0.60                  <span class="c"># <span class="o">108.0</span> - an 8% gain over two years</span>
-
-<span class="c"># Geometric mean of the GROWTH FACTORS:</span>
-(1.80 * 0.60) ** (1/2)             <span class="c"># <span class="o">1.039</span> -> 3.9% per year</span>
-1.039 ** 2                         <span class="c"># <span class="o">1.08</span> - correct</span></code></pre>
-
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>Averaging percentages gave twenty per cent. The business actually gained eight.
-    <strong>Whenever things multiply rather than add, the arithmetic mean is simply the wrong
-    operation.</strong></p>
+   <div class="speak">
+    <p>Two teams. Five people each, and these are their test scores.</p>
+    <p>Work out the average for team A. Two hundred and fifty divided by five. <b>Fifty.</b></p>
+    <p>Now team B. Ten, forty, ninety, a hundred and sixty, two hundred and fifty. Divided by five.
+    <b>Fifty.</b></p>
    </div>
 
-   <div class="lbl">Harmonic mean &mdash; for rates</div>
-<pre><code><span class="c"># You drive 60 km to a client at 20 km/h through traffic,</span>
-<span class="c"># and the same 60 km back at 60 km/h on an empty road.</span>
-<span class="c"># Average speed?  NOT (20+60)/2 = 40.</span>
+   <div class="stage">Pause. Let somebody notice.</div>
 
-<span class="c"># Time out  = 60/20 = 3 hours</span>
-<span class="c"># Time back = 60/60 = 1 hour</span>
-<span class="c"># Total: 120 km in 4 hours =</span>
-120 / 4                            <span class="c"># <span class="o">30 km/h</span></span>
-
-<span class="c"># Harmonic mean gives it directly:</span>
-2 / (1/20 + 1/60)                  <span class="c"># <span class="o">30.0</span></span></code></pre>
-
-   <div class="chkq"><b>Ask before revealing:</b> &ldquo;Twenty out, sixty back &mdash; what is the
-   average speed?&rdquo; Almost everyone says forty. <b>The answer is thirty</b>, because you spent
-   three hours at the slow speed and only one at the fast one. The slow leg dominates.</div>
-
-   <div class="warn"><b>Worth stating:</b> harmonic &le; geometric &le; arithmetic, always, unless every
-   value is identical. Useful as a sanity check &mdash; if your harmonic mean comes out above your
-   arithmetic mean, you have made an arithmetic error.</div>
-  </div>
-
-  <div class="blk">
-   <div class="bhead"><span class="clock">58 – 70</span><h3>Answer the opening question</h3></div>
-   <p class="objective">Close the loop with a rule they can apply.</p>
-
-   <div class="lbl">Point back at the two numbers on the board</div>
-   <div class="say">
-    <p>Ninety-five thousand, or sixty-eight thousand. <strong>The median.</strong> One person earning
-    fifty-two lakh has pulled the mean twenty-seven thousand above what almost everyone in this company
-    actually earns.</p>
-    <p>This is exactly why governments report <strong>median</strong> household income, and why property
-    sites report <strong>median</strong> house prices. Not to hide anything &mdash; because the mean of a
-    long-tailed column describes nobody.</p>
+   <div class="speak">
+    <p>Same average. Exactly the same. Fifty and fifty.</p>
+    <p>Now tell me honestly &mdash; are these the same team?</p>
    </div>
 
-   <div class="lbl">Then give them the decision rule to write down</div>
-<pre><code>Symmetric, no extreme values  &rarr;  MEAN
-Skewed or outliers present    &rarr;  MEDIAN
-Categorical / nominal data    &rarr;  MODE
-Growth rates, returns         &rarr;  GEOMETRIC mean
-Rates over a fixed distance   &rarr;  HARMONIC mean
-Values with different weights &rarr;  WEIGHTED mean</code></pre>
+   <div class="qbox">
+    <div class="q">Let them answer. Then push: &ldquo;which team would you rather manage?&rdquo;</div>
+    <div class="a">Team A is completely consistent &mdash; everybody performs the same. Team B has
+    somebody failing badly at ten and somebody excellent at ninety. Those are completely different
+    management problems, and the average hides the difference entirely.</div>
+   </div>
 
-   <div class="lbl">And the free diagnostic</div>
-<pre><code>df[<span class="c">"salary"</span>].mean() - df[<span class="c">"salary"</span>].median()      <span class="c"># <span class="o">+27001</span></span>
-df[<span class="c">"height_cm"</span>].mean() - df[<span class="c">"height_cm"</span>].median()  <span class="c"># <span class="o">+0.3</span></span></code></pre>
+   <div class="speak">
+    <p>Team A is uniform. Everybody is doing the same thing.</p>
+    <p>Team B has somebody drowning at ten and somebody excellent at ninety, and the average has quietly
+    erased both of them.</p>
+    <p>So here is the rule that the rest of today and all of tomorrow is built on.</p>
+   </div>
 
-   <div class="say">
-    <p><strong>Mean well above median means a long tail to the right.</strong> You have just diagnosed
-    the shape of a distribution without drawing anything &mdash; and tomorrow we put a number on it.</p>
+   <div class="keyline" style="margin:14px 0">
+    <b>Never report an average on its own.</b> It always needs a second number beside it saying how
+    spread out the values are.
+   </div>
+
+   <div class="speak">
+    <p>The average tells you where the middle is. The second number tells you <b>how far people are from
+    that middle</b>. You need both, always.</p>
+    <p>So for the rest of today: how do we measure spread?</p>
    </div>
   </div>
 
+  <!-- 58-68 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">70 – 84</span><h3>Lab</h3></div>
-   <div class="do">Pairs, June with July.</div>
-   <ol class="n">
-    <li>For <b>salary, age, height_cm and experience</b>: compute all three averages.</li>
-    <li>For each column, state <b>which you would report</b> and why, in one sentence.</li>
-    <li>Compute <b>mean minus median</b> for each. Which column is most skewed? Which is most symmetric?</li>
-    <li>A delivery rider covers 30 km at 15 km/h and returns at 45 km/h. <b>What is the average speed?</b></li>
-    <li>An investment returns +50%, then &minus;30%, then +20%. <b>What is the average annual return?</b></li>
-   </ol>
-   <p class="cap" style="margin-top:10px">Answers &mdash; Q4: <b>22.5 km/h</b> (harmonic), not 30.
-   Q5: (1.5 &times; 0.7 &times; 1.2)<sup>1/3</sup> = <b>8.8% per year</b>, not the 13.3% an arithmetic
-   mean would claim.</p>
+   <div class="bhead"><span class="clock">58 &ndash; 68</span><h3>Range &mdash; the obvious idea, and why it fails</h3></div>
+   <p class="objective">Let them invent it, then break it. Ten minutes.</p>
+
+   <div class="qbox">
+    <div class="q">Ask before telling: &ldquo;how would you measure how spread out team B is?&rdquo;</div>
+    <div class="a">Somebody will say &ldquo;biggest minus smallest&rdquo; almost immediately. Take it &mdash;
+    it is the right first instinct and it has a name.</div>
+   </div>
+
+   <div class="speak">
+    <p>Biggest minus smallest. That is called the <b>range</b>, and you just invented it, which is a
+    good sign.</p>
+    <p>Team A: fifty-two minus forty-eight is <b>four</b>. Team B: ninety minus ten is <b>eighty</b>.</p>
+    <p>And look at that &mdash; it works. Same average of fifty, but ranges of four and eighty. The
+    second number has told you something the first one hid completely.</p>
+   </div>
+
+   <div class="stage">Now break it, on the real file. Ask them to predict first.</div>
+
+   <div class="speak">
+    <p>So let us use it on our salary column. What do you think the range of salaries is?</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(<span class="c">"lowest :"</span>, <span class="k">int</span>(sal.min()))
+<span class="k">print</span>(<span class="c">"highest:"</span>, <span class="k">int</span>(sal.max()))
+<span class="k">print</span>(<span class="c">"range  :"</span>, <span class="k">int</span>(sal.max() - sal.min()))</code></pre>
+   <div class="screen">lowest : 33085
+highest: 5200000
+range  : 5166915</div>
+
+   <div class="speak">
+    <p>Fifty-one lakh, sixty-six thousand. That is the range of salaries in this company.</p>
+    <p>Now &mdash; is that useful? Does that number tell you anything at all about what a normal employee
+    here earns?</p>
+   </div>
+
+   <div class="stage">Let them say no. Then name the reason precisely.</div>
+
+   <div class="speak">
+    <p>No. And here is exactly why.</p>
+    <p>The range uses <b>two numbers out of two hundred</b>. And not two random ones &mdash; by
+    definition, the two most extreme values you have.</p>
+    <p>So one person, or one typing mistake, decides the entire answer. Everybody else in the file might
+    as well not exist.</p>
+    <p>Notice this is the same problem the mean had. The range is to the mean what we need next is to
+    the median. It gets destroyed by extremes.</p>
+   </div>
   </div>
 
+  <!-- 68-82 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">84 – 90</span><h3>Close</h3></div>
-   <div class="say">
-    <p>An average is a <strong>choice</strong>, not a fact. Choosing the wrong one is not a rounding
-    error &mdash; it changes what your report says.</p>
-    <p>Tomorrow: two delivery partners both average thirty minutes. One always takes between twenty-eight
-    and thirty-two. The other takes ten minutes or fifty. <strong>Same average, and you would never use
-    the second one.</strong> Centre is only half the story.</p>
+   <div class="bhead"><span class="clock">68 &ndash; 82</span><h3>Quartiles and IQR</h3></div>
+   <p class="objective">The fix. Point at describe() &mdash; they have been staring at these for a week.</p>
+
+   <div class="stage">Run describe() first. They have seen this output since day one without knowing
+   what three of the rows meant.</div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(sal.describe().round(<span class="o">0</span>))</code></pre>
+
+   <div class="speak">
+    <p>You have been looking at this output since day one. Look at those three rows in the middle
+    &mdash; twenty-five percent, fifty percent, seventy-five percent.</p>
+    <p>You never asked me what they were. Today they become the most useful thing on the screen.</p>
    </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>sort everyone by salary, then cut into four equal groups
+
+   |------|------|------|------|
+         Q1     Q2     Q3
+        25%    50%    75%</code></pre>
+
+   <div class="speak">
+    <p>Line everybody up in order of salary and cut the line into four equal groups.</p>
+    <p>The three cut points are called <b>quartiles</b>. Q1 is the value that twenty-five percent of
+    people fall below. Q3 is the value seventy-five percent fall below.</p>
+    <p>And Q2, in the middle &mdash; what is that the same as?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Wait for it. Somebody will get it.</div>
+    <div class="a"><b>The median.</b> Q2 and the median are exactly the same thing, two names for the
+    value with half the data on each side. Worth saying out loud because it makes quartiles feel
+    familiar rather than new.</div>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(<span class="c">"Q1 (25%):"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.25</span>)))
+<span class="k">print</span>(<span class="c">"Q2 (50%):"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.50</span>)), <span class="c">"  <- the median"</span>)
+<span class="k">print</span>(<span class="c">"Q3 (75%):"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.75</span>)))</code></pre>
+   <div class="screen">Q1 (25%): 59004
+Q2 (50%): 68647   &lt;- the median
+Q3 (75%): 80600</div>
+
+   <div class="speak">
+    <p>So a quarter of this company earns below fifty-nine thousand. Three quarters earn below eighty
+    thousand six hundred.</p>
+    <p>Now &mdash; the middle half of the company, everyone between Q1 and Q3, sits between fifty-nine
+    thousand and eighty thousand. <b>How wide is that?</b></p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>q1 = sal.quantile(<span class="o">0.25</span>)
+q3 = sal.quantile(<span class="o">0.75</span>)
+<span class="k">print</span>(<span class="c">"IQR:"</span>, <span class="k">round</span>(q3 - q1))</code></pre>
+   <div class="screen">IQR: 21596</div>
+
+   <div class="speak">
+    <p>Twenty-one thousand five hundred. That is called the <b>interquartile range</b>, or IQR. Q3 minus
+    Q1. The spread of the middle half.</p>
+    <p>Now put the two numbers side by side.</p>
+   </div>
+
+   <div class="typeit">On the board, side by side</div>
+<pre><code>range   5,166,915
+IQR        21,596</code></pre>
+
+   <div class="speak">
+    <p>Same column. Same two hundred people. Five million against twenty-one thousand.</p>
+    <p>Which of those two numbers actually describes this company?</p>
+    <p>The IQR. And the reason is simple: <b>it throws away the top twenty-five percent and the bottom
+    twenty-five percent before it measures anything.</b> The fifty-two lakh salary is in the discarded
+    part. It cannot touch the answer.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    The pairing to write on the board:<br>
+    <b>mean goes with range</b> &mdash; both use every value, both get wrecked by extremes.<br>
+    <b>median goes with IQR</b> &mdash; both care about position, both ignore extremes.
+   </div>
+
+   <div class="stage">Now warn them about the by-hand discrepancy, before they find it tonight and
+   think their computer is broken.</div>
+
+   <div class="speak">
+    <p>One warning before you go and try this yourselves.</p>
+    <p>If you look up how to find Q1 by hand, you will be told: take the median, then take the median of
+    the lower half. For the numbers ten to seventy that gives you Q1 of twenty and Q3 of sixty, so an
+    IQR of forty.</p>
+    <p>Pandas will give you twenty-five and fifty-five, so an IQR of thirty. On the same numbers.</p>
+    <p>Neither is wrong. There are several accepted ways to cut a small dataset into quarters, and pandas
+    slides between the two nearest values instead of picking one. On seven numbers you can see the
+    difference. On two hundred it is invisible.</p>
+    <p>So do not panic when the textbook and the computer disagree by a little. They are both right.</p>
+   </div>
+  </div>
+
+  <!-- 82-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">82 &ndash; 90</span><h3>Skew, and the question for tomorrow</h3></div>
+   <p class="objective">Name one word, then open the loop and leave. Eight minutes.</p>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(<span class="c">"mean - median:"</span>, <span class="k">round</span>(sal.mean() - sal.median()))
+<span class="k">print</span>(<span class="c">"skew         :"</span>, <span class="k">round</span>(sal.skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">mean - median: 27001
+skew         : 14.06</div>
+
+   <div class="speak">
+    <p>One word before we finish. That gap between the mean and the median has a name.</p>
+    <p>When the mean sits well above the median, we say the data is <b>skewed</b>. All that means is
+    lopsided &mdash; a few very large values pulling one side out into a long tail.</p>
+    <p>The second number, fourteen, is a measurement of how lopsided. You do not need the formula today.
+    Just know that <b>big and positive means a few very large values.</b></p>
+    <p>And you already know exactly which value is doing it.</p>
+   </div>
+
+   <div class="stage">Bring the 52-lakh row up on its own. This is the setup for tomorrow.</div>
+
+   <div class="speak">
+    <p>This one person. Fifty-two lakh.</p>
+    <p>They have wrecked the mean. They have wrecked the range. They are the entire reason the skew is
+    fourteen instead of nearly zero.</p>
+    <p>So the obvious question, and I want you to actually think about it before tomorrow:</p>
+    <p><b>Should we just remove them?</b></p>
+   </div>
+
+   <div class="stage">Do not answer. Let the silence sit, then close the session.</div>
+
+   <div class="speak">
+    <p>Think about it tonight. It sounds like an easy yes. It is not, and there is a name for what that
+    person is &mdash; an <b>outlier</b> &mdash; and a proper method for deciding what to do about them.</p>
+    <p>That is tomorrow.</p>
+   </div>
+
+   <div class="warn"><b>Do not resolve the outlier question.</b> It is the entire hook for day 5, where
+   they get the 1.5&times;IQR rule and the box plot. Notice you can only teach that rule <em>because</em>
+   they now have the IQR &mdash; today set it up deliberately.</div>
   </div>
  </div>
 </section>
@@ -4426,77 +4790,89 @@ df[<span class="c">"height_cm"</span>].mean() - df[<span class="c">"height_cm"</
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
-  <div class="qa"><h5>If the median is safer, why use the mean at all?</h5>
-  <p>Because it uses all the data, which makes it more stable across repeated samples, and because it is
-  algebraically tractable &mdash; variance, standard deviation, regression and the central limit theorem
-  are all built on it. The median is robust but mathematically awkward. For symmetric data the mean is
-  genuinely better.</p></div>
-  <div class="qa"><h5>Can a dataset have no mode?</h5>
-  <p>Yes &mdash; if every value appears exactly once. Common with continuous data like height, where exact
-  repeats are rare. That is why the mode is really a concept for categorical or discrete data.</p></div>
-  <div class="qa"><h5>What if there are two modes?</h5>
-  <p>It is bimodal, and that is usually a <b>finding rather than a nuisance</b>. Two peaks generally mean
-  two different groups have been mixed into one column. Investigate before you summarise.</p></div>
-  <div class="qa"><h5>Why does <code>.mode()</code> return a Series?</h5>
-  <p>Because there can legitimately be more than one most-frequent value. Pandas returns all of them, so
-  you index with <code>[0]</code> when you want a single number.</p></div>
-  <div class="qa"><h5>Is the trimmed mean cheating?</h5>
-  <p>No, provided you declare it. Cutting the top and bottom 10% and averaging the rest is a standard
-  robust compromise &mdash; competitive judging uses an extreme version. What is not acceptable is trimming
-  until the answer suits you, and not saying you did.</p></div>
+
+  <div class="qa"><h5>&ldquo;Why not just always use the median?&rdquo;</h5>
+  <p>&ldquo;Because when there are no extremes, using every value is a strength &mdash; the mean carries
+  more information. The median throws most of the data away and keeps only the middle. Use the mean when
+  it is safe, and usually it is.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;How do I know if my data has extremes without checking every row?&rdquo;</h5>
+  <p>&ldquo;Compare the mean and the median. Close together, you are fine. Far apart, something is
+  pulling. That one comparison is your early warning and it takes two seconds.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can there be more than one mode?&rdquo;</h5>
+  <p>&ldquo;Yes. If two values tie for most common, both are modes. That is why pandas hands you back a
+  list rather than one value, and why we wrote <code>mode()[0]</code> to take the first.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why 25 and 75 percent? Why not thirds?&rdquo;</h5>
+  <p>&ldquo;You can cut anywhere you like &mdash; those are called percentiles, and quantile(0.9) gives
+  you the ninetieth. Quarters are just the convention because they give you the middle half, which turns
+  out to be the most useful single chunk.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My textbook gives a different IQR to pandas.&rdquo;</h5>
+  <p>&ldquo;Both are right. There are several accepted methods for cutting a small dataset into quarters
+  and pandas interpolates between values rather than picking one. Visible on seven numbers, invisible on
+  two hundred.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is the range ever useful then?&rdquo;</h5>
+  <p>&ldquo;Yes &mdash; when you specifically want to know the extremes. Quality control cares about the
+  worst item, not the typical one. It is only misleading when you use it to describe what is
+  normal.&rdquo;</p></div>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:18px">If things go sideways</h2>
-  <ul class="l">
-   <li><b>Running long</b> &mdash; cut the <b>geometric mean</b> block and keep harmonic. Geometric matters
-   most in finance; harmonic produces the more surprising classroom moment.</li>
-   <li><b>Running short</b> &mdash; have them find the mode of <code>department</code> and
-   <code>rating</code>, and explain why the mean is illegal on both. It reinforces Day 2 at no cost.</li>
-   <li><b>The room finds the specialist means confusing</b> &mdash; drop to just the rule table. Knowing
-   <em>that</em> a different mean exists for growth and rates is worth more to a fresher than being able
-   to derive it.</li>
-   <li><b>Someone asks about weighted median</b> &mdash; it exists, it is rarely needed, park it.</li>
-  </ul>
-  <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--hair)">
-   <h3 class="h-sm" style="margin-bottom:10px">Optional video</h3>
-   <a class="vid" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener">
-    <span class="src">Udemy §6</span><span>Measure Of Central Tendency (Mean, Median, Mode)</span><span class="dur">25:20</span></a>
-  </div>
- </div>
-</section>
+  <div class="lbl">End of session &mdash; put this on screen</div>
+  <div class="sumcard"><pre><code><span class="c"># ---- FINISHING THE SAMPLING STORY ----</span>
+<span class="c"># Literary Digest 1936: 10,000,000 mailed, 2,400,000 replied, predicted the WRONG winner</span>
+<span class="c">#   addresses came from phone books and car registrations, during the Depression</span>
+<span class="c">#   Gallup asked 50,000 properly and got it right</span>
+<span class="c">#   -&gt; a biased 2,400,000 LOST to an unbiased 50,000</span>
+<span class="c"># for 95% confidence and 3% margin you need ~1,068 people, whatever the country size</span>
+<span class="c"># it was never about how many. it was about how you chose them.</span>
 
-<section>
- <div class="wrap">
-  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">9 lines</span></div>
-  <p class="sumnote">Put this on screen in the last two minutes, or paste it into a cell and let them keep it. Every command from the session, in order, with what it does.</p>
-  <div class="sumcard"><pre><code>import numpy as np, pandas as pd
-df = pd.read_csv(&quot;employees.csv&quot;)
-s = df[&quot;salary&quot;].dropna()
+sal = df[&quot;salary&quot;].dropna()
 
 <span class="c"># ---- THE THREE AVERAGES ----</span>
-s.mean()                     <span class="c"># 95648              uses EVERY value, so outliers drag it</span>
-s.median()                   <span class="c"># 68647              position only, outliers cannot move it</span>
-df[&quot;salary&quot;].mode()[0]       <span class="c"># most frequent      returns a Series, hence [0]</span>
+sal.mean()                     <span class="c"># 95,648   add up, divide by count - uses EVERY value</span>
+sal.median()                   <span class="c"># 68,647   sort, take the middle - cares only about POSITION</span>
+df[&quot;department&quot;].mode()[0]     <span class="c"># Sales    the only average that works on words</span>
 
-<span class="c"># ---- PROOF: remove ONE row out of 199 ----</span>
-s[s &lt; 1000000].mean()        <span class="c"># 69869              mean collapsed by 26k</span>
-s[s &lt; 1000000].median()      <span class="c"># 68494              median moved 153</span>
+<span class="c"># numbers, evenly spread  -&gt;  MEAN</span>
+<span class="c"># numbers, a few extreme  -&gt;  MEDIAN</span>
+<span class="c"># words / categories      -&gt;  MODE</span>
 
-<span class="c"># ---- A SYMMETRIC COLUMN LOOKS DIFFERENT ----</span>
-df[&quot;experience&quot;].mean()      <span class="c"># 7.78</span>
-df[&quot;experience&quot;].median()    <span class="c"># 8.0                all three close = symmetric</span>
-df[&quot;experience&quot;].mode()[0]   <span class="c"># 7</span>
+sal.mean() - sal.median()      <span class="c"># 27,001   the gap</span>
+sal.max()                      <span class="c"># 5,200,000   the reason for the gap</span>
+sal.skew()                     <span class="c"># 14.06    big and positive = a few very large values</span>
 
-<span class="c"># ---- THE FREE SKEW DIAGNOSTIC ----</span>
-s.mean() - s.median()        <span class="c"># +27001             big positive = long right tail</span>
+<span class="c"># ---- AN AVERAGE IS NEVER ENOUGH ALONE ----</span>
+<span class="c"># team A  48 49 50 51 52  -&gt; mean 50, range  4   uniform</span>
+<span class="c"># team B  10 30 50 70 90  -&gt; mean 50, range 80   wildly inconsistent</span>
+<span class="c"># same average, completely different teams</span>
 
-<span class="c"># ---- SPECIALIST AVERAGES ----</span>
-np.average([90,70,60], weights=[0.2,0.3,0.5])   <span class="c"># 66.0   weighted, not 73.3</span>
-(1.80 * 0.60) ** 0.5         <span class="c"># 1.039              GEOMETRIC: +80% then -40% = +3.9%/yr</span>
-2 / (1/20 + 1/60)            <span class="c"># 30.0               HARMONIC: 20 out, 60 back = 30, not 40</span></code></pre></div>
+<span class="c"># ---- SPREAD ----</span>
+sal.max() - sal.min()          <span class="c"># 5,166,915   RANGE - uses only 2 values, both extreme</span>
+sal.quantile(0.25)             <span class="c"># 59,004   Q1  a quarter earn less than this</span>
+sal.quantile(0.50)             <span class="c"># 68,647   Q2  same thing as the median</span>
+sal.quantile(0.75)             <span class="c"># 80,600   Q3  three quarters earn less than this</span>
+sal.quantile(0.75) - sal.quantile(0.25)   <span class="c"># 21,596   IQR - the middle half</span>
+
+<span class="c"># range 5,166,915  vs  IQR 21,596   - same column, same 200 people</span>
+<span class="c"># IQR discards the top 25% and bottom 25% BEFORE measuring, so extremes cannot touch it</span>
+
+<span class="c"># mean   goes with RANGE  - both use every value, both wrecked by extremes</span>
+<span class="c"># median goes with IQR    - both care about position, both ignore extremes</span>
+
+<span class="c"># NOTE: by hand Q1 = median of the lower half. pandas interpolates instead,</span>
+<span class="c">#       so small datasets give slightly different answers. Both are correct.</span></code></pre></div>
+
+  <div class="planbanner" style="margin-top:20px">
+   <b>Where this goes next.</b> Day 5 takes the quartiles you just taught and turns them into the box
+   plot and the 1.5&times;IQR rule for finding outliers, then variance and standard deviation. The
+   52-lakh salary stops being a nuisance and becomes the worked example.
+  </div>
  </div>
 </section>
 </div>
