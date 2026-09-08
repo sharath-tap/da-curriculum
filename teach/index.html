@@ -399,11 +399,11 @@ try{var _t=localStorage.getItem("steep-theme");
      real 52-lakh salary and the impossible age of minus four with the same arithmetic.</p>
      <span class="foot">Next &middot; full script &middot; 26 speech blocks</span></button>
 
-    <button class="dcard" data-go="d6">
+    <button class="dcard full" data-go="d6">
      <span class="id">DAY 6</span><h3>Variance and Standard Deviation</h3>
-     <p>Why we square the differences, the n&minus;1 trap, and the 68-95-99.7 rule. The 364,031 from
-     day 5 becomes the worked example.</p>
-     <span class="foot">Outline &middot; 90 min</span></button>
+     <p>Let the obvious idea fail first, then square, then take the root. The n&minus;1 trap, the
+     68-95-99.7 rule breaking on your own data &mdash; and the 14.06 finally derived.</p>
+     <span class="foot">Full script &middot; 32 speech blocks</span></button>
 
     <button class="dcard" data-go="d7">
      <span class="id">DAY 7</span><h3>Correlation</h3>
@@ -5634,30 +5634,28 @@ age = df[&quot;age&quot;].dropna()
 </section>
 </div>
 <div class="day" id="d6">
-<div class="wrap" style="padding-top:22px"><div class="planbanner"><b>Day 4</b> &middot; Stands alone in the 10-day plan.</div></div>
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Day 4 &middot; both batches merged &middot; 90 minutes</p>
-  <h1 class="display">Shape, Quartiles<br>and What to Do About Outliers</h1>
-  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:640px">
-   Students have been reading <code>describe()</code> for six days. Today they find out that five of its
-   rows are a picture &mdash; and that deciding what to do with an outlier is a judgement call, not a
-   command.
-  </p>
+  <p class="tag" style="margin-bottom:16px">Statistics day 6 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">Variance and<br>standard deviation</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   You closed day 5 pointing at 364,031 and promising to explain it. Today you do &mdash; by letting the
+   obvious idea fail first, then squaring, then taking the root. Ends by finally deriving the 14.06 you
+   have been dodging for two sessions.</p>
 
   <div class="glance">
    <div class="gcell"><b>90</b><span>minutes</span></div>
-   <div class="gcell"><b>5</b><span>numbers, one plot</span></div>
-   <div class="gcell"><b>1.5</b><span>the IQR multiplier</span></div>
-   <div class="gcell"><b>14.06</b><span>salary's skew</span></div>
+   <div class="gcell"><b>4</b><span>steps to std</span></div>
+   <div class="gcell"><b>22&times;</b><span>outlier effect</span></div>
+   <div class="gcell"><b>14.06</b><span>finally explained</span></div>
   </div>
 
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">The one idea today has to land</h4>
-   <p style="color:var(--sienna)"><b style="color:var(--sienna)">Finding an outlier is arithmetic.
-   Deciding what to do with it is judgement.</b> The 1.5&times;IQR rule flags candidates; it does not
-   tell you to delete them. Students who learn to ask <em>why is this value here</em> before acting are
-   the ones who will not quietly destroy a dataset in their first job.</p>
+   <h4 style="color:var(--sienna)">The two ideas today has to land</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">One &mdash; standard deviation is
+   roughly the typical distance a value sits from the mean.</b> Not the formula. That sentence.<br>
+   <b style="color:var(--sienna)">Two &mdash; because the distances are squared, one extreme value can
+   inflate it enormously.</b> 364,031 against 16,066, from two rows out of 199.</p>
   </div>
  </div>
 </section>
@@ -5666,268 +5664,686 @@ age = df[&quot;age&quot;].dropna()
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Know the five-number summary of salary cold:</b> 33,085 / 59,004 / 68,647 / 80,600 / 5,200,000.
-   The jump from Q3 to max is the whole lesson.</li>
-   <li><b>Be ready to say where 1.5 comes from.</b> It is a convention, not a derivation. Say so honestly.</li>
-   <li><b>Prepare your position on deleting outliers.</b> The honest answer is &ldquo;it depends, and here
-   is how to decide&rdquo; &mdash; not a rule.</li>
-   <li><b>Optional:</b> Udemy §6 &mdash; <em>Percentiles And Quartiles</em> (10:47), <em>5 Number
-   Summary</em> (18:03), <em>Histogram And Skewness</em> (25:15).</li>
+   <li><b>Let them hit the wall.</b> The block from minute 10 to 22 exists so students discover for
+   themselves that raw distances always sum to zero. Do not shortcut it by giving them squaring &mdash;
+   the whole session makes sense only because they saw the obvious idea fail first.</li>
+   <li><b>Take both fixes seriously.</b> When they suggest absolute values, that is a genuinely good
+   answer. Work it out on the board and get 1.5. Then explain honestly why squaring won. Dismissing it
+   makes squaring look arbitrary.</li>
+   <li><b>Warn them about pandas versus NumPy before they meet it.</b> Two libraries, same data,
+   different answers. Somebody will otherwise spend an evening convinced one is broken.</li>
+   <li><b>The empirical rule failing is the best moment in the session.</b> 99.5, 99.5, 99.5 on your own
+   file. Let them see it break, ask why, and only then remove the outliers and watch it come right.</li>
+   <li><b>The skew derivation retires a loose end.</b> You have shown 14.06 twice and deferred it twice.
+   You could not explain it before &mdash; it needs standard deviation. Say that out loud; it makes the
+   sequencing feel deliberate.</li>
   </ol>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Primer &mdash; what you are actually teaching</h2>
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Today you finally explain the number you have been using
+  since day one without defining. Four ideas, and the second one &mdash; why we square the differences
+  &mdash; is the one students find genuinely strange.</p>
 
-  <div class="primer">
-   <h4>Percentiles, and why software disagrees about them</h4>
-   <p>The p-th percentile is the value below which roughly p% of the data sits. The median is the 50th.
-   Quartiles cut the data into four; deciles into ten.</p>
-   <p>Worth knowing before a student catches you out: <b>there are several accepted methods for computing
-   percentiles</b>, differing in how they interpolate between data points. NumPy, Excel and R can give
-   slightly different answers on the same small dataset. This is normal, not a bug &mdash; but a student
-   who does not know it will spend an hour hunting an error that does not exist.</p>
+  <div class="understand">
+   <h5>Part one &middot; why variance exists at all</h5>
+
+   <h6>The gap in what they already know</h6>
+   <p>They can measure spread two ways. <b>Range</b> uses two values and gets destroyed by extremes.
+   <b>IQR</b> is robust, but it deliberately throws away half the data to get there.</p>
+   <p>Neither one uses every value <em>and</em> stays sensible. That is the gap variance fills, and it is
+   worth naming out loud &mdash; otherwise students think you are giving them a third measure for no
+   reason.</p>
+
+   <h6>The natural first attempt, and why it fails immediately</h6>
+   <p>If you want spread using every value, the obvious idea is: measure how far each value sits from the
+   mean, then average those distances.</p>
+   <p>It fails. Take 2, 4, 4, 4, 5, 5, 7, 9 with a mean of 5. The distances are &minus;3, &minus;1,
+   &minus;1, &minus;1, 0, 0, 2, 4.</p>
+   <div class="keyline">
+    Add them up and you get <b>zero</b>. And it will be zero for <em>any</em> dataset, always.
+   </div>
+   <p>That is not a coincidence &mdash; it is what the mean <em>is</em>. The mean is precisely the point
+   where the distances above and below cancel out exactly. So averaging raw distances can never measure
+   anything.</p>
+   <p>This is the moment worth building the session around. Let students hit the wall themselves before
+   you offer a way over it.</p>
+
+   <h6>Two ways over the wall, and why one won</h6>
+   <p>The problem is the negative signs. Two obvious fixes:</p>
+   <div class="simple">
+    <span class="lab">Fix one — take the absolute value</span>
+    <p>Ignore the minus signs and average. For our numbers that gives <b>1.5</b>. It is called the mean
+    absolute deviation, it is perfectly sensible, and almost nobody uses it.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Fix two — square everything</span>
+    <p>Squaring also kills the sign, and it is the one that won. For our numbers the squares are 9, 1, 1,
+    1, 0, 0, 4, 16 &mdash; totalling <b>32</b>. Divide by 8 and you get <b>4</b>. That is the
+    <b>variance</b>.</p>
+   </div>
+   <p><b>Why did squaring win?</b> Be honest: partly because squares behave beautifully in algebra and
+   absolute values do not &mdash; you can differentiate a square, which matters enormously for everything
+   built on top of it. But there is a real statistical reason too: <b>squaring punishes large distances
+   far more than small ones.</b> A value three times further away contributes nine times more. If you
+   think being badly wrong is worse than being slightly wrong &mdash; and usually it is &mdash; squaring
+   encodes that.</p>
+   <p>Do not pretend absolute deviation is wrong. It is not. It just lost.</p>
+
+   <h6>Why standard deviation exists on top of variance</h6>
+   <p>Variance has one fatal presentation problem: <b>the units are squared.</b> Our salary variance is
+   in <em>rupees squared</em>, which is not a thing anybody can picture.</p>
+   <p>So take the square root and you are back in rupees. That is the standard deviation, and that is the
+   only reason it exists. Variance is the calculation; standard deviation is the version you can say out
+   loud.</p>
+   <div class="keyline">
+    <b>Standard deviation is roughly the typical distance a value sits from the mean.</b> That is the
+    sentence students should leave with &mdash; not the formula.
+   </div>
   </div>
 
-  <div class="primer">
-   <h4>Skewness &mdash; and the naming trap</h4>
-   <p>Skewness measures asymmetry. It works by cubing the standardised deviations, which preserves sign
-   and lets values far out in one tail dominate.</p>
-   <p><b>The skew is named for where the tail points, not where the data sits.</b> A right-skewed
-   distribution has a long tail stretching right, which means the bulk of the data is on the <em>left</em>.
-   Students get this backwards every single time. State it, then repeat it.</p>
-   <p>Right skew is far more common in business data than left skew, for a structural reason worth
-   sharing: most quantities are <b>bounded below by zero but unbounded above</b>. Salary cannot go below
-   zero but can go to fifty-two lakh. Order values, session durations, claim sizes, city populations
-   &mdash; all the same shape.</p>
+  <div class="understand">
+   <h5>Part two &middot; the n&minus;1 trap</h5>
+
+   <h6>The problem it solves</h6>
+   <p>When you calculate spread from a <em>sample</em>, you use the sample's mean &mdash; not the
+   population's, which you do not know. And the sample's own mean is, by construction, the point that
+   sits closest to the sample's own values.</p>
+   <p>So your distances come out slightly too small, every time. Systematically. Dividing by
+   <b>n&minus;1</b> instead of n makes the answer slightly bigger, correcting for it.</p>
+   <p>You do not need to prove this. &ldquo;A sample looks slightly less spread out than it really is,
+   so we nudge the answer up&rdquo; is enough for today.</p>
+
+   <h6>The trap that will actually bite them</h6>
+   <p>This is the practical part and it matters more than the theory:</p>
+   <div class="simple">
+    <span class="lab">Pandas and NumPy disagree by default</span>
+    <p><code>sal.std()</code> gives <b>364,031</b> &mdash; pandas assumes a sample and divides by n&minus;1.</p>
+    <p><code>np.std(sal)</code> gives <b>363,116</b> &mdash; NumPy assumes a population and divides by n.</p>
+    <p>Same data. Different answers. Neither is broken.</p>
+    <p><code>np.std(sal, ddof=1)</code> makes NumPy match pandas.</p>
+   </div>
+   <p>Students hit this, assume one library is wrong, and lose an evening. Tell them before it happens.</p>
+   <p>On 199 rows the gap is about 900 rupees &mdash; a quarter of a percent. On ten rows it would be
+   noticeable. On thousands it is invisible. Worth saying, so they know when to care.</p>
   </div>
 
-  <div class="primer">
-   <h4>Kurtosis is about tails, not peaks</h4>
-   <p>Kurtosis is usually taught as &ldquo;peakedness&rdquo;, which is misleading. Because deviations are
-   raised to the <b>fourth</b> power, values near the mean contribute almost nothing and values far out
-   dominate completely. <b>High kurtosis means extreme values happen more often than a normal distribution
-   would predict.</b></p>
-   <p>Software note: pandas and scipy report <b>excess</b> kurtosis, benchmarked against the normal
-   distribution. So a normal column returns approximately <b>0</b>, not 3. Flag it &mdash; students
-   comparing against a textbook will be confused otherwise.</p>
-   <p>Why it matters commercially: financial returns have heavy tails. A risk model assuming normality
-   systematically underestimates the chance of a crash. That is kurtosis, and it has cost real money.</p>
+  <div class="understand">
+   <h5>Part three &middot; the 68-95-99.7 rule, and why your file breaks it</h5>
+
+   <h6>What the rule says</h6>
+   <p>For data with a symmetric bell shape: about <b>68%</b> of values sit within one standard deviation
+   of the mean, <b>95%</b> within two, <b>99.7%</b> within three.</p>
+   <p>This is the first genuinely useful thing standard deviation buys you. It turns an abstract number
+   into a statement about where people actually are.</p>
+
+   <h6>Run it on your file and it fails &mdash; use that</h6>
+   <p>This is the best part of the session and it is sitting in your data:</p>
+   <div class="simple">
+    <span class="lab">Three datasets, same test</span>
+    <p><b>Salary as it is:</b> 99.5% within one standard deviation. 99.5% within two. 99.5% within three.
+    The rule is nonsense here.</p>
+    <p><b>Salary with the two outliers removed:</b> 66% &middot; 95% &middot; 100%. Almost exactly the
+    rule.</p>
+    <p><b>A genuine normal distribution:</b> 69% &middot; 95.5% &middot; 99.7%. Textbook.</p>
+   </div>
+   <p>Why does the first one fail so completely? Because the 52-lakh salary made the standard deviation
+   364,031 &mdash; and one standard deviation either side of the mean is then a band from minus 268,000
+   to plus 459,000, which contains virtually everybody. <b>The outlier inflated the ruler until the ruler
+   stopped measuring anything.</b></p>
+   <p>That is the same lesson as day 5 in a new costume, and it is why the rule comes with a condition:
+   <b>it only applies to roughly symmetric data.</b> Teaching it without that condition is how people end
+   up misusing it.</p>
+
+   <h6>Skew &mdash; you can finally explain it</h6>
+   <p>You have shown them 14.06 twice and told them not to worry about it. Today you can actually derive
+   it, because it needs standard deviation and now they have it.</p>
+   <div class="simple">
+    <span class="lab">The whole calculation, in four steps</span>
+    <p><b>1.</b> For each value, work out how many standard deviations it sits from the mean.
+    For the 52-lakh salary that is <b>14.02</b>. For everyone else it is under 1.</p>
+    <p><b>2.</b> Cube each of those. Cubing keeps the sign &mdash; which is how skew knows left from
+    right &mdash; and blows up big distances. 14.02 cubed is <b>2,757</b>. Everything under 1 cubes to
+    almost nothing.</p>
+    <p><b>3.</b> Add them all up. Total across 199 rows: <b>2,756.6</b>. The 52-lakh row alone contributes
+    2,756.8. The other 198 rows together contribute <b>minus 0.2</b>.</p>
+    <p><b>4.</b> Multiply by a small size correction, n/((n&minus;1)(n&minus;2)) = 0.005102.
+    2,756.6 &times; 0.005102 = <b>14.06</b>.</p>
+   </div>
+   <p>The punchline is step 3: <b>one row is the entire number.</b> That is worth three minutes at the end
+   of the session, and it retires a loose end you have been carrying for two days.</p>
   </div>
 
-  <div class="primer">
-   <h4>The box plot's one blind spot</h4>
-   <p>A box plot draws the five-number summary and flags outliers. It is excellent for comparing groups
-   and spotting skew. It has a single serious weakness: <b>it cannot show bimodality</b>. A column with two
-   distinct clusters produces a box plot that looks entirely ordinary.</p>
-   <p>If two populations might be mixed in a column, use a violin plot or overlay the raw points.
-   This connects straight back to the two-modes point from Day 4.</p>
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They now have:</b> the three averages, range, quartiles, IQR, the five-number summary, the box
+   plot, the 1.5&times;IQR rule, outliers, and skew as a word they can read but not compute.</p>
+   <p><b>They have never heard:</b> variance, standard deviation as anything but a label in
+   <code>describe()</code>, deviation, the n&minus;1 correction, ddof, or the empirical rule.</p>
+   <p><b>They are owed an answer.</b> You closed day 5 pointing at 364,031 and saying &ldquo;tomorrow you
+   find out what this is.&rdquo; Open there.</p>
   </div>
  </div>
 </section>
 
 <section class="fog">
- <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2></div>
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
 </section>
 
 <section style="padding-top:8px">
  <div class="wrap">
 
+  <!-- 0-10 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 – 12</span><h3>describe() was a picture all along</h3></div>
-   <p class="objective">Reveal that five rows they have read for a week are the box plot.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>The number you have never explained</h3></div>
+   <p class="objective">Answer yesterday's hook, then set up the gap. Ten minutes.</p>
 
-<pre><code>df[<span class="c">"salary"</span>].quantile([0, 0.25, 0.5, 0.75, 1])</code></pre>
-<pre><code>0.00      <span class="o">33085</span>     min
-0.25      <span class="o">59004</span>     Q1
-0.50      <span class="o">68647</span>     median
-0.75      <span class="o">80600</span>     Q3
-1.00    <span class="o">5200000</span>     max</code></pre>
+   <div class="stage">Put the number on screen alone before you say anything.</div>
 
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>These five numbers are called the <strong>five-number summary</strong>, and you have been looking
-    at them in <code>describe()</code> since day one without knowing they had a name.</p>
-    <p>Now read them out loud. Q1 fifty-nine thousand, median sixty-eight, Q3 eighty thousand six hundred.
-    <strong>Then the maximum: fifty-two lakh.</strong></p>
+   <div class="typeit">On screen</div>
+<pre><code>364031</code></pre>
+
+   <div class="speak">
+    <p>Yesterday I finished on this number and told you I would explain it today.</p>
+    <p>You have actually been looking at it since day one. Every time you ran describe, it was sitting
+    there in a row labelled <b>std</b>, and nobody ever asked me what it meant.</p>
+    <p>Today you find out. And more importantly, you find out why one person earning fifty-two lakh made
+    it twenty-two times bigger than it should be.</p>
    </div>
 
-   <div class="chkq"><b>Ask:</b> &ldquo;Half of this company earns between 59,004 and 80,600 &mdash; a band
-   of about twenty-one thousand rupees. And the maximum is fifty-two lakh. What does that tell you before
-   we draw anything?&rdquo;<br>That the data is <b>violently right-skewed</b>, and that one value sits
-   nowhere near the rest.</div>
+   <div class="stage">Now name the gap in what they already know. This is why the session exists.</div>
 
-   <div class="do">Draw the box plot on the board from these five numbers &mdash; box from Q1 to Q3, line
-   at the median, whiskers out. Then mark where 52 lakh would go: <b>off the board, out the door.</b>
-   The physical gesture makes the point better than any plot.</div>
+   <div class="speak">
+    <p>But first &mdash; you already know two ways to measure spread. Why do we need a third?</p>
+    <p>You have the <b>range</b>. Biggest minus smallest. Its problem is that it uses two numbers out of
+    two hundred, and both of them are the most extreme ones you have.</p>
+    <p>And you have the <b>IQR</b>. That one is solid, it ignores extremes. But look at how it does that
+    &mdash; it deliberately throws away the top quarter and the bottom quarter of your data. <b>Half your
+    data never gets a say.</b></p>
+    <p>So neither one uses every value and stays sensible. That is the hole, and that is what today
+    fills.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; leave it up</div>
+<pre><code>RANGE   uses 2 values           wrecked by extremes
+IQR     ignores half the data    robust but wasteful
+?       uses EVERY value         <- today</code></pre>
   </div>
 
+  <!-- 10-22 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">12 – 26</span><h3>Percentiles as a working tool</h3></div>
+   <div class="bhead"><span class="clock">10 &ndash; 22</span><h3>Let them hit the wall</h3></div>
+   <p class="objective">Do not give them the answer. Let the obvious idea fail first. Twelve minutes.</p>
 
-<pre><code>df[<span class="c">"salary"</span>].quantile(0.90)     <span class="c"># top 10% threshold</span>
-df[<span class="c">"experience"</span>].quantile([0.1, 0.9])</code></pre>
+   <div class="stage">Board only. This block is the reason the rest of the session makes sense &mdash;
+   do not shortcut it.</div>
 
-   <div class="expl">
-    <div class="erow"><span class="cd">quantile(0.9)</span><span class="tx">The value below which 90% of the data falls. Pass a <b>list</b> to get several at once.</span></div>
-    <div class="erow"><span class="cd">why percentiles beat means here</span><span class="tx">&ldquo;Our 95th-percentile page load is 4 seconds&rdquo; is a statement about <b>real users having a bad time</b>. The mean load time hides them completely.</span></div>
+   <div class="speak">
+    <p>Right. If you want a measure of spread that uses every value, what is the obvious thing to do?</p>
+    <p>Work out how far each value is from the mean, then average those distances. That sounds
+    completely reasonable. Let us try it.</p>
    </div>
 
-   <div class="lbl">Say &mdash; the industry framing</div>
-   <div class="say">
-    <p>If you go into any engineering team, nobody asks for the average response time. They ask for
-    <strong>p95 and p99</strong> &mdash; the 95th and 99th percentiles. Because the average user is fine.
-    <strong>It is the worst five per cent who complain, churn, and tweet about you.</strong></p>
+   <div class="typeit">Write on the board</div>
+<pre><code>data:   2, 4, 4, 4, 5, 5, 7, 9
+
+mean =  40 / 8  =  5</code></pre>
+
+   <div class="speak">
+    <p>Eight numbers. They add to forty, so the mean is five.</p>
+    <p>Now, how far is each one from five? Two is three below. Four is one below, three times. Five is
+    exactly on it, twice. Seven is two above. Nine is four above.</p>
    </div>
 
-   <div class="warn"><b>Mention the disagreement:</b> different tools interpolate percentiles differently,
-   so NumPy and Excel can differ slightly on small datasets. Not a bug. Tell them now so they do not
-   waste an afternoon on it later.</div>
+   <div class="typeit">Add the distances row</div>
+<pre><code>value      2   4   4   4   5   5   7   9
+distance  -3  -1  -1  -1   0   0   2   4</code></pre>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;so what is the average distance? Add them up.&rdquo;</div>
+    <div class="a">Let them actually do it. Minus three, minus one, minus one, minus one, zero, zero, plus
+    two, plus four. <b>Zero.</b> Somebody will assume they made an arithmetic mistake. They did not.</div>
+   </div>
+
+   <div class="speak">
+    <p>Zero.</p>
+    <p>And before anyone checks their arithmetic &mdash; you did not make a mistake. Try it with any set
+    of numbers you like. <b>It will always be zero.</b></p>
+   </div>
+
+   <div class="stage">Now explain why, because this is genuinely interesting and it makes the mean
+   click for people who had only memorised it.</div>
+
+   <div class="speak">
+    <p>Why? Because that is what the mean <b>is</b>.</p>
+    <p>The mean is exactly the point where everything above it and everything below it cancel out
+    perfectly. That is the definition of where it sits. So the distances have to sum to zero &mdash; if
+    they did not, it would not be the mean.</p>
+    <p>Which means averaging raw distances can never measure anything. The answer is always zero, for
+    every dataset in the world.</p>
+    <p>So we need to get rid of the minus signs. Any ideas?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Take suggestions. Two will come up.</div>
+    <div class="a">Somebody will say <b>ignore the minus signs</b> &mdash; take absolute values. Somebody
+    else will say <b>square them</b>. Both are correct ideas. Write both on the board and take them
+    seriously; the choice between them is a real one.</div>
+   </div>
   </div>
 
+  <!-- 22-36 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">26 – 44</span><h3>Finding outliers with a rule</h3></div>
-   <p class="objective">Replace &ldquo;that looks wrong&rdquo; with a stated, defensible procedure.</p>
+   <div class="bhead"><span class="clock">22 &ndash; 36</span><h3>Squaring, and variance</h3></div>
+   <p class="objective">Try both fixes honestly, then explain why one won. Fourteen minutes.</p>
 
-<pre><code>q1, q3 = df[<span class="c">"salary"</span>].quantile([0.25, 0.75])
-iqr = q3 - q1                       <span class="c"># <span class="o">21596</span></span>
+   <div class="typeit">Try the first idea on the board</div>
+<pre><code>distance         -3  -1  -1  -1   0   0   2   4
+ignore the sign   3   1   1   1   0   0   2   4
 
-low  = q1 - 1.5 * iqr               <span class="c"># <span class="o">26610</span></span>
-high = q3 + 1.5 * iqr               <span class="c"># <span class="o">112994</span></span>
+average  =  12 / 8  =  1.5</code></pre>
 
-out = df[(df[<span class="c">"salary"</span>] &lt; low) | (df[<span class="c">"salary"</span>] &gt; high)]
-len(out)                            <span class="c"># <span class="o">2</span></span></code></pre>
-
-   <div class="expl">
-    <div class="erow"><span class="cd">the fences</span><span class="tx">Anything outside 26,610 to 112,994 is <b>flagged as a candidate</b> &mdash; note the word candidate.</span></div>
-    <div class="erow"><span class="cd">why this works</span><span class="tx">Q1 and Q3 are <b>themselves robust</b>. The extreme value barely moved them, so it cannot hide from a rule built on them.</span></div>
-    <div class="erow"><span class="cd">2 flagged</span><span class="tx">Out of 199. Rare enough to be interesting &mdash; which is exactly what a good rule should produce.</span></div>
+   <div class="speak">
+    <p>Ignore the signs and average. One point five. And that works &mdash; it is a real measure, it has
+    a name, it is called the mean absolute deviation.</p>
+    <p>Almost nobody uses it. I will tell you why in a minute. First let us try the other idea.</p>
    </div>
 
-   <div class="lbl">Contrast with the z-score approach, and show it failing</div>
-<pre><code>z = (df[<span class="c">"salary"</span>] - df[<span class="c">"salary"</span>].mean()) / df[<span class="c">"salary"</span>].std()
-(z.abs() &gt; 3).sum()                 <span class="c"># finds almost nothing</span></code></pre>
+   <div class="typeit">Now squaring</div>
+<pre><code>distance   -3  -1  -1  -1   0   0   2   4
+squared     9   1   1   1   0   0   4  16
 
-   <div class="chkq"><b>Ask:</b> &ldquo;Why does the z-score method miss what we can all see?&rdquo;<br>
-   Because the 52-lakh value <b>inflated the standard deviation to 3.6 lakh</b>. The outlier made the
-   ruler so long that it no longer looks unusual by that ruler. <b>It hid itself.</b> This is called
-   masking, and it is why the IQR method is preferred.</div>
+total  =  32
+</code></pre>
 
-   <div class="lbl">Where 1.5 comes from &mdash; be honest</div>
-   <div class="say">
-    <p>Somebody will ask why one and a half. The honest answer: <strong>it is a convention, not a
-    derivation.</strong> John Tukey chose it because for normal data it flags roughly the most extreme
-    0.7% &mdash; rare enough to be worth a look, common enough to be useful. He is said to have explained
-    it as: one is too small, two is too large.</p>
-    <p>Tell them which numbers in statistics are principled and which are conventions.
-    <strong>It builds more trust than pretending everything is derived.</strong></p>
+   <div class="speak">
+    <p>Square each distance. Minus three squared is nine &mdash; and notice the minus sign has gone,
+    which is the whole point. Minus one squared is one. Four squared is sixteen.</p>
+    <p>They add up to thirty-two. Divide by eight, and we get <b>four</b>.</p>
+    <p>That number has a name. It is called the <b>variance</b>.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>VARIANCE  =  the average of the squared distances from the mean
+
+            32 / 8  =  4</code></pre>
+
+   <div class="qbox">
+    <div class="q">Somebody will ask: &ldquo;why square instead of just ignoring the sign?&rdquo;</div>
+    <div class="a">Two honest reasons. <b>One</b> &mdash; squaring punishes big distances much harder. A
+    value three times further away contributes nine times more, so being badly wrong counts for more than
+    being slightly wrong. Usually that is what you want. <b>Two</b> &mdash; squares behave well in
+    algebra and absolute values do not, and almost everything in the rest of statistics is built on top
+    of this. <b>Do not say absolute deviation is wrong.</b> It is not. It just lost.</div>
+   </div>
+
+   <div class="speak">
+    <p>Two reasons, and I want to be straight with you about both.</p>
+    <p>First, squaring <b>punishes big distances much harder</b>. Look at the numbers &mdash; a distance
+    of four became sixteen, while a distance of one stayed one. Being badly wrong counts for far more
+    than being slightly wrong. Most of the time that is exactly what you want.</p>
+    <p>Second, and honestly, squares are much easier to work with mathematically than absolute values,
+    and almost everything you learn after this is built on top of variance. So it won partly on
+    convenience.</p>
+    <p>Absolute deviation is not wrong. It just lost.</p>
    </div>
   </div>
 
+  <!-- 36-46 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">44 – 58</span><h3>What to actually do about them</h3></div>
-   <p class="objective">The judgement block. This is the part that matters most professionally.</p>
+   <div class="bhead"><span class="clock">36 &ndash; 46</span><h3>Standard deviation</h3></div>
+   <p class="objective">One more step, and it exists for one reason only. Ten minutes.</p>
 
-   <div class="do">Ask the room directly: <b>&ldquo;Should we delete the 52-lakh salary?&rdquo;</b>
-   Let them argue for three or four minutes before you say anything. There is no clean answer, and the
-   argument is the lesson.</div>
+   <div class="stage">Ask the question that exposes the problem before you solve it.</div>
 
-   <div class="lbl">Then give them the four causes</div>
-<pre><code>1. DATA ERROR      age of 210, height of 1750 cm
-   &rarr; fix if recoverable, else treat as missing
-
-2. GENUINELY EXTREME BUT REAL    the CEO's salary
-   &rarr; KEEP IT. Deleting it is falsifying your data.
-
-3. FROM A DIFFERENT POPULATION   a wholesale order in retail data
-   &rarr; segment the analysis, do not delete
-
-4. THE RARE IMPORTANT EVENT      the fraud, the outage, the churn spike
-   &rarr; this is often the ENTIRE POINT of the analysis</code></pre>
-
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>Look at case four. If you are hired to detect fraud, <strong>the outliers are the fraud.</strong>
-    An analyst who cleans them out because they looked untidy has deleted the thing they were paid to find.</p>
-    <p>So the professional rule is not a formula. It is: <strong>never remove a value simply because it is
-    inconvenient, and document every exclusion with its reason.</strong> If your conclusion changes
-    depending on which outliers you dropped, you do not have a conclusion &mdash; you have a choice,
-    and you must say so.</p>
+   <div class="speak">
+    <p>So we have variance. Four.</p>
+    <p>Four <b>what</b>, though? Our data was in whatever units &mdash; say these were salaries in
+    thousands. What are the units of the variance?</p>
    </div>
 
-   <div class="lbl">Alternatives to deletion, worth naming</div>
-   <ul class="l">
-    <li><b>Transform</b> &mdash; take a log to compress the tail</li>
-    <li><b>Cap (winsorise)</b> &mdash; pull extremes back to the 1st and 99th percentile rather than dropping rows</li>
-    <li><b>Use robust statistics</b> &mdash; median and IQR instead of mean and standard deviation</li>
-    <li><b>Report both</b> &mdash; run the analysis with and without, and disclose the difference</li>
-   </ul>
+   <div class="qbox">
+    <div class="q">Push until somebody sees it</div>
+    <div class="a">We <b>squared</b> the distances. So the variance is in <b>thousands squared</b>. For
+    the salary column it is in <b>rupees squared</b> &mdash; which is not a unit anybody can picture and
+    means nothing to a manager.</div>
+   </div>
+
+   <div class="speak">
+    <p>Rupees squared. And nobody has any idea what a rupee squared is.</p>
+    <p>So there is one final step, and it is the most obvious one in statistics. We squared everything to
+    get rid of the minus signs. Now we take the <b>square root</b> to undo it and get back to normal
+    units.</p>
+    <p>Square root of four is <b>two</b>. And that is the <b>standard deviation</b>.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; the whole thing in one place</div>
+<pre><code>1  distance from mean       -3 -1 -1 -1  0  0  2  4
+2  square each               9  1  1  1  0  0  4 16
+3  average them  = 32/8      VARIANCE           = 4
+4  square root               STANDARD DEVIATION = 2</code></pre>
+
+   <div class="speak">
+    <p>Four steps. That is the entire calculation.</p>
+    <p>And now the sentence I actually want you to remember, because you will never be asked to compute
+    this by hand again:</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>The standard deviation is roughly the typical distance a value sits from the mean.</b>
+   </div>
+
+   <div class="speak">
+    <p>Our numbers averaged five, and the standard deviation is two. So a typical value sits about two
+    away from five. Look back at the data &mdash; two, four, four, four, five, five, seven, nine. Is that
+    about right?</p>
+    <p>Yes. Most of them are within two of five. That is what the number is telling you.</p>
+    <p>Variance is the calculation. Standard deviation is the version you can say out loud to another
+    human being.</p>
+   </div>
   </div>
 
+  <!-- 46-58 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">58 – 74</span><h3>Putting a number on shape</h3></div>
+   <div class="bhead"><span class="clock">46 &ndash; 58</span><h3>On real data, and the callback</h3></div>
+   <p class="objective">Bring back day 4's two teams. Twelve minutes.</p>
 
-<pre><code>df[<span class="c">"salary"</span>].skew()        <span class="c"># <span class="o">14.06</span>   extreme right skew</span>
-df[<span class="c">"height_cm"</span>].skew()     <span class="c"># <span class="o">-0.19</span>   essentially symmetric</span>
-df[<span class="c">"experience"</span>].skew()    <span class="c"># <span class="o">-0.03</span>   essentially symmetric</span></code></pre>
+   <div class="stage">Start with the teams from day 4. They already know the punchline, which makes the
+   new number land instantly.</div>
 
-   <div class="expl">
-    <div class="erow"><span class="cd">positive</span><span class="tx"><b>Right-skewed</b> &mdash; long tail to the right, mean above median.</span></div>
-    <div class="erow"><span class="cd">near zero</span><span class="tx">Symmetric. Rules of thumb: under 0.5 is fairly symmetric, over 1 is highly skewed.</span></div>
-    <div class="erow"><span class="cd">14.06</span><span class="tx">Far beyond &ldquo;highly skewed&rdquo;. <b>This is what a single extreme value does to the measure</b>, and it is consistent with everything else we have seen this week.</span></div>
+   <div class="speak">
+    <p>Remember these two teams from a couple of sessions ago?</p>
    </div>
 
-   <div class="lbl">Connect it to Day 4</div>
-<pre><code>df[<span class="c">"salary"</span>].mean() - df[<span class="c">"salary"</span>].median()      <span class="c"># <span class="o">+27001</span></span></code></pre>
+   <div class="typeit">On the board</div>
+<pre><code>Team A:  48, 49, 50, 51, 52     mean 50    range  4
+Team B:  10, 30, 50, 70, 90     mean 50    range 80</code></pre>
 
-   <div class="say">
-    <p>On Day 4 you diagnosed the skew by <strong>subtracting the median from the mean</strong>.
-    Today <code>.skew()</code> gives you the same fact as a single number.
-    <strong>Two routes to one truth &mdash; that is what makes it stick.</strong></p>
+   <div class="typeit">Now add standard deviation</div>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+<span class="k">print</span>(pd.Series([<span class="o">48</span>,<span class="o">49</span>,<span class="o">50</span>,<span class="o">51</span>,<span class="o">52</span>]).std().round(<span class="o">2</span>))
+<span class="k">print</span>(pd.Series([<span class="o">10</span>,<span class="o">30</span>,<span class="o">50</span>,<span class="o">70</span>,<span class="o">90</span>]).std().round(<span class="o">2</span>))</code></pre>
+   <div class="screen">1.58
+31.62</div>
+
+   <div class="speak">
+    <p>Team A: one point five eight. Team B: thirty-one point six.</p>
+    <p>Same average of fifty. And now the second number tells you they are completely different teams
+    &mdash; which is exactly what I said an average could never do on its own.</p>
+    <p>Team A's typical person sits about one and a half marks from fifty. Team B's typical person sits
+    over thirty marks away.</p>
    </div>
 
-   <div class="lbl">Then kurtosis, briefly</div>
-<pre><code>df[<span class="c">"salary"</span>].kurtosis()    <span class="c"># <span class="o">198.19</span>  enormously heavy tail</span>
-df[<span class="c">"height_cm"</span>].kurtosis() <span class="c"># <span class="o">0.30</span>    normal-like</span></code></pre>
+   <div class="stage">Now the real file, and the answer to the opening question.</div>
 
-   <div class="warn"><b>State the software convention:</b> pandas reports <b>excess</b> kurtosis, so a
-   normal distribution gives about 0, not 3. Height at 0.30 is behaving like a normal distribution.
-   Salary at 198 is not remotely.</div>
+   <div class="typeit">Type this</div>
+<pre><code>sal = df[<span class="c">"salary"</span>].dropna()
+<span class="k">print</span>(<span class="c">"mean:"</span>, <span class="k">int</span>(sal.mean()))
+<span class="k">print</span>(<span class="c">"std :"</span>, <span class="k">int</span>(sal.std()))</code></pre>
+   <div class="screen">mean: 95648
+std : 364031</div>
 
-   <div class="lbl">The fix, demonstrated</div>
+   <div class="speak">
+    <p>There it is. Three hundred and sixty-four thousand.</p>
+    <p>Now read it the way I taught you. The standard deviation is roughly the typical distance from the
+    mean. So this is claiming a <b>typical employee's salary is three hundred and sixty-four thousand
+    rupees away from the average.</b></p>
+    <p>Is that true? Look at the actual salaries. Most people are within twenty thousand of each other.</p>
+    <p>So the number is wrong. Not arithmetically &mdash; it is computed correctly. But as a description
+    of this company it is nonsense. Why?</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
+iqr = q3 - q1
+clean = sal[(sal &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3+<span class="o">1.5</span>*iqr)]
+
+<span class="k">print</span>(<span class="c">"with the outliers   :"</span>, <span class="k">int</span>(sal.std()))
+<span class="k">print</span>(<span class="c">"without them        :"</span>, <span class="k">int</span>(clean.std()))</code></pre>
+   <div class="screen">with the outliers   : 364031
+without them        : 16066</div>
+
+   <div class="speak">
+    <p>Sixteen thousand. That is the honest answer, and it matches what you can see in the data.</p>
+    <p>Three hundred and sixty-four thousand against sixteen thousand. <b>Twenty-two times bigger</b>,
+    because of two rows out of a hundred and ninety-nine.</p>
+    <p>And now you know why. We <b>squared</b> the distances. That salary is five million away from the
+    mean. Square five million and it dwarfs everything else in the sum before we ever divide.</p>
+    <p>The same squaring that made variance useful is what makes it fragile.</p>
+   </div>
+  </div>
+
+  <!-- 58-68 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">58 &ndash; 68</span><h3>The n minus 1 trap</h3></div>
+   <p class="objective">Practical, not theoretical. Ten minutes.</p>
+
+   <div class="speak">
+    <p>One thing I glossed over. When we divided the total of thirty-two, I divided by eight &mdash; the
+    number of values.</p>
+    <p>If those eight numbers were a <b>sample</b> rather than the whole population, the convention is to
+    divide by <b>seven</b>. By n minus one.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">They will ask why. Give the short version.</div>
+    <div class="a">When you work out spread from a sample, you use the <b>sample's own mean</b> &mdash;
+    because you do not know the population's. And the sample's mean is, by definition, the point sitting
+    closest to that sample's own values. So your distances come out slightly too small, every time.
+    Dividing by a smaller number nudges the answer back up. <b>Do not prove it.</b> "A sample looks
+    slightly less spread out than it really is, so we correct for that" is enough.</div>
+   </div>
+
+   <div class="speak">
+    <p>Short version: when you measure spread from a sample, you use the sample's own average. And the
+    sample's average sits closer to its own values than the real population average would.</p>
+    <p>So your answer comes out slightly too small, every single time. Dividing by a smaller number
+    pushes it back up. That is all it is.</p>
+    <p>Now here is the part that will actually cost you an evening if I do not warn you.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
 <pre><code><span class="k">import</span> numpy <span class="k">as</span> np
-np.log(df[<span class="c">"salary"</span>].dropna()).skew()      <span class="c"># <span class="o">6.63</span> - much better, still skewed</span></code></pre>
+<span class="k">print</span>(<span class="c">"pandas :"</span>, <span class="k">int</span>(sal.std()))
+<span class="k">print</span>(<span class="c">"numpy  :"</span>, <span class="k">int</span>(np.std(sal)))</code></pre>
+   <div class="screen">pandas : 364031
+numpy  : 363116</div>
 
-   <div class="say">
-    <p>The log transform pulled skew from fourteen down to six and a half. <strong>It helped a great deal
-    and did not fix it</strong>, because one value is so far from the rest that no transformation rescues
-    it. That is honest, and worth showing rather than hiding &mdash; techniques have limits.</p>
+   <div class="stage">Let them see two different answers from the same data before you explain.</div>
+
+   <div class="speak">
+    <p>Same column. Same data. Two different answers.</p>
+    <p>Neither library is broken. <b>Pandas assumes you have a sample</b> and divides by n minus one.
+    <b>NumPy assumes you have the whole population</b> and divides by n.</p>
+    <p>They just made different default choices, and nobody warns you.</p>
+   </div>
+
+   <div class="typeit">The fix</div>
+<pre><code><span class="k">print</span>(<span class="k">int</span>(np.std(sal, ddof=<span class="o">1</span>)))   <span class="c"># now matches pandas</span></code></pre>
+   <div class="screen">364031</div>
+
+   <div class="speak">
+    <p>ddof stands for delta degrees of freedom. Setting it to one tells NumPy to divide by n minus one
+    as well.</p>
+    <p>Here the gap is about nine hundred rupees out of three hundred and sixty thousand &mdash; a
+    quarter of a percent. On two hundred rows it barely matters. On ten rows it would matter a lot.</p>
+    <p>The point is not the size of the gap. The point is that when two libraries disagree, <b>neither of
+    them is broken</b> &mdash; and you should know which assumption you want.</p>
    </div>
   </div>
 
+  <!-- 68-80 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">74 – 90</span><h3>Lab and close</h3></div>
-   <ol class="n">
-    <li>Produce the <b>five-number summary</b> for <code>age</code> and <code>experience</code>.</li>
-    <li>Apply the <b>1.5&times;IQR rule</b> to <code>age</code>. What does it flag, and are those errors or real?</li>
-    <li>Compute <b>skew and kurtosis</b> for four numeric columns and describe each shape in one sentence.</li>
-    <li>For each outlier you flagged in <code>age</code>: <b>which of the four causes is it, and what would you do?</b></li>
-    <li>Log-transform <code>salary</code> and report the new skew. Did it help enough?</li>
-   </ol>
-   <p class="cap" style="margin-top:10px">Question 2 will flag the &minus;4 and 210 ages from Day 1.
-   Both are <b>cause 1, data errors</b> &mdash; and unlike the CEO's salary, those genuinely should be
-   removed or treated as missing. Having students distinguish those two cases in the same session is the
-   point of the whole lab.</p>
+   <div class="bhead"><span class="clock">68 &ndash; 80</span><h3>The 68-95-99.7 rule</h3></div>
+   <p class="objective">What standard deviation actually buys you. Twelve minutes.</p>
 
-   <div class="lbl">Close</div>
-   <div class="say">
-    <p>You can now describe a column completely: <strong>centre, spread and shape</strong>, plus a rule
-    for which values are unusual and a framework for deciding what to do about them.</p>
-    <p>Tomorrow is the last descriptive session, and it is about <strong>two columns at once</strong>
-    &mdash; does experience actually predict salary in this company? The answer is more interesting than
-    you expect.</p>
+   <div class="speak">
+    <p>So far standard deviation is just a number. Here is what it actually buys you.</p>
+    <p>For data with a symmetric, bell-like shape, there is a rule that holds remarkably well.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>about 68%  of values sit within 1 standard deviation of the mean
+about 95%                    within 2
+about 99.7%                  within 3</code></pre>
+
+   <div class="speak">
+    <p>Sixty-eight, ninety-five, ninety-nine point seven. It gets called the empirical rule, and it turns
+    an abstract number into a statement about where people actually are.</p>
+    <p>If I tell you the average salary is fifty thousand and the standard deviation is five thousand,
+    you now know that roughly two thirds of people earn between forty-five and fifty-five, and
+    <b>ninety-five percent earn between forty and sixty.</b> That is genuinely useful.</p>
+    <p>Let us test it.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>m, s = sal.mean(), sal.std()
+<span class="k">for</span> k <span class="k">in</span> (<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>):
+    inside = ((sal &gt;= m-k*s) &amp; (sal &lt;= m+k*s)).mean() * <span class="o">100</span>
+    <span class="k">print</span>(k, <span class="c">"std ->"</span>, <span class="k">round</span>(inside, <span class="o">1</span>), <span class="c">"%"</span>)</code></pre>
+   <div class="screen">1 std -> 99.5 %
+2 std -> 99.5 %
+3 std -> 99.5 %</div>
+
+   <div class="stage">Let them see it fail. Then ask why before explaining.</div>
+
+   <div class="speak">
+    <p>Ninety-nine point five, ninety-nine point five, ninety-nine point five.</p>
+    <p>The rule says sixty-eight, ninety-five, ninety-nine point seven. We got the same number three
+    times. It has completely failed.</p>
+    <p>Why?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Push them towards it</div>
+    <div class="a">The standard deviation is 364,031. So one standard deviation either side of the mean
+    is a band from about <b>minus 268,000 to plus 459,000</b> &mdash; which contains essentially every
+    employee. Going out to two or three standard deviations adds nobody, because there is nobody left to
+    add. <b>The outlier inflated the ruler until the ruler stopped measuring anything.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Because the standard deviation is three hundred and sixty-four thousand.</p>
+    <p>So one standard deviation either side of the mean is a band stretching from minus two hundred and
+    sixty-eight thousand to plus four hundred and fifty-nine thousand. <b>Everybody is already inside
+    it.</b> Going out further adds nobody, because there is nobody left.</p>
+    <p>The outlier stretched the ruler so far that the ruler stopped measuring anything.</p>
+    <p>Now watch what happens if I take those two rows out.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>m, s = clean.mean(), clean.std()
+<span class="k">for</span> k <span class="k">in</span> (<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>):
+    inside = ((clean &gt;= m-k*s) &amp; (clean &lt;= m+k*s)).mean() * <span class="o">100</span>
+    <span class="k">print</span>(k, <span class="c">"std ->"</span>, <span class="k">round</span>(inside, <span class="o">1</span>), <span class="c">"%"</span>)</code></pre>
+   <div class="screen">1 std -> 66.0 %
+2 std -> 94.9 %
+3 std -> 100.0 %</div>
+
+   <div class="speak">
+    <p>Sixty-six. Ninety-five. A hundred.</p>
+    <p>The rule says sixty-eight, ninety-five, ninety-nine point seven. That is almost exactly it.</p>
+    <p>Same column. Same rule. Two rows removed.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    So the rule comes with a condition, and it is not optional:
+    <b>it only applies to roughly symmetric data.</b> Quote it on lopsided data and you will be
+    confidently wrong.
+   </div>
+
+   <div class="speak">
+    <p>And notice this is day five's lesson again, wearing different clothes. One extreme value did not
+    just distort the average &mdash; it distorted the <b>measure of spread</b>, and then it broke a rule
+    built on top of that measure.</p>
+    <p>One row. Three things wrong.</p>
+   </div>
+  </div>
+
+  <!-- 80-88 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">80 &ndash; 88</span><h3>Skew &mdash; finally</h3></div>
+   <p class="objective">Retire the loose end you have carried for two days. Eight minutes.</p>
+
+   <div class="speak">
+    <p>One last thing, and it closes something I have been dodging.</p>
+    <p>Twice now I have shown you this number and told you not to worry about it.</p>
+   </div>
+
+   <div class="typeit">On screen</div>
+<pre><code><span class="k">print</span>(<span class="k">round</span>(sal.skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">14.06</div>
+
+   <div class="speak">
+    <p>Fourteen point zero six. I could not explain it before today, because <b>skew is built out of the
+    standard deviation</b> &mdash; and until ten minutes ago you did not have that.</p>
+    <p>Now you do. So here is the whole thing, in four steps.</p>
+   </div>
+
+   <div class="typeit">On the board, one line at a time</div>
+<pre><code>1  for each salary, how many STANDARD DEVIATIONS from the mean?
+
+      most employees        under 1
+      the 52 lakh salary    14.02
+
+2  cube each one
+
+      under 1  ->  cubes to almost nothing
+      14.02    ->  cubes to 2757
+
+3  add all 199 together
+
+      all 199 rows      2756.6
+      the 52 lakh row   2756.8
+      the other 198     -0.2      <---
+
+4  x a small size correction (0.005102)
+
+      2756.6 x 0.005102  =  14.06</code></pre>
+
+   <div class="stage">Point at step three. That is the whole point of showing this.</div>
+
+   <div class="speak">
+    <p>Look at step three.</p>
+    <p>All hundred and ninety-nine rows together give two thousand seven hundred and fifty-six. The
+    fifty-two lakh row on its own gives two thousand seven hundred and fifty-seven.</p>
+    <p>The other hundred and ninety-eight employees contribute <b>minus nought point two</b> between
+    them.</p>
+    <p><b>One row is the entire number.</b></p>
+    <p>And that is why cubing is in there. Squaring kills the minus sign, which is what variance wanted.
+    <b>Cubing keeps it</b> &mdash; which is how skew knows whether the tail is on the left or the right
+    &mdash; and it blows up big distances even harder than squaring does.</p>
+    <p>So you do not need to memorise this. You need one sentence: <b>big and positive means a few very
+    large values.</b> Which is exactly what I told you two sessions ago.</p>
+   </div>
+  </div>
+
+  <!-- 88-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">88 &ndash; 90</span><h3>Close</h3></div>
+   <p class="objective">Two minutes. Land it and open the next.</p>
+
+   <div class="speak">
+    <p>You now have every tool for describing <b>one column</b>. Where the middle is &mdash; mean, median,
+    mode. How spread out it is &mdash; range, IQR, standard deviation. What shape it is &mdash; skew. And
+    whether anything strange is in it &mdash; the IQR rule.</p>
+    <p>One column. Completely covered.</p>
+    <p>But nobody was ever hired to describe one column.</p>
+   </div>
+
+   <div class="stage">Set up correlation without teaching any of it.</div>
+
+   <div class="speak">
+    <p>The real questions all have <b>two</b> columns in them. Do people with more experience earn more?
+    Does the department affect the salary? Does one thing move with another?</p>
+    <p>Nothing you have learned so far can answer that, because everything so far looks at one column at
+    a time.</p>
+    <p>That is next session.</p>
    </div>
   </div>
  </div>
@@ -5936,83 +6352,107 @@ np.log(df[<span class="c">"salary"</span>].dropna()).skew()      <span class="c"
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
-  <div class="qa"><h5>Why 1.5 and not 2?</h5>
-  <p>Convention. Tukey chose it to flag roughly the most extreme 0.7% of normal data. Some analyses use
-  3&times;IQR for &ldquo;extreme&rdquo; outliers as a second tier. It is a useful threshold, not a law.</p></div>
-  <div class="qa"><h5>Is it ever acceptable to just delete outliers?</h5>
-  <p>Yes &mdash; when you can establish they are errors. An age of 210 is not a person. What is not
-  acceptable is deleting real values because they hurt your model, without saying you did.</p></div>
-  <div class="qa"><h5>Why does the box plot use the median and not the mean?</h5>
-  <p>Because it is built entirely from order statistics &mdash; positions in the sorted data. That is what
-  makes every part of it robust to the extreme values it is designed to display.</p></div>
-  <div class="qa"><h5>My skew is 0.4. Is that skewed?</h5>
-  <p>Mildly, and probably not enough to change what you do. Under 0.5 is generally treated as
-  approximately symmetric. Above 1, switch to the median and consider a transformation.</p></div>
-  <div class="qa"><h5>Does a log transform always fix skew?</h5>
-  <p>No &mdash; as we just saw, it took salary from 14 to 6.6 and left it skewed. It works well for
-  moderate right skew and multiplicative data. It also fails on zeros and negatives; use
-  <code>np.log1p</code> for zeros.</p></div>
+
+  <div class="qa"><h5>&ldquo;Why square instead of just ignoring the minus sign?&rdquo;</h5>
+  <p>&ldquo;Two reasons, and I will be straight with you. Squaring punishes big distances much harder,
+  which is usually what you want. And squares are far easier to work with mathematically than absolute
+  values, and everything after this is built on top of variance. Absolute deviation is a real measure
+  &mdash; it just lost.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why does n minus 1 make it bigger? Shouldn't a correction go both ways?&rdquo;</h5>
+  <p>&ldquo;Because the error only goes one way. A sample's own mean always sits closer to that sample's
+  values than the true population mean would, so the distances are always slightly too small &mdash;
+  never too big. The correction only ever needs to push up.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;When do I use standard deviation and when do I use IQR?&rdquo;</h5>
+  <p>&ldquo;Same rule as mean versus median. Roughly symmetric data with no wild extremes &mdash;
+  standard deviation, because it uses everything. Lopsided data or known outliers &mdash; IQR, because it
+  ignores them. And notice the pairing: mean goes with standard deviation, median goes with IQR.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is a big standard deviation bad?&rdquo;</h5>
+  <p>&ldquo;No, it is just information. A big spread in exam marks means the class is mixed, which is
+  worth knowing. A big spread in the diameter of manufactured bolts means your factory has a problem.
+  The number describes; whether it is bad depends entirely on what you are measuring.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can standard deviation be negative?&rdquo;</h5>
+  <p>&ldquo;No, never. It is a square root of squared things, so it is always zero or positive. If you
+  ever see a negative one, something has gone wrong. Zero means every single value is identical.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Do I have to calculate this by hand in an interview?&rdquo;</h5>
+  <p>&ldquo;Almost never. What they will ask is what it means and when it breaks. If you can say
+  &lsquo;it is roughly the typical distance from the mean, and it gets inflated by outliers because the
+  distances are squared&rsquo;, you are ahead of most candidates.&rdquo;</p></div>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:18px">If things go sideways</h2>
-  <ul class="l">
-   <li><b>Running long</b> &mdash; cut <b>kurtosis</b> entirely. Skewness is far more useful to an analyst,
-   and kurtosis rarely changes a decision at this level.</li>
-   <li><b>Running short</b> &mdash; have them build box plots by hand from the five-number summaries of
-   three columns and compare the shapes.</li>
-   <li><b>The outlier debate runs away with the session</b> &mdash; that is a good problem. Cap it at eight
-   minutes, land on &ldquo;investigate the cause, document the decision&rdquo;, and move on.</li>
-   <li><b>Someone asks about the modified z-score</b> &mdash; it uses the median and median absolute
-   deviation instead of mean and standard deviation, so it does not suffer masking. Worth a sentence,
-   not a block.</li>
-  </ul>
-  <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--hair)">
-   <h3 class="h-sm" style="margin-bottom:10px">Optional video</h3>
-   <a class="vid" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener">
-    <span class="src">Udemy §6</span><span>Percentiles And Quartiles</span><span class="dur">10:47</span></a>
-   <a class="vid" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener">
-    <span class="src">Udemy §6</span><span>5 Number Summary</span><span class="dur">18:03</span></a>
-   <a class="vid" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener">
-    <span class="src">Udemy §6</span><span>Histogram And Skewness</span><span class="dur">25:15</span></a>
+  <div class="lbl">End of session &mdash; put this on screen</div>
+  <div class="sumcard"><pre><code><span class="c"># ---- THE GAP THIS FILLS ----</span>
+<span class="c"># RANGE  uses 2 values        -&gt; wrecked by extremes</span>
+<span class="c"># IQR    ignores half the data -&gt; robust but wasteful</span>
+<span class="c"># STD    uses EVERY value      -&gt; today</span>
+
+<span class="c"># ---- WHY THE OBVIOUS IDEA FAILS ----</span>
+<span class="c"># data      2   4   4   4   5   5   7   9      mean = 5</span>
+<span class="c"># distance -3  -1  -1  -1   0   0   2   4</span>
+<span class="c"># sum of the distances = 0    ALWAYS. for every dataset.</span>
+<span class="c"># that is what the mean IS - the point where they cancel</span>
+
+<span class="c"># ---- THE FIX: SQUARE THEM ----</span>
+<span class="c"># squared   9   1   1   1   0   0   4  16   total = 32</span>
+<span class="c">#</span>
+<span class="c"># VARIANCE           = 32 / 8 = 4     the average squared distance</span>
+<span class="c"># STANDARD DEVIATION = sqrt(4) = 2    back in normal units</span>
+<span class="c">#</span>
+<span class="c"># std is roughly THE TYPICAL DISTANCE A VALUE SITS FROM THE MEAN</span>
+
+sal = df[&quot;salary&quot;].dropna()
+sal.var()                    <span class="c"># average squared distance - units are RUPEES SQUARED</span>
+sal.std()                    <span class="c"># 364,031  square root, back in rupees</span>
+
+<span class="c"># ---- WHY 364,031 IS NONSENSE HERE ----</span>
+clean = sal[(sal &gt;= q1-1.5*iqr) &amp; (sal &lt;= q3+1.5*iqr)]
+sal.std()                    <span class="c"># 364,031  with the two outliers</span>
+clean.std()                  <span class="c">#  16,066  without   &lt;- 22x smaller</span>
+<span class="c"># we SQUARED the distances. the 52-lakh row is 5 million from the mean.</span>
+<span class="c"># squared, it dwarfs the entire rest of the sum.</span>
+
+<span class="c"># ---- THE n-1 TRAP ----</span>
+sal.std()                    <span class="c"># 364,031  pandas assumes a SAMPLE    -&gt; divides by n-1</span>
+np.std(sal)                  <span class="c"># 363,116  numpy  assumes a POPULATION -&gt; divides by n</span>
+np.std(sal, ddof=1)          <span class="c"># 364,031  makes numpy match pandas</span>
+<span class="c"># neither is broken. they chose different defaults.</span>
+<span class="c"># a sample looks slightly less spread than it is, so n-1 nudges it up.</span>
+
+<span class="c"># ---- THE 68-95-99.7 RULE ----</span>
+<span class="c"># for roughly SYMMETRIC data:</span>
+<span class="c">#   68%  of values within 1 std of the mean</span>
+<span class="c">#   95%                  within 2</span>
+<span class="c">#   99.7%                within 3</span>
+<span class="c">#</span>
+<span class="c"># our salary column      99.5% / 99.5% / 99.5%   &lt;- the rule FAILS</span>
+<span class="c"># with outliers removed  66.0% / 94.9% / 100.0%  &lt;- almost exactly right</span>
+<span class="c"># the outlier inflated the ruler until the ruler stopped measuring</span>
+
+<span class="c"># ---- SKEW, FINALLY ----</span>
+sal.skew()                   <span class="c"># 14.06</span>
+<span class="c"># 1  how many std from the mean?   52-lakh row = 14.02, everyone else under 1</span>
+<span class="c"># 2  cube each                     14.02 cubed = 2757, the rest ~ 0</span>
+<span class="c"># 3  add all 199                   total 2756.6   the 52-lakh row alone 2756.8</span>
+<span class="c">#                                  the other 198 rows contribute -0.2</span>
+<span class="c"># 4  x n/((n-1)(n-2)) = 0.005102   2756.6 x 0.005102 = 14.06</span>
+<span class="c">#</span>
+<span class="c"># ONE ROW IS THE ENTIRE NUMBER.</span>
+<span class="c"># cubing keeps the sign (so skew knows left from right) and amplifies hard.</span></code></pre></div>
+
+  <div class="planbanner" style="margin-top:20px">
+   <b>Where this goes next.</b> Every tool so far describes <b>one column</b>. Day 7 is the first
+   session about the relationship between <b>two</b> &mdash; covariance, Pearson, Spearman, and the
+   most important sentence in the course: correlation is not causation. The experience-versus-salary
+   correlation in your file is <b>0.079 with the outlier and 0.612 without</b>, which is the whole
+   session in one number.
   </div>
- </div>
-</section>
-
-<section>
- <div class="wrap">
-  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">11 lines</span></div>
-  <p class="sumnote">Put this on screen in the last two minutes, or paste it into a cell and let them keep it. Every command from the session, in order, with what it does.</p>
-  <div class="sumcard"><pre><code>import numpy as np, pandas as pd
-df = pd.read_csv(&quot;employees.csv&quot;)
-s = df[&quot;salary&quot;].dropna()
-
-<span class="c"># ---- FIVE-NUMBER SUMMARY = the box plot ----</span>
-s.quantile([0, 0.25, 0.5, 0.75, 1])
-                             <span class="c"># 33085 / 59004 / 68647 / 80600 / 5200000</span>
-s.quantile(0.90)             <span class="c"># top-10% threshold  p95/p99 is what engineers ask for</span>
-
-<span class="c"># ---- THE 1.5 x IQR RULE ----</span>
-q1, q3 = s.quantile([0.25, 0.75])
-iqr = q3 - q1                <span class="c"># 21596</span>
-low, high = q1 - 1.5*iqr, q3 + 1.5*iqr          <span class="c"># 26610 to 112994</span>
-df[(df[&quot;salary&quot;] &lt; low) | (df[&quot;salary&quot;] &gt; high)]   <span class="c"># 2 flagged as candidates</span>
-
-<span class="c"># ---- WHY NOT Z-SCORES: the outlier hides itself ----</span>
-z = (s - s.mean()) / s.std()
-(z.abs() &gt; 3).sum()          <span class="c"># finds almost nothing - std was inflated BY the outlier</span>
-
-<span class="c"># ---- SHAPE AS A NUMBER ----</span>
-s.skew()                     <span class="c"># 14.06              violently right-skewed</span>
-df[&quot;height_cm&quot;].skew()       <span class="c"># -0.19              essentially symmetric</span>
-s.kurtosis()                 <span class="c"># 198.19             EXCESS kurtosis, normal = 0</span>
-df[&quot;height_cm&quot;].kurtosis()   <span class="c"># 0.30               normal-like tails</span>
-s.mean() - s.median()        <span class="c"># +27001             the day-3 diagnostic, same answer</span>
-
-<span class="c"># ---- THE USUAL FIX ----</span>
-np.log(s).skew()             <span class="c"># 6.63               helped a lot, did not fully fix it</span></code></pre></div>
  </div>
 </section>
 </div>
