@@ -405,10 +405,11 @@ try{var _t=localStorage.getItem("steep-theme");
      68-95-99.7 rule breaking on your own data &mdash; and the 14.06 finally derived.</p>
      <span class="foot">Full script &middot; 32 speech blocks</span></button>
 
-    <button class="dcard" data-go="d7">
-     <span class="id">DAY 7</span><h3>Correlation</h3>
-     <p>One row moves experience-vs-salary from 0.079 to 0.612. Spearman never notices.</p>
-     <span class="foot">Outline &middot; 90 min</span></button>
+    <button class="dcard full" data-go="d7">
+     <span class="id">DAY 7</span><h3>Correlation, and the Most Important Sentence in the Course</h3>
+     <p>Covariance and why its units make it useless, Pearson, and two rows turning a real relationship
+     into 0.079. Spearman was right all along. Ends on causation and Anscombe.</p>
+     <span class="foot">Full script &middot; 33 speech blocks</span></button>
 
     <button class="dcard soon" disabled>
      <span class="id">DAY 6</span><h3>The Probability You Need</h3>
@@ -6449,37 +6450,37 @@ sal.skew()                   <span class="c"># 14.06</span>
   <div class="planbanner" style="margin-top:20px">
    <b>Where this goes next.</b> Every tool so far describes <b>one column</b>. Day 7 is the first
    session about the relationship between <b>two</b> &mdash; covariance, Pearson, Spearman, and the
-   most important sentence in the course: correlation is not causation. The experience-versus-salary
-   correlation in your file is <b>0.079 with the outlier and 0.612 without</b>, which is the whole
-   session in one number.
+   most important sentence in the course: correlation is not causation. In your file the
+   experience-versus-salary correlation is <b>0.079</b>, and once the two outliers go it is
+   <b>0.607</b> &mdash; while Spearman gives about <b>0.61 either way</b>, because it never noticed them.
   </div>
  </div>
 </section>
 </div>
 <div class="day" id="d7">
-<div class="wrap" style="padding-top:22px"><div class="planbanner"><b>Day 5</b> &middot; Stands alone in the 10-day plan. Last of the descriptive block.</div></div>
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Day 5 &middot; both batches merged &middot; 90 minutes</p>
-  <h1 class="display">Correlation,<br>and the Sentence That Ends Careers</h1>
-  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:640px">
-   The last descriptive session. Students measure how two columns move together &mdash; and watch a single
-   outlier hide a real relationship completely.
-  </p>
+  <p class="tag" style="margin-bottom:16px">Statistics day 7 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">Correlation &mdash; and the<br>most important sentence in the course</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   The first session about two columns instead of one. Covariance, why its units make it unusable,
+   Pearson, and the discovery that two rows turned a real relationship into <b>0.079</b>. Ends on
+   causation and Anscombe.</p>
 
   <div class="glance">
    <div class="gcell"><b>90</b><span>minutes</span></div>
-   <div class="gcell"><b>0.079</b><span>the lie</span></div>
-   <div class="gcell"><b>0.612</b><span>the truth</span></div>
-   <div class="gcell"><b>5</b><span>reasons for a correlation</span></div>
+   <div class="gcell"><b>0.079</b><span>&rarr; 0.607</span></div>
+   <div class="gcell"><b>3</b><span>explanations</span></div>
+   <div class="gcell"><b>4</b><span>Anscombe sets</span></div>
   </div>
 
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">The one idea today has to land</h4>
-   <p style="color:var(--sienna)"><b style="color:var(--sienna)">A correlation of zero does not mean no
-   relationship, and a correlation of 0.9 does not mean one thing causes the other.</b> Today's dataset
-   demonstrates the first accidentally and beautifully &mdash; and the second is the single most
-   consequential error an analyst can make in front of a decision-maker.</p>
+   <h4 style="color:var(--sienna)">The two ideas today has to land</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">One &mdash; Pearson is to Spearman what
+   the mean is to the median.</b> One uses values and gets wrecked by extremes; the other uses positions
+   and ignores them. Spearman gave 0.61 on the raw file, before anybody found the outliers.<br>
+   <b style="color:var(--sienna)">Two &mdash; when two things move together there are three
+   explanations, and the number cannot tell you which.</b> Teach the diagnosis, not the slogan.</p>
   </div>
  </div>
 </section>
@@ -6488,292 +6489,712 @@ sal.skew()                   <span class="c"># 14.06</span>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Run the four correlation lines yourself.</b> The with-CEO and without-CEO comparison is the
-   centrepiece of the session and you must be fluent with all four numbers.</li>
-   <li><b>Prepare two confounded examples of your own</b> from a domain your students care about. Local
-   and specific beats textbook every time.</li>
-   <li><b>Budget real time for causation.</b> It deserves fifteen minutes, not a closing remark.</li>
-   <li><b>Optional:</b> Udemy §6 &mdash; <em>Covariance And Correlation</em> (39:17), the longest lecture
-   in that section.</li>
+   <li><b>Lean on the pattern they already have.</b> Pearson is the mean; Spearman is the median. Say it
+   once, early, and the second half of the session teaches itself.</li>
+   <li><b>Let covariance hurt before you fix it.</b> The 128,281 needs to feel useless &mdash; wrong
+   units, no ceiling, changes if you switch from rupees to thousands. Correlation only feels like a
+   relief if the problem landed first.</li>
+   <li><b>Ask them to predict 0.079 before you run it.</b> Everybody expects a strong positive. The gap
+   between what they expect and what appears is what makes the next ten minutes work.</li>
+   <li><b>Give causation the full twelve minutes.</b> Your notes call it the most important sentence in
+   the course. Everybody can recite it; almost nobody catches themselves doing it. Teach the three
+   possibilities as a checklist they run before writing a sentence.</li>
+   <li><b>Sketch Anscombe on the board, do not plot it.</b> Four rough drawings is the right delivery.
+   Charting is the visualisation module.</li>
   </ol>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Primer &mdash; what you are actually teaching</h2>
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">The first session about <b>two</b> columns rather than one.
+  Four ideas, and the last of them &mdash; correlation is not causation &mdash; your own study notes call
+  the most important sentence in the course.</p>
 
-  <div class="primer">
-   <h4>Covariance, and why it is unusable on its own</h4>
-   <p>For each point, multiply how far x sits from its mean by how far y sits from its mean. If both are
-   above their means, or both below, the product is positive. If one is above and the other below, it is
-   negative. Add these up and you have measured whether &ldquo;above-average x&rdquo; tends to arrive with
-   &ldquo;above-average y&rdquo;.</p>
-   <p>The sign is meaningful. <b>The magnitude is useless</b>, because it carries the units of both
-   variables multiplied together. The covariance of experience and salary is in
-   &ldquo;year-rupees&rdquo;, and changing salary to lakhs changes the number entirely without changing
-   the relationship. You cannot say whether a covariance of 250,000 is large. That single defect is what
-   correlation exists to fix.</p>
+  <div class="understand">
+   <h5>Part one &middot; covariance, and the problem with it</h5>
+
+   <h6>The question that changes</h6>
+   <p>Everything so far has described a single column. Mean, median, spread, shape, outliers &mdash; all
+   of it looks at one column at a time.</p>
+   <p>But nobody is hired to describe one column. The real questions are about <b>pairs</b>. Do people
+   with more experience earn more? Does advertising spend move with sales? When one thing goes up, does
+   the other?</p>
+   <p>That is a genuinely new kind of question and none of their existing tools touch it.</p>
+
+   <h6>The idea behind covariance</h6>
+   <p>The reasoning is nicer than the formula. For each row, ask two things: <b>is x above or below its
+   own mean, and is y above or below its own mean?</b></p>
+   <div class="simple">
+    <span class="lab">Multiply the two answers together</span>
+    <p><b>Both above</b> their means &rarr; positive &times; positive = <b>positive</b></p>
+    <p><b>Both below</b> their means &rarr; negative &times; negative = <b>positive</b></p>
+    <p><b>One above, one below</b> &rarr; positive &times; negative = <b>negative</b></p>
+   </div>
+   <p>So rows where the two move <em>together</em> contribute positive numbers, and rows where they move
+   <em>oppositely</em> contribute negative ones. Add them all up and average: if the total is strongly
+   positive, they tend to rise together.</p>
+   <p>That average of the products is the <b>covariance</b>. And notice how close it is to variance
+   &mdash; variance multiplies a column's distance by <em>itself</em>; covariance multiplies one column's
+   distance by <em>another's</em>. Say that out loud; it makes covariance feel like a small step rather
+   than a new topic.</p>
+
+   <h6>Why covariance is unusable on its own</h6>
+   <p>Run it on your file and you get <b>128,281</b>.</p>
+   <p>128,281 <em>what</em>? The units are <b>years multiplied by rupees</b>, which is not a thing. And
+   because there is no ceiling on the number, you cannot tell whether 128,281 is a strong relationship or
+   a weak one. Measure salary in thousands instead and the same relationship gives a completely different
+   number.</p>
+   <div class="keyline">
+    Covariance tells you the <b>direction</b> reliably &mdash; positive or negative &mdash; and tells you
+    nothing useful about the <b>strength</b>.
+   </div>
+   <p>That is the entire motivation for correlation, and it is worth letting students feel the problem
+   before you hand them the fix.</p>
   </div>
 
-  <div class="primer">
-   <h4>Correlation is covariance made comparable</h4>
-   <p>Divide the covariance by both standard deviations and the units cancel. What remains is
-   <b>bounded between &minus;1 and +1</b>, unitless, and comparable across any pair of variables in any
-   dataset.</p>
-   <p>Rough reading: below 0.2 is negligible, 0.2 to 0.4 weak, 0.4 to 0.6 moderate, 0.6 to 0.8 strong,
-   above 0.8 very strong. But context governs &mdash; in physics 0.9 may be disappointing, in social
-   research 0.4 can be a major finding.</p>
-   <p><b>Report r&sup2; alongside r.</b> An r of 0.7 sounds like &ldquo;70 per cent&rdquo; to a
-   non-technical listener, when what it actually means is that <b>49 per cent</b> of the variance is
-   accounted for. Squaring it is the more honest number.</p>
+  <div class="understand">
+   <h5>Part two &middot; Pearson correlation</h5>
+
+   <h6>The fix in one line</h6>
+   <p>Divide the covariance by both standard deviations. That cancels the units out entirely and forces
+   the answer onto a fixed scale from <b>&minus;1 to +1</b>.</p>
+   <p>They have both ingredients already &mdash; covariance from ten minutes earlier, standard deviation
+   from last session. Nothing new is being introduced, only combined.</p>
+
+   <h6>How to read it</h6>
+   <div class="simple">
+    <span class="lab">The scale</span>
+    <p><b>+1</b> &mdash; perfect: every time one goes up, the other goes up by a proportional amount</p>
+    <p><b>0</b> &mdash; no straight-line relationship at all</p>
+    <p><b>&minus;1</b> &mdash; perfect opposite: one goes up, the other goes down</p>
+    <p>Rough reading for real data: <b>below 0.3</b> weak, <b>0.3 to 0.7</b> moderate, <b>above 0.7</b>
+    strong. Do not present these as hard boundaries &mdash; what counts as strong depends entirely on the
+    field.</p>
+   </div>
+   <p>The word that matters in the definition is <b>straight-line</b>. Pearson measures how well the
+   points fit a straight line. A perfect curved relationship can give a correlation near zero, and the
+   number would be telling the truth &mdash; there is no <em>linear</em> relationship. That caveat is
+   what Anscombe's quartet exists to demonstrate.</p>
   </div>
 
-  <div class="primer">
-   <h4>Pearson measures straight lines only</h4>
-   <p>This is the limitation students most need. Pearson's r asks: <b>how well does a straight line
-   describe this?</b> Data following a perfect parabola, symmetric about zero, has r = 0 &mdash; despite a
-   perfect, deterministic relationship between the variables.</p>
-   <p>So <b>r = 0 means &ldquo;no linear relationship&rdquo;, never &ldquo;no relationship&rdquo;.</b>
-   The only defence is to plot the scatter before trusting the number.</p>
-   <p><b>Spearman</b> fixes part of this by correlating the <em>ranks</em> instead of the values. It
-   detects any consistently increasing or decreasing relationship, curved or not, and because ranks
-   compress extremes it is far more resistant to outliers. Use it for ordinal data, curved relationships,
-   or whenever outliers are present.</p>
+  <div class="understand">
+   <h5>Part three &middot; the two-row disaster, and Spearman</h5>
+
+   <h6>What your file does</h6>
+   <p>This is the best worked example in the whole module and it is sitting in your data:</p>
+   <div class="simple">
+    <span class="lab">Experience against salary — verified</span>
+    <p><b>Pearson, all 199 rows:</b> 0.079 &mdash; essentially no relationship</p>
+    <p><b>Pearson, without the two outliers:</b> 0.607 &mdash; a solid relationship</p>
+    <p><b>Spearman, all 199 rows:</b> 0.612</p>
+    <p><b>Spearman, without the outliers:</b> 0.605</p>
+   </div>
+   <p>Read that table carefully, because there are two separate lessons in it.</p>
+   <p><b>First:</b> Pearson said there was no relationship between experience and salary. That is a
+   completely wrong conclusion, and two rows out of 199 caused it. An analyst who reported 0.079 would
+   have told their company that experience does not affect pay.</p>
+   <p><b>Second, and better:</b> Spearman gave about 0.61 <em>either way</em>. It never needed the
+   cleaning. It was right before anybody found the outliers.</p>
+
+   <h6>Why Spearman does not care</h6>
+   <p>Spearman does not use the values at all. It <b>ranks</b> them &mdash; 1st, 2nd, 3rd &mdash; and
+   correlates the ranks.</p>
+   <p>So the 52-lakh salary becomes &ldquo;rank 1&rdquo;. Not 5,200,000. Just <em>first</em>. Whether
+   that person earns 52 lakh or 52 crore, they are still rank 1, and the answer does not move.</p>
+   <div class="keyline">
+    This is the same idea as median versus mean, one level up. <b>Pearson uses values and gets wrecked by
+    extremes. Spearman uses positions and ignores them.</b>
+   </div>
+   <p>The trade-off, stated honestly: by throwing away the actual values, Spearman loses information. If
+   your data is clean and evenly spread, Pearson tells you more. Spearman also detects any relationship
+   that consistently goes one direction, even a curved one, which Pearson would understate.</p>
   </div>
 
-  <div class="primer">
-   <h4>The five explanations for any correlation</h4>
-   <p>When X and Y move together, at least five things could be true, and only one of them is
-   &ldquo;X causes Y&rdquo;:</p>
-   <p><b>1.</b> X causes Y. <b>2.</b> Y causes X &mdash; reverse causation. <b>3.</b> Some third variable
-   Z causes both &mdash; confounding, by far the most common. <b>4.</b> Coincidence &mdash; test enough
-   pairs and spurious correlations are guaranteed. <b>5.</b> Selection bias in how the data was collected
-   manufactured the association.</p>
-   <p>Only a <b>randomised experiment</b> &mdash; an A/B test &mdash; reliably separates these. That is
-   why the entire tech industry runs experiments rather than reading correlations off dashboards, and it
-   is where this course is heading.</p>
+  <div class="understand">
+   <h5>Part four &middot; correlation is not causation</h5>
+
+   <h6>Why this gets a proper segment, not a passing remark</h6>
+   <p>Your own notes call this the most important sentence in the course, and the reason is practical:
+   it is the error most likely to show up in a student's actual professional work, and the one most
+   likely to get them taken seriously or not.</p>
+   <p>Everybody can recite it. Very few can spot it happening in their own analysis, because in the
+   moment it always feels like the obvious interpretation.</p>
+
+   <h6>The three explanations for any correlation</h6>
+   <p>When you find that A and B move together, there are exactly three possibilities, and the number
+   itself cannot distinguish between them:</p>
+   <div class="simple">
+    <span class="lab">Give them all three, every time</span>
+    <p><b>1. A causes B.</b> The one everybody assumes.</p>
+    <p><b>2. B causes A.</b> The direction is backwards. Do hospitals make people ill, or do ill people
+    go to hospitals?</p>
+    <p><b>3. Something else causes both.</b> The dangerous one, and usually the true one. Ice cream sales
+    and drowning deaths rise together &mdash; because of summer. Neither causes the other.</p>
+   </div>
+   <p>That third case has a name worth giving them: a <b>confounding variable</b>. Something you did not
+   measure, driving both things you did.</p>
+
+   <h6>The example from your own file</h6>
+   <p>Do not use ice cream and drowning if you can use their own data, and here you can. Within each
+   department the cleaned correlation between experience and salary is <b>0.74 to 0.80</b>. Overall it is
+   <b>0.607</b>.</p>
+   <p>The relationship is <em>stronger inside every single department</em> than it is across the company.
+   Why? Because departments pay differently, and mixing them together muddies the picture. Department is
+   a variable sitting underneath the number and changing it.</p>
+   <p>That is a real, live demonstration that a single correlation can hide structure, using data they
+   have been staring at for two weeks.</p>
+
+   <h6>Anscombe's quartet &mdash; the argument for always plotting</h6>
+   <p>Four datasets. All four have the <b>same mean, the same standard deviation and the same correlation
+   of 0.816.</b> Plotted, they look nothing alike &mdash; one is a clean line, one is a curve, one is a
+   line with a single outlier dragging it, one is a vertical stack with one point far to the right.</p>
+   <p>Your notes call this the single most persuasive argument for exploratory visualisation, and it is.
+   Every summary statistic agrees; every picture disagrees.</p>
+   <p>You are drawing these on the board, not plotting them. Four quick sketches is enough &mdash; the
+   point is the contrast, not the accuracy.</p>
+  </div>
+
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They now have:</b> every single-column tool &mdash; the three averages, range, IQR, standard
+   deviation, variance, skew, the box plot and the outlier rule. They know that squaring makes measures
+   fragile, and that the median and IQR resist extremes where the mean and range do not.</p>
+   <p><b>They have never heard:</b> covariance, correlation, Pearson, Spearman, rank correlation,
+   confounding variable, or Anscombe. Nothing today is revision.</p>
+   <p><b>Lean on the pattern they already know.</b> Pearson is to Spearman what the mean is to the median.
+   Saying that once, early, saves ten minutes of explanation later.</p>
   </div>
  </div>
 </section>
 
 <section class="fog">
- <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2></div>
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
 </section>
 
 <section style="padding-top:8px">
  <div class="wrap">
 
+  <!-- 0-8 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 – 10</span><h3>A question the room can answer wrongly</h3></div>
+   <div class="bhead"><span class="clock">0 &ndash; 8</span><h3>A different kind of question</h3></div>
+   <p class="objective">Show them the wall their current tools hit. Eight minutes.</p>
 
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>Simple question about this company. <strong>Does experience predict salary?</strong>
-    Do people who have been working longer earn more here?</p>
-    <p>Everyone expects yes. Let us measure it.</p>
+   <div class="stage">Start by listing what they can already do. It should feel like a lot &mdash;
+   because it is.</div>
+
+   <div class="speak">
+    <p>Let us take stock. In six sessions you have learned to describe a column completely.</p>
+    <p>Where the middle is &mdash; mean, median, mode. How spread out it is &mdash; range, IQR, standard
+    deviation. What shape it has &mdash; skew. Whether anything strange is in it &mdash; the IQR rule.</p>
+    <p>That is genuinely a lot. And every single one of those looks at <b>one column at a time.</b></p>
    </div>
 
-<pre><code>df[<span class="c">"experience"</span>].corr(df[<span class="c">"salary"</span>])     <span class="c"># <span class="o">0.079</span></span></code></pre>
+   <div class="stage">Now the turn.</div>
 
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>Nought point zero seven nine. On the scale we are about to learn, that is
-    <strong>essentially nothing</strong>.</p>
-    <p>So this company pays experienced people no more than beginners. That is a genuinely
-    alarming finding, and if you put it in a report it would start an argument.</p>
-    <p><strong>Hold that number. We are going to come back and find out it is a lie.</strong></p>
+   <div class="speak">
+    <p>So let me ask you a question none of it can answer.</p>
+    <p><b>Do people with more experience earn more?</b></p>
+    <p>Think about what you would do. You could take the mean salary. You could take the mean experience.
+    You could get the standard deviation of both. And none of that helps at all, because the question is
+    not about either column on its own &mdash; it is about <b>whether they move together.</b></p>
    </div>
 
-   <div class="warn"><b>Do not explain yet.</b> Write 0.079 on the board and leave it. The reveal at
-   minute fifty is the strongest moment in this session and it depends on the setup.</div>
-  </div>
-
-  <div class="blk">
-   <div class="bhead"><span class="clock">10 – 24</span><h3>Covariance, and why we abandon it</h3></div>
-
-   <div class="lbl">Build the intuition on the board first</div>
-   <div class="do">Four employees. Mark each as above or below the mean on both experience and salary.
-   Show that <b>above/above and below/below give positive products</b>, while mismatches give negative
-   ones. Summing them measures whether the two move together.</div>
-
-<pre><code>df[<span class="c">"experience"</span>].cov(df[<span class="c">"salary"</span>])</code></pre>
-
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>The sign tells you the direction. <strong>The number tells you nothing at all</strong>, because
-    its units are years multiplied by rupees. If I reported salary in lakhs instead, this number changes
-    completely &mdash; and the relationship has not changed at all.</p>
-    <p>So covariance cannot be compared between any two pairs of variables. That is exactly the
-    problem correlation solves: <strong>divide by both standard deviations and the units cancel.</strong></p>
+   <div class="qbox">
+    <div class="q">Ask for more questions of this shape</div>
+    <div class="a">Push them to produce a few: does advertising spend affect sales? Does study time affect
+    marks? Does the department affect the salary? <b>Every question a business actually asks has two
+    columns in it.</b> That is the point to land before you teach anything.</div>
    </div>
 
-   <div class="expl">
-    <div class="erow"><span class="cd">Cov(X, X)</span><span class="tx">Equals the <b>variance</b> of X. Variance is just covariance of a variable with itself &mdash; a nice unifying observation.</span></div>
-    <div class="erow"><span class="cd">r = Cov / (s&#8339; &times; s&#8340;)</span><span class="tx">Standardising by both spreads forces the result into <b>&minus;1 to +1</b> and removes the units.</span></div>
+   <div class="speak">
+    <p>And notice &mdash; nearly every question a business actually asks has two columns in it. Does this
+    affect that. Does this move with that.</p>
+    <p>So today we finally leave one column behind.</p>
    </div>
   </div>
 
+  <!-- 8-24 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">24 – 38</span><h3>Reading correlation properly</h3></div>
+   <div class="bhead"><span class="clock">8 &ndash; 24</span><h3>Covariance &mdash; the idea</h3></div>
+   <p class="objective">Board only, small numbers. Sixteen minutes.</p>
 
-<pre><code>df[[<span class="c">"experience"</span>, <span class="c">"age"</span>, <span class="c">"height_cm"</span>, <span class="c">"salary"</span>]].corr().round(3)</code></pre>
-<pre><code>            experience    age  height_cm  salary
-experience       <span class="o">1.000</span>  0.055      0.007   <span class="o">0.079</span>
-age              0.055  <span class="o">1.000</span>      0.057   0.017
-height_cm        0.007  0.057      <span class="o">1.000</span>   0.061
-salary           <span class="o">0.079</span>  0.017      0.061   <span class="o">1.000</span></code></pre>
-
-   <div class="expl">
-    <div class="erow"><span class="cd">the diagonal</span><span class="tx">Always exactly 1 &mdash; every column correlates perfectly with itself. Carries no information.</span></div>
-    <div class="erow"><span class="cd">symmetry</span><span class="tx">The matrix mirrors across the diagonal, so <b>only one triangle is worth reading</b>. Mask the other half when presenting.</span></div>
-    <div class="erow"><span class="cd">height vs salary 0.061</span><span class="tx">Near zero, as you would hope. A strong correlation here would suggest something odd about the data.</span></div>
+   <div class="speak">
+    <p>Here is the reasoning, and it is nicer than the formula.</p>
+    <p>Take one person. Ask two questions about them. Is their experience <b>above or below</b> the
+    average experience? And is their salary <b>above or below</b> the average salary?</p>
+    <p>If somebody is above average on both, that is evidence the two go together. If they are below
+    average on both &mdash; that is <em>also</em> evidence they go together. And if they are above on one
+    and below on the other, that is evidence against.</p>
+    <p>Now the trick. We turn that into arithmetic by <b>multiplying</b>.</p>
    </div>
 
-   <div class="lbl">Give them the reading scale</div>
-<pre><code>|r| &lt; 0.2     negligible
-0.2 - 0.4     weak
-0.4 - 0.6     moderate
-0.6 - 0.8     strong
-&gt; 0.8         very strong</code></pre>
+   <div class="typeit">On the board</div>
+<pre><code>both ABOVE their means     positive x positive  =  POSITIVE
+both BELOW their means     negative x negative  =  POSITIVE
+one above, one below       positive x negative  =  NEGATIVE</code></pre>
 
-   <div class="lbl">And the honesty adjustment</div>
-   <div class="say">
-    <p>When you report a correlation to a manager, <strong>square it first</strong>. An r of 0.7 sounds
-    like seventy per cent of something. What it actually means is that <strong>forty-nine per cent</strong>
-    of the variation is accounted for. Reporting r&sup2; stops you overselling.</p>
+   <div class="speak">
+    <p>Look at the second line, because that is the clever part. Two negatives multiply to a positive.
+    So somebody who is below average on <em>both</em> counts as evidence that the two move together
+    &mdash; which is exactly right.</p>
+    <p>So: do that multiplication for every person, add them all up, and average. If the answer is
+    strongly positive, the two things rise together.</p>
+    <p>That number is called the <b>covariance</b>.</p>
+   </div>
+
+   <div class="stage">Now work it on the board with five clean pairs.</div>
+
+   <div class="typeit">Write this out</div>
+<pre><code>x:  1   2   3   4   5      mean of x = 3
+y:  2   4   6   8  10      mean of y = 6
+
+x - 3    -2  -1   0   1   2
+y - 6    -4  -2   0   2   4
+product   8   2   0   2   8      <- multiply the two rows
+
+sum = 20        covariance = 20 / 4 = 5</code></pre>
+
+   <div class="speak">
+    <p>Five people. Take the distances from each mean, multiply them pair by pair, add them up.</p>
+    <p>Notice the first column. Minus two times minus four is <b>plus eight</b>. That person is below
+    average on both, and it counts as positive evidence.</p>
+    <p>Twenty in total. Divide by four &mdash; n minus one, same correction as last session &mdash; and
+    the covariance is five.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;is five a strong relationship or a weak one?&rdquo;</div>
+    <div class="a">They cannot answer, and that is the point. There is no scale. Five is meaningless
+    without something to compare it to.</div>
    </div>
   </div>
 
+  <!-- 24-34 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">38 – 56</span><h3>The reveal</h3></div>
-   <p class="objective">The centrepiece. One outlier hid a real relationship, and a different measure
-   found it anyway.</p>
+   <div class="bhead"><span class="clock">24 &ndash; 34</span><h3>Why covariance is unusable</h3></div>
+   <p class="objective">Let the problem hurt before you fix it. Ten minutes.</p>
 
-   <div class="lbl">Go back to 0.079 on the board, then run this</div>
-<pre><code>d = df[[<span class="c">"experience"</span>, <span class="c">"salary"</span>]].dropna()
+   <div class="typeit">Type this</div>
+<pre><code>d = df.dropna(subset=[<span class="c">"salary"</span>, <span class="c">"experience"</span>])
+<span class="k">print</span>(<span class="k">round</span>(d[<span class="c">"experience"</span>].cov(d[<span class="c">"salary"</span>])))</code></pre>
+   <div class="screen">128281</div>
 
-<span class="c"># drop the single 52-lakh earner</span>
-clean = d[d[<span class="c">"salary"</span>] &lt; 1000000]
-
-d[<span class="c">"experience"</span>].corr(d[<span class="c">"salary"</span>])          <span class="c"># <span class="o">0.079</span>   with the CEO</span>
-clean[<span class="c">"experience"</span>].corr(clean[<span class="c">"salary"</span>])  <span class="c"># <span class="o">0.612</span>   without</span></code></pre>
-
-   <div class="lbl">Say &mdash; and pause before you do</div>
-   <div class="say">
-    <p>Nought point zero seven nine, to nought point six one two. <strong>From &ldquo;no relationship at
-    all&rdquo; to &ldquo;strong relationship&rdquo;, by removing one row out of a hundred and
-    ninety-eight.</strong></p>
-    <p>Experience does predict salary in this company. It always did. <strong>One extreme value was
-    hiding it completely</strong> &mdash; and if you had reported the first number, you would have told
-    your management something false about their own pay structure.</p>
+   <div class="speak">
+    <p>One hundred and twenty-eight thousand.</p>
+    <p>So &mdash; is that a strong relationship?</p>
    </div>
 
-   <div class="chkq"><b>Ask before moving on:</b> &ldquo;What should you have done to catch this?&rdquo;<br>
-   <b>Plotted the scatter.</b> One glance would have shown 197 points in a rising cloud and one point
-   marooned in the top corner. <b>Never trust a correlation you have not looked at.</b></div>
+   <div class="stage">Let the silence sit. Nobody can answer.</div>
 
-   <div class="lbl">Then the second half of the reveal</div>
-<pre><code>d[<span class="c">"experience"</span>].corr(d[<span class="c">"salary"</span>], method=<span class="c">"spearman"</span>)          <span class="c"># <span class="o">0.609</span></span>
-clean[<span class="c">"experience"</span>].corr(clean[<span class="c">"salary"</span>], method=<span class="c">"spearman"</span>)  <span class="c"># <span class="o">0.608</span></span></code></pre>
-
-   <div class="lbl">Say</div>
-   <div class="say">
-    <p>Look at that. Spearman gave <strong>0.609 with the outlier and 0.608 without it</strong>.
-    It barely moved. It found the real relationship <em>while the outlier was still in the data</em>.</p>
-    <p>Because Spearman works on <strong>ranks</strong>. The CEO is the highest-paid person either way
-    &mdash; rank one. Whether they earn fifty-two lakh or five hundred crore does not change their rank,
-    so it cannot distort the measure.</p>
+   <div class="speak">
+    <p>Nobody knows. And there are two reasons why not.</p>
+    <p><b>First, the units.</b> What are the units of that number? We multiplied a distance in <em>years</em>
+    by a distance in <em>rupees</em>. So it is in years-times-rupees. That is not a thing that exists.</p>
+    <p><b>Second, there is no ceiling.</b> Covariance can be any number at all. Without a maximum, you
+    have nothing to compare against.</p>
    </div>
 
-   <div class="expl">
-    <div class="erow"><span class="cd">Pearson</span><span class="tx">Uses actual values. <b>One extreme point can dominate or destroy it.</b> Measures straight-line relationships only.</span></div>
-    <div class="erow"><span class="cd">Spearman</span><span class="tx">Uses ranks. <b>Resistant to outliers</b>, and detects any consistently increasing relationship, curved or not.</span></div>
-    <div class="erow"><span class="cd">when they disagree</span><span class="tx">A large gap between the two is <b>itself a diagnostic</b> &mdash; it means outliers or a curved relationship. Here the gap was 0.079 vs 0.609, which is a klaxon.</span></div>
+   <div class="typeit">Show the units problem directly</div>
+<pre><code><span class="k">print</span>(<span class="k">round</span>(d[<span class="c">"experience"</span>].cov(d[<span class="c">"age"</span>]), <span class="o">1</span>))
+<span class="k">print</span>(<span class="k">round</span>(d[<span class="c">"height_cm"</span>].cov(d[<span class="c">"salary"</span>])))</code></pre>
+   <div class="screen">4.1
+171231</div>
+
+   <div class="speak">
+    <p>Experience against age gives four point one. Height against salary gives a hundred and
+    seventy-one thousand.</p>
+    <p>Does that mean height and salary are forty thousand times more related than experience and age?
+    <b>Obviously not.</b> The numbers are just in different units.</p>
+    <p>And it gets worse. If I measured salary in <em>thousands</em> instead of rupees, the covariance
+    would change completely &mdash; while the actual relationship stayed exactly the same.</p>
    </div>
 
-   <div class="warn"><b>The rule to give them:</b> compute both. If Pearson and Spearman disagree
-   substantially, <b>something is wrong with your assumption of a straight line</b> &mdash; go and look
-   at the scatter before you report anything.</div>
+   <div class="keyline" style="margin:14px 0">
+    Covariance tells you the <b>direction</b> &mdash; positive or negative &mdash; and tells you nothing
+    useful about the <b>strength</b>.
+   </div>
+
+   <div class="speak">
+    <p>So it is half a tool. We need to strip the units out and put it on a fixed scale.</p>
+   </div>
   </div>
 
+  <!-- 34-46 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">56 – 74</span><h3>Correlation is not causation</h3></div>
-   <p class="objective">The most consequential fifteen minutes of the descriptive block.</p>
+   <div class="bhead"><span class="clock">34 &ndash; 46</span><h3>Pearson correlation</h3></div>
+   <p class="objective">The fix, using only things they already have. Twelve minutes.</p>
 
-   <div class="lbl">Open with something absurd and local</div>
-   <div class="say">
-    <p>Across Indian cities, <strong>air-conditioner sales correlate strongly with mango prices.</strong>
-    Months with high AC sales have expensive mangoes.</p>
-    <p>So &mdash; do air conditioners make mangoes expensive? Should we ban AC sales to bring down
-    fruit prices?</p>
+   <div class="speak">
+    <p>The fix is one line, and you already have both pieces.</p>
+    <p>Take the covariance. Divide it by the standard deviation of x, and by the standard deviation of
+    y.</p>
    </div>
 
-   <div class="do">Let them find it. <b>Summer.</b> Heat drives AC sales up and affects mango supply and
-   demand at the same time. Neither causes the other; a third variable causes both.</div>
+   <div class="typeit">On the board</div>
+<pre><code>                 covariance of x and y
+correlation  =  -----------------------
+                    std(x)  x  std(y)</code></pre>
 
-   <div class="lbl">Then the five explanations, on the board</div>
-<pre><code>X and Y are correlated. At least five things could be true:
-
-1. X causes Y
-2. Y causes X                    (reverse causation)
-3. Z causes both X and Y         (confounding - most common)
-4. Pure coincidence              (test enough pairs, this is guaranteed)
-5. Selection bias created it     (how the data was collected)</code></pre>
-
-   <div class="lbl">Work two more, quickly</div>
-   <ul class="l">
-    <li><b>Areas with more coaching centres have better board results.</b> Do coaching centres cause the
-    results? Confounder: <b>household income</b> &mdash; wealthier areas have both.</li>
-    <li><b>More firefighters at a fire correlates with more damage.</b> Do firefighters cause damage?
-    Confounder: <b>the size of the fire</b> drives both.</li>
-   </ul>
-
-   <div class="chkq"><b>Make them do the work.</b> Give a pair &mdash; &ldquo;employees who attend more
-   training sessions get promoted faster&rdquo; &mdash; and ask for all five explanations before accepting
-   the obvious one. Reverse causation is worth drawing out: <b>maybe people already marked for promotion
-   get sent on training.</b></div>
-
-   <div class="lbl">Say &mdash; the professional stakes</div>
-   <div class="say">
-    <p>This is not an academic point. <strong>This is the error most likely to appear in your actual work,
-    and the one most likely to cause real damage.</strong> You will sit in a meeting where someone points
-    at a correlation and proposes spending money on it.</p>
-    <p>The sentence that protects you is short: <strong>&ldquo;these move together &mdash; what else could
-    explain that?&rdquo;</strong> Ask it every time.</p>
+   <div class="speak">
+    <p>The units on the top are years-times-rupees. The units on the bottom are years-times-rupees.
+    <b>They cancel.</b> The answer has no units at all.</p>
+    <p>And it does something else. It forces the answer onto a fixed scale from <b>minus one to plus
+    one</b>, no matter what you measure or in what units.</p>
+    <p>This is called the <b>Pearson correlation coefficient</b>, and it is the number everybody means
+    when they say &ldquo;correlation&rdquo;.</p>
    </div>
 
-   <div class="warn"><b>Then give them the way out:</b> the only reliable method for establishing causation
-   is a <b>randomised experiment</b>. Randomly assign who gets the treatment, and confounders are
-   distributed evenly across both groups by construction. That is what an A/B test is, and it is where
-   this course ends.</div>
+   <div class="typeit">On the board &mdash; how to read it</div>
+<pre><code>+1     perfect: one goes up, the other goes up, every time
+ 0     no straight-line relationship at all
+-1     perfect opposite: one goes up, the other goes down
+
+roughly:   below 0.3  weak      0.3 - 0.7  moderate      above 0.7  strong</code></pre>
+
+   <div class="speak">
+    <p>Those bands are rough, not law. What counts as a strong correlation in physics would be laughable
+    in psychology. Use them as a starting point, not a rule.</p>
+    <p>And hold on to one word in that definition: <b>straight-line</b>. Correlation measures how well
+    the points sit on a straight line. Remember that &mdash; we come back to it at the end and it
+    matters.</p>
+   </div>
+
+   <div class="typeit">Check it on the board example</div>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+x = pd.Series([<span class="o">1</span>,<span class="o">2</span>,<span class="o">3</span>,<span class="o">4</span>,<span class="o">5</span>])
+y = pd.Series([<span class="o">2</span>,<span class="o">4</span>,<span class="o">6</span>,<span class="o">8</span>,<span class="o">10</span>])
+<span class="k">print</span>(<span class="k">round</span>(x.corr(y), <span class="o">3</span>))</code></pre>
+   <div class="screen">1.0</div>
+
+   <div class="speak">
+    <p>One. Perfect. And look at why &mdash; y is exactly two times x, every single time. A perfectly
+    straight line.</p>
+    <p>Now let us try it on something real.</p>
+   </div>
   </div>
 
+  <!-- 46-60 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">74 – 90</span><h3>Lab and close</h3></div>
-   <ol class="n">
-    <li>Build the <b>correlation matrix</b> for all numeric columns. Which pair is strongest?</li>
-    <li>Compute <b>Pearson and Spearman</b> for experience against salary, with and without the outlier.
-    Explain the pattern in two sentences.</li>
-    <li>Take the strongest pair you found and write <b>all five possible explanations</b> for it.</li>
-    <li>Compute <b>r&sup2;</b> for experience and salary on the cleaned data. What percentage of salary
-    variation does experience actually account for?</li>
-    <li>Find a pair with correlation near zero. <b>Does that prove there is no relationship?</b>
-    What would you check?</li>
-   </ol>
-   <p class="cap" style="margin-top:10px">Answers &mdash; Q4: 0.612&sup2; = <b>0.375</b>, so experience
-   accounts for about 37% of salary variation. Nearly two thirds is something else, which is a useful
-   corrective to &ldquo;strong correlation&rdquo;. Q5: <b>No</b> &mdash; it proves no <em>linear</em>
-   relationship. Check Spearman and plot the scatter.</p>
+   <div class="bhead"><span class="clock">46 &ndash; 60</span><h3>The two-row disaster</h3></div>
+   <p class="objective">The best worked example in the module. Fourteen minutes.</p>
 
-   <div class="lbl">Close &mdash; and set up what comes next</div>
-   <div class="say">
-    <p>That is descriptive statistics complete. You can now take any column and describe its
-    <strong>centre, spread and shape</strong>, and take any two columns and measure <strong>how they move
-    together</strong> &mdash; while knowing exactly what that does and does not prove.</p>
-    <p>Everything so far has described data you already have. From tomorrow we start making claims about
-    data we <strong>do not</strong> have &mdash; and for that we need probability.</p>
+   <div class="stage">Ask them to predict before you run it. Everybody expects a strong positive number.</div>
+
+   <div class="speak">
+    <p>Right. The question I opened with. Do people with more experience earn more?</p>
+    <p>Before I run it &mdash; what do you expect? Strong positive? Weak? Give me a number between minus
+    one and plus one.</p>
    </div>
+
+   <div class="typeit">Now run it</div>
+<pre><code><span class="k">print</span>(<span class="k">round</span>(d[<span class="c">"experience"</span>].corr(d[<span class="c">"salary"</span>]), <span class="o">3</span>))</code></pre>
+   <div class="screen">0.079</div>
+
+   <div class="stage">Let that sit. It contradicts everything they expect.</div>
+
+   <div class="speak">
+    <p>Nought point zero seven nine.</p>
+    <p>Read that with the scale I just gave you. Below nought point three is weak. This is barely above
+    zero.</p>
+    <p>So what does this number say? It says <b>experience has essentially nothing to do with
+    salary.</b> Twenty years in the job, or two &mdash; makes no difference to your pay.</p>
+    <p>Do you believe that?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Let them push back, then ask what could cause it</div>
+    <div class="a">Guide them back to last session. We spent an entire session on two rows that wrecked
+    the mean, wrecked the range, wrecked the standard deviation and made the skew fourteen. <b>Ask
+    whether they might have wrecked this too.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Neither do I. So let us think about what could do this.</p>
+    <p>We have spent two sessions on two particular rows. They wrecked the mean. They wrecked the range.
+    They made the standard deviation twenty-two times too big. They made the skew fourteen.</p>
+    <p>Any guesses?</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>q1, q3 = d[<span class="c">"salary"</span>].quantile(<span class="o">0.25</span>), d[<span class="c">"salary"</span>].quantile(<span class="o">0.75</span>)
+iqr = q3 - q1
+c = d[(d[<span class="c">"salary"</span>] &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (d[<span class="c">"salary"</span>] &lt;= q3+<span class="o">1.5</span>*iqr)]
+
+<span class="k">print</span>(<span class="c">"all 199 rows :"</span>, <span class="k">round</span>(d[<span class="c">"experience"</span>].corr(d[<span class="c">"salary"</span>]), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"without the 2:"</span>, <span class="k">round</span>(c[<span class="c">"experience"</span>].corr(c[<span class="c">"salary"</span>]), <span class="o">3</span>))</code></pre>
+   <div class="screen">all 199 rows : 0.079
+without the 2: 0.607</div>
+
+   <div class="speak">
+    <p>Nought point zero seven nine becomes nought point six zero seven.</p>
+    <p>From &ldquo;no relationship at all&rdquo; to &ldquo;a solid, moderate relationship&rdquo;. Because
+    of <b>two rows out of a hundred and ninety-nine.</b></p>
+    <p>Now think about what that means practically. If you had run that first line, seen nought point
+    zero seven nine, and put it in a report &mdash; you would have told your company that <b>experience
+    does not affect pay.</b> Which is completely false, and you would have had a correctly computed
+    number to back it up.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    Pearson uses the actual values. So it inherits every weakness the mean has &mdash;
+    <b>two extreme rows can flip the conclusion entirely.</b>
+   </div>
+  </div>
+
+  <!-- 60-72 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">60 &ndash; 72</span><h3>Spearman &mdash; and it was right all along</h3></div>
+   <p class="objective">The pattern they already know, one level up. Twelve minutes.</p>
+
+   <div class="speak">
+    <p>So we have a measure that gets destroyed by extreme values. Where have you seen that before?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">They should get this. Wait for it.</div>
+    <div class="a">The <b>mean</b>. And the fix then was the <b>median</b> &mdash; which works because it
+    uses <em>positions</em> instead of values. The same fix exists here.</div>
+   </div>
+
+   <div class="speak">
+    <p>The mean. And what did we use instead? The median &mdash; because the median does not care how big
+    the biggest value is. It only cares that it is the biggest. <b>Position, not value.</b></p>
+    <p>There is a version of correlation that does exactly the same thing. It is called <b>Spearman</b>.</p>
+    <p>Spearman throws away the actual numbers and replaces them with ranks. First, second, third.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>salary       33,085   59,003   80,599   5,200,000
+rank              1        2        3           4
+
+the 52 lakh salary is just "rank 4"
+whether they earn 52 lakh or 52 crore, they are still rank 4</code></pre>
+
+   <div class="speak">
+    <p>That is the whole trick. The fifty-two lakh salary becomes &ldquo;the highest one&rdquo;. Not five
+    point two million. Just <b>highest</b>.</p>
+    <p>So an extreme value cannot distort anything, because its extremeness has been thrown away before
+    the calculation starts.</p>
+    <p>Let us see what it says.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(<span class="c">"Pearson  all rows :"</span>, <span class="k">round</span>(d.experience.corr(d.salary), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"Spearman all rows :"</span>, <span class="k">round</span>(d.experience.corr(d.salary, method=<span class="c">"spearman"</span>), <span class="o">3</span>))
+<span class="k">print</span>()
+<span class="k">print</span>(<span class="c">"Pearson  cleaned  :"</span>, <span class="k">round</span>(c.experience.corr(c.salary), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"Spearman cleaned  :"</span>, <span class="k">round</span>(c.experience.corr(c.salary, method=<span class="c">"spearman"</span>), <span class="o">3</span>))</code></pre>
+   <div class="screen">Pearson  all rows : 0.079
+Spearman all rows : 0.612
+
+Pearson  cleaned  : 0.607
+Spearman cleaned  : 0.605</div>
+
+   <div class="stage">Point at the table. There are two separate lessons in it and students usually
+   only see the first.</div>
+
+   <div class="speak">
+    <p>Look at that table properly, because there are two things in it.</p>
+    <p>The first one you already know. Pearson went from nought point zero seven nine to nought point six
+    zero seven once we cleaned.</p>
+    <p>But look at the Spearman row. <b>Nought point six one two, and nought point six zero five.</b>
+    Almost identical.</p>
+    <p>Spearman gave the right answer <b>before anybody found the outliers.</b> It never needed the
+    cleaning. It was correct on the raw file.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>Pearson is to Spearman what the mean is to the median.</b><br>
+    One uses values and gets wrecked by extremes. The other uses positions and ignores them.
+   </div>
+
+   <div class="qbox">
+    <div class="q">Somebody will ask: &ldquo;so why not always use Spearman?&rdquo;</div>
+    <div class="a">&ldquo;Because throwing away the values throws away information. On clean, evenly
+    spread data Pearson tells you more &mdash; it knows the difference between slightly higher and
+    enormously higher, and Spearman does not. Same trade-off as median versus mean.&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Practical advice, and this is what I actually want you to do at work: <b>run both.</b></p>
+    <p>If they agree, you are fine. If they disagree badly &mdash; like nought point zero eight against
+    nought point six one &mdash; that gap is not a nuisance. <b>It is a warning that something extreme is
+    in your data</b>, and you should go and look at it before you write a single sentence about the
+    result.</p>
+   </div>
+  </div>
+
+  <!-- 72-84 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">72 &ndash; 84</span><h3>Correlation is not causation</h3></div>
+   <p class="objective">The most important twelve minutes in the module. Do not rush this.</p>
+
+   <div class="stage">Everybody can recite this sentence. Almost nobody spots it happening in their own
+   work. Teach the diagnosis, not the slogan.</div>
+
+   <div class="speak">
+    <p>You have all heard this sentence before. Correlation is not causation. Everybody can say it.</p>
+    <p>And almost nobody catches themselves doing it, because in the moment it never feels like a
+    mistake. It feels like the obvious interpretation.</p>
+    <p>So instead of the slogan, I am going to give you something you can actually use.</p>
+    <p>When you find that two things move together, there are <b>exactly three explanations</b>. And the
+    correlation number cannot tell you which one you have.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; leave this up</div>
+<pre><code>A and B move together.  Three possibilities:
+
+1.  A causes B                  the one everybody assumes
+
+2.  B causes A                  the direction is backwards
+
+3.  something ELSE causes both  the dangerous one
+                                (a "confounding variable")</code></pre>
+
+   <div class="speak">
+    <p>Number two catches people constantly. Do hospitals make people ill? There is a strong correlation
+    between going to hospital and being unwell. The arrow points the other way.</p>
+    <p>Number three is the one that will actually get you. Ice cream sales and drowning deaths rise
+    together, strongly, every year. Does ice cream cause drowning?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Wait for it</div>
+    <div class="a"><b>Summer.</b> Hot weather makes people buy ice cream and makes people swim. Neither
+    causes the other &mdash; a third thing causes both. That third thing has a name: a <b>confounding
+    variable</b>.</div>
+   </div>
+
+   <div class="speak">
+    <p>Summer. Hot weather sells ice cream and puts people in the water. The two numbers move together
+    beautifully and neither causes the other.</p>
+    <p>The thing you did not measure &mdash; the weather &mdash; is driving both things you did measure.
+    That is called a <b>confounding variable</b>, and it is the most common reason a correlation misleads
+    you.</p>
+   </div>
+
+   <div class="stage">Now use their own file. This is far better than ice cream, because it is data
+   they have been looking at for two weeks.</div>
+
+   <div class="speak">
+    <p>Let me show you one hiding in our own data.</p>
+    <p>We just found that experience and salary correlate at nought point six zero seven across the
+    company. Watch what happens when I look inside each department separately.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">for</span> dept, g <span class="k">in</span> c.groupby(<span class="c">"department"</span>):
+    <span class="k">print</span>(dept, <span class="k">round</span>(g.experience.corr(g.salary), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"overall"</span>, <span class="k">round</span>(c.experience.corr(c.salary), <span class="o">3</span>))</code></pre>
+   <div class="screen">HR         0.743
+Marketing  0.799
+Sales      0.797
+Tech       0.750
+overall    0.607</div>
+
+   <div class="stage">Let them notice it themselves.</div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;what is strange about that?&rdquo;</div>
+    <div class="a">The relationship is <b>stronger inside every single department</b> &mdash; 0.74 to 0.80
+    &mdash; than it is across the company at 0.607. Combining the departments made the relationship look
+    <em>weaker</em>, not stronger.</div>
+   </div>
+
+   <div class="speak">
+    <p>Inside every department the relationship is between nought point seven four and nought point
+    eight. Across the whole company it is nought point six.</p>
+    <p>Mixing the departments together made the relationship look <b>weaker</b>. Why?</p>
+    <p>Because departments pay differently. A junior person in a well-paid department can earn more than
+    a senior person in a lower-paid one. So when you throw them all in together, that difference blurs
+    the picture.</p>
+    <p><b>Department is a variable sitting underneath your number, changing it.</b> And nothing in the
+    number nought point six zero seven tells you it is there.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    A single correlation can hide structure. <b>Always ask what else might be going on underneath.</b>
+   </div>
+
+   <div class="speak">
+    <p>So here is the discipline. Whenever you report a correlation, before you write the sentence, run
+    through the three possibilities out loud. Could it be the other way round? Is there something I did
+    not measure that could be driving both?</p>
+    <p>If you cannot rule those out &mdash; and usually you cannot &mdash; then say <b>&ldquo;these are
+    associated&rdquo;</b>, not <b>&ldquo;this causes that&rdquo;</b>. That one word change is the
+    difference between an analyst people trust and one they do not.</p>
+   </div>
+  </div>
+
+  <!-- 84-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">84 &ndash; 90</span><h3>Anscombe &mdash; always look at it</h3></div>
+   <p class="objective">Six minutes, drawn on the board. The best possible close.</p>
+
+   <div class="speak">
+    <p>One last thing, and then I will let you go.</p>
+    <p>In nineteen seventy-three a statistician called Anscombe built four datasets. Let me tell you what
+    they have in common.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>four datasets, all with:
+
+   the same mean of x
+   the same mean of y
+   the same standard deviation
+   the same correlation:  0.816</code></pre>
+
+   <div class="speak">
+    <p>Every summary statistic you have learned in seven sessions is <b>identical</b> across all four.
+    Same mean, same spread, same correlation.</p>
+    <p>So they must be basically the same data. Yes?</p>
+   </div>
+
+   <div class="stage">Now sketch all four on the board. Rough is fine &mdash; the contrast is the point,
+   not the accuracy. Draw them one at a time.</div>
+
+   <div class="typeit">Sketch these four</div>
+<pre><code>1  a clean rising line of scattered points
+
+2  a smooth CURVE - rises then falls
+
+3  a perfect straight line, with ONE point far off it
+
+4  all points in a vertical stack at x=8,
+   plus ONE point far away at x=19</code></pre>
+
+   <div class="speak">
+    <p>Four completely different pictures.</p>
+    <p>The first one is what you imagine when somebody says correlation of nought point eight. Fine.</p>
+    <p>The second is a <b>curve</b>. There is a perfect relationship there, but it is not a straight line
+    &mdash; and correlation only measures straight lines. Remember I told you to hold on to that word.</p>
+    <p>The third is a perfect straight line with <b>one outlier</b> dragging the number down.</p>
+    <p>The fourth is barely a relationship at all &mdash; it is one point, on its own, creating the
+    entire correlation.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    Same mean. Same spread. Same correlation of 0.816. <b>Four completely different datasets.</b>
+   </div>
+
+   <div class="speak">
+    <p>So the rule you leave with today, and it applies to everything you do from now on:</p>
+    <p><b>Never trust a summary number without looking at the data behind it.</b></p>
+    <p>Every statistic we have learned in seven sessions agrees across those four datasets. Every single
+    one. And they are nothing alike.</p>
+    <p>Which is a good moment to tell you what is coming. Everything so far has been <b>describing</b>
+    data you already have. Next we start using a sample to make claims about people we never measured
+    &mdash; and that needs a completely different set of tools.</p>
+   </div>
+
+   <div class="warn"><b>Do not plot Anscombe.</b> Four rough sketches on a board is the right delivery
+   &mdash; producing them in matplotlib is the visualisation module. The contrast is the lesson, not
+   the chart.</div>
   </div>
  </div>
 </section>
@@ -6781,76 +7202,120 @@ clean[<span class="c">"experience"</span>].corr(clean[<span class="c">"salary"</
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
-  <div class="qa"><h5>Which should I use by default, Pearson or Spearman?</h5>
-  <p>Compute both. Use Pearson when the relationship looks linear and outliers are not a problem;
-  Spearman for ordinal data, curved relationships, or outliers. <b>When they disagree sharply, that
-  disagreement is information</b> &mdash; go and plot it.</p></div>
-  <div class="qa"><h5>Does r = 0 mean the variables are independent?</h5>
-  <p>No. It means no linear relationship. A perfect parabola gives r = 0. Independence is a much stronger
-  condition and correlation cannot establish it.</p></div>
-  <div class="qa"><h5>Can correlation ever prove causation?</h5>
-  <p>Not on its own. Causation comes from randomised experiments, or from quasi-experimental designs used
-  with great care. What correlation can do is <b>rule things out</b> &mdash; if two variables are
-  uncorrelated, a simple direct causal link is unlikely.</p></div>
-  <div class="qa"><h5>What if I have two categorical variables?</h5>
-  <p>Pearson does not apply. Use a chi-square test of independence and report Cram&eacute;r's V as the
-  strength measure. We reach that in the testing block.</p></div>
-  <div class="qa"><h5>Two of my features correlate at 0.95. Is that a problem?</h5>
-  <p>For interpretation, yes &mdash; it is called multicollinearity and it makes regression coefficients
-  unstable and untrustworthy. The usual response is to drop one of the pair or combine them. A flag at
-  |r| above 0.8 is a common working threshold.</p></div>
+
+  <div class="qa"><h5>&ldquo;So why not always use Spearman?&rdquo;</h5>
+  <p>&ldquo;Because throwing away the values throws away information. On clean data Pearson tells you
+  more &mdash; it knows the difference between slightly higher and enormously higher, and Spearman does
+  not. Same trade-off as median versus mean. Best practice is to run both and investigate if they
+  disagree.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What counts as a strong correlation?&rdquo;</h5>
+  <p>&ldquo;It depends entirely on the field. Nought point six would be weak in physics and excellent in
+  psychology. The bands I gave you are a starting point, not a rule. What matters more is whether the
+  relationship is useful for the decision you are making.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can correlation be zero if there IS a relationship?&rdquo;</h5>
+  <p>&ldquo;Yes, and that is Anscombe's second dataset. A perfect curve can give a correlation near zero,
+  because correlation only measures <b>straight-line</b> relationships. The number is not lying &mdash;
+  it is answering a narrower question than you thought you asked.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;If two things correlate, how do I prove one causes the other?&rdquo;</h5>
+  <p>&ldquo;Generally you cannot, from observational data alone. You need an experiment &mdash; change
+  one thing deliberately, hold everything else constant, and see what happens. That is what A/B testing
+  is, and we get to it at the end of this module.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does correlation work on text columns?&rdquo;</h5>
+  <p>&ldquo;Not directly &mdash; it needs numbers. For an ordered text column like our rating you can map
+  it to numbers and use <b>Spearman</b>, since it only needs the order. For unordered categories like
+  department you need a different tool entirely, and that is chi-square, near the end of the
+  module.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Our correlation is 0.607. Is that good enough to act on?&rdquo;</h5>
+  <p>&ldquo;It tells you there is a real association worth investigating. It does not tell you experience
+  <em>causes</em> higher pay, and it does not let you predict an individual's salary from their years
+  &mdash; there is a lot of scatter around that relationship. It is a reason to look further, not a
+  conclusion.&rdquo;</p></div>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:18px">If things go sideways</h2>
-  <ul class="l">
-   <li><b>Running long</b> &mdash; compress the covariance block at 10&ndash;24. Students need to know
-   correlation is standardised covariance; they do not need to compute one by hand.</li>
-   <li><b>Running short</b> &mdash; have them find the two most correlated columns in a different dataset
-   and write the five explanations. The habit is the deliverable.</li>
-   <li><b>The causation discussion turns into a debate</b> &mdash; excellent. Let it run. It is the most
-   professionally valuable argument they will have all week.</li>
-   <li><b>Someone challenges dropping the CEO</b> &mdash; a genuinely good challenge. The honest answer:
-   we did not drop them from the analysis, we <b>diagnosed</b> their effect. In a real report you would
-   present both figures and explain the gap, exactly as Day 6 said.</li>
-  </ul>
-  <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--hair)">
-   <h3 class="h-sm" style="margin-bottom:10px">Optional video</h3>
-   <a class="vid" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener">
-    <span class="src">Udemy §6</span><span>Covariance And Correlation</span><span class="dur">39:17</span></a>
+  <div class="lbl">End of session &mdash; put this on screen</div>
+  <div class="sumcard"><pre><code><span class="c"># ---- THE NEW QUESTION ----</span>
+<span class="c"># everything so far described ONE column.</span>
+<span class="c"># every real business question has TWO: does this move with that?</span>
+
+d = df.dropna(subset=[&quot;salary&quot;, &quot;experience&quot;])
+
+<span class="c"># ---- COVARIANCE: do they move together? ----</span>
+<span class="c"># for each row: is x above or below its mean? is y? MULTIPLY the two.</span>
+<span class="c">#   both above  -&gt; + x + = POSITIVE</span>
+<span class="c">#   both below  -&gt; - x - = POSITIVE      &lt;- the clever bit</span>
+<span class="c">#   one of each -&gt; + x - = NEGATIVE</span>
+<span class="c"># average those products = covariance</span>
+
+d[&quot;experience&quot;].cov(d[&quot;salary&quot;])     <span class="c"># 128,281   units: YEARS x RUPEES</span>
+d[&quot;experience&quot;].cov(d[&quot;age&quot;])        <span class="c"># 4.1       units: YEARS x YEARS</span>
+<span class="c"># no units you can picture, no ceiling, changes if you change the units</span>
+<span class="c"># -&gt; covariance gives DIRECTION reliably, STRENGTH not at all</span>
+
+<span class="c"># ---- PEARSON: divide the units out ----</span>
+<span class="c">#                covariance</span>
+<span class="c">#  corr  =  -------------------      units cancel -&gt; always between -1 and +1</span>
+<span class="c">#            std(x) x std(y)</span>
+
+<span class="c"># +1  perfect straight line up      0  no straight-line relationship</span>
+<span class="c"># -1  perfect straight line down</span>
+<span class="c"># rough: &lt;0.3 weak   0.3-0.7 moderate   &gt;0.7 strong   (field dependent)</span>
+
+d[&quot;experience&quot;].corr(d[&quot;salary&quot;])    <span class="c"># 0.079  &lt;- &quot;experience does not affect pay&quot;?</span>
+
+<span class="c"># ---- THE TWO-ROW DISASTER ----</span>
+q1, q3 = d[&quot;salary&quot;].quantile(0.25), d[&quot;salary&quot;].quantile(0.75)
+iqr = q3 - q1
+c = d[(d[&quot;salary&quot;] &gt;= q1-1.5*iqr) &amp; (d[&quot;salary&quot;] &lt;= q3+1.5*iqr)]
+c[&quot;experience&quot;].corr(c[&quot;salary&quot;])    <span class="c"># 0.607  &lt;- two rows out of 199 did that</span>
+
+<span class="c"># ---- SPEARMAN: rank instead of value ----</span>
+<span class="c"># throws the numbers away and uses 1st, 2nd, 3rd. the 52 lakh is just &quot;highest&quot;.</span>
+d.experience.corr(d.salary, method=&quot;spearman&quot;)   <span class="c"># 0.612   raw file</span>
+c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.605   cleaned</span>
+<span class="c"># SPEARMAN WAS RIGHT BEFORE ANYBODY FOUND THE OUTLIERS.</span>
+<span class="c">#</span>
+<span class="c"># PEARSON is to SPEARMAN what the MEAN is to the MEDIAN</span>
+<span class="c">#   values, wrecked by extremes   |   positions, ignores them</span>
+<span class="c">#</span>
+<span class="c"># at work: run BOTH. if they disagree badly, something extreme is in your data.</span>
+
+<span class="c"># ---- CORRELATION IS NOT CAUSATION ----</span>
+<span class="c"># A and B move together. THREE possibilities, and the number cannot tell you which:</span>
+<span class="c">#   1. A causes B                  the one everybody assumes</span>
+<span class="c">#   2. B causes A                  do hospitals make people ill?</span>
+<span class="c">#   3. something ELSE causes both  ice cream and drowning -&gt; SUMMER</span>
+<span class="c">#                                  = a CONFOUNDING VARIABLE</span>
+
+<span class="c"># in our own file:</span>
+<span class="c">#   HR 0.743  Marketing 0.799  Sales 0.797  Tech 0.750</span>
+<span class="c">#   overall                                       0.607</span>
+<span class="c"># stronger INSIDE every department than across the company.</span>
+<span class="c"># department is a variable sitting underneath the number, changing it.</span>
+<span class="c">#</span>
+<span class="c"># if you cannot rule out 2 and 3, say &quot;associated&quot;, not &quot;causes&quot;.</span>
+
+<span class="c"># ---- ANSCOMBE ----</span>
+<span class="c"># four datasets. same mean, same std, same correlation 0.816.</span>
+<span class="c">#   1  a clean rising line</span>
+<span class="c">#   2  a smooth CURVE            &lt;- correlation only measures STRAIGHT lines</span>
+<span class="c">#   3  a straight line + 1 outlier dragging it</span>
+<span class="c">#   4  a vertical stack + 1 far-off point creating the whole correlation</span>
+<span class="c">#</span>
+<span class="c"># NEVER TRUST A SUMMARY NUMBER WITHOUT LOOKING AT THE DATA BEHIND IT.</span></code></pre></div>
+
+  <div class="planbanner" style="margin-top:20px">
+   <b>Where this goes next.</b> Seven sessions of <b>describing</b> data you already hold end here.
+   Day 8 begins the other half of statistics: using a sample to make claims about people you never
+   measured. Probability first, then the CLT, then confidence intervals and testing.
   </div>
- </div>
-</section>
-
-<section>
- <div class="wrap">
-  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">8 lines</span></div>
-  <p class="sumnote">Put this on screen in the last two minutes, or paste it into a cell and let them keep it. Every command from the session, in order, with what it does.</p>
-  <div class="sumcard"><pre><code>import pandas as pd
-df = pd.read_csv(&quot;employees.csv&quot;)
-d = df[[&quot;experience&quot;, &quot;salary&quot;]].dropna()
-clean = d[d[&quot;salary&quot;] &lt; 1000000]        <span class="c"># same data, minus the 52-lakh earner</span>
-
-<span class="c"># ---- COVARIANCE: right direction, useless magnitude ----</span>
-df[&quot;experience&quot;].cov(df[&quot;salary&quot;])      <span class="c"># units are year-rupees, uncomparable</span>
-
-<span class="c"># ---- PEARSON: covariance standardised to -1..+1 ----</span>
-d[&quot;experience&quot;].corr(d[&quot;salary&quot;])            <span class="c"># 0.079   &quot;no relationship&quot;  &lt;- A LIE</span>
-clean[&quot;experience&quot;].corr(clean[&quot;salary&quot;])    <span class="c"># 0.612   the truth, after ONE row removed</span>
-
-<span class="c"># ---- SPEARMAN: ranks, so outliers barely matter ----</span>
-d[&quot;experience&quot;].corr(d[&quot;salary&quot;], method=&quot;spearman&quot;)         <span class="c"># 0.609</span>
-clean[&quot;experience&quot;].corr(clean[&quot;salary&quot;], method=&quot;spearman&quot;) <span class="c"># 0.608  barely moved</span>
-<span class="c"># A BIG GAP between pearson and spearman = outliers or a curve. Go plot it.</span>
-
-<span class="c"># ---- THE MATRIX ----</span>
-df[[&quot;experience&quot;,&quot;age&quot;,&quot;height_cm&quot;,&quot;salary&quot;]].corr().round(3)
-                             <span class="c"># diagonal always 1, symmetric, read one triangle</span>
-
-<span class="c"># ---- r-SQUARED: the honest number to report ----</span>
-clean[&quot;experience&quot;].corr(clean[&quot;salary&quot;]) ** 2   <span class="c"># 0.375   experience explains 37%</span></code></pre></div>
  </div>
 </section>
 </div>
