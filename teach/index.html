@@ -411,10 +411,11 @@ try{var _t=localStorage.getItem("steep-theme");
      into 0.079. Spearman was right all along. Ends on causation and Anscombe.</p>
      <span class="foot">Full script &middot; 33 speech blocks</span></button>
 
-    <button class="dcard soon" disabled>
-     <span class="id">DAY 6</span><h3>The Probability You Need</h3>
-     <p>Rules, conditional probability as filtering, and the base-rate intuition. Kept deliberately short.</p>
-     <span class="foot">Not yet written</span></button>
+    <button class="dcard full" data-go="d8">
+     <span class="id">DAY 8</span><h3>The Notation, and Where Intuition Fails</h3>
+     <p>Finally writes the formulas down &mdash; ten minutes of naming what they already compute. Then
+     the module turns to probability, closing on the medical test: 50%, not 99%.</p>
+     <span class="foot">Full script &middot; 28 speech blocks</span></button>
 
     <button class="dcard soon" disabled>
      <span class="id">DAY 7</span><h3>Normal Distribution and Z-Scores</h3>
@@ -7319,6 +7320,822 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
  </div>
 </section>
 </div>
+<div class="day" id="d8">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Statistics day 8 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">The notation,<br>and where intuition fails</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Opens by finally writing down the formulas &mdash; ten minutes of naming things they already compute.
+   Then the module turns: seven sessions of describing data end, and probability begins, closing on the
+   medical test where everybody's intuition breaks.</p>
+  <div class="glance">
+   <div class="gcell"><b>90</b><span>minutes</span></div>
+   <div class="gcell"><b>18</b><span>min notation</span></div>
+   <div class="gcell"><b>50%</b><span>not 99%</span></div>
+   <div class="gcell"><b>1</b><span>module pivot</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">The two ideas today has to land</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">One &mdash; Greek for the population you
+   cannot see, Roman for the sample you can.</b> That single sentence covers every symbol in the module,
+   and &sigma; versus s is directly examinable.<br>
+   <b style="color:var(--sienna)">Two &mdash; when something is rare, most positive results are
+   false.</b> However accurate the test.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Frame the notation as naming, not new material.</b> Say it out loud in the first thirty
+   seconds. If they think formulas are arriving they tense up; if they know it is translation, they
+   relax and it takes ten minutes instead of forty.</li>
+   <li><b>The day 2 symbol table was never delivered.</b> The script had it, marked examinable, and the
+   recording shows it was cut when that session overran. So this is first contact, not revision.</li>
+   <li><b>Stop the notation block at eighteen minutes.</b> Do not derive anything, do not set an
+   exercise. Write it, name it, move on. Anything more undoes seven sessions of deliberately avoiding
+   formulas.</li>
+   <li><b>Take a vote on the medical test before any arithmetic.</b> Write the counts on the board and
+   leave them there. Almost everybody votes 99%. The vote is what makes the reveal land.</li>
+   <li><b>Use counting, not the formula, for Bayes.</b> Ten thousand people, built one line at a time.
+   Your notes are explicit about this and they are right &mdash; the formula makes it look hard and the
+   counting makes it obvious.</li>
+   <li><b>Do not preview the CLT at the close.</b> Leave the question hanging. Next session opens by
+   taking their attempts at it.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Two halves today. The first is the notation you have been
+  deliberately avoiding for seven sessions &mdash; now that they understand everything, the symbols make
+  it easier rather than harder. Then probability begins.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; why the notation comes now and not earlier</h5>
+
+   <h6>What you have been doing on purpose</h6>
+   <p>For seven sessions you have taught every idea in words and arithmetic. Distance from the mean.
+   Square them. Average them. Take the root. Not once have you written &sigma; or &Sigma; on a board.</p>
+   <p>That was the right order. Students who meet the formula first memorise it and understand nothing.
+   Students who understand it first find the formula <b>easy</b>, because every symbol is already a thing
+   they have computed by hand.</p>
+   <div class="keyline">
+    You are not teaching new material today. You are giving names to things they already know.
+    Say that out loud &mdash; it changes how they receive it.
+   </div>
+
+   <h6>Why they need it at all</h6>
+   <p>Two honest reasons, and neither is &ldquo;because statistics has formulas&rdquo;.</p>
+   <div class="simple">
+    <span class="lab">One — they will be interviewed on it</span>
+    <p>Your own study notes call the &sigma; versus s distinction <b>heavily tested and constantly
+    confused</b>. An interviewer asking &ldquo;what is the difference between population and sample
+    standard deviation?&rdquo; wants exactly the n versus n&minus;1 idea you taught on day 6 &mdash; but
+    they want it with the symbols attached. Right now your students know the concept and cannot name
+    it.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Two — they cannot read the field without it</span>
+    <p>Every documentation page, every textbook, every answer they will ever look up writes
+    &Sigma;(x&#7522; &minus; x&#772;)&sup2;/(n&minus;1). A student who has never seen that cannot read the
+    subject they are entering.</p>
+   </div>
+
+   <h6>The one thing that got skipped and needs picking up</h6>
+   <p>The day 2 script had the Greek-versus-Roman symbol table in it, marked as directly examinable. The
+   recording shows it was <b>never delivered</b> &mdash; it was cut when that session ran out of time,
+   the same casualty as the sampling methods.</p>
+   <p>So this is not revision. It is the first time they meet any of it.</p>
+
+   <h6>The rule that makes all of it memorable</h6>
+   <div class="keyline">
+    <b>Greek letters for the population you can never see. Roman letters for the sample you can.</b>
+   </div>
+   <p>&mu; and &sigma; are Greek, and describe the population. x&#772; and s are Roman, and describe your
+   sample. That single sentence covers every symbol in the module, and it is far easier to remember than
+   six separate definitions.</p>
+
+   <h6>Keep it to ten minutes</h6>
+   <p>Do not derive anything. Do not do an exercise. Write the formula, point at each symbol, say which
+   day they computed it on, and move on. Every second beyond that turns a translation exercise into a
+   maths lesson, which is exactly what you have spent seven sessions avoiding.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; probability, and why the module turns here</h5>
+
+   <h6>What actually changes today</h6>
+   <p>Seven sessions have been <b>descriptive</b> &mdash; describing data you already hold. Today the
+   module turns.</p>
+   <p>Everything from here is about making claims about people you never measured, and none of it works
+   without probability. The CLT needs it. Confidence intervals need it. Every hypothesis test is a
+   probability statement. This session is the foundation the rest of the module stands on.</p>
+   <p>Worth saying that to them explicitly. Probability taught on its own feels like a detour into
+   coin-flipping; framed as the engine for everything that follows, it does not.</p>
+
+   <h6>Keep the probability itself light</h6>
+   <p>They do not need counting rules, permutations or combinations for anything in this module. What
+   they need is four things: what a probability <em>is</em>, the two combining rules, conditional
+   probability, and Bayes &mdash; because the last one is where the intuition fails and where the
+   professional mistakes happen.</p>
+
+   <h6>The two rules, and the pair of words that get confused</h6>
+   <div class="simple">
+    <span class="lab">Multiplication — for "and"</span>
+    <p>P(A and B) = P(A) &times; P(B), <b>if the two are independent</b>. Two coin flips, two dice.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Addition — for "or"</span>
+    <p>P(A or B) = P(A) + P(B), <b>if the two cannot both happen</b>. If they can, you subtract the
+    overlap or you count it twice.</p>
+   </div>
+   <p>The words students confuse are <b>independent</b> and <b>mutually exclusive</b>, and they sound
+   similar enough that they blur. They are close to opposites:</p>
+   <div class="keyline">
+    <b>Mutually exclusive</b> &mdash; if one happens, the other <em>cannot</em>. A coin is heads or
+    tails.<br>
+    <b>Independent</b> &mdash; one happening tells you <em>nothing</em> about the other. Two separate
+    coins.
+   </div>
+   <p>Notice that mutually exclusive events are the opposite of independent: if you know one happened,
+   you know the other did not. That is maximum information, not zero.</p>
+
+   <h6>Conditional probability, and the honest way to teach it</h6>
+   <p>P(A | B) reads as &ldquo;the probability of A, <em>given that</em> B has happened&rdquo;. The bar
+   means &ldquo;given&rdquo;.</p>
+   <p>The best way to teach it to this group is not the formula. It is: <b>conditional probability is
+   filtering a dataframe.</b> P(salary &gt; 1 lakh) is asking about the whole table. P(salary &gt; 1 lakh
+   | department = Tech) is asking the same question <em>after</em> running a filter. They have been doing
+   this in pandas for weeks without knowing it had a name.</p>
+
+   <h6>Bayes and the base rate &mdash; where it actually matters</h6>
+   <p>The medical test example is the whole reason probability is in a data analytics course, and your
+   notes give it fifteen to twenty minutes on its own.</p>
+   <div class="simple">
+    <span class="lab">The setup</span>
+    <p>A disease affects <b>1% of people</b>. A test is <b>99% accurate</b> in both directions. You test
+    positive. What is the chance you actually have it?</p>
+    <p>Almost everybody says 99%. <b>The answer is 50%.</b></p>
+   </div>
+   <p>Work it in <b>natural frequencies</b> rather than the formula, because it becomes obvious. Out of
+   10,000 people: 100 have it, and 99 of those test positive. 9,900 are healthy, and 1% of them &mdash;
+   99 people &mdash; also test positive. So 198 positives, half of them real.</p>
+   <p>Your notes say to present the formula first and the natural-frequency version after, and watch the
+   room. That is good advice: the formula makes it look hard, then the counting makes it obvious, and
+   the contrast is what makes it stick.</p>
+   <p>The lesson is the <b>base rate</b>: when something is rare, most positive results are false, no
+   matter how good the test. Same test at 1 in 10,000 prevalence gives a 1% chance. This is not a
+   medical curiosity &mdash; it is fraud detection, spam filters, security alerts, and any model that
+   predicts something uncommon.</p>
+  </div>
+
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They now have:</b> every descriptive tool, and they can compute all of it. They understand
+   n versus n&minus;1 conceptually from day 6.</p>
+   <p><b>They have never seen:</b> any statistical symbol at all. Not &sigma;, not &mu;, not &Sigma;, not
+   x&#772;. The day 2 symbol table was cut and never delivered.</p>
+   <p><b>They have never heard:</b> probability as a formal subject, independent, mutually exclusive,
+   conditional probability, Bayes, base rate, confounding of the sort Bayes exposes.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-18 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 18</span><h3>The notation &mdash; naming what they already know</h3></div>
+   <p class="objective">Not new material. Translation. Eighteen minutes, board only.</p>
+
+   <div class="stage">Frame this before you write a single symbol. If they think it is new material they
+   will tense up; if they know it is naming, they relax.</div>
+
+   <div class="speak">
+    <p>Before we start something new, I owe you something.</p>
+    <p>For seven sessions I have taught you every single idea in plain words. Take the distance from the
+    mean. Square them. Average them. Take the square root. And I have never once written a symbol on the
+    board.</p>
+    <p>That was on purpose. If I had shown you the formula on day one you would have memorised it and
+    understood nothing.</p>
+    <p>Now you understand all of it. So today the formula is going to be <b>easy</b>, because every
+    symbol in it is something you have already worked out by hand.</p>
+    <p><b>Nothing today is new.</b> I am just giving names to things you already know.</p>
+   </div>
+
+   <div class="stage">Start with the two symbols that do the most work.</div>
+
+   <div class="typeit">On the board</div>
+<pre><code>&Sigma;    means "add up all of them"
+
+x&#7522;   means "each individual value"    x&#8321;, x&#8322;, x&#8323; ...
+
+n    means "how many values"</code></pre>
+
+   <div class="speak">
+    <p>Three symbols. That is most of it.</p>
+    <p>The big one, sigma, just means <b>add them all up</b>. Whenever you see it, read it as
+    &ldquo;add up&rdquo;.</p>
+    <p>Little x with a number under it just means each individual value &mdash; the first one, the second
+    one, and so on.</p>
+    <p>And n is how many you have.</p>
+   </div>
+
+   <div class="typeit">Now the mean</div>
+<pre><code>              &Sigma;x&#7522;
+     x&#772;   =   -----
+                n</code></pre>
+
+   <div class="speak">
+    <p>Read it out loud with me. Add up all the values, divide by how many there are.</p>
+    <p>That is the mean. That is <b>exactly</b> what you did on day four with ten, twenty, thirty, forty,
+    fifty. Add to a hundred and fifty, divide by five.</p>
+    <p>The symbol on the left, x with a bar over it, is called <b>x-bar</b>, and it means the mean of
+    your sample.</p>
+   </div>
+
+   <div class="stage">Now the important one. Build it from the day 6 steps, in the same order.</div>
+
+   <div class="typeit">Build this line by line</div>
+<pre><code>day 6 step 1   distance from the mean        (x&#7522; - x&#772;)
+
+day 6 step 2   square it                     (x&#7522; - x&#772;)&sup2;
+
+day 6 step 3   add them all up              &Sigma;(x&#7522; - x&#772;)&sup2;
+
+day 6 step 4   divide by n-1                &Sigma;(x&#7522; - x&#772;)&sup2;
+                                            -------------
+                                                n - 1        =  s&sup2;
+
+day 6 step 5   square root                  s = &radic;s&sup2;</code></pre>
+
+   <div class="speak">
+    <p>Watch what I am doing. I am writing the exact four steps from last session and putting symbols on
+    them.</p>
+    <p>Distance from the mean &mdash; x minus x-bar. Square it &mdash; that little two. Add them all up
+    &mdash; sigma. Divide by n minus one, which is the correction we spent ten minutes on.</p>
+    <p>That gives <b>s squared</b>, which is the variance. And the square root of it is <b>s</b>, the
+    standard deviation.</p>
+    <p>Look at it. There is nothing in that formula you have not already done by hand.</p>
+   </div>
+
+   <div class="stage">Now prove it on their own numbers from day 6. This is the moment it lands.</div>
+
+   <div class="typeit">On the board &mdash; last session's numbers</div>
+<pre><code>x  =  2, 4, 4, 4, 5, 5, 7, 9        x&#772; = 5
+
+&Sigma;(x&#7522; - x&#772;)&sup2;  =  9+1+1+1+0+0+4+16  =  32
+
+population:   &sigma;&sup2; = 32/8 = 4        &sigma; = 2
+sample    :   s&sup2; = 32/7 = 4.57      s = 2.14</code></pre>
+
+   <div class="speak">
+    <p>Same eight numbers as last session. Same thirty-two. And there is the four and the two you
+    already calculated.</p>
+    <p>The formula gave the same answer as the arithmetic, because <b>it is the same arithmetic.</b></p>
+   </div>
+
+   <div class="stage">Now the symbol table. This is the directly examinable part.</div>
+
+   <div class="speak">
+    <p>Now the last piece, and this one turns up in interviews.</p>
+    <p>You have noticed I wrote two versions &mdash; one with a Greek letter and one with an English
+    one. That difference matters, and there is one rule that covers all of it.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>Greek letters for the population you can never see.<br>
+    Roman letters for the sample you can.</b>
+   </div>
+
+   <div class="typeit">On the board &mdash; leave this up all session</div>
+<pre><code>                  POPULATION        SAMPLE
+                  (Greek)           (Roman)
+
+size                  N                 n
+mean                  &mu;  (mu)          x&#772;  (x-bar)
+variance              &sigma;&sup2;                s&sup2;
+standard deviation    &sigma;  (sigma)       s</code></pre>
+
+   <div class="speak">
+    <p>Mu and sigma describe the population &mdash; the thing you can never measure completely.</p>
+    <p>x-bar and s describe your sample &mdash; the part you actually have.</p>
+    <p>And remember day two, when I told you a parameter describes the population and a statistic
+    describes the sample? These are the symbols for that. <b>Greek is parameter, Roman is statistic.</b></p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">This is the interview question. Say so.</div>
+    <div class="a">&ldquo;What is the difference between population and sample standard deviation?&rdquo;
+    They are being asked for <b>&sigma; versus s</b>, and the answer is the n versus n&minus;1 thing from
+    last session. <b>You already know the answer.</b> You just did not have the symbols for it until
+    now.</div>
+   </div>
+
+   <div class="typeit">Prove it once on the real file, then move on</div>
+<pre><code>sal = df[<span class="c">"salary"</span>].dropna()
+<span class="k">print</span>(<span class="c">"n     :"</span>, <span class="k">len</span>(sal))
+<span class="k">print</span>(<span class="c">"x-bar :"</span>, <span class="k">int</span>(sal.mean()))
+<span class="k">print</span>(<span class="c">"s     :"</span>, <span class="k">int</span>(sal.std()))        <span class="c"># n-1, a SAMPLE</span>
+<span class="k">print</span>(<span class="c">"sigma :"</span>, <span class="k">int</span>(np.std(sal)))   <span class="c"># n,   a POPULATION</span></code></pre>
+   <div class="screen">n     : 199
+x-bar : 95648
+s     : 364031
+sigma : 363116</div>
+
+   <div class="speak">
+    <p>And there is the pandas-versus-NumPy thing from last session, with names on it. Pandas gives you
+    <b>s</b>. NumPy gives you <b>sigma</b>.</p>
+    <p>That is the whole of the notation. Ten minutes, and none of it was new.</p>
+   </div>
+
+   <div class="warn"><b>Stop here. Do not derive anything and do not set an exercise.</b> Every minute
+   beyond this turns a translation into a maths lesson, which is exactly what you spent seven sessions
+   avoiding. Write it, name it, move on.</div>
+  </div>
+
+  <!-- 18-30 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18 &ndash; 30</span><h3>The module turns</h3></div>
+   <p class="objective">Frame why probability is here at all. Twelve minutes.</p>
+
+   <div class="stage">Change position in the room. This is the biggest pivot in the module and it should
+   feel like one.</div>
+
+   <div class="speak">
+    <p>Right. Everything up to this point has been one thing, and I want to name it before we leave it.</p>
+    <p>For seven sessions you have been <b>describing data you already have</b>. Two hundred employees in
+    a file. You can now say where the middle is, how spread out it is, what shape it has, whether
+    anything strange is in it, and whether two columns move together.</p>
+    <p>All of it about a file sitting in front of you.</p>
+    <p>Now think back to day one. What did I say the second half of statistics was?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Wait for it &mdash; they had this on day one</div>
+    <div class="a"><b>Inferential.</b> Making a claim about people you never measured. Their own phrasing
+    from day one was &ldquo;descriptive means you are sure, inferential means you are assuming&rdquo;.</div>
+   </div>
+
+   <div class="speak">
+    <p>Inferential. Making a claim about people you <b>never measured</b>.</p>
+    <p>And that is a completely different kind of act. If I measure two hundred people and say the
+    average is ninety-five thousand, that is a fact. If I say <b>the whole country</b> averages
+    ninety-five thousand, I have made a leap &mdash; and I need to be able to say how confident I am in
+    it.</p>
+    <p>Confidence is a probability. So before we can do any of that, we need probability itself.</p>
+    <p>That is today. And I will be honest with you &mdash; on its own, probability feels like a detour
+    into coin flips. It is not. <b>Everything in the rest of this module is built on it.</b></p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>P(something)  =    how many ways it can happen
+                 ---------------------------------
+                   how many things could happen
+
+always between 0 and 1
+0 = impossible        1 = certain        0.5 = even odds</code></pre>
+
+   <div class="speak">
+    <p>A probability is just a fraction. How many ways can the thing I want happen, out of everything
+    that could happen.</p>
+    <p>One coin. Two possible outcomes. One of them is heads. So the probability of heads is one over
+    two.</p>
+    <p>A die. Six outcomes. One of them is a four. One over six.</p>
+    <p>And it is always between zero and one. Zero means it cannot happen. One means it is certain. If
+    you ever calculate a probability of one point three, you have made an arithmetic mistake.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Quick check &mdash; one they can all do</div>
+    <div class="a">A deck of 52 cards. P(a heart) = 13/52 = 1/4. P(an ace) = 4/52 = 1/13. Keep it fast;
+    this is a warm-up, not the lesson.</div>
+   </div>
+  </div>
+
+  <!-- 30-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">30 &ndash; 44</span><h3>The two rules, and two words people confuse</h3></div>
+   <p class="objective">Fourteen minutes. Keep it light &mdash; the real content is Bayes.</p>
+
+   <div class="speak">
+    <p>Two rules. One for <b>and</b>, one for <b>or</b>.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>"AND"  ->  MULTIPLY      P(A and B) = P(A) x P(B)
+
+"OR"   ->  ADD           P(A or B)  = P(A) + P(B)</code></pre>
+
+   <div class="speak">
+    <p>Two coins. What is the probability of two heads?</p>
+    <p>Half times half. One in four. Because the word is <b>and</b> &mdash; heads on the first
+    <em>and</em> heads on the second.</p>
+    <p>One die. What is the probability of rolling a one or a two?</p>
+    <p>One sixth plus one sixth. One third. Because the word is <b>or</b>.</p>
+    <p>But both rules come with a condition, and the two conditions are what people mix up.</p>
+   </div>
+
+   <div class="stage">This is the part that actually needs care. Both words sound technical and similar.</div>
+
+   <div class="typeit">On the board &mdash; leave it up</div>
+<pre><code>MUTUALLY EXCLUSIVE    if one happens, the other CANNOT
+                      a coin is heads or tails, never both
+                      -> you can just ADD
+
+INDEPENDENT           one happening tells you NOTHING about the other
+                      two separate coins
+                      -> you can just MULTIPLY</code></pre>
+
+   <div class="speak">
+    <p>Mutually exclusive means they cannot both happen. Heads and tails on one coin. If one happened,
+    the other did not.</p>
+    <p>Independent means one tells you nothing about the other. Two separate coins &mdash; knowing the
+    first was heads tells you absolutely nothing about the second.</p>
+    <p>Now here is the thing worth noticing, and it is why people confuse them.</p>
+    <p>They sound similar. They are almost <b>opposites</b>.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;are heads and tails on one coin independent?&rdquo;</div>
+    <div class="a">No &mdash; the <b>opposite</b>. If I tell you it was heads, you now know with complete
+    certainty it was not tails. That is maximum information, not zero. <b>Mutually exclusive events are
+    as far from independent as it is possible to be.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>No. Completely the opposite. If I tell you the coin was heads, you know for certain it was not
+    tails. That is the most information one event could possibly give you about another.</p>
+    <p>So: mutually exclusive events are about as <b>far from independent</b> as you can get. Do not let
+    the similar-sounding words fool you.</p>
+   </div>
+
+   <div class="stage">One caution on the addition rule, then move on. Do not dwell.</div>
+
+   <div class="speak">
+    <p>One last thing on adding. If two things <em>can</em> both happen, you cannot just add &mdash; you
+    would count the overlap twice.</p>
+    <p>A card that is a heart, or a king. Thirteen hearts, four kings. But the king of hearts is in both
+    lists, so if you just add you have counted him twice. Thirteen plus four minus one.</p>
+    <p>That is all. Subtract the overlap.</p>
+   </div>
+  </div>
+
+  <!-- 44-56 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 &ndash; 56</span><h3>Conditional probability &mdash; you have been doing this for weeks</h3></div>
+   <p class="objective">Connect it to pandas immediately. Twelve minutes.</p>
+
+   <div class="typeit">On the board</div>
+<pre><code>P(A | B)      "the probability of A, GIVEN THAT B has happened"
+
+the bar means "given"</code></pre>
+
+   <div class="speak">
+    <p>That vertical bar means <b>given</b>. Probability of A, given that B has already happened.</p>
+    <p>And this sounds abstract until I tell you that you have been doing it in pandas for a month.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="c"># P(salary &gt; 1 lakh)  -  the whole company</span>
+<span class="k">print</span>(<span class="k">round</span>((sal &gt; <span class="o">100000</span>).mean(), <span class="o">3</span>))
+
+<span class="c"># P(salary &gt; 1 lakh | department = Tech)  -  AFTER a filter</span>
+tech = df[df[<span class="c">"department"</span>] == <span class="c">"Tech"</span>][<span class="c">"salary"</span>].dropna()
+<span class="k">print</span>(<span class="k">round</span>((tech &gt; <span class="o">100000</span>).mean(), <span class="o">3</span>))</code></pre>
+   <div class="screen">0.05
+0.167</div>
+
+   <div class="speak">
+    <p>The first line asks: out of everybody, what fraction earn over a lakh?</p>
+    <p>The second asks the same question, but only <b>after filtering to Tech</b>.</p>
+    <p>That is conditional probability. The bar is a filter. &ldquo;Given that they are in Tech&rdquo;
+    means &ldquo;after I filtered to Tech&rdquo;.</p>
+    <p>You have been calculating conditional probabilities in pandas since before you knew the phrase
+    existed.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>P(A | B) is just A, measured inside the rows where B is true.</b> The bar is a filter.
+   </div>
+
+   <div class="qbox">
+    <div class="q">Check the direction &mdash; this is where Bayes will bite</div>
+    <div class="a">Ask: is P(rich | in Tech) the same as P(in Tech | rich)? <b>No.</b> The first asks
+    &ldquo;of Tech people, how many are rich&rdquo;. The second asks &ldquo;of rich people, how many are
+    in Tech&rdquo;. Different denominators, different answers. <b>Swapping the two sides of the bar
+    changes the question completely</b> &mdash; and that is exactly the mistake the next block is
+    about.</div>
+   </div>
+  </div>
+
+  <!-- 56-80 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">56 &ndash; 80</span><h3>The medical test &mdash; where intuition fails</h3></div>
+   <p class="objective">The reason probability is in this course. Twenty-four minutes. Do not rush it.</p>
+
+   <div class="stage">Set the problem and take a vote before doing any arithmetic. The vote is what makes
+   the reveal work.</div>
+
+   <div class="speak">
+    <p>I want to give you a problem. Everybody gets this wrong, including doctors, so do not worry about
+    being wrong &mdash; just commit to an answer.</p>
+    <p>There is a disease. <b>One percent</b> of people have it.</p>
+    <p>There is a test for it, and the test is <b>ninety-nine percent accurate.</b> If you have the
+    disease, it says positive ninety-nine times out of a hundred. If you do not have it, it says negative
+    ninety-nine times out of a hundred.</p>
+    <p>You take the test. It comes back <b>positive</b>.</p>
+    <p>What is the probability you actually have the disease?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Take a vote. Hands up for each. Write the counts on the board.</div>
+    <div class="a">Offer four options: <b>99%</b>, <b>90%</b>, <b>50%</b>, <b>1%</b>. Almost everybody
+    picks 99%. Write the vote counts on the board and leave them there &mdash; you will point back at
+    them.</div>
+   </div>
+
+   <div class="speak">
+    <p>Most of you said ninety-nine percent. That is the obvious answer. The test is ninety-nine percent
+    accurate, it said positive, so ninety-nine percent.</p>
+    <p>The real answer is <b>fifty percent.</b></p>
+    <p>A coin flip. And I am going to show you why in a way that makes it obvious.</p>
+   </div>
+
+   <div class="stage">Do not use the formula. Use counting. Build the table one line at a time.</div>
+
+   <div class="typeit">Build this on the board, line by line</div>
+<pre><code>imagine 10,000 people take this test
+
+
+       100  actually have the disease  (that is the 1%)
+     9,900  are healthy
+
+
+of the 100 who have it:
+        99  test POSITIVE       (the test is 99% accurate)
+         1  is missed
+
+
+of the 9,900 who are healthy:
+        99  test POSITIVE       (1% of 9,900 - false alarms)
+     9,801  correctly cleared</code></pre>
+
+   <div class="stage">Now the question. Ask it before you write the answer.</div>
+
+   <div class="speak">
+    <p>So. You tested positive. That means you are in one of two groups on this board.</p>
+    <p>Either you are one of the ninety-nine people who have it and tested positive. Or you are one of
+    the ninety-nine <b>healthy</b> people who also tested positive.</p>
+    <p>How many people tested positive in total?</p>
+   </div>
+
+   <div class="typeit">Complete it</div>
+<pre><code>total who tested positive  =  99 + 99  =  198
+
+of those 198, how many actually have it?   99
+
+
+        99
+      -----   =   0.5   =   50%
+       198</code></pre>
+
+   <div class="stage">Point at the vote counts still on the board.</div>
+
+   <div class="speak">
+    <p>Ninety-nine out of a hundred and ninety-eight. Exactly half.</p>
+    <p>And nothing here was a trick. The test really is ninety-nine percent accurate. It did its job.</p>
+    <p>So where did the intuition go wrong?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Push them to it</div>
+    <div class="a">Because the disease is <b>rare</b>. There are 9,900 healthy people, and even a tiny
+    1% error rate on that many people produces 99 false alarms &mdash; just as many as the real cases.
+    <b>The size of the healthy group swamps the accuracy of the test.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Because the disease is <b>rare</b>.</p>
+    <p>There are ninety-nine hundred healthy people in that room. The test gets one percent of them
+    wrong. One percent of ninety-nine hundred is ninety-nine people &mdash; and that is <b>exactly as
+    many</b> as the number of real cases.</p>
+    <p>The huge healthy group produces just as many false alarms as the tiny sick group produces real
+    ones. That is it. That is the whole thing.</p>
+   </div>
+
+   <div class="typeit">Now show how it moves with rarity</div>
+<pre><code>SAME TEST. SAME 99% ACCURACY. Only the rarity changes:
+
+   1 in 10        ->   91.7%  chance you really have it
+   1 in 100       ->   50.0%
+   1 in 1,000     ->    9.0%
+   1 in 10,000    ->    1.0%</code></pre>
+
+   <div class="speak">
+    <p>Look at that. Identical test. Identical accuracy. And the answer swings from ninety-two percent
+    down to one percent.</p>
+    <p>Nothing about the test changed. The only thing that changed is <b>how common the thing is</b>.</p>
+    <p>That number &mdash; how common the thing is before you test anybody &mdash; is called the
+    <b>base rate</b>. And ignoring it is such a common mistake that it has a name: the <b>base rate
+    fallacy</b>.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>When something is rare, most positive results are false</b> &mdash; no matter how accurate your
+    test is.
+   </div>
+
+   <div class="stage">Now bring it home. This is not a medical curiosity &mdash; it is their future job.</div>
+
+   <div class="speak">
+    <p>Now, why is this in a data analytics course rather than a medical one?</p>
+    <p>Because you are going to build things that detect rare events.</p>
+    <p>Fraud is rare. Almost every transaction is genuine. Build a fraud detector that is
+    ninety-nine percent accurate and <b>most of the transactions it flags will be innocent people</b>,
+    whose cards you just blocked.</p>
+    <p>Spam filters. Security alerts. Machine failure prediction. Disease screening. Any model that
+    predicts something uncommon runs into exactly this, and the person who does not understand it will
+    build something that looks brilliant in testing and is useless in production.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">The connection worth making explicitly</div>
+    <div class="a">Point back to the conditional probability block. They were asked for <b>P(disease |
+    positive)</b>. The 99% figure is <b>P(positive | disease)</b>. <b>Those are the two sides of the bar,
+    swapped.</b> The entire illusion is people answering the wrong one of the two.</div>
+   </div>
+
+   <div class="speak">
+    <p>And here is the thing that ties it back to fifteen minutes ago.</p>
+    <p>The ninety-nine percent accuracy figure is: <b>probability of testing positive, given that you
+    have the disease.</b></p>
+    <p>What you actually wanted to know is: <b>probability that you have the disease, given that you
+    tested positive.</b></p>
+    <p>Same two things. Bar swapped. And they are not the same number &mdash; one is ninety-nine percent
+    and the other is fifty.</p>
+    <p>The formula for flipping between those two is called <b>Bayes' theorem</b>. You have just done it
+    by counting, which is the honest way to understand it.</p>
+   </div>
+  </div>
+
+  <!-- 80-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Close</h3></div>
+   <p class="objective">Ten minutes. Land the two ideas and set up the CLT.</p>
+
+   <div class="speak">
+    <p>Two things to take away.</p>
+    <p>First &mdash; <b>the bar has a direction.</b> Probability of A given B is not the same as
+    probability of B given A. Almost every probability mistake people make in real work is those two
+    swapped.</p>
+    <p>Second &mdash; <b>when something is rare, most of your positives are false.</b> That will matter
+    enormously the day you build something that detects fraud, or failures, or anything uncommon.</p>
+   </div>
+
+   <div class="stage">Now set up the next session &mdash; the conceptual hinge of the whole module.</div>
+
+   <div class="speak">
+    <p>Now let me leave you with something to think about.</p>
+    <p>Way back on day three, I took five random samples of thirty people and got five different average
+    salaries. Seventy thousand. Two forty-four. Two thirty-nine. Sixty-five. Two thirty-five.</p>
+    <p>And I said that was normal, and that an estimate moves.</p>
+    <p>But that leaves a real problem, and I never solved it. <b>If every sample gives a different
+    answer, how does anybody ever report a number honestly?</b></p>
+    <p>How do the people who say &ldquo;the average salary in India is X&rdquo; know how wrong they might
+    be?</p>
+    <p>There is an answer. It is the single most important idea in this module, and it is next session.</p>
+   </div>
+
+   <div class="warn"><b>Do not preview the CLT beyond that.</b> The question is more powerful unanswered,
+   and next session opens by taking their attempts at it. Leave it hanging.</div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why did we not learn the formulas from the beginning?&rdquo;</h5>
+  <p>&ldquo;Because you would have memorised them and understood nothing. Everybody who learns the
+  formula first can compute a standard deviation and cannot tell you what it means. You did it the other
+  way round, which is why today took ten minutes instead of a session.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Do I need to memorise these formulas?&rdquo;</h5>
+  <p>&ldquo;You need to <b>recognise</b> them, not reproduce them. Nobody computes a standard deviation
+  by hand at work. But you will read documentation, and you will be asked about sigma versus s in an
+  interview.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;If the test is 99% accurate, how can it be wrong half the time?&rdquo;</h5>
+  <p>&ldquo;It is not wrong half the time &mdash; it is right 99% of the time, exactly as advertised. But
+  it is applied to far more healthy people than sick ones, so its small error rate produces as many false
+  alarms as there are real cases. The test is fine. The <b>population</b> is lopsided.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;So are rare-disease tests useless?&rdquo;</h5>
+  <p>&ldquo;No &mdash; they are useful as a <b>first filter</b>. Before the test your chance was 1 in 100.
+  After a positive it is 1 in 2. That is a fifty-fold increase in information, which is exactly why a
+  positive screening result leads to a second, better test rather than a diagnosis.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is mutually exclusive the same as independent?&rdquo;</h5>
+  <p>&ldquo;Almost the opposite. Mutually exclusive means if one happens the other cannot &mdash; so
+  knowing one tells you everything about the other. Independent means knowing one tells you nothing. They
+  sound similar and mean opposite things.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Where does probability actually show up in a data analyst job?&rdquo;</h5>
+  <p>&ldquo;Every time you report a confidence interval or a p-value, which is most weeks. And any time
+  you build or evaluate something that predicts a rare event &mdash; fraud, churn, failure. The base rate
+  problem is the single most common way those get misread.&rdquo;</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="lbl">End of session &mdash; put this on screen</div>
+  <div class="sumcard"><pre><code><span class="c"># ---- THE NOTATION - names for what you already know ----</span>
+<span class="c">#   S       &quot;add them all up&quot;</span>
+<span class="c">#   xi      each individual value</span>
+<span class="c">#   n       how many values</span>
+<span class="c">#</span>
+<span class="c">#   mean      x-bar = S xi / n                     you did this on day 4</span>
+<span class="c">#   variance  s^2   = S(xi - x-bar)^2 / (n-1)      you did this on day 6</span>
+<span class="c">#   std dev   s     = sqrt(s^2)                    the square root step</span>
+<span class="c">#</span>
+<span class="c"># day 6 numbers:  2 4 4 4 5 5 7 9    x-bar = 5   S(xi-x-bar)^2 = 32</span>
+<span class="c">#   population    sigma^2 = 32/8 = 4      sigma = 2</span>
+<span class="c">#   sample        s^2     = 32/7 = 4.57   s     = 2.14</span>
+
+<span class="c"># ---- GREEK FOR THE POPULATION, ROMAN FOR THE SAMPLE ----</span>
+<span class="c">#                     POPULATION      SAMPLE</span>
+<span class="c">#   size                  N              n</span>
+<span class="c">#   mean                  mu             x-bar</span>
+<span class="c">#   variance              sigma^2        s^2</span>
+<span class="c">#   standard deviation    sigma          s</span>
+<span class="c">#</span>
+<span class="c">#   Greek = PARAMETER (day 2)      Roman = STATISTIC</span>
+<span class="c">#   the interview question &quot;population vs sample std&quot; is asking sigma vs s</span>
+
+sal.std()          <span class="c"># 364,032   s      pandas assumes a SAMPLE     (n-1)</span>
+np.std(sal)        <span class="c"># 363,116   sigma  numpy assumes a POPULATION  (n)</span>
+
+<span class="c"># ---- PROBABILITY ----</span>
+<span class="c"># P(x) = ways it can happen / total ways    always between 0 and 1</span>
+
+<span class="c"># &quot;AND&quot; -&gt; MULTIPLY    P(A and B) = P(A) x P(B)    if INDEPENDENT</span>
+<span class="c"># &quot;OR&quot;  -&gt; ADD         P(A or B)  = P(A) + P(B)    if MUTUALLY EXCLUSIVE</span>
+<span class="c">#                      if they can BOTH happen, subtract the overlap</span>
+<span class="c">#</span>
+<span class="c"># MUTUALLY EXCLUSIVE  one happens -&gt; the other CANNOT   (heads/tails, one coin)</span>
+<span class="c"># INDEPENDENT         one tells you NOTHING about the other (two coins)</span>
+<span class="c"># these are close to OPPOSITES, not synonyms</span>
+
+<span class="c"># ---- CONDITIONAL PROBABILITY - the bar is a filter ----</span>
+(sal &gt; 100000).mean()                     <span class="c"># P(rich)              whole company</span>
+tech = df[df[&quot;department&quot;]==&quot;Tech&quot;][&quot;salary&quot;].dropna()
+(tech &gt; 100000).mean()                    <span class="c"># P(rich | Tech)       AFTER a filter</span>
+<span class="c">#</span>
+<span class="c"># P(A|B) is just A measured inside the rows where B is true.</span>
+<span class="c"># P(A|B) is NOT P(B|A). swapping the bar changes the question.</span>
+
+<span class="c"># ---- THE MEDICAL TEST ----</span>
+<span class="c"># disease in 1% of people. test 99% accurate both ways. you test POSITIVE.</span>
+<span class="c"># out of 10,000:</span>
+<span class="c">#     100 have it     -&gt;  99 positive      1 missed</span>
+<span class="c">#   9,900 healthy     -&gt;  99 positive  9,801 cleared</span>
+<span class="c">#   total positives = 198,  of which 99 are real</span>
+<span class="c">#</span>
+<span class="c">#   P(disease | positive) = 99/198 = 50%      NOT 99%</span>
+<span class="c">#</span>
+<span class="c"># same test, only the rarity changes:</span>
+<span class="c">#   1 in 10 -&gt; 91.7%   1 in 100 -&gt; 50%   1 in 1,000 -&gt; 9%   1 in 10,000 -&gt; 1%</span>
+<span class="c">#</span>
+<span class="c"># WHEN SOMETHING IS RARE, MOST POSITIVES ARE FALSE - however good the test.</span>
+<span class="c"># = the BASE RATE FALLACY. this is fraud detection, spam, security alerts.</span>
+<span class="c">#</span>
+<span class="c"># 99% accurate is P(positive | disease).  you wanted P(disease | positive).</span>
+<span class="c"># flipping between them is BAYES THEOREM - you just did it by counting.</span></code></pre></div>
+  <div class="planbanner" style="margin-top:20px">
+   <b>Where this goes next.</b> Day 9 is the conceptual hinge of the entire module &mdash; sampling
+   distributions and the Central Limit Theorem. It answers the question you left hanging: if every
+   sample gives a different answer, how does anybody report a number honestly? Your study notes say
+   plainly: <b>do not compress that session.</b>
+  </div>
+ </div>
+</section>
+</div>
 <div class="day" id="n1">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -10494,7 +11311,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
