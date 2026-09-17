@@ -417,15 +417,17 @@ try{var _t=localStorage.getItem("steep-theme");
      the module turns to probability, closing on the medical test: 50%, not 99%.</p>
      <span class="foot">Full script &middot; 28 speech blocks</span></button>
 
-    <button class="dcard soon" disabled>
-     <span class="id">DAY 7</span><h3>Normal Distribution and Z-Scores</h3>
-     <p>The one distribution everything downstream needs. Standardisation and the empirical rule.</p>
-     <span class="foot">Not yet written</span></button>
+    <button class="dcard full" data-go="d9">
+     <span class="id">DAY 9</span><h3>The Normal Distribution, and Z-Scores</h3>
+     <p>Probability as area, the bell curve found in your own height column at 69.7 / 95.0 / 100, and
+     the z-score that makes two incomparable marks comparable.</p>
+     <span class="foot">Full script &middot; 25 speech blocks</span></button>
 
-    <button class="dcard soon" disabled>
-     <span class="id">DAY 8</span><h3>Sampling Distributions and the CLT</h3>
-     <p>Why a sample mean can be trusted at all. The conceptual hinge of the whole module.</p>
-     <span class="foot">Not yet written</span></button>
+    <button class="dcard full" data-go="d10">
+     <span class="id">DAY 10</span><h3>The Central Limit Theorem</h3>
+     <p>The hinge of the module. Opens with the simulation, not a definition. Skew 14.06 becomes 0.56,
+     and &ldquo;plus or minus 3%&rdquo; finally has a source.</p>
+     <span class="foot">Full script &middot; do not compress</span></button>
 
     <button class="dcard soon" disabled>
      <span class="id">DAY 9</span><h3>Confidence Intervals and Hypothesis Testing</h3>
@@ -8128,10 +8130,1381 @@ tech = df[df[&quot;department&quot;]==&quot;Tech&quot;][&quot;salary&quot;].drop
 <span class="c"># 99% accurate is P(positive | disease).  you wanted P(disease | positive).</span>
 <span class="c"># flipping between them is BAYES THEOREM - you just did it by counting.</span></code></pre></div>
   <div class="planbanner" style="margin-top:20px">
-   <b>Where this goes next.</b> Day 9 is the conceptual hinge of the entire module &mdash; sampling
-   distributions and the Central Limit Theorem. It answers the question you left hanging: if every
-   sample gives a different answer, how does anybody report a number honestly? Your study notes say
-   plainly: <b>do not compress that session.</b>
+   <b>Where this goes next.</b> You left a question hanging &mdash; if every sample gives a different
+   answer, how does anybody report a number honestly? The answer is the Central Limit Theorem, and it is
+   <b>day 10</b>, not day 9. To get there they first need one particular shape: the normal distribution
+   and z-scores, which is day 9. Say that explicitly when you open next session &mdash; the normal curve
+   lands far better as <em>the thing we need to answer that question</em> than as a topic in its own
+   right.
+  </div>
+ </div>
+</section>
+</div>
+<div class="day" id="d9">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Statistics day 9 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">The normal distribution,<br>and z-scores</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   One shape and one piece of arithmetic &mdash; taught as the missing piece of the question you left
+   hanging. Probability as area, the bell curve found in your own height column, and the z-score that
+   makes two incomparable things comparable.</p>
+  <div class="glance">
+   <div class="gcell"><b>90</b><span>minutes</span></div>
+   <div class="gcell"><b>69.7</b><span>/ 95.0 / 100</span></div>
+   <div class="gcell"><b>2</b><span>numbers describe it</span></div>
+   <div class="gcell"><b>1</b><span>formula</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Frame it as the answer they are owed</h4>
+   <p style="color:var(--sienna)">You ended day 8 asking how anybody reports a number honestly when every
+   sample differs. The answer is the CLT &mdash; which says <b style="color:var(--sienna)">sample means
+   are normally distributed</b>, and is meaningless until they know what that phrase means.<br><br>
+   Open by saying exactly that. <b style="color:var(--sienna)">&ldquo;To answer last session's question
+   I need to show you one particular shape first.&rdquo;</b> Taught as a topic, the normal curve feels
+   arbitrary. Taught as the missing piece, it does not.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Use height_cm, not an idealised drawing.</b> Skew &minus;0.19 and the empirical rule at
+   69.7 / 95.0 / 100. Real data, 201 people, landing on the rule &mdash; far more convincing than a
+   perfect curve you drew yourself.</li>
+   <li><b>Let the &ldquo;exactly 170 cm&rdquo; question do its work.</b> The answer is zero, it sounds
+   absurd, and working out why is what establishes that probability is <b>area</b>. Every confidence
+   interval and p-value in the rest of the module is one version of that picture.</li>
+   <li><b>Do four or five z-score examples, not two.</b> Your notes say students need repetition on these
+   specifically. The arithmetic is trivial; the repetition is the point.</li>
+   <li><b>Take a vote on the two students before doing the arithmetic.</b> Almost everyone picks the
+   78. That B wins with 55 is the moment z-scores stop being a formula.</li>
+   <li><b>Do not name the Central Limit Theorem at the close.</b> Say sample means form a normal
+   distribution, let it sit, and stop. Next session opens with the simulation and it lands far harder if
+   they walk in wanting it.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">One shape and one transformation. Everything from here to
+  the end of the module runs on both, so this session is scaffolding &mdash; but it only feels like
+  scaffolding if you frame it as answering last session's question.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; why the normal distribution is here</h5>
+
+   <h6>Frame it as the answer they are owed</h6>
+   <p>You ended last session with a question you refused to answer: <b>if every sample gives a different
+   number, how does anybody report a figure honestly?</b></p>
+   <p>The answer is the Central Limit Theorem, which is next session. But the CLT says sample means are
+   <em>normally distributed</em> &mdash; so it is meaningless until they know what that phrase means.</p>
+   <div class="keyline">
+    Open by saying exactly that. <b>&ldquo;To answer last session's question I need to show you one
+    particular shape first.&rdquo;</b> The normal curve taught as a topic feels arbitrary; taught as the
+    missing piece of a question they already care about, it does not.
+   </div>
+
+   <h6>Probability for continuous things &mdash; the one genuinely new idea</h6>
+   <p>For a die, probability is counting: one outcome out of six. For something continuous like height,
+   counting breaks &mdash; and the reason is worth a minute, because it is the idea underneath everything
+   that follows.</p>
+   <p>Ask what the probability is that somebody is <em>exactly</em> 170 cm. Not 170.001, not 169.999.
+   Exactly. The honest answer is <b>zero</b>, because there are infinitely many possible heights and no
+   single one has any share of the total.</p>
+   <p>So for continuous data we never ask about a point. We ask about a <b>range</b>: what is the chance
+   somebody is between 165 and 175?</p>
+   <div class="keyline">
+    And that becomes the rule everything downstream depends on:
+    <b>probability is the AREA under the curve, not the height of it.</b>
+   </div>
+   <p>That is the whole content of &ldquo;PDF&rdquo;. You do not need the term to do the work, but they
+   will meet it, so name it once and move on. The height of the curve is not a probability; the area
+   beneath a stretch of it is.</p>
+
+   <h6>What makes the normal distribution worth a whole session</h6>
+   <p>Three things, and the third is why it matters here.</p>
+   <div class="simple">
+    <span class="lab">Why this shape and not another</span>
+    <p><b>It shows up everywhere.</b> Heights, measurement errors, exam marks, manufacturing tolerances
+    &mdash; anything produced by lots of small independent effects adding up.</p>
+    <p><b>It is completely described by two numbers.</b> Tell me the mean and the standard deviation and
+    I can draw the entire curve. Nothing else is needed.</p>
+    <p><b>Sample means follow it</b> &mdash; even when the underlying data does not. That is the CLT, and
+    it is why this shape rather than any other is the one worth a session.</p>
+   </div>
+   <p>Your own file has a good example: <code>height_cm</code> has a skew of &minus;0.19 and the
+   empirical rule gives <b>69.7%, 95.0%, 100%</b> against the textbook 68-95-99.7. That is about as close
+   as real data gets, and it is far better than drawing an idealised curve.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; z-scores</h5>
+
+   <h6>The problem they solve</h6>
+   <p>A raw number on its own means nothing without context. Is 78 a good mark? Is 185 cm tall? You
+   cannot say until you know what everybody else got.</p>
+   <p>A z-score answers it in one number: <b>how many standard deviations from the mean is this?</b></p>
+   <div class="keyline">
+    z = (value &minus; mean) &divide; standard deviation
+   </div>
+   <p>Positive means above average, negative means below, and the size says how unusual. That is the
+   entire idea.</p>
+
+   <h6>They have already met this twice without the name</h6>
+   <p>Worth pointing out, because it makes z-scores feel like a familiar thing rather than a new one.</p>
+   <p>The <b>empirical rule</b> from day 6 is z-scores: &ldquo;within one standard deviation&rdquo; means
+   z between &minus;1 and +1. And the <b>skew derivation</b> at the end of day 6 started by working out
+   how many standard deviations the 52-lakh salary sat from the mean &mdash; that was 14.02, and it was a
+   z-score.</p>
+
+   <h6>What z-scores actually buy you</h6>
+   <div class="simple">
+    <span class="lab">One — comparing across completely different scales</span>
+    <p>78 in maths where the class averaged 70 with a standard deviation of 8. That is z = 1.00.<br>
+    55 in physics where the class averaged 45 with a standard deviation of 4. That is z = 2.50.</p>
+    <p><b>The physics student did better</b>, despite the much lower raw mark. Nothing but a z-score
+    shows you that, and this example lands instantly because everybody has sat exams with different
+    difficulty.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Two — turning a value into a percentile</span>
+    <p>Once you have z and the data is roughly normal, you can say what fraction of people fall below.
+    185 cm in your file is z = +2.14, which puts that person at the <b>98th percentile</b>.</p>
+   </div>
+   <div class="simple">
+    <span class="lab">Three — it is the machinery of everything after this</span>
+    <p>The 1.96 in a confidence interval is a z-score. Every test statistic in day 12 is a z-score or a
+    close relative. This is not a side topic; it is the unit the rest of the module is measured in.</p>
+   </div>
+
+   <h6>The one caution</h6>
+   <p>Z-scores assume the mean and standard deviation are meaningful &mdash; which means they inherit
+   every weakness those have. On your raw salary column the standard deviation is 364,031 <em>because
+   of</em> the outlier, so z-scores computed from it are nonsense. Same lesson as day 5 and day 6, one
+   layer up: <b>if the ingredients are distorted, the z-score is distorted.</b></p>
+
+   <h6>Standardisation versus normalisation &mdash; name both, teach one</h6>
+   <p>They will meet both words and assume they are the same thing.</p>
+   <p><b>Standardisation</b> is the z-score: subtract the mean, divide by the standard deviation. Result
+   is centred on zero and unbounded.<br>
+   <b>Normalisation</b> usually means min-max scaling: squeeze everything into 0 to 1.</p>
+   <p>Two minutes, name the difference, move on. Which to use is a machine-learning question and this
+   course has no ML module.</p>
+  </div>
+
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They now have:</b> mean, standard deviation, the empirical rule, skew, the notation, and basic
+   probability including conditional probability and the base rate.</p>
+   <p><b>They have never heard:</b> normal distribution, bell curve, random variable, PDF, CDF,
+   percentile as a formal term, z-score, standardisation, or normalisation.</p>
+   <p><b>Do not compress the z-score practice.</b> Your notes say students need repetition on these
+   specifically. Two worked examples is not enough; four or five is.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>Why we need a shape</h3></div>
+   <p class="objective">Frame today as the missing piece of last session's question. Ten minutes.</p>
+
+   <div class="stage">Put last session's closing question back on the board before anything else.</div>
+
+   <div class="speak">
+    <p>I finished last time with a question and refused to answer it.</p>
+    <p>Way back on day three I took five random samples of thirty people. I got seventy thousand. Two
+    forty-four. Two thirty-nine. Sixty-five. Two thirty-five.</p>
+    <p>And I asked: <b>if every sample gives a different answer, how does anybody ever report a number
+    honestly?</b></p>
+    <p>There is an answer. It is the single most important idea in this module, and it is <b>next
+    session</b>.</p>
+   </div>
+
+   <div class="stage">Now explain why they cannot have it today. This is what makes the session feel
+   necessary rather than arbitrary.</div>
+
+   <div class="speak">
+    <p>So why not today? Because the answer is one sentence, and I cannot say it yet.</p>
+    <p>The sentence is: <b>sample means follow a normal distribution.</b></p>
+    <p>And that sentence is useless to you, because you do not yet know what a normal distribution is.</p>
+    <p>So today is one shape and one piece of arithmetic. Neither is difficult. But everything from here
+    to the end of the module &mdash; confidence intervals, every test, the whole second half &mdash;
+    is built on them.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; leave it up all session</div>
+<pre><code>TODAY          the normal distribution
+               z-scores
+
+NEXT SESSION   the answer to the question</code></pre>
+  </div>
+
+  <!-- 10-24 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10 &ndash; 24</span><h3>Probability when there are no steps</h3></div>
+   <p class="objective">The one genuinely new idea. Fourteen minutes.</p>
+
+   <div class="speak">
+    <p>Last session we did probability by counting. A die has six outcomes, one of them is a four, so one
+    in six.</p>
+    <p>Now let me break that.</p>
+    <p>Look at the height column in our file. What is the probability that somebody is <b>exactly</b> one
+    hundred and seventy centimetres?</p>
+    <p>Not a hundred and seventy point zero zero one. Not a hundred and sixty-nine point nine nine nine.
+    <b>Exactly</b> one seventy.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Let them try. Somebody will say &ldquo;one over however many people&rdquo;.</div>
+    <div class="a">Push back: height is not in steps. Between 169 and 170 there are infinitely many
+    possible values. The honest answer is <b>zero</b> &mdash; no single exact height has any share of
+    the total, because there are infinitely many of them.</div>
+   </div>
+
+   <div class="speak">
+    <p>The answer is <b>zero</b>. And that sounds absurd, but think about why.</p>
+    <p>Height does not come in steps. Between a hundred and sixty-nine and a hundred and seventy there
+    are infinitely many possible heights. No single one of them gets any share at all.</p>
+    <p>So for anything continuous &mdash; height, weight, time, salary &mdash; <b>we never ask about a
+    point.</b> We ask about a <b>range</b>.</p>
+    <p>Not &ldquo;what is the chance somebody is exactly one seventy&rdquo;, but &ldquo;what is the
+    chance somebody is <b>between</b> one sixty-five and one seventy-five&rdquo;. That question has a
+    real answer.</p>
+   </div>
+
+   <div class="stage">Draw a curve on the board and shade a strip under it. This picture carries the
+   whole of the rest of the module.</div>
+
+   <div class="typeit">Draw this</div>
+<pre><code>        .-""-.
+      .'      '.
+     /          \
+    /   |####|   \        the SHADED AREA is the probability
+   /    |####|    \
+  '-----+----+-----'       the HEIGHT of the curve is not
+       165  175</code></pre>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>Probability is the AREA under the curve. Not the height of it.</b>
+   </div>
+
+   <div class="speak">
+    <p>Write that down, because everything for the rest of this module is one version of it.</p>
+    <p>Every confidence interval is an area under a curve. Every p-value you will ever calculate is an
+    area under a curve. This picture is the whole second half of the course.</p>
+    <p>And the technical name for that curve is a <b>probability density function</b>. You will see the
+    letters PDF. You do not need the term to do the work, but you should recognise it.</p>
+   </div>
+  </div>
+
+  <!-- 24-40 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">24 &ndash; 40</span><h3>The normal distribution</h3></div>
+   <p class="objective">Show it in their own data, not as an idealised drawing. Sixteen minutes.</p>
+
+   <div class="speak">
+    <p>Now, curves can be any shape at all. But there is one particular shape that turns up so often it
+    gets its own name.</p>
+    <p>It is called the <b>normal distribution</b>, or the bell curve. And rather than draw you an
+    idealised one, let me show you one sitting in our own file.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>h = df[<span class="c">"height_cm"</span>].dropna()
+<span class="k">print</span>(<span class="c">"mean:"</span>, <span class="k">round</span>(h.mean(), <span class="o">1</span>))
+<span class="k">print</span>(<span class="c">"std :"</span>, <span class="k">round</span>(h.std(), <span class="o">1</span>))
+<span class="k">print</span>(<span class="c">"skew:"</span>, <span class="k">round</span>(h.skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">mean: 168.5
+std : 7.7
+skew: -0.19</div>
+
+   <div class="speak">
+    <p>Look at that skew. Minus nought point one nine. Remember what skew means &mdash; near zero is
+    symmetric.</p>
+    <p>Compare that to salary, which was fourteen. This column is <b>not lopsided</b>. It is balanced
+    around its middle.</p>
+    <p>Now let us test it against the rule I gave you on day six.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code>m, s = h.mean(), h.std()
+<span class="k">for</span> k <span class="k">in</span> (<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>):
+    <span class="k">print</span>(k, <span class="c">"sd:"</span>, <span class="k">round</span>(((h &gt;= m-k*s) &amp; (h &lt;= m+k*s)).mean()*<span class="o">100</span>, <span class="o">1</span>), <span class="c">"%"</span>)</code></pre>
+   <div class="screen">1 sd: 69.7 %
+2 sd: 95.0 %
+3 sd: 100.0 %</div>
+
+   <div class="speak">
+    <p>Sixty-eight, ninety-five, ninety-nine point seven is the rule. We got sixty-nine point seven,
+    ninety-five point zero, a hundred.</p>
+    <p>That is real data, two hundred and one actual people, landing almost exactly on the rule.
+    <b>This column is normally distributed.</b></p>
+    <p>Remember day six, when I ran the same test on salary and got ninety-nine point five three times?
+    That column was not normal. This one is. Now you can see the difference the rule was talking about.</p>
+   </div>
+
+   <div class="stage">Now name the three properties. Keep it tight.</div>
+
+   <div class="typeit">On the board</div>
+<pre><code>THE NORMAL DISTRIBUTION
+
+1  symmetric - the mean, median and mode all sit in the same place
+2  described COMPLETELY by two numbers: the mean and the std
+3  follows 68 - 95 - 99.7</code></pre>
+
+   <div class="speak">
+    <p>Point two is the one worth pausing on. <b>Tell me the mean and the standard deviation, and I can
+    draw the entire curve.</b> Nothing else is needed. No other shape in statistics is that
+    obliging.</p>
+    <p>And why does this shape keep appearing? Because anything produced by <b>lots of small independent
+    effects adding up</b> tends to end up here. Height is genetics plus nutrition plus a hundred other
+    small things. Measurement errors. Exam marks. Manufacturing tolerances.</p>
+    <p>And &mdash; this is the one that matters for next session &mdash; <b>sample means</b>.</p>
+   </div>
+  </div>
+
+  <!-- 40-56 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">40 &ndash; 56</span><h3>Z-scores</h3></div>
+   <p class="objective">The arithmetic is trivial. The idea is not. Sixteen minutes.</p>
+
+   <div class="stage">Open with a question they cannot answer, so the tool has a job to do.</div>
+
+   <div class="speak">
+    <p>Somebody scored <b>78</b> in a test. Is that good?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">They will hesitate. Push on it.</div>
+    <div class="a">You cannot say. 78 out of 100 in an easy paper where everybody got 85 is poor. 78 in a
+    brutal paper where the average was 40 is exceptional. <b>A raw number means nothing without
+    context.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>You cannot answer that. Seventy-eight where everybody got eighty-five is poor. Seventy-eight where
+    the average was forty is outstanding.</p>
+    <p>A raw number on its own tells you nothing. You need to know where it sits <b>relative to
+    everybody else</b>.</p>
+    <p>So here is a single number that answers it.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>            value - mean
+     z  =  ---------------
+            standard deviation
+
+
+  "how many standard deviations from the mean is this?"</code></pre>
+
+   <div class="speak">
+    <p>That is it. Subtract the mean, divide by the standard deviation.</p>
+    <p>Positive means above average. Negative means below. And the size tells you how unusual.</p>
+    <p>It is called a <b>z-score</b>, or a standard score.</p>
+   </div>
+
+   <div class="stage">Now point out they have already met it twice. This makes it feel familiar rather
+   than new.</div>
+
+   <div class="speak">
+    <p>And you have already used this twice without knowing its name.</p>
+    <p>Day six, the sixty-eight ninety-five rule. &ldquo;Within one standard deviation of the mean&rdquo;
+    &mdash; that is a z-score between minus one and plus one.</p>
+    <p>And at the very end of day six, when I finally explained the skew of fourteen, step one was:
+    <b>how many standard deviations is the fifty-two lakh salary from the mean?</b> The answer was
+    fourteen point zero two. <b>That was a z-score.</b></p>
+   </div>
+
+   <div class="stage">Now work through several on the board. Your notes say students need repetition
+   on these specifically &mdash; four or five, not two.</div>
+
+   <div class="typeit">Work these on the board, one at a time</div>
+<pre><code>height:  mean = 168.5     std = 7.7
+
+
+   170 cm    ->   (170 - 168.5) / 7.7   =   +0.20
+
+   175 cm    ->   (175 - 168.5) / 7.7   =   +0.84
+
+   185 cm    ->   (185 - 168.5) / 7.7   =   +2.14
+
+   160 cm    ->   (160 - 168.5) / 7.7   =   -1.10</code></pre>
+
+   <div class="speak">
+    <p>One seventy is barely above average &mdash; z of nought point two.</p>
+    <p>One seventy-five is nought point eight four above.</p>
+    <p>One eighty-five is <b>two point one four</b> standard deviations above. And remember the rule
+    &mdash; ninety-five percent of people are within two. So this person is outside that. Genuinely
+    tall.</p>
+    <p>One sixty is minus one point one. Below average, but not unusually so.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Give them two to do themselves</div>
+    <div class="a"><b>178 cm</b> &rarr; (178 &minus; 168.5) / 7.7 = <b>+1.23</b>.
+    <b>155 cm</b> &rarr; (155 &minus; 168.5) / 7.7 = <b>&minus;1.75</b>. Have them call the answers out.
+    The arithmetic is easy and the repetition is the point.</div>
+   </div>
+  </div>
+
+  <!-- 56-70 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">56 &ndash; 70</span><h3>What z-scores actually buy you</h3></div>
+   <p class="objective">The example that makes it click. Fourteen minutes.</p>
+
+   <div class="stage">This is the best example in the session. Set it up as a genuine puzzle.</div>
+
+   <div class="speak">
+    <p>Two students. Two different subjects. Who did better?</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>student A    MATHS      scored 78     class mean 70    std 8
+
+student B    PHYSICS    scored 55     class mean 45    std 4</code></pre>
+
+   <div class="qbox">
+    <div class="q">Take a vote before any arithmetic</div>
+    <div class="a">Almost everybody picks A &mdash; 78 against 55 looks obvious. <b>B did better.</b>
+    Write the vote on the board first.</div>
+   </div>
+
+   <div class="speak">
+    <p>Most of you said A. Seventy-eight against fifty-five, it is not even close.</p>
+    <p>Let us do it properly.</p>
+   </div>
+
+   <div class="typeit">Work both</div>
+<pre><code>A:   (78 - 70) / 8   =   8 / 8    =   +1.00
+
+B:   (55 - 45) / 4   =   10 / 4   =   +2.50</code></pre>
+
+   <div class="speak">
+    <p>Student A is <b>one</b> standard deviation above their class.</p>
+    <p>Student B is <b>two and a half</b>.</p>
+    <p>Student B did considerably better &mdash; with a much lower raw mark.</p>
+   </div>
+
+   <div class="stage">Now explain why, because the mechanism matters.</div>
+
+   <div class="speak">
+    <p>Why? Look at the two standard deviations. The maths class was spread out &mdash; eight. Scoring
+    eight above the mean there is ordinary.</p>
+    <p>The physics class was tightly bunched &mdash; four. Almost everybody scored close to forty-five.
+    Getting ten above in that class is genuinely remarkable.</p>
+    <p>The raw marks were measuring two completely different things. <b>The z-scores put them on the
+    same scale.</b></p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    A z-score strips out the units and the context, so <b>two things that were never comparable become
+    comparable.</b>
+   </div>
+
+   <div class="stage">Now the second use &mdash; turning a z into a percentile.</div>
+
+   <div class="speak">
+    <p>The other thing a z-score buys you. If the data is roughly normal, z tells you <b>what fraction of
+    people are below you</b>.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">from</span> scipy.stats <span class="k">import</span> norm
+
+<span class="k">for</span> cm <span class="k">in</span> [<span class="o">160</span>, <span class="o">170</span>, <span class="o">175</span>, <span class="o">185</span>]:
+    z = (cm - h.mean()) / h.std()
+    <span class="k">print</span>(cm, <span class="c">"cm  z ="</span>, <span class="k">round</span>(z,<span class="o">2</span>), <span class="c">" percentile:"</span>, <span class="k">round</span>(norm.cdf(z)*<span class="o">100</span>,<span class="o">1</span>))</code></pre>
+   <div class="screen">160 cm  z = -1.1   percentile: 13.6
+170 cm  z = 0.2    percentile: 57.8
+175 cm  z = 0.84   percentile: 80.0
+185 cm  z = 2.14   percentile: 98.4</div>
+
+   <div class="speak">
+    <p>One seventy-five puts you at the eightieth percentile &mdash; taller than eighty percent of
+    people.</p>
+    <p>One eighty-five puts you at ninety-eight.</p>
+    <p>That is a genuinely useful translation. A raw height means nothing to most people. &ldquo;Taller
+    than ninety-eight percent&rdquo; means something to everybody.</p>
+   </div>
+
+   <div class="warn"><b>One caution before they run off and z-score everything.</b> A z-score is built
+   from the mean and the standard deviation, so it inherits every weakness those have. On our raw salary
+   column the standard deviation is 364,031 <em>because of</em> the outlier &mdash; so z-scores computed
+   from it are meaningless. <b>Same lesson as days five and six, one layer up.</b></div>
+  </div>
+
+  <!-- 70-80 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">70 &ndash; 80</span><h3>Standardisation and normalisation</h3></div>
+   <p class="objective">Two words they will meet and confuse. Ten minutes, then stop.</p>
+
+   <div class="speak">
+    <p>Two words you are going to run into, and people use them interchangeably when they should not.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>STANDARDISATION    subtract the mean, divide by the std
+                   = the z-score
+                   centred on 0, no upper or lower limit
+
+
+NORMALISATION      squeeze everything into the range 0 to 1
+                   (value - min) / (max - min)</code></pre>
+
+   <div class="speak">
+    <p>Standardisation is exactly the z-score you just learned. It centres the data on zero and tells you
+    how many standard deviations out each value is.</p>
+    <p>Normalisation squashes everything between zero and one. The smallest value becomes zero, the
+    largest becomes one, everything else sits in between.</p>
+    <p>Both put different columns on a comparable footing. They just do it differently.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">If somebody asks which to use</div>
+    <div class="a">&ldquo;It depends what you are doing next, and that is mostly a machine learning
+    question. Standardisation is the one you will meet in statistics, because it connects to the normal
+    distribution. Normalisation turns up more in modelling. For this course, <b>standardisation is the
+    one that matters.</b>&rdquo;</div>
+   </div>
+
+   <div class="warn"><b>Stop here.</b> Do not go into when to use which, or scaling before train-test
+   splits. That is machine learning and this course does not have an ML module. Name the two, show the
+   difference, move on.</div>
+  </div>
+
+  <!-- 80-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Close &mdash; and now the question</h3></div>
+   <p class="objective">Ten minutes. Hand them the setup for next session.</p>
+
+   <div class="speak">
+    <p>So today you got two things. A shape, and a way of measuring distance on it.</p>
+    <p>The normal distribution &mdash; symmetric, described completely by a mean and a standard
+    deviation, following sixty-eight ninety-five ninety-nine point seven.</p>
+    <p>And the z-score &mdash; how many standard deviations from the mean, which lets you compare things
+    that were never comparable and turn a value into a percentile.</p>
+   </div>
+
+   <div class="stage">Now return to the question. This is the whole point of the session.</div>
+
+   <div class="speak">
+    <p>Now. Back to the thing I have been putting off for two sessions.</p>
+    <p>Five samples of thirty people. Five different answers. None of them right.</p>
+    <p>Here is what I could not tell you before today, and can now.</p>
+    <p>If I took not five samples but <b>five thousand</b>, and wrote down the average from each one, and
+    then looked at the shape of those five thousand averages &mdash; <b>they would form a normal
+    distribution.</b></p>
+   </div>
+
+   <div class="stage">Let that sit. Do not explain it. Do not prove it.</div>
+
+   <div class="speak">
+    <p>Think about how strange that is. The salary column itself is wildly lopsided &mdash; skew of
+    fourteen, nothing like a bell curve.</p>
+    <p>But the <b>averages</b> of samples taken from it are normal.</p>
+    <p>And if they are normal, then everything you learned today applies to them. Mean and standard
+    deviation describe them completely. Sixty-eight ninety-five applies. You can compute z-scores on
+    them.</p>
+    <p>Which means &mdash; and this is the answer to the question &mdash; <b>you can say how far wrong
+    your one sample is likely to be.</b></p>
+    <p>That is next session. It has a name, it is the most important idea in this module, and I am not
+    saying another word about it today.</p>
+   </div>
+
+   <div class="warn"><b>Stop there.</b> Do not name the Central Limit Theorem, do not run the simulation,
+   do not explain standard error. Next session opens with the simulation and it is far more powerful if
+   they walk in wanting it.</div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why is the probability of being exactly 170 cm zero? Somebody must be.&rdquo;</h5>
+  <p>&ldquo;Somebody is <b>about</b> 170. Nobody is exactly 170.000000 forever. Every real measurement is
+  a range &mdash; your ruler stops at millimetres, so &lsquo;170&rsquo; really means between 169.95 and
+  170.05. And that range has a real, non-zero probability.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is all data normally distributed?&rdquo;</h5>
+  <p>&ldquo;Definitely not. Our salary column is not, and income almost never is. Height, measurement
+  error and exam marks often are. The mistake is assuming it &mdash; always check the skew and the
+  68-95 rule before relying on anything that needs normality.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can a z-score be bigger than 3?&rdquo;</h5>
+  <p>&ldquo;Yes, and when it is, that value is genuinely extreme &mdash; 99.7% of normal data sits within
+  3. Our 52-lakh salary had a z of 14. There is no upper limit; there is just a point past which you
+  should go and look at the row.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the difference between a z-score and a percentile?&rdquo;</h5>
+  <p>&ldquo;A z-score says how many standard deviations out you are. A percentile says what fraction of
+  people you are above. You convert z to percentile using the normal curve &mdash; but that conversion
+  only works if the data is actually normal.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why do we care about area under a curve rather than height?&rdquo;</h5>
+  <p>&ldquo;Because a single point has no width, so it has no area, so it has no probability. Only a
+  range does. That is why every confidence interval and every p-value in the rest of this course is an
+  area &mdash; they are all statements about ranges.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Do I have to memorise the normal distribution formula?&rdquo;</h5>
+  <p>&ldquo;No. I have not even shown it to you, and I am not going to. You need to know the shape, that
+  two numbers describe it completely, and the 68-95-99.7 rule. Nobody computes it by hand.&rdquo;</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="lbl">End of session &mdash; put this on screen</div>
+  <div class="sumcard"><pre><code><span class="c"># ---- PROBABILITY WHEN THERE ARE NO STEPS ----</span>
+<span class="c"># P(exactly 170 cm) = 0.  height does not come in steps.</span>
+<span class="c"># so for anything CONTINUOUS we never ask about a point - we ask about a RANGE.</span>
+<span class="c">#</span>
+<span class="c">#   PROBABILITY IS THE AREA UNDER THE CURVE. NOT THE HEIGHT OF IT.</span>
+<span class="c">#</span>
+<span class="c"># that curve is a &quot;probability density function&quot; (PDF). recognise the term, move on.</span>
+<span class="c"># every confidence interval and every p-value later is an area under a curve.</span>
+
+<span class="c"># ---- THE NORMAL DISTRIBUTION ----</span>
+h = df[&quot;height_cm&quot;].dropna()
+h.mean()      <span class="c"># 168.5</span>
+h.std()       <span class="c">#   7.7</span>
+h.skew()      <span class="c">#  -0.19   near zero = symmetric  (salary was 14.06)</span>
+
+<span class="c"># the 68-95-99.7 test on this column:</span>
+<span class="c">#   1 sd -&gt; 69.7%    2 sd -&gt; 95.0%    3 sd -&gt; 100.0%</span>
+<span class="c">#   real data, 201 people, landing almost exactly on the rule</span>
+
+<span class="c"># 1  symmetric - mean, median and mode in the same place</span>
+<span class="c"># 2  described COMPLETELY by two numbers: the mean and the std</span>
+<span class="c"># 3  follows 68-95-99.7</span>
+<span class="c">#</span>
+<span class="c"># it appears whenever lots of small independent effects add up.</span>
+<span class="c"># and - the reason it matters - SAMPLE MEANS follow it.</span>
+
+<span class="c"># ---- Z-SCORES ----</span>
+<span class="c">#             value - mean</span>
+<span class="c">#      z  =  --------------      &quot;how many std from the mean?&quot;</span>
+<span class="c">#                 std</span>
+<span class="c">#</span>
+<span class="c"># positive = above average, negative = below, size = how unusual</span>
+<span class="c"># you already used this twice: the 68-95 rule, and the skew derivation (z = 14.02)</span>
+
+<span class="c"># height: mean 168.5, std 7.7</span>
+<span class="c">#   170 cm -&gt; +0.20      175 cm -&gt; +0.84</span>
+<span class="c">#   185 cm -&gt; +2.14      160 cm -&gt; -1.10</span>
+
+<span class="c"># ---- WHAT THEY BUY YOU ----</span>
+<span class="c"># 1. COMPARING ACROSS SCALES</span>
+<span class="c">#    maths   78, class mean 70, std 8  -&gt;  z = +1.00</span>
+<span class="c">#    physics 55, class mean 45, std 4  -&gt;  z = +2.50   &lt;- B DID BETTER</span>
+<span class="c">#    the raw marks measured two different things. z put them on one scale.</span>
+<span class="c">#</span>
+<span class="c"># 2. TURNING A VALUE INTO A PERCENTILE</span>
+from scipy.stats import norm
+norm.cdf(z) * 100
+<span class="c">#    160 cm -&gt; 13.6th    170 cm -&gt; 57.8th</span>
+<span class="c">#    175 cm -&gt; 80.0th    185 cm -&gt; 98.4th</span>
+<span class="c">#</span>
+<span class="c"># 3. it is the unit the rest of the module is measured in.</span>
+<span class="c">#    the 1.96 in a confidence interval IS a z-score.</span>
+
+<span class="c"># ---- THE CAUTION ----</span>
+<span class="c"># z is built from the mean and the std, so it inherits their weaknesses.</span>
+<span class="c"># on the RAW salary column std = 364,031 BECAUSE of the outlier,</span>
+<span class="c"># so z-scores computed from it are meaningless.</span>
+
+<span class="c"># ---- TWO WORDS PEOPLE CONFUSE ----</span>
+<span class="c"># STANDARDISATION   (value - mean) / std      = the z-score, centred on 0</span>
+<span class="c"># NORMALISATION     (value - min) / (max-min) = squeezed into 0 to 1</span>
+<span class="c"># standardisation is the one that matters for this course.</span></code></pre></div>
+  <div class="planbanner" style="margin-top:20px">
+   <b>Where this goes next.</b> Day 10 is the conceptual hinge of the entire module &mdash; sampling
+   distributions and the Central Limit Theorem. Your study notes say two things about it plainly:
+   <b>a live simulation is worth more than any number of slides</b>, and <b>do not compress that
+   session.</b>
+  </div>
+ </div>
+</section>
+</div>
+<div class="day" id="d10">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Statistics day 10 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">The Central<br>Limit Theorem</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   The conceptual hinge of the whole module, and the answer to a question you have now deferred three
+   times. Opens with the simulation, not a definition &mdash; then standard error, the &radic;n rule, and
+   where &ldquo;plus or minus 3%&rdquo; actually comes from.</p>
+  <div class="glance">
+   <div class="gcell"><b>90</b><span>minutes</span></div>
+   <div class="gcell"><b>14.06</b><span>&rarr; 0.56</span></div>
+   <div class="gcell"><b>&radic;n</b><span>the rule</span></div>
+   <div class="gcell"><b>3</b><span>sessions deferred</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">What your own notes say about this session</h4>
+   <p style="color:var(--sienna)">Two things, plainly: <b style="color:var(--sienna)">a live simulation
+   is worth more than any number of slides</b>, and <b style="color:var(--sienna)">do not compress this
+   session.</b> Both are right. Everything left in the module &mdash; confidence intervals, every
+   hypothesis test, A/B testing &mdash; is an application of what happens here.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Open by running the simulation, not by defining anything.</b> They have been waiting three
+   sessions for this answer. Show them the thing happening, then name it.</li>
+   <li><b>Draw all three pictures side by side and make the axes explicit.</b> This is the block students
+   nod through without understanding. If anybody says a dot in picture three is &ldquo;one salary&rdquo;,
+   stop and rebuild it &mdash; <b>one dot is thirty people, averaged.</b></li>
+   <li><b>Use the raw skewed column to prove the theorem.</b> Skew 14 down to 0.56 is what makes it
+   remarkable rather than obvious &mdash; and it honestly shows that n&ge;30 is not always enough.</li>
+   <li><b>Run the standard error prediction live.</b> Watching a formula predict a simulation three times
+   is far more convincing than either on its own.</li>
+   <li><b>Your numbers will differ slightly from the screens.</b> It is a simulation. The pattern is
+   always identical; the exact figures move a little. Say so if a student notices.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Your own study notes say two things about this session
+  plainly: <b>a live simulation is worth more than any number of slides</b>, and <b>do not compress
+  it</b>. Both are right. This is the hinge the whole second half turns on.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the idea students find genuinely strange</h5>
+
+   <h6>The thing being measured changes</h6>
+   <p>Up to now, every distribution you have shown them was a distribution <b>of data</b> &mdash; the
+   spread of 199 salaries, the spread of 201 heights.</p>
+   <p>Today the thing on the axis changes, and this is the single conceptual jump of the session.</p>
+   <div class="keyline">
+    A <b>sampling distribution</b> is not a distribution of values. It is a distribution
+    <b>of sample means</b> &mdash; what you get if you take a sample, write down its average, and repeat
+    that thousands of times.
+   </div>
+   <p>Students nod at this and then quietly keep thinking about the original data. The only reliable fix
+   is to build it in front of them: take a sample, write the mean on the board, take another, write it
+   down, and let them watch a second distribution being constructed out of first-level summaries.</p>
+   <p>Your notes recommend drawing three things side by side &mdash; the population, one sample, and the
+   distribution of many sample means &mdash; and say that diagram is worth ten minutes of lecture time.
+   They are right.</p>
+
+   <h6>The Central Limit Theorem, in one sentence</h6>
+   <div class="keyline">
+    Take samples of a decent size from <b>any</b> population, and the distribution of their means will
+    be <b>normal</b> &mdash; centred on the true population mean &mdash; <b>whatever shape the original
+    data had.</b>
+   </div>
+   <p>The phrase doing all the work is <b>whatever shape the original data had</b>. That is what makes it
+   remarkable rather than obvious. The population can be wildly lopsided, bimodal, whatever &mdash; the
+   means still come out normal.</p>
+   <p>Your salary column is the perfect demonstration precisely because it is so badly behaved.</p>
+
+   <h6>Why anybody should care</h6>
+   <p>Spell this out or the session lands as a curiosity.</p>
+   <p>If sample means are normally distributed, then everything from day 9 applies <em>to them</em>.
+   Mean and standard deviation describe them completely. The 68-95-99.7 rule applies. You can compute
+   z-scores on them.</p>
+   <p>Which means you can finally say <b>how far wrong your one sample is likely to be</b> &mdash; and
+   that is the entire foundation of confidence intervals and every hypothesis test that follows.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; standard error and the &radic;n rule</h5>
+
+   <h6>The name, and why it is confusing</h6>
+   <p>The spread of the sampling distribution has its own name: the <b>standard error</b>.</p>
+   <p>It is just a standard deviation &mdash; but of sample means rather than of data. The separate name
+   exists to stop you confusing the two, and your notes call the confusion between them <b>pervasive,
+   including in published research</b>.</p>
+   <div class="simple">
+    <span class="lab">The distinction to state explicitly</span>
+    <p><b>Standard deviation</b> &mdash; how spread out the <em>people</em> are. It does not shrink when
+    you collect more data. If salaries vary a lot, they vary a lot.</p>
+    <p><b>Standard error</b> &mdash; how much your <em>estimate</em> wobbles. It <em>does</em> shrink
+    with more data, because a bigger sample gives a steadier answer.</p>
+   </div>
+   <p>Your notes have the key insight in one line: <b>individual variation does not disappear when you
+   collect more data &mdash; but your uncertainty about the average does.</b></p>
+
+   <h6>The formula and what it actually tells you</h6>
+   <p>Standard error = &sigma; &divide; &radic;n.</p>
+   <p>The square root is the interesting part, and it has a real practical consequence:</p>
+   <div class="keyline">
+    To <b>halve</b> your uncertainty you must <b>quadruple</b> your sample size.
+   </div>
+   <p>On your cleaned salary column, &sigma; is 16,066. So a sample of 100 gives a standard error of
+   1,607, and getting that down to 803 needs a sample of 400. Four times the cost for twice the
+   precision.</p>
+   <p>This is also the honest explanation for the 1,068 figure from day 4 &mdash; and for why polls stop
+   at &plusmn;3% rather than pushing for &plusmn;1%. The maths makes precision expensive very quickly.</p>
+
+   <h6>What the simulation will actually show</h6>
+   <p>Verified on your own file, using the cleaned salary column as the population (&sigma; = 16,066):</p>
+   <div class="simple">
+    <span class="lab">1,000 samples at each size — observed against predicted</span>
+    <p><b>n = 5</b> &mdash; spread of the means 7,150 &middot; &sigma;/&radic;n predicts 7,185</p>
+    <p><b>n = 30</b> &mdash; observed 2,907 &middot; predicted 2,933</p>
+    <p><b>n = 100</b> &mdash; observed 1,552 &middot; predicted 1,607</p>
+   </div>
+   <p>Watching a formula predict a simulation is far more convincing than either alone. Run it live.</p>
+
+   <h6>The honest caveat &mdash; &ldquo;a decent size&rdquo;</h6>
+   <p>Textbooks say n &ge; 30 and leave it there. That is a rule of thumb, not a law, and the truth is
+   more useful: <b>the more lopsided the population, the bigger n has to be.</b></p>
+   <p>Your raw salary column with its skew of 14 demonstrates this exactly. Take samples from it and look
+   at how skewed the means still are:</p>
+   <div class="simple">
+    <span class="lab">Sample means from the raw skewed column</span>
+    <p><b>n = 30</b> &rarr; the means still have a skew of <b>2.39</b></p>
+    <p><b>n = 100</b> &rarr; skew <b>1.70</b></p>
+    <p><b>n = 500</b> &rarr; skew <b>0.58</b></p>
+   </div>
+   <p>The CLT is working &mdash; the skew falls from 14 towards zero &mdash; but thirty is nowhere near
+   enough here. Showing this is honest and it inoculates them against applying n&ge;30 blindly.</p>
+  </div>
+
+  <div class="understand">
+   <h5>What you can assume, and what you cannot</h5>
+   <p><b>They now have:</b> the normal distribution, that two numbers describe it completely, the
+   68-95-99.7 rule, z-scores, and probability as area under a curve. Day 9 was built specifically to
+   make today possible.</p>
+   <p><b>They have never heard:</b> sampling distribution, Central Limit Theorem, standard error, or the
+   &radic;n rule.</p>
+   <p><b>They are owed an answer.</b> You have deferred the five-samples question twice now &mdash; at
+   the end of day 8 and again at the end of day 9. Open by running the simulation, not by defining
+   anything.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-14 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 14</span><h3>Run the simulation first</h3></div>
+   <p class="objective">No definitions. Show them the thing, then name it. Fourteen minutes.</p>
+
+   <div class="stage">Do not open with a definition. Open by doing it. They have been waiting two
+   sessions for this.</div>
+
+   <div class="speak">
+    <p>I have now put off the same question twice. Let us settle it.</p>
+    <p>Five samples of thirty people gave five different average salaries. So here is what I am going to
+    do instead of five.</p>
+    <p>I am going to take a sample of thirty, write down its average, and then do that <b>a thousand
+    times</b>. And then I am going to look at the shape of those thousand averages.</p>
+   </div>
+
+   <div class="typeit">Set up the population first</div>
+<pre><code><span class="c"># our "population" - the salary column with the 2 outliers removed</span>
+q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
+iqr = q3 - q1
+pop = sal[(sal &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3+<span class="o">1.5</span>*iqr)]
+
+<span class="k">print</span>(<span class="c">"population mean:"</span>, <span class="k">round</span>(pop.mean()))
+<span class="k">print</span>(<span class="c">"population std :"</span>, <span class="k">round</span>(pop.std()))</code></pre>
+   <div class="screen">population mean: 69630
+population std : 16066</div>
+
+   <div class="speak">
+    <p>That is our whole population. Average sixty-nine thousand six hundred, spread sixteen thousand.</p>
+    <p>Now watch. A thousand samples of thirty people each.</p>
+   </div>
+
+   <div class="typeit">Type this, and run it</div>
+<pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+rng = np.random.default_rng(<span class="o">7</span>)
+
+means = [rng.choice(pop, <span class="o">30</span>).mean() <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>)]
+m = pd.Series(means)
+
+<span class="k">print</span>(<span class="c">"average of the 1000 averages:"</span>, <span class="k">round</span>(m.mean()))
+<span class="k">print</span>(<span class="c">"spread of those averages   :"</span>, <span class="k">round</span>(m.std()))
+<span class="k">print</span>(<span class="c">"skew of those averages     :"</span>, <span class="k">round</span>(m.skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">average of the 1000 averages: 69693
+spread of those averages   : 2843
+skew of those averages     : 0.02</div>
+
+   <div class="warn"><b>Your numbers will differ slightly.</b> This is a simulation, so the exact
+   figures move a little each run even with a seed, depending on what ran before. The <em>pattern</em>
+   is what matters and it is always the same: the average of the averages lands on the population mean,
+   the spread is far smaller, and the skew is near zero.</div>
+
+   <div class="stage">Stop. Let them look at it before you explain a single number.</div>
+
+   <div class="speak">
+    <p>Three things happened there, and every one of them matters.</p>
+    <p><b>One.</b> The average of the thousand averages is sixty-nine thousand six hundred and ninety. The true
+    population average is sixty-nine thousand six hundred and thirty. They are almost identical.</p>
+    <p><b>Two.</b> The spread of those averages is <b>two thousand eight hundred</b>. Look back at the
+    population &mdash; its spread was sixteen thousand. The averages are far less spread out than the
+    people are.</p>
+    <p><b>Three</b>, and this is the one. Look at the skew. <b>Nought point zero two.</b></p>
+    <p>Near zero. Symmetric. What shape is that?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Wait. They learned this yesterday.</div>
+    <div class="a"><b>Normal.</b> The distribution of sample means is a normal distribution. That is
+    what a skew of 0.05 means, and they spent all of yesterday learning to recognise it.</div>
+   </div>
+  </div>
+
+  <!-- 14-28 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">14 &ndash; 28</span><h3>What you just built</h3></div>
+   <p class="objective">The conceptual jump. Three pictures, side by side. Fourteen minutes.</p>
+
+   <div class="stage">This is the block students most often nod through without understanding. Draw all
+   three on the board and make the axes explicit.</div>
+
+   <div class="speak">
+    <p>I want to be very careful here, because there are now two completely different things on this
+    board and they are easy to confuse.</p>
+   </div>
+
+   <div class="typeit">Draw all three, side by side</div>
+<pre><code>1  THE POPULATION            197 salaries
+                             mean 69,630   spread 16,066
+                             each dot is ONE PERSON
+
+
+2  ONE SAMPLE                30 salaries drawn from it
+                             has its own average
+                             each dot is ONE PERSON
+
+
+3  THE SAMPLING DISTRIBUTION 1,000 AVERAGES
+                             mean 69,707   spread 2,907
+                             each dot is ONE WHOLE SAMPLE</code></pre>
+
+   <div class="speak">
+    <p>Look at the last line of each. That is the difference and it is the whole idea.</p>
+    <p>In the first two pictures, every dot is a <b>person</b>.</p>
+    <p>In the third, every dot is an entire <b>sample of thirty people</b>, boiled down to its average.</p>
+    <p>That third picture has a name. It is called a <b>sampling distribution</b>. It is not a
+    distribution of data. It is a distribution <b>of estimates</b>.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Check they really have it</div>
+    <div class="a">Ask: &ldquo;in picture three, what does one dot represent?&rdquo; If anybody says
+    &ldquo;one salary&rdquo;, stop and rebuild it. <b>One dot is thirty people, averaged.</b> Everything
+    for the rest of the module depends on that distinction.</div>
+   </div>
+
+   <div class="speak">
+    <p>And this is why the spread shrank from sixteen thousand to two thousand eight hundred.</p>
+    <p>Individual people vary enormously. But <b>averages of thirty people do not.</b> To get an average
+    of thirty that is wildly high you would need to have drawn thirty high earners in a row, which almost
+    never happens. The extremes cancel out inside each sample.</p>
+   </div>
+  </div>
+
+  <!-- 28-42 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">28 &ndash; 42</span><h3>The Central Limit Theorem</h3></div>
+   <p class="objective">Name it, then show the part that makes it remarkable. Fourteen minutes.</p>
+
+   <div class="speak">
+    <p>What you just watched has a name, and it is the single most important idea in this module.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; leave it up</div>
+<pre><code>THE CENTRAL LIMIT THEOREM
+
+take samples of a decent size from ANY population,
+and the distribution of their MEANS will be NORMAL,
+centred on the true population mean,
+
+           WHATEVER SHAPE THE ORIGINAL DATA HAD</code></pre>
+
+   <div class="stage">Point at the last line. That is where the whole theorem lives.</div>
+
+   <div class="speak">
+    <p>The last line is the part that makes this remarkable rather than obvious.</p>
+    <p>Our population was fairly well behaved &mdash; skew of nought point one. So maybe you are thinking
+    the means came out normal because the data was already roughly normal.</p>
+    <p>Fair. So let me use the worst-behaved column we have.</p>
+   </div>
+
+   <div class="typeit">Now the raw, wildly skewed column</div>
+<pre><code><span class="k">print</span>(<span class="c">"population skew:"</span>, <span class="k">round</span>(sal.skew(), <span class="o">2</span>))
+
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">30</span>, <span class="o">100</span>, <span class="o">500</span>):
+    means = [rng.choice(sal, n).mean() <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(<span class="o">2000</span>)]
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">" skew of the means:"</span>, <span class="k">round</span>(pd.Series(means).skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">population skew: 14.06
+n = 30   skew of the means: 2.43
+n = 100  skew of the means: 1.83
+n = 500  skew of the means: 0.56</div>
+
+   <div class="speak">
+    <p>The population has a skew of <b>fourteen</b>. It is about as far from a bell curve as data gets
+    &mdash; one person earning fifty-two lakh and everybody else bunched at the bottom.</p>
+    <p>Take samples of thirty and the means have a skew of two point four. Already far better.</p>
+    <p>A hundred, and it is one point eight.</p>
+    <p>Five hundred, and it is nought point five six &mdash; heading towards normal.</p>
+    <p>The theorem is working, even on that. But notice it is <b>working slowly</b>, and that is worth
+    knowing.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    Textbooks say &ldquo;n of thirty is enough&rdquo;. That is a rule of thumb, not a law.<br>
+    <b>The more lopsided the population, the bigger n has to be.</b>
+   </div>
+  </div>
+
+  <!-- 42-58 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">42 &ndash; 58</span><h3>Standard error, and the square root</h3></div>
+   <p class="objective">Name the spread, then predict it. Sixteen minutes.</p>
+
+   <div class="speak">
+    <p>The spread of that third picture &mdash; the two thousand eight hundred &mdash; has its own name.</p>
+    <p>It is called the <b>standard error</b>. And it is just a standard deviation, but of averages rather
+    than of people.</p>
+    <p>It gets a separate name because confusing the two is one of the most common mistakes in the whole
+    subject, including in published research.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; the distinction</div>
+<pre><code>STANDARD DEVIATION    how spread out the PEOPLE are
+                      does NOT shrink with more data
+
+STANDARD ERROR        how much your ESTIMATE wobbles
+                      DOES shrink with more data</code></pre>
+
+   <div class="speak">
+    <p>Say it this way. Collecting more data does <b>not</b> make people more similar to each other.
+    Salaries vary as much as they vary.</p>
+    <p>But it <b>does</b> make you more certain about the average. Those are two different things and
+    they need two different names.</p>
+    <p>Now &mdash; there is a formula for it, and it predicts what we just simulated.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>                      sigma
+standard error  =  -----------
+                     sqrt(n)</code></pre>
+
+   <div class="typeit">Test the prediction against the simulation</div>
+<pre><code><span class="k">import</span> math
+sigma = pop.std()
+
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">5</span>, <span class="o">30</span>, <span class="o">100</span>):
+    observed = pd.Series([rng.choice(pop, n).mean() <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>)]).std()
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">" observed:"</span>, <span class="k">round</span>(observed),
+          <span class="c">" predicted:"</span>, <span class="k">round</span>(sigma/math.sqrt(n)))</code></pre>
+   <div class="screen">n = 5    observed: 7194   predicted: 7185
+n = 30   observed: 2912   predicted: 2933
+n = 100  observed: 1594   predicted: 1607</div>
+
+   <div class="speak">
+    <p>Look at those two columns. The formula predicted what the simulation did, three times, to within
+    a couple of percent.</p>
+    <p>That is not a coincidence. That is the theorem.</p>
+   </div>
+
+   <div class="stage">Now the practical consequence of the square root. This is the bit with real
+   career value.</div>
+
+   <div class="speak">
+    <p>Now look at what the square root does to you.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>sigma = 16,066
+
+   n =   5     standard error = 7,185
+   n =  10                      5,081
+   n =  30                      2,933
+   n = 100                      1,607
+   n = 400                        803</code></pre>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;to halve the error from 1,607, how many people do I need?&rdquo;</div>
+    <div class="a">Not 200. <b>400.</b> Because of the square root, halving your uncertainty requires
+    <b>quadrupling</b> your sample.</div>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    <b>To halve your uncertainty, you must quadruple your sample size.</b>
+   </div>
+
+   <div class="speak">
+    <p>Four times the cost for twice the precision. And it keeps getting worse &mdash; going twice as
+    precise again needs sixteen hundred people.</p>
+    <p>And <b>this</b> is why, back on day four, I told you national polls ask about a thousand people
+    regardless of the country. It is not laziness. Going from three percent error to one percent would
+    need nine times the budget.</p>
+   </div>
+  </div>
+
+  <!-- 58-76 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">58 &ndash; 76</span><h3>The answer to the question</h3></div>
+   <p class="objective">Close the loop you opened on day three. Eighteen minutes.</p>
+
+   <div class="stage">Put the original five samples back on the board. This is the payoff for three
+   sessions of deferral.</div>
+
+   <div class="typeit">Back to day three</div>
+<pre><code>70,032    244,006    239,817    65,149    235,447</code></pre>
+
+   <div class="speak">
+    <p>Day three. Five samples, five different answers, and I said I could not tell you how anybody
+    reports a number honestly.</p>
+    <p>Now I can. Let me put the pieces together.</p>
+   </div>
+
+   <div class="typeit">Build the argument on the board, one line at a time</div>
+<pre><code>1  sample means are NORMALLY distributed        (the CLT)
+
+2  they are centred on the TRUE population mean
+
+3  their spread is sigma / sqrt(n)              (the standard error)
+
+4  for a normal distribution, 95% sit within
+   about 2 standard deviations of the centre    (day 6 and day 9)
+
+   ------------------------------------------------------
+
+   so 95% of all possible samples give an average
+   within 2 standard errors of the truth</code></pre>
+
+   <div class="stage">Let them read line five. That sentence is the foundation of everything left in
+   the module.</div>
+
+   <div class="speak">
+    <p>Read that last line again.</p>
+    <p>Ninety-five percent of all the samples I <em>could</em> have taken give an average within two
+    standard errors of the real answer.</p>
+    <p>Now turn it round, because this is the move that matters. <b>I only took one sample.</b> But I
+    know it came from that distribution. So I know that unless I was unlucky &mdash; and I will be
+    unlucky one time in twenty &mdash; the truth is within two standard errors of what I measured.</p>
+   </div>
+
+   <div class="typeit">Make it concrete</div>
+<pre><code>I sampled 100 people and got an average of 69,671.
+
+standard error  =  16,066 / sqrt(100)  =  1,607
+
+2 standard errors  =  about 3,200
+
+so:   69,671  give or take  3,200
+      the truth is very probably between 66,500 and 72,900</code></pre>
+
+   <div class="speak">
+    <p>And there it is. That is how somebody reports a number honestly.</p>
+    <p>Not &ldquo;the average is sixty-nine thousand six hundred and seventy-one&rdquo;, which is a claim
+    you cannot support.</p>
+    <p><b>&ldquo;Sixty-nine thousand, give or take three thousand two hundred.&rdquo;</b></p>
+    <p>You have seen that phrasing your whole life. Every opinion poll, every survey, every research
+    finding. <b>Plus or minus three percent.</b> This is where it comes from.</p>
+   </div>
+
+   <div class="keyline" style="margin:14px 0">
+    You cannot make the uncertainty go away. But you can <b>measure it</b>, and report it honestly
+    alongside your answer.
+   </div>
+  </div>
+
+  <!-- 76-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">76 &ndash; 90</span><h3>What this makes possible</h3></div>
+   <p class="objective">Fourteen minutes. Consolidate, then set up next session.</p>
+
+   <div class="speak">
+    <p>Let me say plainly why this session was the important one.</p>
+    <p>For seven sessions you described data you had. On day eight I said the second half of statistics
+    is making claims about people you never measured, and that it needed a completely different toolkit.</p>
+    <p><b>This is the tool.</b> Everything that follows is an application of what you just saw.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>because sample means are normal and their spread is sigma/sqrt(n):
+
+  ->  you can put a "give or take" on any estimate
+        (that is a CONFIDENCE INTERVAL - next session)
+
+  ->  you can ask whether a result is surprising enough
+      to be worth believing
+        (that is a HYPOTHESIS TEST - the session after)
+
+  ->  you can decide whether version A really beat version B
+        (that is A/B TESTING - the last session)</code></pre>
+
+   <div class="speak">
+    <p>All three of those are the same idea wearing different clothes. All three rest entirely on today.</p>
+    <p>Which is why I have made you wait three sessions for it.</p>
+   </div>
+
+   <div class="stage">Now set up next session by naming the thing they almost have.</div>
+
+   <div class="speak">
+    <p>One more thing before you go.</p>
+    <p>I said &ldquo;sixty-nine thousand, give or take three thousand two hundred&rdquo;, and I got the
+    three thousand two hundred by using <b>two</b> standard errors, because ninety-five percent of a
+    normal distribution sits within two.</p>
+    <p>That two was a rounding. Remember when I taught you the sixty-eight ninety-five rule and said
+    ninety-five percent sit within two standard deviations?</p>
+    <p>The exact number is not two. <b>It is one point nine six.</b></p>
+    <p>Next session that one point nine six stops being a rounding error and becomes the thing you
+    calculate with. And what you build with it is called a <b>confidence interval</b>.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;How can the means be normal if the data is not?&rdquo;</h5>
+  <p>&ldquo;Because averaging cancels extremes. To get a wildly high average from thirty people you would
+  need to draw thirty high earners in a row, which almost never happens. The lopsidedness of individuals
+  gets washed out by the averaging, and what survives is symmetric.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is n of 30 really always enough?&rdquo;</h5>
+  <p>&ldquo;No, and we just showed it. On our raw salary column with a skew of 14, samples of 30 still
+  gave means with a skew of 2.4. It took 500 to get close to normal. Thirty is a rule of thumb for
+  reasonably behaved data. <b>The more lopsided the population, the bigger n has to be.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the difference between standard deviation and standard error?&rdquo;</h5>
+  <p>&ldquo;Standard deviation is how spread out the people are &mdash; it does not shrink with more
+  data. Standard error is how much your estimate wobbles &mdash; it does. Collecting more data does not
+  make people more alike; it makes you more sure about the average.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Do I need to know sigma to compute the standard error? I never know sigma.&rdquo;</h5>
+  <p>&ldquo;Good catch, and you are right &mdash; in real life you do not. You use your sample's own
+  standard deviation as a stand-in. That works well for larger samples, and for small ones there is an
+  adjustment called the t-distribution, which we meet when we do the tests.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;So more data always makes my answer better?&rdquo;</h5>
+  <p>&ldquo;More data makes it more <b>precise</b>. It does not make it more <b>correct</b> &mdash;
+  remember the archer. If your sampling method is biased, a bigger sample gives you a tighter estimate of
+  the wrong number. The CLT assumes you sampled properly.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why quadruple for half? That seems unfair.&rdquo;</h5>
+  <p>&ldquo;It is the square root in the formula. Dividing by the root of n means going from 100 to 400
+  divides the error by the root of 4, which is 2. It is why precision gets expensive fast, and why polls
+  settle at about a thousand people.&rdquo;</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="lbl">End of session &mdash; put this on screen</div>
+  <div class="sumcard"><pre><code><span class="c"># ---- THE SETUP ----</span>
+q1, q3 = sal.quantile(0.25), sal.quantile(0.75)
+iqr = q3 - q1
+pop = sal[(sal &gt;= q1-1.5*iqr) &amp; (sal &lt;= q3+1.5*iqr)]   <span class="c"># our &quot;population&quot;</span>
+pop.mean()    <span class="c"># 69,630</span>
+pop.std()     <span class="c"># 16,066   &lt;- this is SIGMA</span>
+
+<span class="c"># ---- THE SIMULATION ----</span>
+rng = np.random.default_rng(7)
+means = pd.Series([rng.choice(pop, 30).mean() for _ in range(1000)])
+means.mean()  <span class="c"># 69,693   lands on the population mean</span>
+means.std()   <span class="c">#  2,843   FAR smaller than the population spread of 16,066</span>
+means.skew()  <span class="c">#   0.02   near zero = NORMAL</span>
+
+<span class="c"># ---- THREE DIFFERENT PICTURES ----</span>
+<span class="c"># 1  THE POPULATION            each dot is ONE PERSON       mean 69,630  spread 16,066</span>
+<span class="c"># 2  ONE SAMPLE                each dot is ONE PERSON       30 of them</span>
+<span class="c"># 3  THE SAMPLING DISTRIBUTION each dot is ONE WHOLE SAMPLE mean 69,693  spread  2,843</span>
+<span class="c">#</span>
+<span class="c"># picture 3 is not a distribution of DATA. it is a distribution of ESTIMATES.</span>
+
+<span class="c"># ---- THE CENTRAL LIMIT THEOREM ----</span>
+<span class="c"># take samples of a decent size from ANY population and the distribution of</span>
+<span class="c"># their MEANS will be NORMAL, centred on the true population mean,</span>
+<span class="c">#                 WHATEVER SHAPE THE ORIGINAL DATA HAD</span>
+<span class="c">#</span>
+<span class="c"># proof on the worst column we have:</span>
+<span class="c">#   population skew  14.06</span>
+<span class="c">#   n =  30   skew of the means  2.43</span>
+<span class="c">#   n = 100                      1.83</span>
+<span class="c">#   n = 500                      0.56</span>
+<span class="c">#</span>
+<span class="c"># it works - but SLOWLY. &quot;n &gt;= 30&quot; is a rule of thumb, not a law.</span>
+<span class="c"># THE MORE LOPSIDED THE POPULATION, THE BIGGER n HAS TO BE.</span>
+
+<span class="c"># ---- STANDARD ERROR ----</span>
+<span class="c"># STANDARD DEVIATION  how spread the PEOPLE are    does NOT shrink with more data</span>
+<span class="c"># STANDARD ERROR      how much your ESTIMATE wobbles   DOES shrink</span>
+<span class="c">#</span>
+<span class="c">#                 sigma</span>
+<span class="c">#   SE   =   --------------</span>
+<span class="c">#               sqrt(n)</span>
+<span class="c">#</span>
+<span class="c">#   n     observed   predicted</span>
+<span class="c">#     5      7,194       7,185</span>
+<span class="c">#    30      2,912       2,933</span>
+<span class="c">#   100      1,594       1,607     &lt;- the formula predicts the simulation</span>
+
+<span class="c"># sigma = 16,066</span>
+<span class="c">#   n =   5  -&gt;  SE 7,185      n = 100  -&gt;  SE 1,607</span>
+<span class="c">#   n =  30  -&gt;  SE 2,933      n = 400  -&gt;  SE   803</span>
+<span class="c">#</span>
+<span class="c">#   TO HALVE YOUR UNCERTAINTY YOU MUST QUADRUPLE YOUR SAMPLE.</span>
+<span class="c">#   (this is why polls ask ~1,000 people and stop at +/- 3%)</span>
+
+<span class="c"># ---- THE ANSWER TO THE DAY 3 QUESTION ----</span>
+<span class="c"># 1  sample means are NORMAL                      (the CLT)</span>
+<span class="c"># 2  centred on the TRUE population mean</span>
+<span class="c"># 3  spread = sigma / sqrt(n)                     (the standard error)</span>
+<span class="c"># 4  95% of a normal sits within ~2 std of centre (day 6 and day 9)</span>
+<span class="c">#    ------------------------------------------------------------</span>
+<span class="c">#    so 95% of all possible samples give an average</span>
+<span class="c">#    within 2 STANDARD ERRORS of the truth</span>
+<span class="c">#</span>
+<span class="c"># sampled 100 people, got 69,671</span>
+<span class="c">#   SE = 16,066 / sqrt(100) = 1,607</span>
+<span class="c">#   2 SE = about 3,200</span>
+<span class="c">#   -&gt; &quot;69,671, give or take 3,200&quot;</span>
+<span class="c">#</span>
+<span class="c"># THAT is where &quot;plus or minus 3%&quot; comes from.</span>
+<span class="c"># you cannot remove the uncertainty. you can MEASURE it and report it.</span>
+<span class="c">#</span>
+<span class="c"># (and the &quot;2&quot; is really 1.96 - next session it stops being a rounding)</span></code></pre></div>
+  <div class="planbanner" style="margin-top:20px">
+   <b>Where this goes next.</b> Day 11 turns &ldquo;give or take 3,200&rdquo; into a proper confidence
+   interval, and the rounded <b>2</b> becomes <b>1.96</b>. It is the session your notes flag as the
+   densest in the module &mdash; both interpretations students reliably get wrong land in one place, so
+   keep day 13 free in case it needs splitting.
   </div>
  </div>
 </section>
@@ -11311,7 +12684,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
