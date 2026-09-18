@@ -323,21 +323,48 @@ ol.n li b{color:var(--ink);font-weight:450}
   white-space:pre;overflow-x:auto}
 @media(max-width:620px){.mrow{grid-template-columns:1fr;gap:3px}.mrow>b{padding-top:0}}
 </style>
+<style id="tapnav-css">
+.tapnav{position:sticky;top:0;z-index:70;background:var(--nav-bg,rgba(255,255,255,.9));
+ backdrop-filter:blur(14px);border-bottom:1px solid var(--hair,#ececec)}
+.tapnav-in{max-width:var(--max,960px);margin:0 auto;padding:11px 28px;display:flex;
+ align-items:center;gap:20px;flex-wrap:wrap}
+.tapnav-home{font-family:var(--serif,Georgia,serif);font-size:16px;font-weight:600;
+ color:var(--ink,#17191c);text-decoration:none;white-space:nowrap}
+.tapnav-links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.tapnav-links a{font-size:13.5px;font-weight:500;color:var(--slate,#777b86);
+ text-decoration:none;padding:5px 11px;border-radius:8px}
+.tapnav-links a:hover{background:var(--mist,#f2f2f3);color:var(--ink,#17191c)}
+.tapnav-links a.on{background:var(--peach,#fbe1d1);color:var(--sienna,#5d2a1a);font-weight:600}
+.tapnav a:focus-visible{outline:2px solid var(--sienna,#5d2a1a);outline-offset:2px}
+/* a page may carry its own sticky bar (theme toggle, back link); stack it under this one */
+nav:not(.tapnav){top:var(--tapnav-h,46px)!important}
+@media (max-width:640px){.tapnav-in{padding:10px 18px}.tapnav-links{margin-left:0}}
+</style>
 </head>
 <body>
 <script>
 try{var _t=localStorage.getItem("steep-theme");
  if(_t==="dark"||_t==="light")document.documentElement.setAttribute("data-theme",_t);}catch(e){}
 </script>
-
+<nav class="tapnav"><div class="tapnav-in">
+ <a class="tapnav-home" href="../">Data Analytics</a>
+ <div class="tapnav-links">
+  <a class="on" href="../teach/">Teach</a>
+  <a href="../prepare/">Prepare</a>
+  <a href="../reference/">Reference</a>
+  <a href="../interview/">Interview</a>
+  <a href="../august/">August B3</a>
+  <a href="../plan/">Plan</a>
+ </div>
+</div></nav>
+<script id="tapnav-sync">(function(){function f(){try{
+ var n=document.querySelector('.tapnav');
+ if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
+ f();addEventListener('resize',f);addEventListener('load',f);})();</script>
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
-  <div class="xnav">
-   <a class="xl on" href="../teach/">Teach</a>
-   <a class="xl" href="../prepare/">Prepare</a>
-   <a class="xl" href="../plan/">Reference</a>
-  </div>
+  
   <button class="backlink" id="homeBtn" type="button">&larr; All sessions</button>
   <button class="themetog" id="themeTog" type="button"><span id="themeLbl">Auto</span></button>
  </div>
