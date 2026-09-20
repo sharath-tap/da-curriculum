@@ -7260,8 +7260,8 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
   <h1 class="display">Probability</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
    Seven sessions describing data that already happened. Today the module turns to data that has not
-   happened yet. Built entirely on their own table &mdash; no coins, no dice beyond the first two
-   minutes, and no Bayes.</p>
+   happened yet. A coin, a die and a deck of cards earn ten minutes to define
+   the idea &mdash; then everything else runs on their own table. No Bayes.</p>
   <div class="glance">
    <div class="gcell"><b>0 &ndash; 1</b><span>the whole scale</span></div>
    <div class="gcell"><b>0.244</b><span>&rarr; 0.384</span></div>
@@ -7286,9 +7286,9 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
    <li><b>Do not teach this as a new subject.</b> They have been computing probabilities since day 1
    without the word &mdash; every <code>value_counts(normalize=True)</code> was one. Frame the session
    as naming something they already do, and the room relaxes immediately.</li>
-   <li><b>Spend two minutes on dice, then leave them.</b> Coins and dice are how probability gets taught
-   and why students think it is a toy. One example to define the idea, then everything else on
-   <code>employees.csv</code>.</li>
+   <li><b>The coin, the die and the cards are props, not the subject.</b> They earn ten minutes because
+   they make &ldquo;reason from structure&rdquo; obvious, and then they are gone for good. If they are
+   still on screen at minute 25, the session has drifted into the version students think is a toy.</li>
    <li><b>The two words to slow down on are &ldquo;mutually exclusive&rdquo; and
    &ldquo;independent&rdquo;.</b> Students merge them. They are close to opposites, and the fifteen
    minutes you spend separating them will save you an hour later.</li>
@@ -7480,12 +7480,16 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
     never happens. One means it always happens. That is the whole scale.</p>
     <p>Now, there are two completely different ways to actually get that number, and knowing which one
     you are in matters.</p>
-    <p>Here is the first. I roll a die. What is the chance of a four?</p>
-    <p>One in six. And notice what you did to answer that. You did not roll anything. You looked at the
-    <b>structure</b> of the die &mdash; six faces, all the same &mdash; and reasoned. That is called
-    <b>theoretical</b> probability.</p>
-    <p>Now the second one. What is the chance that an employee picked at random from our table works in
-    Tech?</p>
+    <p>Let me start with the oldest example there is. I flip a coin. What is the chance of heads?</p>
+    <p>One in two. Two outcomes, both equally likely. And notice what you did to answer that &mdash;
+    <b>you did not flip anything</b>. You reasoned about the object.</p>
+    <p>Same with a die. Six faces, so the chance of a four is one in six. You did not roll it.</p>
+    <p>And cards. Fifty-two in a deck. How many aces? Four &mdash; so the chance of an ace is four in
+    fifty-two, about eight percent. How many hearts? Thirteen, so one in four.</p>
+    <p>Every one of those you worked out <b>without touching a card</b>. You looked at the structure of
+    the thing and reasoned. That is called <b>theoretical</b> probability.</p>
+    <p>Now a completely different question. What is the chance that an employee picked at random from
+    our table works in Tech?</p>
    </div>
 
    <div class="qbox">
@@ -7837,7 +7841,8 @@ P(well paid | Tech): 0.776</div>
 <span class="c"># is a probability statement. this is the grammar for all of it.</span>
 
 <span class="c"># ---- TWO WAYS TO GET A PROBABILITY ----</span>
-<span class="c"># THEORETICAL - reason from structure.  a die has 6 faces -> 1/6</span>
+<span class="c"># THEORETICAL - reason from structure, touch nothing.</span>
+<span class="c">#               coin 1/2 | die 1/6 | ace 4/52 | heart 13/52</span>
 <span class="c"># EMPIRICAL   - count what happened.    49 of 201 in Tech -> 0.244</span>
 <span class="c">#   an analyst lives almost entirely in the second one.</span>
 <span class="c">#   value_counts(normalize=True) has been doing this since week 1.</span>
