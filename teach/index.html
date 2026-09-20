@@ -361,6 +361,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -456,15 +457,23 @@ try{var _t=localStorage.getItem("steep-theme");
      and &ldquo;plus or minus 3%&rdquo; finally has a source.</p>
      <span class="foot">Full script &middot; do not compress</span></button>
 
-    <button class="dcard soon" disabled>
-     <span class="id">DAY 9</span><h3>Confidence Intervals and Hypothesis Testing</h3>
-     <p>The densest day. Both interpretations that students reliably get wrong, in one session.</p>
-     <span class="foot">Not yet written &middot; split first if short</span></button>
+    <button class="dcard full" data-go="d11">
+     <span class="id">DAY 11</span><h3>Confidence Intervals</h3>
+     <p>The rounded 2 becomes 1.96, and a hundred intervals settle what the 95% is actually attached to
+     &mdash; 95 of them catch the truth. Ends by deriving the 1,068 promised on day 4.</p>
+     <span class="foot">Full script &middot; 13 speech blocks</span></button>
 
-    <button class="dcard soon" disabled>
-     <span class="id">DAY 10</span><h3>The Tests, and A/B Testing</h3>
-     <p>t-test and chi-square, taught by running a real A/B analysis end to end.</p>
-     <span class="foot">Not yet written</span></button>
+    <button class="dcard full" data-go="d12">
+     <span class="id">DAY 12</span><h3>Hypothesis Testing</h3>
+     <p>Built as a courtroom all the way through. The p-value said correctly, why &ldquo;fail to
+     reject&rdquo; is not &ldquo;proved&rdquo;, and the test and the interval turning out to be one tool.</p>
+     <span class="foot">Full script &middot; 14 speech blocks</span></button>
+
+    <button class="dcard full" data-go="d13">
+     <span class="id">DAY 13</span><h3>The Tests, and A/B Testing</h3>
+     <p>Which test for which question, an A/B analysis end to end, and a chi-square that finds nothing
+     at p = 0.94. Closes on twenty tests against pure noise, and the one that lights up anyway.</p>
+     <span class="foot">Full script &middot; closes the module</span></button>
    </div>
 
    <div class="planbanner" style="margin-top:16px">
@@ -529,11 +538,11 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="id">COVERAGE</span><h3>What gets taught, what gets skipped</h3>
      <p>All 168 concepts in your study notes mapped to a day and marked teach / mention / skip.</p>
      <span class="foot">105 teach &middot; 48 mention &middot; 15 skip</span></button>
-    <a class="dcard" href="../prepare/" style="text-decoration:none">
+    <a class="dcard" href="/statistics" style="text-decoration:none">
      <span class="id">PREPARE</span><h3>What to watch, in order</h3>
      <p>Each session mapped to the exact videos that prepare you for it, with links and timings.</p>
      <span class="foot">Open &rarr;</span></a>
-    <a class="dcard" href="../plan/" style="text-decoration:none">
+    <a class="dcard" href="/" style="text-decoration:none">
      <span class="id">REFERENCE</span><h3>The full course plan</h3>
      <p>Both batches, notes for all 37 delivered sessions, and a 276-function lookup.</p>
      <span class="foot">Open &rarr;</span></a>
@@ -2020,8 +2029,8 @@ Name: salary, dtype: float64</div></div></div>
    <p class="cap"><b>Days 2 to 7</b> are in the navigation above and cover the full descriptive block.
    They are currently written as detailed outlines rather than in this fully-spoken format &mdash;
    ask Claude to rewrite any of them to match this page.</p>
-   <p class="cap" style="margin-top:12px"><a href="../plan/">&larr; Full syllabus</a> &nbsp;&middot;&nbsp;
-   <a href="../prepare/">Statistics prep track</a></p>
+   <p class="cap" style="margin-top:12px"><a href="/">&larr; Full syllabus</a> &nbsp;&middot;&nbsp;
+   <a href="/statistics">Statistics prep track</a></p>
   </div>
  </div>
 </section>
@@ -9536,6 +9545,1721 @@ means.skew()  <span class="c">#   0.02   near zero = NORMAL</span>
  </div>
 </section>
 </div>
+<div class="day" id="d11">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Statistics day 11 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">Confidence<br>Intervals</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Last session ended on &ldquo;sixty-nine thousand, give or take three thousand two hundred.&rdquo;
+   Today that becomes a proper interval, the rounded <b>2</b> becomes <b>1.96</b>, and one simulation
+   settles the interpretation that almost every student gets wrong.</p>
+  <div class="glance">
+   <div class="gcell"><b>1.96</b><span>not 2</span></div>
+   <div class="gcell"><b>95</b><span>of 100 CIs</span></div>
+   <div class="gcell"><b>&times;4</b><span>for half the width</span></div>
+   <div class="gcell"><b>1,068</b><span>finally derived</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">What your own notes say about this session</h4>
+   <p style="color:var(--sienna)">Your notes flagged the original day 11 as <b style="color:var(--sienna)">the
+   densest in the module</b> and warned it would probably split. <b style="color:var(--sienna)">It has.</b>
+   Confidence intervals fill this session honestly; hypothesis testing is now day 12. That decision
+   spends the buffer &mdash; day 13 is a teaching session now, not a spare one.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>This session has exactly one hard idea in it.</b> Not the arithmetic &mdash; the arithmetic is
+   one line. The hard idea is <b>what the 95% is attached to</b>. Budget your time accordingly: fifteen
+   minutes on the calculation, thirty on the meaning.</li>
+   <li><b>Run the hundred-intervals simulation. Do not describe it.</b> It is the only thing in the
+   module that makes the correct interpretation feel obvious instead of pedantic. If you are short of
+   time, cut something else.</li>
+   <li><b>Expect to be told you are splitting hairs.</b> When you say &ldquo;there is not a 95% chance
+   the true mean is in this interval&rdquo;, somebody will think it is a word game. It is not, and the
+   simulation is how you prove that.</li>
+   <li><b>Keep 1.96 attached to day 9.</b> It is not a new constant. It is the z-score that cuts off the
+   middle 95% of a normal curve, which they already found themselves.</li>
+   <li><b>End on the 1,068.</b> You promised that number an explanation back on day 4. Today they can
+   derive it. Closing the loop is worth the last five minutes.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">If you are new to this, the interval itself is easy and the
+  interpretation is genuinely subtle. Read this part twice. Everything students get wrong later, they
+  get wrong here.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; where the interval comes from</h5>
+
+   <h6>You already built it last session</h6>
+   <p>Day 10 ended with three facts that were proved by simulation, not asserted:</p>
+   <p><b>One.</b> If you take a sample and compute its average, and do that over and over, those
+   averages form a <b>normal curve</b> &mdash; whatever shape the original data had.</p>
+   <p><b>Two.</b> That curve is centred on the <b>true population mean</b>.</p>
+   <p><b>Three.</b> Its spread is <b>&sigma; &divide; &radic;n</b>, the standard error.</p>
+   <p>And from day 9 they know a fourth thing: <b>95% of any normal curve sits within 1.96 standard
+   deviations of its centre.</b></p>
+   <div class="keyline">
+    Put those four together and the confidence interval falls out with no new mathematics at all.
+    <b>95% of all possible sample means land within 1.96 standard errors of the truth.</b> Turn that
+    around: if you take one sample, then 95% of the time, the truth is within 1.96 standard errors of
+    <em>it</em>. That turning-around is the whole idea.
+   </div>
+
+   <h6>Why 1.96 and not 2</h6>
+   <p>Day 6 taught the empirical rule as 68&ndash;95&ndash;99.7 and used <b>2</b> standard deviations for
+   the 95%. That was a rounding, and you said so at the time. The exact number is <b>1.96</b>. It has
+   been 1.96 since day 6; you just did not need the precision until now.</p>
+   <p>Where it comes from: find the two points on a standard normal curve that leave 2.5% in each tail.
+   Those points are &minus;1.96 and +1.96. Nothing deeper than that.</p>
+
+   <h6>The formula, and how little there is to it</h6>
+   <div class="mth">
+    <div class="mrow"><b>confidence interval</b> = sample mean &plusmn; 1.96 &times; standard error</div>
+    <div class="mrow"><b>standard error</b> = s &divide; &radic;n</div>
+    <div class="mcalc">67,472 &plusmn; 1.96 &times; (16,876 &divide; &radic;100) &nbsp;=&nbsp; 67,472 &plusmn; 3,308
+    &nbsp;=&nbsp; <b>64,164 to 70,780</b></div>
+   </div>
+   <p>That is the entire calculation. Two lines of code. Which is exactly why the rest of the session
+   belongs to meaning rather than arithmetic.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the interpretation, and why it is not pedantry</h5>
+
+   <h6>The sentence almost everyone says, which is wrong</h6>
+   <p><b>&ldquo;There is a 95% chance the true average salary is between 64,164 and 70,780.&rdquo;</b></p>
+   <p>This is the single most common error in applied statistics, and people with degrees make it. Here
+   is why it is wrong, in one line: <b>the true average is not a random thing.</b> It is a fixed number.
+   It is 69,630. It does not move, and it does not have a probability of being anywhere &mdash; it is
+   either inside your interval or it is not, and which of those is true was decided the moment you drew
+   your sample.</p>
+
+   <h6>What the 95% is actually attached to</h6>
+   <p>The randomness is in <b>the interval</b>, not in the truth. Draw a different sample, you get a
+   different interval. The 95% describes <b>the method</b>, across all the samples you might have taken:</p>
+   <div class="keyline">
+    <b>If you repeat this procedure many times, 95% of the intervals it produces will contain the true
+    value.</b> You cannot say which 95%. You are not making a claim about your one interval &mdash; you
+    are reporting the reliability of the machine that made it.
+   </div>
+   <p>The everyday analogy that works: a basket that catches the ball 95 times out of 100. After one
+   throw, with your eyes shut, you do not say &ldquo;the ball has a 95% chance of being in the
+   basket&rdquo; &mdash; it is already in or already out. You say &ldquo;I am using a basket that works
+   95 times in 100.&rdquo; Same distinction, and same reason it matters.</p>
+
+   <h6>Why you should not let this one slide</h6>
+   <p>Students who hold the wrong version go on to say &ldquo;there is a 95% chance this drug works&rdquo;
+   and &ldquo;there is a 95% chance our conversion rate improved&rdquo;. Those sentences make claims the
+   data does not support, and they are how confident wrong decisions get made. Ten minutes here prevents
+   a career of it.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the three levers, and what they cost</h5>
+
+   <h6>Width is the only thing you control</h6>
+   <p>An interval has one useful property: <b>how narrow it is</b>. &ldquo;Between 64,000 and
+   71,000&rdquo; is a finding. &ldquo;Between 10,000 and 200,000&rdquo; is not. Three things move it:</p>
+   <p><b>Sample size.</b> Width shrinks with &radic;n. Four times the data for half the width. This is
+   the same tax as day 10, and it is worth saying out loud that it never gets cheaper.</p>
+   <p><b>Confidence level.</b> Want to be more certain? The interval gets wider. 90% uses 1.645, 95%
+   uses 1.96, 99% uses 2.576. Certainty is bought with vagueness &mdash; a 100% confidence interval
+   would be &ldquo;somewhere between zero and infinity&rdquo;, which is perfectly reliable and perfectly
+   useless.</p>
+   <p><b>The spread of the data itself.</b> Not under your control, and the reason a messy column with
+   outliers gives a hopeless interval. Another argument for the cleaning they did on day 5.</p>
+
+   <h6>t instead of z, when the sample is small</h6>
+   <p>One honest complication. The 1.96 assumes you know the population's standard deviation. You never
+   do &mdash; you estimate it from your sample. With a large sample that estimate is good and nobody
+   cares. With a small sample it is shaky, so you widen the interval to compensate, using the
+   <b>t&#8209;distribution</b> instead of the normal.</p>
+   <p>How much wider, in practice:</p>
+   <div class="mth">
+    <div class="mrow">n = 5 &nbsp;&rarr;&nbsp; <b>2.776</b> instead of 1.96 &nbsp;&mdash; 42% wider</div>
+    <div class="mrow">n = 30 &nbsp;&rarr;&nbsp; <b>2.045</b> &nbsp;&mdash; 4% wider</div>
+    <div class="mrow">n = 100 &nbsp;&rarr;&nbsp; <b>1.984</b> &nbsp;&mdash; 1% wider</div>
+    <div class="mrow">n = 1000 &nbsp;&rarr;&nbsp; <b>1.962</b> &nbsp;&mdash; indistinguishable</div>
+   </div>
+   <div class="keyline">
+    Teach it as <b>one sentence and a table</b>, not as a distribution. &ldquo;Small sample, use t; it
+    is slightly wider. Above about thirty it stops mattering.&rdquo; That is all an analyst needs, and
+    the library picks it for you anyway.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>Finish last session's sentence</h3></div>
+   <p class="objective">Pick up exactly where day 10 stopped. No new concept yet.</p>
+
+   <div class="stage">Write last session's closing line on the board before you say anything:
+   <b>69,671, give or take 3,200</b>.</div>
+
+   <div class="speak">
+    <p>This is where we stopped. We sampled a hundred people, got an average of sixty-nine thousand six
+    hundred and seventy-one, and I said &mdash; give or take about three thousand two hundred.</p>
+    <p>Today I want to write that properly, because &ldquo;give or take&rdquo; is not something you can
+    put in a report.</p>
+    <p>And I owe you one small correction from day six. Remember the sixty-eight, ninety-five,
+    ninety-nine point seven rule? For the ninety-five I told you <b>two</b> standard deviations, and I
+    told you at the time it was a rounding.</p>
+    <p>The real number is <b>one point nine six</b>. From today we use the real one.</p>
+   </div>
+
+   <div class="typeit">Show them where 1.96 comes from &mdash; do not just assert it</div>
+<pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
+
+<span class="c"># the two points on a standard normal that leave 2.5% in each tail</span>
+<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.025</span>), <span class="o">3</span>))
+<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.975</span>), <span class="o">3</span>))</code></pre>
+   <div class="screen">-1.96
+1.96</div>
+
+   <div class="speak">
+    <p>Two and a half percent in the left tail, two and a half percent in the right tail. Ninety-five
+    percent in the middle. That is all one point nine six is.</p>
+    <p>It is not a new thing to memorise. It is the same bell curve you found in your own height column
+    on day nine.</p>
+   </div>
+  </div>
+
+  <!-- 10-24 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10 &ndash; 24</span><h3>Build one interval</h3></div>
+   <p class="objective">The whole calculation. Two lines. Get it done fast so the time goes to meaning.</p>
+
+   <div class="typeit">Take one sample of a hundred and build the interval</div>
+<pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+
+rng = np.random.default_rng(<span class="o">11</span>)
+sample = pd.Series(rng.choice(pop, <span class="o">100</span>))
+
+m  = sample.mean()
+se = sample.std() / np.sqrt(<span class="o">100</span>)
+
+<span class="k">print</span>(<span class="c">"sample mean   :"</span>, <span class="k">round</span>(m))
+<span class="k">print</span>(<span class="c">"standard error:"</span>, <span class="k">round</span>(se))
+<span class="k">print</span>(<span class="c">"margin (1.96se):"</span>, <span class="k">round</span>(<span class="o">1.96</span> * se))
+<span class="k">print</span>(<span class="c">"95% CI        :"</span>, <span class="k">round</span>(m - <span class="o">1.96</span>*se), <span class="c">"to"</span>, <span class="k">round</span>(m + <span class="o">1.96</span>*se))</code></pre>
+   <div class="screen">sample mean   : 67472
+standard error: 1688
+margin (1.96se): 3308
+95% CI        : 64164 to 70780</div>
+
+   <div class="warn"><b>Your numbers will differ slightly.</b> Same as last session &mdash; it is a
+   simulation. The pattern never changes; the exact figures move a little.</div>
+
+   <div class="speak">
+    <p>That is it. That is a confidence interval. Sixty-four thousand one hundred and sixty-four, to
+    seventy thousand seven hundred and eighty.</p>
+    <p>Sample average, plus and minus one point nine six standard errors. Two lines of code, and we
+    already had both pieces.</p>
+   </div>
+
+   <div class="stage">Now reveal the truth. They have not been told the population mean in this
+   session yet.</div>
+
+   <div class="typeit">Did we catch it?</div>
+<pre><code><span class="k">print</span>(<span class="c">"the truth:"</span>, <span class="k">round</span>(pop.mean()))</code></pre>
+   <div class="screen">the truth: 69630</div>
+
+   <div class="speak">
+    <p>Sixty-nine thousand six hundred and thirty. And our interval said sixty-four to seventy point
+    eight thousand.</p>
+    <p>So we caught it. We never saw the whole population &mdash; we saw a hundred people &mdash; and we
+    still bracketed the real answer.</p>
+    <p>Now. Here is the question that matters, and I want you to answer before I do.</p>
+   </div>
+  </div>
+
+  <!-- 24-46 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">24 &ndash; 46</span><h3>What the 95% is attached to</h3></div>
+   <p class="objective">The hard idea. Twenty-two minutes, and the simulation does the work.</p>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;What does the ninety-five percent mean? Say it in a full sentence.&rdquo;
+    Wait. Somebody will give you the wrong one, confidently.</div>
+    <div class="a">The answer you will get is &ldquo;there is a 95% chance the true mean is inside our
+    interval.&rdquo; Write it on the board exactly as said. Do not correct it yet &mdash; you are going
+    to disprove it in four minutes, which is worth far more than contradicting it now.</div>
+   </div>
+
+   <div class="speak">
+    <p>Good. Let me write that up. <b>Ninety-five percent chance the true mean is inside our
+    interval.</b> That is what most people say.</p>
+    <p>Let me ask you one thing about it. What is the true mean?</p>
+    <p>Sixty-nine thousand six hundred and thirty. Is that a fixed number, or does it move around?</p>
+    <p>It is fixed. It is just a number. So how can a fixed number have a ninety-five percent chance of
+    being anywhere? It is either in our interval or it is not. And it already is or is not &mdash; that
+    was decided the moment we drew the sample.</p>
+    <p>So the ninety-five is not about the truth. It has to be about something else. Let me show you
+    what.</p>
+   </div>
+
+   <div class="stage">This next block is the most important thing in the session. Run it live.</div>
+
+   <div class="typeit">Do the whole thing a hundred times and count</div>
+<pre><code>rng = np.random.default_rng(<span class="o">42</span>)
+caught = <span class="o">0</span>
+truth  = pop.mean()
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">100</span>):
+    x  = pd.Series(rng.choice(pop, <span class="o">100</span>))
+    e  = <span class="o">1.96</span> * x.std() / np.sqrt(<span class="o">100</span>)
+    <span class="k">if</span> x.mean() - e &lt;= truth &lt;= x.mean() + e:
+        caught += <span class="o">1</span>
+
+<span class="k">print</span>(caught, <span class="c">"of the 100 intervals contained the true mean"</span>)</code></pre>
+   <div class="screen">95 of the 100 intervals contained the true mean</div>
+
+   <div class="speak">
+    <p>Ninety-five out of a hundred.</p>
+    <p>Look at what changed and what did not. The truth never moved &mdash; it was sixty-nine thousand
+    six hundred and thirty every single time. What moved was <b>the interval</b>. A hundred different
+    samples, a hundred different intervals, and ninety-five of them landed on the truth.</p>
+    <p>So the ninety-five percent is not a statement about the true mean. It is a statement about
+    <b>the method</b>. This procedure catches the answer ninety-five times out of a hundred.</p>
+    <p>Which means, about our one interval, the honest sentence is this: <b>I used a method that works
+    ninety-five percent of the time.</b> Not &ldquo;there is a ninety-five percent chance&rdquo;. I do
+    not know if mine is one of the ninety-five or one of the five. Nobody ever knows that.</p>
+   </div>
+
+   <div class="keyline">
+    If somebody says this is word games, this is your answer: the five intervals that missed were made
+    with exactly the same care as the ninety-five that hit. Nothing was done wrong in those five. That
+    is what a ninety-five percent method means &mdash; <b>it fails sometimes, correctly.</b>
+   </div>
+
+   <div class="qa"><h5>Worth asking them, if there is a minute</h5>
+   <p>&ldquo;If I want to never be wrong, what confidence level should I use?&rdquo; Let them arrive at
+   it: a hundred percent. Then ask what that interval would look like. Zero to infinity. Perfectly
+   reliable, perfectly useless &mdash; and that trade is the next block.</p></div>
+  </div>
+
+  <!-- 46-62 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">46 &ndash; 62</span><h3>The two levers, and what each one costs</h3></div>
+   <p class="objective">Confidence buys width. Sample size buys narrowness, at a rising price.</p>
+
+   <div class="typeit">Same sample, three confidence levels</div>
+<pre><code><span class="k">for</span> level, z <span class="k">in</span> [(<span class="o">90</span>, <span class="o">1.645</span>), (<span class="o">95</span>, <span class="o">1.96</span>), (<span class="o">99</span>, <span class="o">2.576</span>)]:
+    e = z * se
+    <span class="k">print</span>(level, <span class="c">"% ->"</span>, <span class="k">round</span>(m-e), <span class="c">"to"</span>, <span class="k">round</span>(m+e),
+          <span class="c">"  width"</span>, <span class="k">round</span>(<span class="o">2</span>*e))</code></pre>
+   <div class="screen">90 % -> 64696 to 70248   width 5552
+95 % -> 64164 to 70780   width 6615
+99 % -> 63125 to 71819   width 8695</div>
+
+   <div class="speak">
+    <p>Look at the widths. Ninety percent confident, and the interval is five and a half thousand wide.
+    Ninety-nine percent confident, and it is nearly nine thousand wide.</p>
+    <p>So being more certain does not make you more accurate. It makes you <b>vaguer</b>. You are paying
+    for confidence with precision, and there is no way around that.</p>
+    <p>Ninety-five is a convention. It is not a law of nature. It is just where most fields decided the
+    trade was reasonable.</p>
+   </div>
+
+   <div class="typeit">Now the other lever &mdash; and remember day 10's tax</div>
+<pre><code><span class="k">for</span> n <span class="k">in</span> [<span class="o">100</span>, <span class="o">400</span>, <span class="o">1600</span>]:
+    e = <span class="o">1.96</span> * pop.std() / np.sqrt(n)
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-> width"</span>, <span class="k">round</span>(<span class="o">2</span>*e))</code></pre>
+   <div class="screen">n = 100 -> width 6298
+n = 400 -> width 3149
+n = 1600 -> width 1574</div>
+
+   <div class="speak">
+    <p>A hundred people, six thousand three hundred wide. Want to halve that? Four hundred people. Want
+    to halve it again? Sixteen hundred.</p>
+    <p>Four times the work for twice the precision. That is the square root, and it is the same tax you
+    met last session. It never goes away and it never gets cheaper.</p>
+   </div>
+  </div>
+
+  <!-- 62-74 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">62 &ndash; 74</span><h3>When the sample is small, use t</h3></div>
+   <p class="objective">One sentence and a table. Do not teach the t-distribution as a topic.</p>
+
+   <div class="speak">
+    <p>One honest complication, and then we are done with the machinery.</p>
+    <p>That one point nine six assumes we know how spread out the whole population is. We do not. We
+    estimated it from our sample.</p>
+    <p>With a hundred people that estimate is good and it barely matters. With five people, our estimate
+    of the spread could be badly off &mdash; so we widen the interval to be safe. The widened version
+    uses something called the <b>t-distribution</b>.</p>
+    <p>You do not need to learn it. You need to know when it kicks in.</p>
+   </div>
+
+   <div class="typeit">How much wider, at each sample size</div>
+<pre><code><span class="k">for</span> n <span class="k">in</span> [<span class="o">5</span>, <span class="o">10</span>, <span class="o">30</span>, <span class="o">100</span>, <span class="o">1000</span>]:
+    t_star = stats.t.ppf(<span class="o">0.975</span>, n-<span class="o">1</span>)
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-> use"</span>, <span class="k">round</span>(t_star, <span class="o">3</span>), <span class="c">"instead of 1.96"</span>)</code></pre>
+   <div class="screen">n = 5 -> use 2.776 instead of 1.96
+n = 10 -> use 2.262 instead of 1.96
+n = 30 -> use 2.045 instead of 1.96
+n = 100 -> use 1.984 instead of 1.96
+n = 1000 -> use 1.962 instead of 1.96</div>
+
+   <div class="speak">
+    <p>Five people, and you need two point seven eight instead of one point nine six &mdash; your
+    interval is forty percent wider, because you genuinely know less.</p>
+    <p>Thirty people, two point zero four five. Basically one point nine six. A hundred people, one
+    point nine eight. A thousand, they are the same number.</p>
+    <p>So the rule you actually carry: <b>small sample, the interval widens on its own. Above thirty or
+    so, stop worrying about it.</b> And in practice the library picks for you.</p>
+   </div>
+
+   <div class="keyline">
+    This is also the real reason <b>n &ge; 30</b> keeps appearing as a rule of thumb. It is roughly where
+    t stops being meaningfully different from z. It is a convention born of a table, not a law.
+   </div>
+  </div>
+
+  <!-- 74-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">74 &ndash; 90</span><h3>Where 1,068 came from</h3></div>
+   <p class="objective">Close the loop you opened on day 4. They can now derive it themselves.</p>
+
+   <div class="stage">Write the day 4 claim back up: <b>&ldquo;about 1,068 people, whatever the size of
+   the country&rdquo;</b>. Ask if anybody remembers being annoyed by it.</div>
+
+   <div class="speak">
+    <p>Back on day four I told you a national poll needs about a thousand people, and that it does not
+    matter whether the country has ten million or a billion. Several of you did not believe me.</p>
+    <p>You can now work it out yourselves. Turn the interval around. Instead of asking &ldquo;how wide is
+    my interval&rdquo;, ask &ldquo;how many people do I need for the width I want&rdquo;.</p>
+   </div>
+
+   <div class="typeit">Work backwards from the margin you want</div>
+<pre><code><span class="c"># a poll measures a proportion. the widest a proportion can ever be is at 50%.</span>
+<span class="c"># so plan for p = 0.5 and you are safe whatever the real answer turns out to be.</span>
+<span class="k">from</span> math <span class="k">import</span> ceil
+
+p = <span class="o">0.5</span>
+E = <span class="o">0.03</span>          <span class="c"># the margin of error we want: plus or minus 3%</span>
+
+n = (<span class="o">1.96</span>**<span class="o">2</span> * p * (<span class="o">1</span>-p)) / E**<span class="o">2</span>
+<span class="k">print</span>(ceil(n))          <span class="c"># round UP - you cannot survey part of a person</span></code></pre>
+   <div class="screen">1068</div>
+
+   <div class="speak">
+    <p>One thousand and sixty-eight. There it is.</p>
+    <p>And notice what is <b>not</b> in that formula. The size of the population. It is not there. It
+    never was.</p>
+    <p>Because the standard error is sigma over root <b>n</b> &mdash; the size of your <b>sample</b>.
+    The population size does not appear. A thousand people tells you as much about India as it does
+    about Iceland.</p>
+    <p>That is why every poll you have ever seen says plus or minus three percent and asks about a
+    thousand people. It is not a coincidence and it is not laziness. It is this line of arithmetic.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;What if they wanted plus or minus one percent instead of three?&rdquo;</div>
+    <div class="a">Let them predict before running it. The instinct is &ldquo;three times as many&rdquo;.
+    The answer is nine times &mdash; 9,604 against 1,068 &mdash; because the margin is squared in the
+    denominator. Same square-root tax, seen from the other side.</div>
+   </div>
+
+   <div class="typeit">Show them</div>
+<pre><code><span class="k">for</span> E <span class="k">in</span> [<span class="o">0.05</span>, <span class="o">0.03</span>, <span class="o">0.01</span>]:
+    n = (<span class="o">1.96</span>**<span class="o">2</span> * <span class="o">0.25</span>) / E**<span class="o">2</span>
+    <span class="k">print</span>(<span class="c">"margin +/-"</span>, <span class="k">int</span>(E*<span class="o">100</span>), <span class="c">"% -> need"</span>, ceil(n), <span class="c">"people"</span>)</code></pre>
+   <div class="screen">margin +/- 5 % -> need 385 people
+margin +/- 3 % -> need 1068 people
+margin +/- 1 % -> need 9604 people</div>
+
+   <div class="speak">
+    <p>Three hundred and eighty-five for five percent. A thousand for three percent. Nine and a half
+    thousand for one percent.</p>
+    <p>That is the whole economics of surveying, in three lines.</p>
+    <p>Next session we use all of this to answer a different kind of question. Not &ldquo;what is the
+    average&rdquo;, but &ldquo;is this number different from that number, or am I looking at
+    noise?&rdquo;</p>
+   </div>
+
+   <div class="sumcard"><pre><code><span class="c"># ---- THE CONFIDENCE INTERVAL ----</span>
+<span class="c">#   CI = sample mean  +/-  1.96 * (s / sqrt(n))</span>
+<span class="c">#                            ^^^^   ^^^^^^^^^^^</span>
+<span class="c">#                            |      standard error (day 10)</span>
+<span class="c">#                            middle 95% of a normal curve (day 9)</span>
+<span class="c">#</span>
+<span class="c"># nothing new was invented today. we joined day 9 to day 10.</span>
+
+<span class="c"># ---- WHAT THE 95% MEANS ----</span>
+<span class="c"># WRONG: &quot;95% chance the true mean is in MY interval&quot;</span>
+<span class="c">#        the true mean is FIXED. it is in, or it is out. already decided.</span>
+<span class="c">#</span>
+<span class="c"># RIGHT: &quot;95% of the intervals this METHOD produces contain the truth&quot;</span>
+<span class="c">#        the randomness is in the INTERVAL, not in the truth.</span>
+<span class="c">#        we ran it 100 times: 95 hit, 5 missed. the 5 did nothing wrong.</span>
+
+<span class="c"># ---- THE TWO LEVERS ----</span>
+<span class="c"># confidence UP  -> interval WIDER   90%=1.645  95%=1.96  99%=2.576</span>
+<span class="c">#                   (100% confidence = &quot;zero to infinity&quot;. useless.)</span>
+<span class="c"># sample size UP -> interval NARROWER, but 4x the data for 2x the precision</span>
+<span class="c">#                   n=100 -> 6298 wide | n=400 -> 3149 | n=1600 -> 1574</span>
+
+<span class="c"># ---- SMALL SAMPLES: t INSTEAD OF z ----</span>
+<span class="c"># n=5 -> 2.776 | n=30 -> 2.045 | n=100 -> 1.984 | n=1000 -> 1.962</span>
+<span class="c"># below ~30 it matters. above ~30 it does not. the library picks for you.</span>
+<span class="c"># (this is where the famous &quot;n &gt;= 30&quot; rule actually comes from)</span>
+
+<span class="c"># ---- AND THE 1,068 FROM DAY 4 ----</span>
+<span class="c"># n = z^2 * p(1-p) / E^2   with p=0.5 (worst case) and E=0.03</span>
+<span class="c"># n = 3.8416 * 0.25 / 0.0009 = 1068</span>
+<span class="c">#</span>
+<span class="c"># THE POPULATION SIZE IS NOT IN THE FORMULA.</span>
+<span class="c"># 1,000 people says as much about India as about Iceland.</span>
+<span class="c">#   +/- 5% -> 384    +/- 3% -> 1,068    +/- 1% -> 9,604</span></code></pre></div>
+   <div class="planbanner" style="margin-top:20px">
+    <b>Where this goes next.</b> Day 12 asks a different question with the same machinery: not
+    &ldquo;what is the value&rdquo; but &ldquo;is this difference real?&rdquo; That is hypothesis
+    testing, the p-value, and the second interpretation students reliably get wrong.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;So is the true mean in our interval or not?&rdquo;</h5>
+  <p>&ldquo;I do not know, and neither does anybody else. In our simulation we knew, because we had the
+  whole population to check against. In real work you never do &mdash; that is the entire reason you are
+  sampling. What you know is that your method works 95 times out of 100.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why not just use 99% all the time and be safer?&rdquo;</h5>
+  <p>&ldquo;Because safer means vaguer. Our 99% interval was nearly nine thousand rupees wide against
+  six and a half thousand at 95%. If your answer is so cautious it says nothing, you have not been
+  careful &mdash; you have been useless. 95% is where most fields settled.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does the interval get narrower if the population is smaller?&rdquo;</h5>
+  <p>&ldquo;Almost never in practice, and that surprises everybody. The population size is not in the
+  formula at all. It only starts to matter if your sample is a large fraction of the whole population
+  &mdash; sampling 90 people out of 100. For any realistic survey, it is irrelevant.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What if my data is not normal? Salary certainly is not.&rdquo;</h5>
+  <p>&ldquo;It does not need to be. Look again at what goes into the interval &mdash; it is built on the
+  distribution of <b>sample means</b>, not of the data. And day 10 proved sample means go normal even
+  when the data is skewed 14. That is exactly why the Central Limit Theorem was the hinge of this
+  module.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Our interval was 64,164 to 70,780 and the truth was 69,630 &mdash; that is
+  near the edge. Is that bad?&rdquo;</h5>
+  <p>&ldquo;Not at all, and it is a sharp thing to notice. The truth is no more likely to sit in the
+  middle of your interval than near its edge. Any position inside counts as a hit, and being near the
+  edge tells you nothing about whether you got unlucky.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I compute a confidence interval for the median, or for correlation?&rdquo;</h5>
+  <p>&ldquo;Yes &mdash; for almost any statistic. The formula changes, the idea does not: your estimate,
+  plus and minus a margin that shrinks with the square root of n. Say that and move on; the mean is the
+  one they need.&rdquo;</p></div>
+ </div>
+</section>
+</div>
+<div class="day" id="d12">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Statistics day 12 &middot; merged class &middot; 90 minutes &middot; full script</p>
+  <h1 class="display">Hypothesis<br>Testing</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   A different question, the same machinery. Not &ldquo;what is the number&rdquo; but <b>&ldquo;is this
+   difference real, or am I looking at noise?&rdquo;</b> Built as a courtroom, closing on the two
+   sentences about p-values that get written in reports and should not be.</p>
+  <div class="glance">
+   <div class="gcell"><b>0.05</b><span>a convention</span></div>
+   <div class="gcell"><b>0.51</b><span>proves nothing</span></div>
+   <div class="gcell"><b>2</b><span>ways to be wrong</span></div>
+   <div class="gcell"><b>1</b><span>idea, four names</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">What your own notes say about this session</h4>
+   <p style="color:var(--sienna)">Your notes list <b style="color:var(--sienna)">two interpretations
+   students reliably get wrong</b>. One was yesterday's &mdash; what the 95% attaches to. The other is
+   today's: <b style="color:var(--sienna)">what a large p-value does and does not prove.</b> They are
+   the same mistake wearing different clothes, and saying so out loud helps.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Use the courtroom the whole way through.</b> Not as a decoration at the start &mdash; as the
+   actual structure. Null is innocence, p-value is how surprising the evidence is, 0.05 is the burden of
+   proof, and &ldquo;not guilty&rdquo; is not the same as &ldquo;innocent&rdquo;. Every hard idea today
+   has a courtroom sentence that makes it easy.</li>
+   <li><b>Run the test that finds nothing, and run it second.</b> Two one-sample tests: one that rejects
+   hard, one that comes back p = 0.51. The second is where the teaching is.</li>
+   <li><b>Never say &ldquo;accept the null&rdquo;.</b> Not once, not casually. If it leaves your mouth
+   they will write it in reports for years. It is always <b>fail to reject</b>.</li>
+   <li><b>0.05 is a convention and you should say so plainly.</b> Students assume it is derived. It is
+   not. It is a line somebody drew, and knowing that is part of using it honestly.</li>
+   <li><b>Show that the interval and the test agree.</b> Doing both on the same data and getting the
+   same verdict is what makes the two sessions feel like one idea rather than two topics.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">This is the session most trainers deliver as vocabulary.
+  Do not. There is one idea here and four words attached to it &mdash; get the idea solid in your own
+  head and the words become labels rather than material.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the one idea</h5>
+
+   <h6>Every hypothesis test asks the same question</h6>
+   <p>You see a difference in your data. Tech pays more than HR. Version B converted better than version
+   A. This month is up on last month. And the honest question, every single time, is:</p>
+   <div class="keyline">
+    <b>Could I have seen a difference this big purely by chance, even if there were no real difference
+    at all?</b> If yes &mdash; if noise alone explains it comfortably &mdash; you have no finding. If no
+    &mdash; if noise would almost never produce this &mdash; you have one.
+   </div>
+   <p>That is the whole of hypothesis testing. Everything else is machinery for answering that one
+   question numerically.</p>
+
+   <h6>Why they already believe in the question</h6>
+   <p>Day 10 is the reason this is not a leap. They watched five samples of thirty people give five
+   different averages from an <em>identical</em> population. So they have already seen, with their own
+   eyes, that differences appear where nothing real is happening. Today just puts a number on how big a
+   fake difference can plausibly get.</p>
+
+   <h6>The courtroom, which is not a metaphor so much as the actual logic</h6>
+   <p>The structure of a hypothesis test is the structure of a criminal trial, and the match is exact
+   rather than loose:</p>
+   <div class="mth">
+    <div class="mrow"><b>The null hypothesis</b> &mdash; the defendant is innocent. Nothing is going on.
+    No difference. This is what we assume until forced to abandon it.</div>
+    <div class="mrow"><b>The alternative</b> &mdash; the defendant is guilty. There is a real
+    difference. This is what you would have to prove.</div>
+    <div class="mrow"><b>The p-value</b> &mdash; how surprising this evidence would be if the defendant
+    really were innocent.</div>
+    <div class="mrow"><b>The 0.05 threshold</b> &mdash; the burden of proof. How surprising is surprising
+    enough.</div>
+    <div class="mrow"><b>&ldquo;Fail to reject&rdquo;</b> &mdash; not guilty. Which is emphatically not
+    the same as innocent.</div>
+   </div>
+   <p>Keep the courtroom running all session. When a student asks a hard question, there is almost
+   always a courtroom sentence that answers it in one line.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the p-value, said correctly</h5>
+
+   <h6>The definition, and it is worth getting exactly right</h6>
+   <p><b>The p-value is the probability of seeing data at least as extreme as yours, if the null
+   hypothesis were true.</b></p>
+   <p>Read that again and notice the direction it runs. It starts by <em>assuming nothing is going
+   on</em>, and then asks how weird your data would be in that world. It is a conditional probability,
+   and the condition is the null.</p>
+
+   <h6>What it is not &mdash; and this is the error that gets published</h6>
+   <p>A p-value of 0.03 does <b>not</b> mean &ldquo;a 3% chance the null is true&rdquo;. It does
+   <b>not</b> mean &ldquo;a 97% chance my finding is real&rdquo;. It is not a probability about the
+   hypothesis at all &mdash; it is a probability about the <em>data</em>, computed in a world where the
+   null holds.</p>
+   <div class="keyline">
+    This is precisely yesterday's error again. Yesterday: the truth is fixed, the interval is random.
+    Today: the hypothesis is fixed, <b>the data is random</b>. Both times, students attach the
+    probability to the fixed thing instead of the random one. Naming the pattern helps it stick.
+   </div>
+
+   <h6>Where 0.05 came from, which is less impressive than people assume</h6>
+   <p>It is a convention. Ronald Fisher suggested one-in-twenty as a reasonable line in the 1920s, and
+   the field kept it. It is not derived from anything. Particle physics demands roughly one in three and
+   a half million before announcing a discovery; plenty of medical work uses 0.01.</p>
+   <p>Say this to students plainly. Two things follow from it that matter: p = 0.049 and p = 0.051 are
+   the same result, and a threshold you chose after seeing the data is not a threshold at all.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the two ways to be wrong</h5>
+
+   <h6>Both errors, in the courtroom</h6>
+   <div class="mth">
+    <div class="mrow"><b>Type I &mdash; convicting an innocent person.</b> You declare a difference that
+    is not there. Its probability is exactly your threshold: use 0.05 and you will do this 5% of the
+    time when nothing is going on.</div>
+    <div class="mrow"><b>Type II &mdash; acquitting a guilty one.</b> There is a real difference and you
+    miss it. Usually because your sample was too small to see it.</div>
+   </div>
+   <p>The trade-off is unavoidable: tighten your threshold to 0.01 and you convict fewer innocents and
+   miss more of the guilty. The only way to reduce both at once is <b>more data</b> &mdash; which is
+   yesterday's square-root tax turning up in a third place.</p>
+
+   <h6>Why &ldquo;fail to reject&rdquo; is worth being fussy about</h6>
+   <p>A high p-value means the evidence was not strong enough. It does not mean there is nothing there.
+   A tiny sample will fail to reject almost anything &mdash; that is weakness in the test, not truth
+   about the world.</p>
+   <p>&ldquo;Not guilty&rdquo; is a verdict about the evidence, not a certificate of innocence. Hold
+   that line all session and they will keep it.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>A question the interval cannot answer</h3></div>
+   <p class="objective">Motivate the whole session with one number they cannot yet judge.</p>
+
+   <div class="stage">Do not define anything. Put a difference on the board and ask them to judge it.</div>
+
+   <div class="typeit">Two departments, two averages</div>
+<pre><code>tech = clean[clean.department == <span class="c">"Tech"</span>].salary
+hr   = clean[clean.department == <span class="c">"HR"</span>].salary
+
+<span class="k">print</span>(<span class="c">"Tech:"</span>, <span class="k">len</span>(tech), <span class="c">"people, average"</span>, <span class="k">round</span>(tech.mean()))
+<span class="k">print</span>(<span class="c">"HR  :"</span>, <span class="k">len</span>(hr),   <span class="c">"people, average"</span>, <span class="k">round</span>(hr.mean()))
+<span class="k">print</span>(<span class="c">"difference:"</span>, <span class="k">round</span>(tech.mean() - hr.mean()))</code></pre>
+   <div class="screen">Tech: 46 people, average 82419
+HR  : 44 people, average 56705
+difference: 25714</div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;Does Tech pay more than HR at this company?&rdquo; Everybody will say
+    yes. Then ask the follow-up that matters: <b>&ldquo;How do you know that is not just these
+    particular ninety people?&rdquo;</b></div>
+    <div class="a">Let it sit. They have seen this problem before &mdash; day 10, five samples of thirty
+    from one identical population, five different averages. Differences appear where nothing real is
+    happening. That memory is the door into today.</div>
+   </div>
+
+   <div class="speak">
+    <p>Twenty-five thousand rupees. That looks like a lot.</p>
+    <p>But think back to day ten. I took five samples of thirty people, from <b>one single
+    population</b> where every person was drawn from the same pool &mdash; and I got five different
+    averages. Sixty-eight thousand, seventy-one thousand, sixty-nine thousand.</p>
+    <p>Nothing real was different there. The differences were pure noise. So the question I cannot yet
+    answer is this: is twenty-five thousand a <b>real</b> gap, or is it the same kind of noise, just
+    bigger?</p>
+    <p>Yesterday's interval cannot tell me. It tells me what a number is, not whether two numbers
+    differ. Today we build the thing that can.</p>
+   </div>
+  </div>
+
+  <!-- 12-28 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12 &ndash; 28</span><h3>The courtroom</h3></div>
+   <p class="objective">Give them the structure before any arithmetic. It carries the rest of the session.</p>
+
+   <div class="speak">
+    <p>Forget statistics for four minutes. Let us talk about a court case.</p>
+    <p>Somebody is on trial. What does the court assume at the start?</p>
+    <p>Innocent. Not because anyone believes it &mdash; because that is the starting position until
+    evidence forces you off it. The burden is on the prosecution.</p>
+    <p>Statistics does exactly the same thing, and it uses exactly the same logic.</p>
+    <p>We start by assuming <b>nothing is going on</b>. No difference. Tech and HR pay the same, and the
+    twenty-five thousand is an accident of who happens to work here. That assumption has a name. It is
+    the <b>null hypothesis</b>.</p>
+    <p>The other possibility &mdash; there really is a difference &mdash; is the <b>alternative
+    hypothesis</b>. That is what the prosecution has to prove.</p>
+   </div>
+
+   <div class="stage">Write both on the board and leave them up for the rest of the session. Use the
+   symbols, briefly &mdash; they will meet them everywhere.</div>
+
+   <div class="mth">
+    <div class="mrow"><b>H&#8320;</b> (the null) &nbsp;&mdash;&nbsp; there is no difference. Tech and HR
+    are paid the same.</div>
+    <div class="mrow"><b>H&#8321;</b> (the alternative) &nbsp;&mdash;&nbsp; there is a difference.</div>
+   </div>
+
+   <div class="speak">
+    <p>Now the evidence. In court, the jury asks: how likely is this evidence, if the person really were
+    innocent? Fingerprints on the weapon are very unlikely if you are innocent. Being in the same city
+    is not unlikely at all.</p>
+    <p>We ask precisely the same thing. <b>If there really were no difference &mdash; how surprising
+    would a gap of twenty-five thousand be?</b></p>
+    <p>And the answer to that question, as a number, is the <b>p-value</b>.</p>
+    <p>Small p-value means: this evidence would be very strange in a world where nothing is going on. So
+    something is probably going on.</p>
+    <p>Large p-value means: this evidence is perfectly ordinary in a world where nothing is going on. So
+    I have no case.</p>
+   </div>
+
+   <div class="keyline">
+    Say the definition slowly and write it down: <b>the p-value is the probability of seeing data at
+    least this extreme, if the null hypothesis were true.</b> Point at the &ldquo;if&rdquo;. Everything
+    that goes wrong later goes wrong by forgetting that word.
+   </div>
+
+   <div class="speak">
+    <p>And how surprising is surprising enough? Somebody has to draw a line. The line most fields use is
+    <b>zero point zero five</b>. One in twenty.</p>
+    <p>I want to be honest about where that came from. It is a <b>convention</b>. A statistician
+    suggested one in twenty was reasonable about a hundred years ago and the world kept it. It is not
+    derived from anything.</p>
+    <p>Physicists looking for a new particle use about one in three and a half million. Some medical
+    work uses one in a hundred. Zero point zero five is a habit, not a law &mdash; and that matters,
+    because it means zero point zero four nine and zero point zero five one are the same result.</p>
+   </div>
+  </div>
+
+  <!-- 28-46 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">28 &ndash; 46</span><h3>Run one, and read it</h3></div>
+   <p class="objective">The simplest test there is. One sample, one claim.</p>
+
+   <div class="speak">
+    <p>Let us start smaller than two departments. One claim, one sample.</p>
+    <p>Suppose HR publishes a statement: <b>the average salary at this company is seventy-five
+    thousand.</b> We do not have everybody's salary. We have a sample of a hundred.</p>
+    <p>Set up the court case first. What is the null?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Let them say it. The null is <b>the average is 75,000</b> &mdash; the claim is
+    presumed true until the evidence says otherwise.</div>
+    <div class="a">This is worth pausing on. The null is always the boring, no-news position: no
+    difference, no effect, the claim stands. Students want to make the null the exciting thing. It never
+    is.</div>
+   </div>
+
+   <div class="typeit">One-sample t-test</div>
+<pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
+
+t, p = stats.ttest_1samp(sample, <span class="o">75000</span>)
+
+<span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
+<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">75000</span>)
+<span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">our sample average: 67472
+the claim         : 75000
+p-value           : 0.0000</div>
+
+   <div class="speak">
+    <p>The p-value is essentially zero.</p>
+    <p>Read that as a sentence: <b>if the true average really were seventy-five thousand, a sample of a
+    hundred people averaging sixty-seven and a half thousand would almost never happen.</b></p>
+    <p>So I stop believing the claim. In the court's language, I <b>reject the null hypothesis</b>.
+    There is evidence the real average is not seventy-five thousand.</p>
+    <p>Notice what I did not say. I did not say the average is sixty-seven thousand four hundred and
+    seventy-two. I said seventy-five thousand does not survive the evidence. Those are different
+    statements, and only the second one is supported.</p>
+   </div>
+
+   <div class="stage">Now the second test. This is the one that teaches. Do not rush it.</div>
+
+   <div class="typeit">Same data, a different claim</div>
+<pre><code>t, p = stats.ttest_1samp(sample, <span class="o">68000</span>)
+
+<span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
+<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">68000</span>)
+<span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">our sample average: 67472
+the claim         : 68000
+p-value           : 0.7551</div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;What does zero point seven six tell us? Say it as a sentence.&rdquo;</div>
+    <div class="a">You will get &ldquo;the average <b>is</b> sixty-eight thousand&rdquo; or &ldquo;we
+    proved the claim is right&rdquo;. Both are wrong, and this is the single most valuable correction
+    in the session. Take your time with it.</div>
+   </div>
+
+   <div class="speak">
+    <p>Zero point seven six. More than three quarters.</p>
+    <p>That means: if the true average really were sixty-eight thousand, then getting a sample like ours
+    would be completely ordinary. It would happen about three times in four.</p>
+    <p>So we have no case. We <b>fail to reject</b> the null.</p>
+    <p>Now listen very carefully, because this is where almost everybody goes wrong. Failing to reject
+    does <b>not</b> mean we proved the average is sixty-eight thousand.</p>
+    <p>Back to the court. When a jury says <b>not guilty</b>, have they proved the person is innocent?
+    No. They have said the prosecution did not bring enough evidence. Those are completely different
+    things, and the law is careful about it for a reason.</p>
+    <p>Same here. We did not find evidence against sixty-eight thousand. We also did not find evidence
+    for it. Our sample was simply not able to tell the difference.</p>
+   </div>
+
+   <div class="warn"><b>Never say &ldquo;accept the null&rdquo;.</b> The phrase does not exist in
+   careful statistics, and once a student writes it in a report they keep writing it. It is always
+   <b>fail to reject</b> &mdash; clumsy on purpose, because the clumsiness is doing real work.</div>
+
+   <div class="keyline">
+    Sharpen it with this: our interval yesterday was 64,164 to 70,780. <b>Both</b> 68,000 and 70,000 sit
+    inside it. We cannot reject either one. We are not claiming the average is 68,000 &mdash; we are
+    admitting we cannot rule it out. That is a much weaker statement, and it is the honest one.
+   </div>
+  </div>
+
+  <!-- 46-60 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">46 &ndash; 60</span><h3>The interval and the test are the same thing</h3></div>
+   <p class="objective">Join the two sessions. This is what makes it one idea instead of two topics.</p>
+
+   <div class="speak">
+    <p>Something may have struck you already. Yesterday I built an interval. Today I am running tests.
+    Are these two different tools?</p>
+    <p>No. They are the same tool, asked two different ways.</p>
+   </div>
+
+   <div class="typeit">Check every claim against yesterday's interval</div>
+<pre><code>lo, hi = <span class="o">64164</span>, <span class="o">70780</span>        <span class="c"># yesterday's 95% interval</span>
+
+<span class="k">for</span> claim <span class="k">in</span> [<span class="o">60000</span>, <span class="o">65000</span>, <span class="o">68000</span>, <span class="o">70000</span>, <span class="o">75000</span>]:
+    t, p = stats.ttest_1samp(sample, claim)
+    inside = lo &lt;= claim &lt;= hi
+    <span class="k">print</span>(claim, <span class="c">"| in the interval:"</span>, inside,
+          <span class="c">"| p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>),
+          <span class="c">"|"</span>, <span class="c">"reject"</span> <span class="k">if</span> p &lt; <span class="o">0.05</span> <span class="k">else</span> <span class="c">"fail to reject"</span>)</code></pre>
+   <div class="screen">60000 | in the interval: False | p = 0.0000 | reject
+65000 | in the interval: True  | p = 0.1461 | fail to reject
+68000 | in the interval: True  | p = 0.7551 | fail to reject
+70000 | in the interval: True  | p = 0.1373 | fail to reject
+75000 | in the interval: False | p = 0.0000 | reject</div>
+
+   <div class="speak">
+    <p>Look at the middle column and the last column. They agree on every single row.</p>
+    <p>Every value <b>inside</b> the ninety-five percent interval fails to be rejected at zero point
+    zero five. Every value <b>outside</b> it gets rejected.</p>
+    <p>That is not a coincidence. A ninety-five percent confidence interval is exactly the set of claims
+    you would not reject at five percent. Two names, one idea.</p>
+    <p>And the interval is the more useful of the two, because it tells you the whole range at once
+    instead of one claim at a time. When you have a choice, report the interval.</p>
+   </div>
+  </div>
+
+  <!-- 60-74 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">60 &ndash; 74</span><h3>The two ways to be wrong</h3></div>
+   <p class="objective">Type I and Type II, in the courtroom. Then why sample size decides which one bites.</p>
+
+   <div class="speak">
+    <p>A court can get it wrong in two different ways. It can convict an innocent person. Or it can let
+    a guilty one go.</p>
+    <p>Those are not the same mistake, they do not have the same cost, and no system avoids both.</p>
+    <p>Statistics has exactly the same pair.</p>
+   </div>
+
+   <div class="mth">
+    <div class="mrow"><b>Type I</b> &mdash; we say there is a difference, and there is not.
+    <em>Convicting the innocent.</em></div>
+    <div class="mrow"><b>Type II</b> &mdash; there is a difference, and we miss it.
+    <em>Letting the guilty go.</em></div>
+   </div>
+
+   <div class="speak">
+    <p>Here is the part worth remembering. How often will we convict an innocent? <b>Exactly five
+    percent of the time</b>, if we use a zero point zero five threshold. That is not a bug. It is
+    literally what the threshold means &mdash; the same five intervals out of a hundred that missed
+    yesterday.</p>
+    <p>So if you run twenty tests on data where nothing is happening, on average <b>one of them</b> will
+    come back significant. We will see that happen for real tomorrow.</p>
+    <p>And what fixes the second kind of error &mdash; missing a real difference? Almost always the same
+    thing. More data.</p>
+   </div>
+
+   <div class="typeit">The same real difference, three sample sizes</div>
+<pre><code>rng = np.random.default_rng(<span class="o">0</span>)
+
+<span class="k">for</span> n <span class="k">in</span> [<span class="o">10</span>, <span class="o">30</span>, <span class="o">200</span>]:
+    a = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, n)      <span class="c"># these two really ARE different</span>
+    b = rng.normal(<span class="o">76000</span>, <span class="o">16000</span>, n)      <span class="c"># by 6,000 every time</span>
+    t, p = stats.ttest_ind(a, b)
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-> p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>),
+          <span class="c">"|"</span>, <span class="c">"found it"</span> <span class="k">if</span> p &lt; <span class="o">0.05</span> <span class="k">else</span> <span class="c">"MISSED IT"</span>)</code></pre>
+   <div class="screen">n = 10 -> p = 0.6779 | MISSED IT
+n = 30 -> p = 0.5749 | MISSED IT
+n = 200 -> p = 0.0001 | found it</div>
+
+   <div class="speak">
+    <p>The difference was six thousand rupees in all three. It was real in all three. I put it there
+    myself.</p>
+    <p>With ten people in each group we missed it completely. With thirty we still missed it. With two
+    hundred it was obvious.</p>
+    <p>So a large p-value can mean two completely different things: there is nothing there, or there is
+    something there and <b>your sample was too small to see it</b>. The p-value alone cannot tell you
+    which.</p>
+    <p>That is the strongest reason to report a confidence interval alongside it. A wide interval says
+    &ldquo;I could not tell&rdquo;. A narrow interval around zero says &ldquo;there really is nothing
+    here&rdquo;. The p-value says the same word for both.</p>
+   </div>
+  </div>
+
+  <!-- 74-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">74 &ndash; 90</span><h3>Say it properly, and settle the Tech question</h3></div>
+   <p class="objective">Close the loop from minute 0, and drill the sentences they will have to write.</p>
+
+   <div class="speak">
+    <p>We opened with Tech paying twenty-five thousand more than HR, and I said I could not yet tell you
+    whether that was real. Now I can.</p>
+   </div>
+
+   <div class="typeit">The test we could not run ninety minutes ago</div>
+<pre><code>t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
+
+<span class="k">print</span>(<span class="c">"Tech average:"</span>, <span class="k">round</span>(tech.mean()))
+<span class="k">print</span>(<span class="c">"HR average  :"</span>, <span class="k">round</span>(hr.mean()))
+<span class="k">print</span>(<span class="c">"p-value     :"</span>, p)</code></pre>
+   <div class="screen">Tech average: 82419
+HR average  : 56705
+p-value     : 1.156e-15</div>
+
+   <div class="speak">
+    <p>Ten to the minus fifteen. That is a decimal point followed by fourteen zeros and then a one.</p>
+    <p>If Tech and HR really paid the same, a gap this big in ninety people would essentially never
+    happen. Not rarely. Never.</p>
+    <p>So we reject the null. There is a real pay difference between those two departments.</p>
+    <p>Tomorrow we look at the different tests for different shapes of question &mdash; and at one that
+    comes back saying nothing at all, which turns out to be the most useful result in the module.</p>
+   </div>
+
+   <div class="stage">Last five minutes, and do not skip it. Put the four sentences up and have them
+   read each one aloud. These are the sentences they will have to write at work.</div>
+
+   <div class="mth">
+    <div class="mrow"><b>Say:</b> &ldquo;There is strong evidence that Tech and HR salaries differ
+    (p &lt; 0.001).&rdquo;</div>
+    <div class="mrow"><b>Not:</b> &ldquo;There is a 99.9% chance Tech pays more.&rdquo; &mdash; the
+    p-value is not a probability about the conclusion.</div>
+    <div class="mrow"><b>Say:</b> &ldquo;We found no evidence of a difference (p = 0.76).&rdquo;</div>
+    <div class="mrow"><b>Not:</b> &ldquo;We proved there is no difference.&rdquo; &mdash; absence of
+    evidence is not evidence of absence.</div>
+   </div>
+
+   <div class="sumcard"><pre><code><span class="c"># ---- THE ONE QUESTION EVERY TEST ASKS ----</span>
+<span class="c"># &quot;could I see a difference THIS BIG by pure chance, if there were</span>
+<span class="c">#  no real difference at all?&quot;</span>
+<span class="c"># day 10 already proved differences appear where nothing is happening.</span>
+<span class="c"># a test just puts a number on how big a fake difference can get.</span>
+
+<span class="c"># ---- THE COURTROOM ----</span>
+<span class="c">#   H0  (null)        = innocent. no difference. assumed until disproved.</span>
+<span class="c">#   H1  (alternative) = guilty. there is a real difference.</span>
+<span class="c">#   p-value           = how surprising this evidence is IF H0 were true</span>
+<span class="c">#   0.05              = the burden of proof (a CONVENTION, not a law)</span>
+<span class="c">#   fail to reject    = &quot;not guilty&quot;. NOT &quot;innocent&quot;.</span>
+
+<span class="c"># ---- THE P-VALUE, EXACTLY ----</span>
+<span class="c"># P(data this extreme | H0 is true)</span>
+<span class="c">#   IS NOT: the chance the null is true</span>
+<span class="c">#   IS NOT: the chance my finding is real</span>
+<span class="c"># same trap as day 11: the probability belongs to the RANDOM thing</span>
+<span class="c"># (the data), never to the FIXED thing (the hypothesis).</span>
+
+<span class="c"># ---- THE TEST AND THE INTERVAL ARE ONE TOOL ----</span>
+<span class="c"># every value INSIDE the 95% CI -> fail to reject at 0.05</span>
+<span class="c"># every value OUTSIDE it        -> reject</span>
+<span class="c"># so prefer the interval: it answers every claim at once.</span>
+
+<span class="c"># ---- TWO WAYS TO BE WRONG ----</span>
+<span class="c"># Type I : cry wolf. happens 5% of the time BY DESIGN at p&lt;0.05.</span>
+<span class="c">#          run 20 tests on nothing -> expect 1 &quot;significant&quot;.</span>
+<span class="c"># Type II: miss a real effect. almost always too small a sample.</span>
+<span class="c">#          real 6,000 gap:  n=10 missed | n=30 missed | n=200 found</span>
+<span class="c">#</span>
+<span class="c"># A BIG P-VALUE HAS TWO MEANINGS AND CANNOT TELL YOU WHICH:</span>
+<span class="c">#   &quot;nothing is there&quot;   OR   &quot;my sample was too small to see it&quot;</span>
+<span class="c">#   -> which is why you report the INTERVAL next to it.</span>
+
+<span class="c"># ---- HOW TO WRITE IT ----</span>
+<span class="c"># YES: &quot;strong evidence that Tech and HR differ (p &lt; 0.001)&quot;</span>
+<span class="c"># NO : &quot;99.9% chance Tech pays more&quot;</span>
+<span class="c"># YES: &quot;no evidence of a difference (p = 0.76)&quot;</span>
+<span class="c"># NO : &quot;we proved there is no difference&quot;</span></code></pre></div>
+   <div class="planbanner" style="margin-top:20px">
+    <b>Where this goes next.</b> Day 13 is which test for which question &mdash; two-sample t, chi-square
+    on categories, and an A/B test run end to end. It closes on twenty tests against pure noise, and the
+    one that comes back &ldquo;significant&rdquo; anyway.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why not just look at the two averages and decide?&rdquo;</h5>
+  <p>&ldquo;Because two averages are always different. They are never exactly equal, even when nothing is
+  going on &mdash; day 10 proved that with five samples from one population. The test tells you whether
+  the gap is bigger than the noise you would get anyway.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What if I get p = 0.06? That is so close.&rdquo;</h5>
+  <p>&ldquo;It is close, and 0.05 is a made-up line, so treat it as what it is: weak evidence. Report the
+  number, report the interval, and say it is suggestive but not conclusive. What you must not do is
+  decide afterwards that your threshold was 0.10 all along.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I test as many things as I want?&rdquo;</h5>
+  <p>&ldquo;You can run them, but you cannot read them all the same way. At 0.05, one test in twenty
+  comes back significant when nothing is there &mdash; by design. Test twenty things and you should
+  expect a false finding. We will do exactly that tomorrow and watch it happen.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What does <code>equal_var=False</code> do?&rdquo;</h5>
+  <p>&ldquo;It tells the test not to assume both groups have the same spread. They usually do not, and
+  this version is safer with almost no cost. Make it your default and do not think about it again.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is a smaller p-value a bigger effect?&rdquo;</h5>
+  <p>&ldquo;No, and this one is worth being firm about. A p-value measures how confident you are that
+  something is there, not how big it is. With a hundred thousand rows a two-rupee difference gets p &lt;
+  0.001 &mdash; real, and completely useless. Always ask how big the difference is, separately.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why is it called a t-test?&rdquo;</h5>
+  <p>&ldquo;Same t as yesterday's small-sample correction. The person who devised it worked at Guinness
+  and published under the name Student, which is why you will also see &lsquo;Student's t-test&rsquo;.
+  Worth thirty seconds, no more.&rdquo;</p></div>
+ </div>
+</section>
+</div>
+<div class="day" id="d13">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Statistics day 13 &middot; merged class &middot; 90 minutes &middot; full script &middot; closes the module</p>
+  <h1 class="display">The Tests,<br>and A/B Testing</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Which test for which question, a real A/B analysis end to end, and the most useful result in the
+   whole module &mdash; a test that comes back saying <b>nothing</b>. Closes on twenty tests run against
+   pure noise, and the one that lights up anyway.</p>
+  <div class="glance">
+   <div class="gcell"><b>3</b><span>tests, one table</span></div>
+   <div class="gcell"><b>0.94</b><span>the useful result</span></div>
+   <div class="gcell"><b>1,126</b><span>per arm</span></div>
+   <div class="gcell"><b>1 in 20</b><span>lights up anyway</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">What your own notes say about this session</h4>
+   <p style="color:var(--sienna)">Your notes put the tests <b style="color:var(--sienna)">after</b> the
+   logic on purpose, and they are right: a student who understands day 12 can pick up any test in ten
+   minutes, and one who does not will memorise a table and misuse it. Today is
+   <b style="color:var(--sienna)">recognition, not derivation</b> &mdash; nobody computes a chi-square
+   by hand, and nobody should.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Teach the decision table, not the formulas.</b> The only skill worth anything here is looking
+   at a question and knowing which test it needs. The library does the arithmetic and always will.</li>
+   <li><b>The chi-square that finds nothing is the centrepiece.</b> Department against rating comes back
+   p = 0.94. Most courses only ever show tests that succeed, which quietly teaches that a test is
+   something you run to confirm what you wanted. Do not rush past this one.</li>
+   <li><b>Run the A/B test twice &mdash; same rates, different sample size.</b> Identical 8% against
+   11.5%, and only the big one can see it. That single contrast is the entire argument for planning
+   sample size before you start.</li>
+   <li><b>Finish with the twenty-tests demo.</b> It is the last thing they see in the module and it is
+   the thing that keeps them honest. Leave ten clear minutes.</li>
+   <li><b>This is the last statistics session.</b> Say so, name what was deliberately left out, and say
+   where it goes next. Ending a module cleanly is worth five minutes.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three tests, and the only thing you need to hold firmly is
+  which question each one answers. If you are shaky on any of them, it will be chi-square &mdash; so
+  read part two twice.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the decision table, which is the whole skill</h5>
+
+   <h6>Every test is the same logic with different arithmetic</h6>
+   <p>Day 12 built the machine: assume nothing is going on, ask how surprising the data would be in
+   that world, get a p-value. <b>Nothing about that changes today.</b> What changes is the arithmetic
+   inside, and the arithmetic is chosen by the <em>shape of your data</em>, not by anything conceptual.</p>
+   <div class="mth">
+    <div class="mrow"><b>One number against a claim</b> &mdash; is our average salary 75,000?
+    &rarr; <b>one-sample t-test</b> (day 12)</div>
+    <div class="mrow"><b>Two groups, comparing a number</b> &mdash; do Tech and HR differ on pay?
+    &rarr; <b>two-sample t-test</b></div>
+    <div class="mrow"><b>Two categories, comparing counts</b> &mdash; is rating related to department?
+    &rarr; <b>chi-square</b></div>
+    <div class="mrow"><b>Three or more groups on a number</b> &mdash; do all four departments differ?
+    &rarr; <b>ANOVA</b> (named only; it is on the self-study list)</div>
+   </div>
+   <div class="keyline">
+    The question that picks the test is always: <b>am I comparing numbers, or am I comparing counts?</b>
+    Numbers go to a t-test. Counts in categories go to chi-square. If a student can do that one
+    split reliably, they can function.
+   </div>
+
+   <h6>Why you should not derive any of them</h6>
+   <p>You could spend forty minutes on the chi-square formula. It would teach nobody anything they will
+   ever use, because <code>stats.chi2_contingency</code> exists and is correct. Spend the time on
+   reading results instead &mdash; that is where analysts actually go wrong.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; chi-square, and the result that teaches most</h5>
+
+   <h6>What it actually compares</h6>
+   <p>Chi-square works on a table of counts. It compares <b>what you observed</b> against <b>what you
+   would expect if the two things were completely unrelated</b>, and asks whether the gap is bigger than
+   chance.</p>
+   <p>If 25% of all employees are rated Excellent, then under independence you would expect about 25% of
+   HR to be Excellent, 25% of Tech, and so on. Chi-square measures how far the real table drifts from
+   that, and converts the drift into a p-value.</p>
+
+   <h6>Our data gives p = 0.94, and that is the lesson</h6>
+   <p>Department against rating comes back at 0.94. There is no relationship &mdash; and there is not
+   supposed to be, because the rating column in this dataset was generated at random. You built the
+   dataset's flaws in deliberately, and here one of them earns its keep.</p>
+   <div class="keyline">
+    This matters more than another success would. Students come out of most courses believing a test
+    is a thing you run to confirm what you already suspected. A p of 0.94 on a question that
+    <em>sounds</em> plausible &mdash; surely some departments rate their people higher? &mdash; is the
+    cleanest possible demonstration that the answer is often <b>no</b>, and that no is a finding.
+   </div>
+
+   <h6>And the sentence that must go with it</h6>
+   <p>&ldquo;No evidence of a relationship&rdquo; &mdash; not &ldquo;we proved they are
+   unrelated&rdquo;. Same discipline as day 12. Hold the line here too; it is the last chance to drill
+   it.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; A/B testing, which is just chi-square with money attached</h5>
+
+   <h6>There is no new statistics in it at all</h6>
+   <p>An A/B test shows version A to one group and version B to another, counts conversions, and asks
+   whether the difference is real. Two categories, comparing counts. <b>It is a chi-square on a two by
+   two table.</b> That is the whole thing.</p>
+   <p>What makes it worth its own block is not the maths &mdash; it is that this is the one place a
+   student will meet hypothesis testing in a job interview and in actual work, and the failure modes
+   are expensive.</p>
+
+   <h6>The demonstration that does the work</h6>
+   <p>Run the identical conversion rates &mdash; 8.0% against 11.5% &mdash; at two sample sizes. At
+   1,200 per arm, p = 0.004 and you ship B. At 120 per arm, p = 0.39 and you cannot see a thing.</p>
+   <p>Same truth, same lift, different verdict. The only variable is how much data you collected, and
+   the lesson is that <b>sample size is decided before the test, not discovered after it</b>.</p>
+
+   <h6>Where it links back to day 11</h6>
+   <p>Work out how many you need to detect that lift and the answer is <b>1,126 per arm</b> &mdash;
+   which lands within a whisker of the 1,068 they derived yesterday for a national poll. Same
+   arithmetic, same square-root tax, completely different context. Point that out; it is the moment the
+   module stops feeling like separate topics.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part four &middot; the honest ending</h5>
+
+   <h6>Twenty tests against nothing</h6>
+   <p>You promised this on day 12. Generate two groups from an identical distribution &mdash; guaranteed
+   no real difference &mdash; and test them. Do it twenty times. On our seed, one comes back at p =
+   0.006 and looks like a triumph.</p>
+   <p>Nothing was wrong with that test. It is behaving exactly as designed: at a 5% threshold, one test
+   in twenty cries wolf. The error is not in the arithmetic, it is in running twenty tests and reporting
+   the one that worked.</p>
+   <div class="keyline">
+    This is the last idea in the module, and it should be. Everything before it was about how to find
+    an answer. This is about <b>how to not fool yourself</b>, and it is the difference between an
+    analyst people trust and one they do not.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>Which test, and why it is the only question</h3></div>
+   <p class="objective">Give them the table first. Everything else today hangs on it.</p>
+
+   <div class="speak">
+    <p>Yesterday we built one machine. Assume nothing is going on, see how surprising the data is, get
+    a p-value.</p>
+    <p>Today we look at three versions of that machine. And I want to be straight with you about what
+    is worth learning here.</p>
+    <p>You will never compute any of these by hand. Not in an exam, not in a job, never. The library
+    does it in one line and it does it correctly.</p>
+    <p>The only skill that matters is <b>looking at a question and knowing which one to reach for</b>.
+    So that is what we are doing.</p>
+   </div>
+
+   <div class="stage">Put this table on the board and leave it up for the full session. Every block
+   today points back at it.</div>
+
+   <div class="mth">
+    <div class="mrow"><b>One number against a claim</b> &rarr; one-sample t-test &nbsp;&mdash;&nbsp;
+    <em>&ldquo;is our average salary 75,000?&rdquo;</em></div>
+    <div class="mrow"><b>Two groups, a number</b> &rarr; two-sample t-test &nbsp;&mdash;&nbsp;
+    <em>&ldquo;do Tech and HR differ on pay?&rdquo;</em></div>
+    <div class="mrow"><b>Two categories, counts</b> &rarr; chi-square &nbsp;&mdash;&nbsp;
+    <em>&ldquo;is rating related to department?&rdquo;</em></div>
+    <div class="mrow"><b>Three or more groups, a number</b> &rarr; ANOVA &nbsp;&mdash;&nbsp;
+    <em>on your self-study list</em></div>
+   </div>
+
+   <div class="speak">
+    <p>And if you only remember one thing from that table, remember the question that splits it.</p>
+    <p><b>Am I comparing numbers, or am I comparing counts?</b></p>
+    <p>Salaries, heights, ages &mdash; those are numbers. T-test.</p>
+    <p>How many people are in each category &mdash; how many in HR were rated Excellent &mdash; those
+    are counts. Chi-square.</p>
+    <p>Get that one split right and you will pick the correct test almost every time.</p>
+   </div>
+  </div>
+
+  <!-- 12-26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12 &ndash; 26</span><h3>Two groups, a number</h3></div>
+   <p class="objective">They saw this at the end of day 12. Now do it properly, including a subtle one.</p>
+
+   <div class="typeit">The obvious comparison, again</div>
+<pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
+
+tech = clean[clean.department == <span class="c">"Tech"</span>].salary
+hr   = clean[clean.department == <span class="c">"HR"</span>].salary
+
+t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
+<span class="k">print</span>(<span class="k">round</span>(tech.mean()), <span class="k">round</span>(hr.mean()), <span class="c">"p ="</span>, p)</code></pre>
+   <div class="screen">82419 56705 p = 1.156e-15</div>
+
+   <div class="speak">
+    <p>We did this yesterday. Enormous gap, p is basically zero, real difference. Nothing new.</p>
+    <p>But that was an easy one. Twenty-five thousand rupees apart is not a close call. Let me show you
+    a harder pair, because the easy ones are not where you need judgement.</p>
+   </div>
+
+   <div class="typeit">A much closer pair</div>
+<pre><code>sales = clean[clean.department == <span class="c">"Sales"</span>].salary
+mktg  = clean[clean.department == <span class="c">"Marketing"</span>].salary
+
+t, p = stats.ttest_ind(sales, mktg, equal_var=<span class="k">False</span>)
+<span class="k">print</span>(<span class="c">"Sales    :"</span>, <span class="k">len</span>(sales), <span class="c">"people, average"</span>, <span class="k">round</span>(sales.mean()))
+<span class="k">print</span>(<span class="c">"Marketing:"</span>, <span class="k">len</span>(mktg),  <span class="c">"people, average"</span>, <span class="k">round</span>(mktg.mean()))
+<span class="k">print</span>(<span class="c">"gap      :"</span>, <span class="k">round</span>(mktg.mean() - sales.mean()))
+<span class="k">print</span>(<span class="c">"p-value  :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">Sales    : 65 people, average 66535
+Marketing: 42 people, average 73954
+gap      : 7419
+p-value  : 0.0086</div>
+
+   <div class="qbox">
+    <div class="q">Before revealing the verdict, ask: &ldquo;Seven thousand. Real, or noise?&rdquo;
+    Get a show of hands both ways.</div>
+    <div class="a">It is real &mdash; p is 0.0086, comfortably under 0.05. The point of the vote is
+    that eyeballing the gap could not have told them, and a room full of sensible people will split.
+    That is what the test is <em>for</em>.</div>
+   </div>
+
+   <div class="speak">
+    <p>Zero point zero zero eight six. Under our threshold, so we reject the null. Marketing really is
+    paid more than Sales here.</p>
+    <p>And I want you to notice that none of you could tell by looking. Twenty-five thousand was
+    obvious. Seven thousand was not, and half the room guessed wrong.</p>
+    <p>That gap &mdash; between what looks convincing and what is actually supported &mdash; is the
+    entire reason this module exists.</p>
+   </div>
+  </div>
+
+  <!-- 26-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26 &ndash; 44</span><h3>Counts, categories, and a result that says nothing</h3></div>
+   <p class="objective">Chi-square. The most important eighteen minutes in the session.</p>
+
+   <div class="speak">
+    <p>Now a completely different shape of question. Not &ldquo;is this number bigger than that
+    number&rdquo;. Instead: <b>are two categories related to each other at all?</b></p>
+    <p>Here is one that sounds very plausible. Do some departments rate their people more generously
+    than others? You would half expect that to be true.</p>
+    <p>Neither column is a number. Department is a category, rating is a category. So we count.</p>
+   </div>
+
+   <div class="typeit">Build the table of counts first &mdash; look at it before testing anything</div>
+<pre><code>table = pd.crosstab(clean.department, clean.rating)
+<span class="k">print</span>(table)</code></pre>
+   <div class="screen">rating      Average  Excellent  Good  Poor
+department
+HR                8         13    11    12
+Marketing        11          9     8    14
+Sales            15         14    19    17
+Tech              8         12    12    14</div>
+
+   <div class="qbox">
+    <div class="q">Ask them to stare at it for thirty seconds and find a pattern. Somebody always
+    does &mdash; &ldquo;Marketing has the most Poor&rdquo;, &ldquo;Sales has loads of Good&rdquo;.</div>
+    <div class="a">Let those claims be made out loud before you test. Being publicly wrong about a
+    pattern you were sure you saw is worth more than any amount of warning about it.</div>
+   </div>
+
+   <div class="speak">
+    <p>Right. Marketing has fourteen Poor and only nine Excellent &mdash; that looks harsh. Sales has
+    nineteen Good, more than anyone.</p>
+    <p>But Sales also has sixty-five people and Marketing has forty-two. So of course Sales has more of
+    everything. Raw counts are not comparable.</p>
+    <p>What we need to know is: <b>is this table further from random than chance would give us?</b>
+    That is what chi-square answers.</p>
+   </div>
+
+   <div class="typeit">What the table would look like if the two were unrelated</div>
+<pre><code>chi2, p, dof, expected = stats.chi2_contingency(table)
+
+<span class="k">print</span>(pd.DataFrame(expected,
+      index=table.index, columns=table.columns).round(<span class="o">1</span>))</code></pre>
+   <div class="screen">rating      Average  Excellent  Good  Poor
+department
+HR              9.4       10.7  11.2  12.7
+Marketing       9.0       10.2  10.7  12.2
+Sales          13.9       15.8  16.5  18.8
+Tech            9.8       11.2  11.7  13.3</div>
+
+   <div class="speak">
+    <p>That is what we would expect if rating had nothing whatever to do with department &mdash; just
+    the overall proportions applied to each department's headcount.</p>
+    <p>Now compare. Real HR Excellent: thirteen. Expected: ten point seven. Real Marketing Poor:
+    fourteen. Expected: twelve point two.</p>
+    <p>Everything is a bit off. It always will be. The question is whether it is <b>more</b> off than
+    chance alone would produce.</p>
+   </div>
+
+   <div class="typeit">The verdict</div>
+<pre><code><span class="k">print</span>(<span class="c">"chi-square:"</span>, <span class="k">round</span>(chi2, <span class="o">2</span>))
+<span class="k">print</span>(<span class="c">"p-value   :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">chi-square: 3.59
+p-value   : 0.9364</div>
+
+   <div class="stage">Stop here. Let the number sit on the screen for a moment before you say anything.
+   This is the result the session is built around.</div>
+
+   <div class="speak">
+    <p>Zero point nine four.</p>
+    <p>That is about as far from significant as a p-value can get. If department and rating were
+    completely unrelated, a table at least this uneven would turn up about ninety-four percent of the
+    time.</p>
+    <p>So every pattern we spotted a minute ago &mdash; Marketing being harsh, Sales having lots of Good
+    &mdash; was noise. All of it. We were reading tea leaves.</p>
+    <p>And I want to be careful about how we say the conclusion. We found <b>no evidence</b> that rating
+    is related to department. We did <b>not</b> prove they are unrelated. Same discipline as yesterday.</p>
+   </div>
+
+   <div class="warn"><b>This is the most useful result in the whole module.</b> Almost every example in
+   almost every course is a test that finds something, which quietly teaches students that a test is a
+   thing you run to confirm what you suspected. It is not. Most honest questions come back like this
+   one, and being able to report <em>nothing</em> clearly is a large part of being trusted.</div>
+
+   <div class="keyline">
+    If you want to make it land harder: tell them the rating column in this dataset was generated at
+    random when it was built. There was never anything to find. The test got it exactly right &mdash;
+    and their eyes, thirty seconds earlier, did not.
+   </div>
+  </div>
+
+  <!-- 44-64 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 &ndash; 64</span><h3>An A/B test, end to end</h3></div>
+   <p class="objective">The one application they will meet at work and in interviews. No new statistics.</p>
+
+   <div class="speak">
+    <p>Last piece, and it is the one you are most likely to be asked about in an interview.</p>
+    <p>A company has two versions of a signup page. Version A is the current one. Version B has a
+    different button. They show A to some visitors and B to others, and count how many sign up.</p>
+    <p>Look at the shape of that. Two categories &mdash; which version you saw. Counts &mdash; signed up
+    or did not. So what test is it?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Let them answer from the table on the board.</div>
+    <div class="a">Chi-square. An A/B test is a chi-square on a two by two table. There is no new
+    statistics in it whatsoever &mdash; which is exactly the point worth making.</div>
+   </div>
+
+   <div class="typeit">Build the two by two and test it</div>
+<pre><code><span class="c"># version A: 1200 visitors, 96 signed up</span>
+<span class="c"># version B: 1200 visitors, 138 signed up</span>
+ab = np.array([[<span class="o">1104</span>, <span class="o">96</span>],
+               [<span class="o">1062</span>, <span class="o">138</span>]])
+
+<span class="k">print</span>(<span class="c">"A:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">96</span>/<span class="o">1200</span>, <span class="o">1</span>), <span class="c">"%"</span>)
+<span class="k">print</span>(<span class="c">"B:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">138</span>/<span class="o">1200</span>, <span class="o">1</span>), <span class="c">"%"</span>)
+
+chi2, p, dof, exp = stats.chi2_contingency(ab, correction=<span class="k">False</span>)
+<span class="k">print</span>(<span class="c">"p-value:"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">A: 8.0 %
+B: 11.5 %
+p-value: 0.0039</div>
+
+   <div class="speak">
+    <p>Eight percent against eleven and a half. P of zero point zero zero three nine.</p>
+    <p>If the two versions were really identical, a gap this big in twenty-four hundred visitors would
+    happen about four times in a thousand. So we ship version B.</p>
+    <p>Now watch what happens if the company got impatient and stopped early.</p>
+   </div>
+
+   <div class="typeit">Exactly the same rates. One tenth of the traffic.</div>
+<pre><code><span class="c"># same 8.0% and 11.5%, just a tenth of the visitors</span>
+small = np.array([[<span class="o">110</span>, <span class="o">10</span>],
+                  [<span class="o">106</span>, <span class="o">14</span>]])
+
+chi2, p, dof, exp = stats.chi2_contingency(small, correction=<span class="k">False</span>)
+<span class="k">print</span>(<span class="c">"A:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">10</span>/<span class="o">120</span>, <span class="o">1</span>), <span class="c">"%   B:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">14</span>/<span class="o">120</span>, <span class="o">1</span>), <span class="c">"%"</span>)
+<span class="k">print</span>(<span class="c">"p-value:"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">A: 8.3 %   B: 11.7 %
+p-value: 0.3894</div>
+
+   <div class="speak">
+    <p>Same rates. Same improvement. And now the p-value is zero point three nine &mdash; nowhere near
+    significant.</p>
+    <p>Version B is genuinely better in both of these. In the second one we simply could not see it.</p>
+    <p>That is a Type Two error, the one we met yesterday. And it is the single most common way real
+    A/B tests get wasted: stopping early, seeing nothing, concluding there is nothing.</p>
+   </div>
+
+   <div class="typeit">So work out how many you need <em>before</em> you start</div>
+<pre><code><span class="k">from</span> math <span class="k">import</span> sqrt, ceil
+
+p1, p2 = <span class="o">0.08</span>, <span class="o">0.115</span>              <span class="c"># current rate, and the lift worth detecting</span>
+pbar   = (p1 + p2) / <span class="o">2</span>
+
+n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span class="o">1</span>-pbar)) +
+      <span class="o">0.84</span>*sqrt(p1*(<span class="o">1</span>-p1) + p2*(<span class="o">1</span>-p2)))**<span class="o">2</span>) / (p2-p1)**<span class="o">2</span>
+
+<span class="k">print</span>(<span class="c">"visitors needed per version:"</span>, ceil(n))</code></pre>
+   <div class="screen">visitors needed per version: 1126</div>
+
+   <div class="speak">
+    <p>Eleven hundred and twenty-six per version.</p>
+    <p>Does that number look familiar? Yesterday we worked out that a national opinion poll needs about
+    <b>one thousand and sixty-eight</b> people.</p>
+    <p>A poll about an election, and a button on a signup page. Completely different problems &mdash;
+    and almost the same number, for exactly the same reason. It is the square root tax again.</p>
+    <p>So the practical rule: decide your sample size before you launch, and then do not peek and stop
+    early because the numbers look good.</p>
+   </div>
+  </div>
+
+  <!-- 64-80 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">64 &ndash; 80</span><h3>Twenty tests, and nothing to find</h3></div>
+   <p class="objective">The promise from day 12. The last real idea in the module.</p>
+
+   <div class="speak">
+    <p>Yesterday I told you that at a five percent threshold, one test in twenty comes back significant
+    even when nothing is there. I said we would watch it happen. Let us do that.</p>
+    <p>I am going to make two groups of numbers from <b>exactly the same source</b>. Not similar
+    &mdash; identical. There is no difference to find, by construction.</p>
+    <p>And then I am going to test them. Twenty times.</p>
+   </div>
+
+   <div class="typeit">Twenty tests on data with no effect at all</div>
+<pre><code>rng = np.random.default_rng(<span class="o">13</span>)
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">20</span>):
+    a = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>)      <span class="c"># same distribution</span>
+    b = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>)      <span class="c"># same distribution. no difference exists.</span>
+    t, p = stats.ttest_ind(a, b)
+    <span class="k">if</span> p &lt; <span class="o">0.05</span>:
+        <span class="k">print</span>(<span class="c">"test"</span>, i+<span class="o">1</span>, <span class="c">"-> p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>), <span class="c">"  *** SIGNIFICANT ***"</span>)</code></pre>
+   <div class="screen">test 18 -> p = 0.0057   *** SIGNIFICANT ***</div>
+
+   <div class="speak">
+    <p>There it is. Test number eighteen. P of zero point zero zero five seven &mdash; that is not
+    borderline, that is well past our threshold. If you saw that number on its own you would write it
+    up.</p>
+    <p>And there was nothing there. I generated both groups from the same source. I know there was
+    nothing, because I built it.</p>
+    <p>Nothing went wrong with that test. It behaved exactly as designed. One in twenty is what five
+    percent <b>means</b>.</p>
+   </div>
+
+   <div class="stage">This is the point of the whole session. Say the next part slowly.</div>
+
+   <div class="speak">
+    <p>So here is the thing to carry out of this room.</p>
+    <p>If you take a dataset and test everything against everything &mdash; does salary depend on city,
+    on education, on rating, on join date, on height &mdash; you <b>will</b> find something
+    significant. Guaranteed. It does not mean it is real.</p>
+    <p>This has a name. People call it p-hacking, or data dredging. It is how a great many published
+    findings turn out to be nothing, and it is very rarely dishonest &mdash; it is usually somebody
+    running tests until one works and genuinely believing they found something.</p>
+    <p>The protection is simple and it is not statistical. <b>Decide what you are testing before you
+    look.</b> And if you must test many things, say how many you tested when you report the one that
+    worked.</p>
+   </div>
+
+   <div class="keyline">
+    If a student asks whether there is a technical fix: yes, there are corrections for multiple testing
+    &mdash; Bonferroni is the simplest, divide your threshold by the number of tests. Name it, say it
+    exists, and move on. <b>The discipline matters more than the correction.</b>
+   </div>
+  </div>
+
+  <!-- 80-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Closing the module</h3></div>
+   <p class="objective">Name the arc, name what was left out, say where it goes. Do not skip this.</p>
+
+   <div class="stage">Last ten minutes. Put the thirteen sessions up as one list and walk it. They have
+   not seen the shape of what they learned, only the pieces.</div>
+
+   <div class="speak">
+    <p>That is the statistics module finished. Thirteen sessions. Let me show you what you actually
+    built, because you have been looking at it one piece at a time.</p>
+    <p>You started by learning to <b>describe</b> data. Averages, spread, outliers, correlation. Days
+    one to seven.</p>
+    <p>Then <b>probability</b>, and the normal curve. Days eight and nine.</p>
+    <p>Then the hinge &mdash; the Central Limit Theorem &mdash; which told you that averages of samples
+    behave predictably even when the data does not. Day ten.</p>
+    <p>And then three sessions turning that into decisions. What is the number, and how sure am I.
+    Is this difference real. Which test, and how do I avoid fooling myself.</p>
+    <p>Every one of those needed the one before it. That is why we could not reorder them.</p>
+   </div>
+
+   <div class="speak">
+    <p>Three things I deliberately left for you to read on your own, and I want to name them so you
+    know they exist rather than discovering the gap in an interview.</p>
+    <p><b>The binomial and Poisson distributions</b> &mdash; two more named shapes, for counting things.
+    Same logic as the normal, different shape.</p>
+    <p><b>ANOVA</b> &mdash; comparing three or more groups at once instead of two. It is on our decision
+    table; it is the row we did not run.</p>
+    <p>And <b>charting</b>. We have not drawn a single graph in thirteen sessions, which I know has
+    seemed strange. That was on purpose. Charts without these ideas underneath are decoration, and you
+    now have the ideas. The visualisation module is next, and you are ready for it in a way you would
+    not have been three weeks ago.</p>
+   </div>
+
+   <div class="sumcard"><pre><code><span class="c"># ---- WHICH TEST? THE ONLY QUESTION THAT MATTERS ----</span>
+<span class="c">#   comparing NUMBERS?  -> t-test</span>
+<span class="c">#   comparing COUNTS in categories? -> chi-square</span>
+<span class="c">#</span>
+<span class="c">#   one number vs a claim ..... stats.ttest_1samp(data, claim)</span>
+<span class="c">#   two groups, a number ...... stats.ttest_ind(a, b, equal_var=False)</span>
+<span class="c">#   two categories, counts .... stats.chi2_contingency(crosstab)</span>
+<span class="c">#   3+ groups, a number ....... ANOVA            (self-study)</span>
+<span class="c">#</span>
+<span class="c"># you will never compute one by hand. picking the right one IS the skill.</span>
+
+<span class="c"># ---- WHAT WE FOUND ----</span>
+<span class="c"># Tech 82,419 vs HR 56,705 ......... p = 1.16e-15   real, obvious</span>
+<span class="c"># Marketing 73,954 vs Sales 66,535 . p = 0.0086     real, NOT obvious</span>
+<span class="c"># department vs rating ............. p = 0.9364     NOTHING THERE</span>
+<span class="c">#</span>
+<span class="c"># that last one is the most useful result in the module.</span>
+<span class="c"># &quot;no evidence of a relationship&quot; - NOT &quot;proved they are unrelated&quot;.</span>
+
+<span class="c"># ---- A/B TESTING IS JUST CHI-SQUARE ON A 2x2 ----</span>
+<span class="c"># 8.0% vs 11.5% at 1200/arm -> p = 0.0039   ship B</span>
+<span class="c"># 8.0% vs 11.5% at  120/arm -> p = 0.3894   cannot see it</span>
+<span class="c">#   SAME TRUTH. SAME LIFT. the only difference is how much data.</span>
+<span class="c">#</span>
+<span class="c"># so size it BEFORE you launch:  1,126 visitors per version</span>
+<span class="c"># (compare: 1,068 for a national poll. same square-root tax.)</span>
+<span class="c"># and then DO NOT peek and stop early.</span>
+
+<span class="c"># ---- THE LAST IDEA: DO NOT FOOL YOURSELF ----</span>
+<span class="c"># 20 tests on data with NO real difference -> 1 came back p = 0.0057</span>
+<span class="c"># nothing malfunctioned. 1-in-20 is what &quot;5%&quot; MEANS.</span>
+<span class="c">#</span>
+<span class="c"># test everything against everything and you WILL find something.</span>
+<span class="c"># it will not be real. this is called p-hacking.</span>
+<span class="c">#   -> decide what you are testing BEFORE you look</span>
+<span class="c">#   -> if you tested 20 things, say so when you report the 1</span>
+<span class="c">#   (Bonferroni exists: threshold / number of tests. discipline matters more.)</span>
+
+<span class="c"># ---- THE WHOLE MODULE, IN ORDER ----</span>
+<span class="c">#   days 1-7   DESCRIBE    centre, spread, outliers, correlation</span>
+<span class="c">#   days 8-9   PROBABILITY the normal curve, z-scores</span>
+<span class="c">#   day  10    THE HINGE   sample means go normal - the CLT</span>
+<span class="c">#   days 11-13 DECIDE      intervals, tests, and honesty</span>
+<span class="c">#</span>
+<span class="c"># self-study: binomial, Poisson, ANOVA</span>
+<span class="c"># next module: data visualisation - and NOW the charts will mean something</span></code></pre></div>
+   <div class="planbanner" style="margin-top:20px">
+    <b>The module ends here.</b> Day 11 split into confidence intervals and hypothesis testing exactly
+    as the notes predicted, which spent the day 13 buffer &mdash; so there is no spare session left in
+    statistics. Data Visualisation follows.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;If p = 0.94 means nothing is there, why did the table look uneven?&rdquo;</h5>
+  <p>&ldquo;Because a perfectly even table would be the surprising thing. Real counts always wobble.
+  Chi-square exists precisely because your eyes cannot tell ordinary wobble from a real pattern &mdash;
+  and today they got it wrong and the test got it right.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I run a chi-square on any two columns?&rdquo;</h5>
+  <p>&ldquo;Any two <b>categorical</b> columns, yes. Not on salary &mdash; that is a number, and it has
+  two hundred different values, so the table would be meaningless. One practical limit: if the expected
+  count in any cell drops below about five, the result stops being trustworthy. Ours were all above
+  nine.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Our A/B test gave 11.5% versus 8%. Can I tell my manager conversions went
+  up 3.5%?&rdquo;</h5>
+  <p>&ldquo;Be careful with the wording &mdash; that is 3.5 <b>percentage points</b>, which is a
+  <b>44% relative increase</b>. Both are true and they sound wildly different. Say which one you mean,
+  because people will assume whichever is more impressive.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why can I not just look at the test every day and stop when it goes
+  significant?&rdquo;</h5>
+  <p>&ldquo;Because that is the twenty-tests problem in disguise. Checking daily for three weeks is
+  twenty-one chances to cross the line by accident, and you will take the first one. Fix the sample size
+  in advance and read it once. There are proper sequential methods, but they are not this.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What if I have three groups? Can I just run three t-tests?&rdquo;</h5>
+  <p>&ldquo;That is exactly the trap we just demonstrated &mdash; three tests, three chances at a false
+  positive. The right tool is ANOVA, which asks about all of them in one test. It is on the self-study
+  list, and the reason it exists is the reason we spent the last block on.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is a p-value of 0.0039 better than 0.0086?&rdquo;</h5>
+  <p>&ldquo;Stronger evidence, yes. A bigger or more important effect, no &mdash; and that is the
+  distinction worth keeping. Both are under the threshold, both mean reject. How <em>much</em> the
+  groups differ is a separate question, which is why you report the gap alongside the p-value.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;We never drew a single chart. Was that not a bit odd?&rdquo;</h5>
+  <p>&ldquo;Deliberate. A box plot means nothing until you know what a quartile is, and a scatter plot
+  is decoration until you know what correlation does and does not prove. You have all of that now.
+  Visualisation is the next module and it will go much faster because of it.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="n1">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -12711,7 +14435,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
