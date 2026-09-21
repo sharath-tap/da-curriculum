@@ -259,6 +259,44 @@ ol.n li b{color:var(--ink);font-weight:450}
 /* ---- end-of-session summary card ---- */
 .sumcard{background:var(--code-bg);border:1px solid var(--hair);border-radius:16px;
   padding:20px 22px;overflow-x:auto}
+
+/* ---- RUN SHEET -------------------------------------------------------
+   The end-of-session flow the trainer follows live: what comes after
+   what, the one line to say, and the exact code to type at that point. */
+.runsheet{border:1px solid var(--hair);border-radius:16px;overflow:hidden;margin-top:8px}
+.rs-head{background:var(--ink);color:var(--paper);padding:15px 22px}
+.rs-head h4{font-family:var(--sans);font-size:16px;font-weight:600;margin:0;color:var(--paper)}
+.rs-head p{font-size:13.5px;margin:3px 0 0;color:var(--paper);opacity:.72}
+.rs-step{display:grid;grid-template-columns:78px 1fr;border-top:1px solid var(--hair)}
+.rs-step:first-of-type{border-top:0}
+.rs-when{background:var(--fog);border-right:1px solid var(--hair);padding:16px 12px;
+  text-align:center}
+.rs-n{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--sienna);
+  line-height:1;display:block}
+.rs-clock{font-size:11.5px;color:var(--ash);display:block;margin-top:5px;
+  font-variant-numeric:tabular-nums}
+.rs-body{padding:16px 20px;min-width:0}
+.rs-topic{font-size:16.5px;font-weight:600;margin:0 0 5px}
+.rs-say{font-size:14.5px;color:var(--slate);line-height:1.55;margin:0}
+.rs-say b{color:var(--ink);font-weight:600}
+.rs-do{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ash);margin:15px 0 7px;display:flex;align-items:center;gap:8px}
+.rs-do::before{content:"";width:16px;height:1px;background:var(--smoke);flex:none}
+.rs-code{background:var(--code-bg);border:1px solid var(--hair);border-radius:10px;
+  padding:13px 16px;overflow-x:auto}
+.rs-code pre{margin:0;background:none;border:0;padding:0;font-size:12.5px;line-height:1.65}
+.rs-out{background:var(--mist);border-radius:10px;padding:11px 16px;font-family:var(--mono);
+  font-size:12.5px;line-height:1.6;white-space:pre;overflow-x:auto;margin-top:7px}
+.rs-board{font-size:13.5px;color:var(--sienna);background:var(--peach);border-radius:9px;
+  padding:10px 14px;margin-top:12px;line-height:1.5}
+.rs-board b{color:var(--sienna)}
+.rs-none{font-size:13px;color:var(--ash);font-style:italic;margin-top:11px}
+@media (max-width:640px){
+  .rs-step{grid-template-columns:1fr}
+  .rs-when{border-right:0;border-bottom:1px solid var(--hair);display:flex;gap:10px;
+    align-items:baseline;justify-content:flex-start;padding:10px 20px;text-align:left}
+  .rs-clock{margin-top:0}
+}
 .sumcard pre{background:none;border:0;padding:0;margin:0;font-size:13px;line-height:1.75}
 .sumhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
 .sumhead .n{font-family:var(--mono);font-size:13px;color:var(--ash)}
@@ -7834,62 +7872,187 @@ P(well paid | Tech): 0.776</div>
     <p>And fixing it is what gives us the bell curve.</p>
    </div>
 
-   <div class="sumcard"><pre><code><span class="c"># ---- THE MODULE TURNED TODAY ----</span>
-<span class="c"># days 1-7: describing data we HAVE.        certain. we counted.</span>
-<span class="c"># day 8 on: reasoning about what we DON'T.  uncertain. we estimate.</span>
-<span class="c"># every idea left in this module (CLT, confidence intervals, p-values)</span>
-<span class="c"># is a probability statement. this is the grammar for all of it.</span>
+   <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Top to bottom is the order you teach it. Each step says the one thing to land, and shows the exact
+  code to type at that point. Ten steps, eight code blocks, 90 minutes.</p>
+ </div>
 
-<span class="c"># ---- TWO WAYS TO GET A PROBABILITY ----</span>
-<span class="c"># THEORETICAL - reason from structure, touch nothing.</span>
-<span class="c">#               coin 1/2 | die 1/6 | ace 4/52 | heart 13/52</span>
-<span class="c"># EMPIRICAL   - count what happened.    49 of 201 in Tech -> 0.244</span>
-<span class="c">#   an analyst lives almost entirely in the second one.</span>
-<span class="c">#   value_counts(normalize=True) has been doing this since week 1.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The module turns</p>
+   <p class="rs-say">Seven sessions described data we <b>had</b>, and every answer was certain. From
+   today the questions are about what we have <b>not</b> measured &mdash; so the answers stop being
+   certain. Say out loud that the CLT, confidence intervals and p-values are all probability
+   statements, or this feels like a detour.</p>
+   <p class="rs-none">No code. Board only.</p>
+  </div></div>
 
-<span class="c"># ---- THE SCALE ----</span>
-<span class="c"># 0 = never, 1 = always. all the pieces sum to 1.</span>
-<span class="c"># complement rule:  P(not A) = 1 - P(A)      (cheap, use it constantly)</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 18</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Theoretical &mdash; coin, die, cards</p>
+   <p class="rs-say">Coin 1/2. Die 1/6. Ace 4/52. Heart 13/52. After each one: <b>you did not flip,
+   roll or touch anything</b> &mdash; you reasoned from the structure of the object. That is
+   theoretical probability, and it is the kind an analyst almost never gets.</p>
+   <p class="rs-none">No code. Props and board.</p>
+   <div class="rs-board"><b>Leave the props here.</b> If the coin is still on screen at minute 25 the
+   session has drifted into the version students think is a toy.</div>
+  </div></div>
 
-<span class="c"># ---- THE TWO RULES ----</span>
-<span class="c"># OR : P(A or B)  = P(A) + P(B) - P(A and B)</span>
-<span class="c">#      0.244 + 0.244 - 0.065 = 0.423   (subtract or you count the 13 twice)</span>
-<span class="c">#</span>
-<span class="c"># AND: P(A and B) = P(A) x P(B)   ONLY IF INDEPENDENT</span>
-<span class="c">#      Tech &amp; Excellent : actual 0.065, predicted 0.059   -> works</span>
-<span class="c">#      Tech &amp; well paid : actual 0.189, predicted 0.120   -> FAILS</span>
-<span class="c">#      so CHECK independence, never assume it.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">18 &ndash; 24</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Empirical &mdash; you have to count</p>
+   <p class="rs-say">Ask for P(Tech). Someone says one in four because there are four departments
+   &mdash; that is the die answer. The departments are different sizes, so there is nothing to reason
+   from. <b>0.244, not 0.25.</b> Then point at <code>normalize=True</code>: they have been computing
+   probabilities since week one.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(df.department.value_counts())
+<span class="k">print</span>()
+<span class="k">print</span>(df.department.value_counts(normalize=<span class="k">True</span>).round(<span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">Sales        65
+Tech         49
+HR           45
+Marketing    42
 
-<span class="c"># ---- THE TWO WORDS EVERYONE MERGES ----</span>
-<span class="c"># MUTUALLY EXCLUSIVE = cannot both happen.  P(HR and Tech) = 0</span>
-<span class="c"># INDEPENDENT        = one tells you nothing about the other</span>
-<span class="c">#</span>
-<span class="c">#   IF TWO THINGS ARE MUTUALLY EXCLUSIVE THEY ARE THE OPPOSITE</span>
-<span class="c">#   OF INDEPENDENT. &quot;in HR&quot; tells you FOR CERTAIN &quot;not in Tech&quot;.</span>
-<span class="c">#   that is total information, not zero information.</span>
+Sales        0.323
+Tech         0.244
+HR           0.224
+Marketing    0.209</div>
+  </div></div>
 
-<span class="c"># ---- CONDITIONAL PROBABILITY = A FILTER, THEN A COUNT ----</span>
-<span class="c"># P(A | B) = &quot;probability of A GIVEN B is already true&quot;</span>
-<span class="c">#   drop every row where B is false, then compute as normal.</span>
-<span class="c">#</span>
-<span class="c"># flat  : P(Excellent) 0.244 -> P(Excellent | Tech) 0.265   independent</span>
-<span class="c"># moves : P(Tech)      0.244 -> P(Tech | well paid) 0.384   dependent</span>
-<span class="c">#         (same fact as day 7's pay gap, said in probability)</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">24 &ndash; 34</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The scale, and the complement</p>
+   <p class="rs-say">Zero to one, and the pieces sum to one because every employee is in exactly one
+   department. Then ask for P(not Tech): they will add the other three, and you show
+   <b>1 &minus; 0.244</b> instead. Sell it with the case that makes it worth having &mdash; &ldquo;what
+   is the chance at least one fails&rdquo; is horrible directly and one line as
+   <b>1 &minus; P(none fail)</b>.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code>p = df.department.value_counts(normalize=<span class="k">True</span>)
 
-<span class="c"># ---- THE ONE THAT COSTS PEOPLE THEIR CREDIBILITY ----</span>
-<span class="c"># P(Tech | well paid) = 38/99 = 0.384</span>
-<span class="c"># P(well paid | Tech) = 38/49 = 0.776</span>
-<span class="c">#   THE SAME 38 PEOPLE ON TOP. only the denominator changed.</span>
-<span class="c">#</span>
-<span class="c">#   P(A|B) IS NOT P(B|A).</span>
-<span class="c">#   &quot;most food poisoning victims ate out&quot;   - true</span>
-<span class="c">#   &quot;most people who eat out get poisoned&quot;  - nonsense</span>
-<span class="c">#   &quot;90% of churners complained first&quot; does NOT mean</span>
-<span class="c">#   &quot;90% of complainers will churn&quot;. find the denominator.</span>
+<span class="k">print</span>(p.round(<span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"total:"</span>, p.sum())</code></pre></div>
+   <div class="rs-out">Sales        0.323
+Tech         0.244
+HR           0.224
+Marketing    0.209
+total: 1.0</div>
+   <div class="rs-board"><b>On the board:</b> P(not A) = 1 &minus; P(A)</div>
+  </div></div>
 
-<span class="c"># ---- TOMORROW ----</span>
-<span class="c"># P(height is exactly 170 cm) = ?   counting breaks here.</span>
-<span class="c"># fixing it is where the bell curve comes from.</span></code></pre></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">34 &ndash; 42</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">OR &mdash; add, then subtract the overlap</p>
+   <p class="rs-say">Let them predict 0.244 + 0.244 = 0.488, then show the real 0.423. Ask why adding
+   overshoots: <b>the 13 people who are both got counted twice.</b> Only then write the formula.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code>t = (df.department == <span class="c">"Tech"</span>)
+e = (df.rating == <span class="c">"Excellent"</span>)
+
+<span class="k">print</span>(<span class="c">"P(Tech)        :"</span>, <span class="k">round</span>(t.mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"P(Excellent)   :"</span>, <span class="k">round</span>(e.mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"added together :"</span>, <span class="k">round</span>(t.mean() + e.mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"actually       :"</span>, <span class="k">round</span>((t | e).mean(), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">P(Tech)        : 0.244
+P(Excellent)   : 0.244
+added together : 0.488
+actually       : 0.423</div>
+   <div class="rs-board"><b>On the board:</b> P(A or B) = P(A) + P(B) &minus; P(A and B)
+   &nbsp;&rarr;&nbsp; 0.244 + 0.244 &minus; 0.065 = 0.423</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">42 &ndash; 50</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">AND, and the two words everyone merges</p>
+   <p class="rs-say">Multiplying works here (0.059 against a real 0.065) &mdash; say it works
+   <b>for now</b> and promise a pair where it fails. Then the distinction: mutually exclusive means
+   they cannot both happen; independent means one tells you nothing. <b>If two things are mutually
+   exclusive they are the opposite of independent</b> &mdash; knowing someone is in HR tells you with
+   certainty they are not in Tech, which is total information, not zero.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"P(Tech and Excellent) actual:"</span>, <span class="k">round</span>((t &amp; e).mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"P(Tech) x P(Excellent)     :"</span>, <span class="k">round</span>(t.mean() * e.mean(), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">P(Tech and Excellent) actual: 0.065
+P(Tech) x P(Excellent)     : 0.059</div>
+   <div class="rs-board"><b>Do not move on</b> until a student gives you their own example of each.
+   Mutually exclusive: one person in two departments. Independent: department and height.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">50 &ndash; 60</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Conditional probability &mdash; a filter, then a count</p>
+   <p class="rs-say">Real questions come with a condition attached: not &ldquo;will a customer
+   buy&rdquo; but &ldquo;will a customer <b>who clicked the ad</b> buy&rdquo;. <b>P(A | B)</b>, bar
+   read as &ldquo;given&rdquo;, and mechanically it is a filter they have run since week one. First
+   example is the flat one: 0.244 against 0.265, so department tells you nothing about rating. That
+   is independence, measured rather than defined.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="c"># P(Excellent) - everybody</span>
+<span class="k">print</span>(<span class="c">"P(Excellent)       :"</span>, <span class="k">round</span>((df.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))
+
+<span class="c"># P(Excellent | Tech) - throw away everyone who is not Tech, then count</span>
+tech = df[df.department == <span class="c">"Tech"</span>]
+<span class="k">print</span>(<span class="c">"P(Excellent | Tech):"</span>, <span class="k">round</span>((tech.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">P(Excellent)       : 0.244
+P(Excellent | Tech): 0.265</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">60 &ndash; 68</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">A condition that moves &mdash; and the multiply rule failing</p>
+   <p class="rs-say">0.244 up to <b>0.384</b>. Knowing the salary changed what you know about the
+   department, so these are <b>not</b> independent &mdash; and that is day 7's pay gap said in
+   probability. Then cash the promise from step 6: multiplying predicts 0.120 against a real 0.189,
+   nearly 60% out. <b>Multiply only when independent, and check rather than assume.</b></p>
+   <p class="rs-do">Type this &mdash; both blocks, back to back</p>
+   <div class="rs-code"><pre><code>median_pay = df.salary.median()
+well_paid  = df[df.salary &gt; median_pay]
+
+<span class="k">print</span>(<span class="c">"P(Tech)                    :"</span>, <span class="k">round</span>((df.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"P(Tech | paid above median):"</span>, <span class="k">round</span>((well_paid.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">P(Tech)                    : 0.244
+P(Tech | paid above median): 0.384</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>hi = (df.salary &gt; median_pay)
+tc = (df.department == <span class="c">"Tech"</span>)
+
+<span class="k">print</span>(<span class="c">"P(Tech and well paid) actual:"</span>, <span class="k">round</span>((tc &amp; hi).mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"P(Tech) x P(well paid)      :"</span>, <span class="k">round</span>(tc.mean() * hi.mean(), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">P(Tech and well paid) actual: 0.189
+P(Tech) x P(well paid)      : 0.120</div>
+   <div class="rs-board"><b>On the board:</b> P(A and B) = P(A) &times; P(B) &mdash;
+   <b>only if independent</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">9</span><span class="rs-clock">68 &ndash; 82</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The two directions are not the same question</p>
+   <p class="rs-say">Ask for a prediction before you run it &mdash; most of the room says the same
+   number. It is <b>0.776 against 0.384</b>, double. Then the point: <b>the same 38 people are on top
+   of both fractions</b>, 38/99 and 38/49, and only the denominator changed. Land it outside the data
+   with food poisoning, then with &ldquo;90% of churners complained first&rdquo; &mdash; which does not
+   mean 90% of complainers churn.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"P(Tech | well paid):"</span>, <span class="k">round</span>((well_paid.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))
+<span class="k">print</span>(<span class="c">"P(well paid | Tech):"</span>, <span class="k">round</span>((tech.salary &gt; median_pay).mean(), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">P(Tech | well paid): 0.384
+P(well paid | Tech): 0.776</div>
+   <div class="rs-board"><b>On the board:</b> P(A | B) is <b>not</b> P(B | A). Whenever you see
+   &ldquo;of the people who&hellip;&rdquo;, find the denominator.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">10</span><span class="rs-clock">82 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close, and the hook you must not resolve</p>
+   <p class="rs-say">Recap in one minute: the scale, the two routes, OR, AND, the two words,
+   conditional, and the direction trap. Then ask: <b>what is the probability an employee is exactly
+   170 cm?</b> Let them argue two or three minutes and <b>leave it open</b>. Counting worked all
+   session; tomorrow it breaks, and fixing it is where the bell curve comes from.</p>
+   <p class="rs-none">No code. This is the handoff to day 9.</p>
+  </div></div>
+</div>
    <div class="planbanner" style="margin-top:20px">
     <b>Where this goes next.</b> Day 9 answers the height question &mdash; the probability of any exact
     measurement is zero, which forces probability to become <em>area under a curve</em>. That curve is
