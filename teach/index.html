@@ -7329,6 +7329,9 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
    <li><b>Two words will get mixed up: &ldquo;mutually exclusive&rdquo; and
    &ldquo;independent&rdquo;.</b> Spend time here. Do not move on until a student gives you their own
    example of each.</li>
+   <li><b>The pipe symbol means two different things today, and you must say so.</b> In the OR rule
+   you type <code>(t | e)</code> where it means <b>or</b>. Then in P(A | B) it means <b>given</b>. Name
+   the clash yourself before a student spots it &mdash; the answer is in the script.</li>
    <li><b>The last part is the most important.</b> Same 38 people, two different answers &mdash; 0.384
    and 0.776. Keep 14 minutes for it.</li>
    <li><b>Do not answer the last question.</b> You will ask for the chance that someone is exactly
@@ -7450,6 +7453,14 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
    <b>if they clicked the ad</b>?&rdquo; There is a condition attached.</p>
    <p>We write it <b>P(A | B)</b>. The line means &ldquo;given&rdquo;. Read it as: the chance of A, if we
    already know B is true.</p>
+   <div class="keyline">
+    <b>Deal with the symbol clash before a student raises it.</b> You used the same pipe an hour earlier
+    in <code>(t | e)</code>, where it meant <b>or</b>. That is genuinely confusing and it is not the
+    student's fault. The clean answer: <b>in Python the pipe means or; in maths writing it means given;
+    Python has no symbol for given at all.</b> And the test that settles every case &mdash; if the pipe
+    is <b>inside quote marks</b> it is just a label we typed, and Python never looks at it. Outside
+    quotes, Python reads it and it means or.
+   </div>
    <p>How to do it: <b>throw away every row where B is false, then count as normal.</b> That is a filter.
    They have been filtering since week one.</p>
 
@@ -7688,6 +7699,16 @@ actually       : 0.423</div>
     <div class="a">Someone will see it: the people who are both got counted twice.</div>
    </div>
 
+   <div class="stage">Point at the pipe symbol in the code before you explain the result. They need
+   to have named it once before it turns up again meaning something else.</div>
+
+   <div class="speak">
+    <p>Before the answer, look at that last line of code. There is a straight up-and-down line in it.
+    <code>t</code> pipe <code>e</code>.</p>
+    <p>In Python, that line means <b>or</b>. It is how you write &ldquo;in Tech or rated
+    Excellent&rdquo;. Remember it. We will see this symbol again later today.</p>
+   </div>
+
    <div class="speak">
     <p>Adding gave zero point four eight eight. The real answer is zero point four two three.</p>
     <p>So adding gave us too much. Why?</p>
@@ -7781,8 +7802,37 @@ P(Tech) x P(Excellent)     : 0.059</div>
     <div class="mrow">the straight line means &ldquo;given&rdquo;. It does <b>not</b> mean divide.</div>
    </div>
 
+   <div class="stage">Stop here and deal with the symbol. Somebody in the room has already noticed,
+   and if you do not explain it they will spend the rest of the session confused.</div>
+
    <div class="speak">
-    <p>And doing it is easy. You already know how.</p>
+    <p>Now wait. Some of you are looking at that line and thinking something is wrong.</p>
+    <p>An hour ago I wrote <code>t</code> pipe <code>e</code> and I told you that line means <b>or</b>.</p>
+    <p>Now I have written P of A pipe B, and I am telling you the same line means <b>given</b>.</p>
+    <p>Same symbol. Two completely different meanings. So let me clear that up, because it confuses
+    everybody.</p>
+   </div>
+
+   <div class="warn"><b>The same symbol is used by two different things.</b> In <b>Python code</b> the
+   pipe means <b>or</b>. In <b>maths writing</b> the pipe means <b>given</b>. They are two separate
+   languages that happen to use the same key on the keyboard. Python has no symbol for
+   &ldquo;given&rdquo; at all.</div>
+
+   <div class="speak">
+    <p>Here is the easy way to tell them apart. Look at whether the line is <b>inside quote marks</b>.</p>
+    <p>In <code>t</code> pipe <code>e</code>, the pipe is not in quotes. So Python reads it and does
+    something. It means or.</p>
+    <p>In <code>print("P(Excellent | Tech)")</code>, the pipe is <b>inside the quotes</b>. Python does
+    not read it at all. It is just text. It is a label I typed for myself so I know what the number
+    means.</p>
+    <p>So the rule is simple. <b>Inside quotes, it is a label for us. Outside quotes, it is an
+    instruction for Python.</b></p>
+    <p>And you will never write P of A given B as real Python code. There is no such thing. We only
+    write it on the board and inside labels.</p>
+   </div>
+
+   <div class="speak">
+    <p>Right. Now, doing it is easy. You already know how.</p>
     <p>&ldquo;Given Tech&rdquo; just means: <b>delete every row that is not Tech. Then count normally.</b></p>
     <p>That is a filter. You have been filtering since week one.</p>
    </div>
@@ -8043,9 +8093,10 @@ total: 1.0</div>
     <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">34 &ndash; 42</span></div>
      <div class="rs-body">
       <p class="rs-topic">The OR rule</p>
-      <p class="rs-say">Let them guess 0.244 + 0.244 = 0.488, then show the real 0.423. Ask why adding
-      gave too much. Answer: <b>13 people are in both groups, so they got counted twice.</b> Only after
-      that, write the formula.</p>
+      <p class="rs-say">Point at the pipe in the code first and say <b>in Python this means or</b>
+      &mdash; you need them to have named it once, because it comes back in step 7 meaning something
+      else. Then let them guess 0.244 + 0.244 = 0.488 and show the real 0.423. Ask why adding gave too
+      much: <b>13 people are in both groups, so they got counted twice.</b> Formula last.</p>
       <p class="rs-do">Type this</p>
       <div class="rs-code"><pre><code>t = (df.department == <span class="c">"Tech"</span>)
 e = (df.rating == <span class="c">"Excellent"</span>)
@@ -8088,6 +8139,10 @@ P(Tech) x P(Excellent)     : 0.059</div>
       means &ldquo;given&rdquo;, not divide. Doing it is just a filter: delete the rows that are not
       Tech, then count. First example is the one that does <b>not</b> change &mdash; 0.244 against
       0.265. That is what independent looks like as a number.</p>
+      <div class="rs-board"><b>Say this before anyone asks.</b> The pipe meant <b>or</b> in step 5 and
+      means <b>given</b> here. Python code and maths writing are two languages sharing one key.
+      <b>Python has no symbol for &ldquo;given&rdquo; at all.</b> The test: inside quote marks it is a
+      label we typed and Python ignores it; outside quotes Python reads it and it means or.</div>
       <p class="rs-do">Type this</p>
       <div class="rs-code"><pre><code><span class="c"># P(Excellent) - everybody</span>
 <span class="k">print</span>(<span class="c">"P(Excellent)       :"</span>, <span class="k">round</span>((df.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))
@@ -8179,6 +8234,13 @@ P(well paid | Tech): 0.776</div>
   <div class="qa"><h5>&ldquo;So when can I multiply?&rdquo;</h5>
   <p>&ldquo;Only when the two things do not affect each other. And you can test it in one line.
   Multiply, then compare with the real count. Tech and Excellent matched. Tech and salary did not.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Earlier the pipe meant &lsquo;or&rsquo;. Now it means
+  &lsquo;given&rsquo;. Which is it?&rdquo;</h5>
+  <p>&ldquo;Both &mdash; but in two different languages. In <b>Python code</b> the pipe means or. In
+  <b>maths writing</b> it means given. Python has no symbol for given at all, so you will never type
+  it as real code. The quick test: if the pipe is inside quote marks it is just a label I typed for
+  myself and Python ignores it. Outside quotes, Python reads it and it means or.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Does the line in P(A | B) mean divide?&rdquo;</h5>
   <p>&ldquo;No. It just means the word &lsquo;given&rsquo;. A division does happen inside, which is why
