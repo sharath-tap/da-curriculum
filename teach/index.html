@@ -7294,25 +7294,23 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
 <div class="day" id="d8">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Statistics day 8 &middot; merged class &middot; 90 minutes &middot; full script &middot; the module turns</p>
+  <p class="tag" style="margin-bottom:16px">Statistics day 8 &middot; merged class &middot; 90 minutes &middot; full script</p>
   <h1 class="display">Probability</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   Seven sessions describing data that already happened. Today the module turns to data that has not
-   happened yet. A coin, a die and a deck of cards earn ten minutes to define
-   the idea &mdash; then everything else runs on their own table. No Bayes.</p>
+   For seven days we looked at data we already had. Today we start working out how likely things are.
+   A coin, a die and a pack of cards to begin with. Then everything on our own table.</p>
   <div class="glance">
    <div class="gcell"><b>0 &ndash; 1</b><span>the whole scale</span></div>
    <div class="gcell"><b>0.244</b><span>&rarr; 0.384</span></div>
-   <div class="gcell"><b>2</b><span>rules, two traps</span></div>
-   <div class="gcell"><b>&ne;</b><span>P(A|B) vs P(B|A)</span></div>
+   <div class="gcell"><b>2</b><span>rules</span></div>
+   <div class="gcell"><b>38</b><span>people, two answers</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">What changed in this session, and why</h4>
-   <p style="color:var(--sienna)">Two blocks are gone. <b style="color:var(--sienna)">The notation</b>
-   &mdash; you taught the symbols and formulas in day 7, so it is not repeated here.
-   <b style="color:var(--sienna)">The medical test and Bayes</b> &mdash; cut as low value for a fresher.
-   Its real lesson, that <b style="color:var(--sienna)">P(A given B) is not P(B given A)</b>, survives
-   and is now taught on their own salary column instead, where it is easier and lands harder.</p>
+   <h4 style="color:var(--sienna)">What changed in this session</h4>
+   <p style="color:var(--sienna)">Two parts are removed. <b style="color:var(--sienna)">The symbols and
+   formulas</b> &mdash; you already taught those in day 7. <b style="color:var(--sienna)">The medical
+   test and Bayes</b> &mdash; too hard, and students will not use it. The useful idea inside it is
+   still here. It is now taught using our own salary column, which is much easier.</p>
   </div>
  </div>
 </section>
@@ -7321,20 +7319,20 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Do not teach this as a new subject.</b> They have been computing probabilities since day 1
-   without the word &mdash; every <code>value_counts(normalize=True)</code> was one. Frame the session
-   as naming something they already do, and the room relaxes immediately.</li>
-   <li><b>The coin, the die and the cards are props, not the subject.</b> They earn ten minutes because
-   they make &ldquo;reason from structure&rdquo; obvious, and then they are gone for good. If they are
-   still on screen at minute 25, the session has drifted into the version students think is a toy.</li>
-   <li><b>The two words to slow down on are &ldquo;mutually exclusive&rdquo; and
-   &ldquo;independent&rdquo;.</b> Students merge them. They are close to opposites, and the fifteen
-   minutes you spend separating them will save you an hour later.</li>
-   <li><b>The last block is the important one.</b> P(Tech | high salary) is 0.384 and P(high salary |
-   Tech) is 0.776 &mdash; same two facts, opposite directions, twice the number. Do not let the session
-   overrun into it.</li>
-   <li><b>Do not resolve tomorrow's question.</b> You will end by asking for the probability that
-   somebody is exactly 170 cm. Let them argue, and leave it open. Day 9 opens on it.</li>
+   <li><b>Use short sentences.</b> This topic has a lot of new words in it. If your sentence is long
+   and the word is new, students lose both. One idea, then stop.</li>
+   <li><b>Say the easy name first, then the book name.</b> Say &ldquo;we worked it out by
+   thinking&rdquo;, and then say &ldquo;the book calls this theoretical&rdquo;. Never the other way
+   round.</li>
+   <li><b>The coin, die and cards are only for the first fifteen minutes.</b> They make the idea easy
+   to see. After that, use our employee table for everything.</li>
+   <li><b>Two words will get mixed up: &ldquo;mutually exclusive&rdquo; and
+   &ldquo;independent&rdquo;.</b> Spend time here. Do not move on until a student gives you their own
+   example of each.</li>
+   <li><b>The last part is the most important.</b> Same 38 people, two different answers &mdash; 0.384
+   and 0.776. Keep 14 minutes for it.</li>
+   <li><b>Do not answer the last question.</b> You will ask for the chance that someone is exactly
+   170 cm. Let them argue. Day 9 starts with it.</li>
   </ol>
  </div>
 </section>
@@ -7342,121 +7340,136 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
 <section>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Probability is the one topic where a trainer who is new to
-  statistics is most likely to fall back on the textbook, because the textbook version is easy to
-  recite. The version below is harder to recite and much easier to teach.</p>
+  <p class="cap" style="margin-bottom:24px">Read this before class. It is written for someone who has
+  not studied probability before.</p>
 
   <div class="understand">
-   <h5>Part one &middot; why probability arrives now, in session eight</h5>
+   <h5>Part one &middot; what changes today</h5>
 
-   <h6>The module has two halves, and this is the hinge between them</h6>
-   <p>Everything so far has described data <em>you already have</em>. The average salary of these 201
-   people. The spread of these heights. The correlation in this table. All of it backward-looking, and
-   all of it certain &mdash; you were not estimating the mean, you were computing it.</p>
-   <p>From today the questions change direction. What is the chance the next hire is in Tech? If I take
-   a sample, how close will its average be? Is this difference real or luck? <b>Every one of those is a
-   statement about something that has not happened, or about people you have not measured.</b></p>
+   <h6>What we did for seven days</h6>
+   <p>We had a table of 201 employees. We found the average salary. We found how spread out the heights
+   were. We checked if pay and experience move together.</p>
+   <p>All of that was about people we already had. And all of it was <b>sure</b>. We did not guess the
+   average salary. We added up all the salaries and divided. The answer is 69,630 and it cannot be
+   anything else.</p>
+
+   <h6>What changes today</h6>
+   <p>Now the questions become different:</p>
+   <p>&ldquo;What is the chance the next person we hire works in Tech?&rdquo;<br>
+   &ldquo;If I ask only 30 people, how close will their answer be?&rdquo;<br>
+   &ldquo;Tech is paid more than HR. Is that real, or just luck?&rdquo;</p>
+   <p>These questions are not about people we measured. They are about people we did <b>not</b> measure.
+   So the answers cannot be sure any more. They can only be <b>likely</b>.</p>
    <div class="keyline">
-    That is the honest reason probability sits here and not earlier. It is not a detour &mdash; it is
-    the language the second half of the module is written in. The Central Limit Theorem on day 10,
-    every confidence interval, every p-value: all of them are probability statements. Say this in the
-    first two minutes so nobody wonders why the subject changed.
+    Probability is how we put a number on &ldquo;likely&rdquo;. That is all it is. Tell the class this
+    in the first two minutes, or they will think today is a random maths lesson.
    </div>
 
-   <h6>They have been doing it for seven sessions already</h6>
-   <p>This is worth leaning on. When they ran <code>value_counts(normalize=True)</code> on the
-   department column and got 0.244 for Tech, they computed a probability. When they filtered to Tech and
-   looked at the ratings inside it, that was a conditional probability. They have the mechanics; today
-   supplies the vocabulary and the two rules.</p>
+   <h6>Why it comes now</h6>
+   <p>Everything left in this course needs it. Day 10, day 11, day 12 and day 13 all use probability.
+   If they skip today, nothing after this will make sense.</p>
+   <p>And they have already been doing it. When they ran <code>value_counts(normalize=True)</code> and
+   saw 0.244 for Tech, that was a probability. Nobody used the word.</p>
   </div>
 
   <div class="understand">
-   <h5>Part two &middot; the two ways to get a probability</h5>
+   <h5>Part two &middot; two ways to get the number</h5>
 
-   <h6>Theoretical &mdash; count the outcomes</h6>
-   <p>A fair die has six faces, so the probability of a four is one in six. You did not roll anything.
-   You reasoned from the structure of the object. This works when you know the mechanism exactly:
-   dice, cards, coins.</p>
+   <h6>Way one: by thinking</h6>
+   <p>A coin has two sides. So the chance of heads is one out of two.</p>
+   <p>You did not flip the coin. You looked at the coin and worked it out. A die has six faces, so a
+   four is one out of six. A pack has 52 cards and 4 aces, so an ace is 4 out of 52.</p>
+   <p>The book calls this <b>theoretical probability</b>. Plain meaning: <b>you worked it out by
+   thinking, without doing anything.</b></p>
 
-   <h6>Empirical &mdash; count what happened</h6>
-   <p>What is the probability a random employee here is in Tech? There is no mechanism to reason from.
-   You count: 49 out of 201, so 0.244. This is the one an analyst actually uses, because real questions
-   almost never come with a known mechanism.</p>
+   <h6>Way two: by counting</h6>
+   <p>Now ask this: what is the chance a random employee works in Tech?</p>
+   <p>You cannot think your way to the answer. There is no rule that says departments must be equal. You
+   have to open the file and count. It is 49 out of 201, which is 0.244.</p>
+   <p>The book calls this <b>empirical probability</b>. Plain meaning: <b>you counted what actually
+   happened.</b></p>
    <div class="keyline">
-    Make this split explicit and then say which one matters. <b>A data analyst lives almost entirely in
-    the empirical column.</b> Students arrive believing probability means dice, which is why they think
-    it is irrelevant to their job. Correcting that expectation is worth doing directly.
+    Tell them which one matters. <b>At work, it is almost always counting.</b> Students think
+    probability means coins and dice, so they think it has nothing to do with a job. Fix that today.
    </div>
-
-   <h6>What connects the two</h6>
-   <p>If you roll a real die enough times, the observed fraction converges on one in six. That is the
-   law of large numbers, and one sentence is the right amount of attention for it here. It is also a
-   quiet preview of day 10 &mdash; more data, less noise &mdash; so plant it and move on.</p>
   </div>
 
   <div class="understand">
-   <h5>Part three &middot; the two rules, and the two words students merge</h5>
+   <h5>Part three &middot; the two rules</h5>
 
-   <h6>OR adds, AND multiplies &mdash; with one correction each</h6>
+   <h6>The OR rule</h6>
+   <p>&ldquo;What is the chance a person is in Tech <b>or</b> rated Excellent?&rdquo;</p>
+   <p>First guess: add them. 0.244 + 0.244 = 0.488. That answer is too big.</p>
+   <p>Why? Because 13 people are in Tech <b>and</b> rated Excellent. Those 13 got counted two times
+   &mdash; once in the Tech group, once in the Excellent group. So take them off once.</p>
    <div class="mth">
-    <div class="mrow"><b>OR</b> &nbsp;&mdash;&nbsp; P(A or B) = P(A) + P(B) &minus; P(A and B)</div>
-    <div class="mrow"><b>AND</b> &nbsp;&mdash;&nbsp; P(A and B) = P(A) &times; P(B), <em>only if the two
-    are independent</em></div>
+    <div class="mrow"><b>P(A or B) = P(A) + P(B) &minus; P(A and B)</b></div>
+    <div class="mcalc">0.244 + 0.244 &minus; 0.065 = <b>0.423</b></div>
    </div>
-   <p>The subtraction in the first rule exists because anybody who is both A and B has been counted
-   twice. The condition on the second rule is the thing students drop, and dropping it is the source of
-   most wrong answers in this topic.</p>
 
-   <h6>Mutually exclusive is not independent &mdash; they are nearly opposites</h6>
-   <p><b>Mutually exclusive</b> means they cannot both happen. An employee cannot be in HR and in Tech.
-   P(HR and Tech) = 0.</p>
-   <p><b>Independent</b> means one tells you nothing about the other. Knowing somebody is in Tech does
-   not change the chance they are rated Excellent.</p>
+   <h6>The AND rule</h6>
+   <p>For <b>and</b>, you multiply. But only sometimes. The rule breaks if the two things affect each
+   other.</p>
+   <p>Tech and Excellent do not affect each other. Multiplying gives 0.059 and the real answer is 0.065.
+   Close enough.</p>
+   <p>Tech and high salary <b>do</b> affect each other. Multiplying gives 0.120 and the real answer is
+   0.189. That is very wrong.</p>
    <div class="keyline">
-    Here is the line that fixes it, and it is worth writing on the board: <b>if two things are mutually
-    exclusive, they are the opposite of independent.</b> Knowing you are in HR tells you, with complete
-    certainty, that you are not in Tech. That is maximum information, not zero. Students who see this
-    once stop confusing the terms.
+    So the rule is: <b>multiply only when the two things do not affect each other.</b> And you check
+    that by multiplying and comparing with the real count. Never assume it.
    </div>
-
-   <h6>How to check independence, rather than assume it</h6>
-   <p>Multiply the two separate probabilities and compare against the real count. If they match, the
-   two are independent. If the real number is far off, they are not. On their data, Tech and high
-   salary come out 1.6 times the independent prediction &mdash; visibly not independent, and it lines
-   up with the pay gap they already found in day 7.</p>
   </div>
 
   <div class="understand">
-   <h5>Part four &middot; conditional probability, and the direction trap</h5>
+   <h5>Part four &middot; the two words students mix up</h5>
 
-   <h6>The notation, and it is the only notation today</h6>
-   <p><b>P(A | B)</b> &mdash; the probability of A, <em>given that</em> B is already true. The bar is
-   read &ldquo;given&rdquo;. Mechanically it means: throw away every row where B is false, then compute
-   A on what is left. That is exactly a filter, which they have done for seven sessions.</p>
+   <h6>Mutually exclusive</h6>
+   <p>Means: <b>both cannot happen together.</b></p>
+   <p>One person cannot be in HR and in Tech at the same time. So P(HR and Tech) = 0.</p>
+
+   <h6>Independent</h6>
+   <p>Means: <b>one tells you nothing about the other.</b></p>
+   <p>Knowing a person is in Tech tells you nothing about their height.</p>
+
+   <h6>Why students mix them up, and how to fix it</h6>
+   <p>Both sound like &ldquo;these two things are separate&rdquo;. But they are not the same. They are
+   almost opposite.</p>
+   <div class="keyline">
+    Here is the line that fixes it. <b>If I tell you a person is in HR, do you now know something about
+    Tech?</b> Yes &mdash; you know for sure they are not in Tech. That is a lot of information.
+    Independent means <b>zero</b> information. So mutually exclusive is the opposite of independent.
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part five &middot; probability with a condition</h5>
+
+   <h6>What it means</h6>
+   <p>So far, every question was about a random person from the whole table.</p>
+   <p>But real questions are not like that. A real question is &ldquo;what is the chance a customer buys,
+   <b>if they clicked the ad</b>?&rdquo; There is a condition attached.</p>
+   <p>We write it <b>P(A | B)</b>. The line means &ldquo;given&rdquo;. Read it as: the chance of A, if we
+   already know B is true.</p>
+   <p>How to do it: <b>throw away every row where B is false, then count as normal.</b> That is a filter.
+   They have been filtering since week one.</p>
 
    <h6>Two examples, and you need both</h6>
-   <p><b>One that does not move.</b> P(Excellent) is 0.244 overall. P(Excellent | Tech) is 0.265.
-   Essentially unchanged &mdash; knowing the department tells you nothing about the rating. That is
-   independence, seen in numbers, and it sets up the chi-square on day 13 that confirms it at p = 0.94.</p>
-   <p><b>One that moves hard.</b> P(Tech) is 0.244. P(Tech | salary above the median) is 0.384. Knowing
-   somebody earns well makes them substantially more likely to be in Tech. That is dependence, and it is
-   the same fact as day 7's pay gap wearing different clothes.</p>
+   <p><b>One that stays the same.</b> P(Excellent) is 0.244 for everyone. P(Excellent | Tech) is 0.265.
+   Almost the same. So knowing the department tells you nothing about the rating.</p>
+   <p><b>One that changes a lot.</b> P(Tech) is 0.244 for everyone. P(Tech | paid above the middle) is
+   0.384. Much bigger. So knowing the salary does tell you something about the department.</p>
 
-   <h6>The direction trap, which replaces the medical test</h6>
-   <p>Take that second pair and turn it round:</p>
+   <h6>The last idea, and it is the one that matters</h6>
+   <p>Turn that second one around and the answer changes:</p>
    <div class="mth">
-    <div class="mrow">P(Tech | above median salary) = 38 &divide; 99 = <b>0.384</b></div>
-    <div class="mrow">P(above median salary | Tech) = 38 &divide; 49 = <b>0.776</b></div>
+    <div class="mrow">P(Tech | paid above middle) = 38 &divide; 99 = <b>0.384</b></div>
+    <div class="mrow">P(paid above middle | Tech) = 38 &divide; 49 = <b>0.776</b></div>
    </div>
-   <p>The same 38 people on top of both fractions. Only the denominator changed, and the answer
-   doubled. <b>P(A given B) and P(B given A) are different questions with different answers</b>, and
-   swapping them is the most common probability error in professional life.</p>
+   <p>The top of both is 38. The <b>same</b> 38 people. Only the bottom changed. And the answer doubled.</p>
    <div class="keyline">
-    This is the lesson the medical-test example existed to teach, and this version is better for your
-    room: it needs no Bayes, no new formula, and it happens on a table they have been staring at for
-    seven sessions. If you want the real-world sting, add one line: <b>&ldquo;most people who get food
-    poisoning ate at a restaurant&rdquo; is true, and &ldquo;most people who eat at restaurants get food
-    poisoning&rdquo; is nonsense</b> &mdash; same two facts, reversed.
+    This is the part to spend time on. A simple example that always works: <b>&ldquo;most people who get
+    food poisoning ate at a restaurant&rdquo; is true. &ldquo;most people who eat at restaurants get food
+    poisoning&rdquo; is silly.</b> Same two facts, turned around, and one of them is nonsense.
    </div>
   </div>
  </div>
@@ -7464,8 +7477,8 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
 
 <section class="fog">
  <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
- <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
- a grey box is a direction for you, not words to say.</p></div>
+ <p class="cap">The words in a speech box are meant to be said as written. The grey boxes are
+ instructions for you, not words to say.</p></div>
 </section>
 
 <section style="padding-top:8px">
@@ -7473,77 +7486,94 @@ c.experience.corr(c.salary, method=&quot;spearman&quot;)   <span class="c"># 0.6
 
   <!-- 0-10 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>The module turns</h3></div>
-   <p class="objective">Say plainly that the subject has changed direction, and why. Ten minutes.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>What changes from today</h3></div>
+   <p class="objective">Tell them the questions are changing. Ten minutes. No formulas yet.</p>
 
-   <div class="stage">Do not open with a definition of probability. Open by drawing the line between
-   the two halves of the module.</div>
+   <div class="stage">Do not start with a definition. Start by reminding them what they already did.</div>
 
    <div class="speak">
-    <p>For seven sessions we have been doing one kind of thing. Describing data we already had.</p>
-    <p>The average salary of these two hundred and one people. How spread out their heights are. Whether
-    experience and pay move together in this table.</p>
-    <p>And every one of those answers was <b>certain</b>. When I told you the average was sixty-nine
-    thousand six hundred and thirty, I was not guessing. I had everybody's salary. I counted.</p>
-    <p>From today the questions change direction, and they stop being certain.</p>
-    <p>What is the chance the next person we hire is in Tech? If I survey thirty employees, how close
-    will their average be to the real one? Is the gap between two departments real, or is it luck?</p>
-    <p>None of those are about data I have. They are about things that have not happened yet, or people
-    I have not measured. And for that you need a different language. That language is
-    <b>probability</b>.</p>
+    <p>For seven days we did one thing. We looked at data we already had.</p>
+    <p>We found the average salary. We found how spread out the heights were. We checked if pay goes up
+    with experience.</p>
+    <p>And every answer was <b>sure</b>. When I said the average salary is sixty-nine thousand six
+    hundred and thirty, I was not guessing. I had everyone's salary. I added them up.</p>
+    <p>From today the questions change.</p>
+    <p>What is the chance the next person we hire works in Tech?</p>
+    <p>If I ask only thirty people, how close will their answer be?</p>
+    <p>Tech is paid more than HR. Is that real, or is it just luck?</p>
+    <p>Look at those three questions. They are not about people I measured. They are about people I did
+    <b>not</b> measure.</p>
+    <p>So I cannot be sure any more. I can only say how <b>likely</b> something is.</p>
+    <p>And that is what probability is. <b>A number that tells you how likely something is.</b> That is
+    the whole idea.</p>
    </div>
 
    <div class="keyline">
-    Say this next part explicitly &mdash; students otherwise experience today as an unexplained detour
-    into school maths.
+    Now say why it is happening in session eight and not session one. Without this, students think
+    today is a random maths lesson dropped into a data course.
    </div>
 
    <div class="speak">
-    <p>I want to be clear about why we are doing this now and not in week one.</p>
-    <p>Everything left in this module is built on it. The big idea on day ten is a probability
-    statement. Confidence intervals are probability statements. P-values are probability statements.</p>
-    <p>So this is not a side trip. This is the grammar for the rest of the course.</p>
-    <p>And here is the good news. You have been computing probabilities since day one. You just were not
-    calling them that.</p>
+    <p>One more thing before we start.</p>
+    <p>Everything left in this course uses probability. Day ten uses it. Day eleven uses it. Day twelve
+    and thirteen use it.</p>
+    <p>So this is not a side topic. If today does not go in, nothing after this will make sense.</p>
+    <p>And here is some good news. You have already been doing this for seven days. You just did not
+    know the name.</p>
    </div>
   </div>
 
-  <!-- 10-24 -->
+  <!-- 10-18 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">10 &ndash; 24</span><h3>Two ways to get a probability</h3></div>
-   <p class="objective">Define it, split it, and get out of the dice quickly.</p>
+   <div class="bhead"><span class="clock">10 &ndash; 18</span><h3>Way one &mdash; work it out by thinking</h3></div>
+   <p class="objective">Coin, die, cards. Keep it fast and concrete.</p>
+
+   <div class="stage">Hold up a coin if you have one. If not, draw a circle on the board.</div>
 
    <div class="speak">
-    <p>A probability is a number between zero and one that says how likely something is. Zero means it
-    never happens. One means it always happens. That is the whole scale.</p>
-    <p>Now, there are two completely different ways to actually get that number, and knowing which one
-    you are in matters.</p>
-    <p>Let me start with the oldest example there is. I flip a coin. What is the chance of heads?</p>
-    <p>One in two. Two outcomes, both equally likely. And notice what you did to answer that &mdash;
-    <b>you did not flip anything</b>. You reasoned about the object.</p>
-    <p>Same with a die. Six faces, so the chance of a four is one in six. You did not roll it.</p>
-    <p>And cards. Fifty-two in a deck. How many aces? Four &mdash; so the chance of an ace is four in
-    fifty-two, about eight percent. How many hearts? Thirteen, so one in four.</p>
-    <p>Every one of those you worked out <b>without touching a card</b>. You looked at the structure of
-    the thing and reasoned. That is called <b>theoretical</b> probability.</p>
-    <p>Now a completely different question. What is the chance that an employee picked at random from
-    our table works in Tech?</p>
+    <p>Let us start with a coin.</p>
+    <p>I flip a coin. What is the chance I get heads?</p>
+    <p>One out of two. Everyone knows that.</p>
+    <p>But stop and see what you just did. <b>You did not flip the coin.</b> You looked at the coin, saw
+    it has two sides, and worked it out in your head.</p>
+    <p>Now a die. Six faces. What is the chance of a four?</p>
+    <p>One out of six. Again, you did not roll it.</p>
+    <p>Now a pack of cards. Fifty-two cards. How many aces?</p>
+    <p>Four. So the chance of an ace is four out of fifty-two. That is about eight percent.</p>
+    <p>How many hearts in a pack? Thirteen. So the chance of a heart is thirteen out of fifty-two. That
+    is one out of four.</p>
+    <p>Every single answer came from thinking. You did not touch a card.</p>
+    <p>The book has a name for this. It is called <b>theoretical probability</b>. Do not worry about the
+    word. Just remember what it means: <b>you worked it out by thinking.</b></p>
+   </div>
+  </div>
+
+  <!-- 18-24 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18 &ndash; 24</span><h3>Way two &mdash; you have to count</h3></div>
+   <p class="objective">The pivot. Once this lands, the props go away for good.</p>
+
+   <div class="speak">
+    <p>Now I will ask a different kind of question.</p>
+    <p>I pick one employee from our table at random. What is the chance that person works in Tech?</p>
    </div>
 
    <div class="qbox">
-    <div class="q">Let them work it out. Somebody will say &ldquo;one in four, there are four
+    <div class="q">Wait. Someone will say &ldquo;one out of four, because there are four
     departments&rdquo;.</div>
-    <div class="a">That is the mistake worth catching. The four departments are not the same size. There
-    is no structure to reason from here &mdash; you have to go and count. Which is exactly the
-    difference between the two kinds.</div>
+    <div class="a">That is the answer you want. It is wrong, and it is wrong for a useful reason: they
+    treated the table like a die. Do not correct it yet &mdash; show them.</div>
    </div>
 
    <div class="speak">
-    <p>One in four, because there are four departments? That is what you would say if this were a die.
-    But the departments are not the same size. You cannot reason it out. You have to go and look.</p>
+    <p>One out of four, because there are four departments?</p>
+    <p>That would be right if this were a die. A die has six faces and they are all the same size.</p>
+    <p>But are our four departments the same size? No. Sales has sixty-five people. Marketing has
+    forty-two.</p>
+    <p>So I cannot think my way to the answer. <b>I have to open the file and count.</b></p>
    </div>
 
-   <div class="typeit">Count, do not reason</div>
+   <div class="typeit">Count it</div>
 <pre><code><span class="k">print</span>(df.department.value_counts())
 <span class="k">print</span>()
 <span class="k">print</span>(df.department.value_counts(normalize=<span class="k">True</span>).round(<span class="o">3</span>))</code></pre>
@@ -7558,23 +7588,40 @@ HR           0.224
 Marketing    0.209</div>
 
    <div class="speak">
-    <p>Forty-nine out of two hundred and one. Zero point two four four. Not zero point two five.</p>
-    <p>That is <b>empirical</b> probability &mdash; you observed it, you did not deduce it.</p>
-    <p>And I want you to look at that second command, because you have been running it since week one.
-    <b>You have been computing probabilities for seven sessions.</b> Nobody told you they were called
-    that.</p>
-    <p>Here is the part that matters for your job. Dice and cards are theoretical. Almost nothing at
-    work is. Real questions do not come with a known mechanism &mdash; you count what happened and use
-    that. So of those two columns, the right-hand one is the one you will live in.</p>
+    <p>Forty-nine out of two hundred and one. That is zero point two four four.</p>
+    <p>Not zero point two five. Close, but not the same.</p>
+    <p>This one also has a book name. It is called <b>empirical probability</b>. Again, do not worry
+    about the word. It means: <b>you counted what actually happened.</b></p>
+    <p>Now look at that second line of code. <code>normalize equals True</code>.</p>
+    <p>You have been running that since week one. Every time you ran it, you were finding a probability.
+    Nobody told you that is what it was called.</p>
+   </div>
+
+   <div class="stage">Now put the props away. Say this clearly &mdash; it is the point of the whole block.</div>
+
+   <div class="speak">
+    <p>So we have two ways. Think, or count.</p>
+    <p>Coins, dice and cards are the thinking kind. That is why every textbook uses them. They are easy
+    to explain.</p>
+    <p>But at work, almost nothing is like that. A customer is not a coin. A sale is not a die.</p>
+    <p>At work you <b>count</b>. So the counting kind is the one you will use every single day.</p>
+    <p>That is the last time we will look at a coin.</p>
    </div>
   </div>
 
   <!-- 24-34 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">24 &ndash; 34</span><h3>The scale, and the cheapest rule in statistics</h3></div>
-   <p class="objective">Zero to one, everything sums to one, and the complement. Quick block.</p>
+   <div class="bhead"><span class="clock">24 &ndash; 34</span><h3>Zero to one, and one easy rule</h3></div>
+   <p class="objective">The scale, then the complement rule. Short block.</p>
 
-   <div class="typeit">They must add to one. Always.</div>
+   <div class="speak">
+    <p>Every probability is a number between zero and one.</p>
+    <p>Zero means it never happens. One means it always happens. Nothing can be outside that.</p>
+    <p>So if someone says &ldquo;there is a one point five chance&rdquo;, they made a mistake.</p>
+    <p>And all the pieces together must add up to one. Let us check.</p>
+   </div>
+
+   <div class="typeit">They must add to one</div>
 <pre><code>p = df.department.value_counts(normalize=<span class="k">True</span>)
 
 <span class="k">print</span>(p.round(<span class="o">3</span>))
@@ -7586,42 +7633,44 @@ Marketing    0.209
 total: 1.0</div>
 
    <div class="speak">
-    <p>They add to one. They have to. Every employee is in exactly one department, so the pieces are the
-    whole thing.</p>
-    <p>And that gives you a rule you will use constantly, which costs nothing to learn.</p>
-    <p>What is the probability somebody is <b>not</b> in Tech?</p>
+    <p>One point zero. Exactly one.</p>
+    <p>It has to be. Every employee is in one department. So all the pieces together are all the people.</p>
+    <p>Now a question. What is the chance a person is <b>not</b> in Tech?</p>
    </div>
 
    <div class="qbox">
-    <div class="q">Let them add the other three. Then show the shortcut.</div>
-    <div class="a">0.323 + 0.224 + 0.209 = 0.756. Or just 1 &minus; 0.244. Same answer, one step
-    instead of three.</div>
+    <div class="q">Let them add the other three: 0.323 + 0.224 + 0.209 = 0.756.</div>
+    <div class="a">Then show the short way. Same answer, one step.</div>
    </div>
 
    <div class="speak">
-    <p>You could add up the other three. Or you could do one minus zero point two four four, and get
-    the same thing.</p>
-    <p>That is the <b>complement rule</b>. The chance of something not happening is one minus the chance
-    it does.</p>
-    <p>It sounds too simple to bother with. But when somebody asks &ldquo;what is the probability at
-    least one of these fails&rdquo;, the direct calculation is horrible and one-minus-the-chance-none-fail
-    takes a line. Remember it exists.</p>
+    <p>You can add the other three. That gives zero point seven five six.</p>
+    <p>Or you can just do one minus zero point two four four. Same answer.</p>
+    <p>That is a small rule but you will use it a lot. <b>The chance of something not happening is one
+    minus the chance it happens.</b></p>
+    <p>It sounds too easy to be useful. Here is when it saves you.</p>
+    <p>Say a machine has ten parts. Someone asks: what is the chance <b>at least one</b> part fails?</p>
+    <p>Doing that directly is very long. One part fails, or two, or three, all the way to ten.</p>
+    <p>But &ldquo;at least one fails&rdquo; is just the opposite of &ldquo;none of them fail&rdquo;. So
+    work out the chance none fail, and take it away from one. One line instead of ten.</p>
    </div>
   </div>
 
-  <!-- 34-50 -->
+  <!-- 34-42 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">34 &ndash; 50</span><h3>OR, AND, and two words people merge</h3></div>
-   <p class="objective">The two rules, then the distinction that causes most of the errors.</p>
+   <div class="bhead"><span class="clock">34 &ndash; 42</span><h3>The OR rule</h3></div>
+   <p class="objective">Let them guess wrong first, then explain why.</p>
 
    <div class="speak">
-    <p>Two rules. One for <b>or</b>, one for <b>and</b>.</p>
-    <p>Start with or. What is the chance somebody is in Tech <b>or</b> rated Excellent?</p>
-    <p>Instinct says add them. Zero point two four four plus zero point two four four is zero point four
-    eight eight. Let us check.</p>
+    <p>Two rules now. One for <b>or</b>, one for <b>and</b>.</p>
+    <p>First, or. What is the chance a person is in Tech <b>or</b> rated Excellent?</p>
+    <p>The chance of Tech is zero point two four four. The chance of Excellent is also zero point two
+    four four.</p>
+    <p>So do we just add them? That would give zero point four eight eight.</p>
+    <p>Let us check.</p>
    </div>
 
-   <div class="typeit">Check the instinct</div>
+   <div class="typeit">Check the guess</div>
 <pre><code>t = (df.department == <span class="c">"Tech"</span>)
 e = (df.rating == <span class="c">"Excellent"</span>)
 
@@ -7635,111 +7684,138 @@ added together : 0.488
 actually       : 0.423</div>
 
    <div class="qbox">
-    <div class="q">Ask why adding overshoots. Someone will get it.</div>
-    <div class="a">The thirteen people who are <b>both</b> in Tech and Excellent got counted twice
-    &mdash; once in each group.</div>
+    <div class="q">Ask: &ldquo;Adding gave a bigger answer than the truth. Why?&rdquo;</div>
+    <div class="a">Someone will see it: the people who are both got counted twice.</div>
    </div>
 
    <div class="speak">
-    <p>Adding gives too much. Zero point four eight eight against a real zero point four two three.</p>
-    <p>Because thirteen people are in Tech <b>and</b> rated Excellent. When I added the two groups, I
-    counted those thirteen twice.</p>
-    <p>So the rule is: add them, then subtract the overlap.</p>
+    <p>Adding gave zero point four eight eight. The real answer is zero point four two three.</p>
+    <p>So adding gave us too much. Why?</p>
+    <p>Because thirteen people are in Tech <b>and</b> rated Excellent.</p>
+    <p>When I counted the Tech group, those thirteen were in it. When I counted the Excellent group,
+    those same thirteen were in it again.</p>
+    <p>I counted them two times. So I have to take them off once.</p>
+    <p>That is the or rule. <b>Add the two, then take away the ones in both.</b></p>
    </div>
 
    <div class="mth">
     <div class="mrow"><b>P(A or B) = P(A) + P(B) &minus; P(A and B)</b></div>
-    <div class="mcalc">0.244 + 0.244 &minus; 0.065 = <b>0.423</b> &nbsp;&mdash;&nbsp; which is what we
-    counted</div>
+    <div class="mcalc">0.244 + 0.244 &minus; 0.065 = <b>0.423</b></div>
    </div>
+  </div>
+
+  <!-- 42-50 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">42 &ndash; 50</span><h3>The AND rule, and two words to be careful with</h3></div>
+   <p class="objective">The multiply rule, then the distinction. Slow down for the two words.</p>
 
    <div class="speak">
-    <p>Now the and rule. For <b>and</b> you multiply &mdash; but only under a condition, and the
-    condition is the whole point.</p>
+    <p>Now the and rule. For <b>and</b>, you multiply.</p>
+    <p>Chance of Tech times chance of Excellent. Let us see if it works.</p>
    </div>
 
-   <div class="typeit">Does multiplying work here?</div>
+   <div class="typeit">Does multiplying work?</div>
 <pre><code><span class="k">print</span>(<span class="c">"P(Tech and Excellent) actual:"</span>, <span class="k">round</span>((t &amp; e).mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(Tech) x P(Excellent)     :"</span>, <span class="k">round</span>(t.mean() * e.mean(), <span class="o">3</span>))</code></pre>
    <div class="screen">P(Tech and Excellent) actual: 0.065
 P(Tech) x P(Excellent)     : 0.059</div>
 
    <div class="speak">
-    <p>Close. Zero point zero six five against zero point zero five nine. Multiplying more or less
-    worked.</p>
-    <p>Hold that thought, because in fifteen minutes I am going to show you a pair where multiplying is
-    badly wrong. The condition it depends on has a name and we are about to meet it.</p>
+    <p>Real answer zero point zero six five. Multiplying gave zero point zero five nine.</p>
+    <p>Very close. So multiplying worked here.</p>
+    <p>But it does not always work. Later today I will show you a pair where multiplying is very wrong.
+    Remember that I said this.</p>
    </div>
 
-   <div class="stage">Now the two words. Slow down here. This is the block students fail exams on.</div>
+   <div class="stage">Now the two words. Go slowly. Students mix these up in every exam.</div>
 
    <div class="speak">
-    <p>Two terms, and almost everybody mixes them up. Let me separate them now.</p>
-    <p><b>Mutually exclusive</b> means two things cannot both happen. Can somebody be in HR and in Tech
-    at the same time?</p>
-    <p>No. So those are mutually exclusive, and the probability of both is exactly zero.</p>
-    <p><b>Independent</b> means something completely different. It means knowing one tells you
-    <b>nothing</b> about the other.</p>
-    <p>Now here is the sentence I want you to write down, because it is the one that stops the
-    confusion.</p>
-    <p><b>If two things are mutually exclusive, they are the opposite of independent.</b></p>
-    <p>Think about it. If I tell you somebody is in HR, what do you now know about whether they are in
-    Tech? You know for certain they are not. That is not &ldquo;no information&rdquo;. That is total
-    information.</p>
-    <p>So mutually exclusive and independent are not similar ideas. They are nearly opposite ones.</p>
+    <p>Two words now. They sound similar. They are not.</p>
+    <p>First word: <b>mutually exclusive</b>. It means both cannot happen together.</p>
+    <p>Can one person be in HR and in Tech at the same time? No. So HR and Tech are mutually exclusive.
+    The chance of both is zero.</p>
+    <p>Second word: <b>independent</b>. It means one tells you nothing about the other.</p>
+    <p>If I tell you a person works in Tech, do you now know their height? No. So department and height
+    are independent.</p>
    </div>
 
-   <div class="warn"><b>Do not move on until this has landed.</b> Ask one student to give you their own
-   example of each. Mutually exclusive: a single employee being in two departments. Independent: their
-   department and their height. If the examples come back correct, you are safe.</div>
+   <div class="keyline">
+    Now the part that stops the confusion. Ask it as a question and wait for the answer.
+   </div>
+
+   <div class="speak">
+    <p>Now here is where students get confused. Both words sound like &ldquo;these two things are
+    separate&rdquo;.</p>
+    <p>So let me ask you something. I tell you a person works in HR. Do you now know anything about
+    whether they work in Tech?</p>
+    <p>Yes. You know for sure they do <b>not</b> work in Tech. You are completely certain.</p>
+    <p>So that is a lot of information, not zero information.</p>
+    <p>But independent means <b>zero</b> information.</p>
+    <p>So mutually exclusive and independent are not the same thing. They are opposite things. Write that
+    down.</p>
+   </div>
+
+   <div class="warn"><b>Do not move on yet.</b> Ask one student for their own example of mutually
+   exclusive, and another student for their own example of independent. If both answers are right, the
+   class has it. If not, do it again with a different example.</div>
   </div>
 
-  <!-- 50-68 -->
+  <!-- 50-60 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">50 &ndash; 68</span><h3>Conditional probability &mdash; you have been doing this for weeks</h3></div>
-   <p class="objective">P(A | B) as a filter. Two examples: one flat, one that moves hard.</p>
+   <div class="bhead"><span class="clock">50 &ndash; 60</span><h3>Probability with a condition</h3></div>
+   <p class="objective">P(A|B) as a filter. Start with the example that does not change.</p>
 
    <div class="speak">
-    <p>Last big idea, and it is the useful one.</p>
-    <p>So far every probability has been about a random person from the whole table. But that is almost
-    never the real question. The real question usually comes with a condition attached.</p>
-    <p>Not &ldquo;what is the chance a customer buys&rdquo;, but &ldquo;what is the chance a customer
-    <b>who clicked the ad</b> buys&rdquo;. Not &ldquo;what is the chance of default&rdquo;, but
-    &ldquo;what is the chance of default <b>for someone earning under thirty thousand</b>&rdquo;.</p>
-    <p>That is called <b>conditional probability</b>, and it is written like this.</p>
+    <p>Last big idea, and this is the useful one.</p>
+    <p>Every question so far was about a random person from the whole table.</p>
+    <p>But real questions are not like that. Real questions have a condition in them.</p>
+    <p>Not &ldquo;will this customer buy&rdquo;. It is &ldquo;will this customer buy, <b>if they clicked
+    the ad</b>&rdquo;.</p>
+    <p>Not &ldquo;will this person repay the loan&rdquo;. It is &ldquo;will this person repay,
+    <b>if they earn less than thirty thousand</b>&rdquo;.</p>
+    <p>See the difference? There is an extra piece of information. We write it like this.</p>
    </div>
 
    <div class="mth">
-    <div class="mrow"><b>P(A | B)</b> &nbsp;&mdash;&nbsp; the probability of A, <b>given</b> that B is
-    already true</div>
-    <div class="mrow">the bar is read &ldquo;given&rdquo;. It does not mean divide.</div>
+    <div class="mrow"><b>P(A | B)</b> &nbsp;&mdash;&nbsp; the chance of A, if we already know B is true</div>
+    <div class="mrow">the straight line means &ldquo;given&rdquo;. It does <b>not</b> mean divide.</div>
    </div>
 
    <div class="speak">
-    <p>And here is the thing. You already know how to do this. Mechanically, &ldquo;given B&rdquo; just
-    means: <b>throw away every row where B is false, then compute as normal.</b></p>
+    <p>And doing it is easy. You already know how.</p>
+    <p>&ldquo;Given Tech&rdquo; just means: <b>delete every row that is not Tech. Then count normally.</b></p>
     <p>That is a filter. You have been filtering since week one.</p>
    </div>
 
-   <div class="typeit">Conditional probability is a filter and then a count</div>
+   <div class="typeit">Filter, then count</div>
 <pre><code><span class="c"># P(Excellent) - everybody</span>
 <span class="k">print</span>(<span class="c">"P(Excellent)       :"</span>, <span class="k">round</span>((df.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))
 
-<span class="c"># P(Excellent | Tech) - throw away everyone who is not Tech, then count</span>
+<span class="c"># P(Excellent | Tech) - keep only Tech rows, then count</span>
 tech = df[df.department == <span class="c">"Tech"</span>]
 <span class="k">print</span>(<span class="c">"P(Excellent | Tech):"</span>, <span class="k">round</span>((tech.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))</code></pre>
    <div class="screen">P(Excellent)       : 0.244
 P(Excellent | Tech): 0.265</div>
 
    <div class="speak">
-    <p>Zero point two four four for everybody. Zero point two six five for Tech.</p>
-    <p>Basically the same number. So knowing somebody is in Tech told us <b>nothing useful</b> about
-    their rating.</p>
-    <p>And that is what independence looks like when you actually measure it. Not a definition &mdash; a
-    conditional that does not move.</p>
+    <p>Zero point two four four for everyone. Zero point two six five for Tech only.</p>
+    <p>Those are almost the same number.</p>
+    <p>So knowing the person is in Tech told me nothing new about their rating.</p>
+    <p>When the number does not change, the two things are <b>independent</b>. That is the word from
+    ten minutes ago. Now you can actually see it in a number.</p>
    </div>
+  </div>
 
-   <div class="stage">Now the contrast. This is the one that makes the idea feel worth having.</div>
+  <!-- 60-68 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">60 &ndash; 68</span><h3>When the condition changes everything</h3></div>
+   <p class="objective">The contrast, then pay off the promise about multiplying.</p>
+
+   <div class="speak">
+    <p>Now let me try a different condition.</p>
+    <p>First let me find the middle salary. Half the people earn more than that, half earn less.</p>
+    <p>Then I will ask: out of the people who earn <b>more</b> than the middle, how many are in Tech?</p>
+   </div>
 
    <div class="typeit">A condition that changes the answer</div>
 <pre><code>median_pay = df.salary.median()
@@ -7751,15 +7827,23 @@ well_paid  = df[df.salary &gt; median_pay]
 P(Tech | paid above median): 0.384</div>
 
    <div class="speak">
-    <p>Now look. Zero point two four four for a random employee. Zero point three eight four once I
-    tell you they are paid above the median.</p>
-    <p>That is a real jump. Knowing about their salary genuinely changed what I know about their
-    department.</p>
-    <p>So these two things are <b>not</b> independent &mdash; and you already knew that, from day seven.
-    Tech pays more than the other departments. This is that same fact, said in probability.</p>
+    <p>Look at the difference. Zero point two four four for everyone. Zero point three eight four for
+    the well paid people.</p>
+    <p>That is a big jump.</p>
+    <p>So this time, the condition <b>did</b> tell me something. If I know someone earns well, they are
+    much more likely to be in Tech.</p>
+    <p>These two things are <b>not</b> independent.</p>
+    <p>And you already knew this. On day seven we saw Tech is paid more than the other departments. This
+    is the same thing. We are just saying it a different way.</p>
    </div>
 
-   <div class="typeit">And this is why multiplying fails when things are dependent</div>
+   <div class="stage">Now go back to the promise you made at minute 44.</div>
+
+   <div class="speak">
+    <p>Remember I said multiplying does not always work? Here is where it breaks.</p>
+   </div>
+
+   <div class="typeit">Multiplying fails here</div>
 <pre><code>hi = (df.salary &gt; median_pay)
 tc = (df.department == <span class="c">"Tech"</span>)
 
@@ -7769,149 +7853,160 @@ tc = (df.department == <span class="c">"Tech"</span>)
 P(Tech) x P(well paid)      : 0.120</div>
 
    <div class="speak">
-    <p>Zero point one eight nine in reality. Multiplying predicted zero point one two zero.</p>
-    <p>That is more than fifty percent out. The multiply rule failed, and it failed because these two
-    things are dependent.</p>
-    <p>So now you have the honest version of the and rule. <b>You may multiply only when the two things
-    are independent</b> &mdash; and the way you check is exactly what we just did. Multiply, then
-    compare against the real count.</p>
+    <p>The real answer is zero point one eight nine. Multiplying gave zero point one two zero.</p>
+    <p>That is not close. That is about sixty percent off.</p>
+    <p>Earlier, multiplying worked for Tech and Excellent. Now it fails for Tech and salary.</p>
+    <p>What is the difference? Tech and Excellent do not affect each other. Tech and salary <b>do</b>.</p>
+    <p>So here is the full rule. <b>You can multiply only when the two things do not affect each
+    other.</b></p>
+    <p>And how do you know? You do what we just did. Multiply, then compare with the real count. If they
+    match, you were fine. If they do not match, they affect each other.</p>
    </div>
   </div>
 
   <!-- 68-82 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">68 &ndash; 82</span><h3>The two directions are not the same question</h3></div>
-   <p class="objective">The most valuable fourteen minutes in the session. Do not let it get squeezed.</p>
+   <div class="bhead"><span class="clock">68 &ndash; 82</span><h3>Turning the question around</h3></div>
+   <p class="objective">The most important part of the session. Do not let it get squeezed.</p>
 
    <div class="speak">
-    <p>One more thing about conditional probability, and it is the part that costs people their
-    credibility at work.</p>
-    <p>We just found that the probability of being in Tech, given that you are well paid, is zero point
-    three eight four.</p>
-    <p>Let me now ask the same question the other way round. What is the probability of being well
-    paid, given that you are in Tech?</p>
+    <p>One more thing, and this is the one I really want you to remember.</p>
+    <p>A few minutes ago we found this. Out of the well paid people, thirty-eight point four percent are
+    in Tech.</p>
+    <p>Now I will turn the question around. Out of the Tech people, how many are well paid?</p>
+    <p>Before I run it &mdash; what do you think? Same number? Bigger? Smaller?</p>
    </div>
 
    <div class="qbox">
-    <div class="q">Ask for a prediction first. Most of the room will say it is the same number, or
-    close to it.</div>
-    <div class="a">It is 0.776 &mdash; roughly double. Getting this prediction publicly wrong is what
-    makes the lesson stick.</div>
+    <div class="q">Take a real guess from the room. Most will say it is the same, or close.</div>
+    <div class="a">It is 0.776. Roughly double. Getting this wrong out loud is what makes it stick.</div>
    </div>
 
-   <div class="typeit">Same two facts. Opposite directions.</div>
+   <div class="typeit">The same question, turned around</div>
 <pre><code><span class="k">print</span>(<span class="c">"P(Tech | well paid):"</span>, <span class="k">round</span>((well_paid.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(well paid | Tech):"</span>, <span class="k">round</span>((tech.salary &gt; median_pay).mean(), <span class="o">3</span>))</code></pre>
    <div class="screen">P(Tech | well paid): 0.384
 P(well paid | Tech): 0.776</div>
 
    <div class="speak">
-    <p>Zero point three eight four one way. Zero point seven seven six the other way. Double.</p>
-    <p>And the strange part is that both of those are built from the <b>same thirty-eight people</b>.
-    The people who are in Tech and are well paid. Thirty-eight, both times.</p>
-    <p>All that changed is what I divided by.</p>
-    <p>Thirty-eight out of the ninety-nine well-paid people is zero point three eight four.</p>
-    <p>Thirty-eight out of the forty-nine Tech people is zero point seven seven six.</p>
-    <p>So <b>P of A given B, and P of B given A, are different questions.</b> Swapping them is one of
-    the most common mistakes people make with data, and it is usually made by accident.</p>
+    <p>Zero point three eight four one way. Zero point seven seven six the other way.</p>
+    <p>That is double. Same table, same two columns, and the answer doubled.</p>
+    <p>Now here is the strange part. Look at where these numbers come from.</p>
+    <p>There are thirty-eight people who are in Tech <b>and</b> well paid. Thirty-eight, both times. The
+    same thirty-eight people.</p>
+    <p>First answer: thirty-eight out of ninety-nine well paid people. That is zero point three eight
+    four.</p>
+    <p>Second answer: thirty-eight out of forty-nine Tech people. That is zero point seven seven six.</p>
+    <p>The top number never changed. Only the bottom number changed. And that is enough to double the
+    answer.</p>
    </div>
 
-   <div class="keyline">
-    If you want it to land outside the dataset, use this and nothing else: <b>&ldquo;most people who get
-    food poisoning ate at a restaurant&rdquo;</b> is true. <b>&ldquo;most people who eat at restaurants
-    get food poisoning&rdquo;</b> is nonsense. Same two facts, reversed, and one of them would shut a
-    business down.
+   <div class="stage">Now give them the simple example. This is what they will actually remember.</div>
+
+   <div class="speak">
+    <p>Let me say it without any data.</p>
+    <p>Most people who get food poisoning had eaten at a restaurant. That is true.</p>
+    <p>Now turn it around. Most people who eat at restaurants get food poisoning.</p>
+    <p>Is that true? No. That is silly. Millions of people eat out and are perfectly fine.</p>
+    <p>Same two facts. I just turned them around. And one of them is nonsense.</p>
    </div>
 
    <div class="speak">
-    <p>One more, closer to work. Suppose someone tells you: <b>ninety percent of people who churned had
-    complained first.</b></p>
-    <p>Does that mean ninety percent of people who complain will churn?</p>
-    <p>No. It might be two percent. Most complainers stay. You have been told about the churners, not
-    about the complainers &mdash; and if you act on the wrong direction, you will spend a budget chasing
-    the wrong people.</p>
-    <p>So whenever you see a statistic with &ldquo;of the people who&rdquo; in it: stop, and work out
-    which group is the denominator.</p>
+    <p>Now one you will actually meet at work.</p>
+    <p>Someone tells you: <b>ninety percent of the customers who left us had complained first.</b></p>
+    <p>So should we worry about every customer who complains?</p>
+    <p>Think about it. That sentence is about the people who <b>left</b>. It says nothing about the
+    people who complained.</p>
+    <p>Maybe five thousand people complained last year. Maybe only one hundred of them left. That is two
+    percent, not ninety.</p>
+    <p>If you get this backwards, you will spend the whole budget on the wrong customers.</p>
+    <p>So whenever you hear &ldquo;ninety percent of the people who&hellip;&rdquo;, stop and ask one
+    question. <b>Ninety percent of which group?</b></p>
    </div>
   </div>
 
   <!-- 82-90 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">82 &ndash; 90</span><h3>Close, and a question I am not answering today</h3></div>
-   <p class="objective">Recap in one minute, then set the hook for day 9 and leave it open.</p>
+   <div class="bhead"><span class="clock">82 &ndash; 90</span><h3>Close, and a question for tomorrow</h3></div>
+   <p class="objective">One minute of recap, then set the hook and leave it open.</p>
 
    <div class="speak">
-    <p>Quick recap. Probability is a number from zero to one. You get it either by reasoning about
-    structure, which is dice, or by counting what happened, which is your job.</p>
-    <p>Or means add and subtract the overlap. And means multiply, but only if the two are independent
-    &mdash; and you check that rather than assume it.</p>
-    <p>And the useful one: conditional probability, which is just a filter followed by a count. It is
-    the shape almost every real question comes in.</p>
+    <p>Quick recap.</p>
+    <p>Probability is a number between zero and one that says how likely something is.</p>
+    <p>You get it two ways. By thinking, like a coin. Or by counting, like our table. At work it is
+    almost always counting.</p>
+    <p>For <b>or</b>, add the two and take away the ones in both.</p>
+    <p>For <b>and</b>, multiply &mdash; but only if the two things do not affect each other. Check it
+    first.</p>
+    <p>And for a question with a condition, filter the rows and then count.</p>
+    <p>And the last one. Turning a question around gives you a different answer. Always check which
+    group the percentage is about.</p>
    </div>
 
-   <div class="stage">Now the hook. Ask it, let them argue, and do not resolve it. Day 9 opens here.</div>
+   <div class="stage">Now the hook. Ask it, let them argue, and do not give the answer.</div>
 
    <div class="speak">
-    <p>Before you go, one question. And I am not going to answer it today.</p>
-    <p>Every probability we did today was about categories. Departments, ratings. Things you can count.</p>
-    <p>But look at the height column. Those are not categories. They are measurements.</p>
-    <p>So: <b>what is the probability that a randomly chosen employee is exactly one hundred and seventy
-    centimetres tall?</b></p>
+    <p>One question before you go. I am not going to answer it today.</p>
+    <p>Everything today was about groups you can count. Departments. Ratings. You can count how many
+    people are in each one.</p>
+    <p>But look at the height column. Heights are not groups. They are measurements. One person is
+    168.2, another is 171.9.</p>
+    <p>So here is my question. If I pick one employee at random, what is the chance they are
+    <b>exactly</b> one hundred and seventy centimetres tall?</p>
    </div>
 
    <div class="qbox">
-    <div class="q">Let them argue for two or three minutes. You will get &ldquo;one over two hundred and
-    one&rdquo;, and you will get &ldquo;count how many are 170&rdquo;.</div>
-    <div class="a">Do not settle it. Both answers are wrong, and the real answer is zero, which will
-    annoy them enough to remember the question overnight. That is exactly what day 9 opens on.</div>
+    <div class="q">Let them argue for two or three minutes. You will hear &ldquo;one out of two hundred
+    and one&rdquo; and &ldquo;count how many are 170&rdquo;.</div>
+    <div class="a">Do not settle it. Both are wrong. The real answer is zero, and that will annoy them
+    enough to think about it overnight. Day 9 starts here.</div>
    </div>
 
    <div class="speak">
-    <p>Hold on to that. Because counting worked perfectly all session, and tomorrow I am going to show
-    you that for a measurement like height, counting breaks completely.</p>
-    <p>And fixing it is what gives us the bell curve.</p>
+    <p>Keep thinking about that one.</p>
+    <p>Counting worked for everything today. Tomorrow I will show you that for heights, counting stops
+    working completely.</p>
+    <p>And fixing that is where the famous bell curve comes from.</p>
    </div>
 
    <div class="runsheet">
- <div class="rs-head">
-  <h4>The session, as a run sheet</h4>
-  <p>Top to bottom is the order you teach it. Each step says the one thing to land, and shows the exact
-  code to type at that point. Ten steps, eight code blocks, 90 minutes.</p>
- </div>
+    <div class="rs-head">
+     <h4>The session, as a run sheet</h4>
+     <p>Top to bottom is the order you teach it. Each step says the one thing to land, and shows the
+     exact code to type at that point. Ten steps, eight code blocks, 90 minutes.</p>
+    </div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">The module turns</p>
-   <p class="rs-say">Seven sessions described data we <b>had</b>, and every answer was certain. From
-   today the questions are about what we have <b>not</b> measured &mdash; so the answers stop being
-   certain. Say out loud that the CLT, confidence intervals and p-values are all probability
-   statements, or this feels like a detour.</p>
-   <p class="rs-none">No code. Board only.</p>
-  </div></div>
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">What changes from today</p>
+      <p class="rs-say">For seven days the answers were <b>sure</b>, because we had everyone's data.
+      From today the questions are about people we did not measure, so the answers can only be
+      <b>likely</b>. Probability is the number for &ldquo;likely&rdquo;. Say that days 10 to 13 all need
+      it, or they will think this is a random maths lesson.</p>
+      <p class="rs-none">No code. Talk only.</p>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 18</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Theoretical &mdash; coin, die, cards</p>
-   <p class="rs-say">Coin 1/2. Die 1/6. Ace 4/52. Heart 13/52. After each one: <b>you did not flip,
-   roll or touch anything</b> &mdash; you reasoned from the structure of the object. That is
-   theoretical probability, and it is the kind an analyst almost never gets.</p>
-   <p class="rs-none">No code. Props and board.</p>
-   <div class="rs-board"><b>Leave the props here.</b> If the coin is still on screen at minute 25 the
-   session has drifted into the version students think is a toy.</div>
-  </div></div>
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 18</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">Way one &mdash; work it out by thinking</p>
+      <p class="rs-say">Coin 1 out of 2. Die 1 out of 6. Ace 4 out of 52. Heart 13 out of 52. After each
+      one say: <b>you did not flip it, roll it or touch it.</b> You worked it out by thinking. The book
+      calls that <b>theoretical</b> &mdash; give the easy words first, the book word second.</p>
+      <p class="rs-none">No code. Coin, die and cards.</p>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">18 &ndash; 24</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Empirical &mdash; you have to count</p>
-   <p class="rs-say">Ask for P(Tech). Someone says one in four because there are four departments
-   &mdash; that is the die answer. The departments are different sizes, so there is nothing to reason
-   from. <b>0.244, not 0.25.</b> Then point at <code>normalize=True</code>: they have been computing
-   probabilities since week one.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code><span class="k">print</span>(df.department.value_counts())
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">18 &ndash; 24</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">Way two &mdash; you have to count</p>
+      <p class="rs-say">Ask for the chance a random employee is in Tech. Someone says one out of four.
+      That is the die answer. Our departments are different sizes, so you cannot think it out &mdash;
+      you must count. <b>0.244, not 0.25.</b> The book calls that <b>empirical</b>. Then point at
+      <code>normalize=True</code>: they have been doing this since week one.</p>
+      <p class="rs-do">Type this</p>
+      <div class="rs-code"><pre><code><span class="k">print</span>(df.department.value_counts())
 <span class="k">print</span>()
 <span class="k">print</span>(df.department.value_counts(normalize=<span class="k">True</span>).round(<span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">Sales        65
+      <div class="rs-out">Sales        65
 Tech         49
 HR           45
 Marketing    42
@@ -7920,143 +8015,149 @@ Sales        0.323
 Tech         0.244
 HR           0.224
 Marketing    0.209</div>
-  </div></div>
+      <div class="rs-board"><b>Put the props away here.</b> Say it out loud: at work almost nothing is
+      a coin, so counting is the one they will use every day.</div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">24 &ndash; 34</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">The scale, and the complement</p>
-   <p class="rs-say">Zero to one, and the pieces sum to one because every employee is in exactly one
-   department. Then ask for P(not Tech): they will add the other three, and you show
-   <b>1 &minus; 0.244</b> instead. Sell it with the case that makes it worth having &mdash; &ldquo;what
-   is the chance at least one fails&rdquo; is horrible directly and one line as
-   <b>1 &minus; P(none fail)</b>.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code>p = df.department.value_counts(normalize=<span class="k">True</span>)
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">24 &ndash; 34</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">Zero to one, and one easy rule</p>
+      <p class="rs-say">Nothing can be below 0 or above 1, and all the pieces add to 1 because every
+      employee is in one department. Then ask for the chance a person is <b>not</b> in Tech. They will
+      add the other three; show <b>1 &minus; 0.244</b> instead. Sell it with the ten-part machine:
+      &ldquo;at least one fails&rdquo; is very long directly, but it is just 1 minus &ldquo;none
+      fail&rdquo;.</p>
+      <p class="rs-do">Type this</p>
+      <div class="rs-code"><pre><code>p = df.department.value_counts(normalize=<span class="k">True</span>)
 
 <span class="k">print</span>(p.round(<span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"total:"</span>, p.sum())</code></pre></div>
-   <div class="rs-out">Sales        0.323
+      <div class="rs-out">Sales        0.323
 Tech         0.244
 HR           0.224
 Marketing    0.209
 total: 1.0</div>
-   <div class="rs-board"><b>On the board:</b> P(not A) = 1 &minus; P(A)</div>
-  </div></div>
+      <div class="rs-board"><b>On the board:</b> P(not A) = 1 &minus; P(A)</div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">34 &ndash; 42</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">OR &mdash; add, then subtract the overlap</p>
-   <p class="rs-say">Let them predict 0.244 + 0.244 = 0.488, then show the real 0.423. Ask why adding
-   overshoots: <b>the 13 people who are both got counted twice.</b> Only then write the formula.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code>t = (df.department == <span class="c">"Tech"</span>)
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">34 &ndash; 42</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">The OR rule</p>
+      <p class="rs-say">Let them guess 0.244 + 0.244 = 0.488, then show the real 0.423. Ask why adding
+      gave too much. Answer: <b>13 people are in both groups, so they got counted twice.</b> Only after
+      that, write the formula.</p>
+      <p class="rs-do">Type this</p>
+      <div class="rs-code"><pre><code>t = (df.department == <span class="c">"Tech"</span>)
 e = (df.rating == <span class="c">"Excellent"</span>)
 
 <span class="k">print</span>(<span class="c">"P(Tech)        :"</span>, <span class="k">round</span>(t.mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(Excellent)   :"</span>, <span class="k">round</span>(e.mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"added together :"</span>, <span class="k">round</span>(t.mean() + e.mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"actually       :"</span>, <span class="k">round</span>((t | e).mean(), <span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">P(Tech)        : 0.244
+      <div class="rs-out">P(Tech)        : 0.244
 P(Excellent)   : 0.244
 added together : 0.488
 actually       : 0.423</div>
-   <div class="rs-board"><b>On the board:</b> P(A or B) = P(A) + P(B) &minus; P(A and B)
-   &nbsp;&rarr;&nbsp; 0.244 + 0.244 &minus; 0.065 = 0.423</div>
-  </div></div>
+      <div class="rs-board"><b>On the board:</b> P(A or B) = P(A) + P(B) &minus; P(A and B)
+      &nbsp;&rarr;&nbsp; 0.244 + 0.244 &minus; 0.065 = 0.423</div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">42 &ndash; 50</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">AND, and the two words everyone merges</p>
-   <p class="rs-say">Multiplying works here (0.059 against a real 0.065) &mdash; say it works
-   <b>for now</b> and promise a pair where it fails. Then the distinction: mutually exclusive means
-   they cannot both happen; independent means one tells you nothing. <b>If two things are mutually
-   exclusive they are the opposite of independent</b> &mdash; knowing someone is in HR tells you with
-   certainty they are not in Tech, which is total information, not zero.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"P(Tech and Excellent) actual:"</span>, <span class="k">round</span>((t &amp; e).mean(), <span class="o">3</span>))
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">42 &ndash; 50</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">The AND rule, and two words to be careful with</p>
+      <p class="rs-say">Multiplying works here: 0.059 against a real 0.065. Say clearly that it does
+      <b>not</b> always work and that you will show them later. Then the two words. <b>Mutually
+      exclusive</b> = both cannot happen. <b>Independent</b> = one tells you nothing about the other.
+      Then the question that fixes it: if I say someone is in HR, do you know anything about Tech? Yes
+      &mdash; you are certain they are not. That is a lot of information, so it is the <b>opposite</b>
+      of independent.</p>
+      <p class="rs-do">Type this</p>
+      <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"P(Tech and Excellent) actual:"</span>, <span class="k">round</span>((t &amp; e).mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(Tech) x P(Excellent)     :"</span>, <span class="k">round</span>(t.mean() * e.mean(), <span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">P(Tech and Excellent) actual: 0.065
+      <div class="rs-out">P(Tech and Excellent) actual: 0.065
 P(Tech) x P(Excellent)     : 0.059</div>
-   <div class="rs-board"><b>Do not move on</b> until a student gives you their own example of each.
-   Mutually exclusive: one person in two departments. Independent: department and height.</div>
-  </div></div>
+      <div class="rs-board"><b>Do not move on</b> until one student gives you their own example of
+      mutually exclusive and another gives you one of independent.</div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">50 &ndash; 60</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Conditional probability &mdash; a filter, then a count</p>
-   <p class="rs-say">Real questions come with a condition attached: not &ldquo;will a customer
-   buy&rdquo; but &ldquo;will a customer <b>who clicked the ad</b> buy&rdquo;. <b>P(A | B)</b>, bar
-   read as &ldquo;given&rdquo;, and mechanically it is a filter they have run since week one. First
-   example is the flat one: 0.244 against 0.265, so department tells you nothing about rating. That
-   is independence, measured rather than defined.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code><span class="c"># P(Excellent) - everybody</span>
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">50 &ndash; 60</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">Probability with a condition</p>
+      <p class="rs-say">Real questions have a condition: not &ldquo;will this customer buy&rdquo; but
+      &ldquo;will they buy <b>if they clicked the ad</b>&rdquo;. Write <b>P(A | B)</b> and say the line
+      means &ldquo;given&rdquo;, not divide. Doing it is just a filter: delete the rows that are not
+      Tech, then count. First example is the one that does <b>not</b> change &mdash; 0.244 against
+      0.265. That is what independent looks like as a number.</p>
+      <p class="rs-do">Type this</p>
+      <div class="rs-code"><pre><code><span class="c"># P(Excellent) - everybody</span>
 <span class="k">print</span>(<span class="c">"P(Excellent)       :"</span>, <span class="k">round</span>((df.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))
 
-<span class="c"># P(Excellent | Tech) - throw away everyone who is not Tech, then count</span>
+<span class="c"># P(Excellent | Tech) - keep only Tech rows, then count</span>
 tech = df[df.department == <span class="c">"Tech"</span>]
 <span class="k">print</span>(<span class="c">"P(Excellent | Tech):"</span>, <span class="k">round</span>((tech.rating == <span class="c">"Excellent"</span>).mean(), <span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">P(Excellent)       : 0.244
+      <div class="rs-out">P(Excellent)       : 0.244
 P(Excellent | Tech): 0.265</div>
-  </div></div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">60 &ndash; 68</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">A condition that moves &mdash; and the multiply rule failing</p>
-   <p class="rs-say">0.244 up to <b>0.384</b>. Knowing the salary changed what you know about the
-   department, so these are <b>not</b> independent &mdash; and that is day 7's pay gap said in
-   probability. Then cash the promise from step 6: multiplying predicts 0.120 against a real 0.189,
-   nearly 60% out. <b>Multiply only when independent, and check rather than assume.</b></p>
-   <p class="rs-do">Type this &mdash; both blocks, back to back</p>
-   <div class="rs-code"><pre><code>median_pay = df.salary.median()
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">60 &ndash; 68</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">When the condition changes everything</p>
+      <p class="rs-say">0.244 jumps to <b>0.384</b>. This time the condition did tell us something, so
+      these two are <b>not</b> independent &mdash; and it is the same pay gap from day 7. Then pay off
+      the promise from step 6: multiplying says 0.120, the truth is 0.189, about 60% off. <b>Multiply
+      only when the two things do not affect each other, and check it rather than assume it.</b></p>
+      <p class="rs-do">Type this &mdash; both blocks, one after the other</p>
+      <div class="rs-code"><pre><code>median_pay = df.salary.median()
 well_paid  = df[df.salary &gt; median_pay]
 
 <span class="k">print</span>(<span class="c">"P(Tech)                    :"</span>, <span class="k">round</span>((df.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(Tech | paid above median):"</span>, <span class="k">round</span>((well_paid.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">P(Tech)                    : 0.244
+      <div class="rs-out">P(Tech)                    : 0.244
 P(Tech | paid above median): 0.384</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>hi = (df.salary &gt; median_pay)
+      <div class="rs-code" style="margin-top:12px"><pre><code>hi = (df.salary &gt; median_pay)
 tc = (df.department == <span class="c">"Tech"</span>)
 
 <span class="k">print</span>(<span class="c">"P(Tech and well paid) actual:"</span>, <span class="k">round</span>((tc &amp; hi).mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(Tech) x P(well paid)      :"</span>, <span class="k">round</span>(tc.mean() * hi.mean(), <span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">P(Tech and well paid) actual: 0.189
+      <div class="rs-out">P(Tech and well paid) actual: 0.189
 P(Tech) x P(well paid)      : 0.120</div>
-   <div class="rs-board"><b>On the board:</b> P(A and B) = P(A) &times; P(B) &mdash;
-   <b>only if independent</b></div>
-  </div></div>
+      <div class="rs-board"><b>On the board:</b> you can multiply <b>only</b> when the two things do not
+      affect each other</div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">9</span><span class="rs-clock">68 &ndash; 82</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">The two directions are not the same question</p>
-   <p class="rs-say">Ask for a prediction before you run it &mdash; most of the room says the same
-   number. It is <b>0.776 against 0.384</b>, double. Then the point: <b>the same 38 people are on top
-   of both fractions</b>, 38/99 and 38/49, and only the denominator changed. Land it outside the data
-   with food poisoning, then with &ldquo;90% of churners complained first&rdquo; &mdash; which does not
-   mean 90% of complainers churn.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"P(Tech | well paid):"</span>, <span class="k">round</span>((well_paid.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">9</span><span class="rs-clock">68 &ndash; 82</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">Turning the question around</p>
+      <p class="rs-say">Ask for a guess before running it &mdash; most will say the same number. It is
+      <b>0.776 against 0.384</b>, double. Then the point: <b>the same 38 people are on top of both</b>,
+      38 out of 99 and 38 out of 49. Only the bottom changed. Land it with food poisoning, then with
+      &ldquo;90% of the customers who left had complained first&rdquo; &mdash; which does not mean 90%
+      of complainers will leave.</p>
+      <p class="rs-do">Type this</p>
+      <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"P(Tech | well paid):"</span>, <span class="k">round</span>((well_paid.department == <span class="c">"Tech"</span>).mean(), <span class="o">3</span>))
 <span class="k">print</span>(<span class="c">"P(well paid | Tech):"</span>, <span class="k">round</span>((tech.salary &gt; median_pay).mean(), <span class="o">3</span>))</code></pre></div>
-   <div class="rs-out">P(Tech | well paid): 0.384
+      <div class="rs-out">P(Tech | well paid): 0.384
 P(well paid | Tech): 0.776</div>
-   <div class="rs-board"><b>On the board:</b> P(A | B) is <b>not</b> P(B | A). Whenever you see
-   &ldquo;of the people who&hellip;&rdquo;, find the denominator.</div>
-  </div></div>
+      <div class="rs-board"><b>On the board:</b> whenever you hear &ldquo;90% of the people
+      who&hellip;&rdquo;, ask <b>90% of which group?</b></div>
+     </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">10</span><span class="rs-clock">82 &ndash; 90</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Close, and the hook you must not resolve</p>
-   <p class="rs-say">Recap in one minute: the scale, the two routes, OR, AND, the two words,
-   conditional, and the direction trap. Then ask: <b>what is the probability an employee is exactly
-   170 cm?</b> Let them argue two or three minutes and <b>leave it open</b>. Counting worked all
-   session; tomorrow it breaks, and fixing it is where the bell curve comes from.</p>
-   <p class="rs-none">No code. This is the handoff to day 9.</p>
-  </div></div>
-</div>
+    <div class="rs-step"><div class="rs-when"><span class="rs-n">10</span><span class="rs-clock">82 &ndash; 90</span></div>
+     <div class="rs-body">
+      <p class="rs-topic">Close, and the question you must not answer</p>
+      <p class="rs-say">One minute of recap: the 0 to 1 scale, think or count, the OR rule, the AND rule
+      and its condition, filter-then-count, and turning a question around. Then ask: <b>what is the
+      chance a person is exactly 170 cm tall?</b> Let them argue two or three minutes and <b>leave it
+      open.</b> Counting worked all day; tomorrow it stops working, and fixing that gives the bell
+      curve.</p>
+      <p class="rs-none">No code. This sets up day 9.</p>
+     </div></div>
+   </div>
+
    <div class="planbanner" style="margin-top:20px">
-    <b>Where this goes next.</b> Day 9 answers the height question &mdash; the probability of any exact
-    measurement is zero, which forces probability to become <em>area under a curve</em>. That curve is
-    the normal distribution, and z-scores follow from it.
+    <b>What comes next.</b> Day 9 answers the height question. The chance of any exact measurement is
+    zero, so probability has to change from counting to measuring area under a curve. That curve is the
+    normal distribution.
    </div>
   </div>
  </div>
@@ -8066,36 +8167,31 @@ P(well paid | Tech): 0.776</div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
 
-  <div class="qa"><h5>&ldquo;Why is P(Tech) 0.244 and not 0.25? There are four departments.&rdquo;</h5>
-  <p>&ldquo;Because they are not the same size. Sales has 65 people and Marketing has 42. One in four
-  would only be right if every department were equal, and almost nothing in real data is equal. That is
-  the difference between reasoning and counting.&rdquo;</p></div>
+  <div class="qa"><h5>&ldquo;Why is it 0.244 and not 0.25? There are four departments.&rdquo;</h5>
+  <p>&ldquo;Because the four departments are not the same size. Sales has sixty-five people. Marketing
+  has forty-two. One out of four would only be right if all four were equal.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Is mutually exclusive the same as independent?&rdquo;</h5>
-  <p>&ldquo;Nearly the opposite. Mutually exclusive means they cannot both happen &mdash; so knowing one
-  tells you the other is impossible, which is total information. Independent means knowing one tells you
-  nothing at all. If you can only keep one sentence, keep that.&rdquo;</p></div>
+  <p>&ldquo;No. They are opposite. Mutually exclusive means both cannot happen &mdash; so if I tell you
+  one, you know the other is impossible. That is a lot of information. Independent means you learn
+  nothing.&rdquo;</p></div>
 
-  <div class="qa"><h5>&ldquo;Then when <em>can</em> I multiply?&rdquo;</h5>
-  <p>&ldquo;Only when the two are independent, and you check by multiplying and comparing with the real
-  count. Tech and Excellent matched, so they are independent. Tech and well paid were 50% out, so they
-  are not. Never assume &mdash; it takes one line to test.&rdquo;</p></div>
+  <div class="qa"><h5>&ldquo;So when can I multiply?&rdquo;</h5>
+  <p>&ldquo;Only when the two things do not affect each other. And you can test it in one line.
+  Multiply, then compare with the real count. Tech and Excellent matched. Tech and salary did not.&rdquo;</p></div>
 
-  <div class="qa"><h5>&ldquo;Does the bar in P(A | B) mean divide?&rdquo;</h5>
-  <p>&ldquo;No, and it is a fair confusion because a division does happen inside. The bar is just read
-  as the word &lsquo;given&rsquo;. Mechanically: filter to the rows where B is true, then compute A on
-  what is left.&rdquo;</p></div>
+  <div class="qa"><h5>&ldquo;Does the line in P(A | B) mean divide?&rdquo;</h5>
+  <p>&ldquo;No. It just means the word &lsquo;given&rsquo;. A division does happen inside, which is why
+  it looks confusing. But the line itself is only saying &lsquo;if we already know this&rsquo;.&rdquo;</p></div>
 
-  <div class="qa"><h5>&ldquo;If both directions use the same 38 people, why are the answers
-  different?&rdquo;</h5>
-  <p>&ldquo;Because you are dividing by different groups. 38 out of the 99 well-paid people, against 38
-  out of the 49 Tech people. The top of the fraction never changed &mdash; the bottom did. Whenever you
-  see a percentage, ask what the denominator is.&rdquo;</p></div>
+  <div class="qa"><h5>&ldquo;If both answers use the same 38 people, how can they be different?&rdquo;</h5>
+  <p>&ldquo;Because you are dividing by different groups. Thirty-eight out of ninety-nine well paid
+  people. Thirty-eight out of forty-nine Tech people. The top stayed the same. The bottom changed.&rdquo;</p></div>
 
-  <div class="qa"><h5>&ldquo;Do we need probability if the library does the calculations?&rdquo;</h5>
-  <p>&ldquo;The library will compute anything you ask it for, including the wrong direction. It cannot
-  tell you that you asked about complainers when you meant churners. That judgement is the part that
-  cannot be automated, and it is the part that gets people promoted.&rdquo;</p></div>
+  <div class="qa"><h5>&ldquo;Do we need this if the computer calculates it?&rdquo;</h5>
+  <p>&ldquo;The computer will calculate whatever you ask. It cannot tell you that you asked the wrong
+  way round. If you ask about complainers when you meant leavers, it will give you a clean, confident,
+  wrong answer.&rdquo;</p></div>
  </div>
 </section>
 </div>
