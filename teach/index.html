@@ -8686,7 +8686,7 @@ skew: -0.19</div>
 <pre><code>height:  mean = 168.5     std = 7.7
 
 
-   170 cm    ->   (170 - 168.5) / 7.7   =   +0.20
+   170 cm    ->   (170 - 168.5) / 7.7   =   +0.19
 
    175 cm    ->   (175 - 168.5) / 7.7   =   +0.84
 
@@ -8782,6 +8782,12 @@ B:   (55 - 45) / 4   =   10 / 4   =   +2.50</code></pre>
 170 cm  z = 0.2    percentile: 57.8
 175 cm  z = 0.84   percentile: 80.0
 185 cm  z = 2.14   percentile: 98.4</div>
+
+   <div class="warn"><b>Expect this question, and it is a fair one.</b> On the board, 170 cm gave
+   <b>0.19</b>. Here the computer says <b>0.2</b>. Nobody is wrong. On the board we used the rounded
+   mean 168.5 and rounded std 7.7. The computer uses 168.4896 and 7.7203. Rounding early changes the
+   last digit. It does not matter here, but in a long calculation it can &mdash; so round at the
+   <b>end</b>, not in the middle.</div>
 
    <div class="speak">
     <p>One seventy-five puts you at the eightieth percentile &mdash; taller than eighty percent of
@@ -8920,68 +8926,140 @@ NORMALISATION      squeeze everything into the range 0 to 1
 <section>
  <div class="wrap">
   <div class="lbl">End of session &mdash; put this on screen</div>
-  <div class="sumcard"><pre><code><span class="c"># ---- PROBABILITY WHEN THERE ARE NO STEPS ----</span>
-<span class="c"># P(exactly 170 cm) = 0.  height does not come in steps.</span>
-<span class="c"># so for anything CONTINUOUS we never ask about a point - we ask about a RANGE.</span>
-<span class="c">#</span>
-<span class="c">#   PROBABILITY IS THE AREA UNDER THE CURVE. NOT THE HEIGHT OF IT.</span>
-<span class="c">#</span>
-<span class="c"># that curve is a &quot;probability density function&quot; (PDF). recognise the term, move on.</span>
-<span class="c"># every confidence interval and every p-value later is an area under a curve.</span>
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Top to bottom is the order you teach it. Each step says the one thing to land, then shows what
+  goes on the board and what gets typed. Seven steps, three code blocks, 90 minutes.</p>
+ </div>
 
-<span class="c"># ---- THE NORMAL DISTRIBUTION ----</span>
-h = df[&quot;height_cm&quot;].dropna()
-h.mean()      <span class="c"># 168.5</span>
-h.std()       <span class="c">#   7.7</span>
-h.skew()      <span class="c">#  -0.19   near zero = symmetric  (salary was 14.06)</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two open questions</p>
+   <p class="rs-say">Put the day 3 numbers on the board <b>in full</b>. Five samples of 30 from the same
+   column gave wildly different answers, and none is near the truth. Say the old question again, and
+   say plainly that the answer is <b>next session</b>. Then remind them of yesterday's height question
+   &mdash; that one gets answered today.</p>
+   <div class="rs-board"><b>On the board:</b><br>
+   sample 1 &nbsp;70,032 &nbsp;&middot;&nbsp; sample 2 &nbsp;244,006 &nbsp;&middot;&nbsp; sample 3
+   &nbsp;239,817 &nbsp;&middot;&nbsp; sample 4 &nbsp;65,149 &nbsp;&middot;&nbsp; sample 5
+   &nbsp;235,447<br><b>the true answer 95,648</b><br><br>
+   If asked why three are so big: those three caught the 52 lakh row. Stop there.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Also on the board, leave up all session:</b><br>
+   TODAY &mdash; the normal distribution, z-scores<br>
+   NEXT SESSION &mdash; the answer to the question</div>
+   <p class="rs-none">No code.</p>
+  </div></div>
 
-<span class="c"># the 68-95-99.7 test on this column:</span>
-<span class="c">#   1 sd -&gt; 69.7%    2 sd -&gt; 95.0%    3 sd -&gt; 100.0%</span>
-<span class="c">#   real data, 201 people, landing almost exactly on the rule</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 24</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Why counting stops working</p>
+   <p class="rs-say">Ask for the chance somebody is <b>exactly</b> 170 cm. Let them try &mdash; someone
+   says one out of 201. Push back: height does not come in steps. Between 169 and 170 there are endless
+   possible values, so no single exact height has any share. The answer is <b>zero</b>, and it sounds
+   absurd for about a minute. So for anything measured we stop asking about a point and start asking
+   about a <b>range</b>. Probability becomes <b>area under a curve</b>.</p>
+   <div class="rs-board"><b>Draw this &mdash; do not plot it:</b> a bell shape, shade the strip between
+   165 and 175. Say it twice: <b>the shaded area is the probability. The height of the curve is
+   not.</b></div>
+   <p class="rs-none">No code. Board drawing only.</p>
+  </div></div>
 
-<span class="c"># 1  symmetric - mean, median and mode in the same place</span>
-<span class="c"># 2  described COMPLETELY by two numbers: the mean and the std</span>
-<span class="c"># 3  follows 68-95-99.7</span>
-<span class="c">#</span>
-<span class="c"># it appears whenever lots of small independent effects add up.</span>
-<span class="c"># and - the reason it matters - SAMPLE MEANS follow it.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">24 &ndash; 40</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The normal distribution, found in their own data</p>
+   <p class="rs-say">Do not define the curve first. Show it in the height column, then name it.
+   Mean 168.5, std 7.7, <b>skew &minus;0.19</b> &mdash; almost perfectly symmetric, unlike salary at
+   14.06. Then check the 68-95-99.7 rule from day 6 against this column and watch it come out at
+   <b>69.7 / 95.0 / 100</b>. That is the moment it stops being a rule they memorised.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code>h = df[<span class="c">"height_cm"</span>].dropna()
+<span class="k">print</span>(<span class="c">"mean:"</span>, <span class="k">round</span>(h.mean(), <span class="o">1</span>))
+<span class="k">print</span>(<span class="c">"std :"</span>, <span class="k">round</span>(h.std(), <span class="o">1</span>))
+<span class="k">print</span>(<span class="c">"skew:"</span>, <span class="k">round</span>(h.skew(), <span class="o">2</span>))</code></pre></div>
+   <div class="rs-out">mean: 168.5
+std : 7.7
+skew: -0.19</div>
+   <p class="rs-do">Then type this</p>
+   <div class="rs-code"><pre><code>m, s = h.mean(), h.std()
+<span class="k">for</span> k <span class="k">in</span> (<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>):
+    <span class="k">print</span>(k, <span class="c">"sd:"</span>, <span class="k">round</span>(((h &gt;= m-k*s) &amp; (h &lt;= m+k*s)).mean()*<span class="o">100</span>, <span class="o">1</span>), <span class="c">"%"</span>)</code></pre></div>
+   <div class="rs-out">1 sd: 69.7 %
+2 sd: 95.0 %
+3 sd: 100.0 %</div>
+   <div class="rs-board"><b>On the board:</b> a normal distribution is
+   <b>1.</b> symmetric &mdash; mean, median and mode in the same place;
+   <b>2.</b> described <b>completely</b> by two numbers, the mean and the std;
+   <b>3.</b> follows 68 &ndash; 95 &ndash; 99.7.</div>
+  </div></div>
 
-<span class="c"># ---- Z-SCORES ----</span>
-<span class="c">#             value - mean</span>
-<span class="c">#      z  =  --------------      &quot;how many std from the mean?&quot;</span>
-<span class="c">#                 std</span>
-<span class="c">#</span>
-<span class="c"># positive = above average, negative = below, size = how unusual</span>
-<span class="c"># you already used this twice: the 68-95 rule, and the skew derivation (z = 14.02)</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">40 &ndash; 56</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Z-scores</p>
+   <p class="rs-say">One formula, and it answers one question: <b>how many standard deviations from the
+   mean is this?</b> Work four heights on the board one at a time and make them do the arithmetic with
+   you. Point out the sign: plus is above average, minus is below.</p>
+   <div class="rs-board"><b>On the board:</b> &nbsp; z = (value &minus; mean) &divide; standard deviation
+   <br><br>
+   height: mean 168.5, std 7.7<br>
+   170 cm &rarr; <b>+0.19</b> &nbsp;&middot;&nbsp; 175 cm &rarr; <b>+0.84</b> &nbsp;&middot;&nbsp;
+   185 cm &rarr; <b>+2.14</b> &nbsp;&middot;&nbsp; 160 cm &rarr; <b>&minus;1.10</b></div>
+   <p class="rs-none">No code yet. Board arithmetic, four times.</p>
+  </div></div>
 
-<span class="c"># height: mean 168.5, std 7.7</span>
-<span class="c">#   170 cm -&gt; +0.20      175 cm -&gt; +0.84</span>
-<span class="c">#   185 cm -&gt; +2.14      160 cm -&gt; -1.10</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">56 &ndash; 70</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">What a z-score is actually for</p>
+   <p class="rs-say">This is the block that sells it. Two students, two different subjects &mdash; who
+   did better? 78 in maths looks better than 55 in physics. Work both z-scores: A gets <b>+1.00</b>,
+   B gets <b>+2.50</b>. <b>B did far better.</b> A z-score makes two things comparable when the raw
+   numbers cannot be. Then turn z into a percentile, which is the form a manager will actually
+   understand.</p>
+   <div class="rs-board"><b>On the board:</b><br>
+   student A &mdash; MATHS, scored 78, class mean 70, std 8 &nbsp;&rarr;&nbsp; (78&minus;70)/8 =
+   <b>+1.00</b><br>
+   student B &mdash; PHYSICS, scored 55, class mean 45, std 4 &nbsp;&rarr;&nbsp; (55&minus;45)/4 =
+   <b>+2.50</b></div>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">from</span> scipy.stats <span class="k">import</span> norm
 
-<span class="c"># ---- WHAT THEY BUY YOU ----</span>
-<span class="c"># 1. COMPARING ACROSS SCALES</span>
-<span class="c">#    maths   78, class mean 70, std 8  -&gt;  z = +1.00</span>
-<span class="c">#    physics 55, class mean 45, std 4  -&gt;  z = +2.50   &lt;- B DID BETTER</span>
-<span class="c">#    the raw marks measured two different things. z put them on one scale.</span>
-<span class="c">#</span>
-<span class="c"># 2. TURNING A VALUE INTO A PERCENTILE</span>
-from scipy.stats import norm
-norm.cdf(z) * 100
-<span class="c">#    160 cm -&gt; 13.6th    170 cm -&gt; 57.8th</span>
-<span class="c">#    175 cm -&gt; 80.0th    185 cm -&gt; 98.4th</span>
-<span class="c">#</span>
-<span class="c"># 3. it is the unit the rest of the module is measured in.</span>
-<span class="c">#    the 1.96 in a confidence interval IS a z-score.</span>
+<span class="k">for</span> cm <span class="k">in</span> [<span class="o">160</span>, <span class="o">170</span>, <span class="o">175</span>, <span class="o">185</span>]:
+    z = (cm - h.mean()) / h.std()
+    <span class="k">print</span>(cm, <span class="c">"cm  z ="</span>, <span class="k">round</span>(z,<span class="o">2</span>), <span class="c">" percentile:"</span>, <span class="k">round</span>(norm.cdf(z)*<span class="o">100</span>,<span class="o">1</span>))</code></pre></div>
+   <div class="rs-out">160 cm  z = -1.1   percentile: 13.6
+170 cm  z = 0.2    percentile: 57.8
+175 cm  z = 0.84   percentile: 80.0
+185 cm  z = 2.14   percentile: 98.4</div>
+   <div class="rs-board"><b>Expect this question.</b> The board gave 170 cm &rarr; 0.19, the computer
+   says 0.2. Nobody is wrong &mdash; the board used the rounded 168.5 and 7.7, the computer uses
+   168.4896 and 7.7203. <b>Round at the end, not in the middle.</b></div>
+  </div></div>
 
-<span class="c"># ---- THE CAUTION ----</span>
-<span class="c"># z is built from the mean and the std, so it inherits their weaknesses.</span>
-<span class="c"># on the RAW salary column std = 364,031 BECAUSE of the outlier,</span>
-<span class="c"># so z-scores computed from it are meaningless.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">70 &ndash; 80</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two words they will meet and confuse</p>
+   <p class="rs-say">Ten minutes, no more. Name the difference and move on. Which one to use is a
+   machine-learning question and this course has no ML module &mdash; say that too, so nobody thinks
+   they missed something.</p>
+   <div class="rs-board"><b>On the board:</b><br>
+   <b>STANDARDISATION</b> &mdash; subtract the mean, divide by the std. That is the z-score. Centred on
+   0, no upper or lower limit.<br><br>
+   <b>NORMALISATION</b> &mdash; squeeze everything into 0 to 1. (value &minus; min) &divide;
+   (max &minus; min)</div>
+   <p class="rs-none">No code.</p>
+  </div></div>
 
-<span class="c"># ---- TWO WORDS PEOPLE CONFUSE ----</span>
-<span class="c"># STANDARDISATION   (value - mean) / std      = the z-score, centred on 0</span>
-<span class="c"># NORMALISATION     (value - min) / (max-min) = squeezed into 0 to 1</span>
-<span class="c"># standardisation is the one that matters for this course.</span></code></pre></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">80 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close, and hand back the old question</p>
+   <p class="rs-say">Recap: probability for measurements is <b>area</b>, not counting. The normal curve
+   needs only two numbers. A z-score says how many stds from the mean, and makes unlike things
+   comparable. Then go back to the day 3 numbers still on the board and say the sentence you could not
+   say this morning: <b>sample means follow a normal distribution.</b> They now know what every word in
+   it means &mdash; and <b>next session</b> is why it is true.</p>
+   <p class="rs-none">No code. This sets up day 10, the hinge of the module.</p>
+  </div></div>
+</div>
   <div class="planbanner" style="margin-top:20px">
    <b>Where this goes next.</b> Day 10 is the conceptual hinge of the entire module &mdash; sampling
    distributions and the Central Limit Theorem. Your study notes say two things about it plainly:
