@@ -9179,6 +9179,58 @@ skew: -0.19</div>
   it</b>. Both are right. This is the hinge the whole second half turns on.</p>
 
   <div class="understand">
+   <h5>Part zero-B &middot; &ldquo;How do I know the theorem is working?&rdquo;</h5>
+   <p>This is the question that will stop you, and it stopped the person who wrote this. You will run
+   the loop and get skew <b>2.52</b> at n=30 &mdash; and 2.52 is not normal. So it looks like the
+   theorem just failed in front of the class. It did not. Here is why.</p>
+
+   <h6>First: what does &ldquo;normal&rdquo; look like as a number?</h6>
+   <p>A normal curve is <b>perfectly symmetric</b>. Symmetric means <b>skew = 0</b>.</p>
+   <p>So &ldquo;the means become normal&rdquo; is the same sentence as <b>&ldquo;the skew of the means
+   goes towards zero&rdquo;</b>. That is the whole translation, and once you have it the output reads
+   completely differently.</p>
+
+   <h6>Second: the theorem never said &ldquo;normal at thirty&rdquo;</h6>
+   <p>Read the name again. <b>Central LIMIT Theorem.</b> A limit is something you get closer and closer
+   to. The theorem says: <b>the bigger the sample, the closer to normal.</b> It does not promise you
+   arrive at any particular n.</p>
+   <div class="mth">
+    <div class="mrow">the raw column itself &nbsp;&rarr;&nbsp; skew <b>14.06</b></div>
+    <div class="mrow">averages of 30 &nbsp;&rarr;&nbsp; <b>2.52</b></div>
+    <div class="mrow">averages of 100 &nbsp;&rarr;&nbsp; <b>1.41</b></div>
+    <div class="mrow">averages of 500 &nbsp;&rarr;&nbsp; <b>0.77</b></div>
+    <div class="mrow">averages of 2000 &nbsp;&rarr;&nbsp; <b>0.36</b></div>
+   </div>
+   <div class="keyline">
+    <b>The proof is not any one of those numbers. It is that every single one is smaller than the one
+    before it.</b> Fourteen, down to two and a half, down to one point four, down to nought point
+    seven seven, down to nought point three six. Heading to zero, and never going back up. That is
+    what &ldquo;the theorem is working&rdquo; looks like.
+   </div>
+
+   <h6>Third: so why was n=30 fine in the first simulation?</h6>
+   <p>Because you used a different column. Compare the two starting points:</p>
+   <div class="mth">
+    <div class="mrow"><b>cleaned</b> salary column &mdash; skew <b>0.10</b>. Already almost symmetric.</div>
+    <div class="mrow"><b>raw</b> salary column &mdash; skew <b>14.06</b>. About as ugly as data gets.</div>
+   </div>
+   <p>Averages from the <b>cleaned</b> column are normal almost immediately &mdash; skew 0.05 at n=5,
+   0.07 at n=30. There was barely anything to fix. Averages from the <b>raw</b> column still carry the
+   52-lakh row's damage at n=30, so they need much bigger samples before it washes out.</p>
+   <div class="keyline">
+    And that gives you the rule worth taking to work, which is far more useful than &ldquo;n equals
+    thirty&rdquo;: <b>the uglier the data you start with, the bigger the sample you need.</b> Clean,
+    well-behaved data is fine at thirty. Data with extreme values in it is not.
+   </div>
+
+   <h6>What to actually say in the room</h6>
+   <p>Point at the falling numbers, not at any single one. <b>&ldquo;Watch the number, not its
+   size.&rdquo;</b> Then: &ldquo;fourteen, two and a half, one point four, nought point seven seven,
+   nought point three six. It keeps going down. Zero would be a perfect bell. We are walking towards
+   it, and every bigger sample takes us a step closer. That is the theorem.&rdquo;</p>
+  </div>
+
+  <div class="understand">
    <h5>Part zero-A &middot; the two questions you will be asked, and the honest answers</h5>
 
    <h6>&ldquo;Why thirty? Where does that number come from?&rdquo;</h6>
@@ -9613,7 +9665,7 @@ centred on the true population mean,
    <div class="typeit">Now the raw, wildly skewed column</div>
 <pre><code><span class="k">print</span>(<span class="c">"population skew:"</span>, <span class="k">round</span>(sal.skew(), <span class="o">2</span>))
 
-<span class="k">for</span> n <span class="k">in</span> (<span class="o">30</span>, <span class="o">100</span>, <span class="o">500</span>):
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">30</span>, <span class="o">100</span>, <span class="o">500</span>, <span class="o">2000</span>):
     means = []
     <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">2000</span>):
         means.append(sal.sample(n, replace=<span class="k">True</span>, random_state=i).mean())
@@ -9621,16 +9673,62 @@ centred on the true population mean,
    <div class="screen">population skew: 14.06
 n = 30  skew of the means: 2.52
 n = 100  skew of the means: 1.41
-n = 500  skew of the means: 0.77</div>
+n = 500  skew of the means: 0.77
+n = 2000  skew of the means: 0.36</div>
+
+   <div class="stage">Before reading the numbers out, remind them what skew means. Without this the
+   whole block is meaningless &mdash; they will see 2.52 and think the theorem failed.</div>
 
    <div class="speak">
-    <p>The population has a skew of <b>fourteen</b>. It is about as far from a bell curve as data gets
-    &mdash; one person earning fifty-two lakh and everybody else bunched at the bottom.</p>
-    <p>Take samples of thirty and the means have a skew of two point four. Already far better.</p>
-    <p>A hundred, and it is one point eight.</p>
-    <p>Five hundred, and it is nought point five six &mdash; heading towards normal.</p>
-    <p>The theorem is working, even on that. But notice it is <b>working slowly</b>, and that is worth
-    knowing.</p>
+    <p>Before I read these out, one reminder from day six.</p>
+    <p><b>Skew is how lopsided a shape is.</b> A perfect bell curve is not lopsided at all. So a perfect
+    bell curve has a skew of <b>zero</b>.</p>
+    <p>Write that down, because it is the key to this whole screen. <b>Normal means skew zero.</b></p>
+    <p>So when the theorem says the averages become normal, what it really means is: <b>the skew of the
+    averages goes down towards zero.</b></p>
+   </div>
+
+   <div class="speak">
+    <p>Now look at the screen.</p>
+    <p>The raw salary column has a skew of <b>fourteen</b>. That is about as far from a bell curve as
+    data ever gets. One person on fifty-two lakh, everybody else bunched at the bottom.</p>
+    <p>Take averages of thirty people. Skew drops to <b>two point five two</b>.</p>
+    <p>Averages of a hundred. <b>One point four one</b>.</p>
+    <p>Averages of five hundred. <b>Nought point seven seven</b>.</p>
+    <p>Averages of two thousand. <b>Nought point three six</b>.</p>
+   </div>
+
+   <div class="stage">This is the sentence the session turns on. Say it slowly, and point at the column
+   of numbers rather than at any single one.</div>
+
+   <div class="speak">
+    <p>Now, do not look at how big any one of those numbers is. Look at which way they are going.</p>
+    <p>Fourteen. Two point five. One point four. Nought point seven seven. Nought point three six.</p>
+    <p><b>Every single one is smaller than the one before it.</b> And they are heading towards zero,
+    which is a perfect bell.</p>
+    <p><b>That</b> is what it means when I say the theorem is working. Not that any one of these is
+    normal. That every time I take a bigger sample, I get closer to normal.</p>
+    <p>And that is why it is called the Central <b>Limit</b> Theorem. A limit is something you get
+    nearer and nearer to. It never promised you arrive at thirty.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Somebody will now ask the obvious thing: &ldquo;then why did thirty work fine
+    earlier?&rdquo; It is a good question. Take it.</div>
+    <div class="a">Because that was a different column. The cleaned column already had a skew of 0.10
+    &mdash; it was nearly symmetric to start with. This raw one starts at 14.06.</div>
+   </div>
+
+   <div class="speak">
+    <p>Good question. Because earlier I used the <b>cleaned</b> column, and that one already had a skew
+    of nought point one. It was almost a bell curve before we started. There was nothing much to
+    fix.</p>
+    <p>This column starts at fourteen. So it has a much longer way to travel.</p>
+    <p>And that gives you the rule that actually matters, which is much more useful than memorising
+    thirty.</p>
+    <p><b>The uglier the data you start with, the bigger the sample you need.</b></p>
+    <p>Clean, well-behaved data? Thirty is fine. Data with a fifty-two lakh row sitting in it? Thirty is
+    nowhere near enough.</p>
    </div>
 
    <div class="keyline" style="margin:14px 0">
