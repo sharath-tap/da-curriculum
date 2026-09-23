@@ -9179,6 +9179,45 @@ skew: -0.19</div>
   it</b>. Both are right. This is the hinge the whole second half turns on.</p>
 
   <div class="understand">
+   <h5>Part zero-A &middot; the two questions you will be asked, and the honest answers</h5>
+
+   <h6>&ldquo;Why thirty? Where does that number come from?&rdquo;</h6>
+   <p>It is a <b>rule of thumb, not a law</b>, and you should say so plainly. Thirty is roughly where
+   the averages of samples start forming a normal curve for data that is not too badly behaved. Below
+   that they often do not.</p>
+   <p>And your own data proves it is only a rule of thumb. When you run the skewed salary column today,
+   samples of thirty still give means with a skew of <b>2.52</b> &mdash; not normal yet. It takes n of
+   500 to get down to 0.77.</p>
+   <div class="keyline">
+    So the honest version is: <b>thirty is where it starts working for ordinary data. The worse the
+    shape of your data, the more you need.</b> That is a better answer than &ldquo;thirty is the
+    rule&rdquo;, and it is the one the session actually demonstrates.
+   </div>
+
+   <h6>&ldquo;Why do it a thousand times? Nobody does that at work.&rdquo;</h6>
+   <p>Correct, and this is the most important thing to be clear about. <b>In real work you take one
+   sample. Exactly one.</b></p>
+   <p>The thousand is a <b>teaching device</b>. We are making a claim about every sample you
+   <em>could</em> have taken, and we cannot show every possible sample, so a thousand stands in for
+   them.</p>
+   <p>Think of it this way. In real life you reach into a bag once and pull out one thing. Today we are
+   emptying the bag onto the table so everyone can see what was in it. Once you have seen it, you know
+   what your one pull was drawn from &mdash; and that is the entire point.</p>
+   <div class="warn"><b>Say this out loud at least twice.</b> Students otherwise leave believing that
+   doing statistics means running simulations. It does not. It means taking one sample and knowing what
+   the simulation <em>would</em> have shown.</div>
+
+   <h6>&ldquo;So what do I actually get out of it?&rdquo;</h6>
+   <p>One sentence: <b>you can take one sample and say how far wrong it might be.</b></p>
+   <p>Not &ldquo;the average is 69,671&rdquo;, which is almost certainly false. Instead:
+   <b>&ldquo;69,671, give or take 3,200&rdquo;</b> &mdash; which is honest, useful, and something you
+   can defend in a meeting.</p>
+   <p>Every remaining session is built on that one move. Day 11 makes the &ldquo;give or take&rdquo;
+   formal. Day 12 uses it to decide whether a difference is real. Day 13 uses it to decide whether
+   version B beat version A.</p>
+  </div>
+
+  <div class="understand">
    <h5>Part zero &middot; the four lines of code, explained slowly</h5>
    <p>You said you are new to this, so before anything else, here is the only piece of code in the
    session that is not obvious. Once you can read these four lines you can teach the whole day.</p>
@@ -9349,9 +9388,80 @@ means = pd.Series(means)</code></pre>
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-14 -->
+  <!-- 0-6 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 14</span><h3>Run the simulation first</h3></div>
+   <div class="bhead"><span class="clock">0 &ndash; 6</span><h3>Why any of this matters</h3></div>
+   <p class="objective">The reason the whole second half of this course exists. Six minutes, no code.</p>
+
+   <div class="stage">Do not start with the simulation. Start with the problem it solves, or the
+   session becomes a maths trick with no purpose.</div>
+
+   <div class="speak">
+    <p>Before we do anything today, I want to tell you why this session exists.</p>
+    <p>Here is a fact about your job that never changes. <b>You will never get to measure
+    everybody.</b></p>
+    <p>A company wants to know the average salary in the market. They cannot ask every company in
+    India. They ask five hundred.</p>
+    <p>A factory makes a lakh of bulbs. They cannot test a lakh of bulbs, because testing a bulb means
+    burning it out. They test fifty.</p>
+    <p>A news channel wants to know who will win the election. They cannot ask a billion people. They
+    ask a thousand.</p>
+    <p>Every single one of those is the same thing. <b>Measure a few. Say something about
+    everybody.</b></p>
+    <p>And that is what you will do in your job, every day, forever.</p>
+   </div>
+
+   <div class="stage">Now show them why that is frightening. Put the day 3 numbers back up.</div>
+
+   <div class="typeit">Put these back on the board</div>
+<pre><code>DAY 3 - five samples of 30 people, all from the same column
+
+   70,032     244,006     239,817     65,149     235,447
+
+   the truth was 95,648</code></pre>
+
+   <div class="speak">
+    <p>But now look at what we found on day three, and this is the problem.</p>
+    <p>I took five samples. Same column, same size, nothing different about how I took them.</p>
+    <p>And I got seventy thousand. Then two hundred and forty-four thousand. Then sixty-five
+    thousand.</p>
+    <p>Now think about what that means. Suppose I had only taken <b>one</b> sample, which is what
+    happens in real life.</p>
+    <p>If I had happened to take the second one, I would have gone to my manager and said the average
+    salary is two lakh forty-four thousand.</p>
+    <p>If I had happened to take the fourth one, I would have said sixty-five thousand.</p>
+    <p>Same method. Same care. Completely different answers. And I would have no way of knowing which
+    one I had.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask it straight: &ldquo;So is sampling useless? Should we just never trust any
+    number that came from a sample?&rdquo;</div>
+    <div class="a">Let it sit for a few seconds. If sampling is useless then every poll, every survey,
+    every quality check and every A/B test in the world is worthless. Obviously that is not true. So
+    something must make it work &mdash; and that something is today.</div>
+   </div>
+
+   <div class="speak">
+    <p>So here is the real question for today.</p>
+    <p><b>If one sample can be so wrong, how does anybody report a number honestly?</b></p>
+    <p>There is an answer. And once you have it, you can do something that sounds impossible.</p>
+    <p>You can take <b>one</b> sample, and then say how far wrong it might be. Not by guessing. By
+    working it out.</p>
+    <p>That is what today gives you. And it is what makes every single thing in the rest of this course
+    possible.</p>
+   </div>
+
+   <div class="keyline">
+    If you write one sentence on the board for the whole session, write this: <b>&ldquo;We cannot
+    measure everyone. So how much should we trust the few we did measure?&rdquo;</b> Every idea today
+    is a step towards answering it.
+   </div>
+  </div>
+
+  <!-- 6-18 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">6 &ndash; 18</span><h3>Run the simulation first</h3></div>
    <p class="objective">No definitions. Show them the thing, then name it. Fourteen minutes.</p>
 
    <div class="stage">Do not open with a definition. Open by doing it. They have been waiting two
@@ -9424,7 +9534,7 @@ skew of those averages     : 0.09</div>
 
   <!-- 14-28 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">14 &ndash; 28</span><h3>What you just built</h3></div>
+   <div class="bhead"><span class="clock">18 &ndash; 30</span><h3>What you just built</h3></div>
    <p class="objective">The conceptual jump. Three pictures, side by side. Fourteen minutes.</p>
 
    <div class="stage">This is the block students most often nod through without understanding. Draw all
@@ -9475,7 +9585,7 @@ skew of those averages     : 0.09</div>
 
   <!-- 28-42 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">28 &ndash; 42</span><h3>The Central Limit Theorem</h3></div>
+   <div class="bhead"><span class="clock">30 &ndash; 44</span><h3>The Central Limit Theorem</h3></div>
    <p class="objective">Name it, then show the part that makes it remarkable. Fourteen minutes.</p>
 
    <div class="speak">
@@ -9531,7 +9641,7 @@ n = 500  skew of the means: 0.77</div>
 
   <!-- 42-58 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">42 &ndash; 58</span><h3>Standard error, and the square root</h3></div>
+   <div class="bhead"><span class="clock">44 &ndash; 60</span><h3>Standard error, and the square root</h3></div>
    <p class="objective">Name the spread, then predict it. Sixteen minutes.</p>
 
    <div class="speak">
@@ -9622,7 +9732,7 @@ n = 100  observed : 1576   predicted: 1607</div>
 
   <!-- 58-76 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">58 &ndash; 76</span><h3>The answer to the question</h3></div>
+   <div class="bhead"><span class="clock">60 &ndash; 76</span><h3>The answer to the question</h3></div>
    <p class="objective">Close the loop you opened on day three. Eighteen minutes.</p>
 
    <div class="stage">Put the original five samples back on the board. This is the payoff for three
