@@ -9647,11 +9647,19 @@ skew of those averages     : 0.09</div>
    <div class="typeit">On the board &mdash; leave it up</div>
 <pre><code>THE CENTRAL LIMIT THEOREM
 
-take samples of a decent size from ANY population,
-and the distribution of their MEANS will be NORMAL,
-centred on the true population mean,
+start with ANY shaped data - even a horrible one
 
-           WHATEVER SHAPE THE ORIGINAL DATA HAD</code></pre>
+take a sample, write down its average, do that many times
+    -> those averages make a shape of their own
+
+  the BIGGER each sample is,
+  the CLOSER that shape gets to a normal bell curve
+
+  and it sits on the TRUE population mean
+
+
+          how FAST it gets there depends on
+          how ugly the original data was</code></pre>
 
    <div class="stage">Point at the last line. That is where the whole theorem lives.</div>
 
@@ -9729,6 +9737,55 @@ n = 2000  skew of the means: 0.36</div>
     <p><b>The uglier the data you start with, the bigger the sample you need.</b></p>
     <p>Clean, well-behaved data? Thirty is fine. Data with a fifty-two lakh row sitting in it? Thirty is
     nowhere near enough.</p>
+   </div>
+
+
+   <div class="stage">This next bit takes four minutes and it prevents the most common wrong takeaway
+   from the whole session. Do not skip it.</div>
+
+   <div class="speak">
+    <p>One thing I have to be very clear about, because it is easy to get backwards.</p>
+    <p>There are two different numbers in what we just did, and only one of them matters.</p>
+    <p>The first is <b>how many people are in each sample</b>. Thirty, or a hundred, or five hundred.</p>
+    <p>The second is <b>how many times we repeated it</b>. We did it two thousand times.</p>
+    <p>Which one do you think made the skew go down?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Take a vote. Most rooms say &ldquo;how many times we repeated it&rdquo; &mdash; it
+    feels like more work should give a better answer.</div>
+    <div class="a">It is the first one. And the fastest way to settle it is to hold one fixed and move
+    the other.</div>
+   </div>
+
+   <div class="typeit">Keep the sample size at 30. Just repeat it more and more times.</div>
+<pre><code><span class="k">for</span> reps <span class="k">in</span> (<span class="o">200</span>, <span class="o">1000</span>, <span class="o">5000</span>, <span class="o">20000</span>):
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(reps):
+        means.append(sal.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=i).mean())
+    <span class="k">print</span>(reps, <span class="c">"samples of 30  -> skew"</span>, <span class="k">round</span>(pd.Series(means).skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">200 samples of 30  -> skew 2.21
+1000 samples of 30  -> skew 2.42
+5000 samples of 30  -> skew 2.52
+20000 samples of 30  -> skew 2.51</div>
+
+   <div class="speak">
+    <p>Twenty thousand samples instead of two hundred. A hundred times more work.</p>
+    <p>And the skew is still two point five. It did not move.</p>
+    <p>So repeating it more times does <b>not</b> help. It only makes the picture smoother. The shape it
+    is drawing is the same shape.</p>
+    <p>What actually fixed it was making each sample <b>bigger</b>. Thirty people, then a hundred, then
+    five hundred.</p>
+    <p>So the sentence to remember is <b>not</b> &ldquo;take more samples&rdquo;. It is <b>&ldquo;take
+    bigger samples&rdquo;</b>.</p>
+   </div>
+
+   <div class="keyline">
+    Worth saying why, because it makes sense once you hear it. A sample of thirty can still be unlucky
+    &mdash; it can catch the fifty-two lakh row and be dragged miles off. A sample of five hundred can
+    catch it too, but one extreme value among five hundred barely moves the average. <b>Bigger samples
+    are harder to fool.</b> Repeating a small sample many times just gives you many easily-fooled
+    answers.
    </div>
 
    <div class="keyline" style="margin:14px 0">
@@ -9995,21 +10052,33 @@ means = []
 for i in range(1000):
     means.append(pop.sample(30, replace=True, random_state=i).mean())
 means = pd.Series(means)
-means.mean()  <span class="c"># 69,693   lands on the population mean</span>
-means.std()   <span class="c">#  2,843   FAR smaller than the population spread of 16,066</span>
+means.mean()  <span class="c"># 69,680   lands on the population mean</span>
+means.std()   <span class="c">#  3,026   FAR smaller than the population spread of 16,066</span>
 means.skew()  <span class="c">#   0.02   near zero = NORMAL</span>
 
 <span class="c"># ---- THREE DIFFERENT PICTURES ----</span>
 <span class="c"># 1  THE POPULATION            each dot is ONE PERSON       mean 69,630  spread 16,066</span>
 <span class="c"># 2  ONE SAMPLE                each dot is ONE PERSON       30 of them</span>
-<span class="c"># 3  THE SAMPLING DISTRIBUTION each dot is ONE WHOLE SAMPLE mean 69,693  spread  2,843</span>
+<span class="c"># 3  THE SAMPLING DISTRIBUTION each dot is ONE WHOLE SAMPLE mean 69,680  spread  3,026</span>
 <span class="c">#</span>
 <span class="c"># picture 3 is not a distribution of DATA. it is a distribution of ESTIMATES.</span>
 
 <span class="c"># ---- THE CENTRAL LIMIT THEOREM ----</span>
-<span class="c"># take samples of a decent size from ANY population and the distribution of</span>
-<span class="c"># their MEANS will be NORMAL, centred on the true population mean,</span>
-<span class="c">#                 WHATEVER SHAPE THE ORIGINAL DATA HAD</span>
+<span class="c"># start with ANY shaped data - even a horrible one.</span>
+<span class="c"># take a sample, write down its average, do that many times.</span>
+<span class="c"># those averages make a shape of their own, and:</span>
+<span class="c">#</span>
+<span class="c">#    the BIGGER each sample, the CLOSER that shape gets to a bell curve,</span>
+<span class="c">#    and it sits on the TRUE population mean.</span>
+<span class="c">#</span>
+<span class="c"># HOW FAST depends on how ugly the data was to start with.</span>
+<span class="c">#</span>
+<span class="c"># NORMAL means SKEW 0. so &quot;becomes normal&quot; = &quot;skew heads to zero&quot;.</span>
+<span class="c">#</span>
+<span class="c"># BIGGER SAMPLES fix it. MORE SAMPLES do not:</span>
+<span class="c">#   200 samples of 30 -&gt; skew 2.21   |   20,000 samples of 30 -&gt; skew 2.51</span>
+<span class="c">#   2,000 samples of 30 -&gt; 2.52      |   2,000 samples of 2000 -&gt; 0.36</span>
+<span class="c">#   a small sample can be unlucky. a big one is harder to fool.</span>
 <span class="c">#</span>
 <span class="c"># proof on the worst column we have:</span>
 <span class="c">#   population skew  14.06</span>
