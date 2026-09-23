@@ -9179,6 +9179,60 @@ skew: -0.19</div>
   it</b>. Both are right. This is the hinge the whole second half turns on.</p>
 
   <div class="understand">
+   <h5>Part zero &middot; the four lines of code, explained slowly</h5>
+   <p>You said you are new to this, so before anything else, here is the only piece of code in the
+   session that is not obvious. Once you can read these four lines you can teach the whole day.</p>
+
+   <div class="typeit">This is the whole simulation</div>
+<pre><code>means = []
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>):
+    one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=i)
+    means.append(one_sample.mean())
+
+means = pd.Series(means)</code></pre>
+
+   <h6>Line by line, in plain words</h6>
+   <div class="mth">
+    <div class="mrow"><b>means = []</b> &nbsp;&mdash;&nbsp; make an empty list. We are going to put a
+    thousand answers into it.</div>
+    <div class="mrow"><b>for i in range(1000):</b> &nbsp;&mdash;&nbsp; do the next two lines a thousand
+    times. They already know this from the Python sessions.</div>
+    <div class="mrow"><b>pop.sample(30, ...)</b> &nbsp;&mdash;&nbsp; pick 30 salaries at random. They
+    have already seen this exact function &mdash; it is what you used on <b>day 3</b> to take the five
+    samples.</div>
+    <div class="mrow"><b>means.append(one_sample.mean())</b> &nbsp;&mdash;&nbsp; work out that
+    sample's average and add it to the list.</div>
+    <div class="mrow"><b>means = pd.Series(means)</b> &nbsp;&mdash;&nbsp; turn the finished list into a
+    pandas column, so <code>.mean()</code>, <code>.std()</code> and <code>.skew()</code> work on it.</div>
+   </div>
+
+   <h6>The two extra words inside sample()</h6>
+   <p><b>replace=True</b> means the same person can be picked more than once. That sounds wrong, but it
+   is what lets us draw a sample of 500 from a table with only 199 rows &mdash; we are treating the
+   column as a population we can keep drawing from. If a student asks, that one sentence is the whole
+   answer.</p>
+   <p><b>random_state=i</b> just makes the result repeatable. On day 3 you wrote
+   <code>random_state=1</code>, <code>2</code>, <code>3</code> and so on by hand. Here the loop counter
+   does it for you, so the first sample uses 0, the second uses 1, and so on to 999.</p>
+
+   <div class="keyline">
+    <b>If you say one thing about this code, say this:</b> &ldquo;We did this five times by hand on day
+    three. Today the computer does it a thousand times.&rdquo; That is genuinely all that has changed.
+    Nothing new is happening &mdash; only the number of repeats.
+   </div>
+
+   <h6>What to do if you are still not comfortable</h6>
+   <p>Run it once before class and look at the output. Then change the 1000 to 5 and run it again
+   &mdash; you will get five numbers, and you can check by eye that they look like day 3's five
+   numbers. That is the fastest way to convince yourself the code does what the sentence says.</p>
+   <div class="warn"><b>You do not have to explain the code to teach this session.</b> If the room is
+   struggling, type it, run it, and say &ldquo;this takes a thousand samples and writes down each
+   average&rdquo;. The <b>result</b> is the lesson today, not the syntax. Come back to the code only if
+   somebody asks.</div>
+  </div>
+
+  <div class="understand">
    <h5>Part one &middot; the idea students find genuinely strange</h5>
 
    <h6>The thing being measured changes</h6>
@@ -9328,18 +9382,20 @@ population std : 16066</div>
    </div>
 
    <div class="typeit">Type this, and run it</div>
-<pre><code><span class="k">import</span> numpy <span class="k">as</span> np
-rng = np.random.default_rng(<span class="o">7</span>)
+<pre><code>means = []                       <span class="c"># an empty list to collect the answers</span>
 
-means = [rng.choice(pop, <span class="o">30</span>).mean() <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>)]
-m = pd.Series(means)
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>):                <span class="c"># do the next two lines 1000 times</span>
+    one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=i)
+    means.append(one_sample.mean())   <span class="c"># store this sample's average</span>
 
-<span class="k">print</span>(<span class="c">"average of the 1000 averages:"</span>, <span class="k">round</span>(m.mean()))
-<span class="k">print</span>(<span class="c">"spread of those averages   :"</span>, <span class="k">round</span>(m.std()))
-<span class="k">print</span>(<span class="c">"skew of those averages     :"</span>, <span class="k">round</span>(m.skew(), <span class="o">2</span>))</code></pre>
-   <div class="screen">average of the 1000 averages: 69693
-spread of those averages   : 2843
-skew of those averages     : 0.02</div>
+means = pd.Series(means)         <span class="c"># turn the list into a column</span>
+
+<span class="k">print</span>(<span class="c">"average of the 1000 averages:"</span>, <span class="k">round</span>(means.mean()))
+<span class="k">print</span>(<span class="c">"spread of those averages   :"</span>, <span class="k">round</span>(means.std()))
+<span class="k">print</span>(<span class="c">"skew of those averages     :"</span>, <span class="k">round</span>(means.skew(), <span class="o">2</span>))</code></pre>
+   <div class="screen">average of the 1000 averages: 69680
+spread of those averages   : 3026
+skew of those averages     : 0.09</div>
 
    <div class="warn"><b>Your numbers will differ slightly.</b> This is a simulation, so the exact
    figures move a little each run even with a seed, depending on what ran before. The <em>pattern</em>
@@ -9391,7 +9447,7 @@ skew of those averages     : 0.02</div>
 
 
 3  THE SAMPLING DISTRIBUTION 1,000 AVERAGES
-                             mean 69,707   spread 2,907
+                             mean 69,680   spread 3,026
                              each dot is ONE WHOLE SAMPLE</code></pre>
 
    <div class="speak">
@@ -9448,12 +9504,14 @@ centred on the true population mean,
 <pre><code><span class="k">print</span>(<span class="c">"population skew:"</span>, <span class="k">round</span>(sal.skew(), <span class="o">2</span>))
 
 <span class="k">for</span> n <span class="k">in</span> (<span class="o">30</span>, <span class="o">100</span>, <span class="o">500</span>):
-    means = [rng.choice(sal, n).mean() <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(<span class="o">2000</span>)]
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">2000</span>):
+        means.append(sal.sample(n, replace=<span class="k">True</span>, random_state=i).mean())
     <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">" skew of the means:"</span>, <span class="k">round</span>(pd.Series(means).skew(), <span class="o">2</span>))</code></pre>
    <div class="screen">population skew: 14.06
-n = 30   skew of the means: 2.43
-n = 100  skew of the means: 1.83
-n = 500  skew of the means: 0.56</div>
+n = 30  skew of the means: 2.52
+n = 100  skew of the means: 1.41
+n = 500  skew of the means: 0.77</div>
 
    <div class="speak">
     <p>The population has a skew of <b>fourteen</b>. It is about as far from a bell curve as data gets
@@ -9509,12 +9567,17 @@ standard error  =  -----------
 sigma = pop.std()
 
 <span class="k">for</span> n <span class="k">in</span> (<span class="o">5</span>, <span class="o">30</span>, <span class="o">100</span>):
-    observed = pd.Series([rng.choice(pop, n).mean() <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>)]).std()
-    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">" observed:"</span>, <span class="k">round</span>(observed),
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>):
+        means.append(pop.sample(n, replace=<span class="k">True</span>, random_state=i).mean())
+
+    observed = pd.Series(means).std()
+    <span class="k">print</span>(<span class="c">"n ="</span>, n,
+          <span class="c">" observed :"</span>, <span class="k">round</span>(observed),
           <span class="c">" predicted:"</span>, <span class="k">round</span>(sigma/math.sqrt(n)))</code></pre>
-   <div class="screen">n = 5    observed: 7194   predicted: 7185
-n = 30   observed: 2912   predicted: 2933
-n = 100  observed: 1594   predicted: 1607</div>
+   <div class="screen">n = 5    observed : 7312   predicted: 7185
+n = 30   observed : 3026   predicted: 2933
+n = 100  observed : 1576   predicted: 1607</div>
 
    <div class="speak">
     <p>Look at those two columns. The formula predicted what the simulation did, three times, to within
@@ -9720,8 +9783,10 @@ pop.mean()    <span class="c"># 69,630</span>
 pop.std()     <span class="c"># 16,066   &lt;- this is SIGMA</span>
 
 <span class="c"># ---- THE SIMULATION ----</span>
-rng = np.random.default_rng(7)
-means = pd.Series([rng.choice(pop, 30).mean() for _ in range(1000)])
+means = []
+for i in range(1000):
+    means.append(pop.sample(30, replace=True, random_state=i).mean())
+means = pd.Series(means)
 means.mean()  <span class="c"># 69,693   lands on the population mean</span>
 means.std()   <span class="c">#  2,843   FAR smaller than the population spread of 16,066</span>
 means.skew()  <span class="c">#   0.02   near zero = NORMAL</span>
