@@ -9568,19 +9568,19 @@ skew of those averages     : 0.09</div>
 
    <div class="speak">
     <p>Three things happened there, and every one of them matters.</p>
-    <p><b>One.</b> The average of the thousand averages is sixty-nine thousand six hundred and ninety. The true
+    <p><b>One.</b> The average of the thousand averages is sixty-nine thousand six hundred and eighty. The true
     population average is sixty-nine thousand six hundred and thirty. They are almost identical.</p>
-    <p><b>Two.</b> The spread of those averages is <b>two thousand eight hundred</b>. Look back at the
+    <p><b>Two.</b> The spread of those averages is <b>just over three thousand</b>. Look back at the
     population &mdash; its spread was sixteen thousand. The averages are far less spread out than the
     people are.</p>
-    <p><b>Three</b>, and this is the one. Look at the skew. <b>Nought point zero two.</b></p>
+    <p><b>Three</b>, and this is the one. Look at the skew. <b>Nought point nought nine.</b></p>
     <p>Near zero. Symmetric. What shape is that?</p>
    </div>
 
    <div class="qbox">
     <div class="q">Wait. They learned this yesterday.</div>
     <div class="a"><b>Normal.</b> The distribution of sample means is a normal distribution. That is
-    what a skew of 0.05 means, and they spent all of yesterday learning to recognise it.</div>
+    what a skew of 0.09 means, and they spent all of yesterday learning to recognise it.</div>
    </div>
   </div>
 
@@ -9628,7 +9628,7 @@ skew of those averages     : 0.09</div>
    </div>
 
    <div class="speak">
-    <p>And this is why the spread shrank from sixteen thousand to two thousand eight hundred.</p>
+    <p>And this is why the spread shrank from sixteen thousand to just over three thousand.</p>
     <p>Individual people vary enormously. But <b>averages of thirty people do not.</b> To get an average
     of thirty that is wildly high you would need to have drawn thirty high earners in a row, which almost
     never happens. The extremes cancel out inside each sample.</p>
@@ -9800,7 +9800,7 @@ n = 2000  skew of the means: 0.36</div>
    <p class="objective">Name the spread, then predict it. Sixteen minutes.</p>
 
    <div class="speak">
-    <p>The spread of that third picture &mdash; the two thousand eight hundred &mdash; has its own name.</p>
+    <p>The spread of that third picture &mdash; the three thousand &mdash; has its own name.</p>
     <p>It is called the <b>standard error</b>. And it is just a standard deviation, but of averages rather
     than of people.</p>
     <p>It gets a separate name because confusing the two is one of the most common mistakes in the whole
@@ -10054,7 +10054,7 @@ for i in range(1000):
 means = pd.Series(means)
 means.mean()  <span class="c"># 69,680   lands on the population mean</span>
 means.std()   <span class="c">#  3,026   FAR smaller than the population spread of 16,066</span>
-means.skew()  <span class="c">#   0.02   near zero = NORMAL</span>
+means.skew()  <span class="c">#   0.09   near zero = NORMAL</span>
 
 <span class="c"># ---- THREE DIFFERENT PICTURES ----</span>
 <span class="c"># 1  THE POPULATION            each dot is ONE PERSON       mean 69,630  spread 16,066</span>
