@@ -10040,93 +10040,251 @@ so:   69,671  give or take  3,200
 <section>
  <div class="wrap">
   <div class="lbl">End of session &mdash; put this on screen</div>
-  <div class="sumcard"><pre><code><span class="c"># ---- THE SETUP ----</span>
-q1, q3 = sal.quantile(0.25), sal.quantile(0.75)
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in the session, in order. Eight steps, four code blocks, every board item written out
+  in full, and the answer to every question you will be asked. If you lose your place in the 90
+  minutes, this page alone is enough to carry on from.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 6</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Why this session exists</p>
+   <p class="rs-say"><b>Land this:</b> you will never get to measure everybody, so every number you
+   ever report comes from a sample &mdash; and day 3 proved samples disagree wildly. Either sampling
+   is useless, or something makes it trustworthy. That is today.</p>
+   <div class="rs-board"><b>Say the three examples:</b> a lakh of bulbs, test 50 (testing destroys
+   them) &middot; a billion voters, ask 1,000 &middot; every company in India, survey 500.<br>
+   Then: <b>MEASURE A FEW. SAY SOMETHING ABOUT EVERYONE.</b> That is the job, every day.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then day 3 back on the board:</b><br>
+   70,032 &middot; 244,006 &middot; 239,817 &middot; 65,149 &middot; 235,447 &nbsp;&mdash;&nbsp;
+   the truth was 95,648<br><br>
+   The killer line: <b>&ldquo;in real life I take only ONE of these. If I'd taken the second I'd have
+   reported 2.44 lakh. If the fourth, 65,000. And no way to know which one I'm holding.&rdquo;</b></div>
+   <p class="rs-say" style="margin-top:11px">Then ask it straight and <b>hold</b> &mdash; &ldquo;so is
+   sampling useless?&rdquo; Close with the question of the day: <b>if one sample can be this wrong,
+   how does anybody report a number honestly?</b></p>
+   <p class="rs-none">No code.</p>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">6 &ndash; 18</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Run the simulation</p>
+   <p class="rs-say"><b>Land this:</b> we did this five times by hand on day 3. Today the computer does
+   it a thousand times. Nothing else has changed.</p>
+   <p class="rs-do">Type this first &mdash; set up the population</p>
+   <div class="rs-code"><pre><code>q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
 iqr = q3 - q1
-pop = sal[(sal &gt;= q1-1.5*iqr) &amp; (sal &lt;= q3+1.5*iqr)]   <span class="c"># our &quot;population&quot;</span>
-pop.mean()    <span class="c"># 69,630</span>
-pop.std()     <span class="c"># 16,066   &lt;- this is SIGMA</span>
+pop = sal[(sal &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3+<span class="o">1.5</span>*iqr)]
 
-<span class="c"># ---- THE SIMULATION ----</span>
-means = []
-for i in range(1000):
-    means.append(pop.sample(30, replace=True, random_state=i).mean())
+<span class="k">print</span>(<span class="c">"population mean:"</span>, <span class="k">round</span>(pop.mean()))
+<span class="k">print</span>(<span class="c">"population std :"</span>, <span class="k">round</span>(pop.std()))</code></pre></div>
+   <div class="rs-out">population mean: 69630
+population std : 16066</div>
+   <p class="rs-do">Then the simulation</p>
+   <div class="rs-code"><pre><code>means = []
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>):
+    one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=i)
+    means.append(one_sample.mean())
+
 means = pd.Series(means)
-means.mean()  <span class="c"># 69,680   lands on the population mean</span>
-means.std()   <span class="c">#  3,026   FAR smaller than the population spread of 16,066</span>
-means.skew()  <span class="c">#   0.09   near zero = NORMAL</span>
 
-<span class="c"># ---- THREE DIFFERENT PICTURES ----</span>
-<span class="c"># 1  THE POPULATION            each dot is ONE PERSON       mean 69,630  spread 16,066</span>
-<span class="c"># 2  ONE SAMPLE                each dot is ONE PERSON       30 of them</span>
-<span class="c"># 3  THE SAMPLING DISTRIBUTION each dot is ONE WHOLE SAMPLE mean 69,680  spread  3,026</span>
-<span class="c">#</span>
-<span class="c"># picture 3 is not a distribution of DATA. it is a distribution of ESTIMATES.</span>
+<span class="k">print</span>(<span class="c">"average of the 1000 averages:"</span>, <span class="k">round</span>(means.mean()))
+<span class="k">print</span>(<span class="c">"spread of those averages   :"</span>, <span class="k">round</span>(means.std()))
+<span class="k">print</span>(<span class="c">"skew of those averages     :"</span>, <span class="k">round</span>(means.skew(), <span class="o">2</span>))</code></pre></div>
+   <div class="rs-out">average of the 1000 averages: 69680
+spread of those averages   : 3026
+skew of those averages     : 0.09</div>
+   <div class="rs-board"><b>If asked what the 1,000 is for:</b> the <b>30</b> is the real sample. The
+   <b>1,000</b> is only so you can see a shape &mdash; one sample gives one dot, and you cannot see a
+   shape from one dot. In real work the 1,000 never happens.</div>
+   <div class="rs-board" style="margin-top:8px"><b>If asked about the code:</b> you do not have to
+   explain it to teach this. Type it, run it, say &ldquo;this takes a thousand samples and writes down
+   each average&rdquo;. <code>replace=True</code> = the same person can be picked twice, which lets us
+   draw samples bigger than the table. <code>random_state=i</code> = the day 3 seeds, supplied by the
+   loop counter.</div>
+  </div></div>
 
-<span class="c"># ---- THE CENTRAL LIMIT THEOREM ----</span>
-<span class="c"># start with ANY shaped data - even a horrible one.</span>
-<span class="c"># take a sample, write down its average, do that many times.</span>
-<span class="c"># those averages make a shape of their own, and:</span>
-<span class="c">#</span>
-<span class="c">#    the BIGGER each sample, the CLOSER that shape gets to a bell curve,</span>
-<span class="c">#    and it sits on the TRUE population mean.</span>
-<span class="c">#</span>
-<span class="c"># HOW FAST depends on how ugly the data was to start with.</span>
-<span class="c">#</span>
-<span class="c"># NORMAL means SKEW 0. so &quot;becomes normal&quot; = &quot;skew heads to zero&quot;.</span>
-<span class="c">#</span>
-<span class="c"># BIGGER SAMPLES fix it. MORE SAMPLES do not:</span>
-<span class="c">#   200 samples of 30 -&gt; skew 2.21   |   20,000 samples of 30 -&gt; skew 2.51</span>
-<span class="c">#   2,000 samples of 30 -&gt; 2.52      |   2,000 samples of 2000 -&gt; 0.36</span>
-<span class="c">#   a small sample can be unlucky. a big one is harder to fool.</span>
-<span class="c">#</span>
-<span class="c"># proof on the worst column we have:</span>
-<span class="c">#   population skew  14.06</span>
-<span class="c">#   n =  30   skew of the means  2.43</span>
-<span class="c">#   n = 100                      1.83</span>
-<span class="c">#   n = 500                      0.56</span>
-<span class="c">#</span>
-<span class="c"># it works - but SLOWLY. &quot;n &gt;= 30&quot; is a rule of thumb, not a law.</span>
-<span class="c"># THE MORE LOPSIDED THE POPULATION, THE BIGGER n HAS TO BE.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">18 &ndash; 30</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">What you just built &mdash; three pictures</p>
+   <p class="rs-say"><b>Land this, and it is the one students nod through without getting:</b> in
+   picture 3, <b>one dot is thirty people averaged</b>, not one salary. If anybody says
+   &ldquo;one salary&rdquo;, stop and rebuild it.</p>
+   <div class="rs-board"><b>Draw all three side by side, and label the x-axis of each:</b><br><br>
+   <b>1 THE POPULATION</b> &mdash; 197 salaries &middot; mean 69,630 &middot; spread 16,066 &middot;
+   <em>each dot is ONE PERSON</em><br>
+   <b>2 ONE SAMPLE</b> &mdash; 30 salaries drawn from it &middot; has its own average &middot;
+   <em>each dot is ONE PERSON</em><br>
+   <b>3 THE SAMPLING DISTRIBUTION</b> &mdash; 1,000 averages &middot; mean 69,680 &middot; spread 3,026
+   &middot; <em>each dot is ONE WHOLE SAMPLE</em></div>
+   <p class="rs-say" style="margin-top:11px"><b>Three things to point at:</b> the average of the
+   averages (69,680) lands on the true mean (69,630). The spread shrank from 16,066 to just over 3,000.
+   And the skew is 0.09 &mdash; near zero.</p>
+   <div class="rs-board"><b>Why the spread shrank:</b> individual people vary enormously. Averages of
+   thirty people do not. To get an average of thirty that is wildly high you would have to draw thirty
+   high earners in a row, which almost never happens.</div>
+   <p class="rs-none">No code. Board only.</p>
+  </div></div>
 
-<span class="c"># ---- STANDARD ERROR ----</span>
-<span class="c"># STANDARD DEVIATION  how spread the PEOPLE are    does NOT shrink with more data</span>
-<span class="c"># STANDARD ERROR      how much your ESTIMATE wobbles   DOES shrink</span>
-<span class="c">#</span>
-<span class="c">#                 sigma</span>
-<span class="c">#   SE   =   --------------</span>
-<span class="c">#               sqrt(n)</span>
-<span class="c">#</span>
-<span class="c">#   n     observed   predicted</span>
-<span class="c">#     5      7,194       7,185</span>
-<span class="c">#    30      2,912       2,933</span>
-<span class="c">#   100      1,594       1,607     &lt;- the formula predicts the simulation</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">30 &ndash; 38</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Name it &mdash; and translate &ldquo;normal&rdquo; into a number</p>
+   <p class="rs-say"><b>Do the translation BEFORE the skew numbers, or the next screen looks like the
+   theorem failing.</b> A perfect bell is not lopsided. Not lopsided means <b>skew = 0</b>. So
+   &ldquo;the averages become normal&rdquo; is the same sentence as <b>&ldquo;the skew of the averages
+   goes towards zero&rdquo;</b>.</p>
+   <div class="rs-board"><b>On the board, leave it up:</b><br><br>
+   THE CENTRAL LIMIT THEOREM<br><br>
+   start with ANY shaped data &mdash; even a horrible one<br>
+   take a sample, write down its average, do that many times<br>
+   &nbsp;&nbsp;&rarr; those averages make a shape of their own<br><br>
+   <b>the BIGGER each sample is, the CLOSER that shape gets to a normal bell curve</b><br>
+   and it sits on the TRUE population mean<br><br>
+   how FAST it gets there depends on how ugly the original data was</div>
+   <p class="rs-do">Then prove it on the worst column you have</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"population skew:"</span>, <span class="k">round</span>(sal.skew(), <span class="o">2</span>))
 
-<span class="c"># sigma = 16,066</span>
-<span class="c">#   n =   5  -&gt;  SE 7,185      n = 100  -&gt;  SE 1,607</span>
-<span class="c">#   n =  30  -&gt;  SE 2,933      n = 400  -&gt;  SE   803</span>
-<span class="c">#</span>
-<span class="c">#   TO HALVE YOUR UNCERTAINTY YOU MUST QUADRUPLE YOUR SAMPLE.</span>
-<span class="c">#   (this is why polls ask ~1,000 people and stop at +/- 3%)</span>
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">30</span>, <span class="o">100</span>, <span class="o">500</span>, <span class="o">2000</span>):
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">2000</span>):
+        means.append(sal.sample(n, replace=<span class="k">True</span>, random_state=i).mean())
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">" skew of the means:"</span>, <span class="k">round</span>(pd.Series(means).skew(), <span class="o">2</span>))</code></pre></div>
+   <div class="rs-out">population skew: 14.06
+n = 30  skew of the means: 2.52
+n = 100  skew of the means: 1.41
+n = 500  skew of the means: 0.77
+n = 2000  skew of the means: 0.36</div>
+   <div class="rs-board"><b>The sentence the session turns on.</b> Point at the column, not at any one
+   number: &ldquo;Fourteen. Two point five. One point four. Nought point seven seven. Nought point
+   three six. <b>Every one is smaller than the one before.</b> Heading to zero, which is a perfect
+   bell. <b>That</b> is the theorem working &mdash; not that any one of these is normal.&rdquo;<br><br>
+   And that is why it is the Central <b>LIMIT</b> Theorem. A limit is something you get nearer to. It
+   never promised you arrive at thirty.</div>
+   <div class="rs-board" style="margin-top:8px"><b>They will now ask: &ldquo;then why did 30 work
+   earlier?&rdquo;</b> Because that was the <b>cleaned</b> column, already at skew 0.10 &mdash; nearly
+   a bell before we started, nothing to fix (its means: 0.05 at n=5, 0.07 at n=30). This raw one starts
+   at 14.06 and has much further to travel.<br><br>
+   <b>The rule worth taking to work:</b> the uglier the data you start with, the bigger the sample you
+   need. Not &ldquo;n = 30&rdquo;.</div>
+  </div></div>
 
-<span class="c"># ---- THE ANSWER TO THE DAY 3 QUESTION ----</span>
-<span class="c"># 1  sample means are NORMAL                      (the CLT)</span>
-<span class="c"># 2  centred on the TRUE population mean</span>
-<span class="c"># 3  spread = sigma / sqrt(n)                     (the standard error)</span>
-<span class="c"># 4  95% of a normal sits within ~2 std of centre (day 6 and day 9)</span>
-<span class="c">#    ------------------------------------------------------------</span>
-<span class="c">#    so 95% of all possible samples give an average</span>
-<span class="c">#    within 2 STANDARD ERRORS of the truth</span>
-<span class="c">#</span>
-<span class="c"># sampled 100 people, got 69,671</span>
-<span class="c">#   SE = 16,066 / sqrt(100) = 1,607</span>
-<span class="c">#   2 SE = about 3,200</span>
-<span class="c">#   -&gt; &quot;69,671, give or take 3,200&quot;</span>
-<span class="c">#</span>
-<span class="c"># THAT is where &quot;plus or minus 3%&quot; comes from.</span>
-<span class="c"># you cannot remove the uncertainty. you can MEASURE it and report it.</span>
-<span class="c">#</span>
-<span class="c"># (and the &quot;2&quot; is really 1.96 - next session it stops being a rounding)</span></code></pre></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">38 &ndash; 44</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Bigger samples, not more samples</p>
+   <p class="rs-say"><b>Four minutes, and it prevents the most common wrong takeaway.</b> Two numbers
+   are in play: how many people per sample (30), and how many times we repeated it (2,000). Ask which
+   one made the skew fall. Most rooms guess wrong.</p>
+   <p class="rs-do">Hold the sample size at 30 and only repeat it more</p>
+   <div class="rs-code"><pre><code><span class="k">for</span> reps <span class="k">in</span> (<span class="o">200</span>, <span class="o">1000</span>, <span class="o">5000</span>, <span class="o">20000</span>):
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(reps):
+        means.append(sal.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=i).mean())
+    <span class="k">print</span>(reps, <span class="c">"samples of 30  -&gt; skew"</span>, <span class="k">round</span>(pd.Series(means).skew(), <span class="o">2</span>))</code></pre></div>
+   <div class="rs-out">200 samples of 30  -> skew 2.21
+1000 samples of 30  -> skew 2.42
+5000 samples of 30  -> skew 2.52
+20000 samples of 30  -> skew 2.51</div>
+   <div class="rs-board"><b>A hundred times more work, and the skew did not move.</b> Repeating does
+   not help &mdash; it only makes the picture smoother. The shape it draws is the same shape. What
+   fixed it was making each sample <b>bigger</b>.<br><br>
+   <b>Why:</b> a sample of 30 can catch the 52-lakh row and be dragged miles off. Among 500, that same
+   row barely moves the average. <b>Bigger samples are harder to fool.</b> Repeating a small sample
+   just gives many easily-fooled answers.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">44 &ndash; 60</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Standard error, and the square root</p>
+   <p class="rs-say"><b>Land this:</b> the spread of picture 3 &mdash; just over three thousand &mdash;
+   has its own name. It is a <b>standard deviation of averages</b> rather than of people, and it is
+   called the <b>standard error</b>. It gets a separate name because confusing the two is a common and
+   expensive mistake.</p>
+   <div class="rs-board"><b>On the board &mdash; the distinction:</b><br><br>
+   <b>STANDARD DEVIATION</b> &mdash; how spread out the <b>people</b> are &middot;
+   <em>does NOT shrink with more data</em><br>
+   <b>STANDARD ERROR</b> &mdash; how much your <b>estimate</b> wobbles &middot;
+   <em>DOES shrink with more data</em></div>
+   <div class="rs-board" style="margin-top:8px"><b>Then the formula:</b><br><br>
+   standard error &nbsp;=&nbsp; sigma &divide; &radic;n<br><br>
+   sigma = 16,066 &nbsp;&rarr;&nbsp; n=5: <b>7,185</b> &middot; n=10: <b>5,081</b> &middot;
+   n=30: <b>2,933</b> &middot; n=100: <b>1,607</b> &middot; n=400: <b>803</b></div>
+   <p class="rs-do">Then test the formula against the simulation</p>
+   <div class="rs-code"><pre><code><span class="k">import</span> math
+sigma = pop.std()
+
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">5</span>, <span class="o">30</span>, <span class="o">100</span>):
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>):
+        means.append(pop.sample(n, replace=<span class="k">True</span>, random_state=i).mean())
+
+    observed = pd.Series(means).std()
+    <span class="k">print</span>(<span class="c">"n ="</span>, n,
+          <span class="c">" observed :"</span>, <span class="k">round</span>(observed),
+          <span class="c">" predicted:"</span>, <span class="k">round</span>(sigma/math.sqrt(n)))</code></pre></div>
+   <div class="rs-out">n = 5    observed : 7312   predicted: 7185
+n = 30   observed : 3026   predicted: 2933
+n = 100  observed : 1576   predicted: 1607</div>
+   <div class="rs-board"><b>The formula predicted the simulation three times running.</b> That is why
+   you can trust it without ever running a simulation at work.<br><br>
+   <b>And the tax:</b> 5&rarr;30 drops the error by 4,252. 100&rarr;400 drops it by only 804.
+   <b>Four times the data for twice the precision.</b> It never gets cheaper.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">60 &ndash; 76</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The answer &mdash; four facts and one flip</p>
+   <p class="rs-say"><b>Build these four on the board one line at a time. Do not rush.</b> Each one they
+   already have; the work is stacking them.</p>
+   <div class="rs-board"><b>1</b> &nbsp;sample means are NORMALLY distributed &nbsp;<em>(today)</em><br>
+   <b>2</b> &nbsp;they are centred on the TRUE population mean<br>
+   <b>3</b> &nbsp;their spread is sigma &divide; &radic;n &nbsp;<em>(the standard error)</em><br>
+   <b>4</b> &nbsp;for a normal, 95% sit within about 2 standard deviations of the centre
+   &nbsp;<em>(day 6 and day 9)</em><br>
+   <span style="display:block;border-top:1px solid rgba(93,42,26,.35);margin:9px 0"></span>
+   <b>so 95% of all possible samples give an average within 2 standard errors of the truth</b></div>
+   <p class="rs-say" style="margin-top:11px"><b>Now the flip, and this is the hardest half-minute of
+   the module.</b> That sentence is about samples, which is useless because you do not know the truth.
+   So turn it round: <b>if my average is within 2 steps of the truth, the truth is within 2 steps of my
+   average.</b> Same fact from the other end &mdash; if you are within 5 km of the station, the station
+   is within 5 km of you.</p>
+   <div class="rs-board"><b>Make it concrete:</b><br><br>
+   I sampled 100 people and got an average of <b>69,671</b><br>
+   standard error = 16,066 &divide; &radic;100 = <b>1,607</b><br>
+   2 standard errors = about <b>3,200</b><br><br>
+   so: <b>&ldquo;69,671, give or take 3,200&rdquo;</b><br>
+   the truth is very probably between 66,500 and 72,900</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then the point:</b> that is how somebody reports a
+   number honestly. Not &ldquo;the average is 69,671&rdquo;, which you cannot support. You have heard
+   the &ldquo;give or take&rdquo; phrasing your whole life on every opinion poll &mdash; now you know
+   where it comes from.<br><br>
+   <b>And back to day 3:</b> the problem was never that samples disagree. It was that we could not say
+   <b>by how much</b>. Now we can.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">76 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">What this unlocks, and the close</p>
+   <p class="rs-say"><b>Land this:</b> everything left in the module is this session applied. Name all
+   three so they see the shape of what is coming.</p>
+   <div class="rs-board"><b>On the board:</b><br><br>
+   &rarr; put a &ldquo;give or take&rdquo; on any estimate &nbsp;=&nbsp; <b>CONFIDENCE INTERVAL</b>
+   &middot; <em>day 11</em><br>
+   &rarr; ask whether a result is surprising enough to believe &nbsp;=&nbsp; <b>HYPOTHESIS TEST</b>
+   &middot; <em>day 12</em><br>
+   &rarr; decide whether version A really beat version B &nbsp;=&nbsp; <b>A/B TESTING</b>
+   &middot; <em>day 13</em></div>
+   <p class="rs-say" style="margin-top:11px"><b>The closing line:</b> you take <b>one</b> sample &mdash;
+   and you know what it was drawn from. That is the whole of today.</p>
+   <div class="rs-board"><b>Set up tomorrow:</b> I said &ldquo;give or take three thousand two
+   hundred&rdquo; and I got that from <b>2</b> standard errors, because 95% of a normal sits within
+   about 2. That <b>2</b> was a rounding all along. Next session it becomes <b>1.96</b>, and the
+   &ldquo;give or take&rdquo; gets a proper name.</div>
+   <p class="rs-none">No code.</p>
+  </div></div>
+</div>
   <div class="planbanner" style="margin-top:20px">
    <b>Where this goes next.</b> Day 11 turns &ldquo;give or take 3,200&rdquo; into a proper confidence
    interval, and the rounded <b>2</b> becomes <b>1.96</b>. It is the session your notes flag as the
