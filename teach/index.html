@@ -9559,6 +9559,41 @@ TODAY     for i in range(1000):            ->  1,000 answers
 
           THE ONLY THING THAT CHANGED IS THE NUMBER OF REPEATS</code></pre>
 
+   <div class="stage">Before the thousand, show them <b>one</b> sample on its own. Picture 2 in the
+   next block is this, and without seeing it once the three-picture slide does not land.</div>
+
+   <div class="typeit">One single sample &mdash; this is picture 2</div>
+<pre><code>one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=<span class="o">0</span>)
+
+<span class="k">print</span>(<span class="c">"how many people :"</span>, <span class="k">len</span>(one_sample))
+<span class="k">print</span>(<span class="c">"first few of them:"</span>, one_sample.head(<span class="o">5</span>).values)
+<span class="k">print</span>(<span class="c">"THIS sample's average:"</span>, <span class="k">round</span>(one_sample.mean()))</code></pre>
+   <div class="screen">how many people : 30
+first few of them: [58770. 67967. 57042. 51904. 84623.]
+THIS sample's average: 68221</div>
+
+   <div class="speak">
+    <p>That is one sample. Thirty real people, each with a real salary.</p>
+    <p>And the whole thing boils down to <b>one number</b> &mdash; sixty-eight thousand two hundred and
+    twenty-one. That is this sample's average.</p>
+    <p>The true answer is sixty-nine thousand six hundred and thirty. So this sample was out by about
+    fourteen hundred. Not bad, but not right either.</p>
+   </div>
+
+   <div class="typeit">Now change one digit and take a different thirty</div>
+<pre><code>one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=<span class="o">1</span>)
+<span class="k">print</span>(<span class="c">"THIS sample's average:"</span>, <span class="k">round</span>(one_sample.mean()))</code></pre>
+   <div class="screen">THIS sample's average: 65336</div>
+
+   <div class="speak">
+    <p>Different thirty people, different answer. Sixty-five thousand this time.</p>
+    <p>So each sample gives me <b>one number</b>, and that number moves about.</p>
+    <p>Now hold on to this, because it is the thing people get wrong later. In a minute I am going to
+    put a thousand of these on a chart. And every dot on that chart is <b>one of these whole
+    samples</b> &mdash; thirty people, squashed down into one average.</p>
+    <p>Not one person. Thirty people.</p>
+   </div>
+
    <div class="speak">
     <p>Look at those two lines before we run anything.</p>
     <p>On day three my loop went one, two, three, four, five. Five samples, and I read the five answers
@@ -9633,7 +9668,7 @@ skew of those averages     : 0.09</div>
                              each dot is ONE PERSON
 
 
-2  ONE SAMPLE                30 salaries drawn from it
+2  ONE SAMPLE                30 salaries drawn from it   <- you just printed it
                              has its own average
                              each dot is ONE PERSON
 
@@ -10138,6 +10173,23 @@ means = pd.Series(means)
    <div class="rs-out">average of the 1000 averages: 69680
 spread of those averages   : 3026
 skew of those averages     : 0.09</div>
+   <p class="rs-do">Then show ONE sample on its own &mdash; this is picture 2 in the next step</p>
+   <div class="rs-code"><pre><code>one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=<span class="o">0</span>)
+
+<span class="k">print</span>(<span class="c">"how many people :"</span>, <span class="k">len</span>(one_sample))
+<span class="k">print</span>(<span class="c">"first few of them:"</span>, one_sample.head(<span class="o">5</span>).values)
+<span class="k">print</span>(<span class="c">"THIS sample's average:"</span>, <span class="k">round</span>(one_sample.mean()))</code></pre></div>
+   <div class="rs-out">how many people : 30
+first few of them: [58770. 67967. 57042. 51904. 84623.]
+THIS sample's average: 68221</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>one_sample = pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=<span class="o">1</span>)
+<span class="k">print</span>(<span class="c">"THIS sample's average:"</span>, <span class="k">round</span>(one_sample.mean()))</code></pre></div>
+   <div class="rs-out">THIS sample's average: 65336</div>
+   <div class="rs-board"><b>Say it here, not later:</b> thirty real people squashed into <b>one
+   number</b>. Change one digit and you get a different thirty and a different number &mdash; 68,221
+   then 65,336. In a minute a thousand of these become a thousand dots, and <b>every dot is one of
+   these whole samples</b>, not one person.</div>
+
    <div class="rs-board"><b>Put the two side by side and point at what changed.</b> This is the
    whole claim of the session, and it is worth doing on the board.<br><br>
    <b>day 3</b> &mdash; <code>for seed in [1,2,3,4,5]:</code> &nbsp;&rarr;&nbsp; 5 answers<br>
