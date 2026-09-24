@@ -9463,14 +9463,22 @@ means = pd.Series(means)</code></pre>
     <p>And that is what you will do in your job, every day, forever.</p>
    </div>
 
-   <div class="stage">Now show them why that is frightening. Put the day 3 numbers back up.</div>
+   <div class="stage">Now show them why that is frightening. Do not just write the day 3 numbers up
+   &mdash; run the day 3 code again. They typed every line of it themselves two weeks ago.</div>
 
-   <div class="typeit">Put these back on the board</div>
-<pre><code>DAY 3 - five samples of 30 people, all from the same column
+   <div class="typeit">Re-run day 3's code</div>
+<pre><code>pop = df[<span class="c">"salary"</span>].dropna()
+<span class="k">print</span>(<span class="c">"the real answer:"</span>, <span class="k">round</span>(pop.mean()))
 
-   70,032     244,006     239,817     65,149     235,447
-
-   the truth was 95,648</code></pre>
+<span class="k">for</span> seed <span class="k">in</span> [<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>, <span class="o">4</span>, <span class="o">5</span>]:
+    s = pop.sample(<span class="o">30</span>, random_state=seed)
+    <span class="k">print</span>(seed, <span class="k">round</span>(s.mean()))</code></pre>
+   <div class="screen">the real answer: 95648
+1 70032
+2 244006
+3 239817
+4 65149
+5 235447</div>
 
    <div class="speak">
     <p>But now look at what we found on day three, and this is the problem.</p>
@@ -9537,6 +9545,28 @@ pop = sal[(sal &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3+<spa
 <span class="k">print</span>(<span class="c">"population std :"</span>, <span class="k">round</span>(pop.std()))</code></pre>
    <div class="screen">population mean: 69630
 population std : 16066</div>
+
+   <div class="stage">Before running the thousand, put the two loops side by side. This is the claim
+   the whole session rests on, and it is much easier to believe when they can see both at once.</div>
+
+   <div class="typeit">On the board &mdash; what actually changed since day 3</div>
+<pre><code>DAY 3     for seed in [1, 2, 3, 4, 5]:     ->  5 answers, by hand
+
+TODAY     for i in range(1000):            ->  1,000 answers
+
+
+          same .sample(30)       same .mean()
+
+          THE ONLY THING THAT CHANGED IS THE NUMBER OF REPEATS</code></pre>
+
+   <div class="speak">
+    <p>Look at those two lines before we run anything.</p>
+    <p>On day three my loop went one, two, three, four, five. Five samples, and I read the five answers
+    off the screen.</p>
+    <p>Today the loop goes to a thousand.</p>
+    <p>Everything else is exactly the same. Same sample of thirty people. Same average. <b>The only
+    thing I have changed is how many times I repeat it.</b></p>
+   </div>
 
    <div class="speak">
     <p>That is our whole population. Average sixty-nine thousand six hundred, spread sixteen thousand.</p>
