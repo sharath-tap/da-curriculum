@@ -10447,6 +10447,56 @@ n = 100  observed : 1576   predicted: 1607</div>
   get wrong here.</p>
 
   <div class="understand">
+   <h5>Part zero &middot; the new tools in this session, explained</h5>
+   <p>Two new things appear in today's code. Neither is hard, but nobody has told you what they are, so
+   here they are before anything else.</p>
+
+   <h6>1. scipy &mdash; another library, like pandas and numpy</h6>
+   <p>You already use <b>pandas</b> for tables and <b>numpy</b> for arrays. <b>scipy</b> is a third one.
+   It is a box of ready-made maths tools.</p>
+   <p>We want exactly <b>one</b> tool from it today: a calculator for the bell curve. That is what
+   <code>stats.norm</code> is &mdash; <code>norm</code> is short for <em>normal distribution</em>.</p>
+   <div class="typeit">This is the whole import</div>
+<pre><code><span class="k">from</span> scipy <span class="k">import</span> stats</code></pre>
+   <p>If it is not installed, <code>pip install scipy</code> once, and never again.</p>
+
+   <h6>2. ppf &mdash; the one function we call</h6>
+   <p><code>stats.norm.ppf(0.975)</code> asks the bell curve a question, and the question is:</p>
+   <div class="keyline">
+    <b>&ldquo;What is the cut-off point that has 97.5% of everything below it?&rdquo;</b> The answer is
+    1.96. That is the only thing this function does &mdash; you hand it a percentage, it hands you back
+    the point on the curve.
+   </div>
+   <p>Why 97.5 and not 95? Because we want the <b>middle</b> 95%, so we cut 2.5% off each end. The two
+   cut-off points are &minus;1.96 and +1.96, and everything between them is 95% of the curve.</p>
+   <p>You met the same idea yesterday from the other direction. Day 9 used
+   <code>norm.cdf(z)</code>, which takes a point and gives you the percentage below it.
+   <b>ppf is cdf backwards.</b></p>
+   <div class="mth">
+    <div class="mrow"><b>cdf</b> &mdash; you give it a point &nbsp;&rarr;&nbsp; it gives you a percentage
+    &nbsp;<em>(day 9: z of 0.84 &rarr; 80th percentile)</em></div>
+    <div class="mrow"><b>ppf</b> &mdash; you give it a percentage &nbsp;&rarr;&nbsp; it gives you a point
+    &nbsp;<em>(today: 97.5% &rarr; 1.96)</em></div>
+   </div>
+
+   <h6>3. math.sqrt and math.ceil</h6>
+   <p>Both come from <code>math</code>, which is built into Python &mdash; nothing to install.</p>
+   <p><code>math.sqrt(100)</code> is the square root, 10. You used it yesterday for the standard error.</p>
+   <p><code>ceil</code> means <b>round up, always</b>. <code>ceil(1067.1)</code> is 1068, not 1067. We
+   need it at the end of the session because you cannot survey one tenth of a person.</p>
+
+   <h6>Everything else today you already know</h6>
+   <p><code>pop.sample(100, replace=True, random_state=54)</code> is the same line from yesterday.
+   <code>.mean()</code>, <code>.std()</code>, a <code>for</code> loop and an <code>if</code> are all
+   old. <b>There are only two new things in the whole session, and they are both above.</b></p>
+
+   <div class="warn"><b>If a student asks what scipy is doing inside, the honest answer is
+   &ldquo;arithmetic we are not going to do by hand&rdquo;.</b> Nobody computes a bell-curve cut-off
+   manually &mdash; before computers people read it off a printed table at the back of a textbook.
+   <code>ppf</code> is that table. Say that and move on.</div>
+  </div>
+
+  <div class="understand">
    <h5>Part one &middot; where the interval comes from</h5>
 
    <h6>You already built it last session</h6>
@@ -10475,8 +10525,8 @@ n = 100  observed : 1576   predicted: 1607</div>
    <div class="mth">
     <div class="mrow"><b>confidence interval</b> = sample mean &plusmn; 1.96 &times; standard error</div>
     <div class="mrow"><b>standard error</b> = s &divide; &radic;n</div>
-    <div class="mcalc">67,472 &plusmn; 1.96 &times; (16,876 &divide; &radic;100) &nbsp;=&nbsp; 67,472 &plusmn; 3,308
-    &nbsp;=&nbsp; <b>64,164 to 70,780</b></div>
+    <div class="mcalc">72,149 &plusmn; 1.96 &times; (16,313 &divide; &radic;100) &nbsp;=&nbsp; 72,149 &plusmn; 3,197
+    &nbsp;=&nbsp; <b>68,952 to 75,346</b></div>
    </div>
    <p>That is the entire calculation. Two lines of code. Which is exactly why the rest of the session
    belongs to meaning rather than arithmetic.</p>
@@ -10486,7 +10536,7 @@ n = 100  observed : 1576   predicted: 1607</div>
    <h5>Part two &middot; the interpretation, and why it is not pedantry</h5>
 
    <h6>The sentence almost everyone says, which is wrong</h6>
-   <p><b>&ldquo;There is a 95% chance the true average salary is between 64,164 and 70,780.&rdquo;</b></p>
+   <p><b>&ldquo;There is a 95% chance the true average salary is between 68,952 and 75,346.&rdquo;</b></p>
    <p>This is the single most common error in applied statistics, and people with degrees make it. Here
    is why it is wrong, in one line: <b>the true average is not a random thing.</b> It is a fixed number.
    It is 69,630. It does not move, and it does not have a probability of being anywhere &mdash; it is
@@ -10577,12 +10627,28 @@ n = 100  observed : 1576   predicted: 1607</div>
     <p>The real number is <b>one point nine six</b>. From today we use the real one.</p>
    </div>
 
-   <div class="typeit">Show them where 1.96 comes from &mdash; do not just assert it</div>
-<pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
+   <div class="stage">Two new tools appear in this line. Name them before you run it &mdash; it takes
+   forty seconds and saves the whole session.</div>
 
-<span class="c"># the two points on a standard normal that leave 2.5% in each tail</span>
-<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.025</span>), <span class="o">3</span>))
-<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.975</span>), <span class="o">3</span>))</code></pre>
+   <div class="speak">
+    <p>One quick thing before I run this. There is a new word in it.</p>
+    <p><b>scipy.</b> It is a library, like pandas and numpy. A box of ready-made maths tools.</p>
+    <p>I want one tool from it. A bell curve calculator. That is what <code>norm</code> means &mdash;
+    normal distribution.</p>
+    <p>And <code>ppf</code> is the question I ask it. <b>&ldquo;What point on the curve has this much
+    below it?&rdquo;</b></p>
+    <p>Yesterday we did the opposite. We gave it a point and asked what percentage was below. Today we
+    give it a percentage and ask for the point. Same curve, asked backwards.</p>
+   </div>
+
+   <div class="typeit">Show them where 1.96 comes from &mdash; do not just assert it</div>
+<pre><code><span class="c"># scipy is a library of ready-made maths tools, like numpy and pandas.</span>
+<span class="c"># we only want one thing from it today: a bell-curve calculator.</span>
+<span class="k">from</span> scipy <span class="k">import</span> stats
+
+<span class="c"># ppf = "give me the cut-off point that leaves this much below it"</span>
+<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.025</span>), <span class="o">3</span>))   <span class="c"># 2.5% is below this point</span>
+<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.975</span>), <span class="o">3</span>))   <span class="c"># 97.5% is below this point</span></code></pre>
    <div class="screen">-1.96
 1.96</div>
 
@@ -10600,29 +10666,28 @@ n = 100  observed : 1576   predicted: 1607</div>
    <p class="objective">The whole calculation. Two lines. Get it done fast so the time goes to meaning.</p>
 
    <div class="typeit">Take one sample of a hundred and build the interval</div>
-<pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+<pre><code><span class="k">import</span> math                      <span class="c"># for math.sqrt - same as yesterday</span>
 
-rng = np.random.default_rng(<span class="o">11</span>)
-sample = pd.Series(rng.choice(pop, <span class="o">100</span>))
+sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
 
 m  = sample.mean()
-se = sample.std() / np.sqrt(<span class="o">100</span>)
+se = sample.std() / math.sqrt(<span class="o">100</span>)
 
-<span class="k">print</span>(<span class="c">"sample mean   :"</span>, <span class="k">round</span>(m))
-<span class="k">print</span>(<span class="c">"standard error:"</span>, <span class="k">round</span>(se))
-<span class="k">print</span>(<span class="c">"margin (1.96se):"</span>, <span class="k">round</span>(<span class="o">1.96</span> * se))
-<span class="k">print</span>(<span class="c">"95% CI        :"</span>, <span class="k">round</span>(m - <span class="o">1.96</span>*se), <span class="c">"to"</span>, <span class="k">round</span>(m + <span class="o">1.96</span>*se))</code></pre>
-   <div class="screen">sample mean   : 67472
-standard error: 1688
-margin (1.96se): 3308
-95% CI        : 64164 to 70780</div>
+<span class="k">print</span>(<span class="c">"sample mean    :"</span>, <span class="k">round</span>(m))
+<span class="k">print</span>(<span class="c">"standard error :"</span>, <span class="k">round</span>(se))
+<span class="k">print</span>(<span class="c">"1.96 x se      :"</span>, <span class="k">round</span>(<span class="o">1.96</span> * se))
+<span class="k">print</span>(<span class="c">"95% CI         :"</span>, <span class="k">round</span>(m - <span class="o">1.96</span>*se), <span class="c">"to"</span>, <span class="k">round</span>(m + <span class="o">1.96</span>*se))</code></pre>
+   <div class="screen">sample mean    : 72149
+standard error : 1631
+1.96 x se      : 3197
+95% CI         : 68952 to 75346</div>
 
    <div class="warn"><b>Your numbers will differ slightly.</b> Same as last session &mdash; it is a
    simulation. The pattern never changes; the exact figures move a little.</div>
 
    <div class="speak">
-    <p>That is it. That is a confidence interval. Sixty-four thousand one hundred and sixty-four, to
-    seventy thousand seven hundred and eighty.</p>
+    <p>That is it. That is a confidence interval. Sixty-eight thousand nine hundred and fifty-two, to
+    seventy-five thousand three hundred and forty-six.</p>
     <p>Sample average, plus and minus one point nine six standard errors. Two lines of code, and we
     already had both pieces.</p>
    </div>
@@ -10671,21 +10736,21 @@ margin (1.96se): 3308
    <div class="stage">This next block is the most important thing in the session. Run it live.</div>
 
    <div class="typeit">Do the whole thing a hundred times and count</div>
-<pre><code>rng = np.random.default_rng(<span class="o">42</span>)
-caught = <span class="o">0</span>
+<pre><code>caught = <span class="o">0</span>
 truth  = pop.mean()
 
 <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">100</span>):
-    x  = pd.Series(rng.choice(pop, <span class="o">100</span>))
-    e  = <span class="o">1.96</span> * x.std() / np.sqrt(<span class="o">100</span>)
+    x = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=i)
+    e = <span class="o">1.96</span> * x.std() / math.sqrt(<span class="o">100</span>)
+
     <span class="k">if</span> x.mean() - e &lt;= truth &lt;= x.mean() + e:
         caught += <span class="o">1</span>
 
 <span class="k">print</span>(caught, <span class="c">"of the 100 intervals contained the true mean"</span>)</code></pre>
-   <div class="screen">95 of the 100 intervals contained the true mean</div>
+   <div class="screen">96 of the 100 intervals contained the true mean</div>
 
    <div class="speak">
-    <p>Ninety-five out of a hundred.</p>
+    <p>Ninety-six out of a hundred.</p>
     <p>Look at what changed and what did not. The truth never moved &mdash; it was sixty-nine thousand
     six hundred and thirty every single time. What moved was <b>the interval</b>. A hundred different
     samples, a hundred different intervals, and ninety-five of them landed on the truth.</p>
@@ -10718,9 +10783,9 @@ truth  = pop.mean()
     e = z * se
     <span class="k">print</span>(level, <span class="c">"% ->"</span>, <span class="k">round</span>(m-e), <span class="c">"to"</span>, <span class="k">round</span>(m+e),
           <span class="c">"  width"</span>, <span class="k">round</span>(<span class="o">2</span>*e))</code></pre>
-   <div class="screen">90 % -> 64696 to 70248   width 5552
-95 % -> 64164 to 70780   width 6615
-99 % -> 63125 to 71819   width 8695</div>
+   <div class="screen">90 % -> 69466 to 74833   width 5367
+95 % -> 68952 to 75346   width 6395
+99 % -> 67947 to 76351   width 8404</div>
 
    <div class="speak">
     <p>Look at the widths. Ninety percent confident, and the interval is five and a half thousand wide.
@@ -10733,7 +10798,7 @@ truth  = pop.mean()
 
    <div class="typeit">Now the other lever &mdash; and remember day 10's tax</div>
 <pre><code><span class="k">for</span> n <span class="k">in</span> [<span class="o">100</span>, <span class="o">400</span>, <span class="o">1600</span>]:
-    e = <span class="o">1.96</span> * pop.std() / np.sqrt(n)
+    e = <span class="o">1.96</span> * pop.std() / math.sqrt(n)
     <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-> width"</span>, <span class="k">round</span>(<span class="o">2</span>*e))</code></pre>
    <div class="screen">n = 100 -> width 6298
 n = 400 -> width 3149
@@ -10874,7 +10939,7 @@ margin +/- 1 % -> need 9604 people</div>
   when the data is skewed 14. That is exactly why the Central Limit Theorem was the hinge of this
   module.&rdquo;</p></div>
 
-  <div class="qa"><h5>&ldquo;Our interval was 64,164 to 70,780 and the truth was 69,630 &mdash; that is
+  <div class="qa"><h5>&ldquo;Our interval was 68,952 to 75,346 and the truth was 69,630 &mdash; that is
   near the edge. Is that bad?&rdquo;</h5>
   <p>&ldquo;Not at all, and it is a sharp thing to notice. The truth is no more likely to sit in the
   middle of your interval than near its edge. Any position inside counts as a hit, and being near the
