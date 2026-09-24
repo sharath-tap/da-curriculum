@@ -10057,11 +10057,22 @@ so:   69,671  give or take  3,200
    <div class="rs-board"><b>Say the three examples:</b> a lakh of bulbs, test 50 (testing destroys
    them) &middot; a billion voters, ask 1,000 &middot; every company in India, survey 500.<br>
    Then: <b>MEASURE A FEW. SAY SOMETHING ABOUT EVERYONE.</b> That is the job, every day.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Then day 3 back on the board:</b><br>
-   70,032 &middot; 244,006 &middot; 239,817 &middot; 65,149 &middot; 235,447 &nbsp;&mdash;&nbsp;
-   the truth was 95,648<br><br>
-   The killer line: <b>&ldquo;in real life I take only ONE of these. If I'd taken the second I'd have
-   reported 2.44 lakh. If the fourth, 65,000. And no way to know which one I'm holding.&rdquo;</b></div>
+   <p class="rs-do">Re-run day 3's code &mdash; they have seen every line of it before</p>
+   <div class="rs-code"><pre><code>pop = df[<span class="c">"salary"</span>].dropna()
+<span class="k">print</span>(<span class="c">"the real answer:"</span>, <span class="k">round</span>(pop.mean()))
+
+<span class="k">for</span> seed <span class="k">in</span> [<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>, <span class="o">4</span>, <span class="o">5</span>]:
+    s = pop.sample(<span class="o">30</span>, random_state=seed)
+    <span class="k">print</span>(seed, <span class="k">round</span>(s.mean()))</code></pre></div>
+   <div class="rs-out">the real answer: 95648
+1 70032
+2 244006
+3 239817
+4 65149
+5 235447</div>
+   <div class="rs-board"><b>The killer line:</b> &ldquo;in real life I take only ONE of these. If I'd
+   taken the second I'd have reported 2.44 lakh. If the fourth, 65,000. And no way to know which one
+   I'm holding.&rdquo;</div>
    <p class="rs-say" style="margin-top:11px">Then ask it straight and <b>hold</b> &mdash; &ldquo;so is
    sampling useless?&rdquo; Close with the question of the day: <b>if one sample can be this wrong,
    how does anybody report a number honestly?</b></p>
@@ -10097,9 +10108,15 @@ means = pd.Series(means)
    <div class="rs-out">average of the 1000 averages: 69680
 spread of those averages   : 3026
 skew of those averages     : 0.09</div>
-   <div class="rs-board"><b>If asked what the 1,000 is for:</b> the <b>30</b> is the real sample. The
-   <b>1,000</b> is only so you can see a shape &mdash; one sample gives one dot, and you cannot see a
-   shape from one dot. In real work the 1,000 never happens.</div>
+   <div class="rs-board"><b>Put the two side by side and point at what changed.</b> This is the
+   whole claim of the session, and it is worth doing on the board.<br><br>
+   <b>day 3</b> &mdash; <code>for seed in [1,2,3,4,5]:</code> &nbsp;&rarr;&nbsp; 5 answers<br>
+   <b>today</b> &mdash; <code>for i in range(1000):</code> &nbsp;&rarr;&nbsp; 1,000 answers<br><br>
+   Same <code>.sample(30)</code>. Same <code>.mean()</code>. <b>The only thing that changed is the
+   number of repeats.</b> Day 3 collected five answers by hand; today the loop collects a thousand.</div>
+   <div class="rs-board" style="margin-top:8px"><b>If asked what the 1,000 is for:</b> the <b>30</b> is
+   the real sample. The <b>1,000</b> is only so you can see a shape &mdash; one sample gives one dot,
+   and you cannot see a shape from one dot. In real work the 1,000 never happens.</div>
    <div class="rs-board" style="margin-top:8px"><b>If asked about the code:</b> you do not have to
    explain it to teach this. Type it, run it, say &ldquo;this takes a thousand samples and writes down
    each average&rdquo;. <code>replace=True</code> = the same person can be picked twice, which lets us
