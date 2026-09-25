@@ -10479,6 +10479,27 @@ n = 100  observed : 1576   predicted: 1607</div>
     &nbsp;<em>(today: 97.5% &rarr; 1.96)</em></div>
    </div>
 
+   <h6>The three names, and what they stand for</h6>
+   <p>You have now met three of these. They are all questions about the same curve, and the letters
+   stand for something:</p>
+   <div class="mth">
+    <div class="mrow"><b>PDF</b> &mdash; <b>P</b>robability <b>D</b>ensity <b>F</b>unction.
+    The shape of the curve itself. <em>Day 9</em></div>
+    <div class="mrow"><b>CDF</b> &mdash; <b>C</b>umulative <b>D</b>istribution <b>F</b>unction.
+    Value in, <b>percentage below it</b> out. <em>Day 9</em></div>
+    <div class="mrow"><b>PPF</b> &mdash; <b>P</b>ercent <b>P</b>oint <b>F</b>unction.
+    Percentage in, <b>value</b> out. <em>Today</em></div>
+    <div class="mrow"><b>PMF</b> &mdash; <b>P</b>robability <b>M</b>ass <b>F</b>unction.
+    The PDF for things you count instead of measure. <em>Not used in this course</em></div>
+   </div>
+   <p><b>CDF and PPF are inverses</b> &mdash; the same question asked in opposite directions.
+   175 cm &rarr; 80% is cdf. 80% &rarr; 175 cm is ppf.</p>
+   <div class="keyline">
+    If somebody says <b>&ldquo;inverse CDF&rdquo;</b> or <b>&ldquo;quantile function&rdquo;</b>, they
+    mean <code>ppf</code>. Those names are commoner in textbooks and interviews than &ldquo;percent
+    point function&rdquo;, so it is worth saying all three out loud once.
+   </div>
+
    <h6>3. math.sqrt and math.ceil</h6>
    <p>Both come from <code>math</code>, which is built into Python &mdash; nothing to install.</p>
    <p><code>math.sqrt(100)</code> is the square root, 10. You used it yesterday for the standard error.</p>
@@ -10871,40 +10892,170 @@ margin +/- 1 % -> need 9604 people</div>
     noise?&rdquo;</p>
    </div>
 
-   <div class="sumcard"><pre><code><span class="c"># ---- THE CONFIDENCE INTERVAL ----</span>
-<span class="c">#   CI = sample mean  +/-  1.96 * (s / sqrt(n))</span>
-<span class="c">#                            ^^^^   ^^^^^^^^^^^</span>
-<span class="c">#                            |      standard error (day 10)</span>
-<span class="c">#                            middle 95% of a normal curve (day 9)</span>
-<span class="c">#</span>
-<span class="c"># nothing new was invented today. we joined day 9 to day 10.</span>
+   <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Five steps, eight code blocks, every board item written out, and the answers
+  to the questions this session reliably produces.</p>
+ </div>
 
-<span class="c"># ---- WHAT THE 95% MEANS ----</span>
-<span class="c"># WRONG: &quot;95% chance the true mean is in MY interval&quot;</span>
-<span class="c">#        the true mean is FIXED. it is in, or it is out. already decided.</span>
-<span class="c">#</span>
-<span class="c"># RIGHT: &quot;95% of the intervals this METHOD produces contain the truth&quot;</span>
-<span class="c">#        the randomness is in the INTERVAL, not in the truth.</span>
-<span class="c">#        we ran it 100 times: 95 hit, 5 missed. the 5 did nothing wrong.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Finish yesterday's sentence &mdash; and name the new tools</p>
+   <p class="rs-say"><b>Land this:</b> yesterday ended on &ldquo;69,671, give or take 3,200&rdquo;.
+   Today that becomes a proper interval. And the <b>2</b> from day 6's 68-95-99.7 rule was always a
+   rounding &mdash; the real number is <b>1.96</b>.</p>
+   <div class="rs-board"><b>Say this before the first line of code, it takes 40 seconds:</b><br>
+   <b>scipy</b> is a library like pandas and numpy. We want one tool from it &mdash; a bell-curve
+   calculator, which is what <code>norm</code> means.<br>
+   <b>ppf</b> asks it: &ldquo;what point has this much below it?&rdquo;<br>
+   Day 9 did the opposite with <code>cdf</code> &mdash; a point in, a percentage out. <b>ppf is cdf
+   backwards.</b></div>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
 
-<span class="c"># ---- THE TWO LEVERS ----</span>
-<span class="c"># confidence UP  -> interval WIDER   90%=1.645  95%=1.96  99%=2.576</span>
-<span class="c">#                   (100% confidence = &quot;zero to infinity&quot;. useless.)</span>
-<span class="c"># sample size UP -> interval NARROWER, but 4x the data for 2x the precision</span>
-<span class="c">#                   n=100 -> 6298 wide | n=400 -> 3149 | n=1600 -> 1574</span>
+<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.025</span>), <span class="o">3</span>))
+<span class="k">print</span>(<span class="k">round</span>(stats.norm.ppf(<span class="o">0.975</span>), <span class="o">3</span>))</code></pre></div>
+   <div class="rs-out">-1.96
+1.96</div>
+   <div class="rs-board"><b>They will ask why 0.975 and not 0.95.</b> Because <code>ppf</code> counts
+   from the far left. Below the right-hand cut sits the 2.5% left tail <b>plus</b> the middle 95% =
+   97.5%. The 97.5 is not the confidence level.</div>
+  </div></div>
 
-<span class="c"># ---- SMALL SAMPLES: t INSTEAD OF z ----</span>
-<span class="c"># n=5 -> 2.776 | n=30 -> 2.045 | n=100 -> 1.984 | n=1000 -> 1.962</span>
-<span class="c"># below ~30 it matters. above ~30 it does not. the library picks for you.</span>
-<span class="c"># (this is where the famous &quot;n &gt;= 30&quot; rule actually comes from)</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 24</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Build one interval</p>
+   <p class="rs-say"><b>Land this:</b> the whole calculation is two lines, and both pieces are already
+   yours. Get it done fast so the time goes to meaning.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">import</span> math
 
-<span class="c"># ---- AND THE 1,068 FROM DAY 4 ----</span>
-<span class="c"># n = z^2 * p(1-p) / E^2   with p=0.5 (worst case) and E=0.03</span>
-<span class="c"># n = 3.8416 * 0.25 / 0.0009 = 1068</span>
-<span class="c">#</span>
-<span class="c"># THE POPULATION SIZE IS NOT IN THE FORMULA.</span>
-<span class="c"># 1,000 people says as much about India as about Iceland.</span>
-<span class="c">#   +/- 5% -> 384    +/- 3% -> 1,068    +/- 1% -> 9,604</span></code></pre></div>
+sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
+
+m  = sample.mean()
+se = sample.std() / math.sqrt(<span class="o">100</span>)
+
+<span class="k">print</span>(<span class="c">"sample mean    :"</span>, <span class="k">round</span>(m))
+<span class="k">print</span>(<span class="c">"standard error :"</span>, <span class="k">round</span>(se))
+<span class="k">print</span>(<span class="c">"1.96 x se      :"</span>, <span class="k">round</span>(<span class="o">1.96</span> * se))
+<span class="k">print</span>(<span class="c">"95% CI         :"</span>, <span class="k">round</span>(m - <span class="o">1.96</span>*se), <span class="c">"to"</span>, <span class="k">round</span>(m + <span class="o">1.96</span>*se))</code></pre></div>
+   <div class="rs-out">sample mean    : 72149
+standard error : 1631
+1.96 x se      : 3197
+95% CI         : 68952 to 75346</div>
+   <p class="rs-do">Then reveal the truth &mdash; they have not seen it this session</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"the truth:"</span>, <span class="k">round</span>(pop.mean()))</code></pre></div>
+   <div class="rs-out">the truth: 69630</div>
+   <div class="rs-board"><b>We caught it.</b> We saw 100 people, never the whole population, and still
+   bracketed the real answer. Then stop &mdash; the next question is the session.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">24 &ndash; 46</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">What the 95% is attached to</p>
+   <p class="rs-say"><b>The hard idea. 22 minutes, and the simulation does the work.</b> Ask what the
+   95% means and write the wrong answer on the board exactly as given &mdash; &ldquo;95% chance the
+   true mean is in our interval&rdquo;. Do <b>not</b> correct it yet.</p>
+   <div class="rs-board"><b>Then break it with one question:</b> what is the true mean? 69,630. Is that
+   a fixed number or does it move? <b>Fixed.</b> So how can a fixed number have a 95% chance of being
+   anywhere? It is either in or out, and that was decided the moment we drew the sample.</div>
+   <p class="rs-do">Type this &mdash; the most important block in the session</p>
+   <div class="rs-code"><pre><code>caught = <span class="o">0</span>
+truth  = pop.mean()
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">100</span>):
+    x = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=i)
+    e = <span class="o">1.96</span> * x.std() / math.sqrt(<span class="o">100</span>)
+
+    <span class="k">if</span> x.mean() - e &lt;= truth &lt;= x.mean() + e:
+        caught += <span class="o">1</span>
+
+<span class="k">print</span>(caught, <span class="c">"of the 100 intervals contained the true mean"</span>)</code></pre></div>
+   <div class="rs-out">96 of the 100 intervals contained the true mean</div>
+   <div class="rs-board"><b>Point at what changed and what did not.</b> The truth never moved &mdash;
+   69,630 every single time. What moved was <b>the interval</b>. So the 95% describes <b>the method</b>,
+   not the truth.<br><br>
+   The honest sentence: <b>&ldquo;I used a method that works 95 times out of 100.&rdquo;</b> Not
+   &ldquo;there is a 95% chance&rdquo;. Nobody ever knows which one they are holding.</div>
+   <div class="rs-board" style="margin-top:8px"><b>If told this is word games:</b> the four intervals
+   that missed were made with exactly the same care as the 96 that hit. Nothing was done wrong in them.
+   That is what a 95% method means &mdash; <b>it fails sometimes, correctly.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">46 &ndash; 66</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The two levers, and what each costs</p>
+   <p class="rs-say"><b>Land this:</b> more confidence does not make you more accurate &mdash; it makes
+   you <b>vaguer</b>. And more data buys precision at a rising price.</p>
+   <p class="rs-do">Lever one &mdash; the confidence level</p>
+   <div class="rs-code"><pre><code><span class="k">for</span> level, z <span class="k">in</span> [(<span class="o">90</span>, <span class="o">1.645</span>), (<span class="o">95</span>, <span class="o">1.96</span>), (<span class="o">99</span>, <span class="o">2.576</span>)]:
+    e = z * se
+    <span class="k">print</span>(level, <span class="c">"% -&gt;"</span>, <span class="k">round</span>(m-e), <span class="c">"to"</span>, <span class="k">round</span>(m+e),
+          <span class="c">"  width"</span>, <span class="k">round</span>(<span class="o">2</span>*e))</code></pre></div>
+   <div class="rs-out">90 % -> 69466 to 74833   width 5367
+95 % -> 68952 to 75346   width 6395
+99 % -> 67947 to 76351   width 8404</div>
+   <div class="rs-board"><b>Where the three z-values come from &mdash; they will ask.</b> Same
+   <code>ppf</code>, different percentage. Leftover &divide; 2 in each tail:<br>
+   90% &rarr; 5% each side &rarr; <code>ppf(0.95)</code> = <b>1.645</b><br>
+   95% &rarr; 2.5% each side &rarr; <code>ppf(0.975)</code> = <b>1.96</b><br>
+   99% &rarr; 0.5% each side &rarr; <code>ppf(0.995)</code> = <b>2.576</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>And why <code>2*e</code>:</b> <code>e</code> is the
+   distance from the centre to <b>one</b> edge. Edge to edge is two of them. The 2 has nothing to do
+   with the 1.96 &mdash; 1.96 is how far to one side, the 2 is because there are two sides.</div>
+   <p class="rs-do">Lever two &mdash; sample size</p>
+   <div class="rs-code"><pre><code><span class="k">for</span> n <span class="k">in</span> [<span class="o">100</span>, <span class="o">400</span>, <span class="o">1600</span>]:
+    e = <span class="o">1.96</span> * pop.std() / math.sqrt(n)
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-&gt; width"</span>, <span class="k">round</span>(<span class="o">2</span>*e))</code></pre></div>
+   <div class="rs-out">n = 100 -> width 6298
+n = 400 -> width 3149
+n = 1600 -> width 1574</div>
+   <div class="rs-board"><b>Four times the data for twice the precision.</b> Same square-root tax as
+   day 10. It never gets cheaper.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">66 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Where 1,068 came from</p>
+   <p class="rs-say"><b>Close the loop from day 4.</b> You told them a national poll needs about a
+   thousand people whatever the country size, and several did not believe you. They can now work it
+   out.</p>
+   <div class="rs-board"><b>Explain the formula as the one they already have, turned inside out.</b>
+   Do not derive it line by line unless asked:<br><br>
+   all session: <b>margin = 1.96 &times; standard error</b><br>
+   for a percentage, standard error = &radic;( p(1&minus;p) / n )<br>
+   rearrange to give n instead of E &nbsp;&rarr;&nbsp; <b>n = 1.96&sup2; &times; p(1&minus;p) &divide;
+   E&sup2;</b><br><br>
+   <b>Why p = 0.5:</b> you do not know p &mdash; that is what the poll is for. p(1&minus;p) is biggest
+   at 0.5, so plan for the worst case and you are safe whatever the answer turns out to be.</div>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">from</span> math <span class="k">import</span> ceil
+
+p = <span class="o">0.5</span>
+E = <span class="o">0.03</span>          <span class="c"># the margin we want: plus or minus 3%</span>
+
+n = (<span class="o">1.96</span>**<span class="o">2</span> * p * (<span class="o">1</span>-p)) / E**<span class="o">2</span>
+<span class="k">print</span>(ceil(n))          <span class="c"># round UP - you cannot survey part of a person</span></code></pre></div>
+   <div class="rs-out">1068</div>
+   <div class="rs-board"><b>The line that lands it:</b> notice what is <b>not</b> in that formula. The
+   size of the population. It is not there and never was. <b>A thousand people tells you as much about
+   India as about Iceland.</b></div>
+   <p class="rs-do">Then the trade-off</p>
+   <div class="rs-code"><pre><code><span class="k">for</span> E <span class="k">in</span> [<span class="o">0.05</span>, <span class="o">0.03</span>, <span class="o">0.01</span>]:
+    n = (<span class="o">1.96</span>**<span class="o">2</span> * <span class="o">0.25</span>) / E**<span class="o">2</span>
+    <span class="k">print</span>(<span class="c">"margin +/-"</span>, <span class="k">int</span>(E*<span class="o">100</span>), <span class="c">"% -&gt; need"</span>, ceil(n), <span class="c">"people"</span>)</code></pre></div>
+   <div class="rs-out">margin +/- 5 % -> need 385 people
+margin +/- 3 % -> need 1068 people
+margin +/- 1 % -> need 9604 people</div>
+   <div class="rs-board"><b>Ask them to predict before you run it.</b> Going from 3% to 1% feels like
+   three times as many. It is <b>nine</b> times, because the margin is squared underneath. Same tax,
+   seen from the other side.<br><br>
+   <b>Set up tomorrow:</b> today answered &ldquo;what is the number, and how sure am I?&rdquo; Next
+   session asks a different question &mdash; <b>is this difference real, or am I looking at
+   noise?</b></div>
+  </div></div>
+</div>
    <div class="planbanner" style="margin-top:20px">
     <b>Where this goes next.</b> Day 12 asks a different question with the same machinery: not
     &ldquo;what is the value&rdquo; but &ldquo;is this difference real?&rdquo; That is hypothesis
