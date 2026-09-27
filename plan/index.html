@@ -10,19 +10,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=Inter:wght@400;450;500&display=swap">
 <style>*{box-sizing:border-box}html,body{margin:0;padding:0}</style>
 <style id="tapnav-css">
-.tapnav{position:sticky;top:0;z-index:70;background:var(--nav-bg,rgba(255,255,255,.9));
- backdrop-filter:blur(14px);border-bottom:1px solid var(--hair,#ececec)}
-.tapnav-in{max-width:var(--max,960px);margin:0 auto;padding:11px 28px;display:flex;
- align-items:center;gap:20px;flex-wrap:wrap}
-.tapnav-home{font-family:var(--serif,Georgia,serif);font-size:16px;font-weight:600;
- color:var(--ink,#17191c);text-decoration:none;white-space:nowrap}
-.tapnav-links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
-.tapnav-links a{font-size:13.5px;font-weight:500;color:var(--slate,#777b86);
- text-decoration:none;padding:5px 11px;border-radius:8px}
-.tapnav-links a:hover{background:var(--mist,#f2f2f3);color:var(--ink,#17191c)}
-.tapnav-links a.on{background:var(--peach,#fbe1d1);color:var(--sienna,#5d2a1a);font-weight:600}
-.tapnav a:focus-visible{outline:2px solid var(--sienna,#5d2a1a);outline-offset:2px}
-/* a page may carry its own sticky bar (theme toggle, back link); stack it under this one */
+/* Self-contained: the nav defines every colour it uses, so it cannot inherit a
+   half-defined palette from a page that names its tokens differently. */
+.tapnav{
+  --tn-bg:rgba(255,255,255,.92); --tn-ink:#17191c; --tn-dim:#6b7078;
+  --tn-line:#e4e4e6; --tn-hover:#f1f1f2; --tn-on-bg:#fbe1d1; --tn-on-ink:#5d2a1a;
+  position:sticky;top:0;z-index:70;background:var(--tn-bg);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--tn-line)}
+[data-theme="dark"] .tapnav{
+  --tn-bg:rgba(16,18,21,.92); --tn-ink:#eceef1; --tn-dim:#9ba2ae;
+  --tn-line:#2a2e34; --tn-hover:#1e2126; --tn-on-bg:#452a1c; --tn-on-ink:#f3c8a8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tapnav{
+  --tn-bg:rgba(16,18,21,.92); --tn-ink:#eceef1; --tn-dim:#9ba2ae;
+  --tn-line:#2a2e34; --tn-hover:#1e2126; --tn-on-bg:#452a1c; --tn-on-ink:#f3c8a8}}
+.tapnav-in{max-width:1000px;margin:0 auto;padding:11px 28px;display:flex;
+  align-items:center;gap:20px;flex-wrap:wrap}
+.tapnav-home{font-size:15.5px;font-weight:600;color:var(--tn-ink);
+  text-decoration:none;white-space:nowrap}
+.tapnav-links{display:flex;gap:3px;flex-wrap:wrap;margin-left:auto}
+.tapnav-links a{font-size:13.5px;font-weight:500;color:var(--tn-dim);
+  text-decoration:none;padding:5px 11px;border-radius:8px}
+.tapnav-links a:hover{background:var(--tn-hover);color:var(--tn-ink)}
+.tapnav-links a.on{background:var(--tn-on-bg);color:var(--tn-on-ink);font-weight:600}
+.tapnav a:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+/* a page may carry its own sticky bar; stack it under this one */
 nav:not(.tapnav){top:var(--tapnav-h,46px)!important}
 @media (max-width:640px){.tapnav-in{padding:10px 18px}.tapnav-links{margin-left:0}}
 </style>
@@ -205,10 +216,11 @@ try{var _t=localStorage.getItem("steep-theme");
  <a class="tapnav-home" href="../">Data Analytics</a>
  <div class="tapnav-links">
   <a href="../teach/">Teach</a>
-  <a href="../prepare/">Prepare</a>
+  <a href="../learn/">Student sheet</a>
   <a href="../reference/">Reference</a>
   <a href="../statistics/">Statistics</a>
   <a href="../interview/">Interview</a>
+  <a href="../prepare/">Prepare</a>
   <a href="../august/">August B3</a>
   <a class="on" href="../plan/">Plan</a>
  </div>
