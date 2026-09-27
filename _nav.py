@@ -5,7 +5,7 @@ import os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 PAGES = [("teach","Teach"),("prepare","Prepare"),("reference","Reference"),
-         ("interview","Interview"),("august","August B3"),("plan","Plan")]
+         ("statistics","Statistics"),("interview","Interview"),("august","August B3"),("plan","Plan")]
 
 CSS = """<style id="tapnav-css">
 .tapnav{position:sticky;top:0;z-index:70;background:var(--nav-bg,rgba(255,255,255,.9));

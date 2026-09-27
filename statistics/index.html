@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Statistics and Probability &mdash; Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#17191c;--paper:#fff;--mist:#f2f2f3;--fog:#fafafb;--slate:#777b86;--ash:#979799;
+ --peach:#fbe1d1;--sienna:#5d2a1a;--hair:#ececec;--code-bg:#f7f8f9;--out-bg:#eaf2ee;--out-ink:#14543f;
+ --ser:'Source Serif 4',ui-serif,Georgia,serif;--sans:'Inter',ui-sans-serif,system-ui,sans-serif;
+ --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;--max:900px}
+[data-theme="dark"]{--ink:#eceef1;--paper:#101215;--mist:#191c20;--fog:#141619;--slate:#9ba2ae;
+ --ash:#7c828c;--hair:#282c32;--code-bg:#0b0d10;--peach:#3a241a;--sienna:#f0c3a6;
+ --out-bg:#12271f;--out-ink:#7fd0a0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#eceef1;--paper:#101215;
+ --mist:#191c20;--fog:#141619;--slate:#9ba2ae;--ash:#7c828c;--hair:#282c32;--code-bg:#0b0d10;
+ --peach:#3a241a;--sienna:#f0c3a6;--out-bg:#12271f;--out-ink:#7fd0a0}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+ line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 26px}
+.brand{padding:26px 0 0}.brand img{height:30px;display:block}
+.lg-l{display:none}[data-theme="dark"] .lg-d{display:none}[data-theme="dark"] .lg-l{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lg-d{display:none}
+ :root:not([data-theme="light"]) .lg-l{display:block}}
+header{padding:24px 0 28px;border-bottom:1px solid var(--hair)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
+ color:var(--sienna);background:var(--peach);display:inline-block;padding:4px 11px;border-radius:9999px}
+h1{font-family:var(--ser);font-size:42px;font-weight:600;letter-spacing:-.5px;margin:14px 0 10px;
+ line-height:1.1}
+.lede{font-size:18px;color:var(--slate);max-width:62ch}
+nav.toc{display:flex;flex-wrap:wrap;gap:7px;padding:22px 0 4px}
+nav.toc a{font-size:13.5px;color:var(--slate);text-decoration:none;border:1px solid var(--hair);
+ border-radius:9999px;padding:5px 13px;display:flex;gap:7px;align-items:center}
+nav.toc a:hover{border-color:var(--sienna);color:var(--ink)}
+nav.toc a span{font-size:11.5px;color:var(--ash);font-variant-numeric:tabular-nums}
+.cat{padding-top:40px}
+.cathead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);
+ padding-bottom:9px;margin-bottom:22px;flex-wrap:wrap}
+.cathead h2{font-family:var(--ser);font-size:27px;font-weight:600}
+.tag{margin-left:auto;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--sienna);background:var(--peach);padding:3px 10px;border-radius:9999px}
+.e{border:1px solid var(--hair);border-radius:13px;padding:19px 21px;margin-bottom:15px}
+.e h3{font-size:19px;font-weight:600;margin-bottom:13px}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ash);
+ display:block;margin-bottom:5px}
+.why{background:var(--peach);border-radius:9px;padding:11px 14px;margin-bottom:10px}
+.why .lbl{color:var(--sienna);opacity:.75}
+.why p{color:var(--sienna);font-size:15px;line-height:1.5}
+.what{margin-bottom:4px}
+.what p{font-size:15.5px;color:var(--slate);line-height:1.55}
+.codelbl,.outlbl{margin-top:15px}
+pre{background:var(--code-bg);border:1px solid var(--hair);border-radius:9px;padding:13px 15px;
+ overflow-x:auto}
+pre code{font-family:var(--mono);font-size:13px;line-height:1.65;white-space:pre}
+.c{color:var(--ash)}.k{color:#7a3ba8;font-weight:500}.o{color:#a8541f}
+[data-theme="dark"] .k{color:#c99bf0}[data-theme="dark"] .o{color:#e0a86a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .k{color:#c99bf0}
+ :root:not([data-theme="light"]) .o{color:#e0a86a}}
+.out{background:var(--out-bg);color:var(--out-ink);border-radius:9px;padding:12px 15px;
+ font-family:var(--mono);font-size:13px;line-height:1.6;white-space:pre;overflow-x:auto}
+footer{border-top:1px solid var(--hair);margin-top:46px;padding:22px 0 60px;color:var(--ash);
+ font-size:14px}
+.themetog{position:fixed;right:18px;bottom:18px;background:var(--mist);border:1px solid var(--hair);
+ color:var(--slate);border-radius:9999px;padding:8px 15px;font-size:13px;font-family:var(--sans);
+ cursor:pointer;z-index:50}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sienna);outline-offset:2px}
+@media (max-width:640px){h1{font-size:31px}.wrap{padding:0 17px}.tag{margin-left:0}}
+</style><style id="tapnav-css">
+.tapnav{position:sticky;top:0;z-index:70;background:var(--nav-bg,rgba(255,255,255,.9));
+ backdrop-filter:blur(14px);border-bottom:1px solid var(--hair,#ececec)}
+.tapnav-in{max-width:var(--max,960px);margin:0 auto;padding:11px 28px;display:flex;
+ align-items:center;gap:20px;flex-wrap:wrap}
+.tapnav-home{font-family:var(--serif,Georgia,serif);font-size:16px;font-weight:600;
+ color:var(--ink,#17191c);text-decoration:none;white-space:nowrap}
+.tapnav-links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.tapnav-links a{font-size:13.5px;font-weight:500;color:var(--slate,#777b86);
+ text-decoration:none;padding:5px 11px;border-radius:8px}
+.tapnav-links a:hover{background:var(--mist,#f2f2f3);color:var(--ink,#17191c)}
+.tapnav-links a.on{background:var(--peach,#fbe1d1);color:var(--sienna,#5d2a1a);font-weight:600}
+.tapnav a:focus-visible{outline:2px solid var(--sienna,#5d2a1a);outline-offset:2px}
+/* a page may carry its own sticky bar (theme toggle, back link); stack it under this one */
+nav:not(.tapnav){top:var(--tapnav-h,46px)!important}
+@media (max-width:640px){.tapnav-in{padding:10px 18px}.tapnav-links{margin-left:0}}
+</style>
+</head>
+<body>
+<nav class="tapnav"><div class="tapnav-in">
+ <a class="tapnav-home" href="../">Data Analytics</a>
+ <div class="tapnav-links">
+  <a href="../teach/">Teach</a>
+  <a href="../prepare/">Prepare</a>
+  <a href="../reference/">Reference</a>
+  <a class="on" href="../statistics/">Statistics</a>
+  <a href="../interview/">Interview</a>
+  <a href="../august/">August B3</a>
+  <a href="../plan/">Plan</a>
+ </div>
+</div></nav>
+<script id="tapnav-sync">(function(){function f(){try{
+ var n=document.querySelector('.tapnav');
+ if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
+ f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+<script>try{var t=localStorage.getItem("stat-theme");
+ if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<div class="wrap">
+<div class="brand">
+ <img class="lg-d" src="data:image/png;base64,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" alt="TAP Academy">
+ <img class="lg-l" src="data:image/png;base64,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" alt="TAP Academy">
+</div>
+<header>
+ <p class="eyebrow">Data Analytics</p>
+ <h1>Statistics and Probability</h1>
+ <p class="lede">Every concept from the module, in order. Each one says <b>why it exists</b>, what it
+ is in plain words, and the code that produces it &mdash; run for real against the employees table,
+ so every number below is a genuine output.</p>
+ <nav class="toc"><a href="#where-the-middle-is">Where the middle is <span>4</span></a>
+<a href="#how-spread-out-it-is">How spread out it is <span>8</span></a>
+<a href="#finding-outliers">Finding outliers <span>3</span></a>
+<a href="#two-columns-together">Two columns together <span>4</span></a>
+<a href="#samples-and-populations">Samples and populations <span>3</span></a>
+<a href="#probability-basics">Probability basics <span>7</span></a>
+<a href="#the-normal-distribution">The normal distribution <span>5</span></a>
+<a href="#the-central-limit-theorem">The Central Limit Theorem <span>4</span></a>
+<a href="#confidence-intervals">Confidence intervals <span>5</span></a>
+<a href="#hypothesis-testing">Hypothesis testing <span>7</span></a>
+<a href="#which-test-to-use">Which test to use <span>5</span></a></nav>
+</header>
+<section class="cat" id="where-the-middle-is">
+<div class="cathead"><h2>Where the middle is</h2><span class="tag">Day 4</span></div>
+<article class="e">
+<h3>Mean (the average)</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The single number everyone asks for first. Budgets, targets and salary bands all start here.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Add everything up, divide by how many there are. Every value affects it, which is its strength and its weakness.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("mean salary:", <span class="k">round</span>(sal.mean()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">mean salary: 95648</div>
+</article>
+<article class="e">
+<h3>Median (the middle value)</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Use it whenever the data might contain extreme values. Property prices and salaries almost always need it.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Line everything up in order and take the middle one. Half are below, half above. Extreme values cannot drag it.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("median salary:", <span class="k">round</span>(sal.median()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">median salary: 68647</div>
+</article>
+<article class="e">
+<h3>Mode (the most common)</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The only centre that works on words. Which city, which rating, which product sells most.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The value that appears most often. A column can have more than one mode, or none worth reporting.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("most common department:", df['department'].mode()[<span class="o">0</span>])
+<span class="k">print</span>("most common rating    :", df['rating'].mode()[<span class="o">0</span>])</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">most common department: Sales
+most common rating    : Poor</div>
+</article>
+<article class="e">
+<h3>When the mean lies</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Knowing when NOT to trust the average. This is the single most useful habit in this whole list.</p></div>
+<div class="what"><span class="lbl">In short</span><p>One extreme value drags the mean and leaves the median untouched. A big gap between them is the warning sign.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("mean  :", <span class="k">round</span>(sal.mean()))
+<span class="k">print</span>("median:", <span class="k">round</span>(sal.median()))
+<span class="k">print</span>("gap   :", <span class="k">round</span>(sal.mean() - sal.median()))
+<span class="k">print</span>("highest salary:", <span class="k">round</span>(sal.max()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">mean  : 95648
+median: 68647
+gap   : 27001
+highest salary: 5200000</div>
+</article>
+</section>
+<section class="cat" id="how-spread-out-it-is">
+<div class="cathead"><h2>How spread out it is</h2><span class="tag">Days 4 and 6</span></div>
+<article class="e">
+<h3>Range</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>A one-second check on how wide the data is. Mostly used to spot that something is wrong.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Largest minus smallest. Uses only two values, so a single bad row ruins it completely.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("<span class="k">range</span>:", <span class="k">round</span>(sal.max() - sal.min()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">range: 5166915</div>
+</article>
+<article class="e">
+<h3>Quartiles and IQR</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The spread measure that ignores extremes. It is what box plots are built from.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Q1 has 25% below it, Q3 has 75% below it. IQR is the distance between them - the middle half of the data.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("Q1 :", <span class="k">round</span>(sal.quantile(<span class="o">0.25</span>)))
+<span class="k">print</span>("Q3 :", <span class="k">round</span>(sal.quantile(<span class="o">0.75</span>)))
+<span class="k">print</span>("IQR:", <span class="k">round</span>(sal.quantile(<span class="o">0.75</span>) - sal.quantile(<span class="o">0.25</span>)))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">Q1 : 59004
+Q3 : 80600
+IQR: 21596</div>
+</article>
+<article class="e">
+<h3>Five-number summary</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The fastest complete picture of one column. Report this before anything else.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Minimum, Q1, median, Q3, maximum. Five numbers that describe the whole shape.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("min   :", <span class="k">round</span>(sal.min()))
+<span class="k">print</span>("Q1    :", <span class="k">round</span>(sal.quantile(<span class="o">0.25</span>)))
+<span class="k">print</span>("median:", <span class="k">round</span>(sal.median()))
+<span class="k">print</span>("Q3    :", <span class="k">round</span>(sal.quantile(<span class="o">0.75</span>)))
+<span class="k">print</span>("max   :", <span class="k">round</span>(sal.max()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">min   : 33085
+Q1    : 59004
+median: 68647
+Q3    : 80600
+max   : 5200000</div>
+</article>
+<article class="e">
+<h3>Variance</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>A stepping stone to standard deviation. You will rarely report it on its own.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The average of the squared distances from the mean. Squaring stops the pluses and minuses cancelling out, but it also leaves the answer in squared units.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("variance:", <span class="k">round</span>(sal.var()))
+<span class="k">print</span>("its units are RUPEES SQUARED, which is why nobody reports it")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">variance: 132519227501
+its units are RUPEES SQUARED, which is why nobody reports it</div>
+</article>
+<article class="e">
+<h3>Standard deviation</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The standard way to say how spread out people are. Needed for the empirical rule, z-scores and everything in inference.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The square root of the variance, which puts the answer back into normal units. Roughly: how far a typical value sits from the mean.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("standard deviation:", <span class="k">round</span>(sal.std()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">standard deviation: 364032</div>
+</article>
+<article class="e">
+<h3>n minus 1, and ddof</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Stops you silently under-reporting spread. Also a very common interview question.</p></div>
+<div class="what"><span class="lbl">In short</span><p>A sample is always a bit less spread out than the population it came from, so we divide by n-1 to compensate. Pandas does this by default; NumPy does not.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">import</span> numpy as np
+<span class="k">print</span>("pandas .std()      :", <span class="k">round</span>(sal.std()))          <span class="c"># divides by n-<span class="o">1</span></span>
+<span class="k">print</span>("numpy  .std()      :", <span class="k">round</span>(np.std(sal)))        <span class="c"># divides by n</span>
+<span class="k">print</span>("numpy with ddof=<span class="o">1</span>  :", <span class="k">round</span>(np.std(sal, ddof=<span class="o">1</span>)))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">pandas .std()      : 364032
+numpy  .std()      : 363116
+numpy with ddof=1  : 364032</div>
+</article>
+<article class="e">
+<h3>The 68-95-99.7 rule</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Lets you judge in your head whether a value is ordinary or unusual, with no calculation.</p></div>
+<div class="what"><span class="lbl">In short</span><p>In a bell-shaped column, about 68% of values sit within 1 standard deviation of the mean, 95% within 2, and 99.7% within 3.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>m, s = h.mean(), h.std()
+<span class="k">for</span> k <span class="k">in</span> (<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>):
+    inside = ((h &gt;= m - k*s) &amp; (h &lt;= m + k*s)).mean() * <span class="o">100</span>
+    <span class="k">print</span>(k, "sd:", <span class="k">round</span>(inside, <span class="o">1</span>), "%")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">1 sd: 69.7 %
+2 sd: 95.0 %
+3 sd: 100.0 %</div>
+</article>
+<article class="e">
+<h3>Skewness</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Tells you in one number whether the mean can be trusted.</p></div>
+<div class="what"><span class="lbl">In short</span><p>How lopsided the shape is. 0 is perfectly symmetric. Positive means a long tail to the right. Above about 1 means the mean is being dragged.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("salary skew:", <span class="k">round</span>(sal.skew(), <span class="o">2</span>), "  &lt;- badly lopsided")
+<span class="k">print</span>("height skew:", <span class="k">round</span>(h.skew(), <span class="o">2</span>), "  &lt;- nearly symmetric")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">salary skew: 14.06   &lt;- badly lopsided
+height skew: -0.19   &lt;- nearly symmetric</div>
+</article>
+</section>
+<section class="cat" id="finding-outliers">
+<div class="cathead"><h2>Finding outliers</h2><span class="tag">Day 5</span></div>
+<article class="e">
+<h3>The 1.5 x IQR rule</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The standard, defensible way to flag suspicious values. Use it before reporting any average.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Anything below Q1 - 1.5*IQR or above Q3 + 1.5*IQR is flagged. It is a rule of thumb, not proof that a value is wrong.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>low  = q1 - <span class="o">1.5</span> * iqr
+high = q3 + <span class="o">1.5</span> * iqr
+<span class="k">print</span>("fences:", <span class="k">round</span>(low), "to", <span class="k">round</span>(high))
+flagged = sal[(sal &lt; low) | (sal &gt; high)]
+<span class="k">print</span>("flagged:", <span class="k">len</span>(flagged), "-&gt;", flagged.values)</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">fences: 26610 to 112994
+flagged: 2 -&gt; [5200000.  116894.]</div>
+</article>
+<article class="e">
+<h3>What removing outliers does</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Shows you exactly how much damage two rows can do, which is the argument for always checking.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Removing flagged values barely moves the median but can transform the mean and the standard deviation.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>clean = sal[(sal &gt;= q1 - <span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3 + <span class="o">1.5</span>*iqr)]
+<span class="k">print</span>("before: mean", <span class="k">round</span>(sal.mean()),   "median", <span class="k">round</span>(sal.median()),   "std", <span class="k">round</span>(sal.std()))
+<span class="k">print</span>("after : mean", <span class="k">round</span>(clean.mean()), "median", <span class="k">round</span>(clean.median()), "std", <span class="k">round</span>(clean.std()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">before: mean 95648 median 68647 std 364032
+after : mean 69630 median 68342 std 16066</div>
+</article>
+<article class="e">
+<h3>An outlier is not always an error</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Stops you deleting your most important row. A fraud, a bestseller and a typo all look identical to the rule.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The rule finds unusual values. Whether to remove one is a judgement you make by looking at the row, never automatic.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>(df[df['salary'] &gt; 1_000_000][['name','department','salary']].to_string(index=<span class="k">False</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("is this a typo, a CEO, <span class="k">or</span> fraud? the rule cannot tell you. go <span class="k">and</span> look.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">         name department    salary
+Lakshmi Kumar       Tech 5200000.0
+
+is this a typo, a CEO, or fraud? the rule cannot tell you. go and look.</div>
+</article>
+</section>
+<section class="cat" id="two-columns-together">
+<div class="cathead"><h2>Two columns together</h2><span class="tag">Day 7</span></div>
+<article class="e">
+<h3>Covariance</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>A stepping stone to correlation. You will almost never report it.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Tells you whether two columns move together, but the answer comes out in a unit nobody can picture - here, years times rupees.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>d = df.dropna(subset=['salary','experience'])
+<span class="k">print</span>("covariance:", <span class="k">round</span>(d['experience'].cov(d['salary'])))
+<span class="k">print</span>("units: YEARS x RUPEES. meaningless on its own.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">covariance: 128281
+units: YEARS x RUPEES. meaningless on its own.</div>
+</article>
+<article class="e">
+<h3>Pearson correlation</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The standard measure of how strongly two numeric columns move together.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Covariance scaled to sit between -1 and +1. Near 0 means no straight-line relationship. It only measures STRAIGHT lines, and outliers wreck it.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>d = df.dropna(subset=['salary','experience'])
+<span class="k">print</span>("with outliers   :", <span class="k">round</span>(d['experience'].corr(d['salary']), <span class="o">3</span>))
+c = d[(d['salary'] &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (d['salary'] &lt;= q3+<span class="o">1.5</span>*iqr)]
+<span class="k">print</span>("without outliers:", <span class="k">round</span>(c['experience'].corr(c['salary']), <span class="o">3</span>))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">with outliers   : 0.079
+without outliers: 0.607</div>
+</article>
+<article class="e">
+<h3>Spearman correlation</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The version to trust when the data is messy or you have not cleaned it yet.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Works on ranks instead of values. The biggest salary is just 'rank 1', so how extreme it is cannot distort the answer.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>d = df.dropna(subset=['salary','experience'])
+<span class="k">print</span>("pearson :", <span class="k">round</span>(d['experience'].corr(d['salary']), <span class="o">3</span>))
+<span class="k">print</span>("spearman:", <span class="k">round</span>(d['experience'].corr(d['salary'], method='spearman'), <span class="o">3</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("same data. pearson was wrecked by <span class="o">2</span> rows. spearman was <span class="k">not</span>.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">pearson : 0.079
+spearman: 0.612
+
+same data. pearson was wrecked by 2 rows. spearman was not.</div>
+</article>
+<article class="e">
+<h3>Correlation is not causation</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The sentence that stops you making an expensive wrong decision.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Two columns moving together has three possible explanations: A causes B, B causes A, or something else causes both. Correlation cannot tell you which.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("experience <span class="k">and</span> salary correlate at <span class="o">0.607</span>.")
+<span class="k">print</span>()
+<span class="k">print</span>("  <span class="o">1</span>  experience raises pay")
+<span class="k">print</span>("  <span class="o">2</span>  higher paid people stay longer")
+<span class="k">print</span>("  <span class="o">3</span>  department drives both - Tech pays more AND keeps people")
+<span class="k">print</span>()
+<span class="k">print</span>("<span class="k">if</span> you cannot rule out <span class="o">2</span> <span class="k">and</span> <span class="o">3</span>, say 'associated', <span class="k">not</span> 'causes'.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">experience and salary correlate at 0.607.
+
+  1  experience raises pay
+  2  higher paid people stay longer
+  3  department drives both - Tech pays more AND keeps people
+
+if you cannot rule out 2 and 3, say 'associated', not 'causes'.</div>
+</article>
+</section>
+<section class="cat" id="samples-and-populations">
+<div class="cathead"><h2>Samples and populations</h2><span class="tag">Day 3</span></div>
+<article class="e">
+<h3>Population vs sample</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>You will never measure everybody. Every number you report at work comes from a sample.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The POPULATION is everyone you care about. A SAMPLE is the few you actually measured. Greek letters for the population, Roman for the sample.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("population mean  mu     :", <span class="k">round</span>(pop.mean()))
+<span class="k">print</span>("sample mean      x-bar  :", <span class="k">round</span>(pop.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("we can only ever compute the second one. the first is what we want.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">population mean  mu     : 69630
+sample mean      x-bar  : 70006
+
+we can only ever compute the second one. the first is what we want.</div>
+</article>
+<article class="e">
+<h3>How to build a sample</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>A biased sample gives a confident wrong answer, and more data does not fix it.</p></div>
+<div class="what"><span class="lbl">In short</span><p>SIMPLE RANDOM: everyone equally likely. STRATIFIED: split into groups, sample each in proportion. SYSTEMATIC: every nth one. CLUSTER: pick whole groups. The first two are the ones you will use.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("simple random:", <span class="k">round</span>(pop.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
+<span class="k">print</span>()
+parts = []
+<span class="k">for</span> name, g <span class="k">in</span> df.groupby('department'):
+    parts.append(g.sample(<span class="o">8</span>, random_state=<span class="o">1</span>))
+strat = pd.concat(parts)
+
+<span class="k">print</span>("stratified - <span class="o">8</span> <span class="k">from</span> each department:")
+<span class="k">print</span>(strat['department'].value_counts().to_string())</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">simple random: 70006
+
+stratified - 8 from each department:
+department
+HR           8
+Marketing    8
+Sales        8
+Tech         8</div>
+</article>
+<article class="e">
+<h3>Bias vs noise</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>They look the same on a screen and need completely different fixes.</p></div>
+<div class="what"><span class="lbl">In short</span><p>NOISE is random scatter - it shrinks with more data. BIAS is being consistently off in one direction - more data just makes you confidently wrong. Only a better sampling method fixes bias.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("noise: <span class="o">5</span> honest samples, all different, all near the truth")
+<span class="k">for</span> s <span class="k">in</span> (<span class="o">1</span>,<span class="o">2</span>,<span class="o">3</span>):
+    <span class="k">print</span>("   ", <span class="k">round</span>(pop.sample(<span class="o">30</span>, random_state=s).mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("bias: only surveying Tech")
+<span class="k">print</span>("   ", <span class="k">round</span>(df[df['department']=='Tech']['salary'].mean()),
+      " &lt;- consistently too high, <span class="k">and</span> 10x the data will <span class="k">not</span> help")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">noise: 5 honest samples, all different, all near the truth
+    70006
+    67849
+    67775
+
+bias: only surveying Tech
+    189754  &lt;- consistently too high, and 10x the data will not help</div>
+</article>
+</section>
+<section class="cat" id="probability-basics">
+<div class="cathead"><h2>Probability basics</h2><span class="tag">Day 8</span></div>
+<article class="e">
+<h3>The two ways to get a probability</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Knowing which one you are in. Students think probability means dice; at work it is almost always counting.</p></div>
+<div class="what"><span class="lbl">In short</span><p>THEORETICAL: reason from the structure of the thing - a coin has 2 sides, so heads is 1/2. EMPIRICAL: count what actually happened - 49 of 201 work in Tech, so 0.244.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("theoretical: a coin has <span class="o">2</span> sides      -&gt; P(heads) = <span class="o">0.5</span>")
+<span class="k">print</span>("empirical  : count the actual rows   -&gt; P(Tech)  =",
+      <span class="k">round</span>((df['department'] == 'Tech').mean(), <span class="o">3</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("note it is <span class="o">0.244</span>, NOT <span class="o">0.25</span> - the four departments are different sizes")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">theoretical: a coin has 2 sides      -&gt; P(heads) = 0.5
+empirical  : count the actual rows   -&gt; P(Tech)  = 0.244
+
+note it is 0.244, NOT 0.25 - the four departments are different sizes</div>
+</article>
+<article class="e">
+<h3>The scale, and the complement rule</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The complement rule turns horrible calculations into one line. Worth knowing purely for that.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Every probability sits between 0 and 1, and all the pieces sum to 1. So the chance of something NOT happening is 1 minus the chance it does.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>p = df['department'].value_counts(normalize=<span class="k">True</span>)
+<span class="k">print</span>(p.<span class="k">round</span>(<span class="o">3</span>).to_string())
+<span class="k">print</span>("total:", p.sum())
+<span class="k">print</span>()
+<span class="k">print</span>("P(<span class="k">not</span> Tech) = <span class="o">1</span> -", <span class="k">round</span>(p['Tech'],<span class="o">3</span>), "=", <span class="k">round</span>(<span class="o">1</span> - p['Tech'], <span class="o">3</span>))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">department
+Sales        0.323
+Tech         0.244
+HR           0.224
+Marketing    0.209
+total: 1.0
+
+P(not Tech) = 1 - 0.244 = 0.756</div>
+</article>
+<article class="e">
+<h3>The OR rule</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Stops you double-counting, which is the most common arithmetic slip in this topic.</p></div>
+<div class="what"><span class="lbl">In short</span><p>P(A or B) = P(A) + P(B) - P(A and B). You subtract the overlap because anyone in both groups got counted twice.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>t = df['department'] == 'Tech'
+e = df['rating'] == 'Excellent'
+<span class="k">print</span>("P(Tech)         :", <span class="k">round</span>(t.mean(), <span class="o">3</span>))
+<span class="k">print</span>("P(Excellent)    :", <span class="k">round</span>(e.mean(), <span class="o">3</span>))
+<span class="k">print</span>("just added      :", <span class="k">round</span>(t.mean() + e.mean(), <span class="o">3</span>), " &lt;- too big")
+<span class="k">print</span>("actually        :", <span class="k">round</span>((t | e).mean(), <span class="o">3</span>))
+<span class="k">print</span>("because", (t &amp; e).sum(), "people are <span class="k">in</span> BOTH <span class="k">and</span> got counted twice")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">P(Tech)         : 0.244
+P(Excellent)    : 0.244
+just added      : 0.488  &lt;- too big
+actually        : 0.423
+because 13 people are in BOTH and got counted twice</div>
+</article>
+<article class="e">
+<h3>The AND rule, and its condition</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The condition is the part everyone forgets, and forgetting it gives wrong answers.</p></div>
+<div class="what"><span class="lbl">In short</span><p>P(A and B) = P(A) x P(B), but ONLY if the two do not affect each other. Always check by multiplying and comparing against the real count.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>t  = df['department'] == 'Tech'
+e  = df['rating'] == 'Excellent'
+hi = df['salary'] &gt; df['salary'].median()
+
+<span class="k">print</span>("Tech &amp; Excellent : actual", <span class="k">round</span>((t &amp; e).mean(), <span class="o">3</span>),
+      " predicted", <span class="k">round</span>(t.mean()*e.mean(), <span class="o">3</span>), " -&gt; works")
+<span class="k">print</span>("Tech &amp; well paid : actual", <span class="k">round</span>((t &amp; hi).mean(), <span class="o">3</span>),
+      " predicted", <span class="k">round</span>(t.mean()*hi.mean(), <span class="o">3</span>), " -&gt; FAILS")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">Tech &amp; Excellent : actual 0.065  predicted 0.059  -&gt; works
+Tech &amp; well paid : actual 0.189  predicted 0.12  -&gt; FAILS</div>
+</article>
+<article class="e">
+<h3>Mutually exclusive vs independent</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>These two get merged in every exam. They are close to opposites.</p></div>
+<div class="what"><span class="lbl">In short</span><p>MUTUALLY EXCLUSIVE: both cannot happen - you cannot be in HR and Tech. INDEPENDENT: one tells you nothing about the other. If two things are mutually exclusive, knowing one tells you the other is impossible, which is total information - the opposite of independent.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("P(HR <span class="k">and</span> Tech) =", ((df['department']=='HR') &amp; (df['department']=='Tech')).sum(),
+      " -&gt; mutually exclusive")
+<span class="k">print</span>()
+<span class="k">print</span>("tell me someone is <span class="k">in</span> HR. do you now know about Tech?")
+<span class="k">print</span>("YES - certainly <span class="k">not</span> <span class="k">in</span> Tech. that is a LOT of information.")
+<span class="k">print</span>("independent means ZERO information. so they are opposites.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">P(HR and Tech) = 0  -&gt; mutually exclusive
+
+tell me someone is in HR. do you now know about Tech?
+YES - certainly not in Tech. that is a LOT of information.
+independent means ZERO information. so they are opposites.</div>
+</article>
+<article class="e">
+<h3>Conditional probability</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The shape almost every real question comes in - not 'will a customer buy' but 'will a customer WHO CLICKED THE AD buy'.</p></div>
+<div class="what"><span class="lbl">In short</span><p>P(A | B) is the chance of A given B is already true. The bar means 'given', not divide. To do it: throw away every row where B is false, then count normally. It is a filter.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("P(Excellent)        :", <span class="k">round</span>((df['rating']=='Excellent').mean(), <span class="o">3</span>))
+tech = df[df['department']=='Tech']
+<span class="k">print</span>("P(Excellent | Tech) :", <span class="k">round</span>((tech['rating']=='Excellent').mean(), <span class="o">3</span>))
+<span class="k">print</span>("  barely moved -&gt; department tells you nothing about rating")
+<span class="k">print</span>()
+hi = df[df['salary'] &gt; df['salary'].median()]
+<span class="k">print</span>("P(Tech)             :", <span class="k">round</span>((df['department']=='Tech').mean(), <span class="o">3</span>))
+<span class="k">print</span>("P(Tech | well paid) :", <span class="k">round</span>((hi['department']=='Tech').mean(), <span class="o">3</span>))
+<span class="k">print</span>("  jumped -&gt; salary DOES tell you about department")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">P(Excellent)        : 0.244
+P(Excellent | Tech) : 0.265
+  barely moved -&gt; department tells you nothing about rating
+
+P(Tech)             : 0.244
+P(Tech | well paid) : 0.384
+  jumped -&gt; salary DOES tell you about department</div>
+</article>
+<article class="e">
+<h3>P(A|B) is not P(B|A)</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Getting this backwards is how confident, expensive, wrong decisions get made.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The two directions are different questions with different answers. Same people on top of both fractions - only the denominator changes.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>med  = df['salary'].median()
+tech = df[df['department']=='Tech']
+hi   = df[df['salary'] &gt; med]
+both = ((df['department']=='Tech') &amp; (df['salary'] &gt; med)).sum()
+
+<span class="k">print</span>("P(Tech | well paid) =", both, "/", <span class="k">len</span>(hi), "=", <span class="k">round</span>(both/<span class="k">len</span>(hi), <span class="o">3</span>))
+<span class="k">print</span>("P(well paid | Tech) =", both, "/", <span class="k">len</span>(tech), "=", <span class="k">round</span>(both/<span class="k">len</span>(tech), <span class="o">3</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("same", both, "people on top. only the bottom changed. answer doubled.")
+<span class="k">print</span>()
+<span class="k">print</span>("'most food poisoning victims ate out'  - true")
+<span class="k">print</span>("'most people who eat out get poisoned' - nonsense")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">P(Tech | well paid) = 38 / 99 = 0.384
+P(well paid | Tech) = 38 / 49 = 0.776
+
+same 38 people on top. only the bottom changed. answer doubled.
+
+'most food poisoning victims ate out'  - true
+'most people who eat out get poisoned' - nonsense</div>
+</article>
+</section>
+<section class="cat" id="the-normal-distribution">
+<div class="cathead"><h2>The normal distribution</h2><span class="tag">Day 9</span></div>
+<article class="e">
+<h3>What a normal distribution is</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>It is the shape that makes confidence intervals and every test possible. Everything after this depends on it.</p></div>
+<div class="what"><span class="lbl">In short</span><p>A symmetric bell shape. Described COMPLETELY by two numbers - the mean and the standard deviation. Mean, median and mode all sit in the same place.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("height column: mean", <span class="k">round</span>(h.mean(),<span class="o">1</span>), " std", <span class="k">round</span>(h.std(),<span class="o">1</span>),
+      " skew", <span class="k">round</span>(h.skew(),<span class="o">2</span>))
+<span class="k">print</span>("mean", <span class="k">round</span>(h.mean(),<span class="o">1</span>), " median", <span class="k">round</span>(h.median(),<span class="o">1</span>),
+      " -&gt; almost identical, so it is symmetric")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">height column: mean 168.5  std 7.7  skew -0.19
+mean 168.5  median 168.2  -&gt; almost identical, so it is symmetric</div>
+</article>
+<article class="e">
+<h3>Probability is AREA, not height</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Explains why the chance of any exact measurement is zero, which sounds absurd until you see why.</p></div>
+<div class="what"><span class="lbl">In short</span><p>For something measured rather than counted, no single exact value has any share of the total. You can only ask about a RANGE, and the probability is the area under the curve over that range.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("P(height is exactly <span class="o">170.000</span>...) = <span class="o">0</span>")
+<span class="k">print</span>("between <span class="o">169</span> <span class="k">and</span> <span class="o">170</span> there are endless possible values")
+<span class="k">print</span>()
+<span class="k">print</span>("so ask about a RANGE instead:")
+<span class="k">print</span>("P(<span class="o">165</span> to <span class="o">175</span>) =", <span class="k">round</span>(((h&gt;=<span class="o">165</span>)&amp;(h&lt;=<span class="o">175</span>)).mean(), <span class="o">3</span>))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">P(height is exactly 170.000...) = 0
+between 169 and 170 there are endless possible values
+
+so ask about a RANGE instead:
+P(165 to 175) = 0.527</div>
+</article>
+<article class="e">
+<h3>Z-score</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Makes two things comparable when the raw numbers are not - 78 in maths against 55 in physics.</p></div>
+<div class="what"><span class="lbl">In short</span><p>How many standard deviations a value sits from the mean. z = (value - mean) / standard deviation. Positive is above average, negative below.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>m, s = h.mean(), h.std()
+<span class="k">for</span> cm <span class="k">in</span> (<span class="o">160</span>, <span class="o">170</span>, <span class="o">175</span>, <span class="o">185</span>):
+    <span class="k">print</span>(cm, "cm -&gt; z =", <span class="k">round</span>((cm-m)/s, <span class="o">2</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("marks: A got <span class="o">78</span> (mean <span class="o">70</span>, sd <span class="o">8</span>) -&gt; z =", <span class="k">round</span>((<span class="o">78</span>-<span class="o">70</span>)/<span class="o">8</span>, <span class="o">2</span>))
+<span class="k">print</span>("       B got <span class="o">55</span> (mean <span class="o">45</span>, sd <span class="o">4</span>) -&gt; z =", <span class="k">round</span>((<span class="o">55</span>-<span class="o">45</span>)/<span class="o">4</span>, <span class="o">2</span>))
+<span class="k">print</span>("       B did far better, despite the lower mark")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">160 cm -&gt; z = -1.1
+170 cm -&gt; z = 0.2
+175 cm -&gt; z = 0.84
+185 cm -&gt; z = 2.14
+
+marks: A got 78 (mean 70, sd 8) -&gt; z = 1.0
+       B got 55 (mean 45, sd 4) -&gt; z = 2.5
+       B did far better, despite the lower mark</div>
+</article>
+<article class="e">
+<h3>PDF, CDF and PPF</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Three questions about the same curve. CDF and PPF are the two you will actually call.</p></div>
+<div class="what"><span class="lbl">In short</span><p>PDF (Probability Density Function) is the shape itself. CDF (Cumulative Distribution Function) takes a value and returns the percentage below it. PPF (Percent Point Function) takes a percentage and returns the value. CDF and PPF are inverses.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>m, s = h.mean(), h.std()
+<span class="k">print</span>("CDF: <span class="o">175</span> cm  -&gt;", <span class="k">round</span>(stats.norm.cdf(<span class="o">175</span>, m, s)*<span class="o">100</span>, <span class="o">1</span>), "% are shorter")
+<span class="k">print</span>("PPF: <span class="o">80</span>%     -&gt;", <span class="k">round</span>(stats.norm.ppf(<span class="o">0.80</span>, m, s), <span class="o">1</span>), "cm")
+<span class="k">print</span>()
+<span class="k">print</span>("they undo each other. 'inverse CDF' <span class="k">and</span> 'quantile function' both mean PPF.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">CDF: 175 cm  -&gt; 80.0 % are shorter
+PPF: 80%     -&gt; 175.0 cm
+
+they undo each other. 'inverse CDF' and 'quantile function' both mean PPF.</div>
+</article>
+<article class="e">
+<h3>Standardisation vs normalisation</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Two words you will meet and confuse. Thirty seconds each is enough.</p></div>
+<div class="what"><span class="lbl">In short</span><p>STANDARDISATION: subtract the mean, divide by the std - that is the z-score, centred on 0 with no limits. NORMALISATION: squeeze everything into 0 to 1 using (value-min)/(max-min).</p></div>
+<div class="lbl codelbl">Code</div><pre><code>z    = (h - h.mean()) / h.std()
+norm = (h - h.min()) / (h.max() - h.min())
+
+<span class="k">print</span>("first <span class="o">3</span> heights :", h.head(<span class="o">3</span>).values)
+<span class="k">print</span>("standardised (z):", z.<span class="k">round</span>(<span class="o">2</span>).head(<span class="o">3</span>).values)
+<span class="k">print</span>("normalised <span class="o">0</span>-<span class="o">1</span>  :", norm.<span class="k">round</span>(<span class="o">2</span>).head(<span class="o">3</span>).values)
+<span class="k">print</span>()
+<span class="k">print</span>("note: <span class="k">round</span>(series) works. <span class="k">round</span>(array) does NOT - use .<span class="k">round</span>(<span class="o">2</span>) instead.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">first 3 heights : [169.5 169.5 166.5]
+standardised (z): [ 0.13  0.13 -0.26]
+normalised 0-1  : [0.53 0.53 0.46]
+
+note: round(series) works. round(array) does NOT - use .round(2) instead.</div>
+</article>
+</section>
+<section class="cat" id="the-central-limit-theorem">
+<div class="cathead"><h2>The Central Limit Theorem</h2><span class="tag">Day 10</span></div>
+<article class="e">
+<h3>The problem it solves</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>This is the hinge. Everything after it - intervals, tests, A/B - is this applied.</p></div>
+<div class="what"><span class="lbl">In short</span><p>One sample can be badly wrong, and you only ever get one. So how can any number be trusted? The answer is that the PATTERN of sample averages is completely predictable, even when the data is not.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("five samples of <span class="o">30</span> <span class="k">from</span> the SAME column:")
+<span class="k">for</span> s <span class="k">in</span> (<span class="o">1</span>,<span class="o">2</span>,<span class="o">3</span>,<span class="o">4</span>,<span class="o">5</span>):
+    <span class="k">print</span>("   ", <span class="k">round</span>(sal.sample(<span class="o">30</span>, random_state=s).mean()))
+<span class="k">print</span>("the truth:", <span class="k">round</span>(sal.mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("<span class="k">if</span> I take only ONE of these, which am I holding? no way to know.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">five samples of 30 from the SAME column:
+    70032
+    244006
+    239817
+    65149
+    235447
+the truth: 95648
+
+if I take only ONE of these, which am I holding? no way to know.</div>
+</article>
+<article class="e">
+<h3>What the theorem says</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>It lets you say how wrong your one sample might be, without ever taking a second one.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Take the average of a sample and repeat. Those averages form their own shape. The BIGGER each sample, the CLOSER that shape gets to a normal bell curve, centred on the true mean - whatever shape the original data had.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>means = []
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1000</span>):
+    means.append(pop.sample(<span class="o">30</span>, replace=<span class="k">True</span>, random_state=i).mean())
+means = pd.Series(means)
+<span class="k">print</span>("average of the <span class="o">1000</span> averages:", <span class="k">round</span>(means.mean()), " (truth <span class="o">69630</span>)")
+<span class="k">print</span>("spread of those averages    :", <span class="k">round</span>(means.std()))
+<span class="k">print</span>("skew of those averages      :", <span class="k">round</span>(means.skew(), <span class="o">2</span>), " -&gt; near <span class="o">0</span> = normal")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">average of the 1000 averages: 69680  (truth 69630)
+spread of those averages    : 3026
+skew of those averages      : 0.09  -&gt; near 0 = normal</div>
+</article>
+<article class="e">
+<h3>Bigger samples, not more samples</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The most common wrong takeaway. Repeating a small sample does not help.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Normal means skew 0, so 'becomes normal' means 'skew heads to zero'. It is the SIZE of each sample that drives it down - the number of repeats only makes the picture smoother.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">def</span> skew_of(n, reps):
+    m = [sal.sample(n, replace=<span class="k">True</span>, random_state=i).mean() <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(reps)]
+    <span class="k">return</span> <span class="k">round</span>(pd.Series(m).skew(), <span class="o">2</span>)
+
+<span class="k">print</span>("raw column skew:", <span class="k">round</span>(sal.skew(), <span class="o">2</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("BIGGER samples fix it:")
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">30</span>, <span class="o">100</span>, <span class="o">500</span>): <span class="k">print</span>("   ", n, "-&gt;", skew_of(n, <span class="o">2000</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("MORE samples do <span class="k">not</span>:")
+<span class="k">for</span> r <span class="k">in</span> (<span class="o">200</span>, <span class="o">5000</span>, <span class="o">20000</span>): <span class="k">print</span>("   ", r, "samples of <span class="o">30</span> -&gt;", skew_of(<span class="o">30</span>, r))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">raw column skew: 14.06
+
+BIGGER samples fix it:
+    30 -&gt; 2.52
+    100 -&gt; 1.41
+    500 -&gt; 0.77
+
+MORE samples do not:
+    200 samples of 30 -&gt; 2.21
+    5000 samples of 30 -&gt; 2.52
+    20000 samples of 30 -&gt; 2.51</div>
+</article>
+<article class="e">
+<h3>Standard error</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The number that tells you how much to trust your own average. Nothing else does this.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The standard deviation OF AVERAGES, rather than of people. It shrinks as the sample grows: sigma / sqrt(n). A standard deviation does not shrink with more data; a standard error does.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>sigma = pop.std()
+<span class="k">print</span>("standard deviation of PEOPLE :", <span class="k">round</span>(sigma), " (never changes)")
+<span class="k">print</span>()
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">5</span>, <span class="o">30</span>, <span class="o">100</span>, <span class="o">400</span>):
+    <span class="k">print</span>("  n =", n, " standard error =", <span class="k">round</span>(sigma/math.sqrt(n)))
+<span class="k">print</span>()
+<span class="k">print</span>("4x the data <span class="k">for</span> 2x the precision. it never gets cheaper.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">standard deviation of PEOPLE : 16066  (never changes)
+
+  n = 5  standard error = 7185
+  n = 30  standard error = 2933
+  n = 100  standard error = 1607
+  n = 400  standard error = 803
+
+4x the data for 2x the precision. it never gets cheaper.</div>
+</article>
+</section>
+<section class="cat" id="confidence-intervals">
+<div class="cathead"><h2>Confidence intervals</h2><span class="tag">Day 11</span></div>
+<article class="e">
+<h3>What a confidence interval is</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>It turns 'the average is X' - which you cannot support - into something you can defend.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Your sample's average, plus and minus a margin. margin = 1.96 x standard error. The result is reported as 'X, give or take Y'.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
+m  = sample.mean()
+se = sample.std() / math.sqrt(<span class="o">100</span>)
+<span class="k">print</span>("sample mean    :", <span class="k">round</span>(m))
+<span class="k">print</span>("standard error :", <span class="k">round</span>(se))
+<span class="k">print</span>("<span class="o">95</span>% interval   :", <span class="k">round</span>(m - <span class="o">1.96</span>*se), "to", <span class="k">round</span>(m + <span class="o">1.96</span>*se))
+<span class="k">print</span>("the truth      :", <span class="k">round</span>(pop.mean()), " &lt;- inside")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">sample mean    : 72149
+standard error : 1631
+95% interval   : 68952 to 75346
+the truth      : 69630  &lt;- inside</div>
+</article>
+<article class="e">
+<h3>What the 95% actually means</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The single most common error in applied statistics. People with degrees get this wrong.</p></div>
+<div class="what"><span class="lbl">In short</span><p>WRONG: '95% chance the true mean is in my interval.' The true mean is FIXED - it is in or out, already decided. RIGHT: '95% of the intervals this METHOD produces contain the truth.' The randomness is in the interval, not in the truth.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>caught, truth = <span class="o">0</span>, pop.mean()
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">100</span>):
+    x = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=i)
+    e = <span class="o">1.96</span> * x.std() / math.sqrt(<span class="o">100</span>)
+    <span class="k">if</span> x.mean() - e &lt;= truth &lt;= x.mean() + e:
+        caught += <span class="o">1</span>
+<span class="k">print</span>(caught, "of <span class="o">100</span> intervals contained the truth")
+<span class="k">print</span>()
+<span class="k">print</span>("the truth never moved. the INTERVAL moved.")
+<span class="k">print</span>("the <span class="o">4</span> that missed did nothing wrong - that is what <span class="o">95</span>% means.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">96 of 100 intervals contained the truth
+
+the truth never moved. the INTERVAL moved.
+the 4 that missed did nothing wrong - that is what 95% means.</div>
+</article>
+<article class="e">
+<h3>It is about the AVERAGE, not the data</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>A very easy mistake that makes the interval look ten times too narrow.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The interval describes where the MEAN probably sits. It does not describe where 95% of the individual values sit - that range is far wider.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
+m  = sample.mean(); se = sample.std()/math.sqrt(<span class="o">100</span>)
+lo, hi = m-<span class="o">1.96</span>*se, m+<span class="o">1.96</span>*se
+<span class="k">print</span>("interval <span class="k">for</span> the MEAN :", <span class="k">round</span>(lo), "to", <span class="k">round</span>(hi))
+<span class="k">print</span>("share of SALARIES <span class="k">in</span> that <span class="k">range</span>:", <span class="k">round</span>(((pop&gt;=lo)&amp;(pop&lt;=hi)).mean()*<span class="o">100</span>, <span class="o">1</span>), "%")
+<span class="k">print</span>()
+<span class="k">print</span>("where <span class="o">95</span>% of PEOPLE actually sit:",
+      <span class="k">round</span>(pop.quantile(<span class="o">0.025</span>)), "to", <span class="k">round</span>(pop.quantile(<span class="o">0.975</span>)))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">interval for the MEAN : 68952 to 75346
+share of SALARIES in that range: 13.2 %
+
+where 95% of PEOPLE actually sit: 39821 to 103162</div>
+</article>
+<article class="e">
+<h3>The two levers</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Both cost something. Knowing what lets you defend the sample size you chose.</p></div>
+<div class="what"><span class="lbl">In short</span><p>More CONFIDENCE makes the interval WIDER - certainty is bought with vagueness. More DATA makes it narrower, but at four times the data for twice the precision.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
+se = sample.std()/math.sqrt(<span class="o">100</span>); m = sample.mean()
+<span class="k">for</span> lvl, z <span class="k">in</span> [(<span class="o">90</span>, <span class="o">1.645</span>), (<span class="o">95</span>, <span class="o">1.96</span>), (<span class="o">99</span>, <span class="o">2.576</span>)]:
+    <span class="k">print</span>(lvl, "% -&gt; width", <span class="k">round</span>(<span class="o">2</span>*z*se))
+<span class="k">print</span>()
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">100</span>, <span class="o">400</span>, <span class="o">1600</span>):
+    <span class="k">print</span>("n =", n, "-&gt; width", <span class="k">round</span>(<span class="o">2</span>*<span class="o">1.96</span>*pop.std()/math.sqrt(n)))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">90 % -&gt; width 5367
+95 % -&gt; width 6395
+99 % -&gt; width 8404
+
+n = 100 -&gt; width 6298
+n = 400 -&gt; width 3149
+n = 1600 -&gt; width 1574</div>
+</article>
+<article class="e">
+<h3>How many people do you need</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Answers 'why do polls always ask about a thousand people' - and lets you size your own survey.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Turn the margin formula inside out to give n. Use p = 0.5 because p(1-p) is largest there, so you are safe whatever the real answer is. The population size is NOT in the formula.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">from</span> math <span class="k">import</span> ceil
+<span class="k">for</span> E_ <span class="k">in</span> (<span class="o">0.05</span>, <span class="o">0.03</span>, <span class="o">0.01</span>):
+    n = (<span class="o">1.96</span>**<span class="o">2</span> * <span class="o">0.5</span> * <span class="o">0.5</span>) / E_**<span class="o">2</span>
+    <span class="k">print</span>("margin +/-", int(E_*<span class="o">100</span>), "% -&gt; need", ceil(n), "people")
+<span class="k">print</span>()
+<span class="k">print</span>("population size is <span class="k">not</span> <span class="k">in</span> the formula.")
+<span class="k">print</span>("<span class="o">1</span>,<span class="o">000</span> people tells you as much about India as about Iceland.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">margin +/- 5 % -&gt; need 385 people
+margin +/- 3 % -&gt; need 1068 people
+margin +/- 1 % -&gt; need 9604 people
+
+population size is not in the formula.
+1,000 people tells you as much about India as about Iceland.</div>
+</article>
+</section>
+<section class="cat" id="hypothesis-testing">
+<div class="cathead"><h2>Hypothesis testing</h2><span class="tag">Day 12</span></div>
+<article class="e">
+<h3>The one question every test asks</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Stops you reporting a difference that was only luck. Two averages are never exactly equal.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Could I see a difference this big by pure chance, even if there were no real difference at all? If yes, you have no finding. If noise would almost never produce it, you do.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>tech = pop[df['department']=='Tech']
+hr   = pop[df['department']=='HR']
+<span class="k">print</span>("Tech average:", <span class="k">round</span>(tech.mean()))
+<span class="k">print</span>("HR average  :", <span class="k">round</span>(hr.mean()))
+<span class="k">print</span>("difference  :", <span class="k">round</span>(tech.mean() - hr.mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("real, <span class="k">or</span> just these <span class="o">90</span> people? that is what a test decides.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">Tech average: 82419
+HR average  : 56705
+difference  : 25714
+
+real, or just these 90 people? that is what a test decides.</div>
+</article>
+<article class="e">
+<h3>Null and alternative hypothesis</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The structure of every test. It is a criminal trial, and the match is exact.</p></div>
+<div class="what"><span class="lbl">In short</span><p>NULL (H0) is the boring position: no difference, nothing going on. Assumed true until the evidence forces you off it - like 'innocent'. ALTERNATIVE (H1) is what you would have to prove.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("H0  the null         : Tech <span class="k">and</span> HR are paid the same")
+<span class="k">print</span>("H1  the alternative  : they are <span class="k">not</span>")
+<span class="k">print</span>()
+<span class="k">print</span>("court     statistics")
+<span class="k">print</span>("innocent  H0 - assumed until disproved")
+<span class="k">print</span>("guilty    H1 - what the prosecution must prove")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">H0  the null         : Tech and HR are paid the same
+H1  the alternative  : they are not
+
+court     statistics
+innocent  H0 - assumed until disproved
+guilty    H1 - what the prosecution must prove</div>
+</article>
+<article class="e">
+<h3>The p-value</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The number every test reports. Misreading it is the most common error in applied statistics.</p></div>
+<div class="what"><span class="lbl">In short</span><p>The probability of seeing data at least this extreme IF the null were true. It is a statement about the DATA, computed in a world where nothing is going on - not a probability about your hypothesis.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
+t, p = stats.ttest_1samp(sample, <span class="o">75000</span>)
+<span class="k">print</span>("sample average:", <span class="k">round</span>(sample.mean()), " claim: <span class="o">75000</span>")
+<span class="k">print</span>("p-value       :", <span class="k">round</span>(p, <span class="o">4</span>))
+<span class="k">print</span>()
+<span class="k">print</span>("reads as: IF the true average really were <span class="o">75</span>,<span class="o">000</span>,")
+<span class="k">print</span>("a sample like ours would almost never happen. so reject <span class="o">75</span>,<span class="o">000.</span>")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">sample average: 72149  claim: 75000
+p-value       : 0.0836
+
+reads as: IF the true average really were 75,000,
+a sample like ours would almost never happen. so reject 75,000.</div>
+</article>
+<article class="e">
+<h3>What a p-value is NOT</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>These two sentences get written in real reports and they are both wrong.</p></div>
+<div class="what"><span class="lbl">In short</span><p>p = 0.03 does NOT mean '3% chance the null is true', and NOT '97% chance my finding is real'. Same trap as confidence intervals: the probability belongs to the random thing (the data), never the fixed thing (the hypothesis).</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("p = <span class="o">0.03</span> means:")
+<span class="k">print</span>("  IF nothing were going on, data this extreme happens <span class="o">3</span>% of the time")
+<span class="k">print</span>()
+<span class="k">print</span>("it does NOT mean:")
+<span class="k">print</span>("  '<span class="o">3</span>% chance the null is true'")
+<span class="k">print</span>("  '<span class="o">97</span>% chance my finding is real'")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">p = 0.03 means:
+  IF nothing were going on, data this extreme happens 3% of the time
+
+it does NOT mean:
+  '3% chance the null is true'
+  '97% chance my finding is real'</div>
+</article>
+<article class="e">
+<h3>The 0.05 threshold</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Knowing it is a convention, not a law, is part of using it honestly.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Somebody has to draw a line for 'surprising enough'. 0.05 is where most fields settled, suggested about a hundred years ago. Particle physics uses about 1 in 3.5 million. 0.049 and 0.051 are the same result.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("<span class="o">0.05</span> is a CONVENTION, <span class="k">not</span> a law of nature.")
+<span class="k">print</span>()
+<span class="k">print</span>("  most fields      <span class="o">0.05</span>")
+<span class="k">print</span>("  some medicine    <span class="o">0.01</span>")
+<span class="k">print</span>("  particle physics about <span class="o">0.0000003</span>")
+<span class="k">print</span>()
+<span class="k">print</span>("so p = <span class="o">0.049</span> <span class="k">and</span> p = <span class="o">0.051</span> mean the same thing. do <span class="k">not</span> pretend otherwise.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">0.05 is a CONVENTION, not a law of nature.
+
+  most fields      0.05
+  some medicine    0.01
+  particle physics about 0.0000003
+
+so p = 0.049 and p = 0.051 mean the same thing. do not pretend otherwise.</div>
+</article>
+<article class="e">
+<h3>Fail to reject is not proved</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Never say 'accept the null'. Once a student writes it they keep writing it.</p></div>
+<div class="what"><span class="lbl">In short</span><p>A high p-value means the evidence was not strong enough - not that there is nothing there. A tiny sample fails to reject almost anything. 'Not guilty' is a verdict about the evidence, not a certificate of innocence.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
+t, p = stats.ttest_1samp(sample, <span class="o">71000</span>)
+<span class="k">print</span>("sample average:", <span class="k">round</span>(sample.mean()), " claim: <span class="o">71000</span>")
+<span class="k">print</span>("p-value       :", <span class="k">round</span>(p, <span class="o">4</span>), " -&gt; fail to reject")
+<span class="k">print</span>()
+<span class="k">print</span>("we did NOT prove the average is <span class="o">71</span>,<span class="o">000.</span>")
+<span class="k">print</span>("we found no evidence against it. completely different.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">sample average: 72149  claim: 71000
+p-value       : 0.4829  -&gt; fail to reject
+
+we did NOT prove the average is 71,000.
+we found no evidence against it. completely different.</div>
+</article>
+<article class="e">
+<h3>Type I and Type II errors</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Explains why running lots of tests is dangerous, and why small samples miss real effects.</p></div>
+<div class="what"><span class="lbl">In short</span><p>TYPE I: you say there is a difference and there is not - crying wolf. Happens 5% of the time BY DESIGN at p&lt;0.05. TYPE II: a real difference exists and you miss it, almost always because the sample was too small.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("Type I  - convict the innocent. <span class="o">5</span>% of the time, by design.")
+<span class="k">print</span>("Type II - let the guilty go. usually too small a sample.")
+<span class="k">print</span>()
+<span class="k">print</span>("a real <span class="o">6</span>,<span class="o">000</span> difference, three sample sizes:")
+<span class="k">import</span> numpy as np
+rng = np.random.default_rng(<span class="o">0</span>)
+<span class="k">for</span> n <span class="k">in</span> (<span class="o">10</span>, <span class="o">30</span>, <span class="o">200</span>):
+    a = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, n); b = rng.normal(<span class="o">76000</span>, <span class="o">16000</span>, n)
+    p = stats.ttest_ind(a, b)[<span class="o">1</span>]
+    <span class="k">print</span>("   n =", n, " p =", <span class="k">round</span>(p,<span class="o">4</span>), " -&gt;", "found it" <span class="k">if</span> p&lt;<span class="o">0.05</span> <span class="k">else</span> "MISSED IT")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">Type I  - convict the innocent. 5% of the time, by design.
+Type II - let the guilty go. usually too small a sample.
+
+a real 6,000 difference, three sample sizes:
+   n = 10  p = 0.6779  -&gt; MISSED IT
+   n = 30  p = 0.5749  -&gt; MISSED IT
+   n = 200  p = 0.0001  -&gt; found it</div>
+</article>
+</section>
+<section class="cat" id="which-test-to-use">
+<div class="cathead"><h2>Which test to use</h2><span class="tag">Day 13</span></div>
+<article class="e">
+<h3>The decision table</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The only skill worth having here. You will never compute one by hand.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Comparing NUMBERS goes to a t-test. Comparing COUNTS in categories goes to chi-square. Get that split right and you pick correctly almost every time.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("one number vs a claim ....... stats.ttest_1samp(data, claim)")
+<span class="k">print</span>("two groups, a number ........ stats.ttest_ind(a, b, equal_var=<span class="k">False</span>)")
+<span class="k">print</span>("two categories, counts ...... stats.chi2_contingency(crosstab)")
+<span class="k">print</span>("<span class="o">3</span>+ groups, a number ......... ANOVA")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">one number vs a claim ....... stats.ttest_1samp(data, claim)
+two groups, a number ........ stats.ttest_ind(a, b, equal_var=False)
+two categories, counts ...... stats.chi2_contingency(crosstab)
+3+ groups, a number ......... ANOVA</div>
+</article>
+<article class="e">
+<h3>Two-sample t-test</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The everyday test: do these two groups really differ?</p></div>
+<div class="what"><span class="lbl">In short</span><p>Compares the averages of two groups. Use equal_var=False as your default - it does not assume the groups have the same spread, and costs almost nothing.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>tech = pop[df['department']=='Tech']; hr = pop[df['department']=='HR']
+t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
+<span class="k">print</span>("Tech", <span class="k">round</span>(tech.mean()), "vs HR", <span class="k">round</span>(hr.mean()), " p =", format(p, '.2e'))
+<span class="k">print</span>("   -&gt; real difference")
+<span class="k">print</span>()
+sales = pop[df['department']=='Sales']; mk = pop[df['department']=='Marketing']
+t, p = stats.ttest_ind(sales, mk, equal_var=<span class="k">False</span>)
+<span class="k">print</span>("Sales", <span class="k">round</span>(sales.mean()), "vs Marketing", <span class="k">round</span>(mk.mean()), " p =", <span class="k">round</span>(p,<span class="o">4</span>))
+<span class="k">print</span>("   -&gt; also real, but you could <span class="k">not</span> have guessed by eye")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">Tech 82419 vs HR 56705  p = 1.16e-15
+   -&gt; real difference
+
+Sales 66535 vs Marketing 73954  p = 0.0086
+   -&gt; also real, but you could not have guessed by eye</div>
+</article>
+<article class="e">
+<h3>Chi-square, and a result that finds nothing</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Most courses only show tests that succeed, which teaches students that a test confirms what they hoped. Usually it does not.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Compares a table of counts against what you would expect if the two categories were unrelated. A high p-value means no evidence of a link - NOT proof there is none.</p></div>
+<div class="lbl codelbl">Code</div><pre><code>clean = df[(df['salary'] &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (df['salary'] &lt;= q3+<span class="o">1.5</span>*iqr)]
+table = pd.crosstab(clean['department'], clean['rating'])
+chi2, p, dof, exp = stats.chi2_contingency(table)
+<span class="k">print</span>(table.to_string())
+<span class="k">print</span>()
+<span class="k">print</span>("chi2 =", <span class="k">round</span>(chi2,<span class="o">2</span>), " p =", <span class="k">round</span>(p,<span class="o">4</span>))
+<span class="k">print</span>("   -&gt; NO evidence that rating depends on department")
+<span class="k">print</span>("   (say 'no evidence of a link', <span class="k">not</span> 'proved they are unrelated')")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">rating      Average  Excellent  Good  Poor
+department                                
+HR                8         13    11    12
+Marketing        11          9     8    14
+Sales            15         14    19    17
+Tech              8         12    12    14
+
+chi2 = 3.59  p = 0.9364
+   -&gt; NO evidence that rating depends on department
+   (say 'no evidence of a link', not 'proved they are unrelated')</div>
+</article>
+<article class="e">
+<h3>A/B testing</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The one application you will meet in a job interview and in real work.</p></div>
+<div class="what"><span class="lbl">In short</span><p>Show version A to one group, B to another, count conversions, and test the difference. It is a chi-square on a 2x2 table - there is no new statistics in it at all.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">import</span> numpy as np
+big   = np.array([[<span class="o">1104</span>, <span class="o">96</span>], [<span class="o">1062</span>, <span class="o">138</span>]])     <span class="c"># <span class="o">1200</span> each, <span class="o">8.0</span>% vs <span class="o">11.5</span>%</span>
+small = np.array([[<span class="o">110</span>, <span class="o">10</span>], [<span class="o">106</span>, <span class="o">14</span>]])        <span class="c"># <span class="o">120</span> each, same rates</span>
+<span class="k">for</span> label, tab <span class="k">in</span> (("<span class="o">1200</span> per arm", big), ("<span class="o">120</span> per arm", small)):
+    chi2, p, dof, exp = stats.chi2_contingency(tab, correction=<span class="k">False</span>)
+    <span class="k">print</span>(label, " p =", <span class="k">round</span>(p,<span class="o">4</span>), " -&gt;",
+          "ship B" <span class="k">if</span> p &lt; <span class="o">0.05</span> <span class="k">else</span> "cannot see it")
+<span class="k">print</span>()
+<span class="k">print</span>("SAME lift both times. only the amount of data changed.")
+<span class="k">print</span>("so size the test BEFORE you launch, <span class="k">and</span> do <span class="k">not</span> stop early.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">1200 per arm  p = 0.0039  -&gt; ship B
+120 per arm  p = 0.3894  -&gt; cannot see it
+
+SAME lift both times. only the amount of data changed.
+so size the test BEFORE you launch, and do not stop early.</div>
+</article>
+<article class="e">
+<h3>p-hacking</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The habit that separates an analyst people trust from one they do not.</p></div>
+<div class="what"><span class="lbl">In short</span><p>At a 5% threshold, one test in twenty comes back significant when nothing is there - by design. Test everything against everything and you WILL find something. It will not be real.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">import</span> numpy as np
+rng = np.random.default_rng(<span class="o">13</span>)
+hits = []
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">20</span>):
+    a = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>); b = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>)   <span class="c"># identical sources</span>
+    p = stats.ttest_ind(a, b)[<span class="o">1</span>]
+    <span class="k">if</span> p &lt; <span class="o">0.05</span>: hits.append((i+<span class="o">1</span>, <span class="k">round</span>(p, <span class="o">4</span>)))
+<span class="k">print</span>("<span class="o">20</span> tests on data with NO real difference")
+<span class="k">print</span>("came back 'significant':", hits)
+<span class="k">print</span>()
+<span class="k">print</span>("nothing malfunctioned. <span class="o">1</span>-<span class="k">in</span>-<span class="o">20</span> is what <span class="o">5</span>% MEANS.")
+<span class="k">print</span>("decide what you are testing BEFORE you look.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">20 tests on data with NO real difference
+came back 'significant': [(18, np.float64(0.0057))]
+
+nothing malfunctioned. 1-in-20 is what 5% MEANS.
+decide what you are testing BEFORE you look.</div>
+</article>
+</section>
+<footer>TAP Academy &mdash; Data Analytics &middot; 55 concepts &middot; every example executed against
+ employees.csv</footer>
+</div>
+<button class="themetog" id="tt">Theme</button>
+<script>
+(function(){var m=["auto","light","dark"],i=0;
+ try{var t=localStorage.getItem("stat-theme");if(t)i=m.indexOf(t);}catch(e){}
+ if(i<0)i=0;
+ function ap(){var v=m[i];
+  if(v==="auto")document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme",v);
+  document.getElementById("tt").textContent=v.charAt(0).toUpperCase()+v.slice(1);
+  try{localStorage.setItem("stat-theme",v);}catch(e){}}
+ document.getElementById("tt").onclick=function(){i=(i+1)%3;ap();};ap();})();
+</script>
+</body></html>
