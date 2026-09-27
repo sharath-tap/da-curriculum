@@ -433,6 +433,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -11428,6 +11429,19 @@ difference: 25714</div>
     <p>So it is a habit, not a rule. Which means zero point zero four nine and zero point zero five one
     are the same answer. Do not pretend one is a discovery and the other is not.</p>
    </div>
+
+   <div class="qbox">
+    <div class="q">Somebody always asks: &ldquo;what if p is <b>exactly</b> 0.05?&rdquo;</div>
+    <div class="a">Take it. Fair question, short answer.</div>
+   </div>
+
+   <div class="speak">
+    <p>Good question. Our rule is written <b>p less than zero point zero five</b>.</p>
+    <p>So exactly zero point zero five is not less than it. Strictly, we fail to reject.</p>
+    <p>But do not take that too seriously. Zero point zero four nine and zero point zero five one are
+    almost the same number. They are not two different worlds.</p>
+    <p>If you land that close, just say so. Say it is borderline and you need more data.</p>
+   </div>
   </div>
 
   <!-- 28-50 -->
@@ -11657,6 +11671,47 @@ n = 200 -> p = 0.0001 | found it</div>
     <p>And the p-value cannot tell you which of those you are looking at.</p>
    </div>
 
+   <div class="stage">Now the other half of the same warning, and it is the one that gets analysts
+   into trouble at work. Five minutes.</div>
+
+   <div class="speak">
+    <p>One more thing about the p-value, and it is the opposite mistake.</p>
+    <p>Somebody will ask: if the p-value is tiny, does that mean the difference is huge?</p>
+    <p>No. Those are two different things.</p>
+    <p>The p-value is pulled around by three things. The size of the gap, <b>the size of your
+    sample</b>, and how spread out the data is.</p>
+    <p>So a big sample can make a tiny gap look significant. And a small sample can hide a big one.</p>
+    <p>Let me show you both.</p>
+   </div>
+
+   <div class="typeit">Two extremes, side by side</div>
+<pre><code>rng = np.random.default_rng(<span class="o">3</span>)
+
+<span class="c"># a tiny gap, but a huge sample</span>
+a = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, <span class="o">10000</span>)
+b = rng.normal(<span class="o">70400</span>, <span class="o">16000</span>, <span class="o">10000</span>)
+<span class="k">print</span>(<span class="c">"gap"</span>, <span class="k">round</span>(b.mean()-a.mean()), <span class="c">" n=10000  p ="</span>,
+      <span class="k">round</span>(stats.ttest_ind(a, b)[<span class="o">1</span>], <span class="o">4</span>))
+
+<span class="c"># a big gap, but a tiny sample</span>
+c = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, <span class="o">8</span>)
+d = rng.normal(<span class="o">85000</span>, <span class="o">16000</span>, <span class="o">8</span>)
+<span class="k">print</span>(<span class="c">"gap"</span>, <span class="k">round</span>(d.mean()-c.mean()), <span class="c">" n=8      p ="</span>,
+      <span class="k">round</span>(stats.ttest_ind(c, d)[<span class="o">1</span>], <span class="o">4</span>))</code></pre>
+   <div class="screen">gap 531  n=10000  p = 0.0186
+gap 16856  n=8      p = 0.1617</div>
+
+   <div class="speak">
+    <p>Look at the first line. A gap of five hundred and thirty-one rupees. Nobody cares about five
+    hundred rupees. But the p-value says zero point zero one eight, so it counts as significant.</p>
+    <p>Now the second line. A gap of nearly seventeen thousand. That is a big deal. But the p-value is
+    zero point one six, so it does not count.</p>
+    <p>So a small p-value does not mean a big difference. And a big p-value does not mean a small one.</p>
+    <p>Say it like this. <b>The gap tells you how much it matters. The p-value tells you how sure you
+    are.</b> Two different questions.</p>
+    <p>That is why you always report the actual gap next to the p-value. Never the p-value alone.</p>
+   </div>
+
    <div class="speak">
     <p>That is why you report yesterday's interval next to it.</p>
     <p>Imagine two studies, both with a big p-value.</p>
@@ -11746,6 +11801,62 @@ LARGE p-value
     <p>And at one test that comes back saying nothing at all &mdash; which turns out to be the most
     useful result in the whole module.</p>
    </div>
+
+   <div class="typeit">The complete flow &mdash; put this on the board and leave it</div>
+<pre><code>STEP 1   write H0        usually "no difference"      Tech mean = HR mean
+
+STEP 2   write H1        "there is a difference"      Tech mean != HR mean
+
+STEP 3   choose alpha    almost always 0.05
+
+STEP 4   run the test    it hands you a p-value
+
+STEP 5   compare
+
+              p < 0.05                p >= 0.05
+                 |                        |
+            REJECT H0              FAIL TO REJECT H0
+                 |                        |
+         evidence against H0      not enough evidence</code></pre>
+
+   <div class="typeit">Code cheat sheet &mdash; everything new from today</div>
+<pre><code>from scipy import stats            # the statistics tools
+
+stats.ttest_1samp(sample, 65000)  # ONE sample vs ONE claimed number
+stats.ttest_ind(a, b)             # TWO independent groups
+stats.ttest_ind(a, b, equal_var=False)
+                                  # same, without assuming equal spread
+                                  # (make this your default)
+
+import numpy as np                # only for the fake-data demo
+rng = np.random.default_rng(0)    # 0 is a seed = same numbers every run
+rng.normal(mean, spread, n)       # n fake values around mean
+
+tech.mean()      len(tech)      round(p, 4)</code></pre>
+
+   <div class="speak">
+    <p>Last thing. If someone in an interview asks you what hypothesis testing is, here is the
+    answer.</p>
+    <p><b>Hypothesis testing is how we decide whether a difference in our data is real, or whether it
+    could have come from who happened to be in the sample.</b></p>
+    <p>We start by assuming there is no difference. We calculate a p-value, which asks how unusual our
+    result would be if that assumption were true. If it is very unusual, we reject the assumption. If
+    it is not, we say we did not find enough evidence.</p>
+    <p>That answer is enough. It is short, it is correct, and it uses no jargon.</p>
+   </div>
+
+   <div class="typeit">The four lines. If everything else goes, keep these.</div>
+<pre><code>H0            assume there is NO real difference
+
+p-value       if that were true, how often would we see a gap this big?
+
+small p       almost never  ->  REJECT H0
+
+large p       quite often   ->  FAIL TO REJECT H0
+
+
+and:  the gap tells you how much it matters.
+      the p-value tells you how sure you are.</code></pre>
 
    <div class="runsheet">
  <div class="rs-head">
