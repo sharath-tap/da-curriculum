@@ -11272,12 +11272,12 @@ margin +/- 1 % -> need 9604 people</div>
 
   <!-- 0-12 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>A question the interval cannot answer</h3></div>
-   <p class="objective">Motivate the whole session with one number they cannot yet judge.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>Start with the problem</h3></div>
+   <p class="objective">One number they can already compute, and one question they cannot yet answer.</p>
 
-   <div class="stage">Do not define anything. Put a difference on the board and ask them to judge it.</div>
+   <div class="stage">Run the code first. Do not set anything up &mdash; let the number arrive.</div>
 
-   <div class="typeit">Two departments, two averages</div>
+   <div class="typeit">Type this</div>
 <pre><code>tech = clean[clean.department == <span class="c">"Tech"</span>].salary
 hr   = clean[clean.department == <span class="c">"HR"</span>].salary
 
@@ -11288,24 +11288,88 @@ hr   = clean[clean.department == <span class="c">"HR"</span>].salary
 HR  : 44 people, average 56705
 difference: 25714</div>
 
-   <div class="qbox">
-    <div class="q">Ask: &ldquo;Does Tech pay more than HR at this company?&rdquo; Everybody will say
-    yes. Then ask the follow-up that matters: <b>&ldquo;How do you know that is not just these
-    particular ninety people?&rdquo;</b></div>
-    <div class="a">Let it sit. They have seen this problem before &mdash; day 10, five samples of thirty
-    from one identical population, five different averages. Differences appear where nothing real is
-    happening. That memory is the door into today.</div>
+   <div class="stage">Before the discussion, walk the code. They have seen every piece, but not
+   stacked like this. Two minutes.</div>
+
+   <div class="speak">
+    <p>Let us read that first line before we talk about the answer.</p>
+    <p><code>clean</code> is our table of employees.</p>
+    <p>Now look inside the brackets. <code>clean.department == "Tech"</code>.</p>
+    <p>That goes down every row and asks one question. Is this person in Tech?</p>
+    <p>It gives back True, False, True, False, and so on. One answer per employee.</p>
+    <p>Then <code>clean[...]</code> keeps only the rows where the answer was True.</p>
+    <p>And <code>.salary</code> at the end picks just the salary column.</p>
+    <p>So <code>tech</code> is a list of Tech salaries. Nothing else.</p>
+    <p>The second line does exactly the same thing for HR.</p>
+    <p><code>len(tech)</code> counts how many there are. <code>tech.mean()</code> takes the average.</p>
+    <p>And <code>round()</code> is only there because the average comes out as eighty-two thousand four
+    hundred and eighteen point seven eight. Nobody wants to read that.</p>
    </div>
 
    <div class="speak">
-    <p>Twenty-five thousand rupees. That looks like a big gap.</p>
-    <p>But wait. Think back to day ten.</p>
-    <p>I took five samples. All from the <b>same</b> column. Nothing was different about them.</p>
-    <p>And I still got five different answers.</p>
-    <p>So gaps turn up even when nothing is going on. That is just luck.</p>
-    <p>Which means I have a problem. Is this twenty-five thousand a <b>real</b> gap? Or is it luck,
-    like those five were?</p>
-    <p>I cannot tell just by looking. Today we build the thing that tells us.</p>
+    <p>Now the numbers.</p>
+    <p><b>Tech: forty-six employees. Average eighty-two thousand four hundred and nineteen.</b></p>
+    <p><b>HR: forty-four employees. Average fifty-six thousand seven hundred and five.</b></p>
+    <p>The difference is <b>twenty-five thousand seven hundred and fourteen</b>.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Ask it plainly: &ldquo;Does Tech pay more than HR?&rdquo; Almost everyone says yes.</div>
+    <div class="a">They are right about this data. Tech does have the higher average. The question is
+    whether that tells us anything beyond these 90 people.</div>
+   </div>
+
+   <div class="speak">
+    <p>Yes. In this data, Tech is higher. That much is just arithmetic.</p>
+    <p>But here is the question that matters.</p>
+    <p><b>Can we say Tech generally pays more? Or did we just happen to get these numbers from these
+    ninety employees?</b></p>
+   </div>
+
+   <div class="stage">Now take them back to sampling. This is the memory the whole session leans on.</div>
+
+   <div class="speak">
+    <p>Think back to what we saw with sampling.</p>
+    <p>We took different samples from the <b>same</b> group of people. Nothing about that group
+    changed. Not one salary.</p>
+    <p>And every sample still gave a different average.</p>
+    <p>Sample one, seventy thousand and six.</p>
+    <p>Sample two, sixty-seven thousand eight hundred and forty-nine.</p>
+    <p>Sample three, sixty-seven thousand seven hundred and seventy-five.</p>
+    <p>The real answer was sixty-nine thousand six hundred and thirty.</p>
+    <p>So why did the three numbers differ? Only because <b>different people happened to be
+    picked</b>.</p>
+    <p>That has a name. It is called <b>sampling variation</b>.</p>
+   </div>
+
+   <div class="typeit">Put this on the board and leave it up</div>
+<pre><code>SAME group of people, three different samples
+
+   sample 1     70,006
+   sample 2     67,849
+   sample 3     67,775
+
+   the real answer   69,630
+
+   nothing changed. only WHO got picked.</code></pre>
+
+   <div class="speak">
+    <p>Now come back to our company.</p>
+    <p>Tech, eighty-two thousand four hundred and nineteen. HR, fifty-six thousand seven hundred and
+    five. A gap of twenty-five thousand seven hundred and fourteen.</p>
+    <p>That gap certainly looks big.</p>
+    <p>But before I say Tech <b>really</b> pays more, I have to answer one thing.</p>
+    <p><b>Is twenty-five thousand big enough to be a real difference? Or could a gap like that turn up
+    just from who happened to be picked?</b></p>
+    <p>That is the problem we solve today.</p>
+    <p>We already know how to calculate the difference. Now we learn how to decide whether it
+    <b>means</b> anything.</p>
+    <p>That is called <b>hypothesis testing</b>.</p>
+   </div>
+
+   <div class="keyline">
+    One sentence worth writing down: <b>seeing a difference is easy. Hypothesis testing tells you how
+    much that difference is worth.</b>
    </div>
   </div>
 
@@ -11368,154 +11432,268 @@ difference: 25714</div>
    </div>
   </div>
 
-  <!-- 28-46 -->
+  <!-- 28-50 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">28 &ndash; 50</span><h3>Run one, and read it</h3></div>
-   <p class="objective">The simplest test there is. One sample, one claim.</p>
+   <div class="bhead"><span class="clock">28 &ndash; 50</span><h3>Our first test</h3></div>
+   <p class="objective">Start smaller than two departments. One group, one claim.</p>
 
    <div class="speak">
-    <p>Let us start smaller than two departments. One claim, one sample.</p>
-    <p>Suppose HR publishes a statement: <b>the average salary at this company is seventy-five
-    thousand.</b> We do not have everybody's salary. We have a sample of a hundred.</p>
-    <p>Set up the court case first. What is the null?</p>
+    <p>Before we tackle Tech against HR, let us do an easier one.</p>
+    <p>One group. One claim.</p>
+    <p>Suppose HR publishes a statement. <b>&ldquo;The average salary at this company is sixty-five
+    thousand.&rdquo;</b></p>
+    <p>We do not have everyone's salary. We have our sample of a hundred.</p>
+    <p>So: does our sample give us reason to doubt sixty-five thousand?</p>
    </div>
 
-   <div class="qbox">
-    <div class="q">Let them say it. The null is <b>the average is 75,000</b> &mdash; the claim is
-    presumed true until the evidence says otherwise.</div>
-    <div class="a">This is worth pausing on. The null is always the boring, no-news position: no
-    difference, no effect, the claim stands. Students want to make the null the exciting thing. It never
-    is.</div>
-   </div>
+   <div class="typeit">On the board first &mdash; write these two lines before running anything</div>
+<pre><code>H0    the average IS 65,000          (the claim, assumed true)
 
-   <div class="typeit">One-sample t-test</div>
+H1    the average is NOT 65,000</code></pre>
+
+   <div class="typeit">Now type this</div>
 <pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
 
-t, p = stats.ttest_1samp(sample, <span class="o">75000</span>)
+t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)
 
 <span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
-<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">75000</span>)
+<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">65000</span>)
 <span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
-   <div class="screen">our sample average: 67472
-the claim         : 75000
+   <div class="screen">our sample average: 72149
+the claim         : 65000
 p-value           : 0.0000</div>
 
-   <div class="speak">
-    <p>The p-value is essentially zero.</p>
-    <p>Read it out as a sentence. <b>If the real average were seventy-five thousand, we would almost
-    never get a sample like ours.</b></p>
-    <p>So I stop believing seventy-five thousand. The proper phrase is <b>reject the null</b>. It just
-    means: that claim does not fit our data.</p>
-    <p>Now be careful about what I did <b>not</b> say.</p>
-    <p>I did not say the average is sixty-seven thousand. I only said it is <b>not</b> seventy-five
-    thousand.</p>
-    <p>Those are two different things. Only the second one is safe to say.</p>
-   </div>
-
-   <div class="stage">Now the second test. This is the one that teaches. Do not rush it.</div>
-
-   <div class="typeit">Same data, a different claim</div>
-<pre><code>t, p = stats.ttest_1samp(sample, <span class="o">68000</span>)
-
-<span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
-<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">68000</span>)
-<span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
-   <div class="screen">our sample average: 67472
-the claim         : 68000
-p-value           : 0.7551</div>
-
-   <div class="qbox">
-    <div class="q">Ask: &ldquo;What does zero point seven six tell us? Say it as a sentence.&rdquo;</div>
-    <div class="a">You will get &ldquo;the average <b>is</b> sixty-eight thousand&rdquo; or &ldquo;we
-    proved the claim is right&rdquo;. Both are wrong, and this is the single most valuable correction
-    in the session. Take your time with it.</div>
-   </div>
+   <div class="stage">Stop and explain every new piece of that code. Four minutes. They have not met
+   any of it before.</div>
 
    <div class="speak">
-    <p>Zero point seven six. That is very big.</p>
-    <p>It means: if the real average were sixty-eight thousand, a sample like ours would turn up three
-    times in four. Completely normal.</p>
-    <p>So we have nothing. The phrase is <b>fail to reject</b>.</p>
-    <p>Now listen carefully, because this is where nearly everybody gets it wrong.</p>
-    <p>This does <b>not</b> mean we proved the average is sixty-eight thousand.</p>
-    <p>Think of it like this. I look for my keys in one room and I do not find them.</p>
-    <p>Does that prove the keys are not in the house? No. It only proves I did not find them in that
-    one room.</p>
-    <p>Same here. We looked and we found nothing. That is all we can say.</p>
+    <p>There are three new things in that code. One at a time.</p>
+    <p><b>First. What is scipy?</b></p>
+    <p>It is a library, like pandas and numpy. A box of ready-made maths tools.</p>
+    <p>Inside it there is a section called <code>stats</code>, which holds the statistics tools. So the
+    first line just says: give me scipy's statistics tools.</p>
+    <p><b>Second. What is ttest underscore one samp?</b></p>
+    <p>Read the name out loud. <b>t-test, one sample.</b> That is exactly what it does. One sample,
+    against one claimed number.</p>
+    <p>We hand it two things. Our sample, and the number we are testing &mdash; sixty-five thousand.</p>
+    <p><b>Third. What are t and p?</b></p>
+    <p>The function hands back two numbers.</p>
+    <p><code>t</code> is the test statistic. Ignore it today.</p>
+    <p><code>p</code> is the p-value. That is the one we use.</p>
    </div>
 
-   <div class="warn"><b>Never say &ldquo;accept the null&rdquo;.</b> The phrase does not exist in
-   careful statistics, and once a student writes it in a report they keep writing it. It is always
-   <b>fail to reject</b> &mdash; clumsy on purpose, because the clumsiness is doing real work.</div>
+   <div class="warn"><b>One thing about that output.</b> It shows <b>0.0000</b>. That does not mean the
+   p-value is zero. It means it was so small that rounding to four decimal places left nothing. The
+   real number might be 0.00000042.</div>
+
+   <div class="speak">
+    <p>So our p-value is basically zero.</p>
+    <p>Read it as a sentence. <b>If the real average were sixty-five thousand, we would almost never
+    get a sample like ours.</b></p>
+    <p>Almost never. So I stop believing sixty-five thousand.</p>
+    <p>The phrase is <b>reject H0</b>. It only means: that claim does not fit our data.</p>
+   </div>
 
    <div class="keyline">
-    Sharpen it with this: our interval yesterday was 64,164 to 70,780. <b>Both</b> 68,000 and 70,000 sit
-    inside it. We cannot reject either one. We are not claiming the average is 68,000 &mdash; we are
-    admitting we cannot rule it out. That is a much weaker statement, and it is the honest one.
+    Now the part they get wrong. Say it slowly. <b>We did not prove the average is 72,149.</b> That is
+    just our sample's average. All we showed is that <b>65,000 does not fit</b>. Two different
+    statements, and only the second one is safe.
    </div>
-  </div><div class="blk">
-   <div class="bhead"><span class="clock">50 &ndash; 70</span><h3>The two ways to be wrong</h3></div>
-   <p class="objective">The two opposite mistakes. Then why sample size decides which one bites you.</p>
+
+   <div class="stage">Now the same sample with a different claim. This is where the real lesson is.</div>
 
    <div class="speak">
-    <p>There are two ways this can go wrong, and they are opposite mistakes.</p>
-    <p><b>One.</b> We say there is a difference, but actually there is not. We got excited over nothing.</p>
-    <p><b>Two.</b> There really is a difference, and we miss it completely.</p>
-    <p>Both happen. You cannot avoid both at once.</p>
+    <p>Now somebody else says: <b>the average is seventy-two thousand.</b></p>
+    <p>Same employees. Same sample. Only the claim changed.</p>
    </div>
 
-   <div class="mth">
-    <div class="mrow"><b>Type I</b> &mdash; we say there is a difference, and there is not.
-    <em>Getting excited over nothing.</em></div>
-    <div class="mrow"><b>Type II</b> &mdash; there is a difference, and we miss it.
-    <em>Looking straight at it and not seeing it.</em></div>
+   <div class="typeit">Change one number and run it again</div>
+<pre><code>t, p = stats.ttest_1samp(sample, <span class="o">72000</span>)
+
+<span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
+<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">72000</span>)
+<span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
+   <div class="screen">our sample average: 72149
+the claim         : 72000
+p-value           : 0.9274</div>
+
+   <div class="qbox">
+    <div class="q">Ask: &ldquo;What does zero point nine three tell us? Say it as a full sentence.&rdquo;</div>
+    <div class="a">You will get &ldquo;the average <b>is</b> 72,000&rdquo; or &ldquo;we proved the
+    claim&rdquo;. Both wrong, and this is the most valuable correction in the session.</div>
    </div>
 
    <div class="speak">
-    <p>Here is the part to remember. How often will we get excited over nothing?</p>
-    <p><b>Five times in a hundred.</b> Exactly. Because that is what we set the line at.</p>
-    <p>That is not a mistake in the method. That <b>is</b> the method.</p>
-    <p>So think about what that means. Run twenty tests on data where nothing is happening, and about
+    <p>Zero point nine three. That is very big.</p>
+    <p>It means: if the real average were seventy-two thousand, a sample like ours would turn up almost
+    all the time. Completely ordinary.</p>
+    <p>So we have nothing against it. The phrase is <b>fail to reject H0</b>.</p>
+    <p>Now listen carefully. This does <b>not</b> mean we proved the average is seventy-two thousand.</p>
+    <p>Think of it this way. I look for my keys in one room. I do not find them.</p>
+    <p>Does that prove the keys are not in the house?</p>
+    <p>No. It only proves I did not find them in that one room.</p>
+    <p>Same here. We looked, and found nothing against seventy-two thousand. That is all we can say.</p>
+   </div>
+
+   <div class="warn"><b>Never say &ldquo;accept H0&rdquo;.</b> Always <b>fail to reject</b>. It is
+   clumsy on purpose, and the clumsiness is doing real work. Once a student writes
+   &ldquo;accept&rdquo; in a report, they keep writing it for years.</div>
+
+   <div class="stage">Now join it to yesterday. This is what makes the two sessions one idea instead
+   of two topics.</div>
+
+   <div class="speak">
+    <p>Look back at yesterday's interval. We got <b>sixty-eight thousand nine hundred and fifty-two, to
+    seventy-five thousand three hundred and forty-six</b>.</p>
+    <p>Where does seventy-two thousand sit? <b>Inside</b> it.</p>
+    <p>Where does sixty-five thousand sit? <b>Outside</b> it.</p>
+    <p>And look what the two tests said. Seventy-two thousand, fail to reject. Sixty-five thousand,
+    reject.</p>
+    <p>That is not a coincidence.</p>
+    <p><b>Everything inside the interval is a claim you cannot reject. Everything outside it is a claim
+    you can.</b></p>
+    <p>So the interval and the test are the same tool. The interval just answers every claim at once,
+    instead of one at a time.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>yesterday's interval:   68,952  to  75,346
+
+   72,000   INSIDE   -&gt;  p = 0.9274  -&gt;  fail to reject
+   65,000   OUTSIDE  -&gt;  p = 0.0000  -&gt;  reject
+
+   the interval IS the set of claims you cannot reject.</code></pre>
+  </div>
+
+  <!-- 50-70 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">50 &ndash; 70</span><h3>Two ways to be wrong</h3></div>
+   <p class="objective">The two opposite mistakes, then why sample size decides which one bites.</p>
+
+   <div class="speak">
+    <p>A test can go wrong in two opposite ways. Both have names, and both matter.</p>
+    <p><b>Mistake one.</b> There is no real difference, but our test says there is.</p>
+    <p>We got excited over nothing. That is a <b>false alarm</b>. The book calls it a
+    <b>Type I error</b>.</p>
+    <p><b>Mistake two.</b> There really is a difference, and our test misses it.</p>
+    <p>We looked straight at it and did not see it. That is a <b>missed detection</b>. The book calls
+    it a <b>Type II error</b>.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>TYPE I     false alarm
+           nothing was there, but we said there was
+
+TYPE II    missed detection
+           something was there, and we did not see it</code></pre>
+
+   <div class="speak">
+    <p>Now here is the part worth remembering about the first one.</p>
+    <p>How often will we raise a false alarm? <b>Five times in a hundred.</b></p>
+    <p>Exactly five. Because that is where we drew our line.</p>
+    <p>That is not a fault in the method. That <b>is</b> the method.</p>
+    <p>So think about what that means. Run twenty tests on data where nothing is going on, and about
     one will look like a finding. We will watch that happen tomorrow.</p>
-    <p>And the other mistake &mdash; missing something real? That one has a simple cure. More data.</p>
    </div>
 
-   <div class="typeit">The same real difference, three sample sizes</div>
-<pre><code>rng = np.random.default_rng(<span class="o">0</span>)
+   <div class="stage">Now the second mistake, and the demo that explains it. Set up the fake data
+   before running it.</div>
+
+   <div class="speak">
+    <p>Now the other mistake. What makes us miss something real?</p>
+    <p>Usually one thing. <b>Too small a sample.</b></p>
+    <p>Let me prove it. I am going to build two groups of fake salaries myself, so I know for certain
+    there is a real difference.</p>
+    <p>Group A will be built around seventy thousand. Group B around seventy-six thousand.</p>
+    <p>So the real gap is six thousand, every single time. I put it there.</p>
+    <p>Then I will test them at three different sample sizes and see whether the test finds it.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+rng = np.random.default_rng(<span class="o">0</span>)
 
 <span class="k">for</span> n <span class="k">in</span> [<span class="o">10</span>, <span class="o">30</span>, <span class="o">200</span>]:
-    a = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, n)      <span class="c"># these two really ARE different</span>
-    b = rng.normal(<span class="o">76000</span>, <span class="o">16000</span>, n)      <span class="c"># by 6,000 every time</span>
+    a = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, n)   <span class="c"># built around 70,000</span>
+    b = rng.normal(<span class="o">76000</span>, <span class="o">16000</span>, n)   <span class="c"># built around 76,000</span>
+
     t, p = stats.ttest_ind(a, b)
-    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-> p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>),
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-&gt; p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>),
           <span class="c">"|"</span>, <span class="c">"found it"</span> <span class="k">if</span> p &lt; <span class="o">0.05</span> <span class="k">else</span> <span class="c">"MISSED IT"</span>)</code></pre>
    <div class="screen">n = 10 -> p = 0.6779 | MISSED IT
 n = 30 -> p = 0.5749 | MISSED IT
 n = 200 -> p = 0.0001 | found it</div>
 
+   <div class="stage">Walk this code too. There are four new things in it and none have been
+   taught.</div>
+
    <div class="speak">
-    <p>The gap was six thousand rupees in all three. It was real every time. I put it there myself.</p>
-    <p>With ten people, we missed it. With thirty, we missed it. With two hundred, we saw it easily.</p>
-    <p>So a big p-value has two possible meanings.</p>
+    <p>Four new things here. Quickly.</p>
+    <p><b>numpy, shortened to np.</b> Another library, this one for numbers. Everyone writes
+    <code>np</code> because that is the convention.</p>
+    <p><b>default underscore rng with a zero in it.</b> That makes a random number generator.
+    <code>rng</code> is short for random number generator.</p>
+    <p>The zero is a <b>seed</b>. It means the random numbers come out the same every time we run it.
+    That way all of you see the same output as me.</p>
+    <p><b>rng dot normal, seventy thousand, sixteen thousand, n.</b> That makes n fake salaries. They
+    cluster around seventy thousand, and sixteen thousand controls how spread out they are.</p>
+    <p><b>ttest underscore ind.</b> This is a different test from before. <code>ind</code> means
+    <b>independent</b> &mdash; two separate groups of people. Earlier we had one sample against one
+    number, so we used <code>ttest_1samp</code>. Now we have group A against group B.</p>
+   </div>
+
+   <div class="keyline">
+    Worth saying out loud: <b>one sample against a number is <code>ttest_1samp</code>. Two groups
+    against each other is <code>ttest_ind</code>.</b> That is the only choice they have to make today.
+   </div>
+
+   <div class="speak">
+    <p>Now look at what happened.</p>
+    <p>The gap was six thousand in all three. Real every time. I built it myself.</p>
+    <p>With ten people in each group, we missed it.</p>
+    <p>With thirty, we still missed it.</p>
+    <p>With two hundred, we found it easily.</p>
+    <p>So a big p-value has <b>two</b> possible meanings.</p>
     <p>One: there is genuinely nothing there.</p>
     <p>Two: there <b>is</b> something there, but our sample was too small to see it.</p>
-    <p>And the p-value cannot tell you which one you are looking at.</p>
-    <p>That is why you also report the interval from yesterday. A wide interval tells you that you could
-    not tell. A narrow one tells you there really is nothing.</p>
+    <p>And the p-value cannot tell you which of those you are looking at.</p>
+   </div>
+
+   <div class="speak">
+    <p>That is why you report yesterday's interval next to it.</p>
+    <p>Imagine two studies, both with a big p-value.</p>
+    <p>Study A says the difference is somewhere between minus twenty thousand and plus twenty
+    thousand. That is a huge range. It means we could not tell anything.</p>
+    <p>Study B says the difference is between minus one hundred and plus one hundred and twenty. That
+    is narrow, and it sits on zero. It means there really is nothing there.</p>
+    <p>Same p-value. Completely different stories. The interval is what tells them apart.</p>
    </div>
   </div>
 
-  <!-- 74-90 -->
+  <!-- 70-90 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">70 &ndash; 90</span><h3>Say it properly, and settle the Tech question</h3></div>
-   <p class="objective">Close the loop from minute 0, and drill the sentences they will have to write.</p>
+   <div class="bhead"><span class="clock">70 &ndash; 90</span><h3>Settle Tech against HR</h3></div>
+   <p class="objective">Answer the question from minute one, then drill the sentences they must write.</p>
 
    <div class="speak">
-    <p>We opened with Tech paying twenty-five thousand more than HR, and I said I could not yet tell you
-    whether that was real. Now I can.</p>
+    <p>Now back to where we started.</p>
+    <p>Tech, eighty-two thousand four hundred and nineteen. HR, fifty-six thousand seven hundred and
+    five. A gap of twenty-five thousand seven hundred and fourteen.</p>
+    <p>We could not say whether that was real. Now we can.</p>
+    <p>Two groups, comparing a number. So which test?</p>
    </div>
 
-   <div class="typeit">The test we could not run ninety minutes ago</div>
+   <div class="qbox">
+    <div class="q">Let them answer from the rule you gave in the last block.</div>
+    <div class="a"><code>ttest_ind</code>. Two independent groups.</div>
+   </div>
+
+   <div class="typeit">Board first, always</div>
+<pre><code>H0    Tech and HR are paid the same
+
+H1    Tech and HR are NOT paid the same</code></pre>
+
+   <div class="typeit">Now run it</div>
 <pre><code>t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
 
 <span class="k">print</span>(<span class="c">"Tech average:"</span>, <span class="k">round</span>(tech.mean()))
@@ -11526,71 +11704,209 @@ HR average  : 56705
 p-value     : 1.156e-15</div>
 
    <div class="speak">
-    <p>That is a decimal point, then fourteen zeros, then a one. About as small as a p-value ever gets.</p>
-    <p>If Tech and HR really paid the same, a gap this big in ninety people would essentially never
-    happen. Not rarely. Never.</p>
-    <p>So we reject the null. There is a real pay difference between those two departments.</p>
-    <p>Tomorrow we look at the different tests for different shapes of question &mdash; and at one that
-    comes back saying nothing at all, which turns out to be the most useful result in the module.</p>
+    <p>Two new things in that line. Quickly.</p>
+    <p><b>equal underscore var equals False.</b> Variance just means how spread out the numbers are.
+    Tech salaries and HR salaries probably do not have the same spread.</p>
+    <p>So this tells the function: do not assume they do.</p>
+    <p>Make it your default. It is safer and it costs nothing.</p>
+    <p><b>And that p-value looks strange.</b> One point one five six, e, minus fifteen.</p>
+    <p>That is shorthand for a very small number. It means a decimal point, then fourteen zeros, then
+    the digits.</p>
+    <p>So: zero point zero zero zero &mdash; fourteen zeros &mdash; one one five six.</p>
    </div>
 
-   <div class="stage">Last five minutes, and do not skip it. Put the four sentences up and have them
-   read each one aloud. These are the sentences they will have to write at work.</div>
-
-   <div class="mth">
-    <div class="mrow"><b>Say:</b> &ldquo;There is strong evidence that Tech and HR salaries differ
-    (p &lt; 0.001).&rdquo;</div>
-    <div class="mrow"><b>Not:</b> &ldquo;There is a 99.9% chance Tech pays more.&rdquo; &mdash; the
-    p-value is not a probability about the conclusion.</div>
-    <div class="mrow"><b>Say:</b> &ldquo;We found no evidence of a difference (p = 0.76).&rdquo;</div>
-    <div class="mrow"><b>Not:</b> &ldquo;We proved there is no difference.&rdquo; &mdash; absence of
-    evidence is not evidence of absence.</div>
+   <div class="speak">
+    <p>Now compare it to our line of zero point zero five.</p>
+    <p>It is far, far below. So we <b>reject H0</b>.</p>
+    <p>Say it as a sentence. <b>If Tech and HR really were paid the same, a gap this big in ninety
+    people would essentially never happen.</b></p>
+    <p>Not rarely. Never.</p>
+    <p>So there is strong evidence that Tech and HR salaries genuinely differ.</p>
    </div>
 
-   <div class="sumcard"><pre><code><span class="c"># ---- THE ONE QUESTION EVERY TEST ASKS ----</span>
-<span class="c"># &quot;could I see a difference THIS BIG by pure chance, if there were</span>
-<span class="c">#  no real difference at all?&quot;</span>
-<span class="c"># day 10 already proved differences appear where nothing is happening.</span>
-<span class="c"># a test just puts a number on how big a fake difference can get.</span>
+   <div class="stage">Last ten minutes, and do not skip it. Put these four sentences up and have
+   students read each one aloud. These are the sentences they will have to write at work.</div>
 
-<span class="c"># ---- THE TRICK ----</span>
-<span class="c"># 1  PRETEND there is no real difference at all.</span>
-<span class="c"># 2  ask: if that were true, how often would we see a gap this big?</span>
-<span class="c">#    that answer is the P-VALUE.</span>
-<span class="c"># 3  almost never (under 0.05) -&gt; the pretend does not fit. something is real.</span>
-<span class="c"># 4  quite often             -&gt; luck explains it. report nothing.</span>
-<span class="c">#</span>
-<span class="c"># names, given AFTER the idea:</span>
-<span class="c">#   H0 (null) = &quot;no difference&quot;   H1 (alt) = &quot;there is one&quot;</span>
-<span class="c">#   fail to reject = &quot;we found nothing&quot;. NOT &quot;we proved nothing is there&quot;.</span>
+   <div class="typeit">The four sentences</div>
+<pre><code>SMALL p-value
 
-<span class="c"># ---- THE P-VALUE, EXACTLY ----</span>
-<span class="c"># P(data this extreme | H0 is true)</span>
-<span class="c">#   IS NOT: the chance the null is true</span>
-<span class="c">#   IS NOT: the chance my finding is real</span>
-<span class="c"># same trap as day 11: the probability belongs to the RANDOM thing</span>
-<span class="c"># (the data), never to the FIXED thing (the hypothesis).</span>
+  SAY     "There is strong evidence that Tech and HR differ (p < 0.001)."
 
-<span class="c"># ---- THE TEST AND THE INTERVAL ARE ONE TOOL ----</span>
-<span class="c"># every value INSIDE the 95% CI -> fail to reject at 0.05</span>
-<span class="c"># every value OUTSIDE it        -> reject</span>
-<span class="c"># so prefer the interval: it answers every claim at once.</span>
+  NOT     "There is a 99.9% chance Tech pays more."
+          the p-value is not a probability about your conclusion.
 
-<span class="c"># ---- TWO WAYS TO BE WRONG ----</span>
-<span class="c"># Type I : cry wolf. happens 5% of the time BY DESIGN at p&lt;0.05.</span>
-<span class="c">#          run 20 tests on nothing -> expect 1 &quot;significant&quot;.</span>
-<span class="c"># Type II: miss a real effect. almost always too small a sample.</span>
-<span class="c">#          real 6,000 gap:  n=10 missed | n=30 missed | n=200 found</span>
-<span class="c">#</span>
-<span class="c"># A BIG P-VALUE HAS TWO MEANINGS AND CANNOT TELL YOU WHICH:</span>
-<span class="c">#   &quot;nothing is there&quot;   OR   &quot;my sample was too small to see it&quot;</span>
-<span class="c">#   -> which is why you report the INTERVAL next to it.</span>
 
-<span class="c"># ---- HOW TO WRITE IT ----</span>
-<span class="c"># YES: &quot;strong evidence that Tech and HR differ (p &lt; 0.001)&quot;</span>
-<span class="c"># NO : &quot;99.9% chance Tech pays more&quot;</span>
-<span class="c"># YES: &quot;no evidence of a difference (p = 0.76)&quot;</span>
-<span class="c"># NO : &quot;we proved there is no difference&quot;</span></code></pre></div>
+LARGE p-value
+
+  SAY     "We found no evidence of a difference (p = 0.93)."
+
+  NOT     "We proved there is no difference."
+          we looked in one room. we did not search the house.</code></pre>
+
+   <div class="speak">
+    <p>Tomorrow we look at which test to use for which shape of question.</p>
+    <p>And at one test that comes back saying nothing at all &mdash; which turns out to be the most
+    useful result in the whole module.</p>
+   </div>
+
+   <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Five steps, five code blocks, every board item written out, and the wording
+  to use at the end. If you lose your place, this page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 12</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Start with the problem</p>
+   <p class="rs-say"><b>Land this:</b> Tech 46 people at 82,419, HR 44 at 56,705, a gap of 25,714.
+   Everyone will say Tech pays more. Then the real question: <b>can we say Tech generally pays more,
+   or did we just happen to get these numbers from these 90 employees?</b></p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code>tech = clean[clean.department == <span class="c">"Tech"</span>].salary
+hr   = clean[clean.department == <span class="c">"HR"</span>].salary
+
+<span class="k">print</span>(<span class="c">"Tech:"</span>, <span class="k">len</span>(tech), <span class="c">"people, average"</span>, <span class="k">round</span>(tech.mean()))
+<span class="k">print</span>(<span class="c">"HR  :"</span>, <span class="k">len</span>(hr),   <span class="c">"people, average"</span>, <span class="k">round</span>(hr.mean()))
+<span class="k">print</span>(<span class="c">"difference:"</span>, <span class="k">round</span>(tech.mean() - hr.mean()))</code></pre></div>
+   <div class="rs-out">Tech: 46 people, average 82419
+HR  : 44 people, average 56705
+difference: 25714</div>
+   <div class="rs-board"><b>Walk the code, 2 minutes.</b>
+   <code>clean.department == "Tech"</code> asks every row &ldquo;is this person Tech?&rdquo; and gives
+   back True/False. <code>clean[...]</code> keeps only the True rows. <code>.salary</code> picks the
+   salary column. So <code>tech</code> is a list of Tech salaries, nothing else.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then sampling variation, on the board:</b><br>
+   Same group of people, three samples &mdash; <b>70,006 &middot; 67,849 &middot; 67,775</b>.
+   The real answer was <b>69,630</b>. Nothing changed except <b>who got picked</b>.<br><br>
+   Then: is 25,714 big enough to be real, or could a gap like that come from who got picked?</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">12 &ndash; 28</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The trick: pretend nothing is happening</p>
+   <p class="rs-say"><b>Land this:</b> we <b>pretend</b> Tech and HR are paid the same. Then ask one
+   question &mdash; <b>if that were true, how often would we see a gap this big?</b> Almost never means
+   something is real. Quite often means luck explains it.</p>
+   <div class="rs-board"><b>On the board, and leave it up:</b><br>
+   <b>H0</b> &rarr; no difference &nbsp;&middot;&nbsp; <b>H1</b> &rarr; there is a difference<br>
+   Give the names <b>after</b> the idea, never before.</div>
+   <div class="rs-board" style="margin-top:8px"><b>The p-value, in one sentence:</b> if there were no
+   real difference, how often would we see a gap this big?<br>
+   p = 0.01 &rarr; one time in a hundred. Almost never.<br>
+   p = 0.60 &rarr; six times in ten. All the time.<br>
+   <b>Small number, something is there. Big number, nothing to report.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Then the 0.05 line, honestly:</b> nobody worked it
+   out. Somebody picked it about a hundred years ago and everyone copied him. Particle physicists use
+   about one in three and a half million. So 0.049 and 0.051 are the same answer.</div>
+   <p class="rs-none">No code.</p>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">28 &ndash; 50</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Our first test</p>
+   <p class="rs-say"><b>Land this:</b> one group, one claim. HR says the average is 65,000. Write H0
+   and H1 on the board <b>before</b> running anything.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
+
+t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)
+
+<span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
+<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">65000</span>)
+<span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
+   <div class="rs-out">our sample average: 72149
+the claim         : 65000
+p-value           : 0.0000</div>
+   <div class="rs-board"><b>Explain the three new things, 4 minutes.</b>
+   <b>scipy</b> &mdash; a library like pandas and numpy; <code>stats</code> is its statistics section.
+   <b>ttest_1samp</b> &mdash; read it out: t-test, one sample. Hand it your sample and the claimed
+   number. <b>t and p</b> &mdash; ignore t today; p is the one you use.<br><br>
+   <b>0.0000 does not mean zero.</b> It means too small to survive rounding to 4 places.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Reject 65,000 &mdash; then the correction:</b> we
+   did <b>not</b> prove the average is 72,149. We only showed 65,000 does not fit.</div>
+   <p class="rs-do">Then change one number</p>
+   <div class="rs-code"><pre><code>t, p = stats.ttest_1samp(sample, <span class="o">72000</span>)
+
+<span class="k">print</span>(<span class="c">"our sample average:"</span>, <span class="k">round</span>(sample.mean()))
+<span class="k">print</span>(<span class="c">"the claim         :"</span>, <span class="o">72000</span>)
+<span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
+   <div class="rs-out">our sample average: 72149
+the claim         : 72000
+p-value           : 0.9274</div>
+   <div class="rs-board"><b>The keys line, word for word:</b> &ldquo;I look for my keys in one room and
+   I do not find them. Does that prove the keys are not in the house? No.&rdquo;<br>
+   <b>Never say &ldquo;accept H0&rdquo;.</b> Always <b>fail to reject</b>.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then join it to yesterday:</b><br>
+   interval was <b>68,952 to 75,346</b><br>
+   72,000 <b>inside</b> &rarr; p = 0.9274 &rarr; fail to reject<br>
+   65,000 <b>outside</b> &rarr; p = 0.0000 &rarr; reject<br>
+   <b>The interval IS the set of claims you cannot reject.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">50 &ndash; 70</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two ways to be wrong</p>
+   <p class="rs-say"><b>Land this:</b> <b>Type I</b> is a false alarm &mdash; nothing there, we said
+   there was. Happens <b>5 times in 100 by design</b>, because that is where we drew the line.
+   <b>Type II</b> is a missed detection &mdash; something was there and we did not see it. Almost
+   always too small a sample.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+rng = np.random.default_rng(<span class="o">0</span>)
+
+<span class="k">for</span> n <span class="k">in</span> [<span class="o">10</span>, <span class="o">30</span>, <span class="o">200</span>]:
+    a = rng.normal(<span class="o">70000</span>, <span class="o">16000</span>, n)   <span class="c"># built around 70,000</span>
+    b = rng.normal(<span class="o">76000</span>, <span class="o">16000</span>, n)   <span class="c"># built around 76,000</span>
+
+    t, p = stats.ttest_ind(a, b)
+    <span class="k">print</span>(<span class="c">"n ="</span>, n, <span class="c">"-&gt; p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>),
+          <span class="c">"|"</span>, <span class="c">"found it"</span> <span class="k">if</span> p &lt; <span class="o">0.05</span> <span class="k">else</span> <span class="c">"MISSED IT"</span>)</code></pre></div>
+   <div class="rs-out">n = 10 -> p = 0.6779 | MISSED IT
+n = 30 -> p = 0.5749 | MISSED IT
+n = 200 -> p = 0.0001 | found it</div>
+   <div class="rs-board"><b>Explain the four new things.</b>
+   <b>np</b> &mdash; numpy, the numbers library. <b>default_rng(0)</b> &mdash; a random number
+   generator; the 0 is a <b>seed</b> so everyone gets the same output. <b>rng.normal(70000, 16000, n)</b>
+   &mdash; makes n fake salaries around 70,000, spread 16,000. <b>ttest_ind</b> &mdash; <b>ind</b> is
+   independent, meaning two separate groups.</div>
+   <div class="rs-board" style="margin-top:8px"><b>The rule to say out loud:</b> one sample against a
+   number is <code>ttest_1samp</code>. Two groups against each other is <code>ttest_ind</code>. That is
+   the only choice they have to make today.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then the lesson:</b> the gap was 6,000 every time
+   and real every time. A big p-value has two meanings &mdash; nothing is there, <b>or</b> the sample
+   was too small to see it. The p-value cannot tell you which. That is why you report the interval
+   beside it.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">70 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Settle Tech against HR, and the wording</p>
+   <p class="rs-say"><b>Land this:</b> two groups, comparing a number, so <code>ttest_ind</code>. Write
+   H0 and H1 first, then run it.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code>t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
+
+<span class="k">print</span>(<span class="c">"Tech average:"</span>, <span class="k">round</span>(tech.mean()))
+<span class="k">print</span>(<span class="c">"HR average  :"</span>, <span class="k">round</span>(hr.mean()))
+<span class="k">print</span>(<span class="c">"p-value     :"</span>, p)</code></pre></div>
+   <div class="rs-out">Tech average: 82419
+HR average  : 56705
+p-value     : 1.156e-15</div>
+   <div class="rs-board"><b>Two things to explain.</b>
+   <b>equal_var=False</b> &mdash; variance is how spread out the numbers are; the two groups probably
+   differ, so do not assume they match. Make it your default.<br>
+   <b>1.156e-15</b> &mdash; shorthand for a decimal point, then fourteen zeros, then the digits.</div>
+   <div class="rs-board" style="margin-top:8px"><b>The four sentences. Put them up and have students
+   read each aloud.</b><br><br>
+   <b>Small p</b> &mdash; SAY &ldquo;there is strong evidence Tech and HR differ (p &lt; 0.001)&rdquo;.
+   NOT &ldquo;there is a 99.9% chance Tech pays more&rdquo;.<br><br>
+   <b>Large p</b> &mdash; SAY &ldquo;we found no evidence of a difference (p = 0.93)&rdquo;.
+   NOT &ldquo;we proved there is no difference&rdquo;.</div>
+   <p class="rs-none">No more code. Close by pointing at tomorrow: which test for which question, and
+   one that finds nothing at all.</p>
+  </div></div>
+</div>
    <div class="planbanner" style="margin-top:20px">
     <b>Where this goes next.</b> Day 13 is which test for which question &mdash; two-sample t, chi-square
     on categories, and an A/B test run end to end. It closes on twenty tests against pure noise, and the
