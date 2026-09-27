@@ -434,6 +434,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -11122,8 +11123,8 @@ margin +/- 1 % -> need 9604 people</div>
   <h1 class="display">Hypothesis<br>Testing</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
    A different question, the same machinery. Not &ldquo;what is the number&rdquo; but <b>&ldquo;is this
-   difference real, or am I looking at noise?&rdquo;</b> Built as a courtroom, closing on the two
-   sentences about p-values that get written in reports and should not be.</p>
+   difference real, or am I looking at noise?&rdquo;</b> Built on one trick &mdash; pretend nothing is happening, then check whether your data still makes
+   sense. Closes on the two sentences about p-values that get written in reports and should not be.</p>
   <div class="glance">
    <div class="gcell"><b>0.05</b><span>a convention</span></div>
    <div class="gcell"><b>0.51</b><span>proves nothing</span></div>
@@ -11144,10 +11145,9 @@ margin +/- 1 % -> need 9604 people</div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Use the courtroom the whole way through.</b> Not as a decoration at the start &mdash; as the
-   actual structure. Null is innocence, p-value is how surprising the evidence is, 0.05 is the burden of
-   proof, and &ldquo;not guilty&rdquo; is not the same as &ldquo;innocent&rdquo;. Every hard idea today
-   has a courtroom sentence that makes it easy.</li>
+   <li><b>Keep the sentences short.</b> This session is all words and no pictures, so long sentences
+   are where it falls apart. One idea, then stop. If you catch yourself saying &ldquo;in a world
+   where&rdquo; or &ldquo;the evidence suggests&rdquo;, start the sentence again.</li>
    <li><b>Run the test that finds nothing, and run it second.</b> Two one-sample tests: one that rejects
    hard, one that comes back p = 0.51. The second is where the teaching is.</li>
    <li><b>Never say &ldquo;accept the null&rdquo;.</b> Not once, not casually. If it leaves your mouth
@@ -11187,23 +11187,25 @@ margin +/- 1 % -> need 9604 people</div>
    eyes, that differences appear where nothing real is happening. Today just puts a number on how big a
    fake difference can plausibly get.</p>
 
-   <h6>The courtroom, which is not a metaphor so much as the actual logic</h6>
-   <p>The structure of a hypothesis test is the structure of a criminal trial, and the match is exact
-   rather than loose:</p>
+   <h6>Teach it as a pretend</h6>
+   <p>Do not reach for a courtroom analogy here, however tempting. An earlier version of this script
+   used one and it was cut &mdash; the borrowed words turned out to be harder than the idea they were
+   explaining, and students ended up learning the analogy instead of the statistics.</p>
+   <p>What replaced it is simpler and is what the test literally does:</p>
    <div class="mth">
-    <div class="mrow"><b>The null hypothesis</b> &mdash; the defendant is innocent. Nothing is going on.
-    No difference. This is what we assume until forced to abandon it.</div>
-    <div class="mrow"><b>The alternative</b> &mdash; the defendant is guilty. There is a real
-    difference. This is what you would have to prove.</div>
-    <div class="mrow"><b>The p-value</b> &mdash; how surprising this evidence would be if the defendant
-    really were innocent.</div>
-    <div class="mrow"><b>The 0.05 threshold</b> &mdash; the burden of proof. How surprising is surprising
-    enough.</div>
-    <div class="mrow"><b>&ldquo;Fail to reject&rdquo;</b> &mdash; not guilty. Which is emphatically not
-    the same as innocent.</div>
+    <div class="mrow"><b>Step 1</b> &mdash; pretend there is no real difference at all.</div>
+    <div class="mrow"><b>Step 2</b> &mdash; ask: if that were true, how often would we get a gap this
+    big? The answer is the <b>p-value</b>.</div>
+    <div class="mrow"><b>Step 3</b> &mdash; if the answer is &ldquo;almost never&rdquo; (under 0.05),
+    the pretend does not fit. Something real is going on.</div>
+    <div class="mrow"><b>Step 4</b> &mdash; if the answer is &ldquo;quite often&rdquo;, luck explains
+    it and we report nothing.</div>
    </div>
-   <p>Keep the courtroom running all session. When a student asks a hard question, there is almost
-   always a courtroom sentence that answers it in one line.</p>
+   <p>The two pretend positions have names, which you give <b>after</b> the idea: the
+   <b>null hypothesis</b> is &ldquo;no difference&rdquo;, and the <b>alternative</b> is &ldquo;there
+   is one&rdquo;.</p>
+   <p>Keep saying &ldquo;pretend&rdquo;. When a student asks a hard question, going back to
+   &ldquo;remember, we are pretending there is no difference&rdquo; answers most of them.</p>
   </div>
 
   <div class="understand">
@@ -11238,23 +11240,22 @@ margin +/- 1 % -> need 9604 people</div>
   <div class="understand">
    <h5>Part three &middot; the two ways to be wrong</h5>
 
-   <h6>Both errors, in the courtroom</h6>
+   <h6>The two opposite mistakes</h6>
    <div class="mth">
-    <div class="mrow"><b>Type I &mdash; convicting an innocent person.</b> You declare a difference that
-    is not there. Its probability is exactly your threshold: use 0.05 and you will do this 5% of the
-    time when nothing is going on.</div>
-    <div class="mrow"><b>Type II &mdash; acquitting a guilty one.</b> There is a real difference and you
-    miss it. Usually because your sample was too small to see it.</div>
+    <div class="mrow"><b>Type I</b> &mdash; you say there is a difference and there is not. You got
+    excited over nothing. Happens 5% of the time by design, because that is where you set the line.</div>
+    <div class="mrow"><b>Type II</b> &mdash; there is a real difference and you miss it. Nearly always
+    because the sample was too small.</div>
    </div>
-   <p>The trade-off is unavoidable: tighten your threshold to 0.01 and you convict fewer innocents and
-   miss more of the guilty. The only way to reduce both at once is <b>more data</b> &mdash; which is
+   <p>The trade-off is unavoidable: tighten the threshold to 0.01 and you get excited over nothing
+   less often, but you miss more real things. The only way to reduce both at once is <b>more data</b> &mdash; which is
    yesterday's square-root tax turning up in a third place.</p>
 
    <h6>Why &ldquo;fail to reject&rdquo; is worth being fussy about</h6>
    <p>A high p-value means the evidence was not strong enough. It does not mean there is nothing there.
    A tiny sample will fail to reject almost anything &mdash; that is weakness in the test, not truth
    about the world.</p>
-   <p>&ldquo;Not guilty&rdquo; is a verdict about the evidence, not a certificate of innocence. Hold
+   <p>Looking in one room and not finding your keys does not prove they are not in the house. Hold
    that line all session and they will keep it.</p>
   </div>
  </div>
@@ -11297,38 +11298,37 @@ difference: 25714</div>
    </div>
 
    <div class="speak">
-    <p>Twenty-five thousand rupees. That looks like a lot.</p>
-    <p>But think back to day ten. I took five samples of thirty people, from <b>one single
-    population</b> where every person was drawn from the same pool &mdash; and I got five different
-    averages. Sixty-eight thousand, seventy-one thousand, sixty-nine thousand.</p>
-    <p>Nothing real was different there. The differences were pure noise. So the question I cannot yet
-    answer is this: is twenty-five thousand a <b>real</b> gap, or is it the same kind of noise, just
-    bigger?</p>
-    <p>Yesterday's interval cannot tell me. It tells me what a number is, not whether two numbers
-    differ. Today we build the thing that can.</p>
+    <p>Twenty-five thousand rupees. That looks like a big gap.</p>
+    <p>But wait. Think back to day ten.</p>
+    <p>I took five samples. All from the <b>same</b> column. Nothing was different about them.</p>
+    <p>And I still got five different answers.</p>
+    <p>So gaps turn up even when nothing is going on. That is just luck.</p>
+    <p>Which means I have a problem. Is this twenty-five thousand a <b>real</b> gap? Or is it luck,
+    like those five were?</p>
+    <p>I cannot tell just by looking. Today we build the thing that tells us.</p>
    </div>
   </div>
 
   <!-- 12-28 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">12 &ndash; 28</span><h3>The courtroom</h3></div>
+   <div class="bhead"><span class="clock">12 &ndash; 28</span><h3>The trick: pretend nothing is happening</h3></div>
    <p class="objective">Give them the structure before any arithmetic. It carries the rest of the session.</p>
 
    <div class="speak">
-    <p>Forget statistics for four minutes. Let us talk about a court case.</p>
-    <p>Somebody is on trial. What does the court assume at the start?</p>
-    <p>Innocent. Not because anyone believes it &mdash; because that is the starting position until
-    evidence forces you off it. The burden is on the prosecution.</p>
-    <p>Statistics does exactly the same thing, and it uses exactly the same logic.</p>
-    <p>We start by assuming <b>nothing is going on</b>. No difference. Tech and HR pay the same, and the
-    twenty-five thousand is an accident of who happens to work here. That assumption has a name. It is
-    the <b>null hypothesis</b>.</p>
-    <p>The other possibility &mdash; there really is a difference &mdash; is the <b>alternative
-    hypothesis</b>. That is what the prosecution has to prove.</p>
+    <p>Here is how we are going to do it. It is one trick, and it sounds backwards at first.</p>
+    <p><b>We are going to pretend there is no real difference.</b></p>
+    <p>Pretend Tech and HR are paid exactly the same. Pretend the twenty-five thousand gap is pure
+    luck &mdash; just who happens to work here.</p>
+    <p>Then we ask one question. <b>If that were true, how often would we get a gap this big?</b></p>
+    <p>If the answer is &ldquo;quite often&rdquo;, then luck explains it. We have nothing.</p>
+    <p>If the answer is &ldquo;almost never&rdquo;, then luck does not explain it. Something real is
+    going on.</p>
+    <p>That is the whole method. Pretend nothing is happening, then check if your data makes sense in
+    that pretend world.</p>
    </div>
 
-   <div class="stage">Write both on the board and leave them up for the rest of the session. Use the
-   symbols, briefly &mdash; they will meet them everywhere.</div>
+   <div class="stage">Those two pretend positions have names. Write them up and leave them there.
+   Give the names AFTER the idea, never before.</div>
 
    <div class="mth">
     <div class="mrow"><b>H&#8320;</b> (the null) &nbsp;&mdash;&nbsp; there is no difference. Tech and HR
@@ -11337,33 +11337,34 @@ difference: 25714</div>
    </div>
 
    <div class="speak">
-    <p>Now the evidence. In court, the jury asks: how likely is this evidence, if the person really were
-    innocent? Fingerprints on the weapon are very unlikely if you are innocent. Being in the same city
-    is not unlikely at all.</p>
-    <p>We ask precisely the same thing. <b>If there really were no difference &mdash; how surprising
-    would a gap of twenty-five thousand be?</b></p>
-    <p>And the answer to that question, as a number, is the <b>p-value</b>.</p>
-    <p>Small p-value means: this evidence would be very strange in a world where nothing is going on. So
-    something is probably going on.</p>
-    <p>Large p-value means: this evidence is perfectly ordinary in a world where nothing is going on. So
-    I have no case.</p>
+    <p>Now, the computer answers our question for us and gives us a number.</p>
+    <p>That number is called the <b>p-value</b>.</p>
+    <p>Here is what it tells you. This is the only sentence you need:</p>
+    <p><b>If there were no real difference, how often would we see a gap this big?</b></p>
+    <p>Say the p-value is zero point zero one. That means: one time in a hundred. Almost never. So luck
+    probably is not the answer here.</p>
+    <p>Say the p-value is zero point six. That means: six times in ten. All the time. So luck explains
+    it easily, and we have found nothing.</p>
+    <p>Small number, something is there. Big number, nothing to report.</p>
    </div>
 
    <div class="keyline">
-    Say the definition slowly and write it down: <b>the p-value is the probability of seeing data at
-    least this extreme, if the null hypothesis were true.</b> Point at the &ldquo;if&rdquo;. Everything
-    that goes wrong later goes wrong by forgetting that word.
+    Write it on the board in these words: <b>if there were no real difference, how often would we
+    see a gap this big?</b> Point at the word <b>if</b>. Everything that goes wrong later goes wrong
+    because somebody forgot that the whole number is built on a pretend.
    </div>
 
    <div class="speak">
-    <p>And how surprising is surprising enough? Somebody has to draw a line. The line most fields use is
-    <b>zero point zero five</b>. One in twenty.</p>
-    <p>I want to be honest about where that came from. It is a <b>convention</b>. A statistician
-    suggested one in twenty was reasonable about a hundred years ago and the world kept it. It is not
-    derived from anything.</p>
-    <p>Physicists looking for a new particle use about one in three and a half million. Some medical
-    work uses one in a hundred. Zero point zero five is a habit, not a law &mdash; and that matters,
-    because it means zero point zero four nine and zero point zero five one are the same result.</p>
+    <p>So where do we draw the line? How small is small enough?</p>
+    <p>Most people use <b>zero point zero five</b>. That is one in twenty.</p>
+    <p>Below that, we say we found something. Above it, we say we did not.</p>
+    <p>Now I have to be honest with you about that number.</p>
+    <p><b>Nobody worked it out. Somebody just picked it.</b> About a hundred years ago a statistician
+    said one in twenty seems reasonable, and everyone copied him.</p>
+    <p>Other fields pick differently. Scientists hunting for a new particle need about one in three and
+    a half million before they will say anything.</p>
+    <p>So it is a habit, not a rule. Which means zero point zero four nine and zero point zero five one
+    are the same answer. Do not pretend one is a discovery and the other is not.</p>
    </div>
   </div>
 
@@ -11401,13 +11402,14 @@ p-value           : 0.0000</div>
 
    <div class="speak">
     <p>The p-value is essentially zero.</p>
-    <p>Read that as a sentence: <b>if the true average really were seventy-five thousand, a sample of a
-    hundred people averaging sixty-seven and a half thousand would almost never happen.</b></p>
-    <p>So I stop believing the claim. In the court's language, I <b>reject the null hypothesis</b>.
-    There is evidence the real average is not seventy-five thousand.</p>
-    <p>Notice what I did not say. I did not say the average is sixty-seven thousand four hundred and
-    seventy-two. I said seventy-five thousand does not survive the evidence. Those are different
-    statements, and only the second one is supported.</p>
+    <p>Read it out as a sentence. <b>If the real average were seventy-five thousand, we would almost
+    never get a sample like ours.</b></p>
+    <p>So I stop believing seventy-five thousand. The proper phrase is <b>reject the null</b>. It just
+    means: that claim does not fit our data.</p>
+    <p>Now be careful about what I did <b>not</b> say.</p>
+    <p>I did not say the average is sixty-seven thousand. I only said it is <b>not</b> seventy-five
+    thousand.</p>
+    <p>Those are two different things. Only the second one is safe to say.</p>
    </div>
 
    <div class="stage">Now the second test. This is the one that teaches. Do not rush it.</div>
@@ -11430,17 +11432,16 @@ p-value           : 0.7551</div>
    </div>
 
    <div class="speak">
-    <p>Zero point seven six. More than three quarters.</p>
-    <p>That means: if the true average really were sixty-eight thousand, then getting a sample like ours
-    would be completely ordinary. It would happen about three times in four.</p>
-    <p>So we have no case. We <b>fail to reject</b> the null.</p>
-    <p>Now listen very carefully, because this is where almost everybody goes wrong. Failing to reject
-    does <b>not</b> mean we proved the average is sixty-eight thousand.</p>
-    <p>Back to the court. When a jury says <b>not guilty</b>, have they proved the person is innocent?
-    No. They have said the prosecution did not bring enough evidence. Those are completely different
-    things, and the law is careful about it for a reason.</p>
-    <p>Same here. We did not find evidence against sixty-eight thousand. We also did not find evidence
-    for it. Our sample was simply not able to tell the difference.</p>
+    <p>Zero point seven six. That is very big.</p>
+    <p>It means: if the real average were sixty-eight thousand, a sample like ours would turn up three
+    times in four. Completely normal.</p>
+    <p>So we have nothing. The phrase is <b>fail to reject</b>.</p>
+    <p>Now listen carefully, because this is where nearly everybody gets it wrong.</p>
+    <p>This does <b>not</b> mean we proved the average is sixty-eight thousand.</p>
+    <p>Think of it like this. I look for my keys in one room and I do not find them.</p>
+    <p>Does that prove the keys are not in the house? No. It only proves I did not find them in that
+    one room.</p>
+    <p>Same here. We looked and we found nothing. That is all we can say.</p>
    </div>
 
    <div class="warn"><b>Never say &ldquo;accept the null&rdquo;.</b> The phrase does not exist in
@@ -11454,31 +11455,29 @@ p-value           : 0.7551</div>
    </div>
   </div><div class="blk">
    <div class="bhead"><span class="clock">50 &ndash; 70</span><h3>The two ways to be wrong</h3></div>
-   <p class="objective">Type I and Type II, in the courtroom. Then why sample size decides which one bites.</p>
+   <p class="objective">The two opposite mistakes. Then why sample size decides which one bites you.</p>
 
    <div class="speak">
-    <p>A court can get it wrong in two different ways. It can convict an innocent person. Or it can let
-    a guilty one go.</p>
-    <p>Those are not the same mistake, they do not have the same cost, and no system avoids both.</p>
-    <p>Statistics has exactly the same pair.</p>
+    <p>There are two ways this can go wrong, and they are opposite mistakes.</p>
+    <p><b>One.</b> We say there is a difference, but actually there is not. We got excited over nothing.</p>
+    <p><b>Two.</b> There really is a difference, and we miss it completely.</p>
+    <p>Both happen. You cannot avoid both at once.</p>
    </div>
 
    <div class="mth">
     <div class="mrow"><b>Type I</b> &mdash; we say there is a difference, and there is not.
-    <em>Convicting the innocent.</em></div>
+    <em>Getting excited over nothing.</em></div>
     <div class="mrow"><b>Type II</b> &mdash; there is a difference, and we miss it.
-    <em>Letting the guilty go.</em></div>
+    <em>Looking straight at it and not seeing it.</em></div>
    </div>
 
    <div class="speak">
-    <p>Here is the part worth remembering. How often will we convict an innocent? <b>Exactly five
-    percent of the time</b>, if we use a zero point zero five threshold. That is not a bug. It is
-    literally what the threshold means &mdash; the same five intervals out of a hundred that missed
-    yesterday.</p>
-    <p>So if you run twenty tests on data where nothing is happening, on average <b>one of them</b> will
-    come back significant. We will see that happen for real tomorrow.</p>
-    <p>And what fixes the second kind of error &mdash; missing a real difference? Almost always the same
-    thing. More data.</p>
+    <p>Here is the part to remember. How often will we get excited over nothing?</p>
+    <p><b>Five times in a hundred.</b> Exactly. Because that is what we set the line at.</p>
+    <p>That is not a mistake in the method. That <b>is</b> the method.</p>
+    <p>So think about what that means. Run twenty tests on data where nothing is happening, and about
+    one will look like a finding. We will watch that happen tomorrow.</p>
+    <p>And the other mistake &mdash; missing something real? That one has a simple cure. More data.</p>
    </div>
 
    <div class="typeit">The same real difference, three sample sizes</div>
@@ -11495,16 +11494,14 @@ n = 30 -> p = 0.5749 | MISSED IT
 n = 200 -> p = 0.0001 | found it</div>
 
    <div class="speak">
-    <p>The difference was six thousand rupees in all three. It was real in all three. I put it there
-    myself.</p>
-    <p>With ten people in each group we missed it completely. With thirty we still missed it. With two
-    hundred it was obvious.</p>
-    <p>So a large p-value can mean two completely different things: there is nothing there, or there is
-    something there and <b>your sample was too small to see it</b>. The p-value alone cannot tell you
-    which.</p>
-    <p>That is the strongest reason to report a confidence interval alongside it. A wide interval says
-    &ldquo;I could not tell&rdquo;. A narrow interval around zero says &ldquo;there really is nothing
-    here&rdquo;. The p-value says the same word for both.</p>
+    <p>The gap was six thousand rupees in all three. It was real every time. I put it there myself.</p>
+    <p>With ten people, we missed it. With thirty, we missed it. With two hundred, we saw it easily.</p>
+    <p>So a big p-value has two possible meanings.</p>
+    <p>One: there is genuinely nothing there.</p>
+    <p>Two: there <b>is</b> something there, but our sample was too small to see it.</p>
+    <p>And the p-value cannot tell you which one you are looking at.</p>
+    <p>That is why you also report the interval from yesterday. A wide interval tells you that you could
+    not tell. A narrow one tells you there really is nothing.</p>
    </div>
   </div>
 
@@ -11529,7 +11526,7 @@ HR average  : 56705
 p-value     : 1.156e-15</div>
 
    <div class="speak">
-    <p>Ten to the minus fifteen. That is a decimal point followed by fourteen zeros and then a one.</p>
+    <p>That is a decimal point, then fourteen zeros, then a one. About as small as a p-value ever gets.</p>
     <p>If Tech and HR really paid the same, a gap this big in ninety people would essentially never
     happen. Not rarely. Never.</p>
     <p>So we reject the null. There is a real pay difference between those two departments.</p>
@@ -11556,12 +11553,16 @@ p-value     : 1.156e-15</div>
 <span class="c"># day 10 already proved differences appear where nothing is happening.</span>
 <span class="c"># a test just puts a number on how big a fake difference can get.</span>
 
-<span class="c"># ---- THE COURTROOM ----</span>
-<span class="c">#   H0  (null)        = innocent. no difference. assumed until disproved.</span>
-<span class="c">#   H1  (alternative) = guilty. there is a real difference.</span>
-<span class="c">#   p-value           = how surprising this evidence is IF H0 were true</span>
-<span class="c">#   0.05              = the burden of proof (a CONVENTION, not a law)</span>
-<span class="c">#   fail to reject    = &quot;not guilty&quot;. NOT &quot;innocent&quot;.</span>
+<span class="c"># ---- THE TRICK ----</span>
+<span class="c"># 1  PRETEND there is no real difference at all.</span>
+<span class="c"># 2  ask: if that were true, how often would we see a gap this big?</span>
+<span class="c">#    that answer is the P-VALUE.</span>
+<span class="c"># 3  almost never (under 0.05) -&gt; the pretend does not fit. something is real.</span>
+<span class="c"># 4  quite often             -&gt; luck explains it. report nothing.</span>
+<span class="c">#</span>
+<span class="c"># names, given AFTER the idea:</span>
+<span class="c">#   H0 (null) = &quot;no difference&quot;   H1 (alt) = &quot;there is one&quot;</span>
+<span class="c">#   fail to reject = &quot;we found nothing&quot;. NOT &quot;we proved nothing is there&quot;.</span>
 
 <span class="c"># ---- THE P-VALUE, EXACTLY ----</span>
 <span class="c"># P(data this extreme | H0 is true)</span>
