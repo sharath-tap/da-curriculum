@@ -11284,7 +11284,22 @@ margin +/- 1 % -> need 9604 people</div>
    <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>Start with the problem</h3></div>
    <p class="objective">One number they can already compute, and one question they cannot yet answer.</p>
 
-   <div class="stage">Run the code first. Do not set anything up &mdash; let the number arrive.</div>
+   <div class="typeit">One line of setup, then straight into the numbers</div>
+<pre><code>clean = df[(df.salary &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (df.salary &lt;= q3+<span class="o">1.5</span>*iqr)]</code></pre>
+
+   <div class="keyline">
+    <b>Two names run through the whole session. Neither one is new.</b><br><br>
+    <code>clean</code> &mdash; the same outlier trim from day 10, with one difference. Day 10 kept only
+    the <b>salary column</b> and called it <code>pop</code>. Today we need the department as well, so
+    this keeps the <b>whole row</b> &mdash; name, department, salary. Same fences, same people, more
+    columns. That is the only reason for the line above.<br><br>
+    <code>sample</code> &mdash; untouched from yesterday. The same hundred salaries,
+    <code>random_state=54</code>, average <b>72,149</b>. Nothing about it changes today. If the
+    notebook was restarted, re-run yesterday's line:
+    <code>sample = pop.sample(100, replace=True, random_state=54)</code>.
+   </div>
+
+   <div class="stage">Now run the code. No build-up &mdash; let the number arrive first.</div>
 
    <div class="typeit">Type this</div>
 <pre><code>tech = clean[clean.department == <span class="c">"Tech"</span>].salary
@@ -11882,7 +11897,9 @@ and:  the gap tells you how much it matters.
    Everyone will say Tech pays more. Then the real question: <b>can we say Tech generally pays more,
    or did we just happen to get these numbers from these 90 employees?</b></p>
    <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code>tech = clean[clean.department == <span class="c">"Tech"</span>].salary
+   <div class="rs-code"><pre><code>clean = df[(df.salary &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (df.salary &lt;= q3+<span class="o">1.5</span>*iqr)]
+
+tech = clean[clean.department == <span class="c">"Tech"</span>].salary
 hr   = clean[clean.department == <span class="c">"HR"</span>].salary
 
 <span class="k">print</span>(<span class="c">"Tech:"</span>, <span class="k">len</span>(tech), <span class="c">"people, average"</span>, <span class="k">round</span>(tech.mean()))
@@ -11891,7 +11908,11 @@ hr   = clean[clean.department == <span class="c">"HR"</span>].salary
    <div class="rs-out">Tech: 46 people, average 82419
 HR  : 44 people, average 56705
 difference: 25714</div>
-   <div class="rs-board"><b>Walk the code, 2 minutes.</b>
+   <div class="rs-board"><b>The two names, in one breath.</b>
+   <code>clean</code> is day 10's trim keeping <b>whole rows</b> instead of salaries alone &mdash; we
+   need the department column today. <code>sample</code> is yesterday's hundred salaries, unchanged,
+   average <b>72,149</b>.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Walk the code, 2 minutes.</b>
    <code>clean.department == "Tech"</code> asks every row &ldquo;is this person Tech?&rdquo; and gives
    back True/False. <code>clean[...]</code> keeps only the True rows. <code>.salary</code> picks the
    salary column. So <code>tech</code> is a list of Tech salaries, nothing else.</div>
