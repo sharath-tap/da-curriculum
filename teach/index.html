@@ -5045,7 +5045,7 @@ sal.quantile(0.75) - sal.quantile(0.25)   <span class="c"># 21,596   IQR - the m
    <div class="gcell"><b>90</b><span>minutes</span></div>
    <div class="gcell"><b>5</b><span>number summary</span></div>
    <div class="gcell"><b>1.5</b><span>&times; IQR</span></div>
-   <div class="gcell"><b>4</b><span>values flagged</span></div>
+   <div class="gcell"><b>2</b><span>values flagged</span></div>
   </div>
 
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
@@ -9163,7 +9163,7 @@ skew: -0.19</div>
    where &ldquo;plus or minus 3%&rdquo; actually comes from.</p>
   <div class="glance">
    <div class="gcell"><b>90</b><span>minutes</span></div>
-   <div class="gcell"><b>14.06</b><span>&rarr; 0.56</span></div>
+   <div class="gcell"><b>14.06</b><span>&rarr; 2.21</span></div>
    <div class="gcell"><b>&radic;n</b><span>the rule</span></div>
    <div class="gcell"><b>3</b><span>sessions deferred</span></div>
   </div>
@@ -9186,7 +9186,7 @@ skew: -0.19</div>
    <li><b>Draw all three pictures side by side and make the axes explicit.</b> This is the block students
    nod through without understanding. If anybody says a dot in picture three is &ldquo;one salary&rdquo;,
    stop and rebuild it &mdash; <b>one dot is thirty people, averaged.</b></li>
-   <li><b>Use the raw skewed column to prove the theorem.</b> Skew 14 down to 0.56 is what makes it
+   <li><b>Use the raw skewed column to prove the theorem.</b> Skew 14.06 down to 2.21 is what makes it
    remarkable rather than obvious &mdash; and it honestly shows that n&ge;30 is not always enough.</li>
    <li><b>Run the standard error prediction live.</b> Watching a formula predict a simulation three times
    is far more convincing than either on its own.</li>
@@ -12965,56 +12965,197 @@ it is a way to check whether the evidence is strong enough.</code></pre>
     test, and reading the result honestly</b>.
    </div>
 
-   <div class="sumcard"><pre><code><span class="c"># ---- WHICH TEST? THE ONLY QUESTION THAT MATTERS ----</span>
-<span class="c">#   comparing NUMBERS?  -&gt; t-test</span>
-<span class="c">#   comparing COUNTS in categories? -&gt; chi-square</span>
-<span class="c">#</span>
-<span class="c">#   one number vs a claim ..... stats.ttest_1samp(data, claim)</span>
-<span class="c">#   two groups, a number ...... stats.ttest_ind(a, b, equal_var=False)</span>
-<span class="c">#   two categories, counts .... stats.chi2_contingency(crosstab)</span>
-<span class="c">#   3+ groups, a number ....... ANOVA            (self-study)</span>
-<span class="c">#</span>
-<span class="c"># you will never compute one by hand. picking the right one IS the skill.</span>
+   <div class="runsheet" style="margin-top:8px">
+ <div class="rs-head">
+  <h4>The whole module, day by day</h4>
+  <p>Thirteen sessions in order. What each one actually taught, the number that proved it, and the one
+  line to say. This is the revision sheet &mdash; for the last ten minutes today, and for the students
+  when they come back to it before an interview.</p>
+ </div>
 
-<span class="c"># ---- WHAT WE FOUND ----</span>
-<span class="c"># Tech 82,419 vs HR 56,705 ......... p = 1.16e-15   real, obvious</span>
-<span class="c"># Marketing 73,954 vs Sales 66,535 . p = 0.0086     real, NOT obvious</span>
-<span class="c"># department vs rating ............. p = 0.9364     NOTHING THERE</span>
-<span class="c">#</span>
-<span class="c"># that last one is the most useful result in the module.</span>
-<span class="c"># "no evidence of a relationship" - NOT "proved they are unrelated".</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">the toolkit</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Descriptive and inferential</p>
+   <p class="rs-say">The whole subject splits in two. <b>Describing what you have</b>, and <b>guessing
+   about what you do not have</b>. Days 1 to 7 were the first. Days 10 to 13 were the second.</p>
+   <div class="rs-board"><b>The line:</b> if you measured everyone, it is descriptive. If you measured
+   a few and spoke about everyone, it is inferential.</div>
+  </div></div>
 
-<span class="c"># ---- A/B TESTING IS JUST CHI-SQUARE ON A 2x2 ----</span>
-<span class="c"># 8.0% vs 11.5% at 1200/arm -&gt; p = 0.0039   ship B</span>
-<span class="c"># 8.0% vs 11.5% at  120/arm -&gt; p = 0.3894   cannot see it</span>
-<span class="c">#   SAME TRUTH. SAME LIFT. the only difference is how much data.</span>
-<span class="c">#</span>
-<span class="c"># so size it BEFORE you launch:  1,126 visitors per version</span>
-<span class="c"># (compare: 1,068 for a national poll. same square-root tax.)</span>
-<span class="c"># and then DO NOT peek and stop early.</span>
-<span class="c">#</span>
-<span class="c"># reporting: 8.0% -&gt; 11.5% is 3.5 PERCENTAGE POINTS</span>
-<span class="c">#                        and 43.75% RELATIVE. say which one.</span>
-<span class="c"># and statistical significance is NOT business significance.</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">the four scales</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Types of data</p>
+   <p class="rs-say">Nominal, ordinal, interval, ratio. The scale decides <b>which statistics are even
+   legal</b> on a column.</p>
+   <div class="rs-code"><pre><code>df[<span class="c">"dept_id"</span>].mean()</code></pre></div>
+   <div class="rs-out">2.32</div>
+   <div class="rs-board"><b>The hook that opened the module:</b> <b>2.32</b> is valid arithmetic and
+   means nothing. <code>dept_id</code> is a name made of digits &mdash; the jersey-number mistake, in
+   their own dataset.</div>
+  </div></div>
 
-<span class="c"># ---- THE LAST IDEA: DO NOT FOOL YOURSELF ----</span>
-<span class="c"># 20 tests on data with NO real difference -&gt; 1 came back p = 0.0057</span>
-<span class="c"># nothing malfunctioned. 1-in-20 is what "5%" MEANS.</span>
-<span class="c">#</span>
-<span class="c"># test everything against everything and you WILL find something.</span>
-<span class="c"># it will not be real. this is called p-hacking.</span>
-<span class="c">#   -&gt; decide what you are testing BEFORE you look</span>
-<span class="c">#   -&gt; if you tested 20 things, say so when you report the 1</span>
-<span class="c">#   (Bonferroni: threshold / number of tests. discipline matters more.)</span>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">sampling</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">How to build a sample</p>
+   <p class="rs-say">The sampling methods, then <b>bias against noise</b> &mdash; the archer who is
+   consistently off-centre against the archer who is scattered.</p>
+   <div class="rs-out">the real answer: 95648
+1 70032
+2 244006
+3 239817
+4 65149
+5 235447</div>
+   <div class="rs-board"><b>The killer line:</b> in real life you take <b>one</b> of these. If it were
+   the second you would report 2.44 lakh. If the fourth, 65,000. And no way to know which one you are
+   holding.</div>
+  </div></div>
 
-<span class="c"># ---- THE WHOLE MODULE, IN ORDER ----</span>
-<span class="c">#   days 1-7   DESCRIBE    centre, spread, outliers, correlation</span>
-<span class="c">#   days 8-9   PROBABILITY the normal curve, z-scores</span>
-<span class="c">#   day  10    THE HINGE   sample means go normal - the CLT</span>
-<span class="c">#   days 11-13 DECIDE      intervals, tests, and honesty</span>
-<span class="c">#</span>
-<span class="c"># self-study: binomial, Poisson, ANOVA</span>
-<span class="c"># next module: data visualisation - and NOW the charts will mean something</span></code></pre></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">the averages</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Mean, median, mode &mdash; and spread</p>
+   <p class="rs-say">Three averages, then range, quartiles and IQR. Plus Literary Digest: <b>2.4 million
+   replies and still wrong</b>, because size does not fix bias.</p>
+   <div class="rs-out">mean   95648
+median 68647</div>
+   <div class="rs-board"><b>The line:</b> a 27,000 gap between mean and median is not a rounding
+   difference. It is the shape of the data telling you something.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">outliers</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The five-number summary and the 1.5 &times; IQR rule</p>
+   <p class="rs-say">An outlier stops being a feeling and becomes <b>a defined thing</b> &mdash; anything
+   outside the fences.</p>
+   <div class="rs-code"><pre><code>q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
+iqr = q3 - q1
+low, high = q1 - <span class="o">1.5</span>*iqr, q3 + <span class="o">1.5</span>*iqr</code></pre></div>
+   <div class="rs-out">IQR     : 21596
+fences  : 26610 to 112994
+flagged : 2 of 199</div>
+   <div class="rs-board"><b>The line:</b> the box plot shows the shape of your data in about a second.
+   You drew it on the board &mdash; <b>plotting it is the visualisation module</b>.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">spread</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Variance, standard deviation, and n &minus; 1</p>
+   <p class="rs-say">Four steps to a standard deviation, why the divisor is <b>n &minus; 1</b> for a
+   sample, and what one extreme value does to it.</p>
+   <div class="rs-out">std with the outliers    : 364031
+skew                     : 14.06</div>
+   <div class="rs-board"><b>The line:</b> one 52-lakh earner in 199 rows drags the standard deviation
+   to 364,031. The average did not survive that either. <b>Skew 14.06</b> gets its name here and its
+   fix on day 10.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">correlation</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The notation, then covariance and correlation</p>
+   <p class="rs-say">&mu; against x&#772;, &sigma; against s &mdash; <b>population against sample</b>.
+   Then covariance, Pearson, Spearman, and causation.</p>
+   <div class="rs-out">Pearson  : 0.079
+Spearman : 0.607</div>
+   <div class="rs-board"><b>The line:</b> the same two columns, two very different answers. Pearson
+   follows the outlier; Spearman follows the <b>order</b>. And Anscombe: four datasets, correlation
+   <b>0.816</b> every time, four completely different pictures.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">probability</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two rules, and one trap</p>
+   <p class="rs-say">Everything sits between <b>0 and 1</b>. OR adds, AND multiplies &mdash; but each
+   only under a condition. <b>Mutually exclusive is not independent.</b></p>
+   <div class="rs-out">P(Tech | well paid) : 0.384
+P(well paid | Tech) : 0.776</div>
+   <div class="rs-board"><b>The line:</b> the same 38 people on top of both fractions. Only the
+   denominator changed. <b>P(A|B) is not P(B|A)</b> &mdash; and that one confusion is behind most
+   misread statistics in the news.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">9</span><span class="rs-clock">the normal curve</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The normal distribution and z-scores</p>
+   <p class="rs-say">Two numbers describe the whole curve. Probability becomes <b>area under it</b>. A
+   z-score says how many standard deviations from the middle.</p>
+   <div class="rs-out">mean: 168.5
+within 1 sd: 69.7 %</div>
+   <div class="rs-board"><b>The line:</b> 68, 95, 99.7 is the rule; <b>69.7</b> is what real data gave
+   us. Close, not exact &mdash; and that is what a rule of thumb means.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">10</span><span class="rs-clock">the hinge</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The Central Limit Theorem</p>
+   <p class="rs-say">The single most important session. Individual salaries are <b>wildly</b> skewed.
+   The <b>averages of samples</b> are not.</p>
+   <div class="rs-out">population mean               : 69630
+average of the 1000 averages : 69680
+population skew              : 14.06
+200 samples of 30 -> skew      2.21</div>
+   <div class="rs-board"><b>The line:</b> skew 14.06 in the raw column, 2.21 once you average in
+   thirties. Take bigger samples and it keeps falling. And the spread of those averages is
+   <b>&sigma; &divide; &radic;n</b> &mdash; the square-root tax that runs through days 11, 12 and 13.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">11</span><span class="rs-clock">intervals</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Confidence intervals</p>
+   <p class="rs-say">Stop reporting one number. Report a <b>range</b>, and say how confident you are in
+   the method that produced it.</p>
+   <div class="rs-out">sample mean : 72149
+95% interval: 68952 to 75346
+the truth   : 69630
+96 of the 100 intervals contained the true mean</div>
+   <div class="rs-board"><b>The line:</b> 1.96, not 2. And the 95% is about <b>the method</b>, not about
+   your one interval &mdash; 96 of 100 caught the truth, four did not, and you never know which one you
+   are holding. Same arithmetic gives <b>1,068</b> for a national poll.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">12</span><span class="rs-clock">testing</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Hypothesis testing</p>
+   <p class="rs-say">A different question with the same machinery. Not <b>what is the number</b>, but
+   <b>is this difference real, or am I looking at noise?</b></p>
+   <div class="rs-code"><pre><code>t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)</code></pre></div>
+   <div class="rs-out">claim 65000 -> p = 0.0000   reject H0
+claim 72000 -> p = 0.9274   fail to reject</div>
+   <div class="rs-board"><b>The line:</b> assume nothing is happening, then ask how surprising your data
+   would be in that world. Small p, reject. Large p, <b>fail to reject</b> &mdash; never
+   &ldquo;accept&rdquo;. Two ways to be wrong: <b>Type I</b> cries wolf, <b>Type II</b> misses a real
+   effect.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">13</span><span class="rs-clock">today</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The tests, A/B testing, and honesty</p>
+   <p class="rs-say">Which test for which shape of question &mdash; <b>numbers go to a t-test, counts go
+   to chi-square</b>. Then the one application they will meet at work.</p>
+   <div class="rs-out">Tech vs HR            p = 1.156e-15   real, obvious
+Marketing vs Sales    p = 0.0086      real, NOT obvious
+department vs rating  p = 0.9364      NOTHING THERE
+A/B at 1200 per arm   p = 0.0039      ship B
+A/B at  120 per arm   p = 0.3894      cannot see it
+20 tests on noise     p = 0.0057      on test 18</div>
+   <div class="rs-board"><b>The line:</b> p = 0.94 is the most useful result in the module &mdash;
+   <b>&ldquo;no evidence of a relationship&rdquo;</b>, not &ldquo;proved unrelated&rdquo;. And the last
+   idea is not a technique, it is a habit: <b>decide what you are testing before you look.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">&rarr;</span><span class="rs-clock">the arc</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Why it could not be reordered</p>
+   <div class="rs-code"><pre><code>days 1-7    DESCRIBE      centre, spread, outliers, correlation
+days 8-9    PROBABILITY   the normal curve, z-scores
+day  10     THE HINGE     sample means go normal - the CLT
+days 11-13  DECIDE        intervals, tests, and honesty</code></pre></div>
+   <div class="rs-board">Every block needed the one before it. You cannot build an interval without the
+   CLT; you cannot have the CLT without the normal curve; you cannot have the normal curve without
+   spread; and spread means nothing until you can tell an outlier from a typical value.<br><br>
+   <b>Self-study:</b> binomial, Poisson, ANOVA. <b>Next module:</b> data visualisation &mdash; and now
+   the charts will mean something.</div>
+  </div></div>
+
+   </div>
    <div class="planbanner" style="margin-top:20px">
     <b>The module ends here.</b> Day 11 split into confidence intervals and hypothesis testing exactly
     as the notes predicted, which spent the day 13 buffer &mdash; so there is no spare session left in
