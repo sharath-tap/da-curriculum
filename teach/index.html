@@ -103,7 +103,7 @@ pre code{background:none;padding:0;font-size:inherit}
 .erow .tx b{color:var(--ink);font-weight:450}
 
 .chkq{background:var(--peach);color:var(--sienna);border-radius:14px;padding:14px 18px;font-size:16px;line-height:1.5}
-.chkq *{color:var(--sienna)}
+.chkq.chkq *{color:var(--sienna)}
 .chkq b{font-weight:600}
 .warn{border-left:3px solid var(--ash);padding:4px 0 4px 16px;font-size:16px;line-height:1.55;color:var(--slate)}
 .warn b{color:var(--ink);font-weight:450}
@@ -166,7 +166,7 @@ ol.n li b{color:var(--ink);font-weight:450}
 .screen{background:var(--mist);border-radius:12px;padding:14px 18px;font-family:var(--mono);
   font-size:13px;line-height:1.7;overflow-x:auto;margin-top:8px;white-space:pre}
 .qbox{margin:14px 0;padding:14px 18px;border-radius:14px;background:var(--peach);color:var(--sienna)}
-.qbox *{color:var(--sienna)}
+.qbox.qbox *{color:var(--sienna)}
 .qbox .q{font-weight:600;font-size:16.5px;line-height:1.5}
 .qbox .a{font-size:15.5px;line-height:1.55;margin-top:7px}
 .pandas{border:1px solid var(--hair);border-radius:14px;padding:16px 18px;margin:14px 0}
@@ -345,7 +345,10 @@ ol.n li b{color:var(--ink);font-weight:450}
 .understand em{font-style:italic}
 .keyline{background:var(--peach);color:var(--sienna);border-radius:12px;padding:12px 16px;
   margin:13px 0;font-size:16.5px;line-height:1.55}
-.keyline *{color:var(--sienna)}
+/* Doubled class = specificity (0,2,0), so it beats context rules like
+   `.understand b{color:var(--ink)}` (0,1,1). Without this, a <b> inside a peach
+   panel nested in .understand takes --ink and goes near-white on peach in dark mode. */
+.keyline.keyline *{color:var(--sienna)}
 .keyline b{font-weight:600}
 /* Inline code inside the fixed-peach panels. Those panels keep their light peach
    background in both themes, but plain `code` takes --mist, which flips to
@@ -443,6 +446,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -12130,6 +12134,9 @@ p-value     : 1.156e-15</div>
    sample size before you start.</li>
    <li><b>Finish with the twenty-tests demo.</b> It is the last thing they see in the module and it is
    the thing that keeps them honest. Leave ten clear minutes.</li>
+   <li><b>Two reporting traps in the last block, and both matter more than they look.</b> Statistical
+   significance is not business significance; and 8% to 11.5% is <b>3.5 percentage points</b> and also
+   a <b>43.75% relative increase</b>. Freshers get caught by the second one in their first month.</li>
    <li><b>This is the last statistics session.</b> Say so, name what was deliberately left out, and say
    where it goes next. Ending a module cleanly is worth five minutes.</li>
   </ol>
@@ -12252,52 +12259,66 @@ p-value     : 1.156e-15</div>
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-12 -->
+  <!-- 0-10 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>Which test, and why it is the only question</h3></div>
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>The one table you need today</h3></div>
    <p class="objective">Give them the table first. Everything else today hangs on it.</p>
 
    <div class="speak">
-    <p>Yesterday we built one machine. Assume nothing is going on, see how surprising the data is, get
-    a p-value.</p>
-    <p>Today we look at three versions of that machine. And I want to be straight with you about what
-    is worth learning here.</p>
-    <p>You will never compute any of these by hand. Not in an exam, not in a job, never. The library
-    does it in one line and it does it correctly.</p>
-    <p>The only skill that matters is <b>looking at a question and knowing which one to reach for</b>.
-    So that is what we are doing.</p>
+    <p>Yesterday we learnt the logic of a test. Start with H-nought. Assume no difference. Run the
+    test. Get a p-value. Compare it with 0.05. Make a conclusion.</p>
+    <p>Today we are not learning a completely new idea.</p>
+    <p>We are answering one practical question. <b>Which test should I use for which type of
+    problem?</b></p>
+    <p>And then we use that in the one application you will actually meet at work &mdash; A/B
+    testing.</p>
    </div>
 
    <div class="stage">Put this table on the board and leave it up for the full session. Every block
    today points back at it.</div>
 
    <div class="mth">
-    <div class="mrow"><b>One number against a claim</b> &rarr; one-sample t-test &nbsp;&mdash;&nbsp;
-    <em>&ldquo;is our average salary 75,000?&rdquo;</em></div>
+    <div class="mrow"><b>One number vs a claim</b> &rarr; one-sample t-test &nbsp;&mdash;&nbsp;
+    <em>&ldquo;is the average salary 75,000?&rdquo;</em></div>
     <div class="mrow"><b>Two groups, a number</b> &rarr; two-sample t-test &nbsp;&mdash;&nbsp;
     <em>&ldquo;do Tech and HR differ on pay?&rdquo;</em></div>
     <div class="mrow"><b>Two categories, counts</b> &rarr; chi-square &nbsp;&mdash;&nbsp;
     <em>&ldquo;is rating related to department?&rdquo;</em></div>
     <div class="mrow"><b>Three or more groups, a number</b> &rarr; ANOVA &nbsp;&mdash;&nbsp;
-    <em>on your self-study list</em></div>
+    <em>named today, on the self-study list</em></div>
    </div>
 
    <div class="speak">
-    <p>And if you only remember one thing from that table, remember the question that splits it.</p>
+    <p>We are only going to <b>name</b> ANOVA today. The three we will actually run are the two-sample
+    t-test, chi-square, and the A/B test.</p>
+   </div>
+
+   <div class="stage">Now the shortcut that makes the table usable. This is the part they should be
+   able to repeat back to you at the end of the session.</div>
+
+   <div class="speak">
+    <p>When you see a problem, ask yourself one question.</p>
     <p><b>Am I comparing numbers, or am I comparing counts?</b></p>
-    <p>Salaries, heights, ages &mdash; those are numbers. T-test.</p>
-    <p>How many people are in each category &mdash; how many in HR were rated Excellent &mdash; those
-    are counts. Chi-square.</p>
-    <p>Get that one split right and you will pick the correct test almost every time.</p>
+    <p>Salary, age, height, revenue, marks &mdash; those are numbers. Think <b>t-test</b>.</p>
+    <p>Department, rating, purchased or not, clicked or not, version A or version B &mdash; those are
+    categories, and what you have is a count of how many fell into each one. Think
+    <b>chi-square</b>.</p>
+    <p>This is not a rule for every statistical problem in the world. But for everything we do today,
+    and for most of what you will meet as a fresher, it is the right split.</p>
    </div>
   </div>
 
-  <!-- 12-26 -->
+  <!-- 10-26 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">12 &ndash; 26</span><h3>Two groups, a number</h3></div>
-   <p class="objective">They saw this at the end of day 12. Now do it properly, including a subtle one.</p>
+   <div class="bhead"><span class="clock">10 &ndash; 26</span><h3>Test one &mdash; two groups, a number</h3></div>
+   <p class="objective">They saw the easy one yesterday. Today do the close one, where the eye fails.</p>
 
-   <div class="typeit">The obvious comparison, again</div>
+   <div class="speak">
+    <p>Our question is: <b>do Tech and HR have different average salaries?</b></p>
+    <p>Salary is a number. We have two groups. So &mdash; two-sample t-test.</p>
+   </div>
+
+   <div class="typeit">The one from yesterday, again</div>
 <pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
 
 tech = clean[clean.department == <span class="c">"Tech"</span>].salary
@@ -12307,10 +12328,39 @@ t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
 <span class="k">print</span>(<span class="k">round</span>(tech.mean()), <span class="k">round</span>(hr.mean()), <span class="c">"p ="</span>, p)</code></pre>
    <div class="screen">82419 56705 p = 1.156e-15</div>
 
+   <div class="stage">Walk the code before the verdict. Three minutes. Two of these pieces are new
+   even though the line looks familiar.</div>
+
    <div class="speak">
-    <p>We did this yesterday. Enormous gap, p is basically zero, real difference. Nothing new.</p>
-    <p>But that was an easy one. Twenty-five thousand rupees apart is not a close call. Let me show you
-    a harder pair, because the easy ones are not where you need judgement.</p>
+    <p><code>from scipy import stats</code> &mdash; this brings in the statistics tools. Same as
+    yesterday.</p>
+    <p><code>clean[clean.department == "Tech"].salary</code> &mdash; pick the rows where the department
+    is Tech, then take their salary column. So <code>tech</code> holds the Tech salaries and nothing
+    else. The second line does the same for HR.</p>
+    <p>Now <code>stats.ttest_ind</code>. Read the name. <b>t-test, independent.</b> Independent means
+    the two groups are separate people. Nobody is in both. That is different from yesterday's
+    <code>ttest_1samp</code>, which had one group and a number.</p>
+   </div>
+
+   <div class="keyline">
+    <b>What is <code>equal_var=False</code>?</b><br><br>
+    It tells Python: do not assume Tech and HR have the same amount of spread in their salaries. They
+    almost never do.<br><br>
+    This version has a name &mdash; <b>Welch's t-test</b>. You do not need the formula. You need one
+    line: <code>equal_var=False</code> means <b>do not assume equal variance</b>, and it should be your
+    default.
+   </div>
+
+   <div class="speak">
+    <p>The function hands back two things. <code>t</code> is the test statistic. <code>p</code> is the
+    p-value. Today, as yesterday, the p-value is the one we read.</p>
+    <p>Tech eighty-two thousand four hundred and nineteen. HR fifty-six thousand seven hundred and
+    five. And p is 1.156 times ten to the minus fifteen &mdash; a decimal point, fourteen zeros, then
+    the number.</p>
+    <p>That is far below 0.05. So we <b>reject H-nought</b>. There is strong evidence that the two
+    departments really do differ on pay.</p>
+    <p>But that was an easy one. The gap is twenty-five thousand seven hundred and fourteen rupees. You
+    could see it without me. That is not where judgement is needed.</p>
    </div>
 
    <div class="typeit">A much closer pair</div>
@@ -12324,41 +12374,55 @@ t, p = stats.ttest_ind(sales, mktg, equal_var=<span class="k">False</span>)
 <span class="k">print</span>(<span class="c">"p-value  :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
    <div class="screen">Sales    : 65 people, average 66535
 Marketing: 42 people, average 73954
-gap      : 7419
+gap      : 7420
 p-value  : 0.0086</div>
 
+   <div class="speak">
+    <p>Two small things in that code. <code>len(sales)</code> counts how many Sales employees there
+    are &mdash; sixty-five. <code>sales.mean()</code> is their average. And
+    <code>mktg.mean() - sales.mean()</code> is simply one average minus the other.</p>
+   </div>
+
    <div class="qbox">
-    <div class="q">Before revealing the verdict, ask: &ldquo;Seven thousand. Real, or noise?&rdquo;
-    Get a show of hands both ways.</div>
+    <div class="q">Before revealing the verdict, ask: &ldquo;Marketing is about seven thousand four
+    hundred higher. Real difference, or just random variation?&rdquo; Get a show of hands both
+    ways.</div>
     <div class="a">It is real &mdash; p is 0.0086, comfortably under 0.05. The point of the vote is
-    that eyeballing the gap could not have told them, and a room full of sensible people will split.
-    That is what the test is <em>for</em>.</div>
+    that eyeballing the gap could not have told them, and a room full of sensible people will split
+    down the middle. That is exactly what the test is <em>for</em>.</div>
    </div>
 
    <div class="speak">
-    <p>Zero point zero zero eight six. Under our threshold, so we reject the null. Marketing really is
-    paid more than Sales here.</p>
-    <p>And I want you to notice that none of you could tell by looking. Twenty-five thousand was
-    obvious. Seven thousand was not, and half the room guessed wrong.</p>
-    <p>That gap &mdash; between what looks convincing and what is actually supported &mdash; is the
-    entire reason this module exists.</p>
+    <p>Zero point zero zero eight six. Under our threshold, so we <b>reject H-nought</b>. There is
+    evidence that the two averages really differ, and in this data Marketing is the higher one.</p>
+    <p>Now look at what just happened. Tech against HR was twenty-five thousand apart &mdash; obvious.
+    Sales against Marketing is seven thousand four hundred apart, and half of you guessed wrong.</p>
+    <p>This is why we use a test instead of our eyes. The test does not only look at the gap. It also
+    uses <b>how many people are in each group</b> and <b>how much the salaries vary</b>. Your eye uses
+    neither.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Never decide whether a difference is meaningful by looking at two averages.</b> That is the
+    single sentence from this block.
    </div>
   </div>
 
-  <!-- 26-44 -->
+  <!-- 26-46 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">26 &ndash; 44</span><h3>Counts, categories, and a result that says nothing</h3></div>
-   <p class="objective">Chi-square. The most important eighteen minutes in the session.</p>
+   <div class="bhead"><span class="clock">26 &ndash; 46</span><h3>Test two &mdash; counts, and a result that says nothing</h3></div>
+   <p class="objective">Chi-square. The most important twenty minutes in the session.</p>
 
    <div class="speak">
-    <p>Now a completely different shape of question. Not &ldquo;is this number bigger than that
-    number&rdquo;. Instead: <b>are two categories related to each other at all?</b></p>
-    <p>Here is one that sounds very plausible. Do some departments rate their people more generously
-    than others? You would half expect that to be true.</p>
-    <p>Neither column is a number. Department is a category, rating is a category. So we count.</p>
+    <p>Until now we were comparing numbers. Now a different shape of question.</p>
+    <p><b>Is employee rating related to department?</b></p>
+    <p>Look at the two columns. Department is HR, Marketing, Sales, Tech. Rating is Poor, Average,
+    Good, Excellent. Neither one is a number. Both are categories.</p>
+    <p>So we are not comparing averages any more. We are comparing category against category. That
+    needs a different test &mdash; <b>chi-square</b>.</p>
    </div>
 
-   <div class="typeit">Build the table of counts first &mdash; look at it before testing anything</div>
+   <div class="typeit">Build the count table first &mdash; look at it before testing anything</div>
 <pre><code>table = pd.crosstab(clean.department, clean.rating)
 <span class="k">print</span>(table)</code></pre>
    <div class="screen">rating      Average  Excellent  Good  Poor
@@ -12368,26 +12432,58 @@ Marketing        11          9     8    14
 Sales            15         14    19    17
 Tech              8         12    12    14</div>
 
+   <div class="speak">
+    <p><code>pd.crosstab</code> is the new piece. It builds a table of counts. It asks: how many people
+    fall into each combination of these two categories?</p>
+    <p>So HR plus Excellent is thirteen &mdash; thirteen HR employees got an Excellent rating.
+    Marketing plus Poor is fourteen.</p>
+    <p>A table like this has a name. It is a <b>contingency table</b>. You will see that word in
+    interviews.</p>
+   </div>
+
    <div class="qbox">
     <div class="q">Ask them to stare at it for thirty seconds and find a pattern. Somebody always
     does &mdash; &ldquo;Marketing has the most Poor&rdquo;, &ldquo;Sales has loads of Good&rdquo;.</div>
     <div class="a">Let those claims be made out loud before you test. Being publicly wrong about a
-    pattern you were sure you saw is worth more than any amount of warning about it.</div>
+    pattern you were certain you saw is worth more than any amount of warning about it.</div>
    </div>
 
    <div class="speak">
-    <p>Right. Marketing has fourteen Poor and only nine Excellent &mdash; that looks harsh. Sales has
-    nineteen Good, more than anyone.</p>
-    <p>But Sales also has sixty-five people and Marketing has forty-two. So of course Sales has more of
-    everything. Raw counts are not comparable.</p>
-    <p>What we need to know is: <b>is this table further from random than chance would give us?</b>
-    That is what chi-square answers.</p>
+    <p>Marketing has fourteen Poor and only nine Excellent. That looks harsh. Sales has nineteen Good,
+    more than anybody.</p>
+    <p>But wait. Sales has sixty-five people. Marketing has forty-two. So of course Sales has more of
+    everything &mdash; it has more people to start with. <b>Raw counts on their own can mislead you.</b></p>
+    <p>And notice what we are actually asking. Not &ldquo;which department has the most Poor
+    ratings&rdquo;. We are asking: <b>is department really related to rating, or could this table have
+    come out this way by chance?</b></p>
+    <p>That is a hypothesis-testing question. So write the two hypotheses.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>H0    department and rating are INDEPENDENT
+      in plain words: there is no relationship
+
+H1    department and rating are ASSOCIATED
+      in plain words: there is a relationship</code></pre>
+
+   <div class="typeit">Run the test</div>
+<pre><code>chi2, p, dof, expected = stats.chi2_contingency(table)</code></pre>
+
+   <div class="stage">That one line gives back four things. Name all four before running anything
+   else &mdash; students who do not know what came back will not trust what follows.</div>
+
+   <div class="mth">
+    <div class="mrow"><b>chi2</b> The test statistic. It measures how far the real table is from the
+    table you would get if there were no relationship at all.</div>
+    <div class="mrow"><b>p</b> The p-value. Read it exactly as yesterday.</div>
+    <div class="mrow"><b>dof</b> Degrees of freedom. Python works it out. You do not calculate it
+    today.</div>
+    <div class="mrow"><b>expected</b> The table you would expect if the two were unrelated. This one is
+    genuinely useful &mdash; we are about to look at it.</div>
    </div>
 
    <div class="typeit">What the table would look like if the two were unrelated</div>
-<pre><code>chi2, p, dof, expected = stats.chi2_contingency(table)
-
-<span class="k">print</span>(pd.DataFrame(expected,
+<pre><code><span class="k">print</span>(pd.DataFrame(expected,
       index=table.index, columns=table.columns).round(<span class="o">1</span>))</code></pre>
    <div class="screen">rating      Average  Excellent  Good  Poor
 department
@@ -12397,12 +12493,23 @@ Sales          13.9       15.8  16.5  18.8
 Tech            9.8       11.2  11.7  13.3</div>
 
    <div class="speak">
-    <p>That is what we would expect if rating had nothing whatever to do with department &mdash; just
-    the overall proportions applied to each department's headcount.</p>
-    <p>Now compare. Real HR Excellent: thirteen. Expected: ten point seven. Real Marketing Poor:
-    fourteen. Expected: twelve point two.</p>
-    <p>Everything is a bit off. It always will be. The question is whether it is <b>more</b> off than
-    chance alone would produce.</p>
+    <p>That print line looks busy, so let us take it apart.</p>
+    <p><code>expected</code> on its own is just a grid of numbers with no labels. <code>pd.DataFrame()</code>
+    turns it into a Pandas table so it prints nicely.</p>
+    <p><code>index=table.index</code> puts the row names back &mdash; HR, Marketing, Sales, Tech.
+    <code>columns=table.columns</code> puts the column names back &mdash; Average, Excellent, Good,
+    Poor.</p>
+    <p>And <code>.round(1)</code> cuts it to one decimal place, because nobody wants to read
+    10.7391304.</p>
+   </div>
+
+   <div class="speak">
+    <p>Now compare the two tables. Real HR Excellent: thirteen. Expected: ten point seven. Real
+    Marketing Poor: fourteen. Expected: twelve point two.</p>
+    <p>Everything is a bit off. It always will be. Even if there were <b>no relationship at all</b>,
+    real counts would never land exactly on the expected ones.</p>
+    <p>So the real question is: <b>are the gaps bigger than random variation would reasonably
+    produce?</b> That is the only thing chi-square answers.</p>
    </div>
 
    <div class="typeit">The verdict</div>
@@ -12411,18 +12518,23 @@ Tech            9.8       11.2  11.7  13.3</div>
    <div class="screen">chi-square: 3.59
 p-value   : 0.9364</div>
 
-   <div class="stage">Stop here. Let the number sit on the screen for a moment before you say anything.
-   This is the result the session is built around.</div>
+   <div class="stage">Stop here. Let the number sit on the screen before you say anything. This is the
+   result the whole session is built around.</div>
+
+   <div class="qbox">
+    <div class="q">Ask it flatly: &ldquo;Is 0.9364 less than 0.05?&rdquo;</div>
+    <div class="a">Obviously not. So we <b>fail to reject H-nought</b>. Make them say the words.</div>
+   </div>
 
    <div class="speak">
-    <p>Zero point nine four.</p>
-    <p>That is about as far from significant as a p-value can get. If department and rating were
-    completely unrelated, a table at least this uneven would turn up about ninety-four percent of the
-    time.</p>
-    <p>So every pattern we spotted a minute ago &mdash; Marketing being harsh, Sales having lots of Good
-    &mdash; was noise. All of it. We were reading tea leaves.</p>
-    <p>And I want to be careful about how we say the conclusion. We found <b>no evidence</b> that rating
-    is related to department. We did <b>not</b> prove they are unrelated. Same discipline as yesterday.</p>
+    <p>Zero point nine four. That is about as far from significant as a p-value can get.</p>
+    <p>Our H-nought was that department and rating are independent. We do not have anything like enough
+    evidence to argue against it.</p>
+    <p>So every pattern we spotted a minute ago &mdash; Marketing being harsh, Sales having lots of
+    Good &mdash; was noise. All of it.</p>
+    <p>And be careful how you write the conclusion. <b>We found no evidence of a relationship between
+    department and rating.</b> Not &ldquo;we proved they are unrelated&rdquo;. Same discipline as
+    yesterday: failing to reject H-nought does not prove H-nought is true.</p>
    </div>
 
    <div class="warn"><b>This is the most useful result in the whole module.</b> Almost every example in
@@ -12431,27 +12543,30 @@ p-value   : 0.9364</div>
    one, and being able to report <em>nothing</em> clearly is a large part of being trusted.</div>
 
    <div class="keyline">
-    If you want to make it land harder: tell them the rating column in this dataset was generated at
-    random when it was built. There was never anything to find. The test got it exactly right &mdash;
-    and their eyes, thirty seconds earlier, did not.
+    If you want it to land harder: tell them the rating column in this dataset was generated at
+    <b>random</b> when it was built. There was never anything to find. The test got it exactly
+    right &mdash; and their eyes, thirty seconds earlier, did not.
    </div>
   </div>
 
-  <!-- 44-64 -->
+  <!-- 46-66 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">44 &ndash; 64</span><h3>An A/B test, end to end</h3></div>
+   <div class="bhead"><span class="clock">46 &ndash; 66</span><h3>A/B testing, end to end</h3></div>
    <p class="objective">The one application they will meet at work and in interviews. No new statistics.</p>
 
    <div class="speak">
     <p>Last piece, and it is the one you are most likely to be asked about in an interview.</p>
-    <p>A company has two versions of a signup page. Version A is the current one. Version B has a
-    different button. They show A to some visitors and B to others, and count how many sign up.</p>
-    <p>Look at the shape of that. Two categories &mdash; which version you saw. Counts &mdash; signed up
-    or did not. So what test is it?</p>
+    <p>A company has a signup page. There are two versions. Version A is the current page. Version B is
+    new &mdash; maybe a different button, different wording, a different layout.</p>
+    <p>We want to know: <b>does version B increase signups?</b></p>
+    <p>For every visitor we know two things. Which version did they see &mdash; A or B. And did they
+    sign up &mdash; yes or no.</p>
+    <p>Look at the shape of that. Both are categories. We are counting outcomes. So what test is
+    it?</p>
    </div>
 
    <div class="qbox">
-    <div class="q">Let them answer from the table on the board.</div>
+    <div class="q">Let them answer from the table still on the board.</div>
     <div class="a">Chi-square. An A/B test is a chi-square on a two by two table. There is no new
     statistics in it whatsoever &mdash; which is exactly the point worth making.</div>
    </div>
@@ -12471,10 +12586,54 @@ chi2, p, dof, exp = stats.chi2_contingency(ab, correction=<span class="k">False<
 B: 11.5 %
 p-value: 0.0039</div>
 
+   <div class="stage">Walk this one properly. There are three new things in it and the 1104 confuses
+   people every single time.</div>
+
    <div class="speak">
-    <p>Eight percent against eleven and a half. P of zero point zero zero three nine.</p>
-    <p>If the two versions were really identical, a gap this big in twenty-four hundred visitors would
-    happen about four times in a thousand. So we ship version B.</p>
+    <p><code>np.array</code> is new. NumPy lets us hold a grid of numbers. What we are building is this
+    table:</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; what that array actually is</div>
+<pre><code>                 did NOT sign up      signed up
+
+  version A           1104               96
+  version B           1062              138</code></pre>
+
+   <div class="speak">
+    <p>Where does 1104 come from? Twelve hundred visitors, ninety-six signed up, so eleven hundred and
+    four did not. Same for B &mdash; twelve hundred minus a hundred and thirty-eight is one thousand
+    and sixty-two.</p>
+    <p>Chi-square needs <b>counts of everything</b>, not just the successes. That is the bit people get
+    wrong.</p>
+    <p>Then <code>100 * 96 / 1200</code> is just signups divided by visitors, times a hundred. Eight
+    percent. And B is eleven point five percent. That percentage has a name you will hear every day in
+    this job &mdash; the <b>conversion rate</b>.</p>
+    <p>At first glance B looks better. But remember the whole lesson of this module: <b>a difference in
+    the sample does not automatically mean a real difference underneath.</b> We test it.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>H0    version and signup are INDEPENDENT
+      A and B convert the same
+
+H1    version and signup are ASSOCIATED
+      the two versions perform differently</code></pre>
+
+   <div class="keyline">
+    <b>The one new argument: <code>correction=False</code>.</b><br><br>
+    On a two by two table SciPy will by default apply something called <b>Yates' correction</b>. We are
+    switching it off so the arithmetic matches this example.<br><br>
+    You do not need the mathematics today. One line: on a 2&times;2 table, say
+    <code>correction=False</code>.
+   </div>
+
+   <div class="speak">
+    <p>p is zero point zero zero three nine. Under 0.05, so we <b>reject H-nought</b>. There is
+    evidence the two versions really do convert differently, and B is the higher one.</p>
+    <p>Here is how you would write that at work. <b>&ldquo;Version B had a higher signup rate than
+    version A, and the difference was statistically significant, p equals 0.0039.&rdquo;</b> That
+    sentence is what they want from you.</p>
     <p>Now watch what happens if the company got impatient and stopped early.</p>
    </div>
 
@@ -12490,11 +12649,21 @@ chi2, p, dof, exp = stats.chi2_contingency(small, correction=<span class="k">Fal
 p-value: 0.3894</div>
 
    <div class="speak">
-    <p>Same rates. Same improvement. And now the p-value is zero point three nine &mdash; nowhere near
-    significant.</p>
-    <p>Version B is genuinely better in both of these. In the second one we simply could not see it.</p>
-    <p>That is a Type Two error, the one we met yesterday. And it is the single most common way real
-    A/B tests get wasted: stopping early, seeing nothing, concluding there is nothing.</p>
+    <p>Look carefully. The rates are basically the same &mdash; eight point three against eleven point
+    seven. The gap is still there.</p>
+    <p>But now p is zero point three nine. Nowhere near significant. So we <b>fail to reject</b>.</p>
+    <p>Why did the conclusion change when the rates did not? Because the second experiment has a tenth
+    of the data. Twelve hundred visitors per version became a hundred and twenty.</p>
+    <p>With less data there is more uncertainty, so the test has less ability to spot the
+    difference.</p>
+    <p>And that has a name from yesterday. This is a <b>Type Two error</b> &mdash; a real effect exists
+    and our test failed to find it.</p>
+   </div>
+
+   <div class="keyline">
+    <b>A large p-value does not always mean there is no effect.</b> It can equally mean you did not
+    collect enough data to see the one that is there. That is the single most common way real A/B tests
+    get wasted.
    </div>
 
    <div class="typeit">So work out how many you need <em>before</em> you start</div>
@@ -12509,20 +12678,46 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
 <span class="k">print</span>(<span class="c">"visitors needed per version:"</span>, ceil(n))</code></pre>
    <div class="screen">visitors needed per version: 1126</div>
 
+   <div class="warn"><b>Say this out loud before anyone panics about the formula.</b> Nobody memorises
+   this and nobody will ask them to derive it. What matters is knowing the question it answers: <em>how
+   many visitors do I need in each group to have a fair chance of spotting the improvement I care
+   about?</em></div>
+
    <div class="speak">
+    <p>Two small pieces of code first. <code>sqrt</code> is square root. <code>ceil</code> means round
+    <b>up, always</b> &mdash; 1125.1 becomes 1126, because you cannot have a tenth of a visitor.</p>
+    <p><code>p1</code> is our current rate, eight percent. <code>p2</code> is eleven point five percent
+    &mdash; the improvement we want to be able to detect. <code>pbar</code> is just the average of the
+    two. The rest is the formula doing its work.</p>
     <p>Eleven hundred and twenty-six per version.</p>
     <p>Does that number look familiar? Yesterday we worked out that a national opinion poll needs about
     <b>one thousand and sixty-eight</b> people.</p>
     <p>A poll about an election, and a button on a signup page. Completely different problems &mdash;
-    and almost the same number, for exactly the same reason. It is the square root tax again.</p>
-    <p>So the practical rule: decide your sample size before you launch, and then do not peek and stop
-    early because the numbers look good.</p>
+    and almost the same number, for exactly the same reason. It is the square-root tax again.</p>
+   </div>
+
+   <div class="typeit">The rule &mdash; put this on the board</div>
+<pre><code>DO NOT DO THIS                      DO THIS INSTEAD
+
+start the test                      before you start, decide:
+    |                                 what are we testing?
+check early                           what metric?
+    |                                 what improvement matters?
+p &gt; 0.05, so wait                     how much data do we need?
+    |                                 how long do we run?
+check again
+    |                               then run it, and read it ONCE.
+p &lt; 0.05, stop!</code></pre>
+
+   <div class="speak">
+    <p>Decide the sample size before you launch. Then do not peek and stop early because the numbers
+    look good.</p>
    </div>
   </div>
 
-  <!-- 64-80 -->
+  <!-- 66-78 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">64 &ndash; 80</span><h3>Twenty tests, and nothing to find</h3></div>
+   <div class="bhead"><span class="clock">66 &ndash; 78</span><h3>Twenty tests, and nothing to find</h3></div>
    <p class="objective">The promise from day 12. The last real idea in the module.</p>
 
    <div class="speak">
@@ -12541,8 +12736,21 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
     b = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>)      <span class="c"># same distribution. no difference exists.</span>
     t, p = stats.ttest_ind(a, b)
     <span class="k">if</span> p &lt; <span class="o">0.05</span>:
-        <span class="k">print</span>(<span class="c">"test"</span>, i+<span class="o">1</span>, <span class="c">"-> p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>), <span class="c">"  *** SIGNIFICANT ***"</span>)</code></pre>
-   <div class="screen">test 18 -> p = 0.0057   *** SIGNIFICANT ***</div>
+        <span class="k">print</span>(<span class="c">"test"</span>, i+<span class="o">1</span>, <span class="c">"-&gt; p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>), <span class="c">"  *** SIGNIFICANT ***"</span>)</code></pre>
+   <div class="screen">test 18 -&gt; p = 0.0057   *** SIGNIFICANT ***</div>
+
+   <div class="stage">Walk the code. They met all four pieces yesterday, so this is a reminder, not a
+   lesson. Two minutes.</div>
+
+   <div class="speak">
+    <p><code>np.random.default_rng(13)</code> makes the random-number generator. The 13 is the seed
+    &mdash; it means everyone gets the same twenty tests I just got.</p>
+    <p><code>for i in range(20)</code> runs the whole thing twenty times.</p>
+    <p><code>rng.normal(0, 1, 50)</code> makes fifty random numbers, centred on zero, spread of one. And
+    the next line makes fifty more <b>from exactly the same recipe</b>. That is the whole trick &mdash;
+    there is no difference between a and b, because I built them the same way.</p>
+    <p><code>if p &lt; 0.05</code> means only print the ones that came back significant.</p>
+   </div>
 
    <div class="speak">
     <p>There it is. Test number eighteen. P of zero point zero zero five seven &mdash; that is not
@@ -12550,39 +12758,102 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
     up.</p>
     <p>And there was nothing there. I generated both groups from the same source. I know there was
     nothing, because I built it.</p>
-    <p>Nothing went wrong with that test. It behaved exactly as designed. One in twenty is what five
-    percent <b>means</b>.</p>
+    <p>Nothing went wrong with that test. It behaved exactly as designed. Roughly five in a hundred is
+    what five percent <b>means</b> &mdash; so across twenty tests, one crossing the line is not a
+    surprise.</p>
    </div>
 
    <div class="stage">This is the point of the whole session. Say the next part slowly.</div>
 
    <div class="speak">
-    <p>So here is the thing to carry out of this room.</p>
-    <p>If you take a dataset and test everything against everything &mdash; does salary depend on city,
-    on education, on rating, on join date, on height &mdash; you <b>will</b> find something
-    significant. Guaranteed. It does not mean it is real.</p>
-    <p>This has a name. People call it p-hacking, or data dredging. It is how a great many published
-    findings turn out to be nothing, and it is very rarely dishonest &mdash; it is usually somebody
-    running tests until one works and genuinely believing they found something.</p>
+    <p>Now imagine an analyst who tests salary against department. Then against city. Then education,
+    then rating, then age, then joining month, then experience.</p>
+    <p>They keep going. Eventually something comes back under 0.05. And they report
+    &ldquo;we discovered a statistically significant relationship!&rdquo;</p>
+    <p>What they did not say is: <b>we tested fifty relationships before finding this one.</b> And that
+    changes everything about how you should read it.</p>
+    <p>This has a name. <b>P-hacking</b>, or data dredging. And it is very rarely dishonest &mdash; it
+    is usually somebody trying different analyses until one works, and genuinely believing they found
+    something.</p>
+   </div>
+
+   <div class="speak">
     <p>The protection is simple and it is not statistical. <b>Decide what you are testing before you
-    look.</b> And if you must test many things, say how many you tested when you report the one that
-    worked.</p>
+    look at the results.</b></p>
+    <p>&ldquo;We want to know whether version B increases signups&rdquo; is a clear question. &ldquo;Let
+    us test everything and see what turns up&rdquo; is not.</p>
+    <p>And if you genuinely do run many tests &mdash; <b>say so when you report the one that
+    worked.</b></p>
    </div>
 
    <div class="keyline">
-    If a student asks whether there is a technical fix: yes, there are corrections for multiple testing
-    &mdash; Bonferroni is the simplest, divide your threshold by the number of tests. Name it, say it
-    exists, and move on. <b>The discipline matters more than the correction.</b>
+    <b>There is a technical fix too, and it is worth thirty seconds.</b> The simplest is the
+    <b>Bonferroni correction</b>: divide your threshold by the number of tests. Ten tests at
+    &alpha;&nbsp;=&nbsp;0.05 becomes 0.05&nbsp;&divide;&nbsp;10&nbsp;=&nbsp;<b>0.005</b> for each
+    one.<br><br>
+    Name it, say it exists, move on. <b>The discipline matters more than the correction.</b>
    </div>
   </div>
 
-  <!-- 80-90 -->
+  <!-- 78-90 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Closing the module</h3></div>
-   <p class="objective">Name the arc, name what was left out, say where it goes. Do not skip this.</p>
+   <div class="bhead"><span class="clock">78 &ndash; 90</span><h3>Closing the module</h3></div>
+   <p class="objective">Two things they will be asked in interviews, then name the arc and stop.</p>
 
-   <div class="stage">Last ten minutes. Put the thirteen sessions up as one list and walk it. They have
-   not seen the shape of what they learned, only the pieces.</div>
+   <div class="stage">First the two A/B questions they will actually get asked. Put the answers up and
+   have students read them aloud.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is A/B testing?&rdquo;</div>
+    <div class="a"><b>&ldquo;A/B testing is an experiment where we show two versions of something to
+    different groups of users, and compare one chosen metric to see whether the difference we observe
+    is statistically significant.&rdquo;</b> Then give the example: A is the old signup page, B is the
+    new one, the metric is signup conversion rate, H-nought is that they convert the same. Collect the
+    data, run the test, read the p-value.</div>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Version A converts at 8% and version B at 11.5%. Can you say B is
+    better?&rdquo;</div>
+    <div class="a"><b>&ldquo;Not immediately. B has the higher observed rate, but I would run a test to
+    check whether that is more than random variation. I would also look at the sample size, and at
+    whether the improvement is large enough to matter to the business.&rdquo;</b> That is a far stronger
+    answer than &ldquo;B is 3.5% better&rdquo;.</div>
+   </div>
+
+   <div class="stage">Now two traps in how results get reported. Both are how a good analyst is told
+   apart from a careless one.</div>
+
+   <div class="speak">
+    <p>First trap. Statistical significance is not business significance.</p>
+    <p>Suppose A converts at 8.00% and B at 8.05%. With enough data that difference can come back
+    statistically significant &mdash; and the business will still say &ldquo;nought point nought five
+    of a percentage point is not worth rebuilding the page for&rdquo;.</p>
+    <p>Two different questions. <b>Is there evidence a difference exists?</b> That is the test.
+    <b>Is it big enough to matter?</b> That is the business. Never let the first one answer the
+    second.</p>
+   </div>
+
+   <div class="speak">
+    <p>Second trap, and this is the one that will catch you in your first job.</p>
+    <p>Eight percent to eleven point five percent. What is the increase?</p>
+    <p>It is <b>three point five percentage points</b>. It is also a <b>forty-three point seven five
+    percent relative increase</b>, because three point five divided by eight is nearly forty-four
+    percent.</p>
+    <p>Both are true. They sound completely different. Say which one you mean &mdash; because if you do
+    not, people will assume whichever number is more impressive.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>8.0%  ->  11.5%
+
+  3.5 PERCENTAGE POINTS      11.5 - 8
+  43.75% RELATIVE INCREASE   (11.5 - 8) / 8 x 100
+
+both true. say which one you mean.</code></pre>
+
+   <div class="stage">Last eight minutes. Put the thirteen sessions up as one list and walk it. They
+   have not seen the shape of what they learned, only the pieces.</div>
 
    <div class="speak">
     <p>That is the statistics module finished. Thirteen sessions. Let me show you what you actually
@@ -12592,8 +12863,8 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
     <p>Then <b>probability</b>, and the normal curve. Days eight and nine.</p>
     <p>Then the hinge &mdash; the Central Limit Theorem &mdash; which told you that averages of samples
     behave predictably even when the data does not. Day ten.</p>
-    <p>And then three sessions turning that into decisions. What is the number, and how sure am I.
-    Is this difference real. Which test, and how do I avoid fooling myself.</p>
+    <p>And then three sessions turning that into decisions. What is the number, and how sure am I. Is
+    this difference real. Which test, and how do I avoid fooling myself.</p>
     <p>Every one of those needed the one before it. That is why we could not reorder them.</p>
    </div>
 
@@ -12610,9 +12881,93 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
     not have been three weeks ago.</p>
    </div>
 
+   <div class="typeit">The whole session in one picture &mdash; leave this up</div>
+<pre><code>                  WHAT IS MY QUESTION?
+                           |
+              +------------+------------+
+              |                         |
+          NUMBERS                    COUNTS
+              |                         |
+      how many groups?             categories?
+              |                         |
+     +--------+--------+            CHI-SQUARE
+     |        |        |
+  1 group  2 groups  3+ groups
+     |        |        |
+ ttest_1samp  |     ANOVA (self-study)
+              |
+        ttest_ind
+
+
+              WHATEVER TEST I USE
+                      |
+                   p-value
+                      |
+              compare with 0.05
+              /                \
+        p &lt; 0.05            p &gt;= 0.05
+            |                    |
+       REJECT H0        FAIL TO REJECT H0
+
+
+the test changes. the logic does NOT.</code></pre>
+
+   <div class="typeit">Code cheat sheet &mdash; everything new from today</div>
+<pre><code>from scipy import stats
+
+stats.ttest_1samp(data, claim)          # ONE sample vs ONE number      (day 12)
+stats.ttest_ind(a, b, equal_var=False)  # TWO groups, a NUMBER
+                                        # equal_var=False = Welch. make it your default.
+
+pd.crosstab(col1, col2)                 # count table for TWO CATEGORIES
+                                        # the result is a "contingency table"
+
+stats.chi2_contingency(table)           # are two categories RELATED?
+    -&gt; chi2, p, dof, expected           #    expected = the table if they were NOT
+
+stats.chi2_contingency(ab, correction=False)
+                                        # on a 2x2 table, switch Yates' correction off
+
+import numpy as np
+np.array([[1104, 96],                   # build the 2x2 by hand
+          [1062, 138]])                 # NOT-happened counts go in too
+
+from math import sqrt, ceil             # ceil = round UP, always</code></pre>
+
+   <div class="typeit">The ten lines. Leave these on the board.</div>
+<pre><code> 1. understand the question FIRST. not "which function?"
+
+ 2. is my outcome a NUMBER or a CATEGORY?
+
+ 3. how many groups?
+
+ 4. write H0 and H1 before you run anything
+
+ 5. run the test
+
+ 6. read the p-value against 0.05
+
+ 7. look at the SIZE of the effect, separately
+
+ 8. did I collect enough data?
+
+ 9. "not significant" is NOT "proved no difference"
+
+10. do not test everything until something goes significant
+
+
+a test is not a thing you run to prove what you already believe.
+it is a way to check whether the evidence is strong enough.</code></pre>
+
+   <div class="keyline">
+    <b>The one sentence to leave them with.</b><br><br>
+    The hardest part of a statistical test is almost never running it. It is <b>choosing the right
+    test, and reading the result honestly</b>.
+   </div>
+
    <div class="sumcard"><pre><code><span class="c"># ---- WHICH TEST? THE ONLY QUESTION THAT MATTERS ----</span>
-<span class="c">#   comparing NUMBERS?  -> t-test</span>
-<span class="c">#   comparing COUNTS in categories? -> chi-square</span>
+<span class="c">#   comparing NUMBERS?  -&gt; t-test</span>
+<span class="c">#   comparing COUNTS in categories? -&gt; chi-square</span>
 <span class="c">#</span>
 <span class="c">#   one number vs a claim ..... stats.ttest_1samp(data, claim)</span>
 <span class="c">#   two groups, a number ...... stats.ttest_ind(a, b, equal_var=False)</span>
@@ -12627,26 +12982,30 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
 <span class="c"># department vs rating ............. p = 0.9364     NOTHING THERE</span>
 <span class="c">#</span>
 <span class="c"># that last one is the most useful result in the module.</span>
-<span class="c"># &quot;no evidence of a relationship&quot; - NOT &quot;proved they are unrelated&quot;.</span>
+<span class="c"># "no evidence of a relationship" - NOT "proved they are unrelated".</span>
 
 <span class="c"># ---- A/B TESTING IS JUST CHI-SQUARE ON A 2x2 ----</span>
-<span class="c"># 8.0% vs 11.5% at 1200/arm -> p = 0.0039   ship B</span>
-<span class="c"># 8.0% vs 11.5% at  120/arm -> p = 0.3894   cannot see it</span>
+<span class="c"># 8.0% vs 11.5% at 1200/arm -&gt; p = 0.0039   ship B</span>
+<span class="c"># 8.0% vs 11.5% at  120/arm -&gt; p = 0.3894   cannot see it</span>
 <span class="c">#   SAME TRUTH. SAME LIFT. the only difference is how much data.</span>
 <span class="c">#</span>
 <span class="c"># so size it BEFORE you launch:  1,126 visitors per version</span>
 <span class="c"># (compare: 1,068 for a national poll. same square-root tax.)</span>
 <span class="c"># and then DO NOT peek and stop early.</span>
+<span class="c">#</span>
+<span class="c"># reporting: 8.0% -&gt; 11.5% is 3.5 PERCENTAGE POINTS</span>
+<span class="c">#                        and 43.75% RELATIVE. say which one.</span>
+<span class="c"># and statistical significance is NOT business significance.</span>
 
 <span class="c"># ---- THE LAST IDEA: DO NOT FOOL YOURSELF ----</span>
-<span class="c"># 20 tests on data with NO real difference -> 1 came back p = 0.0057</span>
-<span class="c"># nothing malfunctioned. 1-in-20 is what &quot;5%&quot; MEANS.</span>
+<span class="c"># 20 tests on data with NO real difference -&gt; 1 came back p = 0.0057</span>
+<span class="c"># nothing malfunctioned. 1-in-20 is what "5%" MEANS.</span>
 <span class="c">#</span>
 <span class="c"># test everything against everything and you WILL find something.</span>
 <span class="c"># it will not be real. this is called p-hacking.</span>
-<span class="c">#   -> decide what you are testing BEFORE you look</span>
-<span class="c">#   -> if you tested 20 things, say so when you report the 1</span>
-<span class="c">#   (Bonferroni exists: threshold / number of tests. discipline matters more.)</span>
+<span class="c">#   -&gt; decide what you are testing BEFORE you look</span>
+<span class="c">#   -&gt; if you tested 20 things, say so when you report the 1</span>
+<span class="c">#   (Bonferroni: threshold / number of tests. discipline matters more.)</span>
 
 <span class="c"># ---- THE WHOLE MODULE, IN ORDER ----</span>
 <span class="c">#   days 1-7   DESCRIBE    centre, spread, outliers, correlation</span>
@@ -12661,6 +13020,243 @@ n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span clas
     as the notes predicted, which spent the day 13 buffer &mdash; so there is no spare session left in
     statistics. Data Visualisation follows.
    </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Six steps, every code block, every board item written out, and the wording to
+  use at the end. If you lose your place, this page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The one table</p>
+   <p class="rs-say"><b>Land this:</b> today is not a new idea. Yesterday's logic does not change. The
+   only new question is <b>which test for which shape of problem</b>.</p>
+   <p class="rs-do">Put on the board and leave up all session</p>
+   <div class="rs-code"><pre><code>one number vs a claim ....... one-sample t-test
+two groups, a number ........ two-sample t-test
+two categories, counts ...... chi-square
+3+ groups, a number ......... ANOVA  (named only)</code></pre></div>
+   <div class="rs-board"><b>The line that makes it usable:</b> am I comparing <b>numbers</b> or
+   <b>counts</b>?<br>
+   salary, age, height, revenue &rarr; numbers &rarr; <b>t-test</b><br>
+   department, rating, clicked/not, A/B &rarr; counts &rarr; <b>chi-square</b></div>
+   <p class="rs-none">No code.</p>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 26</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two-sample t-test</p>
+   <p class="rs-say"><b>Land this:</b> Tech vs HR is the easy one. <b>Sales vs Marketing is the
+   session.</b> Take the vote before you show the p-value &mdash; the room will split, and that is the
+   whole argument for using a test.</p>
+   <p class="rs-do">Type this &mdash; the easy one first</p>
+   <div class="rs-code"><pre><code><span class="k">from</span> scipy <span class="k">import</span> stats
+
+tech = clean[clean.department == <span class="c">"Tech"</span>].salary
+hr   = clean[clean.department == <span class="c">"HR"</span>].salary
+
+t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
+<span class="k">print</span>(<span class="k">round</span>(tech.mean()), <span class="k">round</span>(hr.mean()), <span class="c">"p ="</span>, p)</code></pre></div>
+   <div class="rs-out">82419 56705 p = 1.156e-15</div>
+   <div class="rs-board"><b>Walk the code, 3 minutes.</b> <code>ind</code> = <b>independent</b>, two
+   separate groups of people &mdash; yesterday's <code>ttest_1samp</code> was one group and a number.
+   <code>equal_var=False</code> = do not assume the two have the same spread. It is called
+   <b>Welch's t-test</b>. Make it the default and stop thinking about it.</div>
+   <p class="rs-do" style="margin-top:12px">Then the close one</p>
+   <div class="rs-code"><pre><code>sales = clean[clean.department == <span class="c">"Sales"</span>].salary
+mktg  = clean[clean.department == <span class="c">"Marketing"</span>].salary
+
+t, p = stats.ttest_ind(sales, mktg, equal_var=<span class="k">False</span>)
+<span class="k">print</span>(<span class="c">"Sales    :"</span>, <span class="k">len</span>(sales), <span class="c">"people, average"</span>, <span class="k">round</span>(sales.mean()))
+<span class="k">print</span>(<span class="c">"Marketing:"</span>, <span class="k">len</span>(mktg),  <span class="c">"people, average"</span>, <span class="k">round</span>(mktg.mean()))
+<span class="k">print</span>(<span class="c">"gap      :"</span>, <span class="k">round</span>(mktg.mean() - sales.mean()))
+<span class="k">print</span>(<span class="c">"p-value  :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
+   <div class="rs-out">Sales    : 65 people, average 66535
+Marketing: 42 people, average 73954
+gap      : 7420
+p-value  : 0.0086</div>
+   <div class="rs-board" style="margin-top:8px"><b>Vote BEFORE the p-value:</b> &ldquo;7,400 apart.
+   Real, or noise?&rdquo; Hands both ways.<br><br>
+   Then: it is real, p = 0.0086. <b>25,714 was obvious. 7,420 was not, and half the room guessed
+   wrong.</b> The test uses group size and spread. Your eye uses neither.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">26 &ndash; 46</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Chi-square &mdash; the result that says nothing</p>
+   <p class="rs-say"><b>Land this:</b> both columns are categories, so we count instead of averaging.
+   Let them find &ldquo;patterns&rdquo; in the table out loud <b>before</b> you test. Then p = 0.94.</p>
+   <p class="rs-do">Type this &mdash; the count table first</p>
+   <div class="rs-code"><pre><code>table = pd.crosstab(clean.department, clean.rating)
+<span class="k">print</span>(table)</code></pre></div>
+   <div class="rs-out">rating      Average  Excellent  Good  Poor
+department
+HR                8         13    11    12
+Marketing        11          9     8    14
+Sales            15         14    19    17
+Tech              8         12    12    14</div>
+   <div class="rs-board"><b>Let them guess, then break it:</b> Marketing has 14 Poor, Sales has 19
+   Good &mdash; but Sales has <b>65</b> people and Marketing has <b>42</b>. Raw counts are not
+   comparable. This table is called a <b>contingency table</b>.</div>
+   <div class="rs-board" style="margin-top:8px"><b>H0</b> department and rating are independent &mdash;
+   no relationship.<br><b>H1</b> they are associated &mdash; there is a relationship.</div>
+   <p class="rs-do" style="margin-top:12px">Then the test, and what comes back</p>
+   <div class="rs-code"><pre><code>chi2, p, dof, expected = stats.chi2_contingency(table)
+
+<span class="k">print</span>(pd.DataFrame(expected,
+      index=table.index, columns=table.columns).round(<span class="o">1</span>))</code></pre></div>
+   <div class="rs-out">rating      Average  Excellent  Good  Poor
+department
+HR              9.4       10.7  11.2  12.7
+Marketing       9.0       10.2  10.7  12.2
+Sales          13.9       15.8  16.5  18.8
+Tech            9.8       11.2  11.7  13.3</div>
+   <div class="rs-board"><b>Four things come back:</b> <code>chi2</code> how far real is from expected
+   &middot; <code>p</code> the usual p-value &middot; <code>dof</code> degrees of freedom, Python's job
+   &middot; <code>expected</code> the table if there were no relationship.<br><br>
+   <code>pd.DataFrame(...)</code> only exists to print it with labels: <code>index=</code> puts the
+   department names back, <code>columns=</code> the rating names, <code>.round(1)</code> trims the
+   decimals.</div>
+   <p class="rs-do" style="margin-top:12px">The verdict</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"chi-square:"</span>, <span class="k">round</span>(chi2, <span class="o">2</span>))
+<span class="k">print</span>(<span class="c">"p-value   :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
+   <div class="rs-out">chi-square: 3.59
+p-value   : 0.9364</div>
+   <div class="rs-board"><b>Stop. Let it sit.</b> 0.94 &mdash; <b>fail to reject H0</b>. Every pattern
+   they spotted was noise.<br><br>
+   Say it exactly: <b>&ldquo;no evidence of a relationship&rdquo;</b> &mdash; NOT &ldquo;we proved they
+   are unrelated&rdquo;.<br><br>
+   <b>The closer:</b> the rating column was generated at <b>random</b> when the dataset was built.
+   There was never anything to find. The test got it right; their eyes did not.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">46 &ndash; 66</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">A/B testing, end to end</p>
+   <p class="rs-say"><b>Land this:</b> an A/B test is a chi-square on a 2&times;2. No new statistics at
+   all. Then run it twice at two sample sizes &mdash; that contrast is the whole block.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code><span class="c"># A: 1200 visitors, 96 signed up | B: 1200 visitors, 138 signed up</span>
+ab = np.array([[<span class="o">1104</span>, <span class="o">96</span>],
+               [<span class="o">1062</span>, <span class="o">138</span>]])
+
+<span class="k">print</span>(<span class="c">"A:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">96</span>/<span class="o">1200</span>, <span class="o">1</span>), <span class="c">"%"</span>)
+<span class="k">print</span>(<span class="c">"B:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">138</span>/<span class="o">1200</span>, <span class="o">1</span>), <span class="c">"%"</span>)
+
+chi2, p, dof, exp = stats.chi2_contingency(ab, correction=<span class="k">False</span>)
+<span class="k">print</span>(<span class="c">"p-value:"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
+   <div class="rs-out">A: 8.0 %
+B: 11.5 %
+p-value: 0.0039</div>
+   <div class="rs-board"><b>The 1104 confuses people every time.</b> 1200 visitors minus 96 signups =
+   1104 who did not. Chi-square needs <b>both</b> counts, not just the successes.<br><br>
+   <code>correction=False</code> switches off <b>Yates' correction</b>. On a 2&times;2, just say it.
+   8% and 11.5% are the <b>conversion rates</b>.</div>
+   <p class="rs-do" style="margin-top:12px">Now the same rates, a tenth of the traffic</p>
+   <div class="rs-code"><pre><code>small = np.array([[<span class="o">110</span>, <span class="o">10</span>],
+                  [<span class="o">106</span>, <span class="o">14</span>]])
+
+chi2, p, dof, exp = stats.chi2_contingency(small, correction=<span class="k">False</span>)
+<span class="k">print</span>(<span class="c">"A:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">10</span>/<span class="o">120</span>, <span class="o">1</span>), <span class="c">"%   B:"</span>, <span class="k">round</span>(<span class="o">100</span>*<span class="o">14</span>/<span class="o">120</span>, <span class="o">1</span>), <span class="c">"%"</span>)
+<span class="k">print</span>(<span class="c">"p-value:"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
+   <div class="rs-out">A: 8.3 %   B: 11.7 %
+p-value: 0.3894</div>
+   <div class="rs-board"><b>Same rates. Same lift. Opposite verdict.</b> Only the data changed &mdash;
+   1200 per arm became 120. That is a <b>Type II error</b>, yesterday's word.<br><br>
+   <b>A large p-value does not always mean no effect.</b> It can mean you did not collect enough
+   data.</div>
+   <p class="rs-do" style="margin-top:12px">So size it first</p>
+   <div class="rs-code"><pre><code><span class="k">from</span> math <span class="k">import</span> sqrt, ceil
+
+p1, p2 = <span class="o">0.08</span>, <span class="o">0.115</span>
+pbar   = (p1 + p2) / <span class="o">2</span>
+
+n = ((<span class="o">1.96</span>*sqrt(<span class="o">2</span>*pbar*(<span class="o">1</span>-pbar)) +
+      <span class="o">0.84</span>*sqrt(p1*(<span class="o">1</span>-p1) + p2*(<span class="o">1</span>-p2)))**<span class="o">2</span>) / (p2-p1)**<span class="o">2</span>
+
+<span class="k">print</span>(<span class="c">"visitors needed per version:"</span>, ceil(n))</code></pre></div>
+   <div class="rs-out">visitors needed per version: 1126</div>
+   <div class="rs-board"><b>Say this before anyone panics:</b> nobody memorises that formula. It
+   answers one question &mdash; how many visitors do I need to have a fair chance of spotting the lift
+   I care about? <code>ceil</code> = round <b>up</b>, you cannot have a tenth of a visitor.<br><br>
+   <b>1,126 per version. Yesterday's national poll was 1,068.</b> Completely different problems, almost
+   the same number. Square-root tax again.<br><br>
+   Then: <b>decide the size before you launch, and do not peek and stop early.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">66 &ndash; 78</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Twenty tests against nothing</p>
+   <p class="rs-say"><b>Land this:</b> you promised this yesterday. Both groups come from the same
+   recipe &mdash; there is no difference, by construction. One test lights up anyway.</p>
+   <p class="rs-do">Type this</p>
+   <div class="rs-code"><pre><code>rng = np.random.default_rng(<span class="o">13</span>)
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">20</span>):
+    a = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>)
+    b = rng.normal(<span class="o">0</span>, <span class="o">1</span>, <span class="o">50</span>)      <span class="c"># same recipe. no difference exists.</span>
+    t, p = stats.ttest_ind(a, b)
+    <span class="k">if</span> p &lt; <span class="o">0.05</span>:
+        <span class="k">print</span>(<span class="c">"test"</span>, i+<span class="o">1</span>, <span class="c">"-&gt; p ="</span>, <span class="k">round</span>(p, <span class="o">4</span>), <span class="c">"  *** SIGNIFICANT ***"</span>)</code></pre></div>
+   <div class="rs-out">test 18 -&gt; p = 0.0057   *** SIGNIFICANT ***</div>
+   <div class="rs-board"><b>Test 18. p = 0.0057.</b> Not borderline &mdash; you would write that up.
+   And there was nothing there, because you built both groups the same way.<br><br>
+   <b>Nothing malfunctioned.</b> Roughly 5 in 100 is what &ldquo;5%&rdquo; means, so across 20 tests one
+   crossing the line is not a surprise.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then say it slowly:</b> test salary against
+   department, city, education, rating, age, joining month, experience &mdash; keep going and something
+   <b>will</b> come back under 0.05. Report it without saying you ran fifty, and you have
+   <b>p-hacked</b>. Usually not dishonest &mdash; usually somebody genuinely believing they found
+   something.<br><br>
+   <b>The protection is not statistical:</b> decide what you are testing <b>before</b> you look. If you
+   ran many, say so.<br><br>
+   <b>Bonferroni, 30 seconds:</b> threshold &divide; number of tests. 0.05 &divide; 10 = 0.005. Name it
+   and move on.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">78 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Interview answers, two traps, and the close</p>
+   <p class="rs-say"><b>Land this:</b> the two A/B interview answers, then the two reporting traps, then
+   name the thirteen-session arc. Do not skip the arc &mdash; they have never seen the shape of it.</p>
+   <div class="rs-board"><b>&ldquo;What is A/B testing?&rdquo;</b> &mdash; &ldquo;An experiment where we
+   show two versions to different groups of users and compare one chosen metric to see whether the
+   difference is statistically significant.&rdquo;</div>
+   <div class="rs-board" style="margin-top:8px"><b>&ldquo;A is 8%, B is 11.5%. Is B better?&rdquo;</b>
+   &mdash; &ldquo;Not immediately. B is higher, but I would test whether it is more than random
+   variation, check the sample size, and ask whether the lift is big enough to matter to the
+   business.&rdquo;</div>
+   <p class="rs-do">On the board &mdash; trap one</p>
+   <div class="rs-code"><pre><code>8.00%  vs  8.05%   with enough data -&gt; can be SIGNIFICANT
+                   and still not worth rebuilding the page
+
+statistical question: is there evidence a difference exists?
+business question:    is it big enough to matter?</code></pre></div>
+   <p class="rs-do" style="margin-top:12px">On the board &mdash; trap two</p>
+   <div class="rs-code"><pre><code>8.0%  -&gt;  11.5%
+
+  3.5 PERCENTAGE POINTS      11.5 - 8
+  43.75% RELATIVE INCREASE   (11.5 - 8) / 8 x 100
+
+both true. say which one you mean.</code></pre></div>
+   <div class="rs-board"><b>Then the arc, out loud:</b> days 1&ndash;7 <b>describe</b> &middot; days
+   8&ndash;9 <b>probability</b> &middot; day 10 <b>the hinge, the CLT</b> &middot; days 11&ndash;13
+   <b>decide</b>. Every one needed the one before it.<br><br>
+   <b>Named, not taught:</b> binomial and Poisson, ANOVA, and charting &mdash; which is the next module,
+   and now the charts will mean something.</div>
+   <div class="rs-board" style="margin-top:8px"><b>The last sentence:</b> the hardest part of a
+   statistical test is almost never running it. It is <b>choosing the right test, and reading the
+   result honestly</b>.</div>
+  </div></div>
+
   </div>
  </div>
 </section>
