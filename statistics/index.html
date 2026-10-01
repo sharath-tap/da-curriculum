@@ -126,11 +126,13 @@ nav:not(.tapnav){top:var(--tapnav-h,46px)!important}
  <p class="lede">Every concept from the module, in order. Each one says <b>why it exists</b>, what it
  is in plain words, and the code that produces it &mdash; run for real against the employees table,
  so every number below is a genuine output.</p>
- <nav class="toc"><a href="#where-the-middle-is">Where the middle is <span>4</span></a>
+ <nav class="toc"><a href="#what-statistics-is-for">What statistics is for <span>1</span></a>
+<a href="#what-kind-of-column-is-it">What kind of column is it <span>3</span></a>
+<a href="#where-the-middle-is">Where the middle is <span>4</span></a>
 <a href="#how-spread-out-it-is">How spread out it is <span>8</span></a>
 <a href="#finding-outliers">Finding outliers <span>3</span></a>
 <a href="#two-columns-together">Two columns together <span>4</span></a>
-<a href="#samples-and-populations">Samples and populations <span>3</span></a>
+<a href="#samples-and-populations">Samples and populations <span>5</span></a>
 <a href="#probability-basics">Probability basics <span>7</span></a>
 <a href="#the-normal-distribution">The normal distribution <span>5</span></a>
 <a href="#the-central-limit-theorem">The Central Limit Theorem <span>4</span></a>
@@ -138,6 +140,89 @@ nav:not(.tapnav){top:var(--tapnav-h,46px)!important}
 <a href="#hypothesis-testing">Hypothesis testing <span>7</span></a>
 <a href="#which-test-to-use">Which test to use <span>5</span></a></nav>
 </header>
+<section class="cat" id="what-statistics-is-for">
+<div class="cathead"><h2>What statistics is for</h2><span class="tag"></span></div>
+<article class="e">
+<h3>Descriptive vs inferential</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The split that organises the whole subject. Every technique you learn sits on one side or the other, and which side you are on decides how confident you are allowed to sound.</p></div>
+<div class="what"><span class="lbl">In short</span><p>DESCRIPTIVE: you measured everybody, so you are only summarising and cannot be wrong. INFERENTIAL: you measured a few and want to talk about everybody, so there is always a risk attached.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("rows <span class="k">in</span> the file:", <span class="k">len</span>(df))
+<span class="k">print</span>()
+<span class="k">print</span>("DESCRIPTIVE - a claim about these <span class="o">201</span> people only")
+<span class="k">print</span>("   average salary here:", <span class="k">round</span>(sal.mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("INFERENTIAL - a claim about everyone, built <span class="k">from</span> a few")
+<span class="k">print</span>("   <span class="o">30</span> people say:", <span class="k">round</span>(sal.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
+<span class="k">print</span>("   <span class="k">and</span> we use that to talk about people we never measured")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">rows in the file: 201
+
+DESCRIPTIVE - a claim about these 201 people only
+   average salary here: 95648
+
+INFERENTIAL - a claim about everyone, built from a few
+   30 people say: 70032
+   and we use that to talk about people we never measured</div>
+</article>
+</section>
+<section class="cat" id="what-kind-of-column-is-it">
+<div class="cathead"><h2>What kind of column is it</h2><span class="tag"></span></div>
+<article class="e">
+<h3>The four scales</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The scale of a column decides which calculations are legal on it. This is the most common beginner mistake and the computer will not stop you making it.</p></div>
+<div class="what"><span class="lbl">In short</span><p>NOMINAL: names, no order. ORDINAL: there is an order but the gaps are not equal. INTERVAL: equal gaps but no true zero. RATIO: equal gaps and a real zero, so ratios make sense.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("NOMINAL   department :", df['department'].unique())
+<span class="k">print</span>("ORDINAL   education  :", df['education'].unique())
+<span class="k">print</span>("INTERVAL  join_date  :", df['join_date'].head(<span class="o">2</span>).values)
+<span class="k">print</span>("RATIO     salary     :", df['salary'].head(<span class="o">2</span>).values)
+<span class="k">print</span>()
+<span class="k">print</span>("the test <span class="k">for</span> RATIO: does zero mean none of it?")
+<span class="k">print</span>("   salary <span class="o">0</span>  = no salary at all   -&gt; ratio")
+<span class="k">print</span>("   year <span class="o">0</span>    = <span class="k">not</span> 'no time'      -&gt; interval")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">NOMINAL   department : ['HR' 'Marketing' 'Tech' 'Sales']
+ORDINAL   education  : ['Masters' 'Diploma' 'Bachelors']
+INTERVAL  join_date  : ['2018-01-03' '2024-07-02']
+RATIO     salary     : [47764. 86052.]
+
+the test for RATIO: does zero mean none of it?
+   salary 0  = no salary at all   -&gt; ratio
+   year 0    = not 'no time'      -&gt; interval</div>
+</article>
+<article class="e">
+<h3>The scale decides what you may compute</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Python will happily average a column of ID numbers and hand you something meaningless. This is the habit that stops you putting that number in a report.</p></div>
+<div class="what"><span class="lbl">In short</span><p>dept_id is NOMINAL - a name that happens to be written with digits. Its mean runs and means nothing. A rating is ORDINAL, and pandas refuses the median outright rather than giving you a wrong answer.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("dept_id values:", df['dept_id'].unique())
+<span class="k">print</span>("their mean    :", <span class="k">round</span>(df['dept_id'].mean(), <span class="o">2</span>))
+<span class="k">print</span>("   -&gt; valid arithmetic. there is no department <span class="o">2.32</span>.")
+<span class="k">print</span>()
+<span class="k">print</span>("now the same idea on a rating:")
+try:
+    <span class="k">print</span>(df['rating'].median())
+except TypeError as e:
+    <span class="k">print</span>("   TypeError -", str(e)[:<span class="o">44</span>])</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">dept_id values: [3 4 2 1]
+their mean    : 2.32
+   -&gt; valid arithmetic. there is no department 2.32.
+
+now the same idea on a rating:
+   TypeError - Cannot convert ['Poor' 'Poor' 'Good' 'Excell</div>
+</article>
+<article class="e">
+<h3>Discrete vs continuous</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>It decides whether counting an exact value makes sense, and it is the reason probability changes shape when you reach the normal curve.</p></div>
+<div class="what"><span class="lbl">In short</span><p>DISCRETE: whole steps you can count, with nothing in between. CONTINUOUS: any value in a range - you only stopped at one decimal place because the measuring tape did.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("DISCRETE   experience :", df['experience'].unique()[:<span class="o">6</span>], "... whole years")
+<span class="k">print</span>("CONTINUOUS height_cm  :", df['height_cm'].head(<span class="o">3</span>).values, "... any value")
+<span class="k">print</span>()
+<span class="k">print</span>("people exactly <span class="o">170.0</span> cm tall:", (df['height_cm'] == <span class="o">170.0</span>).sum())
+<span class="k">print</span>("this is why continuous probability needs a RANGE, never a single point.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">DISCRETE   experience : [ 4 13  1 11  9  3] ... whole years
+CONTINUOUS height_cm  : [169.5 169.5 166.5] ... any value
+
+people exactly 170.0 cm tall: 0
+this is why continuous probability needs a RANGE, never a single point.</div>
+</article>
+</section>
 <section class="cat" id="where-the-middle-is">
 <div class="cathead"><h2>Where the middle is</h2><span class="tag">Day 4</span></div>
 <article class="e">
@@ -225,20 +310,20 @@ its units are RUPEES SQUARED, which is why nobody reports it</div>
 <h3>Standard deviation</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>The standard way to say how spread out people are. Needed for the empirical rule, z-scores and everything in inference.</p></div>
 <div class="what"><span class="lbl">In short</span><p>The square root of the variance, which puts the answer back into normal units. Roughly: how far a typical value sits from the mean.</p></div>
-<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("standard deviation:", <span class="k">round</span>(sal.std()))</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">standard deviation: 364032</div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("standard deviation:", int(sal.std()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">standard deviation: 364031</div>
 </article>
 <article class="e">
 <h3>n minus 1, and ddof</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>Stops you silently under-reporting spread. Also a very common interview question.</p></div>
 <div class="what"><span class="lbl">In short</span><p>A sample is always a bit less spread out than the population it came from, so we divide by n-1 to compensate. Pandas does this by default; NumPy does not.</p></div>
 <div class="lbl codelbl">Code</div><pre><code><span class="k">import</span> numpy as np
-<span class="k">print</span>("pandas .std()      :", <span class="k">round</span>(sal.std()))          <span class="c"># divides by n-<span class="o">1</span></span>
-<span class="k">print</span>("numpy  .std()      :", <span class="k">round</span>(np.std(sal)))        <span class="c"># divides by n</span>
-<span class="k">print</span>("numpy with ddof=<span class="o">1</span>  :", <span class="k">round</span>(np.std(sal, ddof=<span class="o">1</span>)))</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">pandas .std()      : 364032
+<span class="k">print</span>("pandas .std()      :", int(sal.std()))            <span class="c"># divides by n-<span class="o">1</span></span>
+<span class="k">print</span>("numpy  .std()      :", int(np.std(sal)))          <span class="c"># divides by n</span>
+<span class="k">print</span>("numpy with ddof=<span class="o">1</span>  :", int(np.std(sal, ddof=<span class="o">1</span>)))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">pandas .std()      : 364031
 numpy  .std()      : 363116
-numpy with ddof=1  : 364032</div>
+numpy with ddof=1  : 364031</div>
 </article>
 <article class="e">
 <h3>The 68-95-99.7 rule</h3>
@@ -280,21 +365,25 @@ flagged: 2 -&gt; [5200000.  116894.]</div>
 <h3>What removing outliers does</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>Shows you exactly how much damage two rows can do, which is the argument for always checking.</p></div>
 <div class="what"><span class="lbl">In short</span><p>Removing flagged values barely moves the median but can transform the mean and the standard deviation.</p></div>
-<div class="lbl codelbl">Code</div><pre><code>clean = sal[(sal &gt;= q1 - <span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3 + <span class="o">1.5</span>*iqr)]
-<span class="k">print</span>("before: mean", <span class="k">round</span>(sal.mean()),   "median", <span class="k">round</span>(sal.median()),   "std", <span class="k">round</span>(sal.std()))
-<span class="k">print</span>("after : mean", <span class="k">round</span>(clean.mean()), "median", <span class="k">round</span>(clean.median()), "std", <span class="k">round</span>(clean.std()))</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">before: mean 95648 median 68647 std 364032
+<div class="lbl codelbl">Code</div><pre><code>kept = sal[(sal &gt;= q1 - <span class="o">1.5</span>*iqr) &amp; (sal &lt;= q3 + <span class="o">1.5</span>*iqr)]
+<span class="k">print</span>("before: mean", int(sal.mean()),  "median", int(sal.median()),  "std", int(sal.std()))
+<span class="k">print</span>("after : mean", int(kept.mean()), "median", int(kept.median()), "std", int(kept.std()))</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">before: mean 95648 median 68647 std 364031
 after : mean 69630 median 68342 std 16066</div>
 </article>
 <article class="e">
 <h3>An outlier is not always an error</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>Stops you deleting your most important row. A fraud, a bestseller and a typo all look identical to the rule.</p></div>
 <div class="what"><span class="lbl">In short</span><p>The rule finds unusual values. Whether to remove one is a judgement you make by looking at the row, never automatic.</p></div>
-<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>(df[df['salary'] &gt; 1_000_000][['name','department','salary']].to_string(index=<span class="k">False</span>))
+<div class="lbl codelbl">Code</div><pre><code>big = df[df['salary'] &gt; <span class="o">1000000</span>]
+<span class="k">print</span>("rows above <span class="o">10</span> lakh:", <span class="k">len</span>(big))
+<span class="k">print</span>("   department:", big['department'].values)
+<span class="k">print</span>("   salary    :", big['salary'].values)
 <span class="k">print</span>()
 <span class="k">print</span>("is this a typo, a CEO, <span class="k">or</span> fraud? the rule cannot tell you. go <span class="k">and</span> look.")</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">         name department    salary
-Lakshmi Kumar       Tech 5200000.0
+<div class="lbl outlbl">Output</div><div class="out">rows above 10 lakh: 1
+   department: ['Tech']
+   salary    : [5200000.]
 
 is this a typo, a CEO, or fraud? the rule cannot tell you. go and look.</div>
 </article>
@@ -359,6 +448,42 @@ if you cannot rule out 2 and 3, say 'associated', not 'causes'.</div>
 <section class="cat" id="samples-and-populations">
 <div class="cathead"><h2>Samples and populations</h2><span class="tag">Day 3</span></div>
 <article class="e">
+<h3>Parameter vs statistic</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>Two words that get used as if they mean the same thing. Interviewers ask this directly, because it shows whether you know what you are actually computing.</p></div>
+<div class="what"><span class="lbl">In short</span><p>A PARAMETER describes the population and you almost never know it. A STATISTIC describes your sample and is the only thing you can compute. Inferential statistics is using the second to guess the first.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("PARAMETER  mu     - the population average :", <span class="k">round</span>(sal.mean()))
+<span class="k">print</span>("STATISTIC  x-bar  - this sample average    :", <span class="k">round</span>(sal.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("at work you only ever see the second line.")
+<span class="k">print</span>("we can see both here only because this file IS our population.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">PARAMETER  mu     - the population average : 95648
+STATISTIC  x-bar  - this sample average    : 70032
+
+at work you only ever see the second line.
+we can see both here only because this file IS our population.</div>
+</article>
+<article class="e">
+<h3>More data does not fix bias</h3>
+<div class="why"><span class="lbl">Why it exists</span><p>The most expensive mistake in sampling, and the reason a huge survey can still be wrong. Remember it as a story rather than a formula.</p></div>
+<div class="what"><span class="lbl">In short</span><p>In 1936 the Literary Digest asked ten million people, got 2.4 million replies, and still called the election wrong because of WHO they asked. A 50,000-person honest sample beat them. Size fixes noise; only method fixes bias.</p></div>
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("an honest sample of <span class="o">30</span>:")
+<span class="k">print</span>("   ", <span class="k">round</span>(sal.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("a BIASED sample - every Tech employee, <span class="o">49</span> people:")
+<span class="k">print</span>("   ", <span class="k">round</span>(df[df['department'] == 'Tech']['salary'].mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("the truth:", <span class="k">round</span>(sal.mean()))
+<span class="k">print</span>("the biased one used more people <span class="k">and</span> landed further away.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">an honest sample of 30:
+    70032
+
+a BIASED sample - every Tech employee, 49 people:
+    189754
+
+the truth: 95648
+the biased one used more people and landed further away.</div>
+</article>
+<article class="e">
 <h3>Population vs sample</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>You will never measure everybody. Every number you report at work comes from a sample.</p></div>
 <div class="what"><span class="lbl">In short</span><p>The POPULATION is everyone you care about. A SAMPLE is the few you actually measured. Greek letters for the population, Roman for the sample.</p></div>
@@ -375,23 +500,26 @@ we can only ever compute the second one. the first is what we want.</div>
 <h3>How to build a sample</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>A biased sample gives a confident wrong answer, and more data does not fix it.</p></div>
 <div class="what"><span class="lbl">In short</span><p>SIMPLE RANDOM: everyone equally likely. STRATIFIED: split into groups, sample each in proportion. SYSTEMATIC: every nth one. CLUSTER: pick whole groups. The first two are the ones you will use.</p></div>
-<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("simple random:", <span class="k">round</span>(pop.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
+<div class="lbl codelbl">Code</div><pre><code><span class="k">print</span>("SIMPLE RANDOM - everyone equally likely")
+<span class="k">print</span>("   ", <span class="k">round</span>(pop.sample(<span class="o">30</span>, random_state=<span class="o">1</span>).mean()))
 <span class="k">print</span>()
-parts = []
+<span class="k">print</span>("STRATIFIED - take some <span class="k">from</span> every group on purpose")
 <span class="k">for</span> name, g <span class="k">in</span> df.groupby('department'):
-    parts.append(g.sample(<span class="o">8</span>, random_state=<span class="o">1</span>))
-strat = pd.concat(parts)
+    <span class="k">print</span>("   ", name, "-&gt;", <span class="k">round</span>(g['salary'].sample(<span class="o">8</span>, random_state=<span class="o">1</span>).mean()))
+<span class="k">print</span>()
+<span class="k">print</span>("SYSTEMATIC - every 10th row.   CLUSTER - pick whole offices, survey all of them.")
+<span class="k">print</span>("CONVENIENCE - whoever is nearby. fastest, <span class="k">and</span> the one that goes wrong.")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">SIMPLE RANDOM - everyone equally likely
+    70006
 
-<span class="k">print</span>("stratified - <span class="o">8</span> <span class="k">from</span> each department:")
-<span class="k">print</span>(strat['department'].value_counts().to_string())</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">simple random: 70006
+STRATIFIED - take some from every group on purpose
+    HR -&gt; 56387
+    Marketing -&gt; 66750
+    Sales -&gt; 75178
+    Tech -&gt; 82573
 
-stratified - 8 from each department:
-department
-HR           8
-Marketing    8
-Sales        8
-Tech         8</div>
+SYSTEMATIC - every 10th row.   CLUSTER - pick whole offices, survey all of them.
+CONVENIENCE - whoever is nearby. fastest, and the one that goes wrong.</div>
 </article>
 <article class="e">
 <h3>Bias vs noise</h3>
@@ -434,7 +562,7 @@ note it is 0.244, NOT 0.25 - the four departments are different sizes</div>
 <div class="why"><span class="lbl">Why it exists</span><p>The complement rule turns horrible calculations into one line. Worth knowing purely for that.</p></div>
 <div class="what"><span class="lbl">In short</span><p>Every probability sits between 0 and 1, and all the pieces sum to 1. So the chance of something NOT happening is 1 minus the chance it does.</p></div>
 <div class="lbl codelbl">Code</div><pre><code>p = df['department'].value_counts(normalize=<span class="k">True</span>)
-<span class="k">print</span>(p.<span class="k">round</span>(<span class="o">3</span>).to_string())
+<span class="k">print</span>(p.<span class="k">round</span>(<span class="o">3</span>))
 <span class="k">print</span>("total:", p.sum())
 <span class="k">print</span>()
 <span class="k">print</span>("P(<span class="k">not</span> Tech) = <span class="o">1</span> -", <span class="k">round</span>(p['Tech'],<span class="o">3</span>), "=", <span class="k">round</span>(<span class="o">1</span> - p['Tech'], <span class="o">3</span>))</code></pre>
@@ -443,6 +571,7 @@ Sales        0.323
 Tech         0.244
 HR           0.224
 Marketing    0.209
+Name: proportion, dtype: float64
 total: 1.0
 
 P(not Tech) = 1 - 0.244 = 0.756</div>
@@ -664,8 +793,10 @@ skew of those averages      : 0.09  -&gt; near 0 = normal</div>
 <div class="why"><span class="lbl">Why it exists</span><p>The most common wrong takeaway. Repeating a small sample does not help.</p></div>
 <div class="what"><span class="lbl">In short</span><p>Normal means skew 0, so 'becomes normal' means 'skew heads to zero'. It is the SIZE of each sample that drives it down - the number of repeats only makes the picture smoother.</p></div>
 <div class="lbl codelbl">Code</div><pre><code><span class="k">def</span> skew_of(n, reps):
-    m = [sal.sample(n, replace=<span class="k">True</span>, random_state=i).mean() <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(reps)]
-    <span class="k">return</span> <span class="k">round</span>(pd.Series(m).skew(), <span class="o">2</span>)
+    means = []
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(reps):
+        means.append(sal.sample(n, replace=<span class="k">True</span>, random_state=i).mean())
+    <span class="k">return</span> <span class="k">round</span>(pd.Series(means).skew(), <span class="o">2</span>)
 
 <span class="k">print</span>("raw column skew:", <span class="k">round</span>(sal.skew(), <span class="o">2</span>))
 <span class="k">print</span>()
@@ -840,17 +971,19 @@ guilty    H1 - what the prosecution must prove</div>
 <div class="why"><span class="lbl">Why it exists</span><p>The number every test reports. Misreading it is the most common error in applied statistics.</p></div>
 <div class="what"><span class="lbl">In short</span><p>The probability of seeing data at least this extreme IF the null were true. It is a statement about the DATA, computed in a world where nothing is going on - not a probability about your hypothesis.</p></div>
 <div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
-t, p = stats.ttest_1samp(sample, <span class="o">75000</span>)
-<span class="k">print</span>("sample average:", <span class="k">round</span>(sample.mean()), " claim: <span class="o">75000</span>")
+t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)
+<span class="k">print</span>("sample average:", <span class="k">round</span>(sample.mean()), " claim: <span class="o">65000</span>")
 <span class="k">print</span>("p-value       :", <span class="k">round</span>(p, <span class="o">4</span>))
 <span class="k">print</span>()
-<span class="k">print</span>("reads as: IF the true average really were <span class="o">75</span>,<span class="o">000</span>,")
-<span class="k">print</span>("a sample like ours would almost never happen. so reject <span class="o">75</span>,<span class="o">000.</span>")</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">sample average: 72149  claim: 75000
-p-value       : 0.0836
+<span class="k">print</span>("reads as: IF the true average really were <span class="o">65</span>,<span class="o">000</span>,")
+<span class="k">print</span>("a sample like ours would almost never happen. so REJECT <span class="o">65</span>,<span class="o">000.</span>")
+<span class="k">print</span>("(<span class="o">0.0000</span> is rounding - the p-value is tiny, never exactly zero.)")</code></pre>
+<div class="lbl outlbl">Output</div><div class="out">sample average: 72149  claim: 65000
+p-value       : 0.0
 
-reads as: IF the true average really were 75,000,
-a sample like ours would almost never happen. so reject 75,000.</div>
+reads as: IF the true average really were 65,000,
+a sample like ours would almost never happen. so REJECT 65,000.
+(0.0000 is rounding - the p-value is tiny, never exactly zero.)</div>
 </article>
 <article class="e">
 <h3>What a p-value is NOT</h3>
@@ -893,16 +1026,16 @@ so p = 0.049 and p = 0.051 mean the same thing. do not pretend otherwise.</div>
 <div class="why"><span class="lbl">Why it exists</span><p>Never say 'accept the null'. Once a student writes it they keep writing it.</p></div>
 <div class="what"><span class="lbl">In short</span><p>A high p-value means the evidence was not strong enough - not that there is nothing there. A tiny sample fails to reject almost anything. 'Not guilty' is a verdict about the evidence, not a certificate of innocence.</p></div>
 <div class="lbl codelbl">Code</div><pre><code>sample = pop.sample(<span class="o">100</span>, replace=<span class="k">True</span>, random_state=<span class="o">54</span>)
-t, p = stats.ttest_1samp(sample, <span class="o">71000</span>)
-<span class="k">print</span>("sample average:", <span class="k">round</span>(sample.mean()), " claim: <span class="o">71000</span>")
+t, p = stats.ttest_1samp(sample, <span class="o">72000</span>)
+<span class="k">print</span>("sample average:", <span class="k">round</span>(sample.mean()), " claim: <span class="o">72000</span>")
 <span class="k">print</span>("p-value       :", <span class="k">round</span>(p, <span class="o">4</span>), " -&gt; fail to reject")
 <span class="k">print</span>()
-<span class="k">print</span>("we did NOT prove the average is <span class="o">71</span>,<span class="o">000.</span>")
+<span class="k">print</span>("we did NOT prove the average is <span class="o">72</span>,<span class="o">000.</span>")
 <span class="k">print</span>("we found no evidence against it. completely different.")</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">sample average: 72149  claim: 71000
-p-value       : 0.4829  -&gt; fail to reject
+<div class="lbl outlbl">Output</div><div class="out">sample average: 72149  claim: 72000
+p-value       : 0.9274  -&gt; fail to reject
 
-we did NOT prove the average is 71,000.
+we did NOT prove the average is 72,000.
 we found no evidence against it. completely different.</div>
 </article>
 <article class="e">
@@ -947,16 +1080,18 @@ two categories, counts ...... stats.chi2_contingency(crosstab)
 <h3>Two-sample t-test</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>The everyday test: do these two groups really differ?</p></div>
 <div class="what"><span class="lbl">In short</span><p>Compares the averages of two groups. Use equal_var=False as your default - it does not assume the groups have the same spread, and costs almost nothing.</p></div>
-<div class="lbl codelbl">Code</div><pre><code>tech = pop[df['department']=='Tech']; hr = pop[df['department']=='HR']
+<div class="lbl codelbl">Code</div><pre><code>tech = clean[clean['department'] == 'Tech']['salary']
+hr   = clean[clean['department'] == 'HR']['salary']
 t, p = stats.ttest_ind(tech, hr, equal_var=<span class="k">False</span>)
-<span class="k">print</span>("Tech", <span class="k">round</span>(tech.mean()), "vs HR", <span class="k">round</span>(hr.mean()), " p =", format(p, '.2e'))
+<span class="k">print</span>("Tech", <span class="k">round</span>(tech.mean()), "vs HR", <span class="k">round</span>(hr.mean()), " p =", p)
 <span class="k">print</span>("   -&gt; real difference")
 <span class="k">print</span>()
-sales = pop[df['department']=='Sales']; mk = pop[df['department']=='Marketing']
+sales = clean[clean['department'] == 'Sales']['salary']
+mk    = clean[clean['department'] == 'Marketing']['salary']
 t, p = stats.ttest_ind(sales, mk, equal_var=<span class="k">False</span>)
 <span class="k">print</span>("Sales", <span class="k">round</span>(sales.mean()), "vs Marketing", <span class="k">round</span>(mk.mean()), " p =", <span class="k">round</span>(p,<span class="o">4</span>))
 <span class="k">print</span>("   -&gt; also real, but you could <span class="k">not</span> have guessed by eye")</code></pre>
-<div class="lbl outlbl">Output</div><div class="out">Tech 82419 vs HR 56705  p = 1.16e-15
+<div class="lbl outlbl">Output</div><div class="out">Tech 82419 vs HR 56705  p = 1.1560215947861482e-15
    -&gt; real difference
 
 Sales 66535 vs Marketing 73954  p = 0.0086
@@ -966,10 +1101,9 @@ Sales 66535 vs Marketing 73954  p = 0.0086
 <h3>Chi-square, and a result that finds nothing</h3>
 <div class="why"><span class="lbl">Why it exists</span><p>Most courses only show tests that succeed, which teaches students that a test confirms what they hoped. Usually it does not.</p></div>
 <div class="what"><span class="lbl">In short</span><p>Compares a table of counts against what you would expect if the two categories were unrelated. A high p-value means no evidence of a link - NOT proof there is none.</p></div>
-<div class="lbl codelbl">Code</div><pre><code>clean = df[(df['salary'] &gt;= q1-<span class="o">1.5</span>*iqr) &amp; (df['salary'] &lt;= q3+<span class="o">1.5</span>*iqr)]
-table = pd.crosstab(clean['department'], clean['rating'])
+<div class="lbl codelbl">Code</div><pre><code>table = pd.crosstab(clean['department'], clean['rating'])
 chi2, p, dof, exp = stats.chi2_contingency(table)
-<span class="k">print</span>(table.to_string())
+<span class="k">print</span>(table)
 <span class="k">print</span>()
 <span class="k">print</span>("chi2 =", <span class="k">round</span>(chi2,<span class="o">2</span>), " p =", <span class="k">round</span>(p,<span class="o">4</span>))
 <span class="k">print</span>("   -&gt; NO evidence that rating depends on department")
@@ -1028,7 +1162,7 @@ nothing malfunctioned. 1-in-20 is what 5% MEANS.
 decide what you are testing BEFORE you look.</div>
 </article>
 </section>
-<footer>TAP Academy &mdash; Data Analytics &middot; 55 concepts &middot; every example executed against
+<footer>TAP Academy &mdash; Data Analytics &middot; 61 concepts &middot; every example executed against
  employees.csv</footer>
 </div>
 <button class="themetog" id="tt">Theme</button>

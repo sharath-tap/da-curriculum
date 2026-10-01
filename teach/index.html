@@ -11561,7 +11561,7 @@ t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)
 <span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre>
    <div class="screen">our sample average: 72149
 the claim         : 65000
-p-value           : 0.0000</div>
+p-value           : 0.0</div>
 
    <div class="stage">Stop and explain every new piece of that code. Four minutes. They have not met
    any of it before.</div>
@@ -11582,9 +11582,9 @@ p-value           : 0.0000</div>
     <p><code>p</code> is the p-value. That is the one we use.</p>
    </div>
 
-   <div class="warn"><b>One thing about that output.</b> It shows <b>0.0000</b>. That does not mean the
+   <div class="warn"><b>One thing about that output.</b> It shows <b>0.0</b>. That does not mean the
    p-value is zero. It means it was so small that rounding to four decimal places left nothing. The
-   real number might be 0.00000042.</div>
+   real number here is about <b>0.00003</b> &mdash; three in a hundred thousand.</div>
 
    <div class="speak">
     <p>So our p-value is basically zero.</p>
@@ -11660,7 +11660,7 @@ p-value           : 0.9274</div>
 <pre><code>yesterday's interval:   68,952  to  75,346
 
    72,000   INSIDE   -&gt;  p = 0.9274  -&gt;  fail to reject
-   65,000   OUTSIDE  -&gt;  p = 0.0000  -&gt;  reject
+   65,000   OUTSIDE  -&gt;  p = 0.0     -&gt;  reject
 
    the interval IS the set of claims you cannot reject.</code></pre>
   </div>
@@ -12020,12 +12020,12 @@ t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)
 <span class="k">print</span>(<span class="c">"p-value           :"</span>, <span class="k">round</span>(p, <span class="o">4</span>))</code></pre></div>
    <div class="rs-out">our sample average: 72149
 the claim         : 65000
-p-value           : 0.0000</div>
+p-value           : 0.0</div>
    <div class="rs-board"><b>Explain the three new things, 4 minutes.</b>
    <b>scipy</b> &mdash; a library like pandas and numpy; <code>stats</code> is its statistics section.
    <b>ttest_1samp</b> &mdash; read it out: t-test, one sample. Hand it your sample and the claimed
    number. <b>t and p</b> &mdash; ignore t today; p is the one you use.<br><br>
-   <b>0.0000 does not mean zero.</b> It means too small to survive rounding to 4 places.</div>
+   <b>0.0 does not mean zero.</b> It means too small to survive rounding to 4 places &mdash; the real p here is about 0.00003.</div>
    <div class="rs-board" style="margin-top:8px"><b>Reject 65,000 &mdash; then the correction:</b> we
    did <b>not</b> prove the average is 72,149. We only showed 65,000 does not fit.</div>
    <p class="rs-do">Then change one number</p>
@@ -12043,7 +12043,7 @@ p-value           : 0.9274</div>
    <div class="rs-board" style="margin-top:8px"><b>Then join it to yesterday:</b><br>
    interval was <b>68,952 to 75,346</b><br>
    72,000 <b>inside</b> &rarr; p = 0.9274 &rarr; fail to reject<br>
-   65,000 <b>outside</b> &rarr; p = 0.0000 &rarr; reject<br>
+   65,000 <b>outside</b> &rarr; p = 0.0 &rarr; reject<br>
    <b>The interval IS the set of claims you cannot reject.</b></div>
   </div></div>
 
@@ -13177,7 +13177,7 @@ the truth   : 69630
    <p class="rs-say">A different question with the same machinery. Not <b>what is the number</b>, but
    <b>is this difference real, or am I looking at noise?</b></p>
    <div class="rs-code"><pre><code>t, p = stats.ttest_1samp(sample, <span class="o">65000</span>)</code></pre></div>
-   <div class="rs-out">claim 65000 -> p = 0.0000   reject H0
+   <div class="rs-out">claim 65000 -> p = 0.0      reject H0
 claim 72000 -> p = 0.9274   fail to reject</div>
    <div class="rs-board"><b>The line:</b> assume nothing is happening, then ask how surprising your data
    would be in that world. Small p, reject. Large p, <b>fail to reject</b> &mdash; never
