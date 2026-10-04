@@ -627,8 +627,8 @@ try{var _t=localStorage.getItem("steep-theme");
 
     <button class="dcard full" data-go="v2">
      <span class="id">VIZ 2</span><h3>Shape and Outliers</h3>
-     <p>Histogram and box plot. Skew 14.06 becomes a tail you can see, and the 1.5 &times; IQR fences
-     become two dots you can point at.</p>
+     <p>Counts 45 real numbers into four bins on the board before drawing a single histogram. Then
+     skew 14.06 becomes a tail, and the fences become two dots.</p>
      <span class="foot">Script ready &middot; the payback session</span></button>
 
     <button class="dcard full" data-go="v3">
@@ -14219,20 +14219,20 @@ only the SOMETHING line changes.</code></pre></div>
   <p class="tag" style="margin-bottom:16px">Data Visualisation day 2 &middot; merged class &middot; 90 minutes &middot; full script</p>
   <h1 class="display">Shape and<br>Outliers</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   The two charts that make three weeks of statistics visible. <b>Skew 14.06</b> stops being a number
-   and becomes a tail. <b>The fences</b> stop being arithmetic and become two dots you can point at.</p>
+   Two charts that make three weeks of statistics visible. <b>Skew 14.06</b> stops being a number and
+   becomes a tail. <b>The fences</b> stop being arithmetic and become two dots you can point at.</p>
   <div class="glance">
+   <div class="gcell"><b>45</b><span>numbers, counted by hand</span></div>
    <div class="gcell"><b>14.06</b><span>finally visible</span></div>
-   <div class="gcell"><b>1</b><span>row ruins the chart</span></div>
-   <div class="gcell"><b>2</b><span>dots outside the box</span></div>
    <div class="gcell"><b>5</b><span>numbers, one picture</span></div>
+   <div class="gcell"><b>2</b><span>dots outside the box</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">Why this is the best session in the module</h4>
-   <p style="color:var(--sienna)">They derived all of this numerically and never saw it. The histogram
-   of raw salary is <b style="color:var(--sienna)">ruined by one row</b> &mdash; which is the same
-   lesson as the mean being 95,648 against a median of 68,647, except now it is impossible to miss.
-   <b style="color:var(--sienna)">Do not rush either chart.</b></p>
+   <h4 style="color:var(--sienna)">Build the chart before you use it</h4>
+   <p style="color:var(--sienna)">A histogram bar means something <b style="color:var(--sienna)">completely
+   different</b> from a bar-chart bar, and nobody can read one until they know what. So the session
+   starts with <b style="color:var(--sienna)">45 real numbers they count into bins by hand</b>, then
+   draws that same chart so every bar can be checked. Only then does it go near the salary column.</p>
   </div>
  </div>
 </section>
@@ -14241,18 +14241,18 @@ only the SOMETHING line changes.</code></pre></div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Draw the broken histogram first, and leave it up.</b> Raw salary gives one tall bar and a
-   sliver at five million. Resist fixing it for a full two minutes &mdash; the broken chart is the
-   lesson, not an accident.</li>
-   <li><b>Bins are the one honest trap.</b> The same data with 5 bins and with 50 bins tells two
-   different stories. Show both. This is the only place a histogram can mislead you.</li>
-   <li><b>The box plot is a callback, not a new idea.</b> They built the five-number summary and the
-   1.5 &times; IQR fences on statistics day 5 and drew it on the board. Today it is one line of code
-   and the same picture. Say that out loud.</li>
-   <li><b>Point at the two dots.</b> Two values sit outside the fences. Those exact two dots appear
-   above the box. Connecting the arithmetic they did to the dots they can see is the whole session.</li>
-   <li><b>Finish with box plots side by side.</b> Four departments, four boxes, one picture &mdash;
-   and it previews the comparison they tested on statistics day 13.</li>
+   <li><b>Do not draw a histogram before explaining a bin.</b> They will see bars and assume it is
+   yesterday's bar chart. Count HR's 45 experience values into four groups on the board first, then draw
+   it and let them check every bar against their own count.</li>
+   <li><b>Then break it on purpose.</b> Raw salary gives one tall bar and a sliver. Leave that chart up
+   for two full minutes and make them diagnose it. The broken chart is the lesson, not an accident.</li>
+   <li><b>Re-derive the five numbers; do not just say &ldquo;remember day five&rdquo;.</b> Half the room
+   will not. It costs four minutes to print min, Q1, median, Q3 and max, and the box plot is unreadable
+   without them.</li>
+   <li><b>Point at the two dots.</b> Those exact two salaries fell outside the fences they computed
+   themselves. Connecting their own arithmetic to two dots they can see is the whole session.</li>
+   <li><b>Finish with four boxes side by side.</b> It previews the comparison they tested on statistics
+   day 13, and it is where the box plot beats the histogram.</li>
   </ol>
  </div>
 </section>
@@ -14260,66 +14260,74 @@ only the SOMETHING line changes.</code></pre></div>
 <section>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Two charts, and the only thing you must hold firmly is what
-  a bin is. If you are shaky it will be there &mdash; so read part one twice.</p>
+  <p class="cap" style="margin-bottom:24px">Two charts. The thing you must hold firmly is what a bin is
+  &mdash; everything else today follows from it. Read part one twice.</p>
 
   <div class="understand">
-   <h5>Part one &middot; the histogram, and what a bin actually is</h5>
+   <h5>Part one &middot; what a bin actually is</h5>
 
-   <h6>It is a bar chart of ranges, not of categories</h6>
-   <p>Yesterday's bar chart had four bars because there are four departments. A histogram has no natural
-   categories &mdash; salary is a number, and there are 199 different ones.</p>
-   <p>So it <b>chops the range into slices</b> and counts how many values fall into each slice. Each
-   slice is a <b>bin</b>. The bar height is how many people landed in that bin.</p>
+   <h6>A histogram is a bar chart of ranges, not of categories</h6>
+   <p>Yesterday's bar chart had four bars because there are four departments. The chart had no choice
+   &mdash; the categories were already there in the column.</p>
+   <p>Salary has no categories. It is a number, and there are 199 different ones. You cannot draw 199
+   bars.</p>
+   <p>So the histogram <b>chops the range into slices</b> and counts how many values land in each slice.
+   Each slice is a <b>bin</b>. The height of a bar is <b>how many people fell into that slice</b>.</p>
    <div class="keyline">
-    Bar chart: one bar per <b>category</b>. Histogram: one bar per <b>range of numbers</b>. That is the
-    entire difference, and it is the one students get wrong in interviews.
+    Bar chart: one bar per <b>category</b>, and the height is a count of that category.<br>
+    Histogram: one bar per <b>range of numbers</b>, and the height is a count of that range.<br><br>
+    That is the entire difference, and it is a real interview question.
    </div>
 
-   <h6>Why the bin count changes the story</h6>
-   <p>Too few bins and everything collapses into three fat bars that hide the shape. Too many and every
-   bar is one or two people, which is noise rather than shape.</p>
-   <p>Matplotlib picks ten by default. Ten is usually wrong and usually harmless. The honest teaching
-   point is that <b>you should try two or three values and look</b>, not that there is a correct
-   number.</p>
+   <h6>Why the hand count matters</h6>
+   <p>If you draw a histogram and explain the bars afterwards, students spend the next twenty minutes
+   quietly assuming a bar means what it meant yesterday. Counting 45 values into four groups takes three
+   minutes and removes the confusion permanently, because they can then check every bar against a number
+   they produced themselves.</p>
 
-   <h6>What the raw salary histogram does, and why you want it to</h6>
-   <p>One employee earns 52 lakh. The rest are between 33,000 and about 1.1 lakh. So matplotlib has to
-   stretch the bottom ruler from zero to five million, and 198 of the 199 people get squashed into the
-   first bin.</p>
-   <p>The result is a chart with one tall bar and a sliver. <b>It is useless, and that is exactly why it
-   is worth showing.</b> It is the visual version of the mean being 95,648 when the median is 68,647.</p>
+   <h6>Why the bin count changes the story</h6>
+   <p>Too few bins and everything collapses into fat bars that hide the shape. Too many and each bar is
+   one or two people, which is noise rather than shape. Matplotlib picks ten by default. Ten is usually
+   fine and occasionally wrong. <b>There is no correct number</b> &mdash; the honest teaching point is
+   try two or three and look.</p>
   </div>
 
   <div class="understand">
-   <h5>Part two &middot; the box plot, which they have already drawn by hand</h5>
+   <h5>Part two &middot; why the raw salary histogram is worth drawing badly</h5>
 
-   <h6>Five numbers they already computed</h6>
+   <h6>One row destroys the picture</h6>
+   <p>One employee earns 52 lakh. Everybody else is between 33,000 and about 1.1 lakh. So matplotlib
+   must stretch the bottom ruler from zero to five million, and 198 of the 199 people get squashed into
+   the first bin.</p>
+   <p>The result is one tall bar and a sliver. <b>It is useless, and that is exactly why you draw
+   it.</b> It is the visual version of the mean being 95,648 when the median is 68,647 &mdash; a number
+   they have had for three weeks without seeing what it meant.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the box plot, and the five numbers under it</h5>
+
+   <h6>Re-derive the five numbers, every time</h6>
    <p>The box plot is the five-number summary, drawn. Minimum, first quartile, median, third quartile,
-   maximum. They did this on statistics day 5 with a pen.</p>
+   maximum. They computed these on statistics day 5, which was three weeks ago, and the picture is
+   meaningless to anybody who has lost them.</p>
    <div class="mth">
-    <div class="mrow"><b>the box</b> From Q1 to Q3. The middle half of everybody.</div>
-    <div class="mrow"><b>the line inside</b> The median. Not the mean &mdash; worth saying, because
-    everyone assumes mean.</div>
-    <div class="mrow"><b>the whiskers</b> Reach out to the furthest value that is still inside the
-    fences.</div>
-    <div class="mrow"><b>the dots</b> Anything outside the fences. Outliers, by the 1.5 &times; IQR
-    definition they already learnt.</div>
+    <div class="mrow"><b>the box</b> From Q1 to Q3. The middle half of everybody &mdash; 25% below it,
+    25% above it.</div>
+    <div class="mrow"><b>the line inside</b> The <b>median</b>. Not the mean. Everyone assumes mean, so
+    say it out loud.</div>
+    <div class="mrow"><b>the whiskers</b> Reach out to the furthest value still inside the fences.</div>
+    <div class="mrow"><b>the dots</b> Anything outside the fences &mdash; outliers, by the 1.5 &times;
+    IQR rule they already know.</div>
    </div>
 
    <h6>The connection you must make explicit</h6>
-   <p>On statistics day 5 they computed fences of <b>26,610 and 112,994</b> and found <b>2 values</b>
-   outside them. Today those two values are two dots above the box. Same rule, same answer, drawn
-   instead of printed.</p>
+   <p>They will compute fences of <b>26,610 and 112,994</b> in this session and find <b>2</b> values
+   outside them: 116,894 and 52,00,000. Those two values are the two dots above the box.</p>
    <div class="keyline">
-    Matplotlib uses <b>exactly the 1.5 &times; IQR rule</b> to decide what becomes a dot. It is not a
-    different definition and it is not a judgement call &mdash; it is the arithmetic they already did.
+    <code>plt.boxplot</code> is not using some other definition of an outlier. It is using
+    <b>theirs</b>. Nothing new has been introduced today &mdash; only drawn.
    </div>
-
-   <h6>Why analysts reach for it first</h6>
-   <p>It shows centre, spread, skew and outliers in about a second, and several of them fit side by side
-   in one picture. A histogram shows one column beautifully; four box plots compare four groups at a
-   glance.</p>
   </div>
  </div>
 </section>
@@ -14333,39 +14341,118 @@ only the SOMETHING line changes.</code></pre></div>
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-8 -->
+  <!-- 0-6 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 8</span><h3>Set up, and finish yesterday's loose end</h3></div>
-   <p class="objective">Two minutes of housekeeping, then straight into the broken chart.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 6</span><h3>Set up, and today's question</h3></div>
 
    <div class="typeit">Everyone starts here</div>
 <pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
 <span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
 
-df = pd.read_csv(<span class="c">"employees.csv"</span>)
+df  = pd.read_csv(<span class="c">"employees.csv"</span>)
 sal = df[<span class="c">"salary"</span>].dropna()
 
 <span class="k">print</span>(<span class="k">len</span>(sal), <span class="c">"salaries"</span>)</code></pre>
    <div class="screen">199 salaries</div>
 
    <div class="speak">
-    <p><code>dropna()</code> because two rows have no salary. You have done this since week one.</p>
-    <p>Yesterday somebody asked why Sales came first in the bar chart. Quick answer:
-    <code>value_counts()</code> sorts by <b>how many</b>, not by name. We will fix that properly
-    tomorrow when we do bar charts seriously. Today is about one column of numbers.</p>
+    <p><code>dropna()</code> because two rows have no salary written in. You have done that since week
+    one.</p>
+    <p>Yesterday we answered <b>&ldquo;how many in each group?&rdquo;</b> with a bar chart.</p>
+    <p>Today a different question. <b>What does one column of numbers actually look like?</b> Are most
+    people bunched together? Spread out? Is anybody miles away from everyone else?</p>
+    <p>There are two charts for that, and we will build both from scratch.</p>
    </div>
   </div>
 
-  <!-- 8-28 -->
+  <!-- 6-22 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">8 &ndash; 28</span><h3>The histogram, and the row that ruins it</h3></div>
-   <p class="objective">Show the broken chart. Leave it up. Let them work out what happened.</p>
+   <div class="bhead"><span class="clock">6 &ndash; 22</span><h3>Count it by hand first</h3></div>
+   <p class="objective">Nobody draws a histogram until they know what one bar means.</p>
+
+   <div class="stage">Board only for the first few minutes. Laptops can stay shut. This is the block
+   that decides whether the rest of the session makes sense.</div>
 
    <div class="speak">
-    <p>Yesterday's bar chart had four bars because there are four departments.</p>
-    <p>Salary has no categories. It is a number, and there are a hundred and ninety-nine different
-    ones. So we use a different chart. It is called a <b>histogram</b>, and the command is
-    <code>hist</code>.</p>
+    <p>Before I draw anything I want to build this chart with you on the board, because the bars mean
+    something <b>completely different</b> from yesterday.</p>
+    <p>Yesterday each bar was a department. Four departments, four bars. Easy.</p>
+    <p>But look at salary. It is a number, and there are a hundred and ninety-nine different salaries in
+    this file. I cannot draw a hundred and ninety-nine bars.</p>
+    <p>So let us take something smaller and do it by hand.</p>
+   </div>
+
+   <div class="typeit">Type this &mdash; the HR team's years of experience</div>
+<pre><code>hr = df[df[<span class="c">"department"</span>] == <span class="c">"HR"</span>][<span class="c">"experience"</span>]
+<span class="k">print</span>(<span class="k">len</span>(hr), <span class="c">"people"</span>)
+<span class="k">print</span>(<span class="k">sorted</span>(hr))</code></pre>
+   <div class="screen">45 people
+[0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 6, 6, 7, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 13, 13, 13, 14, 14, 14, 15]</div>
+
+   <div class="speak">
+    <p>Forty-five people in HR. Their years of experience, sorted so they are easy to read.</p>
+    <p>I am not going to draw forty-five bars either. Instead I am going to <b>chop the range into four
+    groups</b> and count how many people fall into each one.</p>
+    <p>Zero to three. Four to seven. Eight to eleven. Twelve to fifteen.</p>
+    <p>Count them with me.</p>
+   </div>
+
+   <div class="stage">Count out loud together off the printed list. It takes two minutes and it is the
+   most valuable two minutes in the session.</div>
+
+   <div class="typeit">On the board, counted together</div>
+<pre><code>  0 to 3     0,1,1,2,2,2,3,3,3,3                      ->  10 people
+  4 to 7     4,4,4,4,4,4,5,5,6,6,7,7,7,7,7            ->  15 people
+  8 to 11    8,8,9,9,9,9,10,10,10,11,11,11            ->  12 people
+  12 to 15   12,13,13,13,14,14,14,15                  ->   8 people
+                                                        ----------
+                                                          45 people</code></pre>
+
+   <div class="speak">
+    <p>Ten, fifteen, twelve, eight. That adds up to forty-five, which is everybody.</p>
+    <p>Each of those four groups is called a <b>bin</b>. And the chart that draws them has a name
+    &mdash; a <b>histogram</b>.</p>
+    <p>Now watch. I am going to ask Python for exactly what we just did.</p>
+   </div>
+
+   <div class="typeit">Now draw it</div>
+<pre><code>plt.hist(hr, bins=<span class="o">4</span>)
+
+plt.title(<span class="c">"HR: years of experience"</span>)
+plt.xlabel(<span class="c">"Years of experience"</span>)
+plt.ylabel(<span class="c">"How many people"</span>)
+
+plt.show()</code></pre>
+
+   <figure class="chartout">
+    <img src="img/v2_bins_small.png" alt="Histogram of HR experience with four bars of heights 10, 15, 12 and 8.">
+    <figcaption>Four bars: <b>10, 15, 12, 8</b> &mdash; exactly the numbers they counted by hand a
+    minute ago.</figcaption>
+   </figure>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Check the bars against the numbers you just counted. Do they match?&rdquo;</div>
+    <div class="a">Ten, fifteen, twelve, eight. They match exactly. <b>Wait for them to actually look
+    and confirm.</b> A student who has verified a chart against their own arithmetic once never has to
+    guess what a bar means again.</div>
+   </div>
+
+   <div class="keyline">
+    <b>This is the whole difference, and it is an interview question.</b><br><br>
+    <b>Bar chart</b> &mdash; one bar per <b>category</b>. Four departments, four bars.<br>
+    <b>Histogram</b> &mdash; one bar per <b>range of numbers</b>. You choose how many ranges.<br><br>
+    That is also why histogram bars usually touch each other and bar-chart bars do not: the ranges run
+    into each other, the categories do not.
+   </div>
+  </div>
+
+  <!-- 22-38 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">22 &ndash; 38</span><h3>Now the real column, and it breaks</h3></div>
+   <p class="objective">Show the broken chart. Leave it up. Let them diagnose it.</p>
+
+   <div class="speak">
+    <p>Now we know what a histogram is, so let us point it at the salary column.</p>
    </div>
 
    <div class="typeit">Type this</div>
@@ -14378,27 +14465,26 @@ plt.ylabel(<span class="c">"How many people"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d2_hist_raw.png" alt="Histogram of raw salary: one bar of nearly 200 people near zero, and a barely visible sliver at 5 million.">
+    <img src="img/d2_hist_raw.png" alt="Histogram of raw salary: one bar of nearly 200 people near zero and a barely visible sliver out at 5 million.">
     <figcaption>One tall bar, and a sliver you can barely see. <b>This chart is useless</b> &mdash; and
     that is the lesson.</figcaption>
    </figure>
 
-   <div class="stage">Do not fix it. Leave it on screen and ask the question. Two full minutes.</div>
+   <div class="stage">Do not fix it. Leave it on screen and ask. Two full minutes.</div>
 
    <div class="qbox">
     <div class="q">&ldquo;That is a terrible chart. What went wrong?&rdquo;</div>
-    <div class="a">Somebody will spot the bottom ruler going to five million. Push until they say it:
-    <b>one person earns 52 lakh</b>, so the chart has to stretch that far, and everybody else gets
-    crushed into the first bar.</div>
+    <div class="a">Somebody will spot the bottom ruler running to five million. Push until they say it:
+    <b>one person earns 52 lakh</b>, so the chart must stretch that far, and everybody else gets crushed
+    into the first bar.</div>
    </div>
 
    <div class="speak">
     <p>Look at the bottom of the chart. It goes all the way to five million.</p>
-    <p>Why? Because one employee in this file earns fifty-two lakh. Matplotlib has to fit that person
-    in, so it stretches the ruler to five million &mdash; and the other hundred and ninety-eight people,
-    who all earn between thirty-three thousand and about one lakh, get squashed into that first
-    bar.</p>
-    <p>One row out of one hundred and ninety-nine destroyed the picture.</p>
+    <p>Why? Because one person in this file earns fifty-two lakh. Python has to fit that person in, so it
+    stretches the ruler to five million &mdash; and the other hundred and ninety-eight people, who all
+    earn between thirty-three thousand and about one lakh, end up inside that single first bar.</p>
+    <p><b>One row out of one hundred and ninety-nine destroyed the picture.</b></p>
    </div>
 
    <div class="keyline">
@@ -14408,23 +14494,32 @@ plt.show()</code></pre>
    </div>
 
    <div class="speak">
-    <p>And we already know what to do, because we built the tool for it. The 1.5 times IQR rule from day
-    five. Let us use it.</p>
+    <p>And we already built the tool to deal with it, three weeks ago. The one point five times IQR
+    rule. Let us use it.</p>
    </div>
 
-   <div class="typeit">The same fences from statistics day five</div>
-<pre><code>q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
-iqr = q3 - q1
-low, high = q1 - <span class="o">1.5</span>*iqr, q3 + <span class="o">1.5</span>*iqr
+   <div class="typeit">The fences, worked out again from scratch</div>
+<pre><code>q1 = sal.quantile(<span class="o">0.25</span>)     <span class="c"># 25% of people earn less than this</span>
+q3 = sal.quantile(<span class="o">0.75</span>)     <span class="c"># 75% of people earn less than this</span>
+iqr = q3 - q1                <span class="c"># the middle half, measured</span>
+
+low  = q1 - <span class="o">1.5</span>*iqr
+high = q3 + <span class="o">1.5</span>*iqr
 
 pop = sal[(sal &gt;= low) &amp; (sal &lt;= high)]
 
+<span class="k">print</span>(<span class="c">"Q1:"</span>, <span class="k">round</span>(q1), <span class="c">" Q3:"</span>, <span class="k">round</span>(q3), <span class="c">" IQR:"</span>, <span class="k">round</span>(iqr))
 <span class="k">print</span>(<span class="c">"fences:"</span>, <span class="k">round</span>(low), <span class="c">"to"</span>, <span class="k">round</span>(high))
 <span class="k">print</span>(<span class="c">"kept  :"</span>, <span class="k">len</span>(pop), <span class="c">"of"</span>, <span class="k">len</span>(sal))</code></pre>
-   <div class="screen">fences: 26610 to 112994
+   <div class="screen">Q1: 59004  Q3: 80600  IQR: 21596
+fences: 26610 to 112994
 kept  : 197 of 199</div>
 
-   <div class="typeit">Now draw it again</div>
+   <div class="speak">
+    <p>Two people fall outside those fences. Everybody else stays.</p>
+   </div>
+
+   <div class="typeit">Draw it again, without those two</div>
 <pre><code>plt.hist(pop, bins=<span class="o">20</span>)
 
 plt.title(<span class="c">"Salary - outliers removed"</span>)
@@ -14434,33 +14529,30 @@ plt.ylabel(<span class="c">"How many people"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d2_hist_clean.png" alt="Histogram of trimmed salary showing a clear peak around 60-70 thousand with a tail stretching to the right.">
+    <img src="img/d2_hist_clean.png" alt="Histogram of trimmed salary showing a clear peak around 60 to 70 thousand and a tail stretching right.">
     <figcaption>The same column, two rows removed. Now you can see the <b>shape</b> &mdash; a peak, and
     a tail stretching right.</figcaption>
    </figure>
 
    <div class="speak">
-    <p>Now look at it. Most people sit around sixty to seventy thousand. And then there is a
+    <p>Now look at it properly. Most people sit around sixty to seventy thousand. And then there is a
     <b>tail</b> stretching off to the right &mdash; fewer and fewer people, earning more and more.</p>
-    <p>That tail has a name and you already know it. We called it <b>skew</b>, and we computed it as
+    <p>That tail has a name, and you already know it. We called it <b>skew</b>, and we computed it as
     fourteen point zero six.</p>
     <p>For three weeks that was a number I asked you to trust. <b>That is the tail.</b> Right-skewed
     means the tail points right.</p>
    </div>
   </div>
 
-  <!-- 28-42 -->
+  <!-- 38-50 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">28 &ndash; 42</span><h3>Bins, and the only way a histogram lies</h3></div>
-   <p class="objective">The one honest trap in this chart. Show both, do not give a rule.</p>
+   <div class="bhead"><span class="clock">38 &ndash; 50</span><h3>Bins can change the story</h3></div>
+   <p class="objective">The one honest trap in this chart. Show both, give no rule.</p>
 
    <div class="speak">
-    <p>I typed <code>bins=20</code> just now and did not explain it. Let me, because it is the one thing
-    about a histogram that can mislead you.</p>
-    <p>Salary is a number. There are no natural categories. So the histogram <b>chops the range into
-    slices</b> and counts how many people fall into each slice. Each slice is a <b>bin</b>. The bar
-    height is how many people landed in it.</p>
-    <p>How many slices? That is your choice, and it changes the picture.</p>
+    <p>I typed <code>bins=20</code> just now and did not explain it. On the HR chart I typed
+    <code>bins=4</code> because we had counted four groups by hand.</p>
+    <p>So the number of bins is <b>your choice</b>. And it changes what you see.</p>
    </div>
 
    <div class="typeit">The same data, twice</div>
@@ -14480,24 +14572,24 @@ plt.show()</code></pre>
    <div class="speak">
     <p>Same numbers. Same people. Two different pictures.</p>
     <p>Five bins is too few &mdash; everything collapses into fat bars and the shape disappears.</p>
-    <p>Fifty is too many &mdash; now each bar is one or two people, and you are looking at randomness,
-    not shape.</p>
+    <p>Fifty is too many &mdash; now each bar is one or two people, and you are looking at randomness
+    rather than shape.</p>
    </div>
 
    <div class="qbox">
     <div class="q">&ldquo;So which is the correct number of bins?&rdquo;</div>
     <div class="a">There isn't one, and say so plainly. The honest answer is <b>try two or three and
-    look</b>. Twenty to thirty is a reasonable starting point for a couple of hundred rows. What matters
-    is knowing the choice exists &mdash; because somebody showing you a histogram has already made it,
-    and they may have made it to suit themselves.</div>
+    look</b>. Twenty to thirty is a fair start for a couple of hundred rows. What matters is knowing the
+    choice exists &mdash; because whoever shows you a histogram has already made it, and they may have
+    made it to suit themselves.</div>
    </div>
 
    <div class="warn"><b>Do not give them a formula.</b> There are rules for bin width and none of them
-   matter at this level. Naming a formula would make them think the choice is settled. It is not, and
-   knowing that is the useful part.</div>
+   matter at this level. Naming one would make them think the choice is settled. It is not, and knowing
+   that is the useful part.</div>
 
-   <div class="stage">Now put the two averages on the picture. This is the moment day four finally
-   makes sense.</div>
+   <div class="stage">Now put the two averages on the picture. This is where day four finally makes
+   sense.</div>
 
    <div class="typeit">Mean and median, drawn on top</div>
 <pre><code>plt.hist(pop, bins=<span class="o">20</span>)
@@ -14511,13 +14603,13 @@ plt.show()</code></pre>
 
    <figure class="chartout">
     <img src="img/d2_hist_meanmedian.png" alt="Histogram with a red vertical line for the mean and a blue vertical line for the median, the mean sitting to the right of the median.">
-    <figcaption><code>axvline</code> draws a vertical line. The mean sits to the <b>right</b> of the
+    <figcaption><code>axvline</code> draws one vertical line. The mean sits to the <b>right</b> of the
     median &mdash; pulled by the tail.</figcaption>
    </figure>
 
    <div class="speak">
-    <p><code>axvline</code> means <b>a vertical line across the axes</b>. One argument: where on the
-    bottom ruler to put it.</p>
+    <p><code>axvline</code> means <b>a vertical line across the chart</b>. You give it one number
+    &mdash; where on the bottom ruler to stand the line.</p>
     <p>And look where they land. The mean is to the <b>right</b> of the median. The tail pulled it
     there.</p>
     <p>That is the rule from day four, drawn. <b>When the tail points right, the mean is bigger than the
@@ -14525,16 +14617,35 @@ plt.show()</code></pre>
    </div>
   </div>
 
-  <!-- 42-66 -->
+  <!-- 50-70 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">42 &ndash; 66</span><h3>The box plot, which you already drew by hand</h3></div>
-   <p class="objective">Statistics day 5, in one line of code. Point at the two dots.</p>
+   <div class="bhead"><span class="clock">50 &ndash; 70</span><h3>The second chart: five numbers in one picture</h3></div>
+   <p class="objective">Re-derive the five numbers, then draw them. Do not assume day 5 survived.</p>
 
    <div class="speak">
-    <p>Second chart, and this one you have already drawn &mdash; on paper, on day five of statistics.</p>
-    <p>We built the five-number summary. Minimum, first quartile, median, third quartile, maximum. And
-    I drew a box with two lines coming out of it and said the picture has a name.</p>
-    <p>It is called a <b>box plot</b>, and it is one line of code.</p>
+    <p>Second chart. And again I want the numbers before the picture.</p>
+    <p>There are five numbers that describe any column, and you worked them out on day five of
+    statistics. Let us get them back on screen.</p>
+   </div>
+
+   <div class="typeit">The five numbers</div>
+<pre><code><span class="k">print</span>(<span class="c">"minimum:"</span>, <span class="k">round</span>(sal.min()))
+<span class="k">print</span>(<span class="c">"Q1     :"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.25</span>)))
+<span class="k">print</span>(<span class="c">"median :"</span>, <span class="k">round</span>(sal.median()))
+<span class="k">print</span>(<span class="c">"Q3     :"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.75</span>)))
+<span class="k">print</span>(<span class="c">"maximum:"</span>, <span class="k">round</span>(sal.max()))</code></pre>
+   <div class="screen">minimum: 33085
+Q1     : 59004
+median : 68647
+Q3     : 80600
+maximum: 5200000</div>
+
+   <div class="speak">
+    <p>Lowest paid person: thirty-three thousand. Highest: fifty-two lakh.</p>
+    <p>A quarter of people earn below fifty-nine thousand. Half earn below sixty-eight thousand. Three
+    quarters earn below eighty thousand six hundred.</p>
+    <p>Five numbers. There is a chart that draws all five at once, and you have already seen me draw it
+    on the board on day five. It is called a <b>box plot</b>.</p>
    </div>
 
    <div class="typeit">Type this &mdash; on the raw column, deliberately</div>
@@ -14546,51 +14657,51 @@ plt.ylabel(<span class="c">"Salary"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d2_box_raw.png" alt="Box plot of raw salary: the box is compressed at the bottom with two circles plotted far above it.">
-    <figcaption>The box is squashed at the bottom and there are <b>two circles</b> floating above
-    it.</figcaption>
+    <img src="img/d2_box_raw.png" alt="Box plot of raw salary: the box is squashed at the bottom with two circles plotted high above it.">
+    <figcaption>The box is squashed at the bottom and there are <b>two circles</b> floating above it.</figcaption>
    </figure>
 
-   <div class="stage">Take the chart apart piece by piece. Four minutes, and name every part before
-   you talk about the dots.</div>
+   <div class="stage">Take the picture apart piece by piece, matching each part to a number already on
+   screen. Four minutes, and name every part before you talk about the dots.</div>
 
    <div class="speak">
-    <p>The <b>box</b> goes from the first quartile to the third quartile. That is the middle half of
-    everybody &mdash; 25% below it, 25% above it.</p>
-    <p>The <b>line inside the box</b> is the median. Not the mean. That trips people up, so say it to
-    yourself: the line is the median.</p>
-    <p>The <b>whiskers</b> &mdash; the lines coming out of the box &mdash; reach out to the furthest
-    value that is still inside the fences.</p>
-    <p>And the <b>circles</b> are outliers.</p>
+    <p>The <b>box</b> runs from Q1 to Q3 &mdash; from fifty-nine thousand to eighty thousand six
+    hundred. That is the middle half of everybody. A quarter of people below it, a quarter above it.</p>
+    <p>The <b>line inside the box</b> is the median, sixty-eight thousand six hundred. Not the mean.
+    That trips people up, so say it to yourself &mdash; the line is the median.</p>
+    <p>The <b>whiskers</b>, the lines coming out of the box, reach out to the furthest value that is
+    still inside the fences.</p>
+    <p>And the two <b>circles</b> are outliers.</p>
    </div>
 
    <div class="qbox">
-    <div class="q">Point at the circles. &ldquo;How did Python decide those two were outliers? It never
-    asked me.&rdquo;</div>
-    <div class="a">It used the <b>1.5 &times; IQR rule</b> &mdash; exactly the one they derived on
-    statistics day 5 and used again twenty minutes ago. Same fences, 26,610 and 112,994. Same two
-    values. Wait for someone to make the connection before you say it.</div>
+    <div class="q">Point at the circles. &ldquo;How did Python decide those two were outliers? I never
+    told it to.&rdquo;</div>
+    <div class="a">It used the <b>1.5 &times; IQR rule</b> &mdash; the one they derived on day 5 and
+    used again twenty minutes ago in this session. Same fences, 26,610 and 112,994. Same two values.
+    <b>Wait for someone to make the connection before you say it.</b></div>
    </div>
 
    <div class="speak">
-    <p>Python did not guess. It used the same rule you learnt on day five. Quartile one minus one point
-    five times the IQR, quartile three plus one point five times the IQR.</p>
-    <p>We computed those fences ourselves twenty minutes ago. Twenty-six thousand six hundred and ten,
-    and one lakh twelve thousand nine hundred and ninety-four. And two values fell outside.</p>
-    <p><b>Those two values are those two dots.</b></p>
-    <p>You did that arithmetic three weeks ago on paper. This is the same answer, drawn.</p>
+    <p>Python did not guess. It used the same rule you used earlier in this session.</p>
+    <p>Quartile one minus one point five times the IQR. Quartile three plus one point five times the
+    IQR. Twenty-six thousand six hundred and ten, and one lakh twelve thousand nine hundred and
+    ninety-four.</p>
+    <p>And two salaries fell outside: one lakh sixteen thousand, and fifty-two lakh.</p>
+    <p><b>Those two values are those two dots.</b> You did that arithmetic yourself, twenty minutes ago
+    and again three weeks ago. This is the same answer, drawn.</p>
    </div>
 
    <div class="keyline">
-    This is worth being explicit about: <code>plt.boxplot</code> is not using some other definition of
-    an outlier. It is using <b>yours</b>. Nothing new has been introduced &mdash; only drawn.
+    Worth being explicit about: <code>plt.boxplot</code> is not using some other definition of an
+    outlier. It is using <b>yours</b>. Nothing new has been introduced today &mdash; only drawn.
    </div>
   </div>
 
-  <!-- 66-84 -->
+  <!-- 70-84 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">66 &ndash; 84</span><h3>Four boxes, one picture</h3></div>
-   <p class="objective">Where the box plot beats the histogram, and a preview of comparison.</p>
+   <div class="bhead"><span class="clock">70 &ndash; 84</span><h3>Four boxes, one picture</h3></div>
+   <p class="objective">Where the box plot beats the histogram.</p>
 
    <div class="speak">
     <p>A histogram shows one column beautifully. But it can only show one at a time.</p>
@@ -14599,10 +14710,12 @@ plt.show()</code></pre>
    </div>
 
    <div class="typeit">One box per department</div>
-<pre><code>clean = df[(df.salary &gt;= low) &amp; (df.salary &lt;= high)]
+<pre><code>clean = df[(df[<span class="c">"salary"</span>] &gt;= low) &amp; (df[<span class="c">"salary"</span>] &lt;= high)]
 
-order = [<span class="c">"HR"</span>, <span class="c">"Marketing"</span>, <span class="c">"Sales"</span>, <span class="c">"Tech"</span>]
-groups = [clean[clean.department == d].salary <span class="k">for</span> d <span class="k">in</span> order]
+order  = [<span class="c">"HR"</span>, <span class="c">"Marketing"</span>, <span class="c">"Sales"</span>, <span class="c">"Tech"</span>]
+groups = []
+<span class="k">for</span> d <span class="k">in</span> order:
+    groups.append(clean[clean[<span class="c">"department"</span>] == d][<span class="c">"salary"</span>])
 
 plt.boxplot(groups, tick_labels=order)
 
@@ -14611,27 +14724,26 @@ plt.ylabel(<span class="c">"Salary"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d2_box_by_dept.png" alt="Four box plots side by side for HR, Marketing, Sales and Tech, with Tech clearly highest and HR lowest.">
+    <img src="img/d2_box_by_dept.png" alt="Four box plots side by side for HR, Marketing, Sales and Tech, with Tech highest and HR lowest.">
     <figcaption>Four departments, one picture. Tech sits highest, HR lowest &mdash; and you can see the
     spread as well as the middle.</figcaption>
    </figure>
 
-   <div class="stage">Walk the one new piece of code, then read the chart. They have met the list
-   building block before; it is the <code>tick_labels</code> argument that is new.</div>
-
    <div class="speak">
-    <p>One new thing in that code. <code>plt.boxplot</code> can take a <b>list of groups</b> instead of
-    one column, and it draws one box for each.</p>
-    <p>And <code>tick_labels</code> is what goes under each box. Without it you get 1, 2, 3, 4 and
-    nobody knows which is which.</p>
+    <p>Two new things in that code, and both are small.</p>
+    <p>The <b>loop builds a list</b>. For each department it pulls out that department's salaries and
+    adds it to <code>groups</code>. So <code>groups</code> ends up holding four sets of salaries.</p>
+    <p>And <code>plt.boxplot</code> can take a <b>list of groups</b> instead of one column &mdash; it
+    draws one box for each. <code>tick_labels</code> is what goes under each box. Without it you get 1,
+    2, 3, 4 and nobody knows which is which.</p>
    </div>
 
    <div class="speak">
     <p>Now read it. Tech sits highest. HR sits lowest. Marketing and Sales overlap almost
     completely.</p>
-    <p>And here is what a table of four averages would not have told you: look at <b>how tall the boxes
-    are</b>. That is the spread. Two departments can have a similar middle and completely different
-    consistency.</p>
+    <p>And here is what four averages in a table would not have told you &mdash; look at <b>how tall the
+    boxes are</b>. That is the spread. Two departments can have a similar middle and completely
+    different consistency.</p>
    </div>
 
    <div class="keyline">
@@ -14640,19 +14752,15 @@ plt.show()</code></pre>
     not.</b> Tech and HR barely touch. Marketing and Sales sit almost on top of each other.
    </div>
 
-   <div class="stage">Ten minutes on their own. This is the first chart they choose rather than
-   copy.</div>
+   <div class="stage">Ten minutes on their own. Walk the room.</div>
 
    <div class="typeit">Their turn</div>
-<pre><code><span class="c"># 1. a histogram of the "age" column</span>
-<span class="c">#    something in it will look wrong. find it.</span>
-<span class="c"># 2. a box plot of "experience", split by department</span>
-<span class="c"># titles and labels on both.</span></code></pre>
+<pre><code><span class="c"># 1. a histogram of "height_cm"</span>
+<span class="c">#    try bins=5, then bins=30. which one tells you more?</span>
 
-   <div class="warn"><b>The age histogram is a trap, and a deliberate one.</b> This column has a value
-   of &minus;4 and a value of 210. Both will show up as lonely bars miles from everybody else. Let them
-   find it rather than warning them &mdash; a student who discovers bad data in a chart never forgets
-   that charts find bad data.</div>
+<span class="c"># 2. a box plot of "experience", one box per department</span>
+<span class="c">#    same loop pattern as above</span>
+<span class="c"># titles and labels on both.</span></code></pre>
   </div>
 
   <!-- 84-90 -->
@@ -14662,33 +14770,32 @@ plt.show()</code></pre>
    <div class="typeit">The two charts, side by side</div>
 <pre><code>HISTOGRAM                        BOX PLOT
 
-one column, in detail            one column, summarised in 5 numbers
+one column, in detail            one column, as 5 numbers
 shows the SHAPE                  shows OUTLIERS as dots
 you choose the bins              you choose nothing
 one at a time                    several side by side
 
 
 both answer: "what does this column look like?"
-neither answers: "are two columns related?"   <- thursday</code></pre>
+neither answers: "are two columns related?"   <- tomorrow</code></pre>
 
    <div class="speak">
-    <p>Tomorrow, two more charts. One compares categories properly &mdash; including finally fixing
-    that ordering problem from yesterday. And one shows whether two columns move together, which is
-    correlation, drawn.</p>
-    <p>And in that one you are going to see something in this dataset that no number we have computed
-    has shown you yet.</p>
+    <p>Tomorrow, two more charts. One compares categories properly &mdash; including finally fixing that
+    ordering problem from yesterday. And one shows whether two columns move together.</p>
+    <p>And in that second one you are going to see something in this file that no number we have
+    computed has shown you yet.</p>
    </div>
 
    <div class="typeit">The four lines. If everything else goes, keep these.</div>
-<pre><code>1.  BAR CHART   = one bar per category
+<pre><code>1.  BAR CHART   = one bar per CATEGORY
     HISTOGRAM   = one bar per RANGE of numbers
-    that is the difference. it is an interview question.
+    we counted 45 people into 4 bins by hand. that is all a bin is.
 
 2.  one extreme row can ruin a histogram.
     the fix is the same 1.5 x IQR rule from statistics day 5.
 
-3.  the box = middle half. the line = MEDIAN, not mean.
-    the dots = outliers, by the SAME rule you already learnt.
+3.  the box = middle half (Q1 to Q3). the line = MEDIAN, not mean.
+    the dots = outliers, by the SAME rule you worked out yourself.
 
 4.  tail points right  ->  mean sits right of median.
     you memorised it. now you have seen it.</code></pre>
@@ -14702,11 +14809,11 @@ neither answers: "are two columns related?"   <- thursday</code></pre>
   <div class="runsheet">
  <div class="rs-head">
   <h4>The session, as a run sheet</h4>
-  <p>Everything in order. Six steps, every code block, every board item written out. If you lose your
+  <p>Everything in order. Seven steps, every code block, every board item written out. If you lose your
   place, this page alone is enough.</p>
  </div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 8</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 6</span></div>
   <div class="rs-body">
    <p class="rs-topic">Set up</p>
    <div class="rs-code"><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
@@ -14715,118 +14822,162 @@ neither answers: "are two columns related?"   <- thursday</code></pre>
 df  = pd.read_csv(<span class="c">"employees.csv"</span>)
 sal = df[<span class="c">"salary"</span>].dropna()</code></pre></div>
    <div class="rs-out">199 salaries</div>
-   <div class="rs-board">Answer yesterday's loose end in one sentence: <code>value_counts()</code> sorts
-   by frequency, not by name. <b>Fixing it properly is tomorrow.</b></div>
+   <div class="rs-board"><b>Today's question:</b> yesterday was &ldquo;how many in each group&rdquo;.
+   Today it is <b>&ldquo;what does one column of numbers look like?&rdquo;</b> Bunched? Spread? Anybody
+   miles away?</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">8 &ndash; 28</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">6 &ndash; 22</span></div>
   <div class="rs-body">
-   <p class="rs-topic">The broken histogram</p>
-   <p class="rs-say"><b>Land this:</b> draw it, then <b>leave it up for two full minutes</b> and make
-   them diagnose it. Do not fix it early.</p>
-   <p class="rs-do">Type this</p>
-   <div class="rs-code"><pre><code>plt.hist(sal)
-plt.title(<span class="c">"Salary - every row"</span>)
-plt.xlabel(<span class="c">"Salary"</span>)
+   <p class="rs-topic">Count it by hand first</p>
+   <p class="rs-say"><b>Land this:</b> the block that decides the session. <b>Nobody draws a histogram
+   until they know what one bar means.</b> Board first, laptops can stay shut.</p>
+   <p class="rs-do">Print HR's experience</p>
+   <div class="rs-code"><pre><code>hr = df[df[<span class="c">"department"</span>] == <span class="c">"HR"</span>][<span class="c">"experience"</span>]
+<span class="k">print</span>(<span class="k">len</span>(hr), <span class="c">"people"</span>)
+<span class="k">print</span>(<span class="k">sorted</span>(hr))</code></pre></div>
+   <div class="rs-out">45 people
+[0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 6, 6, 7, 7, 7, 7, 7,
+ 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 13, 13, 13, 14, 14, 14, 15]</div>
+   <p class="rs-do">Count out loud together &mdash; 2 minutes, the best-spent in the session</p>
+   <div class="rs-code"><pre><code>  0 to 3    0,1,1,2,2,2,3,3,3,3                 -> 10
+  4 to 7    4,4,4,4,4,4,5,5,6,6,7,7,7,7,7       -> 15
+  8 to 11   8,8,9,9,9,9,10,10,10,11,11,11       -> 12
+  12 to 15  12,13,13,13,14,14,14,15             ->  8
+                                                  ---
+                                                   45</code></pre></div>
+   <p class="rs-do">Then draw exactly that</p>
+   <div class="rs-code"><pre><code>plt.hist(hr, bins=<span class="o">4</span>)
+plt.title(<span class="c">"HR: years of experience"</span>)
+plt.xlabel(<span class="c">"Years of experience"</span>)
 plt.ylabel(<span class="c">"How many people"</span>)
 plt.show()</code></pre></div>
+   <div class="rs-board"><b>Ask them to check:</b> bars are <b>10, 15, 12, 8</b> &mdash; exactly their
+   own count. <b>Wait until they actually look.</b><br><br>
+   <b>The interview line:</b> bar chart = one bar per <b>CATEGORY</b>; histogram = one bar per
+   <b>RANGE</b>. That is also why histogram bars touch and bar-chart bars do not.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">22 &ndash; 38</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The real column, and it breaks</p>
+   <p class="rs-say"><b>Land this:</b> draw it, then <b>leave it up for two full minutes</b> and make
+   them diagnose it. Do not fix it early.</p>
+   <div class="rs-code"><pre><code>plt.hist(sal)
+plt.title(<span class="c">"Salary - every row"</span>)
+plt.show()</code></pre></div>
    <div class="rs-board"><b>Ask:</b> &ldquo;that is a terrible chart &mdash; what went wrong?&rdquo;
-   Push until somebody says it: <b>one person earns 52 lakh</b>, so the ruler stretches to 5 million and
-   198 people get crushed into one bar.<br><br>
+   Push until somebody says it: <b>one person earns 52 lakh</b>, the ruler stretches to 5 million, 198
+   people crush into one bar.<br><br>
    <b>The callback:</b> mean <b>95,648</b> vs median <b>68,647</b>. Same person. <b>This is what that
    gap looks like.</b></div>
-   <p class="rs-do" style="margin-top:12px">Then trim, with their own day-5 rule</p>
-   <div class="rs-code"><pre><code>q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
+   <p class="rs-do" style="margin-top:12px">The fences, worked out again from scratch</p>
+   <div class="rs-code"><pre><code>q1 = sal.quantile(<span class="o">0.25</span>)
+q3 = sal.quantile(<span class="o">0.75</span>)
 iqr = q3 - q1
 low, high = q1 - <span class="o">1.5</span>*iqr, q3 + <span class="o">1.5</span>*iqr
 pop = sal[(sal &gt;= low) &amp; (sal &lt;= high)]
 
+<span class="k">print</span>(<span class="c">"Q1:"</span>, <span class="k">round</span>(q1), <span class="c">" Q3:"</span>, <span class="k">round</span>(q3), <span class="c">" IQR:"</span>, <span class="k">round</span>(iqr))
+<span class="k">print</span>(<span class="c">"fences:"</span>, <span class="k">round</span>(low), <span class="c">"to"</span>, <span class="k">round</span>(high))
+<span class="k">print</span>(<span class="c">"kept  :"</span>, <span class="k">len</span>(pop), <span class="c">"of"</span>, <span class="k">len</span>(sal))
+
 plt.hist(pop, bins=<span class="o">20</span>)
-plt.title(<span class="c">"Salary - outliers removed"</span>)
 plt.show()</code></pre></div>
-   <div class="rs-out">fences: 26610 to 112994
+   <div class="rs-out">Q1: 59004  Q3: 80600  IQR: 21596
+fences: 26610 to 112994
 kept  : 197 of 199</div>
-   <div class="rs-board"><b>Now the payoff:</b> a peak around 60&ndash;70k and a <b>tail to the
-   right</b>. &ldquo;We called that <b>skew</b>, and computed it as <b>14.06</b>. For three weeks it was
-   a number I asked you to trust. <b>That is the tail.</b>&rdquo;</div>
+   <div class="rs-board"><b>The payoff:</b> a peak at 60&ndash;70k and a <b>tail to the right</b>.
+   &ldquo;We called that <b>skew</b> and computed it as <b>14.06</b>. For three weeks it was a number I
+   asked you to trust. <b>That is the tail.</b>&rdquo;</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">28 &ndash; 42</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">38 &ndash; 50</span></div>
   <div class="rs-body">
-   <p class="rs-topic">Bins, and mean vs median drawn</p>
-   <p class="rs-say"><b>Land this:</b> the same data at 5 bins and 50 bins tells two different stories.
-   Show both. <b>Give no formula.</b></p>
-   <div class="rs-code"><pre><code>plt.hist(pop, bins=<span class="o">5</span>)   <span class="c"># shape hidden</span>
-plt.hist(pop, bins=<span class="o">50</span>)  <span class="c"># noise, not shape</span></code></pre></div>
+   <p class="rs-topic">Bins change the story</p>
+   <div class="rs-code"><pre><code>plt.hist(pop, bins=<span class="o">5</span>)    <span class="c"># shape hidden</span>
+plt.hist(pop, bins=<span class="o">50</span>)   <span class="c"># noise, not shape</span></code></pre></div>
    <div class="rs-board"><b>&ldquo;Which is correct?&rdquo;</b> &mdash; there is no correct. <b>Try two
-   or three and look.</b> 20&ndash;30 is a fair start for a couple of hundred rows. The useful part is
-   knowing the choice exists, because whoever showed you a histogram already made it.</div>
-   <p class="rs-do" style="margin-top:12px">Then put the averages on it</p>
+   or three and look.</b> 20&ndash;30 is a fair start for a couple of hundred rows. <b>Give no
+   formula.</b></div>
+   <p class="rs-do" style="margin-top:12px">Then the averages on top</p>
    <div class="rs-code"><pre><code>plt.hist(pop, bins=<span class="o">20</span>)
 plt.axvline(pop.mean(),   color=<span class="c">"red"</span>)
 plt.axvline(pop.median(), color=<span class="c">"blue"</span>)
 plt.show()</code></pre></div>
-   <div class="rs-board"><code>axvline</code> = a vertical line across the plot.<br><br>
-   <b>The mean sits RIGHT of the median.</b> The tail pulled it there. &ldquo;You memorised that
-   sentence on day four. Now you can see why it is true.&rdquo;</div>
+   <div class="rs-board"><code>axvline</code> = one vertical line, you give it where to stand.<br><br>
+   <b>Mean sits RIGHT of median.</b> The tail pulled it. &ldquo;You memorised that on day four. Now you
+   can see why it is true.&rdquo;</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">42 &ndash; 66</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">50 &ndash; 70</span></div>
   <div class="rs-body">
-   <p class="rs-topic">The box plot &mdash; statistics day 5, drawn</p>
-   <p class="rs-say"><b>Land this:</b> run it on the <b>raw</b> column so the two outlier dots appear.
-   Name every part before you talk about the dots.</p>
-   <div class="rs-code"><pre><code>plt.boxplot(sal)
+   <p class="rs-topic">Five numbers, then the box plot</p>
+   <p class="rs-say"><b>Land this:</b> <b>print the five numbers first.</b> Do not say &ldquo;remember
+   day five&rdquo; &mdash; half the room will not, and the picture is unreadable without them.</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="c">"minimum:"</span>, <span class="k">round</span>(sal.min()))
+<span class="k">print</span>(<span class="c">"Q1     :"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.25</span>)))
+<span class="k">print</span>(<span class="c">"median :"</span>, <span class="k">round</span>(sal.median()))
+<span class="k">print</span>(<span class="c">"Q3     :"</span>, <span class="k">round</span>(sal.quantile(<span class="o">0.75</span>)))
+<span class="k">print</span>(<span class="c">"maximum:"</span>, <span class="k">round</span>(sal.max()))
+
+plt.boxplot(sal)
 plt.title(<span class="c">"Salary - every row"</span>)
 plt.ylabel(<span class="c">"Salary"</span>)
 plt.show()</code></pre></div>
-   <div class="rs-board"><b>box</b> = Q1 to Q3, the middle half &middot; <b>line inside</b> = the
-   <b>median</b>, not the mean &middot; <b>whiskers</b> = furthest value still inside the fences &middot;
-   <b>circles</b> = outliers.</div>
+   <div class="rs-out">minimum: 33085
+Q1     : 59004
+median : 68647
+Q3     : 80600
+maximum: 5200000</div>
+   <div class="rs-board"><b>Match each part to a number on screen:</b> <b>box</b> = 59,004 to 80,600,
+   the middle half &middot; <b>line inside</b> = <b>68,647, the MEDIAN</b>, not the mean &middot;
+   <b>whiskers</b> = furthest value still inside the fences &middot; <b>circles</b> = outliers.</div>
    <div class="rs-board" style="margin-top:8px"><b>Then the question that matters:</b> &ldquo;how did
-   Python decide those two were outliers? It never asked me.&rdquo;<br><br>
-   <b>1.5 &times; IQR</b> &mdash; their own rule, the same fences <b>26,610 to 112,994</b>, the same
-   <b>2</b> values. <b>Those two values are those two dots.</b> Wait for someone to say it.</div>
+   Python decide those two were outliers? I never told it to.&rdquo;<br><br>
+   <b>1.5 &times; IQR</b> &mdash; the rule they used <b>twenty minutes ago in this session</b>. Same
+   fences <b>26,610 to 112,994</b>. The two values are <b>116,894</b> and <b>52,00,000</b>. <b>Those two
+   values are those two dots.</b> Wait for someone to say it.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">66 &ndash; 84</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">70 &ndash; 84</span></div>
   <div class="rs-body">
    <p class="rs-topic">Four boxes, one picture</p>
-   <div class="rs-code"><pre><code>clean = df[(df.salary &gt;= low) &amp; (df.salary &lt;= high)]
+   <div class="rs-code"><pre><code>clean = df[(df[<span class="c">"salary"</span>] &gt;= low) &amp; (df[<span class="c">"salary"</span>] &lt;= high)]
 
 order  = [<span class="c">"HR"</span>, <span class="c">"Marketing"</span>, <span class="c">"Sales"</span>, <span class="c">"Tech"</span>]
-groups = [clean[clean.department == d].salary <span class="k">for</span> d <span class="k">in</span> order]
+groups = []
+<span class="k">for</span> d <span class="k">in</span> order:
+    groups.append(clean[clean[<span class="c">"department"</span>] == d][<span class="c">"salary"</span>])
 
 plt.boxplot(groups, tick_labels=order)
 plt.title(<span class="c">"Salary by department"</span>)
 plt.ylabel(<span class="c">"Salary"</span>)
 plt.show()</code></pre></div>
-   <div class="rs-board"><b>New:</b> <code>boxplot</code> takes a <b>list of groups</b> &middot;
-   <code>tick_labels</code> names them, else you get 1, 2, 3, 4.<br><br>
-   <b>Read it:</b> Tech highest, HR lowest, Marketing and Sales overlapping. And the <b>height of each
-   box</b> is the spread &mdash; a table of four averages hides that.</div>
-   <div class="rs-board" style="margin-top:8px"><b>The day-13 callback:</b> Tech vs HR came back
-   p &asymp; 0, Marketing vs Sales p = 0.0086. <b>Look at the picture and you can see why one was
-   obvious and one was not.</b></div>
+   <div class="rs-board"><b>Two small new things:</b> the <b>loop builds a list</b> of four sets of
+   salaries &middot; <code>boxplot</code> takes a <b>list of groups</b> and <code>tick_labels</code>
+   names them, else you get 1, 2, 3, 4.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Read it:</b> Tech highest, HR lowest, Marketing and
+   Sales overlapping. And the <b>height of each box</b> is the spread &mdash; four averages in a table
+   hide that.<br><br>
+   <b>Day-13 callback:</b> Tech vs HR p &asymp; 0, Marketing vs Sales p = 0.0086. <b>The picture shows
+   you why one was obvious and one was not.</b></div>
    <p class="rs-do" style="margin-top:12px">10 minutes on their own &mdash; walk the room</p>
-   <div class="rs-code"><pre><code><span class="c"># 1. histogram of "age"  - something will look wrong. find it.</span>
-<span class="c"># 2. box plot of "experience", split by department</span></code></pre></div>
-   <div class="rs-board"><b>The age trap is deliberate:</b> &minus;4 and 210 are in that column and will
-   appear as lonely bars. <b>Do not warn them.</b> A student who finds bad data in a chart never forgets
-   that charts find bad data.</div>
+   <div class="rs-code"><pre><code><span class="c"># 1. histogram of "height_cm" - try bins=5, then bins=30</span>
+<span class="c"># 2. box plot of "experience", one box per department</span></code></pre></div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">84 &ndash; 90</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">84 &ndash; 90</span></div>
   <div class="rs-body">
    <p class="rs-topic">Close</p>
    <div class="rs-code"><pre><code>HISTOGRAM                    BOX PLOT
-one column, in detail        summarised in 5 numbers
+one column, in detail        one column, as 5 numbers
 shows the SHAPE              shows OUTLIERS as dots
 you choose the bins          you choose nothing
 one at a time                several side by side</code></pre></div>
-   <div class="rs-board"><b>Tease tomorrow:</b> bar charts done properly, and correlation drawn &mdash;
-   &ldquo;you are going to see something in this dataset that no number we have computed has shown you
-   yet.&rdquo;</div>
+   <div class="rs-board"><b>Tease tomorrow:</b> bar charts done properly, and two columns at once
+   &mdash; &ldquo;you are going to see something in this file that no number we have computed has shown
+   you yet.&rdquo;</div>
   </div></div>
 
   </div>
@@ -14840,13 +14991,19 @@ one at a time                several side by side</code></pre></div>
   <div class="qa"><h5>&ldquo;What is the difference between a bar chart and a histogram?&rdquo;</h5>
   <p>&ldquo;A bar chart has one bar per <b>category</b> &mdash; four departments, four bars. A histogram
   has one bar per <b>range of numbers</b>, because there are no categories to use. That is why histogram
-  bars usually touch and bar chart bars do not. It is a real interview question, so learn the one
+  bars usually touch and bar-chart bars do not. It is a real interview question, so learn the one
   sentence.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Who decides where one bin stops and the next begins?&rdquo;</h5>
+  <p>&ldquo;Python does, once you tell it how many bins you want. It takes the lowest value and the
+  highest value, and chops that range into equal slices. That is why we counted HR's experience into
+  four groups of four years &mdash; zero to three, four to seven, and so on. Equal width slices,
+  automatically.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Should I always remove outliers before drawing?&rdquo;</h5>
   <p>&ldquo;No &mdash; and be careful here. Draw it <b>with</b> them first, because that is how you find
-  out they exist. Then decide. If it is a data-entry error, like age being &minus;4, remove it. If it is
-  a real person who genuinely earns 52 lakh, it is real and you report it separately rather than
+  out they exist. Then decide. If it is a data-entry error, like an age of minus four, remove it. If it
+  is a real person who genuinely earns 52 lakh, it is real and you report it separately rather than
   deleting it. Removing a number because it is inconvenient is not analysis.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;How many bins should I use?&rdquo;</h5>
@@ -14856,9 +15013,9 @@ one at a time                several side by side</code></pre></div>
   the one that worked.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;The line in the box &mdash; is that the mean?&rdquo;</h5>
-  <p>&ldquo;No, the <b>median</b>. Almost everybody assumes mean, so remember it by what the box is: the
-  box is built from quartiles, and the median is the middle quartile. It is all quartiles, no
-  averages.&rdquo;</p></div>
+  <p>&ldquo;No, the <b>median</b>. Almost everybody assumes mean, so remember it by what the box is made
+  of: the box is built from quartiles, and the median is the middle quartile. It is all quartiles, no
+  averages anywhere in that picture.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Why does the box plot show dots but the histogram does not?&rdquo;</h5>
   <p>&ldquo;Because the box plot has a <b>rule</b> for what counts as an outlier &mdash; 1.5 times the
@@ -14867,9 +15024,9 @@ one at a time                several side by side</code></pre></div>
   detail.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;My box plot is one flat line.&rdquo;</h5>
-  <p>&ldquo;You passed it a column with an extreme value in it and everything else got compressed, or
-  you passed it a column that is not numbers. Check with <code>.dtype</code> first &mdash; a box plot of
-  <code>department</code> cannot work, because quartiles of a name do not exist.&rdquo;</p></div>
+  <p>&ldquo;You passed it a column with an extreme value in it, so everything else got compressed, or
+  you passed it a column that is not numbers. A box plot of <code>department</code> cannot work, because
+  quartiles of a name do not exist.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Why did we do all that statistics if one line of code draws it?&rdquo;</h5>
   <p>&ldquo;Because the line of code does not tell you what it means. Anybody can type
