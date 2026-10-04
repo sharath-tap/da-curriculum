@@ -621,8 +621,8 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="cards">
     <button class="dcard full" data-go="v1">
      <span class="id">VIZ 1</span><h3>Why We Draw At All</h3>
-     <p>Anscombe's quartet &mdash; four datasets, same mean, same std, same 0.816, four different
-     pictures. Then the first plot and the anatomy of a figure.</p>
+     <p>Opens on the <code>age</code> column they have used for thirteen sessions: mean 38.2, and
+     somebody aged &minus;4 hiding in it. Then Anscombe, then the first plot.</p>
      <span class="foot">Script ready &middot; opens the module</span></button>
 
     <button class="dcard full" data-go="v2">
@@ -13512,22 +13512,22 @@ both true. say which one you mean.</code></pre></div>
   <p class="tag" style="margin-bottom:16px">Data Visualisation day 1 &middot; merged class &middot; 90 minutes &middot; full script &middot; opens the module</p>
   <h1 class="display">Why We<br>Draw At All</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   Four datasets with the <b>same mean, the same standard deviation and the same correlation</b> that
-   look nothing alike. Then the first plot, and the three lines that turn a picture into something
-   somebody else can read.</p>
+   Start with a column they have used for three weeks, and show them something in it they have never
+   seen. Then the first chart, in three lines &mdash; and the three more that make it readable.</p>
   <div class="glance">
-   <div class="gcell"><b>0.816</b><span>four times over</span></div>
-   <div class="gcell"><b>3</b><span>lines of setup</span></div>
-   <div class="gcell"><b>4</b><span>parts of a figure</span></div>
-   <div class="gcell"><b>1</b><span>chart, built properly</span></div>
+   <div class="gcell"><b>&minus;4</b><span>years old</span></div>
+   <div class="gcell"><b>38.2</b><span>a summary that lied</span></div>
+   <div class="gcell"><b>3</b><span>lines to a chart</span></div>
+   <div class="gcell"><b>3</b><span>more to finish it</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">Where this sits</h4>
-   <p style="color:var(--sienna)">Thirteen statistics sessions and <b style="color:var(--sienna)">not
-   one chart</b> &mdash; that was deliberate, and today it pays off. They already know what a quartile
-   is, what skew means and what correlation does not prove. So this module is not about learning what
-   a histogram is. It is about <b style="color:var(--sienna)">seeing things they already
-   understand</b>.</p>
+   <h4 style="color:var(--sienna)">Open on their own file, not on a famous example</h4>
+   <p style="color:var(--sienna)">The <code>age</code> column has a mean of <b style="color:var(--sienna)">38.2</b>
+   and a median of <b style="color:var(--sienna)">37</b>. Both look perfectly healthy. It also contains
+   somebody aged <b style="color:var(--sienna)">&minus;4</b> and somebody aged
+   <b style="color:var(--sienna)">210</b>. Thirteen sessions on this file and no statistic they computed
+   ever showed them either one. <b style="color:var(--sienna)">One picture shows both in a
+   second.</b></p>
   </div>
  </div>
 </section>
@@ -13536,20 +13536,20 @@ both true. say which one you mean.</code></pre></div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Open with Anscombe, before any code.</b> Four datasets, identical summary statistics,
-   completely different pictures. It is the only argument for this entire module and it takes four
-   minutes. Everything after it is technique.</li>
+   <li><b>Open on the <code>age</code> column, not on Anscombe.</b> Their own file, numbers they can
+   already read, and a result that embarrasses three weeks of arithmetic. A famous example from a
+   textbook cannot do that, because they have no stake in it.</li>
+   <li><b>Show the summary first and let them say it looks fine.</b> Mean 38.2, median 37. Nobody will
+   object. Then draw it. The gap between what they just said and what they can now see is the entire
+   argument for this module.</li>
    <li><b>Install matplotlib before the session, not during it.</b> <code>pip install matplotlib</code>
-   in a room of sixty laptops on college wifi will cost you twenty minutes. Tell them the day
-   before.</li>
-   <li><b>Three lines of setup, then a chart on screen inside ten minutes.</b> Do not explain the
-   library first. Draw something, then take it apart.</li>
-   <li><b>A chart with no title and no axis labels is not finished.</b> Make this a rule from day one
-   and enforce it for five sessions. It is the single habit that separates a submitted assignment from
-   a rejected one.</li>
-   <li><b>This module is five days, and the charts themselves are easy.</b> The time goes into
-   <em>reading</em> them and <em>choosing</em> them. Do not let a session turn into a tour of
-   matplotlib options.</li>
+   on sixty laptops on college wifi will cost you twenty minutes. Tell them the day before.</li>
+   <li><b>When you do get to Anscombe, say where it came from.</b> Who made it, when, and that the
+   numbers are <em>invented on purpose</em>. A student who thinks it is a real dataset spends the whole
+   block wondering what it measures instead of listening.</li>
+   <li><b>A chart with no title and no axis labels is not finished.</b> Start that rule today and
+   enforce it for all five sessions. It is the one habit that decides whether an assignment gets read
+   or returned.</li>
   </ol>
  </div>
 </section>
@@ -13557,68 +13557,94 @@ both true. say which one you mean.</code></pre></div>
 <section>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Two things: why Anscombe is the right opening, and what the
-  three setup lines actually do. If you are shaky anywhere it will be on <code>plt.show()</code> &mdash;
-  so read part two properly.</p>
+  <p class="cap" style="margin-bottom:24px">Three things: why the age column is the right opening, where
+  Anscombe actually came from, and what the three setup lines do. If you are shaky anywhere it will be
+  on <code>plt.show()</code>, so read part three properly.</p>
 
   <div class="understand">
-   <h5>Part one &middot; Anscombe's quartet, and why it opens the module</h5>
+   <h5>Part one &middot; the age column, and why it opens the module</h5>
 
-   <h6>Four datasets that agree on everything except what they look like</h6>
-   <p>In 1973 a statistician called Francis Anscombe built four small datasets. Each has eleven points.
-   Run the summary statistics on all four and you get the <b>same mean of x, the same mean of y, the
-   same standard deviation and the same correlation of 0.816</b>.</p>
-   <p>Any table of numbers would tell you they are the same data. Plot them and one is a clean straight
-   relationship, one is a curve, one is a straight line with a single point pulled far off it, and one
-   is a vertical stack with one point stranded to the right.</p>
+   <h6>The summary looks completely healthy</h6>
+   <p>Count 200. Mean 38.2. Median 37. For a table of employees that is exactly what you would expect,
+   and there is nothing in those three numbers to make anybody suspicious.</p>
+   <p>The column also contains a <b>&minus;4</b> and a <b>210</b>.</p>
+
+   <h6>Why no statistic they learnt would have caught it</h6>
+   <p>Two bad values in two hundred rows barely move a mean, and they do not move a median at all. The
+   standard deviation shifts a little, but they have no reason to think the number they got was wrong.
+   Nothing in a summary says <em>&ldquo;by the way, somebody here is minus four&rdquo;</em>.</p>
    <div class="keyline">
-    Every summary statistic agrees. Every picture disagrees. That is the whole argument for drawing
-    your data, and no amount of explaining beats showing it.
+    This is the argument for the whole module and it uses a column they have been working with since
+    day one. <b>Numbers summarise. Pictures show.</b> They have had the summary for three weeks; today
+    they get the picture.
    </div>
 
-   <h6>Why it belongs here rather than in statistics</h6>
-   <p>It was cut from the correlation session on purpose. In that session it would have been a curiosity
-   about correlation. Here it is <b>the reason the module exists</b>, and they now have three weeks of
-   summary statistics behind them to make it sting.</p>
-
-   <h6>How hard to push it</h6>
-   <p>Four minutes. Show the numbers, show the picture, say the line, move on. If you spend twenty
-   minutes on it you have turned an argument into a topic.</p>
+   <h6>Why not use a famous example instead</h6>
+   <p>Because they have no stake in a dataset they have never seen. The moment is worth more when it is
+   <em>their</em> file, <em>their</em> three weeks of work, and a mistake sitting in it the whole
+   time.</p>
   </div>
 
   <div class="understand">
-   <h5>Part two &middot; the three lines, and what each one is for</h5>
+   <h5>Part two &middot; Anscombe's quartet, and where it actually came from</h5>
+
+   <h6>What it is, in plain terms</h6>
+   <p>In <b>1973</b> a statistician called <b>Francis Anscombe</b> wanted to make exactly the point we
+   just made with the age column, but in a way nobody could argue with. So he <b>invented</b> four tiny
+   datasets.</p>
+   <p>They are not measurements of anything. He sat down and constructed numbers so that all four sets
+   would produce <b>identical summary statistics</b> &mdash; same mean of x, same mean of y, same
+   standard deviation, same correlation of 0.816. Then he plotted them, and they look nothing alike.</p>
+
+   <h6>Answer the three questions before anybody asks</h6>
+   <div class="mth">
+    <div class="mrow"><b>Where did the data come from?</b> Nowhere. He made it up, deliberately, to
+    prove a point. That is the whole trick.</div>
+    <div class="mrow"><b>What do x and y measure?</b> Nothing in particular, and that is on purpose. If
+    he had called them height and weight you would argue about height and weight. They are just
+    &ldquo;two numbers recorded about each of eleven things&rdquo;.</div>
+    <div class="mrow"><b>Why eleven points?</b> Small enough to print the whole table on one slide and
+    check the arithmetic by hand. Nothing deeper than that.</div>
+   </div>
+
+   <h6>How hard to push it</h6>
+   <p>Six minutes. Show the table, show the picture, say the line, move on. It is a second helping of
+   an argument they have already accepted from the age column, so it does not need to carry the
+   session.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the three lines, and what each one is for</h5>
 
    <h6>The import</h6>
-   <p><code>import matplotlib.pyplot as plt</code>. Matplotlib is the library. <b>Pyplot</b> is the part
-   of it you use &mdash; a set of ready-made drawing commands. <code>as plt</code> is the nickname,
-   exactly like <code>pd</code> for pandas. Everybody writes <code>plt</code>; copy that and never think
-   about it again.</p>
+   <p><code>import matplotlib.pyplot as plt</code>. <b>Matplotlib</b> is the library. <b>Pyplot</b> is
+   the part of it you use &mdash; a set of ready-made drawing commands. <code>as plt</code> is a
+   nickname, exactly like <code>pd</code> for pandas. Everybody writes <code>plt</code>; copy it and
+   never think about it again.</p>
 
    <h6>The drawing command</h6>
    <p><code>plt.bar(...)</code>, <code>plt.hist(...)</code>, <code>plt.scatter(...)</code>. One command
-   per chart type. This is the only part that changes between charts.</p>
+   per chart type. This is the only part that changes between charts all module.</p>
 
    <h6><code>plt.show()</code> &mdash; the one that confuses people</h6>
    <p>Matplotlib builds the picture in memory first. Nothing appears until you ask for it.
    <code>plt.show()</code> is that request: <b>put the picture on the screen now, and start a fresh
-   one</b>.</p>
+   blank one</b>.</p>
    <div class="warn"><b>In a Jupyter notebook the chart often appears without <code>show()</code>.</b>
-   That is a convenience of the notebook, not a rule of the library. Teach them to write it anyway
-   &mdash; the day they run a <code>.py</code> file and nothing appears, they will know why. It is also
-   what stops two charts drawing on top of each other.</div>
+   That is the notebook being helpful, not a rule of the library. Teach them to write it anyway &mdash;
+   the day they run a <code>.py</code> file and nothing appears, they will know why. It is also what
+   stops two charts drawing on top of each other.</div>
 
-   <h6>The four parts of a figure, named</h6>
+   <h6>The four parts of a figure</h6>
    <div class="mth">
     <div class="mrow"><b>the figure</b> The whole picture &mdash; the sheet of paper.</div>
-    <div class="mrow"><b>the axes</b> The area with the bars or dots in it, plus the two rulers around
-    it. Confusingly, one plot has one &ldquo;axes&rdquo;. Say <em>plot area</em> out loud and move
-    on.</div>
+    <div class="mrow"><b>the axes</b> The plot area, with the bars or dots in it and the two rulers
+    around it. Confusingly, one plot has one &ldquo;axes&rdquo;. Say <em>plot area</em> and move on.</div>
     <div class="mrow"><b>the labels</b> <code>plt.title()</code>, <code>plt.xlabel()</code>,
-    <code>plt.ylabel()</code>. What the picture is, and what each ruler measures.</div>
+    <code>plt.ylabel()</code>.</div>
     <div class="mrow"><b>the data</b> The bars, dots or line themselves.</div>
    </div>
-   <p>You do not need more vocabulary than that for the whole module.</p>
+   <p>That is the whole vocabulary for this module.</p>
   </div>
  </div>
 </section>
@@ -13632,24 +13658,121 @@ both true. say which one you mean.</code></pre></div>
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-14 -->
+  <!-- 0-18 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 14</span><h3>Four datasets that are all the same</h3></div>
-   <p class="objective">The argument for the whole module, made before a single line of code.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 18</span><h3>A column you have used for three weeks</h3></div>
+   <p class="objective">Their own file. Their own numbers. A mistake that has been sitting there the whole time.</p>
 
-   <div class="stage">Do not open a laptop yet. Put the numbers on the board first and let them
-   conclude the datasets are identical.</div>
+   <div class="stage">Laptops open from the first minute. Everyone runs this. Do not say anything about
+   charts yet.</div>
 
    <div class="speak">
-    <p>For three weeks we have described data with numbers. Mean, median, standard deviation,
-    correlation. And I told you on day one that we would not draw a single chart until statistics was
-    finished.</p>
-    <p>Today I show you why that was worth waiting for.</p>
-    <p>Here are four different datasets. Eleven points each. I have run the summary statistics on all
-    four.</p>
+    <p>Before we talk about drawing anything, open the file we have been using since the first day of
+    statistics. Same file. Nothing new.</p>
+    <p>We are going to look at one column we have never looked at properly &mdash; <b>age</b>.</p>
    </div>
 
-   <div class="typeit">On the board</div>
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+df  = pd.read_csv(<span class="c">"employees.csv"</span>)
+age = df[<span class="c">"age"</span>].dropna()
+
+<span class="k">print</span>(<span class="c">"how many people :"</span>, <span class="k">len</span>(age))
+<span class="k">print</span>(<span class="c">"average age     :"</span>, <span class="k">round</span>(age.mean(), <span class="o">1</span>))
+<span class="k">print</span>(<span class="c">"middle age      :"</span>, <span class="k">round</span>(age.median(), <span class="o">1</span>))</code></pre>
+   <div class="screen">how many people : 200
+average age     : 38.2
+middle age      : 37.0</div>
+
+   <div class="qbox">
+    <div class="q">Ask it plainly, and wait: &ldquo;Does anything in those three numbers look wrong to
+    you?&rdquo;</div>
+    <div class="a">Nobody says yes, and they are being completely reasonable. Two hundred employees,
+    average age thirty-eight, middle age thirty-seven. That is exactly what a normal company looks
+    like. <b>Make them commit to &ldquo;it looks fine&rdquo; out loud</b> before you go on.</div>
+   </div>
+
+   <div class="speak">
+    <p>Two hundred people. Average age thirty-eight. The middle person is thirty-seven.</p>
+    <p>That is a completely ordinary looking company, and every one of those numbers is correct. I have
+    not tricked you.</p>
+    <p>Now let us look at the same column instead of summarising it.</p>
+   </div>
+
+   <div class="typeit">Three more lines. Do not worry about how they work yet.</div>
+<pre><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
+
+plt.plot(age.values, <span class="c">"o"</span>)
+plt.show()</code></pre>
+
+   <div class="stage">Say nothing while it goes up. Let them look at it for a few seconds and find it
+   themselves.</div>
+
+   <figure class="chartout">
+    <img src="img/v1_age_dots.png" alt="One dot per employee, age up the side. Almost every dot sits between 20 and 60, with one lone dot above 200 and one lone dot below zero.">
+    <figcaption><b>One dot is one person.</b> Left to right is just the order they appear in the file.
+    How high the dot sits is their age.</figcaption>
+   </figure>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What do you see?&rdquo;</div>
+    <div class="a">Two dots on their own. One sits above 200. One sits <b>below zero</b>. Everybody
+    else is in a band between about 20 and 60. Wait for the room to find both &mdash; they will.</div>
+   </div>
+
+   <div class="speak">
+    <p>Almost everybody is in that band between twenty and sixty. That is what we expected.</p>
+    <p>And then there are two dots sitting on their own.</p>
+    <p>One up at the top. That person is <b>two hundred and ten years old</b>.</p>
+    <p>And one down at the bottom, below the zero line. That person is <b>minus four years old</b>.</p>
+   </div>
+
+   <div class="stage">Let that sit. Then make the point, slowly, because this is the reason the module
+   exists.</div>
+
+   <div class="speak">
+    <p>Now I want you to think about what just happened.</p>
+    <p>We have been working with this file for <b>thirteen sessions</b>. We computed means, medians,
+    standard deviations, quartiles, correlations, confidence intervals and p-values on it.</p>
+    <p>Every single one of those numbers was correct.</p>
+    <p>And <b>not one of them told you that somebody in this file is minus four years old.</b></p>
+    <p>One picture. One second. There it is.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Numbers summarise. Pictures show.</b><br><br>
+    A summary squeezes two hundred values into one. That is useful, and it is also how things hide. The
+    picture does not squeeze anything &mdash; every person is still there, so anything odd has nowhere
+    to go.
+   </div>
+
+   <div class="warn"><b>Expect &ldquo;so was the average wrong?&rdquo; and answer it carefully.</b> No.
+   The average of this column really is 38.2. The arithmetic is right. What is wrong is the
+   <em>data</em>, and a correct calculation on broken data gives you a correct answer to the wrong
+   question. That is why you look first.</div>
+  </div>
+
+  <!-- 18-30 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18 &ndash; 30</span><h3>Somebody made this point in 1973</h3></div>
+   <p class="objective">The same argument, in a form nobody can argue with. Six minutes.</p>
+
+   <div class="stage">They have already accepted the argument. This is the stronger version of it, so
+   keep it short &mdash; and say where the numbers come from before you show them.</div>
+
+   <div class="speak">
+    <p>Somebody made exactly this point fifty years ago, and made it so neatly that it is still famous.</p>
+    <p>In <b>1973</b> a statistician called <b>Francis Anscombe</b> wanted to prove that you cannot
+    trust summary numbers on their own.</p>
+    <p>So he <b>made up</b> four small sets of numbers. Let me be clear about that, because it matters
+    &mdash; this is not real data from anywhere. He invented it, deliberately, so that all four sets
+    would come out with <b>exactly the same summary statistics</b>.</p>
+    <p>Each set has eleven pairs of numbers. He called them x and y and did not say what they measure,
+    on purpose &mdash; so that nothing distracts you from the point.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; what the four sets look like as numbers</div>
 <pre><code>                 set I    set II   set III   set IV
 
   mean of x        9.0      9.0       9.0      9.0
@@ -13658,114 +13781,97 @@ both true. say which one you mean.</code></pre></div>
   correlation      0.816    0.816     0.816    0.816</code></pre>
 
    <div class="qbox">
-    <div class="q">Ask it flatly: &ldquo;Looking only at that table &mdash; are these four the same
+    <div class="q">&ldquo;Every number we know how to compute is the same. So are these four the same
     data, or different data?&rdquo;</div>
-    <div class="a">Almost every hand says the same. There is no reason to think otherwise: every number
-    we have taught them to compute agrees. Let them commit to the answer out loud before you show the
-    picture.</div>
+    <div class="a">Most say the same, and it is a reasonable answer &mdash; every tool we have given
+    them says so. Let them commit before the picture.</div>
    </div>
 
-   <div class="stage">Now show it. Say nothing while it goes up. Let them look for a few seconds.</div>
-
    <figure class="chartout">
-    <img src="img/d1_anscombe.png" alt="Four scatter plots with identical summary statistics: a straight relationship, a curve, a line with one outlier, and a vertical stack with one distant point.">
-    <figcaption><b>Anscombe's quartet.</b> Same mean, same standard deviation, same correlation of
-    0.816. Four completely different pictures.</figcaption>
+    <img src="img/d1_anscombe.png" alt="Four small scatter plots with identical summary statistics: a straight relationship, a curve, a straight line with one point pulled away, and a vertical stack with one distant point.">
+    <figcaption><b>The four sets, drawn.</b> Every summary number above is identical for all four.</figcaption>
    </figure>
 
    <div class="speak">
-    <p>Set one is roughly a straight relationship. That is what you were all imagining.</p>
-    <p>Set two is a <b>curve</b>. There is a relationship, but it is not a straight one, and correlation
-    is only ever looking for a straight one.</p>
-    <p>Set three is a perfectly straight line with <b>one point dragged off it</b>. One point, out of
-    eleven, pulling the whole answer.</p>
-    <p>Set four is the worst. Ten points stacked in a vertical line, and <b>one</b> point far to the
-    right. That single point is producing the entire correlation of 0.816. Remove it and there is
-    nothing.</p>
+    <p>Set one is roughly a straight line going up. That is what you were all picturing.</p>
+    <p>Set two is a <b>curve</b>. There is a relationship, but it is not a straight one.</p>
+    <p>Set three is a perfectly straight line with <b>one point dragged away from it</b>.</p>
+    <p>Set four is the worst one. Ten points stacked in a vertical line, and one point far to the right.
+    That single point is producing the whole correlation of 0.816.</p>
+    <p>Same mean. Same standard deviation. Same correlation. Four completely different pictures.</p>
    </div>
 
    <div class="keyline">
-    Every summary statistic said these four were identical. Every picture says they are nothing alike.
-    <b>Numbers summarise. Pictures show.</b> That is why this module exists, and it is the last thing I
-    will say about it &mdash; from here on we just do it.
+    Our age column showed you that a summary can <b>hide</b> something. Anscombe shows you something
+    stronger &mdash; four sets of data can agree on <b>every number you know how to compute</b> and
+    still be nothing alike.
    </div>
-
-   <div class="warn"><b>Four minutes, then move.</b> The temptation is to dwell on this because it lands
-   so well. Do not. It is an argument, not a topic, and the rest of the session needs the time.</div>
   </div>
 
-  <!-- 14-30 -->
+  <!-- 30-46 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">14 &ndash; 30</span><h3>The first chart, in three lines</h3></div>
-   <p class="objective">A picture on screen fast, then take it apart. Not the other way round.</p>
-
-   <div class="stage">Laptops open. Get something on screen inside five minutes &mdash; explaining the
-   library before they have seen it produce anything is how you lose the room.</div>
+   <div class="bhead"><span class="clock">30 &ndash; 46</span><h3>Your first chart, in three lines</h3></div>
+   <p class="objective">Now go back and explain the code they already ran. Nothing new on screen.</p>
 
    <div class="speak">
-    <p>We are going to draw. The library is called <b>matplotlib</b>, and I want you to see it work
-    before I explain any of it.</p>
-    <p>Three lines. Type them exactly.</p>
+    <p>Twenty minutes ago you typed three lines and got a picture, and I told you not to worry about
+    how. Let us go back and take those three lines apart. Then we will draw a proper chart.</p>
    </div>
 
-   <div class="typeit">Type this</div>
+   <div class="typeit">The three lines again</div>
 <pre><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
 
 plt.bar([<span class="c">"HR"</span>, <span class="c">"Marketing"</span>, <span class="c">"Sales"</span>, <span class="c">"Tech"</span>], [<span class="o">45</span>, <span class="o">42</span>, <span class="o">65</span>, <span class="o">49</span>])
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d1_firstplot.png" alt="A plain bar chart with four bars for HR, Marketing, Sales and Tech, with no title or axis labels.">
-    <figcaption>Three lines, and a chart. No title, no labels &mdash; we fix that in a moment.</figcaption>
+    <img src="img/d1_firstplot.png" alt="A plain bar chart with four bars for HR, Marketing, Sales and Tech, with no title and no axis labels.">
+    <figcaption>Four bars, four departments. No title, no labels &mdash; we fix that next.</figcaption>
    </figure>
 
-   <div class="stage">Let the room enjoy it for a second. Then walk the three lines. Six minutes, and
-   do not rush <code>show()</code>.</div>
-
    <div class="speak">
-    <p>First line. <code>import matplotlib.pyplot as plt</code>.</p>
-    <p><b>Matplotlib</b> is the library. <b>Pyplot</b> is the part of it we use &mdash; the ready-made
-    drawing commands. And <code>as plt</code> is a nickname, exactly like we write
-    <code>pd</code> for pandas.</p>
+    <p><b>First line.</b> <code>import matplotlib.pyplot as plt</code>.</p>
+    <p><b>Matplotlib</b> is the library &mdash; the drawing toolbox. <b>Pyplot</b> is the part of it we
+    use. And <code>as plt</code> is a nickname, exactly like we write <code>pd</code> for pandas.</p>
     <p>Everybody in the world writes <code>plt</code>. Copy it and never think about it again.</p>
    </div>
 
    <div class="speak">
-    <p>Second line. <code>plt.bar(...)</code>.</p>
-    <p>It takes two lists. The <b>first list is what goes along the bottom</b> &mdash; the four
-    department names. The <b>second list is how tall each bar is</b>.</p>
-    <p>First name goes with first number. HR with 45. Marketing with 42. In order.</p>
+    <p><b>Second line.</b> <code>plt.bar(...)</code>.</p>
+    <p>It takes <b>two lists</b>. The first is what goes along the bottom &mdash; the four department
+    names. The second is how tall each bar should be.</p>
+    <p>First name goes with first number. HR with 45. Marketing with 42. In order, one for one.</p>
    </div>
 
    <div class="speak">
-    <p>Third line, and this is the one people get wrong. <code>plt.show()</code>.</p>
+    <p><b>Third line</b>, and this is the one people get wrong. <code>plt.show()</code>.</p>
     <p>Matplotlib does not draw as you type. It builds the picture quietly in memory and waits.
     <code>plt.show()</code> is you saying: <b>put it on the screen now.</b></p>
    </div>
 
    <div class="qbox">
-    <div class="q">Somebody will say &ldquo;but mine appeared without <code>show()</code>&rdquo;.
-    They are right, and it is worth thirty seconds.</div>
+    <div class="q">Somebody will say &ldquo;but mine appeared without <code>show()</code>&rdquo;. They
+    are right, and it is worth thirty seconds.</div>
     <div class="a">Jupyter displays it for you as a convenience. That is the notebook being helpful, not
     a rule of the library. <b>Write it anyway.</b> The day they run a <code>.py</code> file and nothing
-    appears, they will know why &mdash; and it is also what stops two charts drawing on top of each
+    appears, they will know why &mdash; and it is what stops two charts drawing on top of each
     other.</div>
    </div>
   </div>
 
-  <!-- 30-48 -->
+  <!-- 46-62 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">30 &ndash; 48</span><h3>A chart nobody can read is not finished</h3></div>
-   <p class="objective">Three more lines, and the habit that runs through the rest of the module.</p>
+   <div class="bhead"><span class="clock">46 &ndash; 62</span><h3>A chart nobody can read is not finished</h3></div>
+   <p class="objective">Three more lines, and the rule that runs through the rest of the module.</p>
 
    <div class="stage">Put the unlabelled chart back on screen and ask the question before adding
-   anything.</div>
+   anything. The question does the work.</div>
 
    <div class="qbox">
     <div class="q">&ldquo;Imagine I send you only this picture, nothing else. What are those four
     numbers? Rupees? Marks? People? Years?&rdquo;</div>
-    <div class="a">They cannot know. That is the point, and it is much stronger as a question than as a
-    warning. A chart without labels is a puzzle, not a result.</div>
+    <div class="a">They cannot know, and that is far stronger as a question than as a warning. A chart
+    without labels is a puzzle, not a result.</div>
    </div>
 
    <div class="typeit">Three more lines</div>
@@ -13778,65 +13884,40 @@ plt.ylabel(<span class="c">"Number of employees"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d1_labelled.png" alt="The same four-bar chart, now with the title 'How many employees in each department', x-axis labelled Department and y-axis labelled Number of employees.">
-    <figcaption>The same three data lines. Three labels, and now it can be sent to somebody.</figcaption>
+    <img src="img/d1_labelled.png" alt="The same four-bar chart with a title reading How many employees in each department, the x-axis labelled Department and the y-axis labelled Number of employees.">
+    <figcaption>Same three data lines. Three labels, and now it can be sent to somebody.</figcaption>
    </figure>
 
    <div class="speak">
-    <p>Same chart. Same data. Three extra lines and now anybody can read it without me standing next to
-    them explaining it.</p>
+    <p>Same chart. Same data. Three extra lines, and now anybody can read it without me standing next
+    to them explaining it.</p>
     <p><code>plt.title()</code> is what the picture is about. <code>plt.xlabel()</code> is what the
     bottom ruler measures. <code>plt.ylabel()</code> is what the side ruler measures.</p>
-    <p>Notice they all go <b>before</b> <code>show()</code>. Once you have shown it, that picture is
-    finished and a new blank one has started. Adding a title after <code>show()</code> puts it on the
-    next chart.</p>
+    <p>And notice they all go <b>before</b> <code>show()</code>. Once you have shown it, that picture is
+    finished and a new blank one has started. A title after <code>show()</code> lands on the next
+    chart.</p>
    </div>
 
    <div class="keyline">
     <b>The rule for this whole module, starting now.</b><br><br>
     A chart with no title and no axis labels is <b>not finished</b>. I will keep saying it for five
-    sessions, because it is the one habit that decides whether an assignment gets read or gets
-    returned.
-   </div>
-
-   <div class="stage">Now name the parts. Keep this short &mdash; four words, and only because they
-   will meet them in error messages and in documentation.</div>
-
-   <div class="typeit">On the board</div>
-<pre><code>  THE FIGURE     the whole picture. the sheet of paper.
-
-  THE AXES       the plot area - the bars, and the two rulers.
-                 (one plot has one "axes". confusing. ignore it.)
-
-  THE LABELS     title, xlabel, ylabel.
-
-  THE DATA       the bars / dots / line themselves.</code></pre>
-
-   <div class="speak">
-    <p>That is the entire vocabulary for this module. If you ever read documentation and it says
-    &ldquo;set the title on the axes&rdquo;, it means the plot area. Nothing more complicated than
-    that.</p>
+    sessions, because it is the one habit that decides whether an assignment gets read or returned.
    </div>
   </div>
 
-  <!-- 48-70 -->
+  <!-- 62-80 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">48 &ndash; 70</span><h3>Drawing from the real dataset</h3></div>
-   <p class="objective">Stop typing numbers by hand. Chart a column.</p>
+   <div class="bhead"><span class="clock">62 &ndash; 80</span><h3>Stop typing the numbers yourself</h3></div>
+   <p class="objective">Chart a column instead of four hand-typed values.</p>
 
    <div class="speak">
-    <p>So far I typed the four numbers myself. That is fine for learning, and useless for work.</p>
-    <p>Real charts come from a column. And you already know the command that counts a column &mdash;
-    you have used it since the first week.</p>
+    <p>So far I typed those four numbers myself. That is fine for learning and useless for work &mdash;
+    if the file changes tomorrow, my chart is wrong and I would not know.</p>
+    <p>Real charts come from a column. And you already know the command that counts a column.</p>
    </div>
 
-   <div class="typeit">Load the file and count a column</div>
-<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
-<span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
-
-df = pd.read_csv(<span class="c">"employees.csv"</span>)
-
-counts = df[<span class="c">"department"</span>].value_counts()
+   <div class="typeit">Count the column first</div>
+<pre><code>counts = df[<span class="c">"department"</span>].value_counts()
 <span class="k">print</span>(counts)</code></pre>
    <div class="screen">department
 Sales        65
@@ -13846,11 +13927,10 @@ Marketing    42
 Name: count, dtype: int64</div>
 
    <div class="speak">
-    <p>Those are the same four numbers I typed by hand a minute ago. But now they came from the file.
-    If the file changes tomorrow, the chart changes with it.</p>
-    <p>Now, <code>value_counts()</code> gives back something with two halves. The department names are
-    the <b>index</b>, and the counts are the <b>values</b>. Those are exactly the two lists
-    <code>plt.bar</code> wants.</p>
+    <p>Those are the same four numbers I typed by hand, except now they came from the file.</p>
+    <p>And <code>value_counts()</code> gives back something with <b>two halves</b>. The department names
+    are called the <b>index</b>. The counts are called the <b>values</b>.</p>
+    <p>Two halves. And <code>plt.bar</code> wants exactly two lists. So they fit together.</p>
    </div>
 
    <div class="typeit">Now draw it</div>
@@ -13864,44 +13944,42 @@ plt.show()</code></pre>
 
    <figure class="chartout">
     <img src="img/d3_bar_counts.png" alt="Bar chart of department counts in value_counts order: Sales 65, Tech 49, HR 45, Marketing 42.">
-    <figcaption>Same chart, now driven by the file. Note the order &mdash; <b>biggest first</b>, because
-    that is what <code>value_counts()</code> does.</figcaption>
+    <figcaption>The same chart, now driven by the file. Note the order &mdash; <b>biggest first</b>.</figcaption>
    </figure>
 
    <div class="qbox">
-    <div class="q">&ldquo;Why is Sales first now, when it was third before?&rdquo;</div>
+    <div class="q">&ldquo;Why is Sales first now, when it was third when I typed it?&rdquo;</div>
     <div class="a">Because <code>value_counts()</code> sorts by <b>how often</b>, not alphabetically.
-    Flag it, do not fix it &mdash; sorting bars properly is tomorrow's session and it is a bigger idea
-    than it looks.</div>
+    Flag it and do not fix it &mdash; sorting bars properly opens day three and it is a bigger idea than
+    it looks.</div>
    </div>
 
-   <div class="stage">Give them ten minutes to do one themselves. Walk the room. This is the first
-   chart they build without you.</div>
+   <div class="stage">Ten minutes on their own. Walk the room. This is the first chart they build
+   without you.</div>
 
-   <div class="typeit">Their turn &mdash; same pattern, different column</div>
+   <div class="typeit">Their turn &mdash; same four steps, different column</div>
 <pre><code><span class="c"># draw a bar chart of the "city" column</span>
-<span class="c"># 1. count it with value_counts()</span>
-<span class="c"># 2. plt.bar(counts.index, counts.values)</span>
-<span class="c"># 3. title, xlabel, ylabel</span>
-<span class="c"># 4. plt.show()</span></code></pre>
+<span class="c">#   1. count it with value_counts()</span>
+<span class="c">#   2. plt.bar(counts.index, counts.values)</span>
+<span class="c">#   3. title, xlabel, ylabel</span>
+<span class="c">#   4. plt.show()</span></code></pre>
 
-   <div class="warn"><b>Two errors will come up, and both are worth catching publicly.</b> Somebody
-   will write <code>plt.bar(counts)</code> and get a mess &mdash; it needs <em>two</em> lists, not one.
-   And somebody will put <code>plt.title()</code> after <code>plt.show()</code> and wonder where the
-   title went. Both are the lesson, not an interruption.</div>
+   <div class="warn"><b>Two errors will come up and both are worth catching out loud.</b> Somebody will
+   write <code>plt.bar(counts)</code> with one argument and get a mess &mdash; it needs <em>two</em>
+   lists. And somebody will put <code>plt.title()</code> after <code>plt.show()</code> and wonder where
+   the title went. Both are the lesson, not an interruption.</div>
   </div>
 
-  <!-- 70-90 -->
+  <!-- 80-90 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">70 &ndash; 90</span><h3>Close, and what comes tomorrow</h3></div>
-   <p class="objective">The pattern they will reuse every day, and one honest warning.</p>
+   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Close, and what comes tomorrow</h3></div>
 
    <div class="speak">
     <p>Everything for the next four sessions follows one shape. Learn the shape and the chart type is
-    just one word changing.</p>
+    one word changing.</p>
    </div>
 
-   <div class="typeit">The pattern &mdash; put this on the board and leave it up all module</div>
+   <div class="typeit">The pattern &mdash; on the board, and it stays up all module</div>
 <pre><code>import matplotlib.pyplot as plt       # once, at the top
 
 plt.SOMETHING( the data )             # bar / hist / scatter / boxplot
@@ -13916,31 +13994,26 @@ plt.show()                            # last
 only the SOMETHING line changes between chart types.</code></pre>
 
    <div class="speak">
-    <p>That is it. Tomorrow the word is <code>hist</code>. The day after it is <code>scatter</code>.
-    The four lines around it never change.</p>
-   </div>
-
-   <div class="stage">Last five minutes. Set up tomorrow properly &mdash; it is the session that pays
-   back three weeks of statistics.</div>
-
-   <div class="speak">
-    <p>Tomorrow we draw two charts, and they are the two that make everything you learnt in statistics
-    visible.</p>
-    <p>The first one shows you the <b>shape</b> of a column. Remember skew &mdash; the number 14.06 that
-    we computed and I told you meant &ldquo;a long tail on one side&rdquo;? Tomorrow you will see the
-    tail.</p>
-    <p>The second one shows you <b>outliers</b>. Remember the fences, 26,610 and 112,994, and the two
-    values outside them? Tomorrow those two turn into dots you can point at.</p>
-    <p>You have been computing these for three weeks. Tomorrow you look at them.</p>
+    <p>Tomorrow the word is <code>hist</code>. The day after it is <code>scatter</code>. The four lines
+    around it never change.</p>
+    <p>And tomorrow is the session where three weeks of statistics becomes visible. Remember
+    <b>skew</b>, the number 14.06 that I told you meant &ldquo;a long tail on one side&rdquo;? Tomorrow
+    you will see the tail.</p>
+    <p>Remember the fences, <b>26,610 and 112,994</b>, and the two salaries outside them? Tomorrow those
+    two become dots you can point at.</p>
    </div>
 
    <div class="typeit">The four lines. If everything else goes, keep these.</div>
-<pre><code>1.  summary statistics can agree and still hide everything.
-    anscombe: same mean, same std, same 0.816, four different pictures.
+<pre><code>1.  a correct calculation on broken data gives you a correct answer
+    to the wrong question. the age average really is 38.2,
+    and somebody in that column is MINUS FOUR.
 
-2.  import matplotlib.pyplot as plt     - always plt.
+2.  numbers summarise. pictures show.
+    anscombe (1973, invented on purpose): four sets, same mean,
+    same std, same 0.816 - four completely different pictures.
 
-3.  plt.show() puts the picture on screen AND starts a new blank one.
+3.  import matplotlib.pyplot as plt      - always plt.
+    plt.show() puts it on screen AND starts a new blank one.
     everything else goes BEFORE it.
 
 4.  no title and no axis labels = not finished.</code></pre>
@@ -13954,15 +14027,51 @@ only the SOMETHING line changes between chart types.</code></pre>
   <div class="runsheet">
  <div class="rs-head">
   <h4>The session, as a run sheet</h4>
-  <p>Everything in order. Five steps, every code block, every board item written out. If you lose your
+  <p>Everything in order. Six steps, every code block, every board item written out. If you lose your
   place, this page alone is enough.</p>
  </div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 14</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 18</span></div>
   <div class="rs-body">
-   <p class="rs-topic">Anscombe &mdash; the argument</p>
-   <p class="rs-say"><b>Land this:</b> board first, laptops shut. Get them to commit out loud that the
-   four datasets are the same, <b>then</b> show the picture.</p>
+   <p class="rs-topic">The age column</p>
+   <p class="rs-say"><b>Land this:</b> their own file, numbers they can already read. Show the summary,
+   make them say &ldquo;looks fine&rdquo; <b>out loud</b>, then draw it.</p>
+   <p class="rs-do">Everyone types this</p>
+   <div class="rs-code"><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+df  = pd.read_csv(<span class="c">"employees.csv"</span>)
+age = df[<span class="c">"age"</span>].dropna()
+
+<span class="k">print</span>(<span class="c">"how many people :"</span>, <span class="k">len</span>(age))
+<span class="k">print</span>(<span class="c">"average age     :"</span>, <span class="k">round</span>(age.mean(), <span class="o">1</span>))
+<span class="k">print</span>(<span class="c">"middle age      :"</span>, <span class="k">round</span>(age.median(), <span class="o">1</span>))</code></pre></div>
+   <div class="rs-out">how many people : 200
+average age     : 38.2
+middle age      : 37.0</div>
+   <div class="rs-board"><b>Ask and WAIT:</b> &ldquo;does anything there look wrong to you?&rdquo;
+   Nobody says yes. They are being reasonable. <b>Get them to commit.</b></div>
+   <p class="rs-do" style="margin-top:12px">Then draw it &mdash; do not explain the code yet</p>
+   <div class="rs-code"><pre><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
+
+plt.plot(age.values, <span class="c">"o"</span>)
+plt.show()</code></pre></div>
+   <div class="rs-board"><b>Say nothing.</b> Let them find the two lone dots: one at <b>210</b>, one
+   <b>below zero at &minus;4</b>. Everyone else is a band from 20 to 60.<br><br>
+   <b>Then, slowly:</b> &ldquo;thirteen sessions on this file. Means, medians, quartiles, correlations,
+   intervals, p-values &mdash; all correct. <b>Not one told you somebody is minus four years
+   old.</b>&rdquo;<br><br>
+   <b>Numbers summarise. Pictures show.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> &ldquo;so was the average wrong?&rdquo;
+   &mdash; <b>no.</b> The arithmetic is right. The <b>data</b> is broken, and a correct calculation on
+   broken data is a correct answer to the wrong question.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">18 &ndash; 30</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Anscombe, 1973</p>
+   <p class="rs-say"><b>Land this:</b> the same argument, stronger. <b>Say where the numbers come from
+   BEFORE you show them</b> &mdash; Francis Anscombe, 1973, <b>invented them on purpose</b>, eleven
+   pairs each, x and y deliberately unlabelled so nothing distracts.</p>
    <p class="rs-do">On the board</p>
    <div class="rs-code"><pre><code>                 set I    set II   set III   set IV
 
@@ -13970,52 +14079,46 @@ only the SOMETHING line changes between chart types.</code></pre>
   mean of y        7.50     7.50      7.50     7.50
   std of y         2.03     2.03      2.03     2.03
   correlation      0.816    0.816     0.816    0.816</code></pre></div>
-   <div class="rs-board"><b>Then the picture, in silence.</b> I is a line &middot; II is a
-   <b>curve</b> &middot; III is a line with <b>one point dragged off</b> &middot; IV is a stack with
-   <b>one point making the whole 0.816</b>.<br><br>
-   <b>The line:</b> numbers summarise, pictures show. <b>Four minutes, then move.</b></div>
+   <div class="rs-board"><b>Ask, then show:</b> &ldquo;every number we know how to compute is the same
+   &mdash; same data or different?&rdquo;<br><br>
+   I = a line &middot; II = a <b>curve</b> &middot; III = a line with <b>one point dragged off</b>
+   &middot; IV = a stack with <b>one point making the whole 0.816</b>.<br><br>
+   <b>Six minutes, then move.</b> They already accepted this from the age column.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">14 &ndash; 30</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">30 &ndash; 46</span></div>
   <div class="rs-body">
-   <p class="rs-topic">The first chart, in three lines</p>
-   <p class="rs-say"><b>Land this:</b> chart on screen before any explanation. Then take it apart.</p>
-   <p class="rs-do">Type this</p>
+   <p class="rs-topic">The three lines, explained</p>
+   <p class="rs-say"><b>Land this:</b> go back to code they <b>already ran</b> in step 1. Nothing new on
+   screen, so all the attention is on the explanation.</p>
    <div class="rs-code"><pre><code><span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
 
 plt.bar([<span class="c">"HR"</span>, <span class="c">"Marketing"</span>, <span class="c">"Sales"</span>, <span class="c">"Tech"</span>], [<span class="o">45</span>, <span class="o">42</span>, <span class="o">65</span>, <span class="o">49</span>])
 plt.show()</code></pre></div>
-   <div class="rs-board"><b>Walk the three lines, 6 minutes.</b>
-   <code>pyplot</code> = the drawing half of matplotlib, <code>plt</code> = the universal nickname
-   &middot; <code>plt.bar</code> takes <b>two lists</b>, names then heights &middot;
-   <code>plt.show()</code> = put it on screen <b>now</b>, and start a fresh blank one.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Expect the question</b> &ldquo;mine worked without
-   <code>show()</code>&rdquo; &mdash; that is Jupyter being helpful, not a rule. Write it anyway.</div>
+   <div class="rs-board"><code>pyplot</code> = the drawing half of matplotlib &middot; <code>plt</code>
+   = the universal nickname &middot; <code>plt.bar</code> takes <b>two lists</b>, names then heights,
+   one for one &middot; <code>plt.show()</code> = put it on screen <b>now</b>, and start a fresh blank
+   one.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> &ldquo;mine worked without
+   <code>show()</code>&rdquo; &mdash; Jupyter being helpful, not a rule. <b>Write it anyway.</b></div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">30 &ndash; 48</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">46 &ndash; 62</span></div>
   <div class="rs-body">
    <p class="rs-topic">Labels, and the rule</p>
    <p class="rs-say"><b>Land this:</b> ask &ldquo;if I send you only this picture, what are these
-   numbers?&rdquo; before adding anything. The question does the work.</p>
-   <p class="rs-do">Add three lines</p>
+   numbers?&rdquo; <b>before</b> adding anything. The question does the work.</p>
    <div class="rs-code"><pre><code>plt.title(<span class="c">"How many employees in each department"</span>)
 plt.xlabel(<span class="c">"Department"</span>)
 plt.ylabel(<span class="c">"Number of employees"</span>)</code></pre></div>
-   <div class="rs-board"><b>All three go BEFORE <code>show()</code>.</b> After <code>show()</code> the
-   picture is finished and a blank one has started &mdash; the title lands on the next chart.</div>
-   <div class="rs-board" style="margin-top:8px"><b>The rule for the module:</b> no title and no axis
-   labels = <b>not finished</b>. Say it now, enforce it for five days.<br><br>
-   <b>Then name four things only:</b> figure = the sheet &middot; axes = the plot area &middot;
-   labels &middot; data.</div>
+   <div class="rs-board"><b>All three go BEFORE <code>show()</code>.</b> After it the picture is
+   finished and a blank one has started &mdash; the title lands on the next chart.<br><br>
+   <b>The rule for the module:</b> no title and no axis labels = <b>not finished</b>.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">48 &ndash; 70</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">62 &ndash; 80</span></div>
   <div class="rs-body">
    <p class="rs-topic">From the real file</p>
-   <p class="rs-say"><b>Land this:</b> stop typing numbers by hand. <code>value_counts()</code> already
-   gives you exactly the two lists <code>plt.bar</code> wants.</p>
-   <p class="rs-do">Type this</p>
    <div class="rs-code"><pre><code>counts = df[<span class="c">"department"</span>].value_counts()
 <span class="k">print</span>(counts)
 
@@ -14028,19 +14131,20 @@ plt.show()</code></pre></div>
 Tech         49
 HR           45
 Marketing    42</div>
-   <div class="rs-board"><b>Index = the names. Values = the heights.</b><br><br>
-   <b>Expect:</b> &ldquo;why is Sales first now?&rdquo; &mdash; <code>value_counts()</code> sorts by
-   frequency, not alphabetically. <b>Flag it, do not fix it.</b> That is tomorrow's opening.</div>
-   <p class="rs-do" style="margin-top:12px">Then 10 minutes on their own &mdash; same chart for the
-   <code>city</code> column. Walk the room.</p>
+   <div class="rs-board"><code>value_counts()</code> gives back <b>two halves</b> &mdash; the names are
+   the <b>index</b>, the counts are the <b>values</b>. <code>plt.bar</code> wants exactly two lists. They
+   fit.<br><br>
+   <b>Expect:</b> &ldquo;why is Sales first now?&rdquo; &mdash; it sorts by frequency, not
+   alphabetically. <b>Flag it, do not fix it.</b> That opens day three.</div>
+   <p class="rs-do" style="margin-top:12px">10 minutes on their own &mdash; walk the room</p>
+   <div class="rs-code"><pre><code><span class="c"># bar chart of the "city" column, same four steps</span></code></pre></div>
    <div class="rs-board"><b>Two errors to catch out loud:</b> <code>plt.bar(counts)</code> with one
    argument instead of two &middot; <code>plt.title()</code> written after <code>plt.show()</code>.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">70 &ndash; 90</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">80 &ndash; 90</span></div>
   <div class="rs-body">
-   <p class="rs-topic">The pattern, and tomorrow</p>
-   <p class="rs-do">On the board &mdash; leave it up all module</p>
+   <p class="rs-topic">Close</p>
    <div class="rs-code"><pre><code>import matplotlib.pyplot as plt
 
 plt.SOMETHING( the data )        # bar / hist / scatter / boxplot
@@ -14050,10 +14154,9 @@ plt.ylabel("...")
 plt.show()
 
 only the SOMETHING line changes.</code></pre></div>
-   <div class="rs-board"><b>Set up tomorrow properly:</b> the two charts that make statistics visible.
-   <b>Skew 14.06</b> &mdash; they computed it, tomorrow they see the tail. <b>The fences 26,610 and
-   112,994</b> and the two values outside them &mdash; tomorrow those become dots they can point
-   at.</div>
+   <div class="rs-board"><b>Set up tomorrow:</b> <b>skew 14.06</b> &mdash; they computed it, tomorrow
+   they see the tail. <b>The fences 26,610 and 112,994</b> &mdash; tomorrow those two salaries become
+   dots they can point at.</div>
   </div></div>
 
   </div>
@@ -14064,11 +14167,29 @@ only the SOMETHING line changes.</code></pre></div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
 
+  <div class="qa"><h5>&ldquo;Where did Anscombe's four datasets come from? What do they
+  measure?&rdquo;</h5>
+  <p>&ldquo;Nowhere, and nothing. A statistician named Francis Anscombe made them up in 1973,
+  deliberately, so that all four would produce the same mean, the same standard deviation and the same
+  correlation. He left x and y unlabelled on purpose &mdash; if he had called them height and weight you
+  would argue about height and weight instead of looking at the shapes.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;So was our average age wrong?&rdquo;</h5>
+  <p>&ldquo;No. The average of that column really is 38.2 and the arithmetic is perfect. The
+  <b>data</b> is wrong. A correct calculation on broken data gives you a correct answer to the wrong
+  question, and nothing in the calculation can warn you. Only looking can.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should we just delete the &minus;4 and the 210?&rdquo;</h5>
+  <p>&ldquo;Not until you know why they are there. If somebody typed 4 as &minus;4, that is one fix. If
+  the system writes &minus;4 whenever the age is missing, then every &minus;4 in the file means
+  <b>missing</b> and there could be thousands in the real database. Find out what it means first. We
+  will come back to this properly on Thursday.&rdquo;</p></div>
+
   <div class="qa"><h5>&ldquo;Why not just use Excel? It draws charts in two clicks.&rdquo;</h5>
   <p>&ldquo;For one chart, Excel is faster and you should use it. The difference is <b>repeat</b>. When
-  the file updates next month, the Excel chart needs doing again by hand and the Python one needs
-  running again. And you cannot put an Excel chart inside a script that runs every morning. You will
-  use both.&rdquo;</p></div>
+  the file updates next month the Excel chart needs doing again by hand; the Python one needs running
+  again. And you cannot put an Excel chart inside a script that runs every morning. You will use
+  both.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;My chart did not appear.&rdquo;</h5>
   <p>&ldquo;Three usual reasons. You forgot <code>plt.show()</code>. Or you are running a
@@ -14081,19 +14202,13 @@ only the SOMETHING line changes.</code></pre></div>
 
   <div class="qa"><h5>&ldquo;Is matplotlib or seaborn better?&rdquo;</h5>
   <p>&ldquo;Not a fair comparison &mdash; seaborn is <b>built on top of</b> matplotlib. It is a shorter
-  way to write the common charts, and we will meet it on day four. You still need matplotlib
-  underneath, because <code>plt.title()</code> and <code>plt.show()</code> are what seaborn charts use
-  too. Learn this first and seaborn takes twenty minutes.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;What was Anscombe's point &mdash; that correlation is useless?&rdquo;</h5>
-  <p>&ldquo;No, and that is worth being precise about. Correlation is fine. It measures one specific
-  thing: how close the points are to a <b>straight line</b>. Set two has a strong relationship and
-  correlation cannot see it because the relationship is a curve. The failure is asking one number to
-  describe a shape.&rdquo;</p></div>
+  way to write the common charts and we meet it on day four. You still need matplotlib underneath,
+  because <code>plt.title()</code> and <code>plt.show()</code> are what seaborn charts use too. Learn
+  this first and seaborn takes twenty minutes.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Do I have to write the title every single time?&rdquo;</h5>
   <p>&ldquo;While you are exploring on your own, no &mdash; nobody labels a throwaway chart. The moment
-  it goes to anybody else, in an assignment, an email or a report, yes. And in this course, yes, because
+  it goes to anybody else, in an assignment, an email or a report, yes. And in this course yes, because
   the habit only forms if it is not optional.&rdquo;</p></div>
  </div>
 </section>
@@ -15199,9 +15314,10 @@ plt.show()</code></pre>
 
    <div class="qbox">
     <div class="q">&ldquo;How many things are wrong with this data? Find them all.&rdquo;</div>
-    <div class="a"><b>Three.</b> A dot at age &minus;4 on the far left. A dot at age 210 on the far
-    right. And the 52-lakh salary at the top. Do not accept the first answer &mdash; make them find all
-    three.</div>
+    <div class="a"><b>Three.</b> Age &minus;4 on the far left and age 210 on the far right &mdash; they
+    met both of those on day one. The new one is the <b>52-lakh salary</b> at the top. The point today
+    is that <b>one chart caught all three at once</b>, including a problem in a column they were not
+    even asking about.</div>
    </div>
 
    <div class="speak">
@@ -15209,10 +15325,12 @@ plt.show()</code></pre>
     <p>Far left &mdash; somebody with an age of <b>minus four</b>. Far right &mdash; somebody aged
     <b>two hundred and ten</b>. And at the top, our old friend at fifty-two lakh.</p>
     <p>Now here is the part I want you to take away.</p>
-    <p>We have been working with this file for three weeks. We computed means, medians, standard
-    deviations, quartiles, correlations, confidence intervals and p-values on it.</p>
-    <p><b>Not one of those numbers told you that somebody in this file is minus four years old.</b></p>
-    <p>One scatter plot, and there it is.</p>
+    <p>On day one you met the first two &mdash; minus four and two hundred and ten &mdash; because we
+    drew the age column on its own.</p>
+    <p>But look at what this chart did. I asked it about <b>age against salary</b>. I was not looking for
+    bad data at all. And it handed me a problem in the <b>salary</b> column for free.</p>
+    <p><b>That is the habit.</b> You do not go hunting for broken data. You draw the thing you were
+    going to draw anyway, and the broken data finds you.</p>
    </div>
 
    <div class="keyline">
