@@ -461,6 +461,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -618,8 +619,8 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="cards">
     <button class="dcard full" data-go="ab23">
      <span class="id">B3 DAY 23</span><h3>The Loop You Have Not Met</h3>
-     <p>while, break and continue. Opens on a payroll question a <code>for</code> loop cannot answer,
-     and runs an infinite loop on purpose so the first one they meet is not alone at night.</p>
+     <p>while, break and continue, on plain typed lists &mdash; this batch has no pandas yet. Opens on
+     a payroll question a <code>for</code> loop cannot answer, and runs an infinite loop on purpose.</p>
      <span class="foot">Script ready &middot; 06 Oct</span></button>
    </div>
   </div>
@@ -17117,21 +17118,21 @@ pies are usually the wrong answer</code></pre></div>
   <p class="tag" style="margin-bottom:16px">August B3 Python day 23 &middot; 90 minutes &middot; full script</p>
   <h1 class="display">The Loop You<br>Have Not Met</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   Every loop they have written so far knew how many times it would run before it started. Today, the
-   one that does not &mdash; and the two keywords that let you leave a loop early or skip a turn.</p>
+   Every loop they have written knew how many times it would run before it started. Today, the one that
+   does not &mdash; and the two keywords that let you leave a loop early or skip a turn.</p>
   <div class="glance">
-   <div class="gcell"><b>23</b><span>people, not known in advance</span></div>
-   <div class="gcell"><b>13</b><span>checks saved by break</span></div>
-   <div class="gcell"><b>1</b><span>row skipped by continue</span></div>
+   <div class="gcell"><b>7</b><span>people, not known in advance</span></div>
+   <div class="gcell"><b>4</b><span>checks saved by break</span></div>
+   <div class="gcell"><b>72.43</b><span>not 50.7</span></div>
    <div class="gcell"><b>3</b><span>keywords, one session</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">Teach <code>while</code> from the thing <code>for</code> cannot do</h4>
-   <p style="color:var(--sienna)">A <code>for</code> loop is told how many turns it gets. A
-   <code>while</code> loop is not &mdash; it keeps going until a condition stops being true. So open on
-   a question where <b style="color:var(--sienna)">nobody in the room knows the answer in advance</b>:
-   how many of the lowest-paid employees before the payroll passes ten lakh? A
-   <code>for</code> loop cannot be written for that. A <code>while</code> loop can.</p>
+   <h4 style="color:var(--sienna)">Everything today is a plain list they type themselves</h4>
+   <p style="color:var(--sienna)">This batch has <b style="color:var(--sienna)">not met pandas or
+   NumPy</b> &mdash; those start at D28. No <code>read_csv</code>, no DataFrame, no file. Every example
+   here is a list of ten numbers typed on screen, which they can read end to end and check by eye. That
+   is also the right call teaching-wise: when the <em>loop</em> is the new thing, the data should be
+   something they can already see.</p>
   </div>
  </div>
 </section>
@@ -17143,9 +17144,9 @@ pies are usually the wrong answer</code></pre></div>
    <li><b>Do not open with syntax.</b> Open with a question a <code>for</code> loop cannot answer. If
    they do not feel the gap, <code>while</code> is just a second way to write something they can already
    do, and they will never reach for it.</li>
-   <li><b>Write the infinite loop on purpose, and let it run.</b> They will meet one by accident in their
-   first week otherwise. Show it, stop it with the keyboard interrupt, and show that the only cause is a
-   counter that never changes.</li>
+   <li><b>Write the infinite loop on purpose, and let it run.</b> They will meet one by accident in
+   their first week otherwise. Show it, stop it with the keyboard interrupt, and point at the missing
+   line.</li>
    <li><b>Three lines are non-negotiable on the board.</b> Start the counter, check the condition,
    <b>change the counter</b>. Forgetting the third is the entire bug.</li>
    <li><b>Teach <code>break</code> and <code>continue</code> inside a <code>for</code>, not a
@@ -17168,8 +17169,8 @@ pies are usually the wrong answer</code></pre></div>
    <h5>Part one &middot; what <code>while</code> is actually for</h5>
 
    <h6>The difference from <code>for</code>, in one sentence</h6>
-   <p>A <code>for</code> loop is handed a collection and runs once per item. Before it starts, the number
-   of turns is already decided.</p>
+   <p>A <code>for</code> loop is handed a list and runs once per item. Before it starts, the number of
+   turns is already decided.</p>
    <p>A <code>while</code> loop is handed a <b>condition</b>. It keeps going for as long as that
    condition is true, and <b>nobody knows how many turns that will be</b> &mdash; including the person
    who wrote it.</p>
@@ -17184,14 +17185,14 @@ pies are usually the wrong answer</code></pre></div>
     condition has nothing to check.</div>
     <div class="mrow"><b>2. the condition</b> <code>while i &lt;= 5:</code> &mdash; checked
     <em>before</em> every turn, including the first.</div>
-    <div class="mrow"><b>3. change the counter</b> <code>i = i + 1</code> &mdash; <b>inside</b> the loop.
-    Leave this out and the condition never becomes false.</div>
+    <div class="mrow"><b>3. change the counter</b> <code>i = i + 1</code> &mdash; <b>inside</b> the
+    loop. Leave this out and the condition never becomes false.</div>
    </div>
    <p>Step three is the whole bug. Every infinite loop a beginner writes is a missing step three.</p>
 
    <h6>Show the infinite loop deliberately</h6>
    <p>If you only warn them about it, they meet their first one alone, at night, and panic. Run one in
-   class, let it scroll, stop it with <b>Ctrl&nbsp;+&nbsp;C</b> (or the stop button in the notebook), and
+   class, let it scroll, stop it with <b>Ctrl&nbsp;+&nbsp;C</b> (or the stop button in the editor), and
    point at the missing line. Thirty seconds, and it removes a whole category of fear.</p>
   </div>
 
@@ -17208,15 +17209,11 @@ pies are usually the wrong answer</code></pre></div>
    <p>Students merge these constantly. The fix is a physical image: <code>break</code> is walking out of
    the room; <code>continue</code> is skipping your turn and staying in the game.</p>
 
-   <h6>Why <code>break</code> is worth having</h6>
-   <p>Searching HR's 45 sorted experience values for the first person with ten or more years, the answer
-   sits at position 31. Without <code>break</code> the loop checks all 45. With it, 32. On forty-five
-   rows that is nothing; on four million it is the difference between instant and a coffee break.</p>
-
-   <h6>Why <code>continue</code> is worth having</h6>
-   <p>It is how you skip the rows you do not want without wrapping the entire body of the loop in an
-   <code>if</code>. Both work. <code>continue</code> stays flat and readable; the nested
-   <code>if</code> drifts right and gets hard to follow once there are two or three conditions.</p>
+   <h6>The <code>continue</code> example is the one that matters</h6>
+   <p>A list of ten test marks where three students were absent, recorded as <b>0</b>. Average all ten
+   and you get <b>50.7</b>. Skip the zeros and the real average is <b>72.43</b>.</p>
+   <p>That is a twenty-two mark difference caused by counting absentees as if they scored nothing, and
+   it is the kind of mistake that reaches a report. Worth more than any syntax explanation.</p>
   </div>
  </div>
 </section>
@@ -17235,39 +17232,50 @@ pies are usually the wrong answer</code></pre></div>
    <div class="bhead"><span class="clock">0 &ndash; 16</span><h3>A question a for loop cannot answer</h3></div>
    <p class="objective">Make them feel the gap before you name the solution.</p>
 
-   <div class="stage">Do not say the word &ldquo;while&rdquo; yet. Ask the question and let them try.</div>
+   <div class="stage">Do not say the word &ldquo;while&rdquo; yet. Put the list up, ask the question,
+   and let them try.</div>
+
+   <div class="typeit">Everyone types this list</div>
+<pre><code>salaries = [<span class="o">18000</span>, <span class="o">22000</span>, <span class="o">25000</span>, <span class="o">31000</span>, <span class="o">35000</span>,
+            <span class="o">42000</span>, <span class="o">48000</span>, <span class="o">55000</span>, <span class="o">60000</span>, <span class="o">72000</span>]
+
+<span class="k">print</span>(<span class="k">len</span>(salaries), <span class="c">"people"</span>)
+<span class="k">print</span>(<span class="c">"total payroll:"</span>, <span class="k">sum</span>(salaries))</code></pre>
+   <div class="screen">10 people
+total payroll: 408000</div>
 
    <div class="speak">
-    <p>Here is a question about our employee file.</p>
-    <p>Start with the <b>lowest-paid</b> person. Add the next lowest. Then the next. Keep adding salaries
-    until the total payroll passes <b>ten lakh</b>.</p>
+    <p>Ten salaries, smallest to biggest. The whole payroll is four lakh eight thousand.</p>
+    <p>Now here is my question.</p>
+    <p>Start from the lowest paid person. Add the next. Then the next. Keep adding until the running
+    total passes <b>two lakh</b>.</p>
     <p><b>How many people is that?</b></p>
    </div>
 
    <div class="qbox">
     <div class="q">&ldquo;Write me a <code>for</code> loop for that.&rdquo;</div>
     <div class="a">They cannot, and it is worth two minutes of them trying. A <code>for</code> loop has
-    to be told how many turns to take &mdash; <code>range(?)</code>. And <b>nobody in the room knows the
-    number</b>. That is the whole point: the answer <em>is</em> the number of turns.</div>
+    to be told how many turns &mdash; <code>range(?)</code>. And <b>nobody in the room knows the
+    number</b>. That is the point: the answer <em>is</em> the number of turns.</div>
    </div>
 
    <div class="speak">
     <p>You cannot. And look at <em>why</em> you cannot.</p>
-    <p>Every <code>for</code> loop you have written starts by saying how many turns it gets.
-    <code>for i in range(10)</code> is ten turns. <code>for x in my_list</code> is one turn per item.
+    <p>Every <code>for</code> loop you have written says how many turns it gets up front.
+    <code>for i in range(10)</code> is ten turns. <code>for s in salaries</code> is one turn per item.
     The number is decided <b>before the loop starts</b>.</p>
     <p>But here, the number of turns <b>is the answer</b>. I do not know it. You do not know it. The
     computer has to find it.</p>
-    <p>So we need a different kind of loop. One that does not count turns &mdash; one that just keeps
-    going <b>until something stops being true</b>.</p>
+    <p>So we need a different kind of loop. One that does not count turns &mdash; one that keeps going
+    <b>until something stops being true</b>.</p>
    </div>
 
    <div class="typeit">On the board</div>
 <pre><code>FOR    you know HOW MANY TIMES before you start
-       for i in range(10):        <- ten turns, decided now
+       for i in range(10):      &lt;- ten turns, decided now
 
 WHILE  you only know WHEN TO STOP
-       while total &lt; 1000000:     <- as many turns as it takes</code></pre>
+       while total &lt; 200000:    &lt;- as many turns as it takes</code></pre>
 
    <div class="keyline">
     <b>Use <code>for</code> when you know how many times. Use <code>while</code> when you only know when
@@ -17283,10 +17291,10 @@ WHILE  you only know WHEN TO STOP
    <p class="objective">The smallest possible example, then the one that forgets step three.</p>
 
    <div class="speak">
-    <p>Before we answer the payroll question, let me show you the shape with the smallest example I
-    can.</p>
-    <p>Print the numbers one to five. You could do this with a <code>for</code> loop in your sleep. Watch
-    what it looks like with <code>while</code>.</p>
+    <p>Before we answer the payroll question, the shape &mdash; with the smallest example I can
+    write.</p>
+    <p>Print the numbers one to five. You could do that with a <code>for</code> loop in your sleep.
+    Watch what it looks like with <code>while</code>.</p>
    </div>
 
    <div class="typeit">Type this</div>
@@ -17308,7 +17316,7 @@ WHILE  you only know WHEN TO STOP
     <p><b>One. Start the counter.</b> <code>i = 1</code>, and notice it is <b>outside</b> the loop,
     before it. The loop has to have something to check on its very first turn.</p>
     <p><b>Two. The condition.</b> <code>while i &lt;= 5:</code>. Python checks this <b>before every
-    turn</b>, including the first one. If it is True, take a turn. If it is False, stop.</p>
+    turn</b>, including the first. True, take a turn. False, stop.</p>
     <p><b>Three. Change the counter.</b> <code>i = i + 1</code>, <b>inside</b> the loop.</p>
     <p>And that third line is the one everybody forgets. Let me show you what happens.</p>
    </div>
@@ -17332,12 +17340,11 @@ WHILE  you only know WHEN TO STOP
 
    <div class="speak">
     <p>One, one, one, one, forever.</p>
-    <p>Why? Because <code>i</code> never changes. It is one at the start, it is still one at the end of
-    the turn, so <code>i &lt;= 5</code> is still True. And it will be True for ever.</p>
+    <p>Why? Because <code>i</code> never changes. It is one at the start, still one at the end of the
+    turn, so <code>i &lt;= 5</code> is still True. And it will be True for ever.</p>
     <p>This is called an <b>infinite loop</b>. You will write one. Everybody writes one. So let me show
-    you how to get out of it.</p>
-    <p>Press <b>Control and C</b> together. In the notebook, press the <b>stop</b> button at the
-    top.</p>
+    you how to get out.</p>
+    <p>Press <b>Control and C</b> together. In most editors there is also a red <b>stop</b> button.</p>
    </div>
 
    <div class="warn"><b>Actually run it and actually stop it in front of them.</b> A student who has only
@@ -17355,152 +17362,178 @@ WHILE  you only know WHEN TO STOP
    <div class="bhead"><span class="clock">32 &ndash; 46</span><h3>Now answer the payroll question</h3></div>
    <p class="objective">Back to the opening question, now that they have the tool.</p>
 
-   <div class="speak">
-    <p>Now we can answer the question I opened with.</p>
-   </div>
-
    <div class="typeit">Type this</div>
-<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
-
-df  = pd.read_csv(<span class="c">"employees.csv"</span>)
-sal = <span class="k">sorted</span>(df[<span class="c">"salary"</span>].dropna())    <span class="c"># lowest paid first</span>
-
-total  = <span class="o">0</span>
+<pre><code>total  = <span class="o">0</span>
 people = <span class="o">0</span>
 
-<span class="k">while</span> total &lt; <span class="o">1000000</span>:
-    total  = total + sal[people]
+<span class="k">while</span> total &lt; <span class="o">200000</span>:
+    total  = total + salaries[people]
     people = people + <span class="o">1</span>
 
 <span class="k">print</span>(<span class="c">"people :"</span>, people)
-<span class="k">print</span>(<span class="c">"payroll:"</span>, <span class="k">round</span>(total))</code></pre>
-   <div class="screen">people : 23
-payroll: 1000823</div>
+<span class="k">print</span>(<span class="c">"total  :"</span>, total)</code></pre>
+   <div class="screen">people : 7
+total  : 221000</div>
 
    <div class="speak">
-    <p>Twenty-three people.</p>
-    <p>And here is the thing I want you to notice. <b>I did not tell the loop to run twenty-three
-    times.</b> I could not have &mdash; I did not know it was twenty-three until it finished.</p>
+    <p>Seven people.</p>
+    <p>And here is the thing I want you to notice. <b>I did not tell the loop to run seven times.</b> I
+    could not have &mdash; I did not know it was seven until it finished.</p>
     <p>I told it when to stop, and it worked out how many turns that took.</p>
     <p>That is the only thing <code>while</code> does that <code>for</code> cannot.</p>
    </div>
 
+   <div class="stage">Trace it on the board. It makes the timing of the condition check obvious, and
+   explains the overshoot before anybody asks.</div>
+
+   <div class="typeit">On the board &mdash; trace the turns</div>
+<pre><code>  start             total = 0        people = 0
+
+  check 0 &lt; 200000    yes -> add 18000   total 18000    people 1
+  check 18000         yes -> add 22000   total 40000    people 2
+  check 40000         yes -> add 25000   total 65000    people 3
+  ...
+  check 179000        yes -> add 42000   total 221000   people 7
+  check 221000        NO  -> stop
+
+  it checks AFTER adding, so it overshoots past 200000.</code></pre>
+
    <div class="speak">
-    <p>Look at the three lines again in this one. <code>total = 0</code> and <code>people = 0</code>
-    are step one, outside the loop. <code>while total &lt; 1000000</code> is step two. And both lines
-    inside the loop are step three &mdash; they change the thing the condition is watching.</p>
-    <p>Also notice the payroll came out at ten lakh and <b>eight hundred and twenty-three</b>, not
-    exactly ten lakh. It overshoots, because the loop only checks the condition <b>between</b> turns,
-    never in the middle of one.</p>
+    <p>Look at the last two lines of that trace. The total came out at two lakh twenty-one thousand, not
+    exactly two lakh.</p>
+    <p>It overshoots, because the condition is only checked <b>between</b> turns &mdash; never in the
+    middle of one. It added the seventh salary, finished the turn, and only then looked.</p>
    </div>
 
    <div class="qbox">
-    <div class="q">&ldquo;What happens if I write <code>while total &lt; 100000000</code> &mdash; a
-    number bigger than the whole payroll?&rdquo;</div>
-    <div class="a">It runs out of employees and crashes with an <code>IndexError</code>, because
-    <code>sal[people]</code> eventually asks for a row that does not exist. Worth running for ten
-    seconds &mdash; it shows that a <code>while</code> loop will happily walk off the end of your data
-    if the condition never becomes false.</div>
+    <div class="q">&ldquo;What if I write <code>while total &lt; 500000</code> &mdash; more than the
+    whole payroll?&rdquo;</div>
+    <div class="a">It runs out of people and crashes with an <code>IndexError</code>, because
+    <code>salaries[people]</code> eventually asks for position 10 in a list of 10. Run it for ten
+    seconds &mdash; it shows that a <code>while</code> loop will walk off the end of your list if the
+    condition never becomes false.</div>
    </div>
   </div>
 
-  <!-- 46-62 -->
+  <!-- 46-60 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">46 &ndash; 62</span><h3>break &mdash; leave the loop early</h3></div>
+   <div class="bhead"><span class="clock">46 &ndash; 60</span><h3>break &mdash; leave the loop early</h3></div>
    <p class="objective">Inside a for loop, so the only new thing is the keyword.</p>
 
    <div class="speak">
-    <p>Two more keywords today, and both go <b>inside</b> a loop. I am going to show them in a
+    <p>Two more keywords, and both go <b>inside</b> a loop. I am going to show them in a
     <code>for</code> loop, because you know <code>for</code> cold &mdash; so the only new thing on screen
     is the keyword itself.</p>
-    <p>First one: <code>break</code>.</p>
+    <p>First: <code>break</code>. I want the <b>first</b> salary above forty thousand.</p>
    </div>
 
-   <div class="typeit">A search, without break</div>
-<pre><code>hr = <span class="k">sorted</span>(df[df[<span class="c">"department"</span>] == <span class="c">"HR"</span>][<span class="c">"experience"</span>])
-<span class="k">print</span>(<span class="k">len</span>(hr), <span class="c">"people"</span>)
+   <div class="typeit">Without break</div>
+<pre><code>checks = <span class="o">0</span>
 
-checks = <span class="o">0</span>
-<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(hr)):
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(salaries)):
     checks = checks + <span class="o">1</span>
-    <span class="k">if</span> hr[i] &gt;= <span class="o">10</span>:
+    <span class="k">if</span> salaries[i] &gt; <span class="o">40000</span>:
         found = i
 
 <span class="k">print</span>(<span class="c">"checks made:"</span>, checks)</code></pre>
-   <div class="screen">45 people
-checks made: 45</div>
+   <div class="screen">checks made: 10</div>
 
    <div class="speak">
-    <p>I am looking for the <b>first</b> person with ten or more years of experience. The list is
-    sorted, so once I find one, everybody after them also has ten or more.</p>
-    <p>But look. The loop checked all forty-five. It kept going long after it had the answer.</p>
+    <p>The list is sorted, so once I find one above forty thousand, everybody after it is too. I have my
+    answer early.</p>
+    <p>But the loop checked all ten. It kept going long after it knew.</p>
    </div>
 
-   <div class="typeit">The same search, with break</div>
+   <div class="typeit">With break</div>
 <pre><code>checks = <span class="o">0</span>
-<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(hr)):
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(salaries)):
     checks = checks + <span class="o">1</span>
-    <span class="k">if</span> hr[i] &gt;= <span class="o">10</span>:
+    <span class="k">if</span> salaries[i] &gt; <span class="o">40000</span>:
         found = i
         <span class="k">break</span>
 
 <span class="k">print</span>(<span class="c">"found at position:"</span>, found)
-<span class="k">print</span>(<span class="c">"checks made     :"</span>, checks)</code></pre>
-   <div class="screen">found at position: 31
-checks made     : 32</div>
+<span class="k">print</span>(<span class="c">"that salary      :"</span>, salaries[found])
+<span class="k">print</span>(<span class="c">"checks made      :"</span>, checks)</code></pre>
+   <div class="screen">found at position: 5
+that salary      : 42000
+checks made      : 6</div>
 
    <div class="speak">
-    <p>Thirty-two checks instead of forty-five. The moment it found what it wanted, it <b>left</b>.</p>
+    <p>Six checks instead of ten. The moment it found what it wanted, it <b>left</b>.</p>
     <p><code>break</code> means: <b>get out of this loop completely, right now.</b> Nothing else in the
     loop runs, and it does not take another turn.</p>
-    <p>Position thirty-one, thirty-two checks &mdash; those are not inconsistent. Positions start at
-    zero, so position thirty-one is the thirty-second person, and <code>checks</code> is counted up
-    before the <code>if</code> runs.</p>
-    <p>On forty-five rows, saving thirteen checks is nothing. On four million rows it is the difference
-    between an answer now and an answer after lunch.</p>
    </div>
+
+   <div class="warn"><b>Position 5 but 6 checks &mdash; that is not a bug, and somebody will ask.</b>
+   Positions start at zero, so position 5 is the sixth item. And <code>checks</code> goes up
+   <em>before</em> the <code>if</code> runs, so it counts the turn it found it on.</div>
 
    <div class="keyline">
     The honest use of <code>break</code> is <b>searching</b>. You are looking for the first thing that
-    matches, and once you have it there is no reason to keep looking.
+    matches, and once you have it there is no reason to keep looking. On ten items saving four checks is
+    nothing. On ten lakh rows it is the difference between an answer now and an answer after lunch.
    </div>
   </div>
 
-  <!-- 62-76 -->
+  <!-- 60-76 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">62 &ndash; 76</span><h3>continue &mdash; skip this one turn</h3></div>
-   <p class="objective">The second keyword, and the comparison that makes both stick.</p>
+   <div class="bhead"><span class="clock">60 &ndash; 76</span><h3>continue &mdash; skip this one turn</h3></div>
+   <p class="objective">The second keyword, and the example that shows why it matters.</p>
 
    <div class="speak">
-    <p>Second keyword. <code>continue</code>.</p>
-    <p>HR has one person with zero years of experience &mdash; a fresher. Suppose I want the average
-    experience of everybody <b>except</b> the freshers.</p>
+    <p>Second keyword. <code>continue</code>. And this example is a real mistake people make at
+    work.</p>
+    <p>Here are the marks for a test. Ten students. Three of them were <b>absent</b>, and whoever
+    entered the data wrote their marks as <b>zero</b>.</p>
    </div>
 
-   <div class="typeit">Type this</div>
+   <div class="typeit">Type this list</div>
+<pre><code>marks = [<span class="o">72</span>, <span class="o">0</span>, <span class="o">65</span>, <span class="o">88</span>, <span class="o">0</span>, <span class="o">91</span>, <span class="o">54</span>, <span class="o">77</span>, <span class="o">0</span>, <span class="o">60</span>]
+
+<span class="k">print</span>(<span class="c">"average of everything:"</span>, <span class="k">round</span>(<span class="k">sum</span>(marks) / <span class="k">len</span>(marks), <span class="o">2</span>))</code></pre>
+   <div class="screen">average of everything: 50.7</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Fifty point seven. Is that the class average?&rdquo;</div>
+    <div class="a"><b>No.</b> Three students did not sit the test. Counting them as having scored zero
+    is counting a non-answer as a wrong answer. Let them spot it &mdash; the zeros are visible in the
+    list.</div>
+   </div>
+
+   <div class="typeit">Skip the absentees</div>
 <pre><code>total   = <span class="o">0</span>
 counted = <span class="o">0</span>
-skipped = <span class="o">0</span>
+absent  = <span class="o">0</span>
 
-<span class="k">for</span> years <span class="k">in</span> hr:
-    <span class="k">if</span> years == <span class="o">0</span>:
-        skipped = skipped + <span class="o">1</span>
+<span class="k">for</span> m <span class="k">in</span> marks:
+    <span class="k">if</span> m == <span class="o">0</span>:
+        absent = absent + <span class="o">1</span>
         <span class="k">continue</span>
-    total   = total + years
+    total   = total + m
     counted = counted + <span class="o">1</span>
 
-<span class="k">print</span>(<span class="c">"skipped :"</span>, skipped)
+<span class="k">print</span>(<span class="c">"absent  :"</span>, absent)
 <span class="k">print</span>(<span class="c">"counted :"</span>, counted)
 <span class="k">print</span>(<span class="c">"average :"</span>, <span class="k">round</span>(total / counted, <span class="o">2</span>))</code></pre>
-   <div class="screen">skipped : 1
-counted : 44
-average : 7.36</div>
+   <div class="screen">absent  : 3
+counted : 7
+average : 72.43</div>
 
    <div class="speak">
-    <p>One person skipped. Forty-four counted. Average seven point three six years.</p>
-    <p><code>continue</code> means: <b>skip the rest of this turn, and go back to the top.</b></p>
-    <p>When <code>years</code> was zero, Python hit <code>continue</code> and jumped straight back up for
-    the next person. The two lines below it never ran for that person.</p>
+    <p>Seventy-two point four three. Not fifty point seven.</p>
+    <p>That is a <b>twenty-two mark difference</b>, and it came from treating three absent students as
+    if they had sat the test and scored nothing.</p>
+    <p>This is not a syntax point. This is the kind of mistake that goes into a report and makes a whole
+    class look worse than it is.</p>
+   </div>
+
+   <div class="speak">
+    <p>Now the keyword itself. <code>continue</code> means: <b>skip the rest of this turn, and go back
+    to the top.</b></p>
+    <p>When <code>m</code> was zero, Python hit <code>continue</code> and jumped straight back up for
+    the next student. The two lines below it never ran for that student.</p>
     <p>But the loop <b>kept going</b>. That is the whole difference from <code>break</code>.</p>
    </div>
 
@@ -17518,40 +17551,40 @@ continue   SKIP THE REST OF THIS TURN ONLY.
    <div class="qbox">
     <div class="q">Ask it straight, and take the answer from three different people:
     &ldquo;Difference between <code>break</code> and <code>continue</code>?&rdquo;</div>
-    <div class="a">This exact question is asked in interviews constantly. The answer is one sentence
-    each. Do not let them leave without being able to say it without thinking.</div>
+    <div class="a">This exact question is asked in interviews constantly. One sentence each. Do not let
+    them leave without being able to say it without thinking.</div>
    </div>
 
-   <div class="warn"><b>Expect: &ldquo;could I have just used an <code>if</code> instead of
-   <code>continue</code>?&rdquo;</b> Yes, and say so &mdash; wrapping the rest of the body in
-   <code>if years != 0:</code> does exactly the same job here. The difference is readability: with two or
-   three conditions to skip, the <code>if</code> version drifts further and further right, and
-   <code>continue</code> stays flat. Both are correct; one stays readable.</div>
+   <div class="warn"><b>Expect: &ldquo;could I have just used an <code>if</code> instead?&rdquo;</b> Yes,
+   and say so &mdash; <code>if m != 0:</code> around the two lines does the same job here. The difference
+   is readability: with two or three things to skip, the <code>if</code> version drifts further and
+   further right, and <code>continue</code> stays flat. Both are correct; one stays readable.</div>
   </div>
 
   <!-- 76-90 -->
   <div class="blk">
    <div class="bhead"><span class="clock">76 &ndash; 90</span><h3>Practice, and close</h3></div>
 
-   <div class="stage">Ten minutes on their own. Walk the room. The second one is the one that needs a
+   <div class="stage">Ten minutes on their own. Walk the room. Question 2 is the one that needs a
    <code>while</code> and they should feel that.</div>
 
    <div class="typeit">Their turn</div>
 <pre><code><span class="c"># 1. print 10 down to 1 using a while loop</span>
-<span class="c">#    (careful: which way does the counter move?)</span>
+<span class="c">#    careful: which way does the counter move?</span>
 
-<span class="c"># 2. same payroll question, but keep going to 20 lakh.</span>
-<span class="c">#    how many people now? is it double 23? why not?</span>
+<span class="c"># 2. same payroll list. how many people before the total</span>
+<span class="c">#    passes 3 lakh? is it more or less than double 7? why?</span>
 
-<span class="c"># 3. loop over hr and print the first value above 12, then stop</span>
+<span class="c"># 3. loop over salaries and print the first one above 50000,</span>
+<span class="c">#    then stop</span>
 
-<span class="c"># 4. count how many HR people have 5 or more years,</span>
-<span class="c">#    skipping anybody with 0 using continue</span></code></pre>
+<span class="c"># 4. count how many students scored 70 or more,</span>
+<span class="c">#    skipping the absentees with continue</span></code></pre>
 
-   <div class="warn"><b>Question 1 catches people.</b> Counting down needs <code>i = i - 1</code>, and
-   the condition flips to <code>while i &gt;= 1</code>. Somebody will write <code>i = i + 1</code> out of
-   habit and get an infinite loop &mdash; which is the best possible time for it to happen, with you in
-   the room.</div>
+   <div class="warn"><b>Question 1 catches people.</b> Counting down needs <code>i = i - 1</code> and the
+   condition flips to <code>while i &gt;= 1</code>. Somebody will write <code>i = i + 1</code> from habit
+   and get an infinite loop &mdash; which is the best possible time for that to happen, with you in the
+   room.</div>
 
    <div class="typeit">The four lines. If everything else goes, keep these.</div>
 <pre><code>1.  FOR    -> you know HOW MANY TIMES before you start
@@ -17560,18 +17593,18 @@ continue   SKIP THE REST OF THIS TURN ONLY.
 2.  a while loop needs THREE things:
       start the counter   (before the loop)
       the condition       (checked before every turn)
-      CHANGE THE COUNTER  (inside the loop)  <- the one everybody forgets
+      CHANGE THE COUNTER  (inside the loop)  &lt;- everybody forgets this
 
 3.  break     leave the loop completely. no more turns.
     continue  skip the rest of THIS turn. the loop carries on.
 
 4.  if your loop never stops: does the thing in the condition
-    actually change inside the loop? Ctrl + C to get out.</code></pre>
+    actually change inside the loop?  Ctrl + C to get out.</code></pre>
 
    <div class="speak">
-    <p>Tomorrow we do something you have never done in this course at all &mdash; open a file from your
+    <p>Tomorrow we do something you have not done once in this course &mdash; open a file from your own
     computer, read what is inside it, and write a new one.</p>
-    <p>Everything we have worked on so far, I handed you. Tomorrow you go and get it yourself.</p>
+    <p>Every list we have used so far, you typed yourself. Tomorrow you go and get the data instead.</p>
    </div>
   </div>
  </div>
@@ -17590,17 +17623,23 @@ continue   SKIP THE REST OF THIS TURN ONLY.
  <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 16</span></div>
   <div class="rs-body">
    <p class="rs-topic">A question a for loop cannot answer</p>
-   <p class="rs-say"><b>Land this:</b> do <b>not</b> say &ldquo;while&rdquo; yet. Ask the question, let
-   them try to write a <code>for</code> loop for it, and let them fail.</p>
-   <div class="rs-board"><b>The question:</b> start with the lowest-paid person, keep adding salaries
-   until the payroll passes <b>ten lakh</b>. How many people?<br><br>
+   <p class="rs-say"><b>Land this:</b> do <b>not</b> say &ldquo;while&rdquo; yet. Put the list up, ask
+   the question, let them try to write a <code>for</code> loop, and let them fail.</p>
+   <p class="rs-do">Everyone types this</p>
+   <div class="rs-code"><pre><code>salaries = [<span class="o">18000</span>, <span class="o">22000</span>, <span class="o">25000</span>, <span class="o">31000</span>, <span class="o">35000</span>,
+            <span class="o">42000</span>, <span class="o">48000</span>, <span class="o">55000</span>, <span class="o">60000</span>, <span class="o">72000</span>]
+
+<span class="k">print</span>(<span class="k">len</span>(salaries), <span class="c">"people"</span>)
+<span class="k">print</span>(<span class="c">"total payroll:"</span>, <span class="k">sum</span>(salaries))</code></pre></div>
+   <div class="rs-out">10 people
+total payroll: 408000</div>
+   <div class="rs-board"><b>The question:</b> start from the lowest paid, keep adding until the running
+   total passes <b>2 lakh</b>. How many people?<br><br>
    <b>Why they cannot:</b> <code>for</code> needs <code>range(?)</code> &mdash; and the number of turns
-   <b>is the answer</b>. Nobody in the room knows it.</div>
-   <p class="rs-do">On the board</p>
+   <b>is the answer</b>.</div>
+   <p class="rs-do" style="margin-top:12px">On the board</p>
    <div class="rs-code"><pre><code>FOR    you know HOW MANY TIMES before you start
 WHILE  you only know WHEN TO STOP</code></pre></div>
-   <div class="rs-board"><b>The interview line:</b> use <code>for</code> when you know how many times,
-   <code>while</code> when you only know when to stop.</div>
   </div></div>
 
  <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">16 &ndash; 32</span></div>
@@ -17619,7 +17658,7 @@ WHILE  you only know WHEN TO STOP</code></pre></div>
    <div class="rs-board"><b>1. start the counter</b> &mdash; outside, before &middot; <b>2. the
    condition</b> &mdash; checked before <b>every</b> turn including the first &middot; <b>3. change the
    counter</b> &mdash; inside. <b>Step 3 is the whole session.</b></div>
-   <p class="rs-do" style="margin-top:12px">Now break it on purpose &mdash; warn them first, then run it</p>
+   <p class="rs-do" style="margin-top:12px">Now break it on purpose &mdash; warn them, then run it</p>
    <div class="rs-code"><pre><code>i = <span class="o">1</span>
 <span class="k">while</span> i &lt;= <span class="o">5</span>:
     <span class="k">print</span>(i)
@@ -17629,108 +17668,122 @@ WHILE  you only know WHEN TO STOP</code></pre></div>
 1
 1
 ... never stops</div>
-   <div class="rs-board"><b>Actually run it and actually stop it.</b> <b>Ctrl + C</b>, or the stop button
-   in the notebook. A student who has only been warned meets their first one alone at 11pm and thinks
-   they broke the laptop.<br><br>
+   <div class="rs-board"><b>Actually run it and actually stop it.</b> <b>Ctrl + C</b>, or the red stop
+   button. A student who has only been warned meets their first one alone at 11pm and thinks they broke
+   the laptop.<br><br>
    <b>Every infinite loop a beginner writes is a missing step three.</b></div>
   </div></div>
 
  <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">32 &ndash; 46</span></div>
   <div class="rs-body">
    <p class="rs-topic">Answer the payroll question</p>
-   <div class="rs-code"><pre><code>sal = <span class="k">sorted</span>(df[<span class="c">"salary"</span>].dropna())
-
-total  = <span class="o">0</span>
+   <div class="rs-code"><pre><code>total  = <span class="o">0</span>
 people = <span class="o">0</span>
 
-<span class="k">while</span> total &lt; <span class="o">1000000</span>:
-    total  = total + sal[people]
+<span class="k">while</span> total &lt; <span class="o">200000</span>:
+    total  = total + salaries[people]
     people = people + <span class="o">1</span>
 
 <span class="k">print</span>(<span class="c">"people :"</span>, people)
-<span class="k">print</span>(<span class="c">"payroll:"</span>, <span class="k">round</span>(total))</code></pre></div>
-   <div class="rs-out">people : 23
-payroll: 1000823</div>
-   <div class="rs-board"><b>The line:</b> &ldquo;I did not tell it to run 23 times. I could not have
-   &mdash; I did not know it was 23 until it finished.&rdquo;<br><br>
-   Point out the <b>overshoot</b>: 10,00,823, not exactly 10 lakh. The condition is only checked
-   <b>between</b> turns.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> &ldquo;what if the target is bigger than
-   the whole payroll?&rdquo; &mdash; <code>IndexError</code>. Run it for ten seconds. A while loop will
-   walk off the end of your data if the condition never goes false.</div>
+<span class="k">print</span>(<span class="c">"total  :"</span>, total)</code></pre></div>
+   <div class="rs-out">people : 7
+total  : 221000</div>
+   <div class="rs-board"><b>The line:</b> &ldquo;I did not tell it to run seven times. I could not have
+   &mdash; I did not know it was seven until it finished.&rdquo;</div>
+   <p class="rs-do" style="margin-top:12px">Trace it on the board</p>
+   <div class="rs-code"><pre><code>check 0 &lt; 200000   yes -> add 18000  total 18000   people 1
+check 18000        yes -> add 22000  total 40000   people 2
+...
+check 179000       yes -> add 42000  total 221000  people 7
+check 221000       NO  -> stop
+
+it checks AFTER adding, so it overshoots past 200000.</code></pre></div>
+   <div class="rs-board"><b>Expect:</b> &ldquo;what if the target is more than the whole
+   payroll?&rdquo; &mdash; <code>IndexError</code>. Run it for ten seconds. A while loop will walk off
+   the end of your list if the condition never goes false.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">46 &ndash; 62</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">46 &ndash; 60</span></div>
   <div class="rs-body">
    <p class="rs-topic">break</p>
    <p class="rs-say"><b>Land this:</b> teach it inside a <code>for</code>, which they know cold, so the
-   only new thing on screen is the keyword.</p>
-   <div class="rs-code"><pre><code>hr = <span class="k">sorted</span>(df[df[<span class="c">"department"</span>] == <span class="c">"HR"</span>][<span class="c">"experience"</span>])
-
-checks = <span class="o">0</span>
-<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(hr)):
+   only new thing on screen is the keyword. Run it <b>without</b> break first.</p>
+   <div class="rs-code"><pre><code>checks = <span class="o">0</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(salaries)):
     checks = checks + <span class="o">1</span>
-    <span class="k">if</span> hr[i] &gt;= <span class="o">10</span>:
+    <span class="k">if</span> salaries[i] &gt; <span class="o">40000</span>:
         found = i
         <span class="k">break</span>
 
 <span class="k">print</span>(<span class="c">"found at position:"</span>, found)
-<span class="k">print</span>(<span class="c">"checks made     :"</span>, checks)</code></pre></div>
-   <div class="rs-out">found at position: 31
-checks made     : 32</div>
-   <div class="rs-board">Run it <b>without</b> break first &mdash; <b>45 checks</b>. With break,
-   <b>32</b>.<br><br>
-   <code>break</code> = <b>get out of this loop completely, right now.</b> On 45 rows saving 13 checks
-   is nothing; on 4 million it is an answer now versus after lunch.<br><br>
-   <b>The honest use is searching.</b></div>
+<span class="k">print</span>(<span class="c">"that salary      :"</span>, salaries[found])
+<span class="k">print</span>(<span class="c">"checks made      :"</span>, checks)</code></pre></div>
+   <div class="rs-out">found at position: 5
+that salary      : 42000
+checks made      : 6</div>
+   <div class="rs-board">Without break: <b>10 checks</b>. With break: <b>6</b>.<br><br>
+   <b>Somebody will ask about 5 vs 6:</b> positions start at zero, so position 5 is the sixth item; and
+   <code>checks</code> goes up <b>before</b> the <code>if</code>, so it counts the turn it found it
+   on.<br><br>
+   <b>The honest use is searching.</b> On 10 items saving 4 checks is nothing. On 10 lakh rows it is an
+   answer now versus after lunch.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">62 &ndash; 76</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">60 &ndash; 76</span></div>
   <div class="rs-body">
-   <p class="rs-topic">continue</p>
+   <p class="rs-topic">continue &mdash; and a real mistake</p>
+   <p class="rs-say"><b>Land this:</b> this is not a syntax point. Three absent students logged as 0
+   drag the class average from <b>72.43</b> down to <b>50.7</b>.</p>
+   <div class="rs-code"><pre><code>marks = [<span class="o">72</span>, <span class="o">0</span>, <span class="o">65</span>, <span class="o">88</span>, <span class="o">0</span>, <span class="o">91</span>, <span class="o">54</span>, <span class="o">77</span>, <span class="o">0</span>, <span class="o">60</span>]
+<span class="k">print</span>(<span class="k">round</span>(<span class="k">sum</span>(marks) / <span class="k">len</span>(marks), <span class="o">2</span>))</code></pre></div>
+   <div class="rs-out">50.7</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;is that the class average?&rdquo; &mdash; <b>no.</b> Three
+   did not sit the test. Counting them as zero is counting a non-answer as a wrong answer.</div>
+   <p class="rs-do" style="margin-top:12px">Skip them</p>
    <div class="rs-code"><pre><code>total   = <span class="o">0</span>
 counted = <span class="o">0</span>
-skipped = <span class="o">0</span>
+absent  = <span class="o">0</span>
 
-<span class="k">for</span> years <span class="k">in</span> hr:
-    <span class="k">if</span> years == <span class="o">0</span>:
-        skipped = skipped + <span class="o">1</span>
+<span class="k">for</span> m <span class="k">in</span> marks:
+    <span class="k">if</span> m == <span class="o">0</span>:
+        absent = absent + <span class="o">1</span>
         <span class="k">continue</span>
-    total   = total + years
+    total   = total + m
     counted = counted + <span class="o">1</span>
 
-<span class="k">print</span>(<span class="c">"skipped :"</span>, skipped)
+<span class="k">print</span>(<span class="c">"absent  :"</span>, absent)
 <span class="k">print</span>(<span class="c">"counted :"</span>, counted)
 <span class="k">print</span>(<span class="c">"average :"</span>, <span class="k">round</span>(total / counted, <span class="o">2</span>))</code></pre></div>
-   <div class="rs-out">skipped : 1
-counted : 44
-average : 7.36</div>
+   <div class="rs-out">absent  : 3
+counted : 7
+average : 72.43</div>
+   <div class="rs-board"><b>A 22-mark difference.</b> &ldquo;This is the kind of mistake that goes into
+   a report and makes a whole class look worse than it is.&rdquo;</div>
    <p class="rs-do" style="margin-top:12px">On the board &mdash; the interview answer</p>
    <div class="rs-code"><pre><code>break      LEAVE THE LOOP COMPLETELY. no more turns.
            -> walking out of the room
 
 continue   SKIP THE REST OF THIS TURN ONLY. loop carries on.
            -> skipping your turn, but staying in the game</code></pre></div>
-   <div class="rs-board"><b>Ask it straight, take the answer from three people.</b> &ldquo;Difference
-   between break and continue?&rdquo; is asked constantly. Do not let them leave without it.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> &ldquo;could I just use an
-   <code>if</code>?&rdquo; &mdash; <b>yes</b>, and say so. Same job here. The difference is readability:
-   with two or three skip conditions the <code>if</code> version drifts right, <code>continue</code>
-   stays flat.</div>
+   <div class="rs-board"><b>Take the answer from three people.</b> Then expect &ldquo;could I just use
+   an <code>if</code>?&rdquo; &mdash; <b>yes</b>, same job here. The difference is readability: with two
+   or three skip conditions the <code>if</code> drifts right, <code>continue</code> stays flat.</div>
   </div></div>
 
  <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">76 &ndash; 90</span></div>
   <div class="rs-body">
    <p class="rs-topic">Practice, and close</p>
    <div class="rs-code"><pre><code><span class="c"># 1. print 10 down to 1 with a while loop</span>
-<span class="c"># 2. same question, but to 20 lakh. is it double 23? why not?</span>
-<span class="c"># 3. print the first hr value above 12, then stop</span>
-<span class="c"># 4. count hr people with 5+ years, skipping 0s with continue</span></code></pre></div>
+<span class="c"># 2. same list - how many before the total passes 3 lakh?</span>
+<span class="c">#    more or less than double 7? why?</span>
+<span class="c"># 3. print the first salary above 50000, then stop</span>
+<span class="c"># 4. count students scoring 70+, skipping absentees</span></code></pre></div>
    <div class="rs-board"><b>Q1 catches people:</b> counting down needs <code>i = i - 1</code> and
-   <code>while i &gt;= 1</code>. Somebody will write <code>i = i + 1</code> from habit and get an infinite
-   loop &mdash; <b>the best possible time for that to happen, with you in the room.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>Tease tomorrow:</b> &ldquo;everything so far, I handed
-   you. Tomorrow you go and get it yourself&rdquo; &mdash; open a file, read it, write a new one.</div>
+   <code>while i &gt;= 1</code>. Somebody will write <code>i = i + 1</code> from habit and get an
+   infinite loop &mdash; <b>the best possible time for that, with you in the room.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Tease tomorrow:</b> &ldquo;every list we have used,
+   you typed yourself. Tomorrow you go and get the data instead&rdquo; &mdash; open a file, read it,
+   write a new one.</div>
   </div></div>
 
   </div>
@@ -17743,15 +17796,15 @@ continue   SKIP THE REST OF THIS TURN ONLY. loop carries on.
 
   <div class="qa"><h5>&ldquo;When would I actually use <code>while</code> instead of
   <code>for</code>?&rdquo;</h5>
-  <p>&ldquo;Whenever you do not know how many turns you need. Reading until a file ends, retrying
-  something until it works, asking the user for input until they type something valid, or today's
-  example &mdash; adding things up until a total is reached. If you can count the turns in advance, use
-  <code>for</code>. It is shorter and it cannot run forever.&rdquo;</p></div>
+  <p>&ldquo;Whenever you do not know how many turns you need. Asking the user for input until they type
+  something valid, retrying something until it works, or today's example &mdash; adding things up until
+  a total is reached. If you can count the turns in advance, use <code>for</code>: it is shorter and it
+  cannot run forever.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;My loop is stuck. What do I do?&rdquo;</h5>
-  <p>&ldquo;<b>Ctrl + C</b> in a terminal, or the stop button in the notebook. Then look at the thing in
-  your condition and ask whether anything inside the loop actually changes it. Nine times out of ten you
-  forgot the line that moves the counter.&rdquo;</p></div>
+  <p>&ldquo;<b>Ctrl + C</b>, or the red stop button. Then look at the thing in your condition and ask
+  whether anything inside the loop actually changes it. Nine times out of ten you forgot the line that
+  moves the counter.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Difference between <code>break</code> and <code>continue</code>?&rdquo;</h5>
   <p>&ldquo;<code>break</code> leaves the loop completely &mdash; no more turns at all.
@@ -17760,12 +17813,13 @@ continue   SKIP THE REST OF THIS TURN ONLY. loop carries on.
 
   <div class="qa"><h5>&ldquo;Can I use <code>break</code> in a <code>while</code> loop too?&rdquo;</h5>
   <p>&ldquo;Yes, both work in both kinds of loop. We showed them in a <code>for</code> loop today only
-  because you already know <code>for</code> well, so the keyword was the only new thing on screen.&rdquo;</p></div>
+  because you already know <code>for</code> well, so the keyword was the only new thing on
+  screen.&rdquo;</p></div>
 
-  <div class="qa"><h5>&ldquo;Why did the payroll come to 10,00,823 and not exactly 10 lakh?&rdquo;</h5>
+  <div class="qa"><h5>&ldquo;Why did the total come to 2,21,000 and not exactly 2 lakh?&rdquo;</h5>
   <p>&ldquo;Because the condition is only checked <b>between</b> turns, never in the middle of one. The
-  loop added the twenty-third salary, finished the turn, then checked and found the total had already
-  passed. It overshoots by whatever that last salary was.&rdquo;</p></div>
+  loop added the seventh salary, finished the turn, then checked and found the total had already passed.
+  It overshoots by whatever that last salary was.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;What is <code>while True:</code>? I have seen it online.&rdquo;</h5>
   <p>&ldquo;A loop with a condition that is always true, so it runs forever on purpose &mdash; and the
@@ -17775,8 +17829,8 @@ continue   SKIP THE REST OF THIS TURN ONLY. loop carries on.
   <div class="qa"><h5>&ldquo;Does <code>break</code> get me out of both loops if they are
   nested?&rdquo;</h5>
   <p>&ldquo;No &mdash; only the <b>inner</b> one, the loop it is sitting directly inside. Getting out of
-  both takes a bit more work and it is not something you need today. Worth knowing the answer, because
-  it is a favourite interview follow-up.&rdquo;</p></div>
+  both takes a bit more work and you do not need it today. Worth knowing the answer, because it is a
+  favourite interview follow-up.&rdquo;</p></div>
  </div>
 </section>
 </div>
