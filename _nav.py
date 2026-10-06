@@ -84,6 +84,8 @@ for slug, _ in PAGES:
     assert s.count('id="tapnav-sync"') == 1, slug
     assert s.count("<nav") == s.count("</nav>"), "%s nav unbalanced" % slug
     for h in re.findall(r'href="(\.\./[^"]*)"', s):
+        h = h.split("#")[0].split("?")[0]            # an anchor is not part of the path
+        if not h: continue
         t = os.path.normpath(os.path.join(HERE, slug, h))
         if not (os.path.exists(t) or os.path.exists(os.path.join(t, "index.html"))):
             sys.exit("dead link %s in %s" % (h, slug))
