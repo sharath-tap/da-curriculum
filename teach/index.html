@@ -15042,22 +15042,22 @@ one at a time                several side by side</code></pre></div>
   <p class="tag" style="margin-bottom:16px">Data Visualisation day 3 &middot; merged class &middot; 90 minutes &middot; full script</p>
   <h1 class="display">Comparing,<br>and Relating</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   The bar chart done properly &mdash; including the ordering problem and the column that should never
-   be averaged. Then the scatter plot, where <b>0.079 turns into 0.607</b> and one picture finds three
-   data errors at once.</p>
+   Bar charts done properly &mdash; including the ordering trap and the column that should never be
+   averaged. Then one small change to day one's picture turns it into a scatter plot, and
+   <b>0.079 becomes 0.607</b>.</p>
   <div class="glance">
    <div class="gcell"><b>2.32</b><span>seen, not computed</span></div>
+   <div class="gcell"><b>1</b><span>axis changed</span></div>
    <div class="gcell"><b>0.079</b><span>&rarr; 0.607</span></div>
    <div class="gcell"><b>3</b><span>errors, one chart</span></div>
-   <div class="gcell"><b>1</b><span>trend line</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">The moment this session is built around</h4>
-   <p style="color:var(--sienna)">On statistics day 7 Pearson gave <b style="color:var(--sienna)">0.079</b>
-   and Spearman gave <b style="color:var(--sienna)">0.61</b> on the same two columns, and you told them
-   the outlier was the reason. Today they draw it, remove one point, and watch Pearson jump to
-   <b style="color:var(--sienna)">0.607</b>. <b style="color:var(--sienna)">The two numbers finally
-   agree, and they can see why.</b></p>
+   <h4 style="color:var(--sienna)">The scatter plot is not a new chart</h4>
+   <p style="color:var(--sienna)">On day one they drew every age as a dot, with
+   <b style="color:var(--sienna)">position in the file</b> along the bottom &mdash; an x axis that meant
+   nothing. Swap that for a <b style="color:var(--sienna)">second real column</b> and the same picture
+   becomes a scatter plot. One change, and a slope appears. Build it that way and nobody has to learn a
+   new chart today.</p>
   </div>
  </div>
 </section>
@@ -15066,19 +15066,19 @@ one at a time                several side by side</code></pre></div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Fix the ordering problem properly.</b> They noticed it on day one. <code>value_counts()</code>
-   sorts by frequency; sometimes that is right and sometimes it destroys meaning. Rating is the case
-   where it destroys meaning, and they have met that flaw before.</li>
-   <li><b>Draw <code>dept_id</code> as bars.</b> Four bars, obviously four separate things. Then remind
-   them the mean is 2.32. The module's opening hook, closed with a picture.</li>
-   <li><b>The scatter plot is the payoff. Give it thirty minutes.</b> Draw it, see the outlier, remove
-   it, watch the correlation move from 0.079 to 0.607. That is statistics day 7 finally making
-   sense.</li>
-   <li><b>Then age against salary, and say nothing.</b> Three separate data errors appear in one
-   picture &mdash; age &minus;4, age 210, salary 52 lakh. Let them find all three.</li>
-   <li><b>Do not teach <code>polyfit</code>.</b> The trend line is two lines of code they can copy. The
-   maths behind it is a different course and naming it as &ldquo;the line of best fit&rdquo; is
-   enough.</li>
+   <li><b>Fix the ordering problem they noticed on day one.</b> <code>value_counts()</code> sorts by
+   frequency. For department that helps; for rating it destroys the meaning. That difference is
+   statistics day 2 deciding a chart for them.</li>
+   <li><b>Explain <code>.astype(str)</code>, do not slip it in.</b> Without it the dept_id bars are
+   spaced by value like a number line. It is a one-line fix with a real reason, and silently typing it
+   is exactly the habit the class has complained about.</li>
+   <li><b>Introduce the scatter as day one's chart with one axis changed.</b> Show the two pictures side
+   by side. It costs two minutes and it means scatter plots arrive as a small change rather than a new
+   topic.</li>
+   <li><b>The 0.079 to 0.607 demo is the payoff. Give it twenty minutes.</b> Draw it raw, diagnose,
+   remove two rows, redraw, recompute. That is statistics day 7 finally making sense.</li>
+   <li><b>Then age against salary, and say nothing.</b> Three data errors appear in one picture, and one
+   of them is in a column nobody was asking about. Let the room find all three.</li>
   </ol>
  </div>
 </section>
@@ -15086,66 +15086,68 @@ one at a time                several side by side</code></pre></div>
 <section>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Two charts. The bar chart has one subtlety worth getting
-  right, and the scatter plot carries the biggest single payoff in the module.</p>
+  <p class="cap" style="margin-bottom:24px">Three things: the ordering rule, why <code>astype(str)</code>
+  is needed, and the one sentence that makes a scatter plot obvious.</p>
 
   <div class="understand">
-   <h5>Part one &middot; the bar chart, and the ordering question</h5>
+   <h5>Part one &middot; bar charts, and the two things that go wrong</h5>
 
    <h6>Sorted by size, or sorted by meaning?</h6>
    <p><code>value_counts()</code> always sorts biggest first. For department that is <b>helpful</b>
    &mdash; the question is usually &ldquo;which is biggest&rdquo;, and sorted bars answer it
    instantly.</p>
-   <p>For <b>rating</b> it is destructive. Poor, Average, Good, Excellent have a natural order. Sorting
-   them by frequency scrambles that order and the chart becomes unreadable as a progression.</p>
+   <p>For <b>rating</b> it is destructive. Poor, Average, Good, Excellent have a natural order, and
+   sorting by frequency scrambles it into Poor, Good, Excellent, Average &mdash; which reads as though
+   Average is worse than Excellent.</p>
    <div class="keyline">
-    <b>Nominal</b> data &mdash; no natural order &mdash; sort by size. <b>Ordinal</b> data &mdash; a
-    natural order &mdash; keep the meaning order, always. That is statistics day 2 deciding a chart
-    decision.
+    <b>Nominal</b> &mdash; no natural order &mdash; sort by size. <b>Ordinal</b> &mdash; a natural order
+    &mdash; keep the meaning order, always. Statistics day 2, deciding a chart.
    </div>
 
-   <h6>When to turn the bars sideways</h6>
-   <p>Only one reason: the labels are too long to sit under vertical bars without overlapping. It is a
-   readability fix, not a different chart. <code>plt.barh</code>, and the two lists swap roles.</p>
+   <h6>The fix, and why it is a new idea</h6>
+   <p><code>df["rating"].value_counts()[order]</code> asks for the counts back <em>in the order of a
+   list you wrote</em>. They have never indexed a Series with a list before. It is one line, and it
+   deserves a sentence rather than being typed past.</p>
 
-   <h6><code>dept_id</code>, and why it earns a chart</h6>
-   <p>Drawing <code>dept_id</code> as four bars makes the point that opened the module. Four separate
-   bars, four separate things, no order between them &mdash; and the &ldquo;average&rdquo; of 2.32 sits
-   between bar two and bar three, describing nothing at all.</p>
+   <h6>Why <code>dept_id</code> needs <code>.astype(str)</code></h6>
+   <p><code>dept_id</code> holds 1, 2, 3, 4. If you hand those to <code>plt.bar</code> as numbers,
+   matplotlib treats the bottom ruler as a <b>number line</b> and positions each bar at its value
+   &mdash; so the ruler shows 1.0, 1.5, 2.0 and the bars sit at measured distances apart.</p>
+   <p><code>.astype(str)</code> turns them into the text &ldquo;1&rdquo;, &ldquo;2&rdquo;,
+   &ldquo;3&rdquo;, &ldquo;4&rdquo;. Now matplotlib treats them as <b>four names</b> and spaces them
+   evenly, like the department chart.</p>
+   <div class="keyline">
+    That is the whole lesson of <code>dept_id</code> appearing as a chart decision: the column
+    <em>looks</em> numeric and <b>is not</b>. You have to tell the chart so, exactly as you had to tell
+    yourself so on day one of statistics.
+   </div>
   </div>
 
   <div class="understand">
-   <h5>Part two &middot; the scatter plot, and the number that finally moves</h5>
+   <h5>Part two &middot; the scatter plot, as one change to a picture they already have</h5>
 
-   <h6>One dot per row, two columns at once</h6>
-   <p>Every chart so far has shown one column. A scatter plot shows <b>two</b>. Each dot is one
-   employee, placed by their experience along the bottom and their salary up the side.</p>
-   <p>This is the chart correlation was always describing. They computed the number on day 7; today they
-   look at the thing it was measuring.</p>
+   <h6>They drew one on day one without being told</h6>
+   <p>On day one they plotted every age as a dot. Along the bottom was <b>position in the file</b> —
+   row 1, row 2, row 3. That axis carried no information at all; it was only there to spread the dots
+   out so the two strays could be seen.</p>
+   <p>Swap that axis for a <b>second real column</b> and the same picture becomes a scatter plot. Each
+   dot is still one person. Only the question changed &mdash; from &ldquo;what do these values look
+   like?&rdquo; to <b>&ldquo;do these two things move together?&rdquo;</b></p>
+   <div class="mth">
+    <div class="mrow"><b>day one</b> y = age, x = <em>which row</em>. A cloud with two strays.</div>
+    <div class="mrow"><b>today</b> y = salary, x = <em>years of experience</em>. A slope.</div>
+   </div>
 
    <h6>The demonstration that makes the session</h6>
    <p>On statistics day 7 they got <b>Pearson 0.079</b> and <b>Spearman 0.61</b> on these two columns
-   and you told them the difference was caused by one extreme salary. Today:</p>
-   <div class="mth">
-    <div class="mrow"><b>draw it raw</b> One dot sits alone at the top. Everybody else is a flat smear
-    along the bottom &mdash; the same squashing problem as yesterday's histogram.</div>
-    <div class="mrow"><b>remove that one row</b> Using the fences they already have.</div>
-    <div class="mrow"><b>draw it again</b> A clear upward slope appears.</div>
-    <div class="mrow"><b>recompute Pearson</b> <b>0.607.</b> It now agrees with the Spearman they got
-    three weeks ago.</div>
-   </div>
-   <p>One row. It moved a correlation from &ldquo;no relationship&rdquo; to &ldquo;a solid
-   relationship&rdquo;, and the picture explains it in a second.</p>
+   and you told them one extreme salary was the reason. Today: draw it raw, remove two rows with the
+   fences they already have, draw it again, and Pearson comes back <b>0.607</b> &mdash; agreeing with
+   the Spearman they got three weeks ago.</p>
 
    <h6>Age against salary, which finds three errors at once</h6>
-   <p>The <code>age</code> column contains a <b>&minus;4</b> and a <b>210</b>. Salary contains the 52
-   lakh. Plot age against salary and all three sit alone in different corners of an otherwise empty
-   chart.</p>
-   <div class="keyline">
-    No summary statistic showed them those three problems. One scatter plot shows all of them at once,
-    in about a second. <b>That is why you plot before you analyse</b>, and it is the most practical
-    habit in this module.
-   </div>
+   <p>They met the <b>&minus;4</b> and the <b>210</b> on day one. The 52 lakh is new to this picture.
+   The point today is not that the data is dirty &mdash; they know that. It is that <b>a chart you drew
+   for a different reason handed you a problem in a column you were not asking about.</b></p>
   </div>
  </div>
 </section>
@@ -15159,17 +15161,17 @@ one at a time                several side by side</code></pre></div>
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-18 -->
+  <!-- 0-14 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 18</span><h3>The bar chart, and the ordering problem</h3></div>
-   <p class="objective">Answer the question they asked on day one, properly.</p>
+   <div class="bhead"><span class="clock">0 &ndash; 14</span><h3>The question you asked on day one</h3></div>
+   <p class="objective">Answer the ordering question properly, and teach one new line to do it.</p>
 
    <div class="speak">
-    <p>On day one somebody asked why Sales came first in our bar chart when it was third in the list I
-    typed by hand. I said we would deal with it today. Here it is.</p>
+    <p>On day one somebody asked why Sales came first in our bar chart, when it was third in the list I
+    typed by hand. I said we would deal with it today.</p>
    </div>
 
-   <div class="typeit">Set up, then the chart from day one</div>
+   <div class="typeit">Set up, and the chart from day one</div>
 <pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
 <span class="k">import</span> matplotlib.pyplot <span class="k">as</span> plt
 
@@ -15183,17 +15185,17 @@ plt.show()</code></pre>
 
    <figure class="chartout">
     <img src="img/d3_bar_counts.png" alt="Bar chart of department counts sorted biggest first: Sales, Tech, HR, Marketing.">
-    <figcaption>Sorted biggest first. For this question that is <b>helpful</b>.</figcaption>
+    <figcaption>Sorted biggest first. For <em>this</em> question that is helpful.</figcaption>
    </figure>
 
    <div class="speak">
-    <p><code>value_counts()</code> always sorts biggest first. And here, that is genuinely useful. If
-    the question is &ldquo;which department is biggest&rdquo;, the sorted chart answers it before you
-    have finished reading the title.</p>
-    <p>But now watch what the same behaviour does to a different column.</p>
+    <p><code>value_counts()</code> always sorts biggest first. And here that is genuinely useful. If the
+    question is &ldquo;which department is biggest&rdquo;, the sorted chart answers it before you have
+    finished reading the title.</p>
+    <p>Now watch the same behaviour on a different column.</p>
    </div>
 
-   <div class="typeit">The same code, on rating</div>
+   <div class="typeit">The same command, on rating</div>
 <pre><code><span class="k">print</span>(df[<span class="c">"rating"</span>].value_counts())</code></pre>
    <div class="screen">rating
 Poor         58
@@ -15204,19 +15206,21 @@ Name: count, dtype: int64</div>
 
    <div class="qbox">
     <div class="q">&ldquo;What is wrong with that order?&rdquo;</div>
-    <div class="a">Poor, Good, Excellent, Average. The ratings have a <b>natural order</b> and this
-    scrambles it. A chart in this order cannot be read as a progression &mdash; it looks like Average is
-    worse than Excellent.</div>
+    <div class="a">Poor, Good, Excellent, <b>Average</b>. The ratings have a natural order and this
+    scrambles it &mdash; a chart in this order reads as though Average is worse than Excellent.</div>
    </div>
 
    <div class="speak">
     <p>Poor, Good, Excellent, Average. That is nonsense as an order.</p>
-    <p>These four ratings have a <b>meaning order</b>. Poor, then Average, then Good, then Excellent.
-    And sorting them by how often they occur throws that away.</p>
+    <p>These four have a <b>meaning order</b> &mdash; Poor, then Average, then Good, then Excellent. And
+    sorting them by how often they occur throws it away.</p>
     <p>This is day two of statistics deciding a chart for you. Department is <b>nominal</b> &mdash; no
-    natural order, so sorting by size is fine and helpful. Rating is <b>ordinal</b> &mdash; it has an
-    order, and you must keep it.</p>
+    natural order, so sorting by size is fine. Rating is <b>ordinal</b> &mdash; it has an order, and you
+    must keep it.</p>
    </div>
+
+   <div class="stage">The fix is one line, and it contains an idea they have not met. Do not type past
+   it.</div>
 
    <div class="typeit">Force the meaning order</div>
 <pre><code>order = [<span class="c">"Poor"</span>, <span class="c">"Average"</span>, <span class="c">"Good"</span>, <span class="c">"Excellent"</span>]
@@ -15231,58 +15235,90 @@ Excellent    49
 Name: count, dtype: int64</div>
 
    <div class="speak">
-    <p>One line. I wrote the order I want in a list, and asked <code>value_counts()</code> for its
-    results in that order.</p>
-    <p>Now the chart reads left to right as worst to best, and anybody can follow it.</p>
+    <p>Look carefully at that second line, because there is something in it you have not seen.</p>
+    <p><code>value_counts()</code> gives back the four counts. Then I put <b>a list inside square
+    brackets</b> after it.</p>
+    <p>That says: <b>give me those counts back, in the order of this list.</b> I wrote the order I
+    wanted, and asked for the results arranged that way.</p>
+    <p>Now the chart reads left to right from worst to best, and anybody can follow it.</p>
    </div>
 
    <div class="keyline">
     <b>The rule, and it is a real interview answer.</b><br><br>
-    <b>Nominal</b> &mdash; no natural order &mdash; sort the bars by size. It helps.<br>
-    <b>Ordinal</b> &mdash; a natural order &mdash; keep the meaning order. Always.
+    <b>Nominal</b> &mdash; no natural order &mdash; let it sort by size. It helps.<br>
+    <b>Ordinal</b> &mdash; a natural order &mdash; write the order down and force it. Always.
    </div>
 
-   <div class="stage">Now the sideways version. Thirty seconds, it is only a readability fix.</div>
+   <div class="stage">Thirty seconds on the sideways version. It is only a readability fix.</div>
 
-   <div class="typeit">When the labels are long</div>
-<pre><code>counts = df[<span class="c">"department"</span>].value_counts().sort_index()
+   <div class="typeit">When the labels are too long</div>
+<pre><code>counts = df[<span class="c">"department"</span>].value_counts()
 plt.barh(counts.index, counts.values)
 plt.title(<span class="c">"Employees per department"</span>)
 plt.xlabel(<span class="c">"Number of employees"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d3_barh.png" alt="Horizontal bar chart of the four departments in alphabetical order.">
-    <figcaption><code>barh</code> &mdash; same chart, turned sideways. Note the labels swap: the counts
-    now go on <code>xlabel</code>.</figcaption>
+    <img src="img/d3_barh.png" alt="Horizontal bar chart of the four departments.">
+    <figcaption><code>barh</code> &mdash; h for horizontal. Note the labels swap sides.</figcaption>
    </figure>
 
    <div class="speak">
-    <p><code>barh</code>, h for horizontal. Use it when the category names are too long to sit under
-    vertical bars without overlapping each other.</p>
+    <p><code>barh</code>. Use it when the category names are too long to sit under vertical bars without
+    overlapping.</p>
     <p>One thing to watch: the two rulers swap jobs. The counts are now along the bottom, so they go on
     <code>xlabel</code>, not <code>ylabel</code>. People get that wrong constantly.</p>
    </div>
   </div>
 
-  <!-- 18-28 -->
+  <!-- 14-24 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">18 &ndash; 28</span><h3>2.32, finally drawn</h3></div>
-   <p class="objective">Close the hook that opened the whole module, with a picture.</p>
-
-   <div class="stage">This is a callback to the very first statistics session. Let them get there
-   before you say it.</div>
+   <div class="bhead"><span class="clock">14 &ndash; 24</span><h3>2.32, finally drawn</h3></div>
+   <p class="objective">Close the hook that opened the module &mdash; and explain the one odd line.</p>
 
    <div class="speak">
-    <p>One more bar chart, and this one goes all the way back to the first day of statistics.</p>
+    <p>One more bar chart, and this one goes back to the very first day of statistics.</p>
     <p>Remember <code>dept_id</code>? The column of numbers that turned out to be department names in
-    disguise. Let us draw it.</p>
+    disguise.</p>
    </div>
 
-   <div class="typeit">Type this</div>
+   <div class="typeit">First try it the obvious way</div>
 <pre><code>counts = df[<span class="c">"dept_id"</span>].value_counts().sort_index()
+<span class="k">print</span>(counts)
 
-plt.bar(counts.index.astype(<span class="k">str</span>), counts.values)
+plt.bar(counts.index, counts.values)
+plt.show()</code></pre>
+   <div class="screen">dept_id
+1    65
+2    49
+3    45
+4    42
+Name: count, dtype: int64</div>
+
+   <div class="speak">
+    <p>One new thing there. <code>sort_index()</code> means <b>put them back in order of the label</b>
+    &mdash; 1, 2, 3, 4 &mdash; instead of by size. We want them in their own order here, not biggest
+    first.</p>
+    <p>Now look at the chart that came out.</p>
+   </div>
+
+   <figure class="chartout">
+    <img src="img/v3_astype.png" alt="Two bar charts of dept_id side by side. On the left the x-axis is a number line showing 1.0, 1.5, 2.0 and so on. On the right there are four evenly spaced labels 1, 2, 3, 4.">
+    <figcaption>Left: handed numbers, matplotlib draws a <b>number line</b>. Right: after
+    <code>.astype(str)</code>, four evenly spaced labels.</figcaption>
+   </figure>
+
+   <div class="speak">
+    <p>Look at the bottom ruler on the left. One point zero. One point five. Two point zero.</p>
+    <p>Matplotlib was handed four <b>numbers</b>, so it did what you do with numbers &mdash; it built a
+    number line and placed each bar at its value.</p>
+    <p>But there is no department one point five. We do not want a number line. We want four
+    labels.</p>
+   </div>
+
+   <div class="typeit">One word fixes it</div>
+<pre><code>plt.bar(counts.index.astype(<span class="k">str</span>), counts.values)
+
 plt.title(<span class="c">"dept_id"</span>)
 plt.xlabel(<span class="c">"dept_id"</span>)
 plt.ylabel(<span class="c">"Number of employees"</span>)
@@ -15291,50 +15327,87 @@ plt.show()
 <span class="k">print</span>(<span class="c">"the 'average' dept_id:"</span>, <span class="k">round</span>(df[<span class="c">"dept_id"</span>].mean(), <span class="o">2</span>))</code></pre>
    <div class="screen">the 'average' dept_id: 2.32</div>
 
-   <figure class="chartout">
-    <img src="img/d3_bar_deptid.png" alt="Bar chart of dept_id showing four separate bars labelled 1, 2, 3 and 4.">
-    <figcaption>Four bars. Four separate things. And a &ldquo;mean&rdquo; of <b>2.32</b> sitting
-    between two of them.</figcaption>
-   </figure>
+   <div class="speak">
+    <p><code>.astype(str)</code> turns the numbers 1, 2, 3, 4 into the <b>text</b> &ldquo;1&rdquo;,
+    &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;.</p>
+    <p>Now matplotlib sees four names instead of four numbers, and spaces them evenly &mdash; exactly
+    like the department chart.</p>
+    <p>And that is the whole lesson of this column, showing up again as a chart decision. <b>It looks
+    numeric and it is not.</b> You had to tell yourself that on day one of statistics. Today you had to
+    tell the chart.</p>
+   </div>
 
    <div class="qbox">
     <div class="q">&ldquo;Point at 2.32 on that chart for me.&rdquo;</div>
     <div class="a">They cannot. It sits in the gap between bar two and bar three, and there is nothing
-    there. That is the whole point, and it is much stronger as a request than as a statement.</div>
+    there. Much stronger as a request than as a statement.</div>
    </div>
 
    <div class="speak">
     <p>Four bars. Four departments. There is no order between them &mdash; department two is not
     &ldquo;more&rdquo; than department one.</p>
     <p>And the average is two point three two. Show me where that is.</p>
-    <p>It is in the gap. There is nothing there. It is a valid calculation describing nothing at
-    all.</p>
-    <p>That was the first thing I showed you in this entire module, on day one of statistics. I told you
-    the number was meaningless. <b>Now you can see that it is.</b></p>
+    <p>It is in the gap. There is nothing there. A valid calculation describing nothing at all.</p>
+    <p>That was the first thing I showed you in this entire module. <b>Now you can see that it is.</b></p>
    </div>
-
-   <div class="typeit">Also worth writing on the board</div>
-<pre><code>notice what the bar chart does NOT do:
-
-  it does not put the bars in size order  (we sorted by index)
-  it does not draw a bar at 2.32
-  it does not join the bars with a line
-
-a bar chart treats each bar as a SEPARATE THING.
-that is exactly right for nominal data.</code></pre>
   </div>
 
-  <!-- 28-58 -->
+  <!-- 24-34 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">28 &ndash; 58</span><h3>The scatter plot, and a number that moves</h3></div>
-   <p class="objective">The biggest payoff in the module. Thirty minutes, and do not hurry it.</p>
+   <div class="bhead"><span class="clock">24 &ndash; 34</span><h3>A chart you have already drawn</h3></div>
+   <p class="objective">The scatter plot arrives as one change, not as a new topic.</p>
+
+   <div class="stage">Put day one's age picture back on screen. They will recognise it immediately.</div>
 
    <div class="speak">
-    <p>Every chart so far has shown <b>one</b> column. Salary. Department. Rating.</p>
-    <p>This one shows <b>two at once</b>, and it answers a different kind of question: <b>do these two
-    move together?</b></p>
-    <p>Each dot will be one employee. Their experience along the bottom, their salary up the side.</p>
+    <p>Everything so far today has been one column at a time. Now a different kind of question
+    altogether: <b>do two things move together?</b></p>
+    <p>And the chart for it is not new. You drew one on day one without me telling you what it was.</p>
+    <p>Think back to the age picture. Every person was a dot. Up the side was their age.</p>
+    <p>But what was along the bottom?</p>
    </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;On day one, what did the bottom ruler measure?&rdquo;</div>
+    <div class="a">Position in the file. Row one, row two, row three. <b>It meant nothing at all</b>
+    &mdash; it was only there to spread the dots out so the two strays could be seen. Get them to say
+    that out loud; the next sentence depends on it.</div>
+   </div>
+
+   <div class="speak">
+    <p>Position in the file. Row one, row two, row three.</p>
+    <p>That axis carried <b>no information</b>. Nobody cares whether somebody is the fortieth row of a
+    spreadsheet. It was only there to spread the dots out.</p>
+    <p>So here is the whole idea for the next half hour. <b>What if we put something real along the
+    bottom instead?</b></p>
+   </div>
+
+   <figure class="chartout">
+    <img src="img/v3_bridge.png" alt="Two dot charts side by side. On the left salary against position in the file, a shapeless cloud. On the right the same salaries against years of experience, with a clear upward slope.">
+    <figcaption>Same dots. Same heights. <b>One axis changed</b> &mdash; and a slope appears out of a
+    cloud.</figcaption>
+   </figure>
+
+   <div class="speak">
+    <p>On the left, salary against position in the file. A shapeless cloud, because the bottom ruler
+    means nothing.</p>
+    <p>On the right, exactly the same salaries &mdash; but the bottom ruler is now <b>years of
+    experience</b>.</p>
+    <p>Same dots. Same heights. One axis changed, and a shape appeared.</p>
+    <p>That picture on the right has a name. It is a <b>scatter plot</b>, and it is the chart for
+    &ldquo;do these two move together?&rdquo;</p>
+   </div>
+
+   <div class="keyline">
+    <b>A scatter plot is not a new chart.</b> It is day one's picture with a <b>meaningful</b> x axis.
+    One dot is still one person &mdash; now placed by two of their columns instead of one.
+   </div>
+  </div>
+
+  <!-- 34-58 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">34 &ndash; 58</span><h3>A number that moves</h3></div>
+   <p class="objective">The biggest payoff in the module. Twenty minutes, and do not hurry it.</p>
 
    <div class="typeit">Draw it raw first &mdash; deliberately</div>
 <pre><code>plt.scatter(df[<span class="c">"experience"</span>], df[<span class="c">"salary"</span>])
@@ -15347,33 +15420,35 @@ plt.show()
 <span class="k">print</span>(<span class="c">"correlation:"</span>, <span class="k">round</span>(df[<span class="c">"experience"</span>].corr(df[<span class="c">"salary"</span>]), <span class="o">3</span>))</code></pre>
    <div class="screen">correlation: 0.079</div>
 
-   <div class="stage">The chart will be one lonely dot at the top and a flat smear along the bottom
-   &mdash; the same squashing as yesterday. They should recognise it immediately.</div>
+   <div class="speak">
+    <p><code>plt.scatter</code> takes <b>two columns</b>. The first goes along the bottom, the second up
+    the side. That is the only difference from everything else we have typed.</p>
+   </div>
 
    <div class="qbox">
     <div class="q">&ldquo;We have seen this problem before. What is happening?&rdquo;</div>
     <div class="a">Same as yesterday's histogram &mdash; <b>the 52 lakh earner</b>. One dot forces the
-    side ruler up to five million and flattens everybody else into a line. They should get this in
+    side ruler to five million and flattens everybody else into a line. They should get this in
     seconds now.</div>
    </div>
 
    <div class="speak">
-    <p>Same problem as yesterday. One person at fifty-two lakh, and the side ruler has to stretch that
-    far, so everybody else is a flat smear.</p>
+    <p>Same problem as yesterday. One person at fifty-two lakh, so the side ruler stretches that far and
+    everybody else is a flat smear.</p>
     <p>And look at the correlation. Zero point zero seven nine. That says <b>almost no
     relationship</b> between experience and salary.</p>
-    <p>Now, does that sound right to you? Does experience really have nothing to do with pay?</p>
-    <p>We saw this exact number on day seven of statistics. Pearson gave us 0.079, Spearman gave us
-    0.61, and I told you the outlier was the reason. Today we prove it.</p>
+    <p>Does that sound right to you? Does experience really have nothing to do with pay?</p>
+    <p>We saw this exact number on day seven of statistics. Pearson gave 0.079, Spearman gave 0.61, and
+    I told you the outlier was the reason. Today we prove it.</p>
    </div>
 
-   <div class="typeit">Remove one row, using the fences you already have</div>
+   <div class="typeit">Remove two rows, with the fences you already have</div>
 <pre><code>sal = df[<span class="c">"salary"</span>].dropna()
 q1, q3 = sal.quantile(<span class="o">0.25</span>), sal.quantile(<span class="o">0.75</span>)
 iqr = q3 - q1
 low, high = q1 - <span class="o">1.5</span>*iqr, q3 + <span class="o">1.5</span>*iqr
 
-clean = df[(df.salary &gt;= low) &amp; (df.salary &lt;= high)]
+clean = df[(df[<span class="c">"salary"</span>] &gt;= low) &amp; (df[<span class="c">"salary"</span>] &lt;= high)]
 
 plt.scatter(clean[<span class="c">"experience"</span>], clean[<span class="c">"salary"</span>])
 plt.title(<span class="c">"Experience against salary"</span>)
@@ -15386,12 +15461,12 @@ plt.show()
 
    <figure class="chartout">
     <img src="img/d3_scatter.png" alt="Scatter plot of experience against salary after removing outliers, showing a clear upward slope.">
-    <figcaption>The same two columns. Two rows removed. <b>A clear upward slope</b>, and the correlation
-    jumps from 0.079 to 0.607.</figcaption>
+    <figcaption>Two rows removed. <b>A clear upward slope</b>, and the correlation jumps from 0.079 to
+    0.607.</figcaption>
    </figure>
 
-   <div class="stage">Let the two numbers sit side by side on the board. This is the moment the
-   session exists for.</div>
+   <div class="stage">Put the two numbers side by side on the board. This is the moment the session
+   exists for.</div>
 
    <div class="typeit">On the board</div>
 <pre><code>experience against salary
@@ -15405,15 +15480,17 @@ plt.show()
    spearman was right all along. it ignores the outlier by design.</code></pre>
 
    <div class="speak">
-    <p>Zero point zero seven nine, to zero point six zero seven.</p>
-    <p>Two rows out of a hundred and ninety-nine. Nothing else changed.</p>
-    <p>And now look back at day seven. Spearman gave us zero point six one on the raw file &mdash; the
-    same answer we have just got the hard way. Spearman was right all along, because it works on
-    <b>order</b> rather than distance, so one huge value cannot drag it.</p>
+    <p>Zero point zero seven nine, to zero point six zero seven. Two rows out of a hundred and
+    ninety-nine. Nothing else changed.</p>
+    <p>And look back at day seven. Spearman gave us zero point six one on the raw file &mdash; the same
+    answer we have just got the hard way.</p>
+    <p>Spearman was right all along, because it works on <b>order</b> rather than distance, so one huge
+    value cannot drag it.</p>
     <p>Three weeks ago I asked you to take that on trust. <b>There it is.</b></p>
    </div>
 
-   <div class="stage">Now the trend line. Two lines of code, copied. Do not teach the maths.</div>
+   <div class="stage">Now the trend line. Four lines of code and three of them are new &mdash; so say
+   plainly which parts to copy and which to understand.</div>
 
    <div class="typeit">Add a line of best fit</div>
 <pre><code><span class="k">import</span> numpy <span class="k">as</span> np
@@ -15430,30 +15507,33 @@ plt.ylabel(<span class="c">"Salary"</span>)
 plt.show()</code></pre>
 
    <figure class="chartout">
-    <img src="img/d3_scatter_trend.png" alt="The same scatter plot with a straight red trend line drawn through the points, sloping upward.">
+    <img src="img/d3_scatter_trend.png" alt="The same scatter plot with a straight red trend line sloping upward through the points.">
     <figcaption>The straight line correlation was always looking for.</figcaption>
    </figure>
 
    <div class="speak">
-    <p>Two lines of code, and I want you to copy them rather than understand them today.</p>
+    <p>Three lines there, and I want you to <b>copy</b> them rather than understand them today. Let me
+    tell you what each one does, and then we move on.</p>
     <p><code>np.polyfit</code> finds the <b>straight line that fits best</b> through the dots. It hands
-    back two numbers, the slope and where the line starts. Then <code>plt.plot</code> draws a line
-    between two points.</p>
+    back two numbers &mdash; how steep the line is, and where it starts.</p>
+    <p><code>xs</code> is just two numbers: the smallest experience and the largest. A straight line only
+    needs two points.</p>
+    <p>And <code>plt.plot</code> draws a line between them.</p>
     <p>What matters is what the line <b>is</b>. That is the straight line correlation was measuring all
     along. When we said 0.607, we meant the dots sit fairly close to that line.</p>
    </div>
 
    <div class="warn"><b>Do not go further than that.</b> The maths behind <code>polyfit</code> is least
    squares and it belongs to a regression course. &ldquo;The line of best fit, and correlation says how
-   close the dots are to it&rdquo; is the correct amount for a fresher.</div>
+   close the dots are to it&rdquo; is the right amount for a fresher.</div>
   </div>
 
-  <!-- 58-76 -->
+  <!-- 58-74 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">58 &ndash; 76</span><h3>One chart, three errors</h3></div>
+   <div class="bhead"><span class="clock">58 &ndash; 74</span><h3>A chart you drew for a different reason</h3></div>
    <p class="objective">The most practical habit in the module, taught by letting them find it.</p>
 
-   <div class="stage">Type it, show it, and say nothing at all. Let the room work.</div>
+   <div class="stage">Type it, show it, say nothing. Let the room work.</div>
 
    <div class="typeit">Type this, then look</div>
 <pre><code>plt.scatter(df[<span class="c">"age"</span>], df[<span class="c">"salary"</span>])
@@ -15465,57 +15545,53 @@ plt.show()</code></pre>
 
    <figure class="chartout">
     <img src="img/d3_scatter_dirt.png" alt="Scatter plot of age against salary with three isolated points: one at negative age, one at age 210, and one at salary 5.2 million.">
-    <figcaption>Three lonely dots, three separate problems. Everybody real is in the huddle near the
+    <figcaption>Three lonely dots, three separate problems. Everybody real is in the huddle at the
     bottom left.</figcaption>
    </figure>
 
    <div class="qbox">
     <div class="q">&ldquo;How many things are wrong with this data? Find them all.&rdquo;</div>
-    <div class="a"><b>Three.</b> Age &minus;4 on the far left and age 210 on the far right &mdash; they
-    met both of those on day one. The new one is the <b>52-lakh salary</b> at the top. The point today
-    is that <b>one chart caught all three at once</b>, including a problem in a column they were not
-    even asking about.</div>
+    <div class="a"><b>Three.</b> Age &minus;4 far left and age 210 far right &mdash; they met both on day
+    one. The new one is the <b>52-lakh salary</b> at the top. Do not accept the first answer.</div>
    </div>
 
    <div class="speak">
     <p>Three problems, in one picture, in about one second.</p>
-    <p>Far left &mdash; somebody with an age of <b>minus four</b>. Far right &mdash; somebody aged
-    <b>two hundred and ten</b>. And at the top, our old friend at fifty-two lakh.</p>
-    <p>Now here is the part I want you to take away.</p>
-    <p>On day one you met the first two &mdash; minus four and two hundred and ten &mdash; because we
-    drew the age column on its own.</p>
-    <p>But look at what this chart did. I asked it about <b>age against salary</b>. I was not looking for
-    bad data at all. And it handed me a problem in the <b>salary</b> column for free.</p>
-    <p><b>That is the habit.</b> You do not go hunting for broken data. You draw the thing you were
-    going to draw anyway, and the broken data finds you.</p>
+    <p>Two of them you already know &mdash; minus four and two hundred and ten. We found those on day
+    one, when we drew the age column on its own.</p>
+    <p>But now look at what this chart just did.</p>
+    <p>I asked it about <b>age against salary</b>. I was not looking for bad data at all. And it handed
+    me a problem in the <b>salary</b> column, for free.</p>
    </div>
 
    <div class="keyline">
-    <b>Plot your data before you analyse it.</b> Not after, to make the report look nice. Before,
-    because it is the fastest way to find out that your data is broken &mdash; and analysing broken data
-    carefully is worse than not analysing it at all.
+    <b>That is the habit.</b> You do not go hunting for broken data. You draw the thing you were going
+    to draw anyway, and the broken data finds you. Which is why you draw <b>before</b> you analyse, not
+    after, to decorate the report.
    </div>
 
-   <div class="stage">Ten minutes on their own. Two charts, and one requires a decision rather than a
+   <div class="stage">Ten minutes on their own. The second one requires a decision rather than a
    command.</div>
 
    <div class="typeit">Their turn</div>
 <pre><code><span class="c"># 1. bar chart of the "education" column</span>
 <span class="c">#    careful: Diploma, Bachelors, Masters has an ORDER.</span>
-<span class="c">#    do not let value_counts() scramble it.</span>
+<span class="c">#    write the order down and force it, like we did with rating.</span>
 
 <span class="c"># 2. scatter plot of height_cm against salary</span>
-<span class="c">#    then compute the correlation. what do you expect? were you right?</span></code></pre>
+<span class="c">#    what do you expect to see? draw it, then compute the correlation.</span>
+<span class="c">#    were you right?</span></code></pre>
 
    <div class="warn"><b>The second one comes back near zero, and that is the point.</b> Height and salary
-   are unrelated &mdash; the correlation is about &minus;0.04 and the scatter is a shapeless cloud.
-   Students who have only ever been shown charts that reveal something need to see what &ldquo;nothing
-   here&rdquo; looks like. It is the same lesson as the chi-square p of 0.94.</div>
+   are unrelated &mdash; the correlation is about &minus;0.04 and the scatter is a shapeless cloud, the
+   same shape as the left-hand picture from the bridge earlier. Students who have only ever been shown
+   charts that reveal something need to see what <em>nothing here</em> looks like. Same lesson as the
+   chi-square p of 0.94.</div>
   </div>
 
-  <!-- 76-90 -->
+  <!-- 74-90 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">76 &ndash; 90</span><h3>Close, and the pattern so far</h3></div>
+   <div class="bhead"><span class="clock">74 &ndash; 90</span><h3>Close, and the pattern so far</h3></div>
 
    <div class="typeit">Four charts, four questions</div>
 <pre><code>WHAT I WANT TO KNOW                        CHART
@@ -15538,18 +15614,20 @@ only the scatter shows TWO.</code></pre>
    </div>
 
    <div class="typeit">The four lines. If everything else goes, keep these.</div>
-<pre><code>1.  NOMINAL data  -> sort the bars by size. it helps.
-    ORDINAL data  -> keep the meaning order. always.
+<pre><code>1.  NOMINAL data  -> let it sort by size. it helps.
+    ORDINAL data  -> write the order down and force it. always.
+       counts = df["rating"].value_counts()[order]
 
-2.  dept_id has four bars and no order.
-    2.32 sits in a gap. a valid number describing nothing.
+2.  dept_id looks numeric and is NOT.
+    .astype(str) tells the CHART so. 2.32 sits in a gap.
 
-3.  one row moved the correlation from 0.079 to 0.607.
-    spearman got it right on day 7 because it uses ORDER, not distance.
+3.  a scatter plot is day one's picture with a MEANINGFUL x axis.
+    one row moved the correlation from 0.079 to 0.607.
+    spearman got it right on day 7 - it uses ORDER, not distance.
 
 4.  PLOT BEFORE YOU ANALYSE.
-    3 weeks of statistics never found the person aged minus four.
-    one scatter plot found three errors in one second.</code></pre>
+    i asked about age and salary. it handed me a problem
+    in a column i was not even asking about.</code></pre>
   </div>
  </div>
 </section>
@@ -15560,21 +15638,17 @@ only the scatter shows TWO.</code></pre>
   <div class="runsheet">
  <div class="rs-head">
   <h4>The session, as a run sheet</h4>
-  <p>Everything in order. Five steps, every code block, every board item written out. If you lose your
+  <p>Everything in order. Six steps, every code block, every board item written out. If you lose your
   place, this page alone is enough.</p>
  </div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 18</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 14</span></div>
   <div class="rs-body">
-   <p class="rs-topic">The bar chart, and ordering</p>
+   <p class="rs-topic">Bar charts, and ordering</p>
    <p class="rs-say"><b>Land this:</b> <code>value_counts()</code> sorting by size <b>helps</b> for
-   department and <b>destroys</b> rating. That difference is nominal vs ordinal, from statistics day
-   2.</p>
-   <p class="rs-do">Type this</p>
+   department and <b>destroys</b> rating. That is nominal vs ordinal, from statistics day 2.</p>
    <div class="rs-code"><pre><code>counts = df[<span class="c">"department"</span>].value_counts()
 plt.bar(counts.index, counts.values)
-plt.title(<span class="c">"Employees per department"</span>)
-plt.ylabel(<span class="c">"Number of employees"</span>)
 plt.show()
 
 <span class="k">print</span>(df[<span class="c">"rating"</span>].value_counts())</code></pre></div>
@@ -15582,93 +15656,118 @@ plt.show()
 Good         51
 Excellent    49
 Average      43</div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;what is wrong with that order?&rdquo; &mdash; Poor, Good,
-   Excellent, <b>Average</b>. It reads as if Average is worse than Excellent.</div>
-   <p class="rs-do" style="margin-top:12px">The fix, one line</p>
+   <div class="rs-board"><b>Ask:</b> &ldquo;what is wrong with that order?&rdquo; &mdash; it reads as if
+   Average is worse than Excellent.</div>
+   <p class="rs-do" style="margin-top:12px">The fix &mdash; and it contains a NEW idea</p>
    <div class="rs-code"><pre><code>order  = [<span class="c">"Poor"</span>, <span class="c">"Average"</span>, <span class="c">"Good"</span>, <span class="c">"Excellent"</span>]
 counts = df[<span class="c">"rating"</span>].value_counts()[order]</code></pre></div>
-   <div class="rs-board"><b>The rule, and a real interview answer:</b> <b>nominal</b> &rarr; sort by
-   size &middot; <b>ordinal</b> &rarr; keep the meaning order, always.<br><br>
-   Then <code>barh</code> in 30 seconds &mdash; only for long labels, and <b>the counts move to
+   <div class="rs-board"><b>Do not type past the second line.</b> Putting a <b>list in square
+   brackets</b> after <code>value_counts()</code> says <em>give me those counts back in the order of
+   this list</em>. They have never indexed a Series with a list.<br><br>
+   <b>The rule:</b> nominal &rarr; sort by size &middot; ordinal &rarr; write the order down and force
+   it.<br><br>
+   Then <code>barh</code> in 30 seconds &mdash; long labels only, and <b>the counts move to
    <code>xlabel</code></b>.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">18 &ndash; 28</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">14 &ndash; 24</span></div>
   <div class="rs-body">
    <p class="rs-topic">2.32, drawn</p>
+   <p class="rs-say"><b>Land this:</b> draw it the obvious way <b>first</b> so the number-line axis
+   appears. The fix then has a reason instead of being a magic word.</p>
    <div class="rs-code"><pre><code>counts = df[<span class="c">"dept_id"</span>].value_counts().sort_index()
-plt.bar(counts.index.astype(<span class="k">str</span>), counts.values)
-plt.title(<span class="c">"dept_id"</span>)
-plt.show()
-
+plt.bar(counts.index, counts.values)
+plt.show()</code></pre></div>
+   <div class="rs-board"><code>sort_index()</code> = back in label order (1,2,3,4), not biggest
+   first.<br><br>
+   <b>Point at the ruler:</b> 1.0, 1.5, 2.0 &mdash; matplotlib was handed <b>numbers</b>, so it built a
+   <b>number line</b>. There is no department 1.5.</div>
+   <p class="rs-do" style="margin-top:12px">One word fixes it</p>
+   <div class="rs-code"><pre><code>plt.bar(counts.index.astype(<span class="k">str</span>), counts.values)
 <span class="k">print</span>(<span class="k">round</span>(df[<span class="c">"dept_id"</span>].mean(), <span class="o">2</span>))</code></pre></div>
    <div class="rs-out">2.32</div>
-   <div class="rs-board"><b>The one request that does all the work:</b> &ldquo;point at 2.32 on that
-   chart for me.&rdquo;<br><br>
-   They cannot. It is in the gap between bar 2 and bar 3. <b>&ldquo;That was the first thing I showed
-   you in this module. Now you can see it is meaningless.&rdquo;</b></div>
+   <div class="rs-board"><code>.astype(str)</code> turns 1,2,3,4 into the <b>text</b> &ldquo;1&rdquo;,
+   &ldquo;2&rdquo;... so matplotlib spaces them evenly, like names.<br><br>
+   <b>The lesson, twice:</b> the column <b>looks numeric and is not</b>. Day one of statistics you had
+   to tell yourself. Today you had to tell the chart.<br><br>
+   <b>Then:</b> &ldquo;point at 2.32 on that chart for me.&rdquo; They cannot. It is in the gap.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">28 &ndash; 58</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">24 &ndash; 34</span></div>
   <div class="rs-body">
-   <p class="rs-topic">The scatter plot &mdash; 0.079 becomes 0.607</p>
-   <p class="rs-say"><b>Land this:</b> the payoff of the whole module. <b>Thirty minutes. Do not
-   hurry.</b> Draw raw, diagnose, trim, redraw, recompute.</p>
-   <p class="rs-do">Raw first, deliberately</p>
+   <p class="rs-topic">A chart they have already drawn</p>
+   <p class="rs-say"><b>Land this:</b> the scatter plot is <b>not a new chart</b>. It is day one's
+   picture with one axis changed. Build it that way and nobody has to learn anything new.</p>
+   <div class="rs-board"><b>Ask:</b> &ldquo;on day one, what did the bottom ruler measure?&rdquo;
+   &mdash; <b>position in the file</b>. Row 1, row 2, row 3. <b>It meant nothing</b> — it was only there
+   to spread the dots out.<br><br>
+   Get them to say that out loud. The next sentence depends on it.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then:</b> &ldquo;what if we put something
+   <b>real</b> along the bottom instead?&rdquo;<br><br>
+   Show the two pictures side by side. Same dots, same heights, <b>one axis changed</b> &mdash; and a
+   slope appears out of a cloud. <b>That is a scatter plot.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">34 &ndash; 58</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">0.079 becomes 0.607</p>
+   <p class="rs-say"><b>Land this:</b> the payoff of the module. <b>Twenty minutes. Do not hurry.</b>
+   Draw raw, diagnose, trim, redraw, recompute.</p>
    <div class="rs-code"><pre><code>plt.scatter(df[<span class="c">"experience"</span>], df[<span class="c">"salary"</span>])
 plt.show()
-
 <span class="k">print</span>(<span class="k">round</span>(df[<span class="c">"experience"</span>].corr(df[<span class="c">"salary"</span>]), <span class="o">3</span>))</code></pre></div>
    <div class="rs-out">0.079</div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;we have seen this before &mdash; what is happening?&rdquo;
-   Same 52-lakh earner, same squashing as yesterday. And 0.079 says <b>no relationship</b>. &ldquo;Does
-   that sound right? Does experience have nothing to do with pay?&rdquo;</div>
+   <div class="rs-board"><code>plt.scatter</code> takes <b>two columns</b> — first along the bottom,
+   second up the side.<br><br>
+   <b>Ask:</b> &ldquo;we have seen this before &mdash; what is happening?&rdquo; Same 52-lakh earner.
+   And 0.079 says <b>no relationship</b>. &ldquo;Does that sound right?&rdquo;</div>
    <p class="rs-do" style="margin-top:12px">Trim and redraw</p>
-   <div class="rs-code"><pre><code>clean = df[(df.salary &gt;= low) &amp; (df.salary &lt;= high)]
-
+   <div class="rs-code"><pre><code>clean = df[(df[<span class="c">"salary"</span>] &gt;= low) &amp; (df[<span class="c">"salary"</span>] &lt;= high)]
 plt.scatter(clean[<span class="c">"experience"</span>], clean[<span class="c">"salary"</span>])
 plt.show()
-
 <span class="k">print</span>(<span class="k">round</span>(clean[<span class="c">"experience"</span>].corr(clean[<span class="c">"salary"</span>]), <span class="o">3</span>))</code></pre></div>
    <div class="rs-out">0.607</div>
    <div class="rs-board"><b>On the board, side by side:</b><br>
-   all rows &rarr; <b>0.079</b> &mdash; &ldquo;no relationship&rdquo;<br>
-   2 rows gone &rarr; <b>0.607</b> &mdash; &ldquo;a solid relationship&rdquo;<br><br>
-   <b>Then the day-7 callback:</b> Spearman gave <b>0.61</b> on the raw file three weeks ago. It was
-   right all along &mdash; it uses <b>order</b>, not distance, so one huge value cannot drag it.</div>
-   <p class="rs-do" style="margin-top:12px">Trend line &mdash; copy, do not teach</p>
-   <div class="rs-code"><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
-m, b = np.polyfit(clean[<span class="c">"experience"</span>], clean[<span class="c">"salary"</span>], <span class="o">1</span>)
+   all rows &rarr; <b>0.079</b> &ldquo;no relationship&rdquo;<br>
+   2 rows gone &rarr; <b>0.607</b> &ldquo;a solid relationship&rdquo;<br><br>
+   <b>Day-7 callback:</b> Spearman gave <b>0.61</b> on the raw file three weeks ago. It was right all
+   along &mdash; it uses <b>order</b>, not distance.</div>
+   <p class="rs-do" style="margin-top:12px">Trend line &mdash; say which bits to copy</p>
+   <div class="rs-code"><pre><code>m, b = np.polyfit(clean[<span class="c">"experience"</span>], clean[<span class="c">"salary"</span>], <span class="o">1</span>)
 xs = np.array([clean[<span class="c">"experience"</span>].min(), clean[<span class="c">"experience"</span>].max()])
 plt.plot(xs, m*xs + b, color=<span class="c">"red"</span>)</code></pre></div>
-   <div class="rs-board"><b>Stop at:</b> &ldquo;the line of best fit &mdash; and correlation says how
-   close the dots sit to it.&rdquo; <b>Least squares is a regression course.</b></div>
+   <div class="rs-board"><code>polyfit</code> = the best straight line, returns <b>steepness</b> and
+   <b>where it starts</b> &middot; <code>xs</code> = just two numbers, smallest and largest, because a
+   line only needs two points &middot; <code>plt.plot</code> draws between them.<br><br>
+   <b>Stop at:</b> &ldquo;correlation says how close the dots sit to that line.&rdquo; Least squares is
+   a regression course.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">58 &ndash; 76</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">58 &ndash; 74</span></div>
   <div class="rs-body">
-   <p class="rs-topic">One chart, three errors</p>
+   <p class="rs-topic">A chart you drew for a different reason</p>
    <p class="rs-say"><b>Land this:</b> type it, show it, <b>say nothing</b>. Let the room find all
    three.</p>
    <div class="rs-code"><pre><code>plt.scatter(df[<span class="c">"age"</span>], df[<span class="c">"salary"</span>])
 plt.title(<span class="c">"Age against salary"</span>)
 plt.xlabel(<span class="c">"Age"</span>); plt.ylabel(<span class="c">"Salary"</span>)
 plt.show()</code></pre></div>
-   <div class="rs-board"><b>Three:</b> age <b>&minus;4</b> far left &middot; age <b>210</b> far right
-   &middot; salary <b>52 lakh</b> at the top. <b>Do not accept the first answer.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>The line that matters:</b> &ldquo;three weeks of
-   means, medians, quartiles, correlations, intervals and p-values on this file &mdash; and <b>not one
-   of them told you somebody is minus four years old</b>. One scatter plot, one second.&rdquo;<br><br>
-   <b>PLOT BEFORE YOU ANALYSE.</b></div>
+   <div class="rs-board"><b>Three:</b> age <b>&minus;4</b>, age <b>210</b> — both met on day one — and
+   the <b>52-lakh salary</b>, which is new here. <b>Do not accept the first answer.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>The line that matters:</b> &ldquo;I asked it about
+   <b>age against salary</b>. I was not looking for bad data. And it handed me a problem in the
+   <b>salary</b> column for free.&rdquo;<br><br>
+   <b>You do not hunt for broken data. You draw what you were going to draw anyway, and it finds
+   you.</b></div>
    <p class="rs-do" style="margin-top:12px">10 minutes on their own</p>
-   <div class="rs-code"><pre><code><span class="c"># 1. bar chart of "education" - Diploma/Bachelors/Masters has an ORDER</span>
+   <div class="rs-code"><pre><code><span class="c"># 1. bar of "education" - Diploma/Bachelors/Masters has an ORDER</span>
 <span class="c"># 2. scatter of height_cm vs salary, then the correlation</span></code></pre></div>
-   <div class="rs-board"><b>The second one comes back near zero</b> (about &minus;0.04, a shapeless
-   cloud) <b>and that is the point.</b> They need to see what &ldquo;nothing here&rdquo; looks like
-   &mdash; same lesson as the chi-square p of 0.94.</div>
+   <div class="rs-board"><b>The second comes back near zero</b> (about &minus;0.04, a shapeless cloud —
+   the same shape as the left-hand bridge picture) <b>and that is the point.</b> They need to see what
+   &ldquo;nothing here&rdquo; looks like.</div>
   </div></div>
 
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">76 &ndash; 90</span></div>
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">74 &ndash; 90</span></div>
   <div class="rs-body">
    <p class="rs-topic">Close</p>
    <div class="rs-code"><pre><code>WHAT I WANT TO KNOW                    CHART
@@ -15680,7 +15779,7 @@ do these two move together?            scatter
 
 first three show ONE column. only scatter shows TWO.</code></pre></div>
    <div class="rs-board"><b>Tease tomorrow:</b> every one of these again, <b>one line each</b>, with
-   seaborn. And everything they learnt this week still applies, because seaborn sits <b>on top of</b>
+   seaborn. Everything from this week still applies, because seaborn sits <b>on top of</b>
    matplotlib.</div>
   </div></div>
 
@@ -15692,14 +15791,28 @@ first three show ONE column. only scatter shows TWO.</code></pre></div>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
 
+  <div class="qa"><h5>&ldquo;What does putting a list in square brackets after
+  <code>value_counts()</code> actually do?&rdquo;</h5>
+  <p>&ldquo;It picks the results out in the order you asked for. <code>value_counts()</code> gives you
+  four counts labelled Poor, Average, Good, Excellent. Handing it a list of those four names says
+  &lsquo;give them back to me in <b>this</b> order&rsquo;. If you misspell one, you get an error &mdash;
+  which is useful, because it means you cannot silently lose a category.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why did the dept_id chart need <code>.astype(str)</code> but the department
+  one did not?&rdquo;</h5>
+  <p>&ldquo;Because department was already text. <code>dept_id</code> is numbers, and matplotlib treats
+  numbers as positions on a ruler rather than as names. <code>.astype(str)</code> is you telling the
+  chart that these digits are <b>labels</b>, not quantities &mdash; which is exactly the thing that
+  column has been teaching us since day one.&rdquo;</p></div>
+
   <div class="qa"><h5>&ldquo;So should I always delete outliers before finding the correlation?&rdquo;</h5>
-  <p>&ldquo;No &mdash; you should always <b>look</b> first, and then decide, and then <b>say what you
+  <p>&ldquo;No &mdash; you should always <b>look</b> first, then decide, then <b>say what you
   decided</b>. Here it was one data point distorting a real relationship, so removing it was right. If
   it had been a genuine high earner and the question was about total payroll, removing it would have
   been wrong. The unforgivable thing is removing it quietly.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Why did Spearman get it right when Pearson did not?&rdquo;</h5>
-  <p>&ldquo;Because Spearman works on <b>order</b>, not on distance. To Spearman the 52-lakh earner is
+  <p>&ldquo;Because Spearman works on <b>order</b>, not distance. To Spearman the 52-lakh earner is
   simply the highest paid person &mdash; it does not matter whether they earn 52 lakh or 52 crore, they
   are still number one. Pearson uses the actual distance, so an enormous value drags it. That is why we
   taught both.&rdquo;</p></div>
@@ -15707,8 +15820,8 @@ first three show ONE column. only scatter shows TWO.</code></pre></div>
   <div class="qa"><h5>&ldquo;A correlation of 0.607 &mdash; is that good?&rdquo;</h5>
   <p>&ldquo;It is a solid relationship, and be careful with the word good. It means experience explains
   a fair part of salary and other things explain the rest &mdash; department, city, how well somebody
-  negotiated. A correlation being high does not mean you have found <b>the</b> cause. That was day
-  seven and it has not changed.&rdquo;</p></div>
+  negotiated. A correlation being high does not mean you have found <b>the</b> cause. That was day seven
+  and it has not changed.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;My scatter plot is just a solid blob. I cannot see anything.&rdquo;</h5>
   <p>&ldquo;Too many dots on top of each other. Add <code>alpha=0.5</code> to make them see-through, so
@@ -15718,15 +15831,9 @@ first three show ONE column. only scatter shows TWO.</code></pre></div>
   <div class="qa"><h5>&ldquo;Why not just delete the &minus;4 age quietly? It is obviously
   wrong.&rdquo;</h5>
   <p>&ldquo;Because you do not know why it is there. If somebody typed 4 as &minus;4 that is one fix. If
-  the export tool writes &minus;4 whenever a date is missing, then every &minus;4 in the file is a
-  <b>missing</b> value, and there may be thousands of them in the real dataset. Find out what it means
-  before you decide what to do with it.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;What does <code>polyfit</code> actually do?&rdquo;</h5>
-  <p>&ldquo;It finds the straight line that comes closest to all the dots at once, and hands you the two
-  numbers that describe it. The method has a name, least squares, and it is the start of regression
-  &mdash; a topic in its own right. Today, copy the two lines and know what the line
-  means.&rdquo;</p></div>
+  the export tool writes &minus;4 whenever a value is missing, then every &minus;4 in the file means
+  <b>missing</b>, and there may be thousands of them in the real database. Find out what it means before
+  you decide what to do with it.&rdquo;</p></div>
 
   <div class="qa"><h5>&ldquo;Can I draw three columns at once?&rdquo;</h5>
   <p>&ldquo;Yes, and you will tomorrow. Seaborn lets you colour the dots by a third column with one
