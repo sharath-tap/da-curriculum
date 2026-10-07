@@ -137,6 +137,22 @@ ol.n li b{color:var(--ink);font-weight:450}
 .qa{border-top:1px solid var(--hair);padding:16px 0}
 .qa h5{font-size:17px;font-weight:450;margin-bottom:6px;line-height:1.4}
 .qa p{font-size:16px;color:var(--slate);line-height:1.55}
+
+/* ---- ask-the-room check questions: trainer asks, answer sits under it ---- */
+.askq{counter-reset:aq;margin-top:4px}
+.aq{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:13px 0;
+  border-top:1px solid var(--hair)}
+.aq:first-child{border-top:0}
+.aq::before{counter-increment:aq;content:counter(aq);font-family:var(--mono);font-size:13px;
+  font-weight:600;color:var(--sienna);background:var(--peach);border-radius:7px;
+  height:26px;display:flex;align-items:center;justify-content:center}
+.aq q{font-size:16.5px;font-weight:450;color:var(--ink);display:block;quotes:none}
+.aq q::before,.aq q::after{content:""}
+.aq .ans{font-size:15.5px;color:var(--slate);line-height:1.55;margin-top:6px}
+.aq .ans b{color:var(--ink);font-weight:600}
+.aq .ans::before{content:"ANSWER";font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:.1em;color:var(--ash);display:block;margin-bottom:3px}
+@media (max-width:640px){.aq{grid-template-columns:26px 1fr;gap:9px}}
 .themetog{border:1px solid var(--hair);background:transparent;border-radius:9999px;padding:7px 13px;
   font:inherit;font-size:14px;color:var(--slate);cursor:pointer}
 @media(max-width:820px){
@@ -17785,6 +17801,86 @@ continue   SKIP THE REST OF THIS TURN ONLY. loop carries on.
    you typed yourself. Tomorrow you go and get the data instead&rdquo; &mdash; open a file, read it,
    write a new one.</div>
   </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Twelve questions, in order, with the answer under each one.
+  The first six are the ones that matter &mdash; if a student can answer those, they have the session.
+  Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What is the difference between a <code>for</code> loop and a <code>while</code> loop?</q>
+    <div class="ans">You use <b>for</b> when you know how many times before you start. You use
+    <b>while</b> when you only know <b>when to stop</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>A <code>while</code> loop needs three things. What are they?</q>
+    <div class="ans"><b>Start the counter</b> (before the loop), <b>the condition</b>, and
+    <b>change the counter</b> (inside the loop).</div></div></div>
+
+   <div class="aq"><div>
+    <q>Which of those three does everybody forget?</q>
+    <div class="ans"><b>Changing the counter.</b> That is what an infinite loop is &mdash; the condition
+    never becomes false because nothing in it ever moves.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Your loop is stuck and will not stop. What do you press, and what do you check?</q>
+    <div class="ans">Press <b>Ctrl + C</b> (or the red stop button). Then check whether the thing in the
+    condition actually changes anywhere inside the loop.</div></div></div>
+
+   <div class="aq"><div>
+    <q>When does Python check the condition &mdash; before each turn or after?</q>
+    <div class="ans"><b>Before</b> every turn, including the very first one. If it is false at the
+    start, the loop body never runs at all.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Difference between <code>break</code> and <code>continue</code>?</q>
+    <div class="ans"><b>break</b> leaves the loop completely &mdash; no more turns.
+    <b>continue</b> skips the rest of this turn only, and the loop carries on. Walking out of the room,
+    versus skipping your turn and staying in the game.</div></div></div>
+
+   <div class="aq"><div>
+    <q>We asked for 2 lakh and the total came out at 2,21,000. Why not exactly 2 lakh?</q>
+    <div class="ans">It checks <b>between</b> turns, never in the middle of one. It added the seventh
+    salary, finished the turn, and only then looked. It overshoots by whatever that last salary
+    was.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Seven people got us past 2 lakh. How many to get past 3 lakh &mdash; fourteen?</q>
+    <div class="ans"><b>Nine.</b> The list is sorted smallest first, so the first seven were the cheapest
+    people. After that you are adding 55,000 and 60,000, so the next lakh only costs two more. <b>The
+    number of turns depends on what is in the list, not on the size of the target.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>We found the salary at position 5, but the program said 6 checks. Is that a bug?</q>
+    <div class="ans"><b>No.</b> Positions start at zero, so position 5 is the sixth item. And
+    <code>checks</code> goes up <b>before</b> the <code>if</code> runs, so it counts the turn it found it
+    on.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Averaging all ten marks gave 50.7. Skipping the zeros gave 72.43. Which is the class average,
+    and why?</q>
+    <div class="ans"><b>72.43.</b> Three students were absent &mdash; they did not sit the test.
+    Recording them as zero and averaging it counts a <b>non-answer as a wrong answer</b>, and drags the
+    whole class down by 22 marks.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Could you have used an <code>if</code> instead of <code>continue</code> there?</q>
+    <div class="ans"><b>Yes</b> &mdash; <code>if m != 0:</code> around the two lines does the same job.
+    The difference is readability: with two or three things to skip, the <code>if</code> version keeps
+    drifting right, and <code>continue</code> stays flat.</div></div></div>
+
+   <div class="aq"><div>
+    <q>To count down from 10 to 1 instead of up, what two things change?</q>
+    <div class="ans">The counter becomes <code>i = i - 1</code>, and the condition flips to
+    <code>while i &gt;= 1</code>. Change only one of them and you get an infinite loop.</div></div></div>
 
   </div>
  </div>
