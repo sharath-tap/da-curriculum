@@ -477,6 +477,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -488,7 +489,7 @@ try{var _t=localStorage.getItem("steep-theme");
 <div class="day on" id="home">
 <section style="padding-top:48px;padding-bottom:16px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Two tracks running in parallel &middot; merge on day 7</p>
+  <p class="tag" style="margin-bottom:16px">Merged class &middot; statistics closed &middot; Data Visualisation running &middot; Excel next</p>
   <h1 class="display">Every session,<br>written to be spoken.</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:660px">
    Pick a session below. Each is a complete 90-minute script &mdash; the words to say, the commands to
@@ -502,14 +503,15 @@ try{var _t=localStorage.getItem("steep-theme");
 
   <div class="track">
    <div class="trackhead">
-    <h2>Statistics &mdash; 10 days</h2>
-    <span class="badge live">B2 catching up</span>
-    <span class="badge">D1&ndash;D2 delivered &middot; D3 next</span>
+    <h2>Statistics &mdash; 13 sessions</h2>
+    <span class="badge">Module closed</span>
+    <span class="badge">All 13 scripts written</span>
    </div>
    <p class="tracknote">Now running to <b>13 sessions</b>, not 10. Day 2's material needed 2.2 sessions
    once taught properly, and that shifted everything after it. Nothing has been dropped &mdash; all 105
    teach-live concepts still land, and binomial, Poisson and ANOVA stay on self-study. What changed is
-   the budget: the day-11 buffer is spent, and confidence intervals are still expected to need splitting.</p>
+   the budget: day 11 split into confidence intervals and hypothesis testing, which spent the buffer, so
+   the module closed on 13 with nothing spare.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="d1">
@@ -534,13 +536,13 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="id">DAY 4</span><h3>The Three Averages, and Why One Number Is Never Enough</h3>
      <p>Closes the sampling story, then mean, median and mode &mdash; and the discovery that an average
      can be perfectly correct and describe nobody. Ends on range, quartiles and IQR.</p>
-     <span class="foot">Next &middot; full script &middot; 33 speech blocks</span></button>
+     <span class="foot">Delivered &middot; full script &middot; 33 speech blocks</span></button>
 
     <button class="dcard full" data-go="d5">
      <span class="id">DAY 5</span><h3>Outliers &mdash; and Why the Rule Cannot Decide for You</h3>
      <p>Five-number summary, the box plot drawn live, and the 1.5&times;IQR rule &mdash; which flags the
      real 52-lakh salary and the impossible age of minus four with the same arithmetic.</p>
-     <span class="foot">Next &middot; full script &middot; 26 speech blocks</span></button>
+     <span class="foot">Delivered &middot; full script &middot; 26 speech blocks</span></button>
 
     <button class="dcard full" data-go="d6">
      <span class="id">DAY 6</span><h3>Variance and Standard Deviation</h3>
@@ -591,18 +593,6 @@ try{var _t=localStorage.getItem("steep-theme");
      at p = 0.94. Closes on twenty tests against pure noise, and the one that lights up anyway.</p>
      <span class="foot">Full script &middot; closes the module</span></button>
    </div>
-
-   <div class="nextup">
- <div class="nu-head"><b>Next session &mdash; Wed 23 September</b><span>statistics day 9, second half</span></div>
- <div class="nu-body">
-  <p class="nu-line">Yesterday reached the z-score formula and stopped there. Tomorrow picks up at
-  <b>what a z-score is actually for</b> &mdash; the two-students comparison, then percentiles, then
-  standardisation against normalisation. Roughly 34 minutes, so <b>start the Central Limit Theorem</b>
-  after it.</p>
-  <p class="nu-foot">Open <b>Day 9</b> and go to the run sheet, steps 5 to 7. The full note is at the
-  top of that page.</p>
- </div>
-</div>
 
    <div class="planbanner" style="margin-top:16px">
     <b>All 13 sessions are written, and the module has been trimmed for a fresher audience.</b>
@@ -674,8 +664,8 @@ try{var _t=localStorage.getItem("steep-theme");
   <div class="track">
    <div class="trackhead">
     <h2>Data Visualisation</h2>
-    <span class="badge live">Next module</span>
-    <span class="badge">5 sessions &middot; scripts ready</span>
+    <span class="badge live">Running now</span>
+    <span class="badge">5 sessions &middot; all scripts ready</span>
    </div>
    <p class="tracknote">Cut from nine sessions to five, deliberately. Power BI and Tableau follow this
    module and they draw the charts for you &mdash; so the matplotlib craft that a BI tool replaces has
@@ -714,18 +704,102 @@ try{var _t=localStorage.getItem("steep-theme");
      the module and hands over to Power BI.</p>
      <span class="foot">Script ready &middot; the one that transfers</span></button>
    </div>
+
+   <div class="nextup">
+ <div class="nu-head"><b>Where the course is right now</b><span>viz running &middot; Excel written ahead</span></div>
+ <div class="nu-body">
+  <p class="nu-line">Statistics is <b>closed</b> &mdash; all 13 sessions delivered. Data Visualisation is
+  <b>running</b>, and all five scripts plus the day 1 to day 3 beat sheets are ready. <b>Excel day 1 is
+  written and can be taught the day visualisation ends</b>; days 2 to 6 are planned and not yet
+  scripted.</p>
+  <p class="nu-foot">Then Power BI, Tableau and projects. There is <b>no machine learning module</b>, and
+  <b>no Excel before Data Visualisation</b> &mdash; the charting habits from viz are what make the Excel
+  chart session short.</p>
+ </div>
+</div>
   </div>
 
   <div class="track">
    <div class="trackhead">
-    <h2>Pandas</h2>
-    <span class="badge live">Both batches</span>
-    <span class="badge">Merged class paused &middot; resumes Monday</span>
+    <h2>Excel</h2>
+    <span class="badge">Follows Data Visualisation</span>
+    <span class="badge live">Day 1 script ready</span>
    </div>
-   <p class="tracknote">The merged class is paused until Monday. Tomorrow is July B2 alone, and the aim
-   is parity rather than progress &mdash; Pandas 2 covers only what June B3 already learned in D34 to D37,
-   so neither batch ends up ahead. The thirty functions new to <em>both</em> batches are held in Pandas 3
-   for the merged class. Statistics resumes Monday at day 2.</p>
+   <p class="tracknote">Excel comes <b>after</b> Python on purpose, and that changes what the module is
+   about. They already know every concept in it &mdash; mean, median, outliers, grouping, correlation,
+   charts. <b>Nothing here is new statistics.</b> What is new is a grid, a formula bar, and a tool that
+   recalculates itself the moment a cell changes. Six sessions, because the mechanical surface is real:
+   the lookup family and pivot tables are a full session each, and those two are what a fresher analyst
+   interview actually asks about. Every session runs on <code>employees.csv</code> &mdash; the same file
+   they have had since statistics day 1, which is why day 1 opens with the fifty-two lakh salary sitting
+   on row 5 where anybody can see it.</p>
+
+   <div class="cards">
+    <button class="dcard full" data-go="x1">
+     <span class="id">EXCEL 1</span><h3>The Same File, With No Code</h3>
+     <p>Row 5 is the 52 lakh earner and row 9 has no salary &mdash; both on screen before anybody
+     scrolls. Then seven formulas, and the <code>$</code> breaking 200 rows without one error
+     message.</p>
+     <span class="foot">Script ready &middot; opens the module</span></button>
+
+    <div class="dcard soon">
+     <span class="id">EXCEL 2</span><h3>Cleaning, With the Sheet Looking Back</h3>
+     <p>Sort and filter, Remove Duplicates on the row that is in there twice, TRIM, Find and Replace,
+     Text to Columns &mdash; and formatting that turns the &minus;4 and the 210 red unasked.</p>
+     <span class="foot">Planned &middot; script not written</span></div>
+
+    <div class="dcard soon">
+     <span class="id">EXCEL 3</span><h3>Asking With Conditions</h3>
+     <p><code>IF</code>, then <code>IFS</code>, then <code>COUNTIF</code>, <code>SUMIF</code> and
+     <code>AVERAGEIF</code>, then the plural versions. The department counts rebuilt without
+     <code>value_counts</code>.</p>
+     <span class="foot">Planned &middot; script not written</span></div>
+
+    <div class="dcard soon">
+     <span class="id">EXCEL 4</span><h3>VLOOKUP, and What Replaced It</h3>
+     <p>The single most-asked Excel question in a fresher interview. <code>VLOOKUP</code>, the three ways
+     it breaks, then <code>INDEX</code> + <code>MATCH</code>, <code>XLOOKUP</code> and
+     <code>IFERROR</code>.</p>
+     <span class="foot">Planned &middot; script not written</span></div>
+
+    <div class="dcard soon">
+     <span class="id">EXCEL 5</span><h3>Pivot Tables</h3>
+     <p>This is <code>groupby</code> with a mouse, and they already know <code>groupby</code>. Rows,
+     Columns, Values, Filters &mdash; then count against sum against average, and per cent of total.</p>
+     <span class="foot">Planned &middot; script not written</span></div>
+
+    <div class="dcard soon">
+     <span class="id">EXCEL 6</span><h3>One Sheet Somebody Else Can Read</h3>
+     <p>Charts with a mouse, number formats, data bars, and a one-page summary built live from the
+     cleaned file. Closes the module and hands over to Power BI.</p>
+     <span class="foot">Planned &middot; script not written</span></div>
+   </div>
+
+   <div class="planbanner" style="margin-top:16px">
+    <b>What this module deliberately does not teach, so you can say so when asked.</b>
+    No macros and no VBA &mdash; it is a programming language, they already have a better one, and no
+    fresher job asks for it. No Power Query, because Power BI does the same job in the next module and
+    does it better. No array formulas. No <code>OFFSET</code> or <code>INDIRECT</code>.
+    <br><br>
+    <b>What that time buys instead</b> is a full session on the lookup family and a full session on pivot
+    tables, which are the two things an interviewer will actually reach for. Day 1 also spends eighteen
+    minutes on the dollar sign alone, because it is the one mistake in Excel that produces two hundred
+    wrong rows and no error message.
+   </div>
+  </div>
+
+  <div class="track">
+   <div class="trackhead">
+    <h2>NumPy and Pandas</h2>
+    <span class="badge">Reference</span>
+    <span class="badge">Pandas 1 delivered to B2</span>
+   </div>
+   <p class="tracknote">June B3 and July B2 are <b>one class</b> now, so the parity rule is retired and
+   these six pages are a reference rather than a schedule. <b>Pandas 1</b> was delivered to July B2.
+   <b>Pandas 2</b> is the parity session &mdash; 27 functions June B3 already had in D34 to D37.
+   <b>Pandas 3</b> holds the 30 functions neither batch has seen, verified absent from all seven B3
+   recordings and both B2 sessions. <b>N1 to N3</b> are the NumPy sessions, and August B3 reaches the
+   same ground from its own day 28.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="n1">
@@ -753,7 +827,7 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="id">PANDAS 2</span><h3>Cleaning, Changing and Summarising</h3>
      <p>B2 only. Sorting, missing values, duplicates, types, new columns, groupby, merge &mdash; every
      one already taught to B3 in D34&ndash;D37. Teach these and the batches are level.</p>
-     <span class="foot">Tomorrow &middot; B2 only &middot; 27 functions</span></button>
+     <span class="foot">Parity session &middot; B2 only &middot; 27 functions</span></button>
 
     <button class="dcard full" data-go="pd3">
      <span class="id">PANDAS 3</span><h3>The Pandas Neither Batch Has Seen</h3>
@@ -770,11 +844,11 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="id">COVERAGE</span><h3>What gets taught, what gets skipped</h3>
      <p>All 168 concepts in your study notes mapped to a day and marked teach / mention / skip.</p>
      <span class="foot">105 teach &middot; 48 mention &middot; 15 skip</span></button>
-    <a class="dcard" href="/statistics" style="text-decoration:none">
+    <a class="dcard" href="../prepare/" style="text-decoration:none">
      <span class="id">PREPARE</span><h3>What to watch, in order</h3>
      <p>Each session mapped to the exact videos that prepare you for it, with links and timings.</p>
      <span class="foot">Open &rarr;</span></a>
-    <a class="dcard" href="/" style="text-decoration:none">
+    <a class="dcard" href="../plan/" style="text-decoration:none">
      <span class="id">REFERENCE</span><h3>The full course plan</h3>
      <p>Both batches, notes for all 37 delivered sessions, and a 276-function lookup.</p>
      <span class="foot">Open &rarr;</span></a>
@@ -2261,8 +2335,8 @@ Name: salary, dtype: float64</div></div></div>
    <p class="cap"><b>Days 2 to 7</b> are in the navigation above and cover the full descriptive block.
    They are currently written as detailed outlines rather than in this fully-spoken format &mdash;
    ask Claude to rewrite any of them to match this page.</p>
-   <p class="cap" style="margin-top:12px"><a href="/">&larr; Full syllabus</a> &nbsp;&middot;&nbsp;
-   <a href="/statistics">Statistics prep track</a></p>
+   <p class="cap" style="margin-top:12px"><a href="../plan/">&larr; Full syllabus</a> &nbsp;&middot;&nbsp;
+   <a href="../prepare/">Statistics prep track</a></p>
   </div>
  </div>
 </section>
@@ -17158,6 +17232,1418 @@ pies are usually the wrong answer</code></pre></div>
  </div>
 </section>
 </div>
+<div class="day" id="x1">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 1 &middot; merged class &middot; 90 minutes &middot; full script &middot; opens the module</p>
+  <h1 class="display">The Same File,<br>With No Code</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   They have worked on <code>employees.csv</code> for more than twenty sessions and have never once
+   <em>seen</em> it. Today they open it &mdash; and two of the things they hunted for with statistics
+   and with charts are sitting on screen before they scroll.</p>
+  <div class="glance">
+   <div class="gcell"><b>201</b><span>rows, all of them visible</span></div>
+   <div class="gcell"><b>=</b><span>the whole idea</span></div>
+   <div class="gcell"><b>row 5</b><span>the outlier, in plain sight</span></div>
+   <div class="gcell"><b>$</b><span>the one that breaks everything</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Open the file. Tell them not to scroll.</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">Row 5</b> is Lakshmi Kumar, Tech, salary
+   <b style="color:var(--sienna)">5,200,000</b>. That is the one earner who destroyed their correlation
+   &mdash; the reason Pearson came out at 0.079 instead of 0.607. <b style="color:var(--sienna)">Row
+   9</b> is Manoj Kumar, and the salary cell is <b style="color:var(--sienna)">empty</b>. That is one of
+   the two missing salaries they kept having to work around.</p>
+   <p style="color:var(--sienna)">A whole statistics session went into the first one. A whole
+   visualisation session went into drawing it. <b style="color:var(--sienna)">Here they are both on the
+   first screen, and nobody typed anything.</b> That is the argument for a spreadsheet, and it takes
+   ninety seconds.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Open the file and say &ldquo;do not scroll&rdquo;.</b> Row 5 and row 9 do the whole opening
+   for you. If they scroll, they lose the moment &mdash; it only works because the screen has not
+   moved.</li>
+   <li><b>Save As <code>.xlsx</code> in the first five minutes, before any formula.</b> A
+   <code>.csv</code> file cannot store a formula. It stores only text. If they build the whole summary
+   and then save, Excel keeps the <em>answers</em> and throws every formula away, and they will not find
+   out until tomorrow. Do this step together, out loud, and do not move on until every laptop has
+   done it.</li>
+   <li><b>Say in minute one that Google Sheets and LibreOffice Calc both work.</b> Every single thing in
+   today's session &mdash; the grid, <code>=</code>, all seven functions, the dollar sign, autofill
+   &mdash; is identical in all three. Nobody has to buy anything. Say it before somebody panics
+   quietly for an hour.</li>
+   <li><b>Write the twelve column letters on the board and leave them up all session.</b> A to L,
+   <code>emp_id</code> to <code>join_date</code>. You will be asked &ldquo;which one is salary&rdquo;
+   ten times and the board answers it without stopping you.</li>
+   <li><b>Budget twenty minutes for the dollar sign, and let the wrong answer happen on screen first.</b>
+   This is the one thing in Excel that goes wrong <em>quietly</em>. Do not warn them. Drag the broken
+   formula down, let them see a column of nonsense, and then fix it. The fear is the lesson.</li>
+   <li><b>Four shortcuts today and no more.</b> <code>Ctrl</code>+<code>&darr;</code>,
+   <code>Ctrl</code>+<code>Home</code>, double-click on the autofill square, and <code>F4</code>.
+   On a Mac <code>F4</code> is often taken by the system &mdash; if it does nothing, type the two
+   dollar signs by hand and move on. Do not lose five minutes on a keyboard.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what a cell actually holds and why that makes
+  Excel worth a module after Python, how a reference works and what the dollar sign does to it, and what
+  the formulas quietly skip. If you are shaky anywhere it will be part two, so read it twice.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; what a cell holds, and why Excel comes after Python and not before</h5>
+
+   <h6>A cell holds one of two things</h6>
+   <p>It holds a <b>value</b> &mdash; a number, a word, a date. Or it holds a <b>rule</b> for working out
+   a value, and then it shows you the answer instead of the rule.</p>
+   <p>That is the entire idea of a spreadsheet, and the <code>=</code> sign is the switch between the
+   two. Type <code>38</code> and the cell holds 38. Type <code>=20+18</code> and the cell shows 38 but
+   holds the rule. Click it and the formula bar at the top shows you the rule.</p>
+
+   <h6>Why the rule being stored matters</h6>
+   <p>Because the rule gets <b>re-run on its own</b>. Change a salary in column K and every cell whose
+   rule mentions that salary works itself out again immediately. Not when you ask. Immediately.</p>
+   <p>In their Python work, the opposite is true. <code>df["salary"].mean()</code> runs once and gives
+   a number. Change the file and that number is now wrong and nothing tells you &mdash; you have to
+   remember to run it again.</p>
+   <div class="keyline">
+    <b>This is the whole difference, and it is not the mouse.</b><br><br>
+    A script is a set of instructions you run. A spreadsheet is a set of rules that are always running.
+    That is why a business that has had Python for twenty years still has every number it cares about
+    in a spreadsheet &mdash; somebody can change one cell and watch the answer move.
+   </div>
+
+   <h6>The same property is the danger, and you must say so</h6>
+   <p>Nothing on the sheet records that the cell was changed. There is no log. One typo in one cell
+   changes every number on the sheet, silently, and the person reading the sheet tomorrow has no way to
+   know. Real companies have lost real money to exactly this.</p>
+   <p>So the honest summary is: a spreadsheet is faster to change and much harder to trust. A script is
+   slower to change and leaves a record of exactly what it did.</p>
+
+   <h6>The hard limits, so you can answer the question straight</h6>
+   <div class="mth">
+    <div class="mrow"><b>rows</b><div><b>1,048,576.</b> That is the maximum, and it is not a setting you
+    can raise. Their file has 201. A real web log has five million, and Excel simply cannot open
+    it.</div></div>
+    <div class="mrow"><b>columns</b><div><b>16,384</b>, the last one lettered XFD. Nobody reaches
+    this.</div></div>
+    <div class="mrow"><b>speed</b><div>Fine to about a hundred thousand rows with simple formulas. Past
+    that it starts to freeze on every edit, because every rule on the sheet re-runs on every
+    change.</div></div>
+    <div class="mrow warn2"><b>so</b><div><b>Excel for data a human is going to read. Python for data a
+    human cannot.</b> That is the honest split, and it is also the answer in an interview.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the reference, the colon, and the dollar sign</h5>
+
+   <div class="mth">
+    <h6>A reference</h6>
+    <div class="mrow"><b>definition</b><div>A reference is the <b>address of a cell</b>: the column
+    letter followed by the row number.</div></div>
+    <div class="mrow"><b>how it works</b><div>Writing <code>K2</code> inside a formula means &ldquo;go
+    and fetch whatever is in cell K2 right now&rdquo;. It does not copy the number. It points at
+    it.</div></div>
+    <div class="mrow"><b>example</b><div>Salary is column K and the first employee is on row 2, so
+    <code>=K2</code> in any empty cell shows 47764.
+    <div class="mcalc">=K2      ->  47764</div></div></div>
+    <div class="mrow warn2"><b>watch out for</b><div>Row 1 is the <b>header</b>, not an employee.
+    <code>K1</code> is the word <code>salary</code>. The 201 employees live on rows <b>2 to
+    202</b>.</div></div>
+   </div>
+
+   <div class="mth">
+    <h6>The colon</h6>
+    <div class="mrow"><b>definition</b><div>A colon between two references means <b>through</b> &mdash;
+    everything from the first cell to the last, inclusive.</div></div>
+    <div class="mrow"><b>how it works</b><div><code>I2:I202</code> is 201 cells: I2, I3, I4, all the way
+    down to I202. One short piece of text instead of 201 addresses.</div></div>
+    <div class="mrow"><b>example</b><div>Age is column I, so the average age of everybody is
+    <div class="mcalc">=AVERAGE(I2:I202)   ->  38.175</div>
+    which is the same 38.2 they got from pandas in the first visualisation session.</div></div>
+    <div class="mrow warn2"><b>watch out for</b><div>They will write <code>I:I</code> for &ldquo;the
+    whole column&rdquo;, which includes the header. <code>AVERAGE</code> happens to skip the word
+    <code>age</code> so the answer comes out right anyway &mdash; which is exactly why it is dangerous.
+    Teach <code>I2:I202</code>.</div></div>
+   </div>
+
+   <h6>Relative is the default, and that is on purpose</h6>
+   <p>Copy a formula from one cell to another and Excel <b>moves the references with it</b>. A formula
+   in M2 that says <code>=K2-100</code> becomes <code>=K3-100</code> when you copy it to M3.</p>
+   <p>This sounds like a bug. It is the single most useful thing Excel does. It is what lets you write
+   one formula and fill 201 rows with it, because what the formula really means is not &ldquo;K2&rdquo;,
+   it is <b>&ldquo;the salary on my own row&rdquo;</b>.</p>
+
+   <div class="mth">
+    <h6>The dollar sign</h6>
+    <div class="mrow"><b>definition</b><div>A <code>$</code> in front of a letter or a number
+    <b>freezes</b> that part, so copying the formula does not move it.</div></div>
+    <div class="mrow"><b>how it works</b><div><code>$Q$10</code> means column Q, row 10, and <b>nothing
+    will change it</b>. Copy that formula anywhere on the sheet and it still points at Q10.</div></div>
+    <div class="mrow"><b>example</b><div>The average salary is going to live in one cell, Q10. Every one
+    of the 201 rows has to subtract <b>that same cell</b>.
+    <div class="mcalc">M2:  =K2-$Q$10      ->  -47884.41
+M3:  =K3-$Q$10      ->   -9596.41
+M4:  =K4-$Q$10      ->  -32658.41</div>
+    The K moved down a row each time. The Q10 did not move at all. That is the whole point.</div></div>
+    <div class="mrow warn2"><b>watch out for</b><div>Half-locks exist &mdash; <code>Q$10</code> freezes
+    only the row, <code>$Q10</code> only the column. <b>Do not teach them today.</b> They are for
+    filling a grid in two directions, which is day five. Today: either both dollars or
+    neither.</div></div>
+   </div>
+
+   <h6>What the broken version looks like, and why it is worse than a crash</h6>
+   <p>If they write <code>=K2-Q10</code> with no dollars and drag it down, row 3 asks for
+   <code>Q11</code>, row 4 asks for <code>Q12</code>, and so on down the sheet. There is no error. Excel
+   does exactly what it was told.</p>
+   <p>Q11 happens to hold the median salary, 68647, so row 3 produces <b>17405</b> &mdash; a number that
+   looks completely plausible. Q12 onwards are empty cells, and an empty cell in arithmetic counts as
+   <b>zero</b>, so every row after that just shows the salary itself back again.</p>
+   <div class="keyline">
+    <b>Nothing went red. Nothing said error.</b><br><br>
+    One row right, one row plausibly wrong, and then two hundred rows of the salary column copied. This
+    is the failure they have to be able to recognise on sight, because it is the one that gets into real
+    reports.
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; blanks, text, and what the formulas quietly skip</h5>
+
+   <h6><code>COUNT</code> and <code>COUNTA</code> are not the same function</h6>
+   <div class="mth">
+    <div class="mrow"><b>COUNT</b><div>Counts cells that hold a <b>number</b>. Text does not count. A
+    blank does not count.</div></div>
+    <div class="mrow"><b>COUNTA</b><div>Counts cells that hold <b>anything at all</b> &mdash; numbers,
+    words, dates. Only a truly empty cell is skipped.</div></div>
+    <div class="mrow"><b>so</b><div><code>=COUNT(C2:C202)</code> on the name column gives <b>0</b>,
+    because a name is not a number. That surprises everybody once and then never again.</div></div>
+   </div>
+
+   <h6>Why that pair is the most useful thing in this session</h6>
+   <p>Put the two side by side on columns that should agree, and the gap tells you what is missing.</p>
+   <div class="mcalc">=COUNTA(C2:C202)    ->  201      names        nothing missing
+=COUNT(I2:I202)     ->  200      ages         one missing
+=COUNT(K2:K202)     ->  199      salaries     two missing</div>
+   <p>201 rows. 200 ages. 199 salaries. They already knew those gaps existed, because pandas told
+   them. <b>This is the spreadsheet version of the same check</b>, and it is two formulas.</p>
+
+   <h6>A blank is not a zero, and <code>AVERAGE</code> knows the difference</h6>
+   <p><code>AVERAGE</code> skips blank cells completely. It does not count them and it does not treat
+   them as zero. So the average salary divides by 199, not by 201.</p>
+   <div class="mcalc">=AVERAGE(K2:K202)              ->  95648.41     divides by 199  (correct)
+=SUM(K2:K202)/COUNTA(C2:C202)  ->  94696.68     divides by 201  (wrong)</div>
+   <p>A thousand rupees of difference, from two empty cells. And if anybody ever types a
+   <code>0</code> into those two cells to &ldquo;tidy them up&rdquo;, the average becomes the second
+   number permanently and nobody will notice.</p>
+   <p>There is also a function that counts them directly: <code>=COUNTBLANK(K2:K202)</code> gives
+   <b>2</b>. Worth thirty seconds, no more.</p>
+
+   <h6>Formatting changes what you see, not what is there</h6>
+   <p><code>=AVERAGE(I2:I202)</code> gives <b>38.175</b>. Click <em>Decrease Decimal</em> twice and the
+   cell shows <b>38.2</b>. The cell still holds 38.175. Every formula that points at it still uses
+   38.175.</p>
+   <div class="warn"><b>This matters more than it sounds.</b> Somebody will later show you two cells
+   that both display 38.2 and refuse to add up, and the reason will be that one of them is really
+   38.175. Teach the sentence now: <b>the number you see and the number that is there are two different
+   things.</b></div>
+
+   <h6>The two mistakes that will happen in the first ten minutes</h6>
+   <div class="mth">
+    <div class="mrow"><b>no equals</b><div>They type <code>AVERAGE(I2:I202)</code> and the cell shows
+    the <b>text</b> <code>AVERAGE(I2:I202)</code>. Nothing is broken. There is no
+    <code>=</code>, so Excel treated it as a word. <b>The <code>=</code> is not decoration. It is the
+    switch.</b></div></div>
+    <div class="mrow"><b>hashes</b><div>The cell fills with <code>#####</code>. The number does not fit
+    in the column. Drag the line between the column headers, or double-click it. <b>It is not an
+    error.</b></div></div>
+   </div>
+
+   <h6>One thing to say out loud, because it closes a loop from statistics</h6>
+   <p><code>dept_id</code> is column B. <code>=AVERAGE(B2:B202)</code> gives <b>2.32</b> &mdash; the
+   same meaningless 2.32 that opened statistics day 2.</p>
+   <div class="keyline">
+    Excel does not know that <code>dept_id</code> is a label and not a quantity. Neither did pandas.
+    <b>No tool will ever ask you whether your question makes sense.</b> Thirty seconds, and it tells
+    them that moving to a friendlier tool has not made them safer.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>Open it, and do not scroll</h3></div>
+   <p class="objective">Twenty sessions on this file and they have never seen it. Two of its famous
+   problems are on the first screen.</p>
+
+   <div class="stage">Laptops open. Everybody opens the same file. <b>Say &ldquo;do not scroll&rdquo;
+   before they touch the mouse</b> &mdash; the whole opening depends on the screen not moving.</div>
+
+   <div class="speak">
+    <p>Find <code>employees.csv</code> on your laptop. The same file we have used since the first day of
+    statistics. Double-click it. It will open in Excel.</p>
+    <p>Now take your hand off the mouse. Do not scroll.</p>
+   </div>
+
+   <div class="typeit">What is on the screen &mdash; the columns that matter, as they really are</div>
+<pre><code>      A       C                 D          I     K         L
+ <span class="c">1</span>  emp_id  name            department  age   salary    join_date
+
+ <span class="c">2</span>  1001    Rahul Sharma    HR           53    47764    2018-01-03
+ <span class="c">3</span>  1002    Karthik Kumar   Marketing    57    86052    2024-07-02
+ <span class="c">4</span>  1003    Karthik Reddy   Tech         56    62990    2025-03-04
+ <span class="c">5</span>  1004    Lakshmi Kumar   Tech         41  <span class="o">5200000</span>    2022-10-15
+ <span class="c">6</span>  1005    Arjun Sharma    HR           42    62556    2022-05-20
+ <span class="c">7</span>  1006    Sneha Reddy     Sales        25    47111    2023-10-26
+ <span class="c">8</span>  1007    Lakshmi Menon   HR           51    60925    2025-02-02
+ <span class="c">9</span>  1008    Manoj Kumar     HR           28   <span class="o">(empty)</span>   2022-01-07
+
+<span class="c">     columns B, E, F, G and J are on screen too - left out here only to fit.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">Point at nothing. Just ask: &ldquo;look at row five. What is that salary?&rdquo;</div>
+    <div class="a">Fifty-two lakh. <b>That is the earner you have spent two sessions on.</b> It is the
+    reason your Pearson correlation came out at 0.079 instead of 0.607. Then: &ldquo;now look at row
+    nine.&rdquo; The salary cell is empty &mdash; one of the two missing salaries. Wait for both. They
+    will find them.</div>
+   </div>
+
+   <div class="speak">
+    <p>In statistics we spent a whole session on that one salary, and we could only find it through
+    arithmetic &mdash; the mean was 95,648, the median was 68,647, and the gap between them told us
+    something was wrong somewhere.</p>
+    <p>Last week we spent a whole session drawing it, so you could point at the dot.</p>
+    <p>Today you opened the file and it is on row five. Nobody typed anything.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Numbers summarise. Pictures show. A spreadsheet just puts the data in front of you.</b><br><br>
+    That is not a small thing, and it is why this tool has survived forty years of better tools. Two
+    hundred and one rows is a size a human being can actually look at.
+   </div>
+
+   <div class="stage">Now the vocabulary, quickly. Four words, two minutes, then move.</div>
+
+   <div class="speak">
+    <p>Across the top, letters. Down the side, numbers. One box is a <b>cell</b>, and its name is the
+    letter and the number together. <b>K5</b> is the fifty-two lakh.</p>
+    <p>Click on it. Look at the top left &mdash; there is a small box showing <b>K5</b>. That is the
+    <b>Name Box</b>. It always tells you where you are, and you can type an address into it to jump
+    anywhere.</p>
+    <p>Row one is not a person. It is the <b>header</b> &mdash; the column names. Our people start on
+    row two.</p>
+   </div>
+
+   <div class="typeit">Two shortcuts, and the answer to &ldquo;how many rows is this?&rdquo;</div>
+<pre><code>  click A1  then  Ctrl + Down     <span class="c">jumps to the last filled cell in the column</span>
+  Ctrl + Home                     <span class="c">jumps back to A1 from anywhere</span></code></pre>
+   <div class="screen">you land on A202</div>
+
+   <div class="speak">
+    <p>Row 202. Row one was the header, so that is <b>201 rows of data</b>.</p>
+    <p>Two hundred and one. Not two hundred. You have seen 201 before &mdash; there is a duplicate row
+    in this file, two copies of the same employee. We deal with that on Thursday.</p>
+   </div>
+
+   <div class="stage">Now the save step. <b>Do not skip it and do not rush it.</b> Wait until every
+   laptop has done it.</div>
+
+   <div class="speak">
+    <p>One thing before we write a single formula. Go to <b>File</b>, then <b>Save As</b>. Change the
+    type from CSV to <b>Excel Workbook</b>, which is <code>.xlsx</code>. Save it as
+    <code>employees.xlsx</code>.</p>
+    <p>Here is why. A <code>.csv</code> file is plain text &mdash; you read one by hand in Python, you
+    know exactly what is inside it. Commas and numbers. <b>There is nowhere in that file to put a
+    formula.</b></p>
+    <p>So if you spend the next hour building formulas and then save this as a CSV, Excel keeps the
+    answers and throws every formula away. Open it tomorrow and all your work is gone, and the file will
+    look fine, which is worse.</p>
+   </div>
+
+   <div class="warn"><b>Expect &ldquo;why did it ask me something when I pressed save?&rdquo;</b> Excel
+   warns you when you save a workbook as CSV &mdash; that formulas and extra sheets will be lost. Show
+   them that warning on purpose. It is the only time Excel tells you before destroying something, so it
+   is worth recognising.</div>
+
+   <div class="warn"><b>Column L may not look like the file.</b> Depending on the laptop's region
+   settings, Excel reads <code>2018-01-03</code> as a date and redisplays it as <code>03-01-2018</code>,
+   or leaves it as plain text. <b>Either is fine and neither is wrong.</b> Nothing in today's session
+   touches <code>join_date</code>. If somebody asks, say &ldquo;Excel guessed it was a date, we deal with
+   dates properly later&rdquo; and move on &mdash; do not start on date formats in the first ten
+   minutes.</div>
+  </div>
+
+  <!-- 12-26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12 &ndash; 26</span><h3>The equals sign</h3></div>
+   <p class="objective">One idea, and the whole tool follows from it. A cell can hold a value, or a rule.</p>
+
+   <div class="speak">
+    <p>We need an empty cell to play in, well away from the data. Type <code>A205</code> into the Name
+    Box and press Enter. That is three rows below the last employee, where we cannot damage
+    anything.</p>
+    <p>Type <b>38</b> and press Enter. The cell holds 38. Nothing interesting.</p>
+    <p>Now go back to it and type this instead.</p>
+   </div>
+
+   <div class="typeit">Type it with the equals sign</div>
+<pre><code>=20+18</code></pre>
+   <div class="screen">38</div>
+
+   <div class="speak">
+    <p>The cell shows 38. But click on it once and look at the <b>formula bar</b> &mdash; the long white
+    strip above the letters.</p>
+    <p>The cell is not holding 38. It is holding <b>the rule</b> <code>=20+18</code>, and it is showing
+    you what the rule works out to.</p>
+    <p>That is the entire tool. <b>Every cell holds either a value, or a rule.</b> And the equals sign is
+    how you tell Excel which one you mean.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Somebody will type <code>AVERAGE(I2:I202)</code> without the equals sign in the next
+    five minutes. Pre-empt it.</div>
+    <div class="a">The cell will show the <b>text</b> <code>AVERAGE(I2:I202)</code>, left-aligned,
+    looking silly. Nothing is broken. There was no equals sign, so Excel read it as a word. <b>Say the
+    sentence: the equals sign is not decoration, it is the switch.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Now the useful version. Instead of typing numbers into the rule, we point at cells.</p>
+   </div>
+
+   <div class="typeit">Still in A205 &mdash; point at a cell instead of typing a number</div>
+<pre><code>=K5</code></pre>
+   <div class="screen">5200000</div>
+
+   <div class="speak">
+    <p><code>K5</code> is not the number five point two million. It is an <b>address</b>. The rule says
+    &ldquo;go and fetch whatever is in K5 right now&rdquo;.</p>
+    <p>Hold on to the words <b>right now</b>. We come back to them in half an hour and they turn out to
+    be the most important thing in this session.</p>
+   </div>
+
+   <div class="speak">
+    <p>One more piece of punctuation and then we can do real work. The <b>colon</b>.</p>
+    <p>Age is column I. The first person is on row 2 and the last is on row 202. So instead of writing
+    two hundred and one addresses, I write the first one, a colon, and the last one.</p>
+    <p><code>I2:I202</code>. Read the colon out loud as the word <b>through</b>. &ldquo;I2 through
+    I202.&rdquo; Two hundred and one cells.</p>
+   </div>
+
+   <div class="typeit">The first real formula of the module</div>
+<pre><code>=AVERAGE(I2:I202)</code></pre>
+   <div class="screen">38.175</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Where have you seen that number before?&rdquo;</div>
+    <div class="a">38.2 &mdash; the average age, from the first visualisation session. <b>Exact same
+    number.</b> Let somebody in the room say it rather than saying it yourself.</div>
+   </div>
+
+   <div class="speak">
+    <p>Thirty-eight point one seven five. That is the average age, and it is the same number pandas gave
+    you, because it is the same arithmetic on the same file.</p>
+    <p>I want to be clear about what today is. <b>You are not learning new statistics.</b> You learned
+    all of it already. Today you are learning to do it with a mouse, on a tool the people who ask you
+    for numbers actually have open.</p>
+   </div>
+
+   <div class="stage">Quick formatting aside &mdash; sixty seconds, and it prevents a confusion that
+   will come back in week two.</div>
+
+   <div class="speak">
+    <p>38.175 is untidy. On the Home tab there are two buttons, <b>Increase Decimal</b> and <b>Decrease
+    Decimal</b>. Press Decrease twice. Now it says <b>38.2</b>.</p>
+    <p>But listen carefully. The cell <b>still holds 38.175</b>. Nothing changed except what you are
+    being shown.</p>
+    <p><b>The number you see and the number that is there are two different things.</b> Write that down.
+    One day two cells will both show 38.2 and refuse to agree with each other, and this will be
+    why.</p>
+   </div>
+  </div>
+
+  <!-- 26-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26 &ndash; 44</span><h3>Seven formulas, and the minus four comes back</h3></div>
+   <p class="objective">Build a real summary block. Two of the seven find the broken data on their own.</p>
+
+   <div class="stage">Clear A205 first &mdash; we are finished playing. Now everybody builds the same
+   block in the same place, so you can walk the room and see at a glance who is behind.</div>
+
+   <div class="speak">
+    <p>Delete what is in A205. Now go to <code>P1</code> using the Name Box.</p>
+    <p>Why P? Because our data ends at column L, and I want a gap between the data and my working. If I
+    put my answers right next to the data they get mixed up with it. So: data in A to L, and from P
+    onwards is <b>mine</b>.</p>
+    <p>In column P we type <b>labels</b> &mdash; words, so we know what each number is. In column Q we
+    put the <b>formulas</b>.</p>
+   </div>
+
+   <div class="typeit">Labels in P, formulas in Q. Type them as a pair, one row at a time.</div>
+<pre><code>        P                      Q
+
+ 1   rows                =COUNTA(C2:C202)
+ 2   ages                =COUNT(I2:I202)
+ 3   average age         =AVERAGE(I2:I202)
+ 4   middle age          =MEDIAN(I2:I202)
+ 5   youngest            =MIN(I2:I202)
+ 6   oldest              =MAX(I2:I202)</code></pre>
+   <div class="screen">rows             201
+ages             200
+average age     38.175
+middle age          37
+youngest            -4
+oldest             210</div>
+
+   <div class="stage">Stop here. Do not explain anything yet. Let them read their own screen for a few
+   seconds.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Look at your own six numbers. Two of them should bother you. Which
+    two?&rdquo;</div>
+    <div class="a">The <b>&minus;4</b> and the <b>210</b>. They have met both before, in the
+    visualisation session, where it took a chart to find them. Here two formulas did it. Also watch for
+    somebody noticing <b>201 rows but only 200 ages</b> &mdash; if they spot that themselves, stop and
+    make a lot of it.</div>
+   </div>
+
+   <div class="speak">
+    <p>Start with the first two rows, because they are not the same function and the difference matters
+    more than you would think.</p>
+    <p><code>COUNTA</code> counts cells that have <b>anything</b> in them. I pointed it at the
+    <b>name</b> column, because every row has a name in it. 201.</p>
+    <p><code>COUNT</code> &mdash; no A &mdash; counts cells that have a <b>number</b> in them. I pointed
+    it at the <b>age</b> column. 200.</p>
+    <p>Two hundred and one rows. Two hundred ages. <b>So one row has no age in it.</b></p>
+    <p>I am saying <b>rows</b> and not <b>people</b> on purpose, and you already know why &mdash; one of
+    those rows is a duplicate. Thursday that stops being a detail.</p>
+   </div>
+
+   <div class="keyline">
+    <b>That is how you find missing data in a spreadsheet.</b><br><br>
+    Count a column that is never empty. Count the column you care about. The gap is what is missing.
+    You already did this in pandas with <code>isnull().sum()</code> &mdash; this is the same check, with
+    two formulas and no library.
+   </div>
+
+   <div class="warn"><b>Try this live and let it surprise them.</b> Put
+   <code>=COUNT(C2:C202)</code> &mdash; COUNT, not COUNTA &mdash; on the name column. It gives
+   <b>0</b>. Not an error, not a crash: zero, because a name is not a number. One demonstration and
+   nobody mixes up the two functions again.</div>
+
+   <div class="speak">
+    <p>Now the two that should have bothered you. <code>MIN</code> gives the smallest value in the
+    column. <code>MAX</code> gives the largest.</p>
+    <p>The youngest person in this company is <b>minus four years old</b>. The oldest is <b>two hundred
+    and ten</b>.</p>
+    <p>You met both of these last week. It took us a chart to find them. Today it took two
+    formulas.</p>
+   </div>
+
+   <div class="speak">
+    <p>And I will show you one more thing the spreadsheet can do that a chart could not. <b>Who is
+    it?</b></p>
+    <p>Type <code>A152</code> into the Name Box and press Enter.</p>
+   </div>
+
+   <div class="screen">row 152   Aditya Gupta   HR   age -4   salary 33085</div>
+
+   <div class="speak">
+    <p>Aditya Gupta, in HR. Minus four years old, and the lowest paid person in the file.</p>
+    <p>I cheated &mdash; I already knew it was row 152 and I told you. On Thursday you will find that row
+    yourself, with a filter. Next week you will find it with a formula. Today the point is only this:
+    the sheet put it in front of you, and the average never did.</p>
+   </div>
+
+   <div class="stage">Now the salary half of the block. Same four lines plus one, same place, rows 8 to
+   11. Leave row 7 empty as a gap.</div>
+
+   <div class="typeit">Leave row 7 blank, then carry on</div>
+<pre><code>        P                      Q
+
+ 8   salaries            =COUNT(K2:K202)
+ 9   total salary        =SUM(K2:K202)
+10   average salary      =AVERAGE(K2:K202)
+11   middle salary       =MEDIAN(K2:K202)</code></pre>
+   <div class="screen">salaries             199
+total salary    19034033
+average salary  95648.41
+middle salary      68647</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;201 rows, 199 salaries. How many salaries are missing, and can you prove
+    it?&rdquo;</div>
+    <div class="a">Two. And the proof is a function: <code>=COUNTBLANK(K2:K202)</code> gives
+    <b>2</b>. One of them is Manoj Kumar on row 9, the empty cell they found in the first five minutes
+    of the session.</div>
+   </div>
+
+   <div class="speak">
+    <p>95,648 average, 68,647 in the middle. You know those two numbers &mdash; the gap between them is
+    the whole reason we learned about skew.</p>
+    <p>Now a question I want you to think about carefully. <code>AVERAGE</code> added up the salaries and
+    divided. <b>Divided by what?</b> 199, or 201?</p>
+   </div>
+
+   <div class="typeit">Put both on the sheet and compare them. Any two empty cells.</div>
+<pre><code>=AVERAGE(K2:K202)                 <span class="c">-- what we already have</span>
+=SUM(K2:K202)/COUNTA(C2:C202)     <span class="c">-- total, divided by all 201 rows</span></code></pre>
+   <div class="screen">95648.41     divides by 199  (what AVERAGE does)
+94696.68     divides by 201  (counting the blanks as nothing earned)</div>
+
+   <div class="speak">
+    <p>Nearly a thousand rupees apart, and both of them look perfectly reasonable.</p>
+    <p><code>AVERAGE</code> <b>skips</b> empty cells completely. It does not count them, and it does not
+    treat them as zero. So it divided by 199. That is the right behaviour, and it is the same thing
+    pandas does.</p>
+   </div>
+
+   <div class="keyline">
+    <b>A blank is not a zero.</b><br><br>
+    An empty salary means <em>we do not know</em>. A salary of zero means <em>this person earns
+    nothing</em>. Those are completely different facts. The day somebody types <code>0</code> into those
+    two cells to tidy the sheet up, the average drops to 94,696 and stays there, and nobody will
+    notice.
+   </div>
+
+   <div class="stage">One last thirty-second item, and it closes a loop from statistics. Do not spend
+   longer on it.</div>
+
+   <div class="typeit">In any empty cell &mdash; column B is <code>dept_id</code></div>
+<pre><code>=AVERAGE(B2:B202)</code></pre>
+   <div class="screen">2.32</div>
+
+   <div class="speak">
+    <p>Two point three two. The average department number.</p>
+    <p>You remember this one. It is a label that happens to be written with digits, and averaging it
+    means nothing at all.</p>
+    <p>Excel did not stop me. Excel does not know that <code>dept_id</code> is a name and not a
+    quantity. Pandas did not stop you either.</p>
+    <p><b>No tool will ever ask you whether your question makes sense.</b> That is still your job, and it
+    is the only part of this course that no software will ever do for you.</p>
+   </div>
+  </div>
+
+  <!-- 44-56 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 &ndash; 56</span><h3>The one thing a script cannot do</h3></div>
+   <p class="objective">Why this tool exists, answered honestly &mdash; including the part that makes it
+   dangerous.</p>
+
+   <div class="stage">This is the block that answers &ldquo;sir, we already know pandas, why are we
+   learning this&rdquo;. Somebody is thinking it. Ask it for them.</div>
+
+   <div class="speak">
+    <p>Let me ask the question you are all too polite to ask. You can already do every one of those
+    seven formulas in pandas, in one line each. <b>So why are we spending two weeks on a
+    spreadsheet?</b></p>
+    <p>It is a fair question and it has a real answer. Watch the screen.</p>
+   </div>
+
+   <div class="speak">
+    <p>Keep your summary block where you can see it. Now click on <b>K5</b> &mdash; the fifty-two lakh
+    salary.</p>
+    <p>Suppose we find out it was a typing mistake. Somebody typed an extra zero. The real salary is
+    five lakh twenty thousand.</p>
+    <p>Type <b>520000</b> and press Enter. Do not look away from your summary block.</p>
+   </div>
+
+   <div class="typeit">Before and after &mdash; one cell changed, nothing else touched</div>
+<pre><code>                    before          after
+
+ salaries             199             199
+ total salary    19034033        14354033
+ average salary  95648.41        72130.82
+ middle salary      68647           68647</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;How many formulas did I re-run?&rdquo;</div>
+    <div class="a"><b>None.</b> They re-ran themselves, the instant the cell changed. And ask the second
+    half too: &ldquo;why did the middle salary not move?&rdquo; Because 520,000 is still the largest
+    salary in the file, so nobody changed places in the sorted order. The median only cares about
+    position, which is exactly what they learned in statistics.</div>
+   </div>
+
+   <div class="speak">
+    <p>The average dropped by twenty-three thousand rupees because one person's salary changed.
+    The total dropped by forty-seven lakh. And I did not run anything.</p>
+    <p>Now think about what that same change costs you in Python. Open the CSV. Edit the row. Save it.
+    Run <code>read_csv</code> again. Run the mean again. Run the median again. Run every cell in the
+    notebook again, in order, and hope you did not miss one.</p>
+   </div>
+
+   <div class="keyline">
+    <b>A script is instructions you run. A spreadsheet is rules that are always running.</b><br><br>
+    That is the real difference, and it has nothing to do with the mouse. It is why a company that has
+    had Python for twenty years still keeps the numbers it actually argues about in a spreadsheet
+    &mdash; because somebody in that meeting can change one cell and watch the answer move.
+   </div>
+
+   <div class="stage">Now turn it around. <b>Do not skip this half.</b> It is what separates somebody
+   who uses Excel from somebody who can be trusted with it.</div>
+
+   <div class="speak">
+    <p>Now the other side, and this is the part nobody teaches you.</p>
+    <p>I just changed a number that every single formula on this sheet depends on. <b>Where does it say
+    that I did that?</b></p>
+    <p>Nowhere. There is no record. No note, no mark on the cell, no list of changes. If I hand you this
+    file tomorrow you will see 72,130 as the average salary and you will have no way at all to know that
+    I edited it.</p>
+    <p>Your Python notebook would have shown it. The line that changed the salary would still be sitting
+    there in the code, for anybody to read.</p>
+   </div>
+
+   <div class="warn"><b>Say this plainly, because it is interview-grade.</b> A spreadsheet is faster to
+   change and much harder to trust. A script is slower to change and leaves a record of exactly what it
+   did. <b>Real companies have lost real money to a single wrong cell that nobody could see.</b> You are
+   going to use both tools for the rest of your career, and knowing which one a job needs is part of
+   being good at this.</div>
+
+   <div class="speak">
+    <p>Put it back &mdash; <b>Ctrl + Z</b>. Your average should go back to 95,648.</p>
+   </div>
+
+   <div class="stage">Then the size limits, two minutes, because somebody always asks and it is a real
+   interview question.</div>
+
+   <div class="speak">
+    <p>One more honest limit. A sheet stops at <b>ten lakh forty-eight thousand five hundred and
+    seventy-six rows</b>. That is fixed. You cannot change it.</p>
+    <p>Our file has 201 rows, so we are fine. A month of website visits is five million rows, and Excel
+    cannot open it at all. Pandas will not even notice.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Excel for data a human is going to look at. Python for data a human cannot.</b><br><br>
+    That is the honest split, it is the answer if an interviewer asks you which is better, and it is why
+    you are learning both.
+   </div>
+  </div>
+
+  <!-- 56-74 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">56 &ndash; 74</span><h3>The dollar sign</h3></div>
+   <p class="objective">One formula for 201 rows. Let it go wrong on screen first &mdash; the fear is
+   the lesson.</p>
+
+   <div class="stage">Eighteen minutes, and <b>do not warn them</b>. Write the broken formula, fill it
+   down, and let them look at a column of nonsense for a few seconds before you say a word.</div>
+
+   <div class="speak">
+    <p>New question. Not &ldquo;what is the average salary&rdquo; &mdash; we have that. The question is
+    <b>for each person, how far is their salary from the average?</b></p>
+    <p>That is one answer per person. Two hundred and one answers. So it is not one cell, it is a whole
+    new <b>column</b>.</p>
+    <p>Our data ends at L. So the new column goes in <b>M</b>. Go to M1 and give it a name.</p>
+   </div>
+
+   <div class="typeit">M1 &mdash; just a label, no equals sign</div>
+<pre><code>gap from average</code></pre>
+
+   <div class="speak">
+    <p>Now M2, for the first employee. His salary is in <b>K2</b>. The average salary is sitting in
+    <b>Q10</b>.</p>
+   </div>
+
+   <div class="typeit">M2 &mdash; type it exactly like this</div>
+<pre><code>=K2-Q10</code></pre>
+   <div class="screen">-47884.41</div>
+
+   <div class="speak">
+    <p>Minus forty-seven thousand eight hundred and eighty-four. Rahul Sharma earns about forty-seven
+    thousand <b>less</b> than the average. That is correct, and the minus sign is telling us
+    &ldquo;below average&rdquo;.</p>
+    <p>One down. Two hundred to go. And obviously I am not typing this two hundred more times.</p>
+   </div>
+
+   <div class="speak">
+    <p>Click on M2 once so it has the green border around it. Look at the <b>bottom right corner</b> of
+    that border. There is a tiny solid square.</p>
+    <p>That square is called the <b>fill handle</b>, and it is the most used thing in Excel. Put your
+    mouse on it until the pointer turns into a thin black plus, then <b>double-click</b> it.</p>
+   </div>
+
+   <div class="stage">It fills all the way down to row 202 in one go, because column L next to it runs
+   that far. <b>Now stop. Say nothing.</b> Let them look at what they got.</div>
+
+   <div class="typeit">What is actually in column M now</div>
+<pre><code>        K            M
+
+ 2    47764    -47884.41        <span class="c">correct</span>
+ 3    86052      17405          <span class="c">?</span>
+ 4    62990      62990          <span class="c">?</span>
+ 5  5200000    5200000          <span class="c">?</span>
+ 6    62556      62556          <span class="c">?</span>
+ 7    47111      47111          <span class="c">?</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Is that right? Look at row four. The salary is 62,990 and the gap from the
+    average is also 62,990. Can that be true?&rdquo;</div>
+    <div class="a">No &mdash; it would only be true if the average salary were zero. From row 4 down,
+    column M is just a copy of column K. And row 3 is worse: <b>17,405 looks completely believable</b>
+    and is wrong. Let them sit with it. <b>Nothing went red. Nothing said error.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Nothing crashed. Nothing turned red. Excel did not complain once. And the whole column after row
+    two is rubbish.</p>
+    <p>Let us find out why. Click on <b>M3</b> and read the formula bar.</p>
+   </div>
+
+   <div class="typeit">What the formula bar says in each cell</div>
+<pre><code>  M2    =K2-Q10        <span class="c">what I actually typed</span>
+  M3    =K3-Q11        <span class="c">both halves moved down one</span>
+  M4    =K4-Q12
+  M5    =K5-Q13
+  M6    =K6-Q14</code></pre>
+
+   <div class="speak">
+    <p>Excel moved <b>both</b> addresses down. The K moved down, and the Q moved down with it.</p>
+    <p>And now look at what the Q is landing on. <b>Q11</b> is the middle salary, 68,647 &mdash; so row
+    3 worked out 86,052 minus 68,647, which is 17,405. A real subtraction, of the wrong number.</p>
+    <p><b>Q12 is empty.</b> Q13 is empty. Everything below Q11 is empty. And an empty cell in a
+    subtraction counts as <b>zero</b>. Salary minus nothing is the salary. That is why the rest of the
+    column is a copy of column K.</p>
+   </div>
+
+   <div class="keyline">
+    <b>This is the single most dangerous thing in Excel, and it is not an error message.</b><br><br>
+    One row right, one row plausibly wrong, two hundred rows of nonsense &mdash; and the sheet looks
+    perfectly healthy. Learn to recognise a column that has quietly turned into a copy of its
+    neighbour.
+   </div>
+
+   <div class="stage">Now the correction. Explain <em>why</em> Excel moved the addresses before you
+   explain how to stop it &mdash; otherwise they will think it was a bug, and it is the opposite.</div>
+
+   <div class="speak">
+    <p>Before we fix it, understand why Excel did that, because it is not a bug. It is the best thing
+    about the tool.</p>
+    <p>When I wrote <code>K2</code> on row 2, Excel did not store &ldquo;K2&rdquo;. It stored <b>&ldquo;the
+    cell five to my left&rdquo;</b>. So on row 3 that means K3, and on row 152 it means K152.</p>
+    <p>And that is exactly what I wanted for the salary. Every row should use <b>its own</b> salary.
+    Without that behaviour I really would be typing two hundred formulas.</p>
+    <p>The problem is the other half. The average salary is <b>not</b> different on each row. It is one
+    cell, Q10, for everybody. And I have no way yet of telling Excel the difference.</p>
+   </div>
+
+   <div class="speak">
+    <p>That is what the dollar sign is for. A dollar sign means <b>do not move this</b>.</p>
+    <p>Go back to M2 and change the formula to this.</p>
+   </div>
+
+   <div class="typeit">M2, corrected &mdash; two dollar signs, nothing else different</div>
+<pre><code>=K2-$Q$10</code></pre>
+
+   <div class="speak">
+    <p><code>$Q</code> means never change the letter. <code>$10</code> means never change the number.
+    So <code>$Q$10</code> means <b>Q10, always, no matter where you copy this</b>.</p>
+    <p>Now double-click the fill handle again.</p>
+   </div>
+
+   <div class="typeit">Column M, this time</div>
+<pre><code>        K             M                 formula in that cell
+
+ 2    47764      -47884.41              =K2-$Q$10
+ 3    86052       -9596.41              =K3-$Q$10
+ 4    62990      -32658.41              =K4-$Q$10
+ 5  5200000      <span class="o">5104351.59</span>              =K5-$Q$10
+ 6    62556      -33092.41              =K6-$Q$10
+ 7    47111      -48537.41              =K7-$Q$10
+ 8    60925      -34723.41              =K8-$Q$10
+ 9   (empty)    <span class="o">-95648.41</span>              =K9-$Q$10
+
+<span class="c">     shown here rounded to 2 decimals. your screen will show more digits
+     than this until you press Decrease Decimal - because the average
+     salary really is 95648.40704, exactly as we said in the first hour.</span></code></pre>
+
+   <div class="speak">
+    <p>The K moved down every row. The <code>$Q$10</code> did not move at all. That is the whole
+    idea.</p>
+    <p>Now look at the shape of the column. Scroll down it. <b>Almost every number is negative.</b></p>
+    <p>I will give you the exact count, because it is worth hearing out loud. Of the 199 salaries in this
+    file, <b>187 are below the average</b>. Twelve people are above it.</p>
+    <p>Ninety-four per cent of this company earns less than the average salary of this company. That
+    sentence sounds impossible and it is completely true, and you already know why &mdash; it is the
+    fifty-two lakh earner on row 5 dragging the average up past almost everybody.</p>
+    <p>In statistics we proved that with a mean and a median twenty-seven thousand apart. Here you can
+    scroll down it.</p>
+   </div>
+
+   <div class="warn"><b>&ldquo;How did you count the 187?&rdquo;</b> Say honestly that you used a formula
+   they do not have yet &mdash; <code>COUNTIF</code>, which counts cells that pass a test. It arrives in
+   the third session. Today the point is only that the column has a <b>shape</b>, and they can see
+   it.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Row 9 says minus 95,648. Manoj Kumar has no salary in this file. So what does
+    minus 95,648 mean?&rdquo;</div>
+    <div class="a"><b>Nothing. It is wrong.</b> The cell is empty, and an empty cell in arithmetic
+    becomes <b>zero</b>, so Excel worked out 0 minus 95,648. This is the trap worth more than anything
+    else today, so give it the time.</div>
+   </div>
+
+   <div class="keyline">
+    <b>Two different behaviours, and you need both.</b><br><br>
+    <code>AVERAGE</code>, <code>COUNT</code>, <code>SUM</code> and the rest <b>skip</b> an empty cell.
+    Plain arithmetic &mdash; plus, minus, times &mdash; turns it into <b>zero</b>.<br><br>
+    So the same blank cell is ignored by one formula and counted as nothing-earned by the next one on
+    the same sheet. Nobody tells you. You have to know.
+   </div>
+
+   <div class="speak">
+    <p>Last thing in this block, and it will save you a lot of typing. You do not have to type the
+    dollar signs by hand.</p>
+    <p>While you are writing a formula, click on the address and press <b>F4</b>. Excel puts both dollar
+    signs in for you. Press it again and it cycles through the other combinations &mdash; ignore those
+    for now, we need them in week two.</p>
+   </div>
+
+   <div class="warn"><b>On a Mac <code>F4</code> is often taken by the system and does nothing.</b> Try
+   <code>fn</code>+<code>F4</code> once, and if that fails, <b>type the two dollar signs by hand and move
+   on</b>. It is two characters. Do not lose five minutes of the session to a keyboard.</div>
+
+   <div class="warn"><b>A second way to fill, for anyone whose fill handle misbehaves.</b> Click M2,
+   <code>Ctrl</code>+<code>C</code>. Type <code>M3:M202</code> into the Name Box and press Enter &mdash;
+   that selects the whole range. Then <code>Ctrl</code>+<code>V</code>. Same result, and it always
+   works.</div>
+  </div>
+
+  <!-- 74-86 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">74 &ndash; 86</span><h3>Their turn</h3></div>
+   <p class="objective">Everything from today, on a column we have not touched. Twelve minutes, and walk
+   the room.</p>
+
+   <div class="stage">Put the task on the board and then stop talking. Walk the room. The two things to
+   look for over shoulders: a missing <code>=</code>, and a missing <code>$</code>.</div>
+
+   <div class="speak">
+    <p>Experience is column <b>H</b>. We have not looked at it once today.</p>
+    <p>Two jobs. First, build the same kind of summary block for it, in P13 down to Q17. Second, build a
+    column that says how many years above or below the average each person is.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; job one, the summary block</div>
+<pre><code>        P                      Q
+
+13   experience          =COUNT(   ?   )
+14   average experience  =AVERAGE( ?   )
+15   middle experience   =MEDIAN(  ?   )
+16   least experience    =MIN(     ?   )
+17   most experience     =MAX(     ?   )
+
+<span class="c">     experience is column H. the people are on rows 2 to 202.</span></code></pre>
+
+   <div class="typeit">On the board &mdash; job two, the column</div>
+<pre><code>  N1    a label:  years above average
+  N2    a formula that subtracts the average experience from this person's experience
+  then  fill it down to row 202
+
+<span class="c">     the average experience will be sitting in one cell. one cell, for everybody.</span>
+<span class="c">     so you will need something from the last twenty minutes.</span></code></pre>
+
+   <div class="stage">After twelve minutes, put the answers up. Do not read them out line by line
+   &mdash; ask the room for each one.</div>
+
+   <div class="typeit">Job one, the answers</div>
+<pre><code>Q13   =COUNT(H2:H202)          201
+Q14   =AVERAGE(H2:H202)        7.781094527     <span class="c">7.78 after Decrease Decimal</span>
+Q15   =MEDIAN(H2:H202)         8
+Q16   =MIN(H2:H202)            0
+Q17   =MAX(H2:H202)            15</code></pre>
+
+   <div class="typeit">Job two, the answers</div>
+<pre><code>  N1    years above average
+  N2    =H2-$Q$14
+
+        H          N
+
+ 2      4       -3.78
+ 3     13        5.22
+ 4      1       -6.78
+ 5     11        3.22
+ 6      9        1.22
+ 7      3       -4.78</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Count says 201. Is any experience value missing?&rdquo;</div>
+    <div class="a"><b>No.</b> 201 rows, 201 numbers. This is the first column today where the count
+    came out equal, and that is worth noticing out loud &mdash; it means the check works both ways. It
+    tells you when the data is fine, not only when it is broken.</div>
+   </div>
+
+   <div class="qbox">
+    <div class="q">The good question, if you have two minutes: &ldquo;average experience 7.78, middle
+    experience 8 &mdash; almost the same. But average salary 95,648 and middle salary 68,647 are
+    twenty-seven thousand apart. Why the difference?&rdquo;</div>
+    <div class="a">Because experience has <b>no outlier</b>. It runs from 0 to 15 and nothing sticks out,
+    so the average and the middle agree. Salary has a fifty-two lakh earner, which drags the average up
+    and cannot move the middle. <b>That is skew, and they are now looking at it on two columns side by
+    side.</b></div>
+   </div>
+
+   <div class="keyline">
+    <b>Count the negatives in the two columns and the whole idea of skew falls out.</b><br><br>
+    Column M, gap from average <b>salary</b>: <b>187 of 199 are negative.</b><br>
+    Column N, gap from average <b>experience</b>: <b>100 of 201 are negative.</b><br><br>
+    Experience splits down the middle, which is what a column with no outlier does. Salary does not come
+    close, because one person is holding the average up on his own. <b>Next week you count both of those
+    with one formula each.</b>
+   </div>
+
+   <div class="warn"><b>The two mistakes you will actually find while walking the room.</b> Somebody
+   typed <code>AVERAGE(H2:H202)</code> with no <code>=</code> and has a cell full of text. And somebody
+   wrote <code>=H2-Q14</code> with no dollars, dragged it down, and has a column of experience values
+   copied back. Second one in a session. <b>That is the one that sticks.</b></div>
+  </div>
+
+  <!-- 86-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">86 &ndash; 90</span><h3>Close, and what comes next</h3></div>
+
+   <div class="speak">
+    <p>Four things from today. If you forget everything else, keep these.</p>
+   </div>
+
+   <div class="typeit">The four lines. Put them on the board and leave them up.</div>
+<pre><code>1.  a cell holds a VALUE or a RULE.
+    the = sign is the switch between them.
+    no = means excel reads it as a word, not a formula.
+
+2.  a colon means THROUGH.
+    I2:I202 is 201 cells, because row 1 is the header.
+
+3.  copying a formula MOVES its addresses. that is the useful part.
+    $Q$10 means "do not move this one". that is the part you forget.
+    the broken version does not crash - it quietly copies
+    the column next to it.
+
+4.  a blank is not a zero.
+    AVERAGE, COUNT, SUM  ->  skip it.
+    plus, minus, times   ->  treat it as zero.</code></pre>
+
+   <div class="speak">
+    <p>And look at what we did today without writing one line of code. We found a person who is minus
+    four years old. We found a person with no salary. We found the fifty-two lakh earner. We proved one
+    age and two salaries are missing. And we built a column of two hundred and one answers from one
+    formula.</p>
+    <p>All of it on the file you have known for twenty sessions.</p>
+   </div>
+
+   <div class="speak">
+    <p>Thursday we stop looking and start fixing. Three things are waiting for us in this file and you
+    have met all of them.</p>
+    <p><b>The duplicate.</b> 201 rows, 200 employees &mdash; somebody is in there twice, and Excel has a
+    button that finds them.</p>
+    <p><b>The minus four and the two hundred and ten.</b> Thursday they turn <b>red automatically</b>,
+    without you looking for them.</p>
+    <p><b>Aditya Gupta.</b> Today I had to tell you he was on row 152. Thursday you will find him
+    yourself, in about four clicks.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Seven steps, every formula, every board item, every number it should produce.
+  If you lose your place, this page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 12</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Open it, and do not scroll</p>
+   <p class="rs-say"><b>Land this:</b> say <b>&ldquo;do not scroll&rdquo;</b> before they touch the
+   mouse. Then <b>row 5</b> &mdash; Lakshmi Kumar, salary <b>5,200,000</b>, the earner that wrecked their
+   correlation. Then <b>row 9</b> &mdash; Manoj Kumar, salary cell <b>empty</b>. Both on the first
+   screen, nothing typed.</p>
+   <div class="rs-board"><b>Numbers summarise. Pictures show. A spreadsheet just puts the data in front
+   of you.</b> A statistics session went into the first one; a visualisation session went into drawing
+   it. Here they are, on open.</div>
+   <p class="rs-do">Then the vocabulary &mdash; two minutes, no more</p>
+   <div class="rs-board"><b>cell</b> = one box, named by letter + number, K5 is the 52 lakh &middot;
+   <b>Name Box</b> = top left, tells you where you are, type an address to jump &middot; <b>row 1 is the
+   header</b>, people start on row 2.</div>
+   <p class="rs-do">Two shortcuts</p>
+   <div class="rs-code"><pre><code>  A1  then  Ctrl + Down      <span class="c">last filled cell in the column</span>
+  Ctrl + Home                <span class="c">back to A1 from anywhere</span></code></pre></div>
+   <div class="rs-out">you land on A202</div>
+   <div class="rs-board">Row 202, minus the header = <b>201 rows</b>. Not 200 &mdash; there is a
+   <b>duplicate row</b> in this file. <b>Flag it, do not fix it.</b> That opens Thursday.</div>
+   <p class="rs-do" style="margin-top:12px">Then the save step &mdash; wait for every laptop</p>
+   <div class="rs-board"><b>File &rarr; Save As &rarr; Excel Workbook (.xlsx).</b> A <code>.csv</code> is
+   plain text and <b>has nowhere to put a formula</b>. Save as CSV at the end of today and Excel keeps the
+   answers and throws every formula away &mdash; and the file still looks fine.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">12 &ndash; 26</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The equals sign</p>
+   <p class="rs-say"><b>Land this:</b> a cell holds a <b>value</b> or a <b>rule</b>, and <code>=</code>
+   is the switch. Use <b>A205</b> as the scratch cell &mdash; three rows below the data, where nothing
+   can be damaged.</p>
+   <div class="rs-code"><pre><code>A205    =20+18        <span class="c">cell SHOWS 38, HOLDS the rule - check the formula bar</span>
+A205    =K5           <span class="c">5200000 - an ADDRESS, "fetch whatever is there right now"</span></code></pre></div>
+   <div class="rs-board"><b>The colon means THROUGH.</b> <code>I2:I202</code> = 201 cells. Row 1 is the
+   header, so it starts at 2.</div>
+   <div class="rs-code"><pre><code>=AVERAGE(I2:I202)</code></pre></div>
+   <div class="rs-out">38.175</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;where have you seen that number?&rdquo; &mdash; 38.2, the
+   average age from the visualisation session. <b>Same number, same file.</b><br><br>
+   Then say it straight: <b>you are not learning new statistics today.</b> You are doing the statistics
+   you already know, on the tool the people who ask you for numbers actually have open.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> somebody types
+   <code>AVERAGE(I2:I202)</code> with no <code>=</code> and gets the text back. <b>The equals sign is
+   not decoration, it is the switch.</b><br><br>
+   <b>Then Decrease Decimal twice:</b> shows 38.2, <b>still holds 38.175</b>. The number you see and the
+   number that is there are two different things.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">26 &ndash; 44</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Seven formulas, and the minus four</p>
+   <p class="rs-say"><b>Land this:</b> clear A205. Labels in <b>P</b>, formulas in <b>Q</b> &mdash; data
+   ends at L, so from P onwards is ours. Everybody the same place, so you can walk the room.</p>
+   <div class="rs-code"><pre><code>        P                      Q
+
+ 1   rows                =COUNTA(C2:C202)        201
+ 2   ages                =COUNT(I2:I202)         200
+ 3   average age         =AVERAGE(I2:I202)       38.175
+ 4   middle age          =MEDIAN(I2:I202)        37
+ 5   youngest            =MIN(I2:I202)           -4
+ 6   oldest              =MAX(I2:I202)           210</code></pre></div>
+   <div class="rs-board"><b>Stop and say nothing.</b> Ask: &ldquo;two of those should bother you. Which
+   two?&rdquo; &mdash; the <b>&minus;4</b> and the <b>210</b>. A chart found them last week; two formulas
+   found them today.<br><br>
+   <b>COUNTA</b> counts anything &middot; <b>COUNT</b> counts numbers only. 201 names, 200 ages
+   &rarr; <b>one age is missing</b>. That is <code>isnull().sum()</code> with two formulas.
+   <b>Say rows, not people</b> &mdash; one of them is the duplicate.<br><br>
+   <b>Show live:</b> <code>=COUNT(C2:C202)</code> on the names gives <b>0</b>. Not an error. A name is
+   not a number.</div>
+   <p class="rs-do" style="margin-top:12px">Then who it is &mdash; Name Box, type <code>A152</code></p>
+   <div class="rs-out">row 152   Aditya Gupta   HR   age -4   salary 33085</div>
+   <div class="rs-board"><b>Admit the cheat:</b> &ldquo;I knew it was row 152 and I told you. Thursday
+   you find him with a filter.&rdquo;</div>
+   <p class="rs-do" style="margin-top:12px">Salary half &mdash; leave row 7 blank</p>
+   <div class="rs-code"><pre><code> 8   salaries            =COUNT(K2:K202)         199
+ 9   total salary        =SUM(K2:K202)           19034033
+10   average salary      =AVERAGE(K2:K202)       95648.41
+11   middle salary       =MEDIAN(K2:K202)        68647
+
+     =COUNTBLANK(K2:K202)                        2
+     =SUM(K2:K202)/COUNTA(C2:C202)               94696.68</code></pre></div>
+   <div class="rs-board"><b>A blank is not a zero.</b> AVERAGE divided by <b>199</b>, not 201 &mdash; it
+   <b>skips</b> empty cells, it does not call them zero. The wrong version is 94,696.68. Nearly a
+   thousand rupees, from two empty cells.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Thirty seconds, then move:</b>
+   <code>=AVERAGE(B2:B202)</code> &rarr; <b>2.32</b>. Excel does not know <code>dept_id</code> is a
+   label. Neither did pandas. <b>No tool will ever ask whether your question makes sense.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">44 &ndash; 56</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The one thing a script cannot do</p>
+   <p class="rs-say"><b>Land this:</b> ask their question for them &mdash; &ldquo;we already know pandas,
+   why a spreadsheet?&rdquo; Then change <b>K5</b> from 5200000 to <b>520000</b> and tell them to watch
+   the summary block, not the cell.</p>
+   <div class="rs-code"><pre><code>                    before          after
+
+ salaries             199             199
+ total salary    19034033        14354033
+ average salary  95648.41        72130.82
+ middle salary      68647           68647</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;how many formulas did I re-run?&rdquo; &mdash; <b>none.</b>
+   And &ldquo;why did the middle not move?&rdquo; &mdash; 520,000 is still the largest, so nobody changed
+   places. <b>The median only cares about position.</b><br><br>
+   <b>A script is instructions you run. A spreadsheet is rules that are always running.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Do not skip the other half.</b> &ldquo;Where does it
+   say I changed that?&rdquo; <b>Nowhere.</b> No log, no mark, no record. The notebook would still have
+   the line in it for anybody to read.<br><br>
+   <b>A spreadsheet is faster to change and much harder to trust.</b> Real companies have lost real money
+   to one wrong cell nobody could see.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Ctrl + Z to put it back.</b> Then the limit:
+   <b>1,048,576 rows</b>, fixed. Five million rows of web logs will not open at all. <b>Excel for data a
+   human will look at. Python for data a human cannot.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">56 &ndash; 74</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The dollar sign &mdash; let it break first</p>
+   <p class="rs-say"><b>Land this:</b> <b>do not warn them.</b> Write it with no dollars, fill it down,
+   and let them look at a column of nonsense in silence before you say a word.</p>
+   <div class="rs-code"><pre><code>M1    gap from average        <span class="c">a label, no equals sign</span>
+M2    =K2-Q10                 <span class="c">-47884.41  ... correct</span>
+
+      then DOUBLE-CLICK the small square at the bottom right of M2
+      (the fill handle) - it fills to row 202 in one go</code></pre></div>
+   <div class="rs-code"><pre><code>        K            M
+
+ 2    47764    -47884.41     <span class="c">correct</span>
+ 3    86052      17405       <span class="c">believable, and wrong</span>
+ 4    62990      62990       <span class="c">a copy of column K</span>
+ 5  5200000    5200000
+ 6    62556      62556</code></pre></div>
+   <div class="rs-board"><b>Ask, pointing at row 4:</b> &ldquo;gap from the average is 62,990 and the
+   salary is 62,990. Can that be true?&rdquo; Only if the average were zero.<br><br>
+   <b>Nothing went red. Nothing said error.</b> Then read the formula bars: M3 is
+   <code>=K3-Q11</code>, M4 is <code>=K4-Q12</code>. <b>Both halves moved.</b> Q11 is the median,
+   68,647, so row 3 did a real subtraction of the wrong number. <b>Q12 down is empty, and empty in
+   arithmetic is zero</b> &mdash; so the rest is column K copied.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Explain WHY before you fix it.</b> Excel stored
+   &ldquo;the cell five to my left&rdquo;, not &ldquo;K2&rdquo;. That is <b>what you want</b> for the
+   salary &mdash; every row uses its own. The average is the half that must not move.</div>
+   <div class="rs-code"><pre><code>M2    =K2-$Q$10        <span class="c">$Q = never change the letter, $10 = never change the number</span>
+
+        K             M
+
+ 2    47764      -47884.41
+ 3    86052       -9596.41
+ 4    62990      -32658.41
+ 5  5200000     5104351.59
+ 6    62556      -33092.41
+ 7    47111      -48537.41
+ 8    60925      -34723.41
+ 9   (empty)    -95648.41       <span class="c">&lt;-- ask about this one</span></code></pre></div>
+   <div class="rs-board"><b>Scroll the column and give them the count:</b> <b>187 of the 199 are
+   negative.</b> Twelve people are above the average salary. Ninety-four per cent of the company earns
+   less than the company average &mdash; and they already know why, it is row 5. <b>Say you used
+   COUNTIF, which is session three.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Row 9 is the big one.</b> Manoj Kumar has no salary, so Excel did 0 minus
+   95,648. <b>AVERAGE / COUNT / SUM skip a blank. Plus, minus and times turn it into zero.</b> Same
+   blank cell, two behaviours, on the same sheet, and nobody tells you.</div>
+   <div class="rs-board" style="margin-top:8px"><b>F4</b> puts both dollars in while you are typing.
+   <b>On a Mac it is often dead</b> &mdash; type the two characters by hand and move on. Fill-handle
+   broken? Click M2, <code>Ctrl+C</code>, type <code>M3:M202</code> in the Name Box, Enter,
+   <code>Ctrl+V</code>.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">74 &ndash; 86</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Their turn &mdash; column H, experience</p>
+   <p class="rs-say"><b>Put it on the board and stop talking.</b> Walk the room. Two things to look for
+   over shoulders: a missing <code>=</code>, and a missing <code>$</code>.</p>
+   <div class="rs-code"><pre><code>job one    P13:Q17, the same kind of block, for experience (column H)
+job two    N1 a label, N2 a formula, fill down to 202
+           "how many years above or below average is this person"</code></pre></div>
+   <div class="rs-code"><pre><code>Q13   =COUNT(H2:H202)      201
+Q14   =AVERAGE(H2:H202)    7.78
+Q15   =MEDIAN(H2:H202)     8
+Q16   =MIN(H2:H202)        0
+Q17   =MAX(H2:H202)        15
+
+N1    years above average
+N2    =H2-$Q$14      ->  -3.78, 5.22, -6.78, 3.22, 1.22, -4.78 ...</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;count says 201 &mdash; is anything missing?&rdquo; <b>No.</b>
+   First column today where the two counts agree. <b>The check tells you when the data is fine, not only
+   when it is broken.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>The good question, if there is time:</b> average
+   experience 7.78 and middle 8 are almost the same, but average salary 95,648 and middle salary 68,647
+   are twenty-seven thousand apart. <b>Why?</b> &mdash; experience has <b>no outlier</b>. That is skew,
+   on two columns side by side.<br><br>
+   <b>The counts, if you want the hard version:</b> column M has <b>187 of 199</b> negative. Column N has
+   <b>100 of 201</b>. Experience splits down the middle; salary does not come close. <b>COUNTIF counts
+   both, and that is session three.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">86 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close</p>
+   <div class="rs-code"><pre><code>1.  a cell holds a VALUE or a RULE. the = is the switch.
+2.  a colon means THROUGH. I2:I202 is 201 cells, row 1 is the header.
+3.  copying MOVES the addresses - that is the useful part.
+    $Q$10 means "do not move this one" - that is the part you forget.
+    the broken version does not crash. it copies the next column.
+4.  a blank is not a zero.
+    AVERAGE / COUNT / SUM  ->  skip it
+    plus / minus / times   ->  zero</code></pre></div>
+   <div class="rs-board"><b>Count the wins out loud:</b> a person aged &minus;4, a person with no
+   salary, the 52 lakh earner, one age and two salaries proved missing, and 201 answers from one formula
+   &mdash; <b>and not one line of code.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up Thursday:</b> <b>the duplicate</b> &mdash; 201
+   rows, 200 employees, and Excel has a button for it. <b>The &minus;4 and the 210</b> &mdash; they turn
+   red automatically. <b>Aditya Gupta</b> &mdash; today you were told row 152, Thursday you find him in
+   four clicks.</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order, with the answer under each
+  one. Numbers 4, 8 and 9 are the three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>A cell can hold one of two kinds of thing. What are they?</q>
+    <div class="ans">A <b>value</b> &mdash; a number, a word, a date. Or a <b>rule</b> for working out a
+    value. If it holds a rule, it shows you the answer and keeps the rule.</div></div></div>
+
+   <div class="aq"><div>
+    <q>My cell is showing the words <code>AVERAGE(I2:I202)</code> instead of a number. What did I
+    do?</q>
+    <div class="ans">Left out the <code>=</code>. With no equals sign Excel read it as <b>text</b>.
+    Nothing is broken. <b>The equals sign is the switch between a value and a rule.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What does the colon mean in <code>I2:I202</code>, and why does it start at 2?</q>
+    <div class="ans">The colon means <b>through</b> &mdash; every cell from I2 down to I202, which is 201
+    cells. It starts at 2 because <b>row 1 is the header</b>, not a person.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the difference between <code>COUNT</code> and <code>COUNTA</code>?</q>
+    <div class="ans"><b>COUNT</b> counts cells holding a <b>number</b>. <b>COUNTA</b> counts cells
+    holding <b>anything at all</b>. Only a truly empty cell is skipped by COUNTA.</div></div></div>
+
+   <div class="aq"><div>
+    <q>I put <code>=COUNT(C2:C202)</code> on the name column and got <b>0</b>. Is that an error?</q>
+    <div class="ans"><b>No.</b> It is the correct answer. There are 201 names and <b>not one of them is
+    a number</b>, so COUNT counted nothing.</div></div></div>
+
+   <div class="aq"><div>
+    <q>COUNTA on names gave 201 and COUNT on ages gave 200. What does that tell you, and what did you
+    use to do in pandas?</q>
+    <div class="ans"><b>One row has no age in it.</b> Count a column that is never empty, count the
+    column you care about, and the gap is what is missing. In pandas that was
+    <code>isnull().sum()</code>.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>=AVERAGE(K2:K202)</code> gave 95,648. It added up the salaries and divided &mdash; by 199
+    or by 201?</q>
+    <div class="ans"><b>199.</b> There are only 199 salaries in the file. <code>AVERAGE</code>
+    <b>skips</b> the two empty cells completely. Dividing by 201 would have given 94,696.68, which is a
+    different and wrong answer.</div></div></div>
+
+   <div class="aq"><div>
+    <q>So is a blank cell the same as a zero or not?</q>
+    <div class="ans"><b>It depends on the formula, and that is the whole trap.</b>
+    <code>AVERAGE</code>, <code>COUNT</code> and <code>SUM</code> <b>skip</b> a blank. Plain arithmetic
+    &mdash; plus, minus, times &mdash; turns it into <b>zero</b>. Same cell, two behaviours, same
+    sheet.</div></div></div>
+
+   <div class="aq"><div>
+    <q>In <code>=K2-$Q$10</code>, what do the two dollar signs stop from happening?</q>
+    <div class="ans">They stop the address moving when the formula is copied. <code>$Q</code> locks the
+    letter, <code>$10</code> locks the number. <b>Every row has its own salary, but all 201 rows share
+    one average.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>I dragged <code>=K2-Q10</code> down with no dollar signs and column M turned into a copy of
+    column K. Why was there no error message?</q>
+    <div class="ans">Because nothing illegal happened. Excel moved both addresses down, so row 4 asked
+    for <b>Q12</b>, which is <b>empty</b>, and an empty cell in a subtraction is <b>zero</b>. Salary
+    minus nothing is the salary. <b>It did exactly what it was told.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>The cell shows <b>38.2</b>. What is actually in it?</q>
+    <div class="ans"><b>38.175.</b> Decrease Decimal changed what you are <b>shown</b>, not what is
+    stored. Every formula pointing at that cell still uses 38.175.</div></div></div>
+
+   <div class="aq"><div>
+    <q>I changed one salary and a dozen numbers on the sheet changed with it. Where is it recorded that
+    I did that?</q>
+    <div class="ans"><b>Nowhere.</b> There is no log and no mark on the cell. That is why a spreadsheet
+    is faster to change and much harder to trust than a script.</div></div></div>
+
+   <div class="aq"><div>
+    <q>I built the whole summary and saved the file as <code>.csv</code>. What have I lost?</q>
+    <div class="ans"><b>Every formula.</b> A CSV is plain text and has nowhere to put a rule &mdash; it
+    keeps only the answers that were showing. And the file will look completely fine, which is the worst
+    part.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why are we learning Excel when we already know pandas?&rdquo;</h5>
+  <p>&ldquo;Two reasons, and both are real. First, <b>it recalculates on its own</b>. Change one cell and
+  every answer that depends on it moves immediately &mdash; in Python you have to remember to run it
+  again. Second, it is what the person asking you for the number already has open. Nobody in a sales
+  meeting is going to open your notebook. You will be sent a spreadsheet and asked for an answer by
+  lunchtime, and that is a normal week in this job.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;I don't have Microsoft Excel. Can I use Google Sheets?&rdquo;</h5>
+  <p>&ldquo;Yes, and LibreOffice Calc too. <b>Every single thing in today's session is identical in all
+  three</b> &mdash; the grid, the equals sign, all seven functions, the colon, the dollar sign, the fill
+  handle. The only difference is the saving step: Google Sheets saves itself, so you can skip it. When we
+  reach pivot tables the buttons sit in slightly different places, and I will show both.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My cell is full of <code>#####</code>.&rdquo;</h5>
+  <p>&ldquo;That is not an error. The number is too wide for the column. Double-click the line between
+  the two column letters at the top and it will widen to fit. Nothing is lost &mdash; the number is still
+  in there.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My formula is showing as text even though I typed the equals sign.&rdquo;</h5>
+  <p>&ldquo;Two causes. Either that cell was formatted as <b>Text</b> before you typed &mdash; set it
+  back to General on the Home tab, then press F2 and Enter to retype it. Or somebody pressed
+  <code>Ctrl</code>+<code>`</code>, which turns on <b>Show Formulas</b> for the whole sheet. Press it
+  again and everything comes back.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should we just delete the &minus;4 and the 210?&rdquo;</h5>
+  <p>&ldquo;Not until you know why they are there, and that answer has not changed since we were in
+  Python. If one person typed 4 as &minus;4, that is one fix on one row. If the system writes &minus;4
+  whenever an age is missing, then every &minus;4 means <b>missing</b> and there could be thousands of
+  them in the real database. Find out what it means first. Thursday we make them visible, and after that
+  we decide.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;<code>F4</code> does nothing on my laptop.&rdquo;</h5>
+  <p>&ldquo;On most Macs it is taken by the system. Try <code>fn</code>+<code>F4</code> once, and if that
+  does nothing, <b>type the two dollar signs yourself</b>. It is two characters and it is exactly the
+  same result. Do not spend your evening on this.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why write <code>I2:I202</code>? Can I not just say the whole column
+  <code>I:I</code>?&rdquo;</h5>
+  <p>&ldquo;You can, and today it would even give the right answer, because <code>AVERAGE</code> ignores
+  the word <code>age</code> in the header. But that is luck, not a rule. <code>COUNTA(C:C)</code> would
+  count the header and tell you there are 202 people. <b>Say exactly what you mean</b> &mdash; the people
+  are on rows 2 to 202.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Could Excel open a file with fifty lakh rows?&rdquo;</h5>
+  <p>&ldquo;No. A sheet stops at <b>10,48,576 rows</b> and that is fixed &mdash; it is not a setting. Our
+  file has 201 so we are nowhere near it. A month of website visits is five million rows and Excel will
+  not open it at all, while pandas will not even notice. <b>Excel for data a human is going to look at.
+  Python for data a human cannot.</b> That is the honest answer in an interview too.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is this the same as Power BI?&rdquo;</h5>
+  <p>&ldquo;No, and they are not competing. Excel is where you <b>work on</b> the data &mdash; clean it,
+  calculate on it, check it. Power BI is where you <b>show</b> it to somebody who will never touch the
+  numbers. Power BI comes after this module, and most of what you learn here carries straight
+  over.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="ab23">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -24978,7 +26464,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","ab23","ab24","ab25","ab26","ab27","ab28","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","ab23","ab24","ab25","ab26","ab27","ab28","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
