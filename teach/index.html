@@ -723,7 +723,7 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="trackhead">
     <h2>Excel</h2>
     <span class="badge">Follows Data Visualisation</span>
-    <span class="badge live">Day 1 script ready</span>
+    <span class="badge live">Days 1-2 scripts ready</span>
    </div>
    <p class="tracknote">Excel comes <b>after</b> Python on purpose, and that changes what the module is
    about. They already know every concept in it &mdash; mean, median, outliers, grouping, correlation,
@@ -742,11 +742,12 @@ try{var _t=localStorage.getItem("steep-theme");
      message.</p>
      <span class="foot">Script ready &middot; opens the module</span></button>
 
-    <div class="dcard soon">
+    <button class="dcard full" data-go="x2">
      <span class="id">EXCEL 2</span><h3>Cleaning, With the Sheet Looking Back</h3>
-     <p>Sort and filter, Remove Duplicates on the row that is in there twice, TRIM, Find and Replace,
-     Text to Columns &mdash; and formatting that turns the &minus;4 and the 210 red unasked.</p>
-     <span class="foot">Planned &middot; script not written</span></div>
+     <p>One sort gives the &minus;4 and the 210 names; one <em>wrong</em> sort makes every row a lie
+     while every total stays correct. Then the duplicate on row 202, two cells that turn red unasked,
+     and all three blanks selected at once.</p>
+     <span class="foot">Script ready &middot; pays back two day-1 promises</span></button>
 
     <div class="dcard soon">
      <span class="id">EXCEL 3</span><h3>Asking With Conditions</h3>
@@ -18644,6 +18645,2147 @@ N2    =H2-$Q$14      ->  -3.78, 5.22, -6.78, 3.22, 1.22, -4.78 ...</code></pre><
  </div>
 </section>
 </div>
+<div class="day" id="x2">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 2 &middot; merged class &middot; 90 minutes &middot; full script &middot; pays back three promises from day 1</p>
+  <h1 class="display">Cleaning, With the<br>Sheet Looking Back</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   On day 1 two formulas told them the youngest person in this company is <b>minus four years old</b>,
+   and then refused to say who. Today they find him in four clicks. Then they sort one column on its
+   own, and two hundred true rows become two hundred false ones &mdash; with <em>every single
+   statistic on the sheet unchanged</em>.</p>
+  <div class="glance">
+   <div class="gcell"><b>2 clicks</b><span>and the &minus;4 and the 210 have names</span></div>
+   <div class="gcell"><b>row 202</b><span>the second Anita Patel</span></div>
+   <div class="gcell"><b>3 cells</b><span>every blank in the file, selected at once</span></div>
+   <div class="gcell"><b>K alone</b><span>the sort that destroys the file</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Rehearse the one-column sort before you walk in. It is the whole session.</h4>
+   <p style="color:var(--sienna)">Select <b style="color:var(--sienna)">only column K</b>, the salary
+   column, and sort it smallest to largest. Excel will stop you with a box called <b
+   style="color:var(--sienna)">Sort Warning</b>. It offers <b style="color:var(--sienna)">Expand the
+   selection</b>, which is already chosen and is the correct answer. <b style="color:var(--sienna)">You
+   have to pick &ldquo;Continue with the current selection&rdquo; on purpose.</b> If you click the
+   default, nothing breaks, and the lesson is gone.</p>
+   <p style="color:var(--sienna)">What happens next is the point. Every salary in the file is still in
+   the file. The total is still <b style="color:var(--sienna)">19,034,033</b> and the average is still
+   <b style="color:var(--sienna)">95,648.41</b>, because the same 199 numbers are still sitting in the
+   same column. Nothing turns red. Nothing says error. <b style="color:var(--sienna)">And every row is
+   now a lie.</b> Rahul Sharma on row 2 is being paid Aditya Gupta's salary.</p>
+   <p style="color:var(--sienna)">Then <b style="color:var(--sienna)">Ctrl + Z</b>, once, immediately.
+   That is the only way back, and this is the one mistake in this module that no number on the sheet can
+   ever tell you about.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Make a spare copy of the file first, and tell them to do the same.</b> Today has three
+   buttons that <em>delete</em> things &mdash; Remove Duplicates, Text to Columns and Replace All. Copy
+   <code>employees.xlsx</code> and call the copy <code>employees-day2-backup.xlsx</code>. If a laptop
+   ends up wrecked, they open the backup instead of losing the session.</li>
+   <li><b>Say &ldquo;Ctrl + Z&rdquo; in minute one and write it on the board.</b> Everything today is
+   undoable if you press it <em>straight away</em>. Everything today is permanent if you save and close
+   first. That is the whole safety rule and it takes ten seconds.</li>
+   <li><b>Clear columns M and N at the start, and keep P and Q.</b> M and N hold yesterday's two
+   practice columns and they will get in the way when rows start moving. Select
+   <code>M1:N202</code> and press Delete. <b>Do not touch the summary block in P and Q</b> &mdash;
+   watching those numbers change themselves when you delete a row is the best free demonstration in
+   the session.</li>
+   <li><b>Name the three promises in minute one.</b> Day 1 ended by promising them three things:
+   the duplicate row, the &minus;4 and the 210 turning red on their own, and finding Aditya Gupta
+   without being told where he is. All three get paid back today. Say so before you start, so they
+   know what they are collecting.</li>
+   <li><b>The row count changes from 202 to 201 in the middle of the session.</b> After Remove
+   Duplicates there are 200 people and the last row is <b>201</b>, not 202. Say it out loud the moment
+   it happens and write the new number on the board, or you will spend the last half hour correcting
+   ranges one laptop at a time.</li>
+   <li><b>This file is clean on spaces and spelling, and the last block makes a mess on purpose.</b>
+   There is not one leading space anywhere in it, and every department, city, education and rating
+   value is spelled exactly one way. So the <code>TRIM</code> block types five fake rows at the bottom
+   of the sheet. <b>Say &ldquo;I made these five rows up&rdquo; out loud</b>, twice, or somebody will go
+   home and hunt for row 206.</li>
+   <li><b>Five shortcuts today and no more.</b> <code>Ctrl</code>+<code>Z</code>,
+   <code>Ctrl</code>+<code>Shift</code>+<code>L</code> for the filter, <code>Ctrl</code>+<code>G</code>
+   for Go To, <code>Ctrl</code>+<code>H</code> for Replace, and the Name Box for jumping. Every one of
+   them also has a button on a ribbon tab, and on a Mac the button is the safer route. Do not lose five
+   minutes to a keyboard.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what sorting and filtering actually do to the
+  file, which of today's five buttons change your data and which only change what you are looking at,
+  and why this particular file has nothing to clean. The second one is the part you will be asked about
+  all session, so read it twice.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; a row is only held together by sitting in a row</h5>
+
+   <h6>There is no glue</h6>
+   <p>Row 2 is Rahul Sharma. His <code>emp_id</code>, his department, his age and his salary are one
+   person <b>only because those twelve values are sitting next to each other</b>. Nothing inside the
+   file links them. There is no key, no pointer, no record.</p>
+   <p>That is why sorting is dangerous and filtering is not. <b>Sorting moves values.</b> If you told
+   Excel to move whole rows, the twelve values travel together and the person survives. If you told
+   Excel to move one column, that column slides past the other eleven and the person is destroyed.</p>
+   <div class="keyline">
+    <b>Excel does exactly what you selected. That is the entire story of this session.</b><br><br>
+    Select the whole table and sort &mdash; 201 people change places. Select one column and sort
+    &mdash; 201 people get somebody else's salary. Both are called Sort, both sit under the same
+    button, and only one of them tells you afterwards.
+   </div>
+
+   <h6>Excel does warn you, and that is the uncomfortable part</h6>
+   <p>Select one column inside a block of data and press Sort, and Excel shows a box called <b>Sort
+   Warning</b>:</p>
+   <div class="mcalc">Excel found data next to your selection. Since you have not
+selected this data, it will not be sorted.
+
+   (o) Expand the selection          &lt;-- already chosen. the right answer.
+   ( ) Continue with the current selection</div>
+   <p>So the real lesson is not &ldquo;Excel let me destroy my data&rdquo;. The real lesson is <b>the
+   warning was there and somebody clicked past it</b>, which is how it actually happens in an office.
+   Teach them to read that box instead of closing it.</p>
+
+   <div class="mth">
+    <h6>Sort</h6>
+    <div class="mrow"><b>definition</b><div>Sort <b>rewrites the file</b> in a new order. It is not a
+    view. The rows really move.</div></div>
+    <div class="mrow"><b>how it works</b><div>Select the table, <b>Data &rarr; Sort</b>, pick a column
+    and a direction. Tick <b>My data has headers</b> so row 1 stays on top instead of being sorted in
+    with the people.</div></div>
+    <div class="mrow"><b>example</b><div>Sort the whole table by <code>age</code>, smallest to largest.
+    <div class="mcalc">row 2    Aditya Gupta     -4      &lt;-- the MIN from yesterday, with a name
+row 201  Lakshmi Singh   210      &lt;-- the MAX from yesterday, with a name</div></div></div>
+    <div class="mrow"><b>watch out for</b><div><b>Blank cells always go last.</b> Smallest to largest or
+    largest to smallest, it makes no difference &mdash; an empty cell is pushed to the bottom either
+    way. One age is missing in this file, so after an age sort the very last row is the person with no
+    age, <em>not</em> the 210.</div></div>
+    <div class="mrow warn2"><b>and</b><div>There is <b>no unsort button</b>. Once you sort, the order
+    the file arrived in is gone. <code>Ctrl</code>+<code>Z</code> brings it back, and so does sorting by
+    <code>emp_id</code> &mdash; the ids in this file run 1001, 1002, 1003 straight down the rows.
+    <b>That is what an id column is for.</b></div></div>
+   </div>
+
+   <div class="mth">
+    <h6>Filter</h6>
+    <div class="mrow"><b>definition</b><div>A filter <b>hides rows</b>. It is a pair of glasses, not a
+    knife. Nothing is deleted and nothing moves.</div></div>
+    <div class="mrow"><b>how it works</b><div><b>Data &rarr; Filter</b> puts a small arrow on every
+    header. Open an arrow and Excel shows you <b>every distinct value in that column</b>, built by
+    reading the column. Untick what you do not want.</div></div>
+    <div class="mrow"><b>example</b><div>Filter <code>department</code> to HR. The status bar at the
+    bottom left says
+    <div class="mcalc">45 of 201 records found</div>
+    and the row numbers down the left turn blue and start skipping &mdash; 2, then 8, then 15. <b>The
+    missing numbers are the rows that are still there.</b></div></div>
+    <div class="mrow"><b>watch out for</b><div><b>Your formulas ignore the filter completely.</b> With
+    only 45 rows showing, <code>Q1</code> still says 201 and <code>Q10</code> still says 95,648.41.
+    That is the proof that nothing was deleted, and it is also the thing that catches people out.
+    There is one function that does respect a filter, <code>SUBTOTAL</code>, and it is not
+    today.</div></div>
+    <div class="mrow warn2"><b>and</b><div>Copying a filtered range copies <b>only the visible
+    rows</b>. That is usually what you wanted, and it surprises everybody the first time.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; five buttons, and exactly what each one destroys</h5>
+
+   <h6>The one table that answers every question you will get today</h6>
+   <p>Before anything else, know which of today's tools touch your data and which only touch what you
+   are looking at. Almost every hand that goes up is really asking this.</p>
+   <div class="mth">
+    <div class="mrow"><b>sort</b><div><b>Changes the data.</b> Rows really move, permanently.</div></div>
+    <div class="mrow"><b>filter</b><div><b>Changes nothing.</b> Rows are hidden. Formulas still see
+    them.</div></div>
+    <div class="mrow"><b>cond. formatting</b><div><b>Changes nothing.</b> It only adds colour. Every
+    number is exactly as it was.</div></div>
+    <div class="mrow"><b>go to special</b><div><b>Changes nothing.</b> It only <em>selects</em> cells.
+    What you do next is up to you.</div></div>
+    <div class="mrow warn2"><b>remove duplicates</b><div><b>Deletes rows</b>, and does not show you
+    which ones first.</div></div>
+    <div class="mrow warn2"><b>text to columns</b><div><b>Writes over the column to its right</b>, with
+    no warning at all. The most destructive button in the module.</div></div>
+    <div class="mrow warn2"><b>replace all</b><div><b>Rewrites cells.</b> On the whole sheet, unless you
+    selected a range first.</div></div>
+   </div>
+
+   <div class="mth">
+    <h6>Remove Duplicates</h6>
+    <div class="mrow"><b>definition</b><div>Deletes rows that are repeats of a row higher up the sheet.
+    <b>It keeps the first one it meets</b> and deletes the rest. It does not ask you which to
+    keep.</div></div>
+    <div class="mrow"><b>how it works</b><div>Select the table, <b>Data &rarr; Remove Duplicates</b>.
+    You get a list of all twelve columns with tick boxes. <b>The ticks decide what the word duplicate
+    means.</b> All twelve ticked = only rows that match on all twelve counts.</div></div>
+    <div class="mrow"><b>example</b><div>On this file, all twelve ticked:
+    <div class="mcalc">1 duplicate values found and removed; 200 unique values remain.</div>
+    201 rows became 200. <code>emp_id</code> 1021, Anita Patel, was in the file twice &mdash; on row 22
+    and again on row 202.</div></div>
+    <div class="mrow warn2"><b>watch out for</b><div><b>Tick fewer boxes and you delete real people.</b>
+    There are only <b>20 first names and 10 last names</b> in this whole file &mdash; two hundred
+    possible names for two hundred and one people. Names <em>must</em> repeat in here. Tick only
+    <code>name</code> and Excel will happily delete somebody who simply shares a name with somebody
+    else.</div></div>
+   </div>
+
+   <div class="mth">
+    <h6>Conditional formatting</h6>
+    <div class="mrow"><b>definition</b><div>A <b>rule</b> attached to a range: &ldquo;colour this cell
+    if it passes this test&rdquo;. It is not paint.</div></div>
+    <div class="mrow"><b>how it works</b><div><b>Home &rarr; Conditional Formatting &rarr; Highlight
+    Cells Rules</b>, then Greater Than, Less Than, Between, Duplicate Values. Excel re-checks the rule
+    every time the cell changes.</div></div>
+    <div class="mrow"><b>example</b><div>Two rules on <code>I2:I202</code> &mdash; less than 0, and
+    greater than 100. Out of 201 ages, exactly <b>two cells</b> light up:
+    <div class="mcalc">I152     -4      Aditya Gupta
+I179    210      Lakshmi Singh</div>
+    Nothing else. And nobody went looking.</div></div>
+    <div class="mrow"><b>watch out for</b><div>It is a rule, so it <b>un-colours itself</b> too. Type
+    <code>29</code> over the &minus;4 and the red disappears on its own. That is the day 1 idea &mdash;
+    rules that are always running &mdash; applied to colour instead of to a number.</div></div>
+    <div class="mrow warn2"><b>and</b><div>Colour is not a filter. The two red cells are still 27 rows
+    apart and you still have to scroll to them. Colour tells you <em>that</em> something is wrong.
+    A filter tells you <em>where</em>.</div></div>
+   </div>
+
+   <div class="mth">
+    <h6>Go To Special &rarr; Blanks</h6>
+    <div class="mrow"><b>definition</b><div>Selects every empty cell inside the range you have
+    highlighted. It changes nothing &mdash; it only puts your cursor on all of them at
+    once.</div></div>
+    <div class="mrow"><b>how it works</b><div>Select the data range. Then <b>Home &rarr; Find
+    &amp; Select &rarr; Go To Special</b>, or <code>Ctrl</code>+<code>G</code> then the
+    <b>Special</b> button. Tick <b>Blanks</b>. OK.</div></div>
+    <div class="mrow"><b>example</b><div>On the 200-row file it selects exactly three cells:
+    <div class="mcalc">K9     salary    Manoj Kumar
+K44    salary    Pooja Rao
+I93    age       Sanjay Menon</div>
+    Yesterday two <code>COUNT</code> formulas told them <em>how many</em> were missing. This tells them
+    <b>where</b>.</div></div>
+    <div class="mrow warn2"><b>watch out for</b><div><b>Select the data first, not the whole sheet.</b>
+    Press <code>Ctrl</code>+<code>A</code> and then Go To Special and Excel selects a million empty
+    cells and freezes for a moment. Select <code>A1:L201</code> and it finds three.</div></div>
+   </div>
+
+   <div class="mth">
+    <h6>Text to Columns</h6>
+    <div class="mrow"><b>definition</b><div>Splits one column of text into several columns, cutting at a
+    character you choose &mdash; usually a space or a comma.</div></div>
+    <div class="mrow"><b>how it works</b><div><b>Data &rarr; Text to Columns</b>, then <b>Delimited
+    &rarr; Next</b>, tick <b>Space &rarr; Next</b>. On step 3 there is a <b>Destination</b> box. That
+    box is the whole safety story.</div></div>
+    <div class="mrow"><b>example</b><div>Column C is <code>name</code>, and all 201 names are exactly
+    two words. Split C with the destination set to <code>$S$2</code>:
+    <div class="mcalc">     S           T
+2    Rahul       Sharma
+3    Karthik     Kumar
+4    Karthik     Reddy</div>
+    Column C is untouched, because the output went somewhere empty.</div></div>
+    <div class="mrow warn2"><b>watch out for</b><div><b>Leave the destination at <code>$C$2</code> and
+    you lose the department column.</b> The second half of every name is written straight into column
+    D, 201 times, with no warning and no prompt. <code>Ctrl</code>+<code>Z</code> brings it back
+    &mdash; if you noticed.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; why this file has nothing to clean, and the numbers that move today</h5>
+
+   <h6>I checked the file, and it is clean</h6>
+   <p>There is <b>not one cell</b> in <code>employees.csv</code> with a space at the front or the back.
+   The department column holds four values and no more. The city column holds four. Education holds
+   three. Rating holds four. Every one of them is spelled exactly one way, every time.</p>
+   <p>So <code>TRIM</code> has nothing to trim, <code>PROPER</code> has nothing to fix, and <b>Find
+   &amp; Replace has nothing to find</b>. Pretending otherwise would mean inventing dirt and telling
+   them it was there, and they would never find it again.</p>
+   <div class="keyline">
+    <b>So the last block of the session types five dirty rows by hand, at row 206, and cleans those.</b>
+    <br><br>
+    Say out loud that you made them up. Interviewers do ask about <code>TRIM</code> &mdash; it is one of
+    the most asked Excel text functions there is &mdash; so it earns its minutes. But it earns them
+    honestly, on data you built in front of them, not on a lie about their own file.
+   </div>
+
+   <div class="mth">
+    <h6>TRIM, PROPER, UPPER, LOWER</h6>
+    <div class="mrow"><b>TRIM</b><div>Removes spaces from the front and the back, and squeezes any run
+    of spaces in the middle down to one. It does not remove all spaces.</div></div>
+    <div class="mrow"><b>PROPER</b><div>Capital letter at the start of every word, small letters for the
+    rest of it. <code>UPPER</code> makes it all capitals, <code>LOWER</code> all small.</div></div>
+    <div class="mrow"><b>example</b><div>The five made-up rows, and a <code>LEN</code> to prove the
+    invisible space is real. <code>LEN</code> counts the characters in a cell.
+    <div class="mcalc">A208 looks like     Anita Patel        11 letters and a space = 11 characters
+=LEN(A208)          12                 so there is a 12th character
+=TRIM(A208)         Anita Patel
+=LEN(TRIM(A208))    11                 the 12th character was a space at the end</div></div></div>
+    <div class="mrow warn2"><b>watch out for</b><div><b>These functions do not fix the original
+    column.</b> They build a clean copy in a new column. To finish the job you must Copy the clean
+    column and <b>Paste Special &rarr; Values</b> over the old one, then delete the helper. Paste it
+    normally and you paste the <em>formulas</em>, which then point at cells you are about to delete, and
+    the whole column turns into <code>#REF!</code>.</div></div>
+   </div>
+
+   <h6>Three numbers will move on their own today, and they are the best demo in the session</h6>
+   <p>Yesterday's summary block is still sitting in P and Q, and it recalculates every time the file
+   changes. When Remove Duplicates takes one row out, nobody retypes anything and three of those
+   answers change by themselves:</p>
+   <div class="mcalc">                       before    after    why
+
+Q1   rows                201       200    one row gone
+Q2   ages                200       199    Anita Patel had an age
+Q8   salaries            199       198    Anita Patel had a salary</div>
+   <p>The two age extremes do not move &mdash; <code>MIN</code> is still &minus;4 and <code>MAX</code>
+   is still 210, because Anita Patel was neither. The averages shift very slightly, and there is no
+   reason to read them out.</p>
+   <div class="warn"><b>Say the sentence when it happens.</b> &ldquo;I deleted a row and three answers
+   on the other side of the sheet corrected themselves. That is what we proved yesterday when we changed
+   one salary and the whole summary block moved.&rdquo; It costs ten seconds and it ties the two
+   sessions together.</div>
+
+   <h6>One honest limit on all of today's cleaning</h6>
+   <p>Not one of today's buttons fixes the two broken ages. Sorting finds them. Red colouring points at
+   them. A filter isolates them. <b>None of them knows what the right answer is</b>, and neither do we,
+   because nobody has told us whether &minus;4 means somebody typed it wrong or whether the system
+   writes &minus;4 when an age is missing.</p>
+   <div class="keyline">
+    <b>Finding a problem and fixing a problem are two different jobs, and today is the first one.</b>
+    <br><br>
+    This is the answer to &ldquo;sir, should we just delete it&rdquo;, and it has not changed since they
+    were in Python. Make the problem impossible to miss, write down exactly what you found, and ask the
+    person who owns the data. <b>An analyst who guesses is worth less than one who asks.</b>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-8 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 8</span><h3>Open it again, and the three promises</h3></div>
+   <p class="objective">Two minutes of housekeeping that saves half an hour, then name out loud the
+   three things today owes them.</p>
+
+   <div class="stage">Laptops open on <code>employees.xlsx</code> &mdash; the file they saved on day 1,
+   not the CSV. If somebody lost it, they open <code>employees.csv</code> and Save As
+   <code>.xlsx</code> again; they lose yesterday's formulas and nothing else today depends on them
+   except one optional demo.</div>
+
+   <div class="speak">
+    <p>Open <code>employees.xlsx</code>. Not the CSV &mdash; the Excel file you saved last time.</p>
+    <p>Before anything else, make a copy of it. Right-click the file, Copy, Paste, and call the copy
+    <code>employees-day2-backup.xlsx</code>. Takes five seconds.</p>
+    <p>Here is why. Yesterday every single thing we did was a formula in an empty cell. If you got it
+    wrong, you deleted the cell. <b>Today we move rows, delete rows and write over columns.</b> Three of
+    the buttons we press actually destroy things.</p>
+   </div>
+
+   <div class="speak">
+    <p>And one key, which is the only safety rule you need all session. <b>Ctrl and Z.</b> Undo.</p>
+    <p>Everything today is undoable if you press it <b>straight away</b>. Everything today is permanent
+    the moment you save and close. So if something looks wrong, do not sit and stare at it &mdash; press
+    Ctrl Z first and work out what happened after.</p>
+   </div>
+
+   <div class="stage">Now clear yesterday's practice columns. <b>Say clearly that the summary block
+   stays</b> &mdash; somebody will delete P and Q and you want them for the free demo in half an
+   hour.</div>
+
+   <div class="typeit">Clear only the two practice columns. Name Box, then Delete.</div>
+<pre><code>  type  M1:N202  into the Name Box, press Enter, press Delete
+
+<span class="c">     M was "gap from average". N was "years above average".
+     they will get in the way once rows start moving.</span>
+
+  <span class="o">leave P and Q alone.</span> that is your summary block and we need it.</code></pre>
+
+   <div class="speak">
+    <p>Now one small thing that makes two hundred rows bearable. Click the <b>View</b> tab, find
+    <b>Freeze Panes</b>, and choose <b>Freeze Top Row</b>.</p>
+    <p>Now scroll down. Row 1 stays on screen. You can see the column names from anywhere in the
+    file.</p>
+    <p>You will be reading this file all session and you will stop asking me which column is which.</p>
+   </div>
+
+   <div class="stage">Now the frame for the session. Day 1 ended with three promises. Name all three
+   before you start, so they know what they are collecting.</div>
+
+   <div class="speak">
+    <p>Last session ended with me owing you three things. I want to say all three out loud now.</p>
+    <p><b>One.</b> This file has 201 rows and 200 employees. Somebody is in there twice. I told you
+    Excel has a button that finds them.</p>
+    <p><b>Two.</b> The minus four and the two hundred and ten. I said that today they would turn red by
+    themselves, without anybody looking for them.</p>
+    <p><b>Three.</b> Aditya Gupta. Yesterday I told you he was on row 152, and I admitted I cheated
+    &mdash; I already knew. I said today you would find him yourself in about four clicks.</p>
+    <p>All three today. And one thing I did not promise you, which is the most important ninety seconds
+    of this module: <b>a way to break this file so badly that no number on the sheet can tell you it
+    happened.</b></p>
+   </div>
+
+   <div class="keyline">
+    <b>Yesterday was looking. Today is touching.</b><br><br>
+    Every formula yesterday went into an empty cell and read the data without changing it. Everything
+    today reaches into the data itself. That is a real step up in what you can do and a real step up in
+    what you can wreck, and both halves are the lesson.
+   </div>
+  </div>
+
+  <!-- 8-28 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">8 &ndash; 28</span><h3>Sort &mdash; the right way, and the way that destroys the file</h3></div>
+   <p class="objective">Two clicks give the &minus;4 and the 210 a name. Then one wrong selection turns
+   every row into a lie while every statistic stays identical. This is the biggest moment of the module.</p>
+
+   <div class="stage">Twenty minutes. Three correct sorts first so they trust the tool, then break it.
+   <b>Do not warn them before the broken one</b> &mdash; set it up as &ldquo;let me show you one more
+   thing&rdquo;.</div>
+
+   <div class="speak">
+    <p>Yesterday you asked this file for the youngest person in the company and it said <b>minus
+    four</b>. You asked for the oldest and it said <b>two hundred and ten</b>.</p>
+    <p>And then it refused to tell you who they were. <code>MIN</code> gives you a number. It does not
+    give you a person.</p>
+    <p>Watch how little work it takes to fix that.</p>
+   </div>
+
+   <div class="stage">Teach the selection first and make it a habit before you let them near the Sort
+   button. <b>Select the whole table, every single time.</b></div>
+
+   <div class="typeit">Select the whole table first &mdash; Name Box, then Data &rarr; Sort</div>
+<pre><code>  type  A1:L202  into the Name Box and press Enter
+
+<span class="c">     A to L is all twelve columns. row 1 to row 202 is the header plus
+     all 201 people. nothing is left out, so nothing gets left behind.</span>
+
+  then  Data tab  ->  Sort        <span class="c">the button with A, Z and an arrow</span></code></pre>
+
+   <div class="typeit">What to set in the Sort box</div>
+<pre><code>  My data has headers     <span class="o">[x] ticked</span>   <span class="c">so row 1 stays on top</span>
+
+  Sort by     age
+  Sort On     Values
+  Order       Smallest to Largest
+
+  then OK</code></pre>
+
+   <div class="stage">Do not say anything. Let them look at row 2.</div>
+
+   <div class="typeit">The top of the sheet, after the sort</div>
+<pre><code>      A       C                D         I     K
+
+ <span class="c">1</span>  emp_id  name           department  age   salary
+
+ <span class="c">2</span>  1xxx    <span class="o">Aditya Gupta</span>   HR         <span class="o">-4</span>    33085
+ <span class="c">3</span>  1xxx    Sanjay Nair    ...         21     ...
+ <span class="c">4</span>  1xxx    Lakshmi Nair   ...         21     ...
+ <span class="c">5</span>  1xxx    Mahesh Iyer    ...         21     ...
+
+<span class="c">     the three 21s keep the order they were already in. excel does not
+     shuffle ties - that is why they came out in that order and not
+     another one.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">Say nothing. Just: &ldquo;who is on row two?&rdquo;</div>
+    <div class="a"><b>Aditya Gupta.</b> The name I handed you yesterday for free. You just found him
+    with a sort, and you will find him again in twenty minutes with a filter. <b>Two clicks, and the
+    MIN has a name.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Now press <b>Ctrl</b> and <b>End</b>, or just scroll to the bottom of the file.</p>
+   </div>
+
+   <div class="typeit">The bottom of the sheet, after the same sort</div>
+<pre><code>        C                I
+
+ <span class="c">199</span>  Pooja Rao       58
+ <span class="c">200</span>  Rahul Kumar     58
+ <span class="c">201</span>  Lakshmi Singh  <span class="o">210</span>
+ <span class="c">202</span>  Sanjay Menon  <span class="o">(empty)</span>   <span class="c">&lt;-- the missing age</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;The two hundred and ten is the biggest age in the file. So why is it not on
+    the last row?&rdquo;</div>
+    <div class="a">Because <b>Excel always puts blank cells last</b>, in both directions. Sanjay Menon
+    has no age at all, so he is pushed to the bottom whichever way you sort. <b>That is the missing age
+    we proved existed yesterday</b> &mdash; 201 names and only 200 ages &mdash; and sorting just handed
+    us the name. Nobody asked it to.</div>
+   </div>
+
+   <div class="keyline">
+    <b>Yesterday it took two formulas to prove that one age was missing.</b><br><br>
+    Today one sort told us it is Sanjay Menon, and put the &minus;4 on the first row and the 210 on the
+    last row with a number on it. <b>Two clicks, three problems, and nobody typed anything.</b>
+   </div>
+
+   <div class="stage">Now the second sort, on salary. Same dialog, one dropdown changed &mdash; so they
+   see that the dialog is reusable.</div>
+
+   <div class="speak">
+    <p>Same thing again, different column. Select <code>A1:L202</code>, Data, Sort. Change <b>Sort
+    by</b> to <b>salary</b> and change <b>Order</b> to <b>Largest to Smallest</b>.</p>
+   </div>
+
+   <div class="typeit">The top of the sheet, sorted by salary, largest first</div>
+<pre><code>        C                D           K
+
+ <span class="c">2</span>   Lakshmi Kumar    Tech      <span class="o">5200000</span>
+ <span class="c">3</span>   Kavya Gupta      Tech       <span class="o">116894</span>
+ <span class="c">4</span>   Suresh Patel     Marketing  106170
+ <span class="c">5</span>   Lakshmi Patel    Tech       106139
+ <span class="c">6</span>   Kavya Rao        Tech       105413
+ <span class="c">7</span>   Suresh Menon     Tech       103915
+
+<span class="c">     the row numbers on the left are just positions now. they do not
+     tell you where anybody used to be.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Look at the step from row two to row three. Then look at every step after
+    it.&rdquo;</div>
+    <div class="a">Five million two hundred thousand down to one lakh sixteen thousand &mdash; the second
+    number is <b>forty-four times smaller than the first</b>. Then 116,894 to 106,170 to 106,139 to
+    105,413, which are a few thousand rupees apart each time. <b>One row is not like the others, and
+    there is no chart and no statistic on the screen.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>In statistics we found this with a mean and a median twenty-seven thousand apart. Last week we
+    drew it and you pointed at the dot. Yesterday it was sitting on row 5 when the file opened.</p>
+    <p>Today the sort put it on the top row and made the gap underneath it impossible to miss.
+    <b>That drop is what an outlier looks like when you sort.</b> Remember the shape &mdash; a big
+    number, then a cliff, then a gentle slope. That is the first thing to do with any column of money
+    you are ever sent.</p>
+   </div>
+
+   <div class="speak">
+    <p>One more thing while we are here, and then we put it back. Scroll to the bottom of this sorted
+    list.</p>
+   </div>
+
+   <div class="typeit">The bottom of the salary sort</div>
+<pre><code>        C                D       K
+
+ <span class="c">198</span>  Karthik Patel    HR     36711
+ <span class="c">199</span>  Pooja Iyer       HR     35118
+ <span class="c">200</span>  <span class="o">Aditya Gupta</span>     HR     <span class="o">33085</span>
+ <span class="c">201</span>  Manoj Kumar      HR    <span class="o">(empty)</span>  <span class="c">&lt;-- the two missing salaries,</span>
+ <span class="c">202</span>  Pooja Rao        ...   <span class="o">(empty)</span>  <span class="c">    pushed to the bottom again</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;The lowest paid person in this company. Where have you seen that name
+    before?&rdquo;</div>
+    <div class="a"><b>Aditya Gupta.</b> The same row that says he is minus four years old. <b>Two
+    impossible things on one row is almost never a coincidence</b> &mdash; that row probably came from
+    somewhere broken, and that is a much better thing to report than &ldquo;one age is wrong&rdquo;.
+    Let them sit with it for a second.</div>
+   </div>
+
+   <div class="warn"><b>One sentence on the departments, and no more.</b> The five highest paid after
+   the outlier are four Tech and one Marketing. The three lowest paid are all three HR. That is five
+   rows out of two hundred, so <b>it is a hint, not a finding</b> &mdash; say that out loud. The proper
+   version is a pivot table in session five. Do not let the room turn it into a conclusion.</div>
+
+   <div class="warn"><b>If somebody asks about sorting the rating column.</b> Sort
+   <code>rating</code> A to Z and you get <b>Average, Excellent, Good, Poor</b> &mdash; which is
+   alphabetical and completely useless, because the real order is Poor, Average, Good, Excellent. Excel
+   can sort by an order you write yourself, under <b>Order &rarr; Custom List</b>. <b>Thirty seconds,
+   then move on</b> &mdash; it is a real trap with ranked data and we are not teaching it today.</div>
+
+   <div class="stage">Now put the file back before the demonstration, so everybody starts from the same
+   screen. <b>Check A2 says 1001 on every laptop</b> before you go on.</div>
+
+   <div class="speak">
+    <p>Put it back. <b>Ctrl Z</b>, twice &mdash; once for each sort. Keep pressing until cell A2 says
+    <b>1001</b> again, which is how the file looked this morning.</p>
+    <p>And notice something about that. <b>There is no unsort button.</b> Once you sort, the order the
+    file arrived in is gone. Ctrl Z is one way back. The other way back is that this file has an
+    <code>emp_id</code> column, and the ids run 1001, 1002, 1003 straight down the rows.</p>
+    <p>Sort by <code>emp_id</code> and the file is in the order it was written. <b>That is what an id
+    column is for.</b> Nobody looks at it, nobody reports on it, and it is the only way home. We use it
+    in half an hour.</p>
+   </div>
+
+   <div class="stage">Here it is. <b>Say nothing about danger.</b> Present it as a smaller, simpler,
+   more convenient way to do the same job &mdash; because that is exactly how it looks to them.</div>
+
+   <div class="speak">
+    <p>Now, a confession. That selection step is annoying. Typing <code>A1:L202</code> every time, just
+    to sort the salary column.</p>
+    <p>So let us do it the quick way. I only care about salary. <b>Click the letter K at the top of the
+    salary column</b> &mdash; one click, the whole column is selected. Then Data, Sort Smallest to
+    Largest.</p>
+   </div>
+
+   <div class="typeit">Excel stops you. Read this box out loud to them, word for word.</div>
+<pre><code>  Sort Warning
+
+  Excel found data next to your selection. Since you have not
+  selected this data, it will not be sorted.
+
+  (o) Expand the selection                <span class="c">already chosen for you</span>
+  ( ) Continue with the current selection
+
+                                  [ Sort ]   [ Cancel ]</code></pre>
+
+   <div class="speak">
+    <p>Excel is asking me a question. I am in a hurry and I only want the salary column. So I will pick
+    the second one &mdash; <b>Continue with the current selection</b> &mdash; and press Sort.</p>
+   </div>
+
+   <div class="stage">Click it. Then <b>stop talking completely</b> for at least ten seconds. Let them
+   look at row 2. Somebody will realise before you say anything, and it is much better coming from
+   them.</div>
+
+   <div class="typeit">What is on the screen now</div>
+<pre><code>      A       C                D        I     K
+
+ <span class="c">2</span>  1001    Rahul Sharma    HR       53  <span class="o">33085</span>
+ <span class="c">3</span>  1002    Karthik Kumar   Marketing 57 <span class="o">35118</span>
+ <span class="c">4</span>  1003    Karthik Reddy   Tech     56  <span class="o">36711</span>
+ <span class="c">5</span>  1004    Lakshmi Kumar   Tech     41  <span class="o">37xxx</span>
+ <span class="c">6</span>  1005    Arjun Sharma    HR       42  <span class="o">38xxx</span>
+
+<span class="c">     columns A to J and L never moved. column K is now in order on
+     its own, from the smallest salary in the file downwards.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Rahul Sharma's salary was 47,764 yesterday. What is it now? And whose is
+    it?&rdquo;</div>
+    <div class="a">It is <b>33,085</b> &mdash; which is <b>Aditya Gupta's</b> salary. The salary column
+    slid past the other eleven columns on its own. Every person in this file is now being paid somebody
+    else's money. <b>Row 5 no longer has the fifty-two lakh.</b> It went to whoever happens to be on the
+    last row.</div>
+   </div>
+
+   <div class="stage">Now the part that makes this the most important moment in the module. <b>Point at
+   the summary block in P and Q</b> and read it out.</div>
+
+   <div class="speak">
+    <p>Now look at your summary block, over in column Q. The one that recalculates itself every time
+    anything changes.</p>
+   </div>
+
+   <div class="typeit">The summary block, before the broken sort and after it</div>
+<pre><code>                       before          after
+
+ rows                     201             201
+ ages                      200             200
+ average age            38.175          38.175
+ youngest                   -4              -4
+ oldest                    210             210
+
+ salaries                  199             199
+ total salary         19034033        <span class="o">19034033</span>
+ average salary       95648.41        <span class="o">95648.41</span>
+ middle salary           68647           <span class="o">68647</span></code></pre>
+
+   <div class="speak">
+    <p><b>Nothing changed. Not one number.</b></p>
+    <p>And of course it did not. The same one hundred and ninety-nine salaries are still sitting in the
+    same column K. I did not add one, I did not delete one, I did not edit one. <b>I only changed the
+    order they are in.</b> The total of a list does not care what order the list is in. Neither does the
+    average. Neither does the median.</p>
+    <p>So think about what that means. Every statistic you know how to calculate &mdash; mean, median,
+    minimum, maximum, standard deviation, correlation, every single one &mdash; <b>is exactly the same
+    on a file where every row is a lie.</b></p>
+    <p>Nothing turned red. Nothing said error. No formula will ever warn you. If I save this file now
+    and close it, nobody on earth can tell this happened.</p>
+   </div>
+
+   <div class="keyline">
+    <b>This is the worst thing you can do to a spreadsheet, and it is three clicks.</b><br><br>
+    Yesterday's dangerous mistake &mdash; the missing dollar sign &mdash; at least left two hundred rows
+    of visible nonsense on the screen. <b>This one leaves a file that looks perfect.</b> Every column
+    valid, every total correct, every row wrong.
+   </div>
+
+   <div class="speak">
+    <p><b>Ctrl Z.</b> Now. Everybody. Press it once and check that row 2 says Rahul Sharma, HR, salary
+    <b>47,764</b>.</p>
+    <p>And this is the one case where sorting by <code>emp_id</code> would <b>not</b> have saved you.
+    The ids are all still in order &mdash; 1001, 1002, 1003, perfectly fine. The rows were not
+    reordered. <b>They were torn apart.</b> Nothing can put a salary back next to the right person once
+    you have done this, because nothing in the file records which person it belonged to.</p>
+    <p>Undo, or reopen the file without saving. There is no third option.</p>
+   </div>
+
+   <div class="typeit">On the board, and leave it up for the rest of the module</div>
+<pre><code>  SELECT THE WHOLE TABLE, THEN SORT.
+
+  A1:L202   every time.      not one column. not two columns.
+
+  if excel asks about "Expand the selection"  ->  SAY YES.</code></pre>
+
+   <div class="warn"><b>If the Sort Warning does not appear on somebody's laptop, their sort already
+   worked properly.</b> Excel only shows that box when the selection has data beside it that is being
+   left out. If a laptop had an empty column next to K for some reason, the warning is skipped &mdash;
+   and so is the damage. Pair that student with a neighbour for this bit, because <b>seeing the broken
+   screen is the only version of this lesson that works.</b></div>
+  </div>
+
+  <!-- 28-42 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">28 &ndash; 42</span><h3>Filter, and you find Aditya Gupta yourself</h3></div>
+   <p class="objective">A filter hides rows, it does not delete them &mdash; and there are two ways to
+   prove that on screen. Then they collect promise number three.</p>
+
+   <div class="stage">After the last block the room is a bit shaken. Good. Filter is the safe tool and
+   it is the one they will use most in their working life. Fourteen minutes.</div>
+
+   <div class="speak">
+    <p>That was the dangerous one. This one cannot hurt you at all, and it is the tool you will use
+    every single day of this job.</p>
+    <p>Select <code>A1:L202</code> again. Then <b>Data</b>, then <b>Filter</b> &mdash; the little funnel.
+    Or <b>Ctrl Shift L</b> if you prefer the keyboard.</p>
+    <p>Look at row 1. Every header now has a small arrow on it. Nothing else changed.</p>
+   </div>
+
+   <div class="speak">
+    <p>Click the arrow on <b>department</b>.</p>
+   </div>
+
+   <div class="typeit">What drops down when you click the department arrow</div>
+<pre><code>  [x] (Select All)
+  [x] HR
+  [x] Marketing
+  [x] Sales
+  [x] Tech
+
+<span class="c">     excel built that list by reading all 201 rows of the column.
+     you did not type it.</span></code></pre>
+
+   <div class="speak">
+    <p>Four things in that list. <b>Excel read all 201 rows and worked out that there are only four
+    different departments in this file.</b> You did not type that list. It built it.</p>
+    <p>And that is the fastest spelling check in the whole tool. <b>If one row said</b>
+    <code>tech</code> <b>in small letters, there would be five things in this list instead of
+    four.</b> If one row said <code>Techh</code>, there would be six. Open this list on any column you
+    have just been sent and you will see every mistake in it in two seconds.</p>
+    <p>This file has four, and four is correct. <b>That is unusual and you should not expect it
+    again.</b></p>
+   </div>
+
+   <div class="speak">
+    <p>Now untick <b>Select All</b>, tick <b>HR</b> only, and press OK.</p>
+   </div>
+
+   <div class="typeit">What to look at, in this order</div>
+<pre><code>1.  the row numbers on the left         2, 8, 15, 19, ...   <span class="c">blue, and skipping</span>
+2.  the status bar, bottom left         45 of 201 records found
+3.  the arrow on the department header  now has a little funnel on it
+4.  <span class="o">your summary block in column Q</span>       <span class="o">rows still says 201</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Only 45 rows on my screen. But Q1 still says 201. Did Excel delete the other
+    hundred and fifty-six or not?&rdquo;</div>
+    <div class="a"><b>No.</b> And there are two proofs on the screen at once. The row numbers <b>skip</b>
+    &mdash; 2, then 8, then 15 &mdash; and the missing numbers are the rows that are still sitting
+    there. And <code>=COUNTA(C2:C202)</code> still counts 201 names, because <b>a formula does not care
+    what you are looking at.</b></div>
+   </div>
+
+   <div class="keyline">
+    <b>A filter is a pair of glasses, not a knife.</b><br><br>
+    Nothing is deleted. Nothing moves. You have changed what is on your screen and you have changed
+    nothing else. That is why it is safe, and it is also why the number in your filtered view and the
+    number in your formula can disagree with each other all day.
+   </div>
+
+   <div class="stage">Now the counts. Do them fast &mdash; one minute per column &mdash; and make
+   <em>them</em> read the number off the status bar. This is the block where they stop needing you.</div>
+
+   <div class="speak">
+    <p>Go through the four departments one at a time and read the number off the bottom of your own
+    screen. Shout them out.</p>
+   </div>
+
+   <div class="typeit">Department &mdash; read each one off the status bar</div>
+<pre><code>  Sales       65
+  Tech        49
+  HR          45
+  Marketing   42
+              ---
+             201      <span class="c">every row has a department. none missing.</span></code></pre>
+
+   <div class="speak">
+    <p>Sixty-five, forty-nine, forty-five, forty-two. Add them up. <b>Two hundred and one.</b></p>
+    <p>That is worth a sentence. The four counts add up to every row in the file, so <b>no row has a
+    missing department</b>. If they had added up to 198, you would know three rows had an empty
+    department cell without having to look for them.</p>
+    <p>And you already know what you just did. In pandas that is <code>value_counts</code>. You have
+    just done <code>value_counts</code> with a mouse, one value at a time. Next session you get
+    <code>COUNTIF</code>, which puts all four of those numbers on the sheet at the same time and
+    updates them when the data changes.</p>
+   </div>
+
+   <div class="typeit">Now the other three columns, the same way. Clear the filter between each one.</div>
+<pre><code>  city        Chennai 61    Bangalore 54   Hyderabad 48   Pune 38      = 201
+  education   Bachelors 77  Masters 65     Diploma 59                  = 201
+  rating      Poor 58       Good 51        Excellent 49   Average 43   = 201</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;All three of those add up to 201 as well. What does that tell you, in one
+    sentence?&rdquo;</div>
+    <div class="a"><b>Nothing is missing from any of those four columns</b>, and no value in them is
+    spelled two different ways. Four columns checked, in about three minutes, with no formula. Then the
+    honest follow-up: <b>&ldquo;and in twenty minutes one of these numbers is going to go down by
+    one.&rdquo;</b> Because they have been counting <em>rows</em>, and one row is a duplicate.</div>
+   </div>
+
+   <div class="speak">
+    <p>To clear a filter, open the arrow and tick <b>Select All</b> again. Or <b>Data</b>, then
+    <b>Clear</b> &mdash; the funnel with a small red cross &mdash; which clears every filter on the
+    sheet at once.</p>
+    <p>And <b>Clear</b> is not the same as turning the filter off. Clear shows all the rows and leaves
+    the arrows there. Pressing <b>Data</b>, <b>Filter</b> again takes the arrows away completely. Two
+    different buttons, and people mix them up for years.</p>
+   </div>
+
+   <div class="stage">Now their turn. Put the task up and <b>stop talking</b>. This is promise number
+   three and it is theirs to collect. Walk the room.</div>
+
+   <div class="speak">
+    <p>Right. Yesterday I told you Aditya Gupta was on row 152, and I admitted that I cheated because I
+    already knew.</p>
+    <p>Find him. I am not telling you anything. Four clicks, on the <b>age</b> column.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; four clicks, and they do it themselves</div>
+<pre><code>  1.  click the arrow on the  age  header
+  2.  Number Filters
+  3.  Less Than...
+  4.  type   0   and press OK</code></pre>
+
+   <div class="typeit">What is left on their screen</div>
+<pre><code>        A      C               D     I     K
+
+ <span class="c">1</span>   emp_id name            dept  age   salary
+ <span class="c">152</span> 1xxx   <span class="o">Aditya Gupta</span>    HR    <span class="o">-4</span>    33085
+
+<span class="c">     1 of 201 records found</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What number is on the left of that row, and why does it matter?&rdquo;</div>
+    <div class="a"><b>152.</b> The filter did not move him &mdash; it only hid everybody else &mdash; so
+    the row number is still his real row number in the file. <b>That is the row I handed you yesterday
+    and you just found it yourself.</b> Make a point of it. That was the promise.</div>
+   </div>
+
+   <div class="speak">
+    <p>Now change it. Open the age arrow again, Number Filters, this time <b>Greater Than</b>, and type
+    <b>100</b>.</p>
+   </div>
+
+   <div class="typeit">One row again</div>
+<pre><code> <span class="c">179</span> 1xxx   <span class="o">Lakshmi Singh</span>   ...   <span class="o">210</span>   ...
+
+<span class="c">     1 of 201 records found</span></code></pre>
+
+   <div class="speak">
+    <p>Two hundred and ten years old, and now she has a name and a row number.</p>
+    <p>Two broken ages in this file. Yesterday two formulas proved they existed. Today you have both
+    names and both row numbers, and the only thing you typed was a zero and a hundred.</p>
+    <p><b>This is the whole job, by the way.</b> Not calculating. Finding. Nobody is going to pay you to
+    work out an average. They are going to pay you to notice that one of the rows cannot possibly be
+    true.</p>
+   </div>
+
+   <div class="stage">Clear the filter before you go on. <b>Check every laptop</b> &mdash; a filter left
+   on will quietly confuse the next two blocks.</div>
+
+   <div class="warn"><b>Clear the filter now, not later.</b> Data &rarr; Clear. If a filter is still on
+   when you reach Remove Duplicates, a student will think it deleted the wrong rows. If it is still on
+   when you reach Go To Special, the selection will not behave. One instruction, out loud, and walk the
+   room for ten seconds.</div>
+
+   <div class="warn"><b>Expect: &ldquo;can I filter two columns at once?&rdquo;</b> Yes, and it is just
+   two filters one after the other &mdash; Excel keeps both. Try it live: age <b>Less Than 0</b>, then
+   department <b>HR</b>. Still <b>1 of 201</b>, because Aditya Gupta is in HR. Then switch the
+   department to Tech and it goes to <b>0 of 201</b> and the sheet looks empty. <b>An empty filtered
+   sheet frightens people</b> &mdash; show it on purpose once, so it does not frighten them at
+   home.</div>
+  </div>
+
+  <!-- 42-58 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">42 &ndash; 58</span><h3>The sheet points at the problem, then takes the extra row out</h3></div>
+   <p class="objective">Promise two and promise one. Two colouring rules find both broken ages
+   unasked, a third finds the duplicate, and then one button turns 201 rows into 200 people.</p>
+
+   <div class="stage">Sixteen minutes, in two halves. Colour first, because colour is how you
+   <em>see</em> the duplicate before you delete it &mdash; and looking before deleting is the habit this
+   block exists to build.</div>
+
+   <div class="speak">
+    <p>Last session I promised you that today the minus four and the two hundred and ten would turn red
+    by themselves, without anybody looking for them. Here it is.</p>
+    <p>Select the age column on its own &mdash; type <code>I2:I202</code> into the Name Box. Just the
+    ages, not the header.</p>
+    <p>Then <b>Home</b>, then <b>Conditional Formatting</b>, then <b>Highlight Cells Rules</b>, then
+    <b>Less Than</b>.</p>
+   </div>
+
+   <div class="typeit">What the Less Than box asks, and what to put in it</div>
+<pre><code>  Format cells that are LESS THAN:
+
+      0                with  [ Light Red Fill with Dark Red Text ]
+
+  then OK</code></pre>
+
+   <div class="stage">One cell goes red, 151 rows down. Tell them to scroll and find it rather than
+   jumping to it.</div>
+
+   <div class="speak">
+    <p>Scroll down. Somewhere in that column one cell is red. Row 152. Minus four.</p>
+    <p>Now do it again. Conditional Formatting, Highlight Cells Rules, this time <b>Greater Than</b>, and
+    type <b>100</b>.</p>
+   </div>
+
+   <div class="typeit">Two rules, and what lights up in a column of 201 ages</div>
+<pre><code>  rule 1    less than 0        ->   <span class="o">I152</span>    -4     Aditya Gupta
+  rule 2    greater than 100   ->   <span class="o">I179</span>   210     Lakshmi Singh
+
+  everything else             ->   not coloured
+
+<span class="c">     two cells out of two hundred and one. that is the whole result.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Two rules, two red cells. How many of the other 199 ages did you have to
+    look at?&rdquo;</div>
+    <div class="a"><b>None.</b> That is the point and it is worth saying slowly. You did not search, you
+    did not sort, you did not read a single row. <b>You described what a wrong answer looks like, and
+    the sheet found them.</b> That is promise number two, paid.</div>
+   </div>
+
+   <div class="speak">
+    <p>Now I want to show you what conditional formatting actually is, because the name makes it sound
+    like decoration and it is not.</p>
+    <p>Click on the red cell. Type <b>29</b> and press Enter.</p>
+    <p><b>The red went away on its own.</b> I did not remove it. Nothing un-coloured it.</p>
+    <p>Because it was never a colour. <b>It is a rule</b> &mdash; &ldquo;go red if you are less than
+    zero&rdquo; &mdash; and the cell is not less than zero any more, so it stopped being red.</p>
+    <p>Now press <b>Ctrl Z</b>. The minus four comes back, and so does the red.</p>
+   </div>
+
+   <div class="keyline">
+    <b>This is yesterday's idea in a different costume.</b><br><br>
+    Yesterday: a cell holds a value or a rule, and a rule re-runs itself whenever anything it depends on
+    changes. Today: a <em>colour</em> can be a rule too, and it re-checks itself the same way. Same
+    tool, same behaviour. <b>A spreadsheet is a pile of rules that are always running.</b>
+   </div>
+
+   <div class="warn"><b>Where the rules live, if somebody wants to change or delete one.</b> Home
+   &rarr; Conditional Formatting &rarr; <b>Manage Rules</b>. It lists both rules and which range each
+   one covers. <b>Clear Rules</b> on the same menu removes them. Thirty seconds, so they know it is not
+   permanent paint.</div>
+
+   <div class="warn"><b>And the honest limit on colour.</b> The two red cells are twenty-seven rows
+   apart and you still have to scroll to find them. <b>Colour tells you that something is wrong. A
+   filter tells you where.</b> Use them together &mdash; the same filter arrow has a <b>Filter by
+   Colour</b> option, and on this column it gives you exactly those two rows. One sentence, then
+   move.</div>
+
+   <div class="stage">Second half. The duplicate. <b>Colour it first, before anything gets
+   deleted.</b></div>
+
+   <div class="speak">
+    <p>Now the one I have owed you since last session. This file has 201 rows and 200 employees.
+    Somebody is in here twice.</p>
+    <p>Select the <code>emp_id</code> column &mdash; <code>A2:A202</code> in the Name Box. Then
+    Conditional Formatting, Highlight Cells Rules, and the last one in the list, <b>Duplicate
+    Values</b>.</p>
+   </div>
+
+   <div class="typeit">Duplicate Values, and the two cells that light up</div>
+<pre><code>  Format cells that contain:  [ Duplicate ] values
+                              with  [ Light Red Fill with Dark Red Text ]
+
+  <span class="o">A22</span>     1021        Anita Patel
+  <span class="o">A202</span>    1021        Anita Patel
+
+<span class="c">     two cells. nothing else in 201 employee ids.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Row 202. Where have you seen row 202 before?&rdquo;</div>
+    <div class="a">Yesterday, in the first ten minutes. They clicked A1, pressed
+    <code>Ctrl</code>+<code>&darr;</code> and <b>landed on A202</b>, and that is how they found out the
+    file had 201 rows and not 200. <b>The extra row is the last row of the file</b>, and they have been
+    standing on it since day 1.</div>
+   </div>
+
+   <div class="speak">
+    <p>Employee 1021. Anita Patel. She is on row 22, and she is on row 202, which is the very last row
+    of the file.</p>
+    <p>Now, those two rows are a hundred and eighty rows apart. I cannot see them both at once, and I
+    want to look at them side by side before I delete anything. <b>So sort the file by
+    <code>emp_id</code>.</b></p>
+    <p><code>A1:L202</code>, Data, Sort, Sort by <code>emp_id</code>, Smallest to Largest.</p>
+   </div>
+
+   <div class="typeit">The two red cells are now next to each other</div>
+<pre><code>        A      B        C              D     ...    K        L
+
+ <span class="c">21</span>  1020   3      Suresh Rao      Sales       ...      ...
+ <span class="c">22</span>  <span class="o">1021</span>   2      <span class="o">Anita Patel</span>     ...        ...      ...
+ <span class="c">23</span>  <span class="o">1021</span>   2      <span class="o">Anita Patel</span>     ...        ...      ...
+ <span class="c">24</span>  1022   1      Priya Menon     ...        ...      ...
+
+<span class="c">     all twelve columns identical. same id, same dept, same name, same
+     city, same salary, same join date. it is not two people with the
+     same name. it is the same row, written twice.</span></code></pre>
+
+   <div class="speak">
+    <p>Look along both rows. All twelve columns. <b>Identical.</b> Same id, same name, same city, same
+    salary, same joining date.</p>
+    <p>So this is not two people who happen to share a name. <b>It is one row that got written into the
+    file twice</b> &mdash; somebody appended the same record again, or a job ran twice. That happens
+    constantly in real data.</p>
+    <p>And notice two small things. The duplicate was the last row of the file, which is exactly where a
+    row that got added again would land. And the red followed them when the file was sorted &mdash;
+    <b>the colour was never attached to an address, it is attached to a value.</b></p>
+   </div>
+
+   <div class="stage">Now delete it. Read the dialog out loud before pressing OK &mdash; the tick boxes
+   are the entire lesson in this half.</div>
+
+   <div class="speak">
+    <p>Select <code>A1:L202</code> &mdash; the whole table including the header. Then <b>Data</b>, then
+    <b>Remove Duplicates</b>.</p>
+   </div>
+
+   <div class="typeit">The Remove Duplicates box. Look at the ticks before you press OK.</div>
+<pre><code>  To delete duplicate values, select one or more columns
+  that contain duplicates.
+
+  [ Select All ]  [ Unselect All ]      [x] My data has headers
+
+  Columns
+  [x] emp_id      [x] city         [x] height_cm
+  [x] dept_id     [x] education    [x] salary
+  [x] name        [x] rating       [x] join_date
+  [x] department  [x] experience
+  [x] age
+
+<span class="c">     all twelve ticked. that is what you want.</span></code></pre>
+
+   <div class="speak">
+    <p>Stop and understand what those tick boxes mean, because this is the only part of this button
+    that can hurt you.</p>
+    <p><b>The ticks decide what the word &ldquo;duplicate&rdquo; means.</b> All twelve ticked means
+    &ldquo;only delete a row if it matches another row on all twelve columns&rdquo;. That is the safe
+    answer and it is what we want.</p>
+    <p>Now imagine I tick only <b>name</b>. There are only <b>twenty first names and ten last names</b>
+    in this whole file. Twenty times ten is two hundred possible names, for two hundred and one people.
+    <b>Names must repeat in here.</b> So Excel would go down the file deleting everybody who shares a
+    name with somebody above them, and it would not tell you who they were.</p>
+    <p>Press OK.</p>
+   </div>
+
+   <div class="screen">1 duplicate values found and removed; 200 unique values remain.</div>
+
+   <div class="speak">
+    <p>Two hundred. <b>Not two hundred and one.</b></p>
+    <p>Click A1 and press <b>Ctrl and down arrow</b>. You land on <b>A201</b> now, not A202.</p>
+    <p>Write this on the board, because it changes for the rest of the session: <b>our data is now rows
+    2 to 201.</b> Two hundred people. From here on, when I say select the data, it is
+    <code>A1:L201</code>.</p>
+   </div>
+
+   <div class="stage">Now the free demonstration. <b>Point at the summary block</b> in column Q. They
+   have not touched it since yesterday.</div>
+
+   <div class="typeit">Nobody retyped anything. Three answers corrected themselves.</div>
+<pre><code>                         before    after
+
+ Q1    rows                201      <span class="o">200</span>     <span class="c">one row gone</span>
+ Q2    ages                200      <span class="o">199</span>     <span class="c">Anita Patel had an age</span>
+ Q8    salaries            199      <span class="o">198</span>     <span class="c">Anita Patel had a salary</span>
+
+ Q5    youngest             -4        -4     <span class="c">unchanged - she was not the -4</span>
+ Q6    oldest              210       210     <span class="c">unchanged - or the 210</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;How many of those formulas did you retype?&rdquo;</div>
+    <div class="a"><b>None.</b> Same as yesterday when they changed one salary and the whole block
+    moved. <b>A spreadsheet is rules that are always running</b> &mdash; say the sentence again, because
+    this is the second time they have watched it happen and the first time it was on a row they
+    deleted.</div>
+   </div>
+
+   <div class="speak">
+    <p>And one more thing, which is the honest version of what you just did. <b>Those department counts
+    we read off the status bar twenty minutes ago are now wrong by one.</b></p>
+    <p>Sales 65, Tech 49, HR 45, Marketing 42. One of those four is now one lower, because one of those
+    rows was Anita Patel twice.</p>
+    <p>You were counting <b>rows</b>. You thought you were counting <b>people</b>. Those are the same
+    number only in a clean file, and nobody hands you a clean file.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Clean first. Count second. In that order, always.</b><br><br>
+    Every number anybody got out of this file in the last twenty sessions &mdash; the average age, the
+    average salary, the correlation, every chart &mdash; was computed on 201 rows for 200 people. None
+    of it was badly wrong. <b>All of it was slightly wrong, and nothing told anybody.</b>
+   </div>
+
+   <div class="warn"><b>Remove Duplicates keeps the first one it meets and deletes the rest.</b> It
+   does not ask you which copy to keep. Here both copies are identical so it makes no difference
+   &mdash; but one day you will have two rows for the same customer with <em>different</em> addresses,
+   and then the order your rows are in decides which address survives. <b>That is why we coloured them
+   and looked at them first.</b></div>
+
+   <div class="warn"><b>Expect: &ldquo;could I have just ticked <code>emp_id</code>?&rdquo;</b> Yes, and
+   here it would have given the same answer, because an id is <em>supposed</em> to be unique. That is a
+   real and often better choice &mdash; but only when you know what the column is for. <b>All twelve is
+   the answer when you do not know.</b></div>
+
+   <div class="warn"><b>And yes, <code>Ctrl</code>+<code>Z</code> undoes Remove Duplicates</b> and
+   brings the row back. But it deleted a row <em>without showing you which one</em>, and that is the
+   habit to be nervous about, not the undo.</div>
+  </div>
+
+  <!-- 58-72 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">58 &ndash; 72</span><h3>Find every blank at once, and split a column in two</h3></div>
+   <p class="objective">Two buttons, seven minutes each. One shows them <em>where</em> the missing
+   values are. The other is the most destructive button in the module, and they learn the safe way
+   first.</p>
+
+   <div class="speak">
+    <p>Yesterday you proved this file is missing one age and two salaries, with two
+    <code>COUNT</code> formulas. 201 names, 200 ages, 199 salaries.</p>
+    <p>What those formulas could not tell you is <b>where</b>. Here is the button that does.</p>
+    <p>Select the data first &mdash; <code>A1:L201</code> in the Name Box. <b>This matters, and I will
+    show you why in a minute.</b></p>
+   </div>
+
+   <div class="typeit">Go To Special. Two routes &mdash; use the ribbon one if the keyboard fights you.</div>
+<pre><code>  keyboard    Ctrl + G      ->  then the  [ Special ]  button
+  ribbon      Home  ->  Find &amp; Select  ->  Go To Special
+
+  then        (o) Blanks      and  OK</code></pre>
+
+   <div class="typeit">Three cells are now selected, all at once</div>
+<pre><code>  <span class="o">K9</span>      salary    Manoj Kumar      HR
+  <span class="o">K44</span>     salary    Pooja Rao        ...
+  <span class="o">I93</span>     age       Sanjay Menon     ...
+
+<span class="c">     press Enter or Tab to walk your cursor from one to the next.
+     the Name Box at the top left tells you which one you are on.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Yesterday's formulas said one age and two salaries were missing. Does that
+    match?&rdquo;</div>
+    <div class="a"><b>Exactly.</b> Two salary cells and one age cell. And one of them is <b>K9, Manoj
+    Kumar</b> &mdash; the empty cell they spotted on the very first screen of day 1, before anybody
+    scrolled. <b>The count told them how many. This tells them who.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>And here is the other name on that list, which I want you to notice. <b>Sanjay Menon.</b> You
+    met him forty minutes ago &mdash; he was the very last row when we sorted by age, pushed to the
+    bottom because his age cell is empty.</p>
+    <p>Two completely different tools, one sort and one Go To Special, and they both pointed at the
+    same man. <b>That is what it feels like when your checks agree.</b></p>
+   </div>
+
+   <div class="stage">Now the useful bit. All three cells are still selected. <b>Do not fill them
+   in</b> &mdash; mark them.</div>
+
+   <div class="speak">
+    <p>All three cells are still selected. So I can do one thing to all three at once.</p>
+    <p>Go to <b>Home</b>, click the <b>Fill Colour</b> button &mdash; the little paint pot &mdash; and
+    pick yellow.</p>
+    <p>Three cells, one click, and now anybody who opens this file can see exactly what is missing and
+    where. <b>And I have not changed one value.</b> That is yesterday's sentence again: the number you
+    see and the number that is there are two different things. I changed what you see. There is still
+    nothing in those cells.</p>
+   </div>
+
+   <div class="speak">
+    <p>Now. With all three selected I could type a number and press <b>Ctrl and Enter</b>, and Excel
+    would put it in all three cells at the same time.</p>
+    <p><b>Do not.</b> Think about what you would be typing.</p>
+    <p>A zero in a salary cell says <em>this person earns nothing</em>. That is a lie, and you proved
+    yesterday that it drags the average down and stays there and nobody notices. A zero in an age cell
+    is worse &mdash; it says somebody was born this year.</p>
+    <p>We do not know what belongs in those three cells. <b>So we mark them, we write down exactly which
+    three cells they are, and we ask whoever owns this data.</b> That is the answer in an interview and
+    it is the answer in a job.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Finding a problem and fixing a problem are two different jobs, and today is the first one.</b>
+    <br><br>
+    Everything in this session makes problems impossible to miss. Not one thing in this session decides
+    what the right answer is, because <b>that is not a spreadsheet question</b>. An analyst who guesses
+    is worth less than one who asks.
+   </div>
+
+   <div class="warn"><b>Why selecting the range first mattered.</b> Do Go To Special &rarr; Blanks with
+   just one cell selected, or after pressing <code>Ctrl</code>+<code>A</code>, and Excel looks at a
+   much bigger area &mdash; it will select a very large number of empty cells and sit there for a
+   second. Select <code>A1:L201</code> and it finds three. <b>Go To Special only ever looks inside what
+   you selected.</b></div>
+
+   <div class="stage">Second half &mdash; Text to Columns. <b>Teach the danger before the
+   demonstration</b>, because this is the one button today where the damage is silent and 201 rows
+   wide.</div>
+
+   <div class="speak">
+    <p>Last tool. This one splits one column into two, and it is the most destructive button we touch
+    today, so we are going to do it the safe way from the start.</p>
+    <p>Column C is <code>name</code>, and every name in this file is two words &mdash; a first name and
+    a last name, with a space between them. I want them in separate columns.</p>
+    <p>Before we start, look at what is beside column C. <b>Column D is <code>department</code>.</b>
+    Hold on to that.</p>
+   </div>
+
+   <div class="typeit">Select the names, not the header, then open the wizard</div>
+<pre><code>  type  C2:C201  into the Name Box and press Enter
+
+  then  Data  ->  Text to Columns</code></pre>
+
+   <div class="typeit">The wizard. Three steps, and step 3 is the one that matters.</div>
+<pre><code>  Step 1 of 3     (o) Delimited          <span class="c">our names are split by a space</span>
+                  ( ) Fixed width
+                  Next
+
+  Step 2 of 3     Delimiters:  [x] Space    [ ] Tab  [ ] Comma  [ ] Semicolon
+                  [ ] Treat consecutive delimiters as one
+                  <span class="c">the Data preview at the bottom now shows TWO columns</span>
+                  Next
+
+  Step 3 of 3     Destination:   <span class="o">$S$2</span>      <span class="c">&lt;-- CHANGE THIS. it says $C$2.</span>
+                  Finish</code></pre>
+
+   <div class="speak">
+    <p>That <b>Destination</b> box on step 3 is the whole safety story of this button.</p>
+    <p>Excel offers to put the answer back where the names came from, <code>$C$2</code>. The first names
+    would land in C, which is fine. <b>And the last names would land in the column to the right of
+    it.</b></p>
+    <p>Which is column D. <b>Which is department.</b></p>
+    <p>Two hundred departments, overwritten with surnames. No warning. No prompt. No red. Ctrl Z brings
+    it back &mdash; <b>if you noticed</b>, and the thing about silent damage is that you do not.</p>
+    <p>So change it. Type <code>$S$2</code> into the Destination box. Column S is miles away from
+    everything and there is nothing to its right. Then Finish.</p>
+   </div>
+
+   <div class="typeit">What is in S and T now, with column C untouched</div>
+<pre><code>        C                   S           T
+
+ <span class="c">1</span>   name                first name   last name     <span class="c">type these two by hand</span>
+
+ <span class="c">2</span>   Rahul Sharma        Rahul       Sharma
+ <span class="c">3</span>   Karthik Kumar       Karthik     Kumar
+ <span class="c">4</span>   Karthik Reddy       Karthik     Reddy
+ <span class="c">5</span>   Lakshmi Kumar       Lakshmi     Kumar
+ <span class="c">6</span>   Arjun Sharma        Arjun       Sharma
+ <span class="c">7</span>   Sneha Reddy         Sneha       Reddy</code></pre>
+
+   <div class="speak">
+    <p>Column C is exactly as it was. The split went somewhere empty, and that is the habit: <b>never
+    run Text to Columns into a column that has something to its right.</b></p>
+    <p>Now put labels in S1 and T1 by hand &mdash; <code>first name</code> and <code>last name</code>.
+    No equals sign, they are just words.</p>
+   </div>
+
+   <div class="stage">Now check the work with yesterday's function. <b>This is the best moment in the
+   block</b> &mdash; a check they already know, used on something new.</div>
+
+   <div class="speak">
+    <p>How do I know it worked for all two hundred rows and not just the six I can see? I am not
+    scrolling two hundred rows.</p>
+    <p>Put this in any empty cell &mdash; <code>V1</code> will do.</p>
+   </div>
+
+   <div class="typeit">V1 &mdash; yesterday's function, checking today's work</div>
+<pre><code>=COUNTA(T2:T201)</code></pre>
+   <div class="screen">200</div>
+
+   <div class="speak">
+    <p>Two hundred. Two hundred people, two hundred last names. <b>Every single row split.</b></p>
+    <p>If that had said 197, then three names did not split, and I would go and find out why before
+    using this column for anything.</p>
+    <p>That is yesterday's trick doing a completely new job. <b>Count a column you expect to be full.
+    If the number is not what you expect, something is wrong and you now know how many.</b></p>
+   </div>
+
+   <div class="speak">
+    <p>And one last thing with this new column, because it is a nice payoff. Turn the main filter off
+    first &mdash; <b>Data</b>, <b>Filter</b> &mdash; because a plain sheet only allows one filter at a
+    time.</p>
+    <p>Now click in <code>T1</code> and press <b>Data</b>, <b>Filter</b> again. Open the arrow on
+    <b>last name</b>.</p>
+   </div>
+
+   <div class="typeit">Every surname in the company, read off a dropdown</div>
+<pre><code>  [x] Gupta    [x] Menon    [x] Patel    [x] Reddy    [x] Singh
+  [x] Iyer     [x] Nair     [x] Rao      [x] Sharma   [x] Kumar
+
+<span class="c">     ten. and the first name column has exactly twenty.</span></code></pre>
+
+   <div class="speak">
+    <p>Ten surnames. Two hundred people. And you could not have asked that question an hour ago, because
+    the surname was not a column &mdash; it was half of a word.</p>
+    <p><b>That is what reshaping data is for.</b> You did not add information. You changed the shape, and
+    a question that was impossible became a dropdown.</p>
+   </div>
+
+   <div class="warn"><b>Why the split was so clean, and why you should not expect that again.</b> All
+   two hundred names here are exactly two words with exactly one space. In a real file somebody is
+   called <code>Rahul Kumar Sharma</code>, and that splits into <b>three</b> pieces &mdash; the third
+   one lands in column U, which here is empty and in a real sheet is somebody's data. And somebody else
+   has two spaces by accident, which gives you an empty middle column unless you tick <b>Treat
+   consecutive delimiters as one</b> on step 2. <b>Always look at the Data preview on step 2 before
+   pressing Next.</b></div>
+
+   <div class="warn"><b>There is a second way, and it is worth sixty seconds.</b> Type
+   <code>Rahul</code> into an empty cell next to the first name, then press
+   <code>Ctrl</code>+<code>E</code>. That is <b>Flash Fill</b> &mdash; Excel guesses the pattern from
+   your one example and fills the rest. It is lovely and it is a guess, which is exactly why we taught
+   the wizard first. <b>Mention it, do not teach it.</b></div>
+  </div>
+
+  <!-- 72-84 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">72 &ndash; 84</span><h3>A mess we make on purpose &mdash; TRIM, PROPER and Replace All</h3></div>
+   <p class="objective">This file is clean. There is nothing in it to trim and nothing spelled two ways.
+   So the mess gets typed in by hand, at row 206, and cleaned there. Say out loud that you made it up.</p>
+
+   <div class="stage"><b>This is the only block today that can be cut.</b> If the sort block ran long,
+   skip it and give it to session 3, and say so to the room. If it runs, the five rows at 206 to 210 are
+   <b>invented</b> &mdash; say that sentence twice, or somebody will spend an evening looking for row
+   206 in their own file.</div>
+
+   <div class="speak">
+    <p>One more group of tools, and I have to be straight with you about something first.</p>
+    <p>I went through this file properly. <b>There is not one cell in it with a space at the front or
+    the back.</b> Every department is spelled one way. Every city is spelled one way. Every education
+    and every rating, one way each &mdash; you proved that yourselves half an hour ago when every
+    dropdown added up to 201.</p>
+    <p>So the three most famous cleaning tools in Excel have <b>nothing to do</b> in this file. And
+    interviewers ask about them constantly.</p>
+    <p>So we are going to make the mess ourselves. <b>I am about to type five rows that are not real.
+    They are not in your file. I am inventing them.</b> Say that back to me later if you remember
+    nothing else.</p>
+   </div>
+
+   <div class="typeit">Type these five rows by hand, starting at A206. Well below the data, with a gap.</div>
+<pre><code>         A                      B            C
+
+ <span class="c">206</span>  <span class="o"> rahul sharma</span>          tech         Bengaluru
+ <span class="c">207</span>  <span class="o">PRIYA IYER</span>            HR           bangalore
+ <span class="c">208</span>  <span class="o">Anita Patel </span>          hr           Bangalore
+ <span class="c">209</span>  <span class="o">sanjay  menon</span>         Tech         BLR
+ <span class="c">210</span>  <span class="o">Kavya Rao</span>             marketing    Bangalore
+
+<span class="c">     row 206 has ONE SPACE before the r.
+     row 208 has ONE SPACE after the final l.
+     row 209 has TWO SPACES in the middle.
+     row 210 is already fine - we need one clean row to compare against.</span></code></pre>
+
+   <div class="speak">
+    <p>Look at that column of names. <b>Row 206 and row 208 look completely normal.</b> You cannot see a
+    space. Nobody can see a space. That is the entire problem with this kind of dirt &mdash; it is
+    invisible and it breaks everything quietly.</p>
+    <p>So the first job is to make it visible. There is a function that counts the characters in a cell.
+    <code>LEN</code>.</p>
+   </div>
+
+   <div class="typeit">E206, then fill down to E210</div>
+<pre><code>=LEN(A206)</code></pre>
+   <div class="screen">206    13
+207    10
+208    12
+209    13
+210     9</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Row 208 says <code>Anita Patel</code>. Count it on your fingers &mdash; five
+    letters, a space, five letters. That is eleven. So why does Excel say twelve?&rdquo;</div>
+    <div class="a">Because there is a <b>twelfth character</b> and it is a space at the end. <b>LEN is
+    how you prove an invisible problem is real.</b> Row 206 is the same trick at the front &mdash;
+    twelve characters of name and a thirteenth hiding before the r.</div>
+   </div>
+
+   <div class="speak">
+    <p>Now clean them. Two functions, and we are going to use them together in one go.</p>
+    <p><code>TRIM</code> removes spaces from the front and the back, and squeezes any run of spaces in
+    the middle down to a single one. <code>PROPER</code> puts a capital letter at the start of every
+    word and makes the rest small.</p>
+    <p>And you can put one inside the other. Excel works out the inside one first and hands the answer
+    to the outside one.</p>
+   </div>
+
+   <div class="typeit">F206, then fill down. TRIM runs first, PROPER runs on its answer.</div>
+<pre><code>=PROPER(TRIM(A206))</code></pre>
+   <div class="typeit">And G206 to prove the spaces are gone</div>
+<pre><code>=LEN(F206)</code></pre>
+   <div class="screen">        A                     F                 E     G
+
+206      rahul sharma         Rahul Sharma      13    12
+207    PRIYA IYER             Priya Iyer        10    10
+208    Anita Patel            Anita Patel       12    11
+209    sanjay  menon          Sanjay Menon      13    12
+210    Kavya Rao              Kavya Rao          9     9</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Three rows got shorter and two did not. Which two, and why?&rdquo;</div>
+    <div class="a"><b>207 and 210</b> &mdash; they had no stray spaces to begin with. 207 only had the
+    wrong capitals, and <code>PROPER</code> does not change the length. <b>So TRIM leaves clean data
+    completely alone</b>, which is why it is safe to run on a whole column without checking first. And
+    row 209 went from 13 to 12 with no space at either end &mdash; that is <code>TRIM</code> squeezing
+    the double space in the middle down to one.</div>
+   </div>
+
+   <div class="stage">Now the <code>PROPER</code> trap. Sixty seconds and it is worth every one of
+   them, because it is the reason the next tool exists.</div>
+
+   <div class="speak">
+    <p>So <code>PROPER</code> fixes capital letters. Let us use it on the department column, which is
+    also a mess in my made-up rows. <code>tech</code>, <code>HR</code>, <code>hr</code>,
+    <code>Tech</code>, <code>marketing</code>.</p>
+   </div>
+
+   <div class="typeit">Try it on two of them and read the answers carefully</div>
+<pre><code>=PROPER(B206)      tech        ->  Tech      <span class="c">correct</span>
+=PROPER(B210)      marketing   ->  Marketing <span class="c">correct</span>
+=PROPER(B207)      HR          ->  <span class="o">Hr</span>        <span class="c">WRONG</span>
+=UPPER(B208)       hr          ->  HR        <span class="c">correct, but only for HR</span>
+=LOWER(B209)       Tech        ->  tech      <span class="c">correct, and useless</span></code></pre>
+
+   <div class="speak">
+    <p>Look at the third line. <code>PROPER</code> turned <b>HR</b> into <b>Hr</b>.</p>
+    <p>It is doing exactly what it was told &mdash; capital at the start, small for the rest. It does not
+    know that HR is two initials and not a word. <b>No function knows what your data means.</b> You have
+    heard that sentence in this course before.</p>
+    <p>So there is no single function that can fix this one column, because it holds three ordinary
+    words and one pair of initials. And that is exactly what the next tool is for.</p>
+   </div>
+
+   <div class="stage">Find &amp; Replace. <b>Teach the selection habit before the dialog</b>, the same
+   way you did for sorting.</div>
+
+   <div class="speak">
+    <p>Look at my made-up city column. Bengaluru, bangalore, Bangalore, BLR, Bangalore. <b>Five rows,
+    four spellings, one city.</b> This is the most common dirt in real data and no function fixes it,
+    because the computer has no way to know those are the same place. You have to tell it.</p>
+    <p>First, <b>select the cells you want to change</b>. <code>C206:C210</code>. This is the whole
+    safety rule for this tool and we will see why in a minute.</p>
+    <p>Then <b>Ctrl and H</b>. Or Home, Find &amp; Select, Replace.</p>
+   </div>
+
+   <div class="typeit">Three replacements, one at a time. Read the count Excel reports each time.</div>
+<pre><code>  Find what:  BLR            Replace with:  Bangalore     -> 1 changed
+  Find what:  Bengaluru      Replace with:  Bangalore     -> 1 changed
+
+  now the awkward one. only row 207 is still wrong, and it is
+  wrong only in its capital letter.
+
+  Options >>   [x] Match case
+  Find what:  bangalore      Replace with:  Bangalore     -> 1 changed</code></pre>
+   <div class="screen">206    Bangalore
+207    Bangalore
+208    Bangalore
+209    Bangalore
+210    Bangalore</div>
+
+   <div class="speak">
+    <p>One city, one spelling, and now it would count as one thing in a filter dropdown instead of
+    four.</p>
+    <p>And <b>Match case</b> is the box that made the last one possible. With it off, Excel does not care
+    about capitals, which is usually convenient and is sometimes the difference between changing one
+    cell and changing four.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why did I select those five cells before pressing Ctrl H?&rdquo;</div>
+    <div class="a">Because <b>with nothing selected, Replace All runs on the entire sheet.</b> Every
+    column, all two hundred rows, plus the summary block and the split name columns. And it replaces
+    <em>inside</em> words, not just whole cells &mdash; unless you tick <b>Match entire cell
+    contents</b>, which is the other safety box in that dialog. <b>Select first, always.</b></div>
+   </div>
+
+   <div class="keyline">
+    <b>Replace All is the only tool today that changes data you are not looking at.</b><br><br>
+    Sort tells you by moving things. Remove Duplicates tells you how many it removed. Text to Columns
+    at least damages the column you can see. <b>Replace All quietly edits cells on parts of the sheet
+    you have scrolled past</b> &mdash; which is why the selection, Match case and Match entire cell
+    contents are three boxes worth reading every single time.
+   </div>
+
+   <div class="warn"><b>The other half of the <code>TRIM</code> job, and it is the half people
+   forget.</b> <code>TRIM</code> and <code>PROPER</code> did not fix column A. They built a clean copy
+   in column F. To finish, you Copy column F, then <b>Paste Special &rarr; Values</b> over column A,
+   then delete F. <b>Paste it normally and you paste the formulas</b>, which then point at the column
+   you are about to delete, and the whole thing turns into <code>#REF!</code>. Show the Paste Special
+   menu even if you do not do the paste &mdash; it is the single most useful right-click in
+   Excel.</div>
+
+   <div class="stage">Now clean up, out loud. <b>Deleting the invented rows is part of the lesson</b>
+   &mdash; it is the moment you say again that they were never real.</div>
+
+   <div class="speak">
+    <p>Last job. Click on the row number <b>206</b> on the far left, hold shift, click <b>210</b>. Five
+    whole rows selected. Right-click, <b>Delete</b>.</p>
+    <p>Then select columns E, F and G and delete those too.</p>
+    <p>And say it with me, because I want it to stick: <b>those five rows were never in the file.</b> I
+    typed them in front of you because your file is clean and these three tools had nothing to do. Your
+    file has two hundred rows, no stray spaces and no misspelled values, and <b>that is not what the
+    next file you are sent will look like.</b></p>
+   </div>
+  </div>
+
+  <!-- 84-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">84 &ndash; 90</span><h3>Close, and what comes next</h3></div>
+
+   <div class="speak">
+    <p>Five things from today. If you forget everything else, keep these.</p>
+   </div>
+
+   <div class="typeit">The five lines. Put them on the board and leave them up.</div>
+<pre><code>1.  SELECT THE WHOLE TABLE, THEN SORT.
+    one column sorted on its own = every row is a lie,
+    and every total on the sheet is still correct.
+    if excel offers to "expand the selection" - say yes.
+
+2.  a filter HIDES rows. it does not delete them.
+    proof: the row numbers skip, and COUNTA still says the old number.
+
+3.  conditional formatting is a RULE, not a colour.
+    describe what wrong looks like. the sheet finds it for you.
+    change the cell and the colour corrects itself.
+
+4.  before you delete anything, LOOK at it.
+    colour the duplicates. select the blanks. then decide.
+    remove duplicates keeps the FIRST one and asks you nothing.
+
+5.  a blank is still not a zero.
+    sorting pushes blanks to the bottom, both directions.
+    and you still do not get to invent what belongs in them.</code></pre>
+
+   <div class="speak">
+    <p>And look at what we did without one line of code, and almost without a formula.</p>
+    <p>We found out <b>who</b> is minus four years old and <b>who</b> is two hundred and ten. We found
+    out who has no age and who has no salary, and exactly which three cells they are. We found a row
+    that was in the file twice and took it out, and two hundred and one became two hundred. We turned a
+    name into two columns and then asked a question we could not have asked before. And we broke the
+    file so badly that no number on it could tell us.</p>
+    <p>Yesterday the file told you numbers. <b>Today the file told you names.</b></p>
+   </div>
+
+   <div class="stage">Now say what you skipped. <b>Naming the gaps makes the session trustworthy</b> and
+   it stops the clever student in the back from thinking they have found a hole in the course.</div>
+
+   <div class="typeit">What today left out on purpose, and where it goes</div>
+<pre><code>sorting by two columns at once       the "Add Level" button in the Sort box.
+                                    real and useful. you will meet it when
+                                    you need it.
+
+sorting by your own order           "Custom List" - Poor, Average, Good,
+                                    Excellent instead of alphabetical.
+                                    mentioned today, not taught.
+
+sort and filter BY COLOUR           one sentence today. it works, it is
+                                    not important yet.
+
+Flash Fill  (Ctrl + E)              mentioned. it guesses, so you learn
+                                    the wizard first.
+
+Advanced Filter, dropdown lists     later in the module, or not at all.
+(data validation)
+
+COUNTIF  /  SUMIF  /  value_counts  <span class="o">next session. all of it.</span></code></pre>
+
+   <div class="speak">
+    <p>Next session the sheet starts answering questions instead of just showing you things.</p>
+    <p>Today you filtered to HR and read <b>45</b> off the bottom of the screen. It is not on the sheet,
+    it does not update, and you had to click four times to get it. Next session one formula puts all four
+    department counts on the sheet at once and they fix themselves when the data changes. That is
+    <code>COUNTIF</code>, and you already know it &mdash; it is <code>value_counts</code>.</p>
+    <p>And then <code>IF</code>, which is the first time a cell makes a decision instead of a
+    calculation. <b>&ldquo;If this salary is above the average, write ABOVE, otherwise write
+    BELOW.&rdquo;</b> Two hundred rows, one formula.</p>
+    <p>Bring the cleaned file. Two hundred rows, no duplicate, three yellow cells, and two red ones.</p>
+   </div>
+
+   <div class="keyline">
+    <b>One sentence to leave them with, because it is the one an interviewer will ask for.</b><br><br>
+    <b>Sorting, filtering and colouring do not clean data. They make dirt impossible to miss.</b>
+    Deciding what the right value is was never a spreadsheet job, and the person who asks instead of
+    guessing is the one who gets kept on.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Seven steps, every click, every board item, every number it should produce.
+  If you lose your place, this page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 8</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Open it again, and the three promises</p>
+   <p class="rs-say"><b>Land this:</b> open <code>employees.xlsx</code>, not the CSV. <b>Make a backup
+   copy first</b> and tell them to. Today has three buttons that delete things, and
+   <code>Ctrl</code>+<code>Z</code> is the only safety rule they need.</p>
+   <div class="rs-code"><pre><code>Name Box   M1:N202    then Delete     <span class="c">yesterday's two practice columns</span>
+           <span class="o">leave P and Q alone</span>                <span class="c">the summary block. we need it.</span>
+
+View  ->  Freeze Panes  ->  Freeze Top Row   <span class="c">30 seconds, saves the session</span></code></pre></div>
+   <div class="rs-board"><b>Name the three promises out loud.</b> <b>One</b> &mdash; 201 rows, 200
+   employees, somebody is in there twice. <b>Two</b> &mdash; the &minus;4 and the 210 turn red by
+   themselves. <b>Three</b> &mdash; yesterday you were told Aditya Gupta was on row 152, today you find
+   him. All three get paid back today.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Yesterday was looking. Today is touching.</b> Every
+   formula yesterday went into an empty cell. Everything today reaches into the data itself.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">8 &ndash; 28</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Sort &mdash; and the one-column sort. The biggest moment of the module.</p>
+   <p class="rs-say"><b>Land this:</b> three correct sorts first so they trust it, then break it.
+   <b>Do not warn them</b> &mdash; present the broken one as a quicker, more convenient way to do the
+   same job, because that is exactly how it looks.</p>
+   <p class="rs-do">Sort one &mdash; age, smallest first</p>
+   <div class="rs-code"><pre><code>Name Box  A1:L202      then  Data -> Sort
+          [x] My data has headers
+          Sort by  age     Order  Smallest to Largest</code></pre></div>
+   <div class="rs-out">row   2   Aditya Gupta    HR    -4
+row 201   Lakshmi Singh        210
+row 202   Sanjay Menon      (empty)</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;who is on row two?&rdquo; &mdash; the <b>MIN from yesterday,
+   with a name</b>. Then &ldquo;the 210 is the biggest age, so why is it not on the last row?&rdquo;
+   &mdash; <b>Excel always puts blanks last, in both directions.</b> Sanjay Menon is the missing age they
+   proved existed yesterday, and the sort just named him.</div>
+   <p class="rs-do">Sort two &mdash; salary, largest first</p>
+   <div class="rs-code"><pre><code> 2   Lakshmi Kumar   Tech        5200000
+ 3   Kavya Gupta     Tech         116894     <span class="c">44x smaller</span>
+ 4   Suresh Patel    Marketing    106170
+ 5   Lakshmi Patel   Tech         106139
+ 6   Kavya Rao       Tech         105413
+ 7   Suresh Menon    Tech         103915
+...
+198  Karthik Patel   HR            36711
+199  Pooja Iyer      HR            35118
+<span class="o">200  Aditya Gupta    HR            33085</span>
+201  Manoj Kumar                 (empty)    <span class="c">blanks last again</span>
+202  Pooja Rao                   (empty)</code></pre></div>
+   <div class="rs-board"><b>The shape of an outlier when you sort:</b> a big number, a cliff, then a
+   gentle slope. <b>And the lowest paid person in the file is Aditya Gupta</b> &mdash; the same row that
+   says he is &minus;4 years old. <b>Two impossible things on one row is almost never a
+   coincidence.</b><br><br>
+   <b>One sentence on departments and no more:</b> the five highest after the outlier are four Tech and
+   one Marketing; the three lowest are all HR. <b>Five rows out of two hundred &mdash; a hint, not a
+   finding.</b> Pivot tables are session five.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Ctrl+Z twice. Check A2 says 1001 on every
+   laptop.</b> There is <b>no unsort button</b>. The other way home is sorting by <code>emp_id</code>,
+   because the ids run 1001, 1002, 1003 down the rows. <b>That is what an id column is for</b> &mdash;
+   and it is used in step 4.</div>
+   <p class="rs-do" style="margin-top:12px">Now break it &mdash; click the letter K, then Sort</p>
+   <div class="rs-code"><pre><code>Sort Warning
+
+Excel found data next to your selection. Since you have not
+selected this data, it will not be sorted.
+
+(o) Expand the selection                 <span class="c">already chosen. the right answer.</span>
+( ) Continue with the current selection   <span class="o">&lt;-- pick this, on purpose</span></code></pre></div>
+   <div class="rs-code"><pre><code> 2  1001  Rahul Sharma    HR     53   <span class="o">33085</span>    <span class="c">was 47764</span>
+ 3  1002  Karthik Kumar   Mktg   57   <span class="o">35118</span>
+ 4  1003  Karthik Reddy   Tech   56   <span class="o">36711</span>
+
+columns A to J and L never moved. K is now sorted on its own.</code></pre></div>
+   <div class="rs-board"><b>Say nothing for ten seconds.</b> Then: &ldquo;Rahul Sharma's salary was
+   47,764. What is it now, and whose is it?&rdquo; &mdash; <b>33,085, which is Aditya Gupta's.</b>
+   Everyone in the file is being paid somebody else's money.</div>
+   <div class="rs-code"><pre><code>                    before          after
+
+ total salary    19034033        <span class="o">19034033</span>
+ average salary  95648.41        <span class="o">95648.41</span>
+ middle salary      68647           <span class="o">68647</span>
+ youngest              -4              -4
+ oldest               210             210</code></pre></div>
+   <div class="rs-board"><b>Nothing changed. Not one number.</b> The same 199 salaries are in the same
+   column &mdash; only the order moved, and a total does not care about order. <b>So every statistic you
+   know how to calculate is identical on a file where every row is a lie.</b> Nothing red, nothing said
+   error, and no formula will ever warn you.<br><br>
+   <b>Ctrl+Z now.</b> Check row 2 says Rahul Sharma, 47,764. And say it plainly: <b>sorting by
+   <code>emp_id</code> would NOT have saved you here.</b> The rows were not reordered, they were torn
+   apart, and nothing in the file records which salary belonged to whom. Undo, or reopen without saving.
+   There is no third option.</div>
+   <div class="rs-board" style="margin-top:8px"><b>On the board for the rest of the module:</b> SELECT
+   THE WHOLE TABLE, THEN SORT. <code>A1:L202</code>, every time. If Excel offers to expand the
+   selection, <b>say yes</b>.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">28 &ndash; 42</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Filter &mdash; and they collect promise three</p>
+   <p class="rs-say"><b>Land this:</b> a filter <b>hides</b> rows and there are two proofs on one
+   screen. Then stop talking and let them find Aditya Gupta.</p>
+   <div class="rs-code"><pre><code>A1:L202   then  Data -> Filter      <span class="c">or Ctrl + Shift + L</span>
+
+click the  department  arrow  ->  four values only: HR, Marketing, Sales, Tech
+untick Select All, tick HR, OK</code></pre></div>
+   <div class="rs-board"><b>The dropdown is the fastest spell-check in Excel.</b> Excel built that list
+   by reading 201 rows. One row saying <code>tech</code> in small letters would make it five items.
+   <b>This file has four, and four is correct &mdash; that is unusual.</b></div>
+   <div class="rs-out">row numbers go blue and skip: 2, 8, 15, ...
+status bar:  45 of 201 records found
+column Q:    rows STILL SAYS 201</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;45 rows on screen, Q1 says 201. Did Excel delete the other
+   156?&rdquo; <b>No &mdash; two proofs at once.</b> The row numbers skip, and a formula does not care
+   what you are looking at. <b>A filter is a pair of glasses, not a knife.</b></div>
+   <div class="rs-code"><pre><code>department   Sales 65      Tech 49       HR 45          Marketing 42   = 201
+city         Chennai 61    Bangalore 54  Hyderabad 48   Pune 38        = 201
+education    Bachelors 77  Masters 65    Diploma 59                    = 201
+rating       Poor 58       Good 51       Excellent 49   Average 43     = 201</code></pre></div>
+   <div class="rs-board"><b>They read the numbers off their own status bar, not off you.</b> All four
+   columns add up to 201, so <b>nothing is missing from any of them</b>. That is
+   <code>value_counts</code> with a mouse. <b>Then the honest warning: in twenty minutes one of those
+   numbers goes down by one</b>, because they are counting rows, not people.<br><br>
+   <b>Clear</b> (funnel with a red cross) shows all rows and keeps the arrows. <b>Data &rarr;
+   Filter</b> again removes the arrows. Two different things.</div>
+   <p class="rs-do" style="margin-top:12px">Their turn &mdash; four clicks, and stop talking</p>
+   <div class="rs-code"><pre><code>age arrow  ->  Number Filters  ->  Less Than...  ->  0  ->  OK</code></pre></div>
+   <div class="rs-out">row 152   Aditya Gupta   HR   -4   33085      1 of 201 records found
+
+then Greater Than 100:
+row 179   Lakshmi Singh       210            1 of 201 records found</div>
+   <div class="rs-board"><b>Promise three, paid.</b> Ask why the row number still says 152 &mdash;
+   because a filter hides, it does not move. <b>That is the row you were handed yesterday, and you found
+   it yourself.</b><br><br>
+   <b>Then the line that matters:</b> nobody will ever pay you to work out an average. They will pay you
+   to notice that a row cannot possibly be true.</div>
+   <div class="rs-board" style="margin-top:8px"><b>CLEAR THE FILTER BEFORE YOU GO ON.</b> Data &rarr;
+   Clear, and walk the room. A filter left on will confuse both of the next two blocks.<br><br>
+   <b>If asked about two filters at once:</b> age Less Than 0 plus department HR is still <b>1 of
+   201</b>. Switch to Tech and it is <b>0 of 201</b> and the sheet looks empty &mdash; <b>show that
+   once on purpose</b> so it does not frighten them at home.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">42 &ndash; 58</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Red cells, then the extra row goes</p>
+   <p class="rs-say"><b>Land this:</b> colour first, delete second. <b>Looking before deleting is the
+   habit this block exists to build.</b></p>
+   <div class="rs-code"><pre><code>Name Box  I2:I202
+Home -> Conditional Formatting -> Highlight Cells Rules -> Less Than     ->  0
+                                                        -> Greater Than  ->  100
+
+<span class="o">I152    -4     Aditya Gupta</span>
+<span class="o">I179   210     Lakshmi Singh</span>
+everything else - not coloured</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;two red cells. How many of the other 199 ages did you look
+   at?&rdquo; <b>None.</b> You described what a wrong answer looks like and the sheet found them.
+   <b>Promise two, paid.</b><br><br>
+   <b>Then prove it is a rule:</b> type <code>29</code> over the &minus;4 and <b>the red disappears on
+   its own</b>. Ctrl+Z and it comes back. Same idea as yesterday &mdash; rules that re-run themselves
+   &mdash; applied to colour. Rules live under <b>Manage Rules</b>.</div>
+   <p class="rs-do">Then the duplicate &mdash; colour it before deleting it</p>
+   <div class="rs-code"><pre><code>Name Box  A2:A202
+Conditional Formatting -> Highlight Cells Rules -> Duplicate Values
+
+<span class="o">A22     1021    Anita Patel</span>
+<span class="o">A202    1021    Anita Patel</span></code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;where have you seen row 202 before?&rdquo; &mdash; yesterday,
+   <code>Ctrl</code>+<code>&darr;</code> landed on <b>A202</b>, which is how they learned the file had
+   201 rows. <b>The extra row is the last row of the file and they have been standing on it since day
+   1.</b></div>
+   <p class="rs-do">180 rows apart, so bring them together</p>
+   <div class="rs-code"><pre><code>A1:L202  ->  Data -> Sort -> emp_id, Smallest to Largest
+
+ 22   1021   2   Anita Patel   ...     <span class="c">all twelve columns</span>
+ 23   1021   2   Anita Patel   ...     <span class="c">identical</span></code></pre></div>
+   <div class="rs-board">Not two people with the same name &mdash; <b>one row written into the file
+   twice</b>. A job ran twice, or somebody appended the same record again. Happens constantly.<br><br>
+   <b>And the red followed them through the sort</b> &mdash; the colour was never attached to an
+   address, it is attached to a value.</div>
+   <p class="rs-do">Now delete it &mdash; read the ticks out loud</p>
+   <div class="rs-code"><pre><code>A1:L202  ->  Data -> Remove Duplicates
+             [x] My data has headers,  <span class="o">all twelve columns ticked</span></code></pre></div>
+   <div class="rs-out">1 duplicate values found and removed; 200 unique values remain.</div>
+   <div class="rs-board"><b>The ticks decide what the word duplicate means.</b> All twelve = only delete
+   a row that matches on all twelve. <b>Tick only <code>name</code> and you delete real people</b>
+   &mdash; 20 first names and 10 last names means 200 possible names for 201 people, so names
+   <em>must</em> repeat.<br><br>
+   <b>Remove Duplicates keeps the FIRST one it meets and asks you nothing.</b> Here both copies are
+   identical so it does not matter &mdash; one day two rows for one customer will have different
+   addresses, and then the row order decides. <b>That is why you coloured them first.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>ON THE BOARD, NEW NUMBER:</b> the data is now rows 2
+   to <b>201</b>. Two hundred people. <code>Ctrl</code>+<code>&darr;</code> lands on A201. From here on
+   the range is <code>A1:L201</code>. <b>Say it out loud or you will correct ranges one laptop at a time
+   for the rest of the session.</b></div>
+   <div class="rs-code"><pre><code>                      before   after
+
+Q1    rows              201     <span class="o">200</span>     <span class="c">one row gone</span>
+Q2    ages              200     <span class="o">199</span>     <span class="c">she had an age</span>
+Q8    salaries          199     <span class="o">198</span>     <span class="c">she had a salary</span>
+Q5    youngest           -4      -4     <span class="c">she was not the -4</span>
+Q6    oldest            210     210</code></pre></div>
+   <div class="rs-board"><b>Nobody retyped a formula.</b> Second time they have watched the summary
+   block correct itself, and the first time it was because of a row they deleted.<br><br>
+   <b>Then the honest part:</b> those department counts from twenty minutes ago are now wrong by one.
+   <b>Clean first, count second, always.</b> Every number anybody got from this file in twenty sessions
+   was computed on 201 rows for 200 people &mdash; not badly wrong, slightly wrong, and nothing told
+   anybody.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">58 &ndash; 72</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Every blank at once, then split the name column</p>
+   <p class="rs-say"><b>Land this:</b> yesterday's counts said <em>how many</em> were missing. Go To
+   Special says <b>where</b>. Then Text to Columns &mdash; teach the Destination box before you touch
+   anything.</p>
+   <div class="rs-code"><pre><code>Name Box  A1:L201       <span class="c">select the data FIRST. not Ctrl+A.</span>
+
+Ctrl + G  ->  [ Special ]  ->  (o) Blanks  ->  OK
+or        Home -> Find &amp; Select -> Go To Special</code></pre></div>
+   <div class="rs-out">K9     salary   Manoj Kumar
+K44    salary   Pooja Rao
+I93    age      Sanjay Menon</div>
+   <div class="rs-board"><b>K9 is the empty cell they spotted in the first ten minutes of day 1</b>,
+   before anybody scrolled. And <b>Sanjay Menon</b> is the man the age sort pushed to the bottom forty
+   minutes ago. <b>Two different tools, same man. That is what it feels like when your checks
+   agree.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>All three still selected, so do one thing to all
+   three:</b> Home &rarr; Fill Colour &rarr; yellow. Three cells, one click, nothing changed. <b>You
+   changed what you see, not what is there.</b><br><br>
+   <b>Then refuse to fill them.</b> With all three selected you <em>could</em> type a value and press
+   <code>Ctrl</code>+<code>Enter</code> to fill all three. <b>Do not.</b> Zero in a salary says this
+   person earns nothing. Zero in an age says they were born this year. <b>Mark them, write down the
+   three addresses, ask whoever owns the data.</b></div>
+   <p class="rs-do" style="margin-top:12px">Text to Columns &mdash; the danger before the demo</p>
+   <div class="rs-code"><pre><code>Name Box  C2:C201    ->  Data -> Text to Columns
+
+Step 1   (o) Delimited                      Next
+Step 2   [x] Space      <span class="c">watch the Data preview turn into two columns</span>   Next
+Step 3   Destination:  <span class="o">$S$2</span>    <span class="c">&lt;-- IT SAYS $C$2. CHANGE IT.</span>   Finish</code></pre></div>
+   <div class="rs-board"><b>Leave the destination at <code>$C$2</code> and you lose the department
+   column.</b> First names land in C, last names land in <b>D</b>, which is <code>department</code>. Two
+   hundred departments overwritten, no warning, no prompt, no red. Ctrl+Z fixes it <em>if you
+   noticed</em>, and silent damage is the kind you do not notice. <b>Never split into a column that has
+   something to its right.</b></div>
+   <div class="rs-code"><pre><code>        S            T
+ 1   first name   last name     <span class="c">type these two labels by hand</span>
+ 2   Rahul        Sharma
+ 3   Karthik      Kumar
+ 4   Karthik      Reddy
+ 5   Lakshmi      Kumar
+
+V1   =COUNTA(T2:T201)    ->  <span class="o">200</span>    <span class="c">every row split. yesterday's check, new job.</span></code></pre></div>
+   <div class="rs-board"><b>Then the payoff.</b> Data &rarr; Filter off on the main table first (a plain
+   sheet allows one filter at a time), then put a filter on <b>T</b> and open the arrow: <b>exactly ten
+   surnames</b> &mdash; Gupta, Iyer, Kumar, Menon, Nair, Patel, Rao, Reddy, Sharma, Singh. Twenty first
+   names in S. <b>You added no information. You changed the shape, and an impossible question became a
+   dropdown.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Why it split so cleanly, and why you should not
+   expect it again:</b> all 200 names are exactly two words. A real file has
+   <code>Rahul Kumar Sharma</code>, which makes <b>three</b> pieces and writes the third into column U.
+   And a double space gives an empty middle column unless you tick <b>Treat consecutive delimiters as
+   one</b>. <b>Look at the step 2 preview every time.</b> Flash Fill (<code>Ctrl</code>+<code>E</code>)
+   gets one mention and no more &mdash; it guesses.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">72 &ndash; 84</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">A mess we make on purpose &mdash; the cuttable block</p>
+   <p class="rs-say"><b>Land this first:</b> &ldquo;<b>I am about to type five rows that are not real.
+   They are not in your file.</b>&rdquo; Say it twice. This file has no stray spaces and nothing spelled
+   two ways &mdash; they proved it themselves when every dropdown added up to 201. <b>If you are short
+   of time, cut this block and give it to session 3.</b></p>
+   <div class="rs-code"><pre><code>         A                   B           C
+
+ 206      rahul sharma       tech        Bengaluru     <span class="c">space BEFORE the r</span>
+ 207    PRIYA IYER           HR          bangalore
+ 208    Anita Patel          hr          Bangalore     <span class="c">space AFTER the l</span>
+ 209    sanjay  menon        Tech        BLR           <span class="c">TWO spaces in the middle</span>
+ 210    Kavya Rao            marketing   Bangalore     <span class="c">clean, on purpose</span></code></pre></div>
+   <div class="rs-code"><pre><code>E206   =LEN(A206)             fill down   ->  13  10  12  13   9
+F206   =PROPER(TRIM(A206))    fill down
+G206   =LEN(F206)             fill down   ->  12  10  11  12   9
+
+       A                   F                E    G
+206     rahul sharma       Rahul Sharma     13   12
+207   PRIYA IYER           Priya Iyer       10   10
+208   Anita Patel          Anita Patel      12   11
+209   sanjay  menon        Sanjay Menon     13   12
+210   Kavya Rao            Kavya Rao         9    9</code></pre></div>
+   <div class="rs-board"><b>Ask about row 208:</b> &ldquo;five letters, a space, five letters is eleven.
+   Why does Excel say twelve?&rdquo; <b>LEN is how you prove an invisible problem is real.</b><br><br>
+   <b>Then ask which two rows did not shrink</b> &mdash; 207 and 210, because they had no stray spaces.
+   <b>TRIM leaves clean data completely alone</b>, which is why it is safe on a whole column. And 209
+   shrank with no space at either end &mdash; that is TRIM squeezing the double space in the middle.</div>
+   <div class="rs-code"><pre><code>=PROPER(B206)   tech       ->  Tech       <span class="c">correct</span>
+=PROPER(B210)   marketing  ->  Marketing  <span class="c">correct</span>
+=PROPER(B207)   HR         ->  <span class="o">Hr</span>         <span class="c">WRONG</span>
+=UPPER(B208)    hr         ->  HR
+=LOWER(B209)    Tech       ->  tech</code></pre></div>
+   <div class="rs-board"><b>PROPER turns HR into Hr.</b> It is doing exactly what it was told &mdash; it
+   does not know HR is two initials and not a word. <b>No function knows what your data means</b>, which
+   is a sentence they have heard in this course before. So no single function fixes that column, and
+   <em>that</em> is what the next tool is for.</div>
+   <p class="rs-do">Find &amp; Replace &mdash; select first, always</p>
+   <div class="rs-code"><pre><code>select C206:C210 FIRST     then  Ctrl + H
+
+BLR        ->  Bangalore                       1 changed
+Bengaluru  ->  Bangalore                       1 changed
+bangalore  ->  Bangalore   [x] Match case      1 changed</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;why did I select five cells first?&rdquo; <b>With nothing
+   selected, Replace All runs on the whole sheet</b> &mdash; every column, the summary block, the split
+   name columns &mdash; and it replaces <em>inside</em> words unless you tick <b>Match entire cell
+   contents</b>. <b>Replace All is the only tool today that changes data you are not looking
+   at.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>The half people forget:</b> TRIM and PROPER did not
+   fix column A, they built a clean copy in F. Copy F, <b>Paste Special &rarr; Values</b> over A, then
+   delete F. <b>Paste normally and you paste the formulas</b>, which then point at the column you are
+   deleting &rarr; <code>#REF!</code> everywhere.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then delete rows 206&ndash;210 and columns E, F, G,
+   and say it again:</b> those five rows were never in the file. <b>Your file is clean, and the next file
+   you are sent will not be.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">84 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close</p>
+   <div class="rs-code"><pre><code>1.  SELECT THE WHOLE TABLE, THEN SORT. one column alone = every row
+    is a lie, and every total on the sheet is still correct.
+2.  a filter HIDES rows. the row numbers skip and COUNTA does not move.
+3.  conditional formatting is a RULE, not a colour. it corrects itself.
+4.  before you delete anything, LOOK at it. remove duplicates keeps
+    the FIRST one and asks you nothing.
+5.  a blank is still not a zero. sorting pushes blanks to the bottom
+    both ways, and you still do not get to invent what belongs there.</code></pre></div>
+   <div class="rs-board"><b>Count the wins out loud:</b> who is &minus;4 and who is 210, who has no age
+   and no salary and exactly which three cells, a row removed so 201 became 200, a name turned into two
+   columns and a question asked that was impossible an hour ago &mdash; <b>and a file broken so badly
+   that no number on it could tell us.</b> Yesterday the file told them numbers. <b>Today it told them
+   names.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Say what you skipped, so the gaps are yours and not
+   theirs:</b> sorting by two columns (Add Level), Custom List order, sort and filter by colour, Flash
+   Fill, Advanced Filter, data validation. <b>Mentioned, not taught, on purpose.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up session 3:</b> today they read <b>45</b> off
+   the status bar &mdash; it is not on the sheet, it does not update, and it took four clicks.
+   <b><code>COUNTIF</code> puts all four department counts on the sheet at once and they fix
+   themselves.</b> That is <code>value_counts</code>. Then <code>IF</code> &mdash; the first time a cell
+   makes a decision instead of a calculation. <b>Bring the cleaned file:</b> 200 rows, no duplicate,
+   three yellow cells, two red ones.</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order, with the answer under each
+  one. Numbers 1, 3 and 9 are the three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>I selected only the salary column and sorted it. What did I just do to the file?</q>
+    <div class="ans">Slid one column past the other eleven. <b>Every person now has somebody else's
+    salary.</b> Nothing was deleted and nothing is red &mdash; and the total, the average and the median
+    are all <b>exactly the same as before</b>, because the same numbers are still in the same
+    column.</div></div></div>
+
+   <div class="aq"><div>
+    <q>So how do you get the file back after a one-column sort?</q>
+    <div class="ans"><code>Ctrl</code>+<code>Z</code>, straight away, or close the file without saving.
+    <b>Sorting by <code>emp_id</code> will not help</b> &mdash; the rows were not reordered, they were
+    torn apart, and nothing in the file records which salary belonged to which person.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Does a filter delete the rows it hides? Give me two proofs from your own screen.</q>
+    <div class="ans"><b>No.</b> One: the row numbers turn blue and <b>skip</b> &mdash; 2, 8, 15 &mdash;
+    and the missing numbers are the rows still sitting there. Two: <code>=COUNTA(C2:C201)</code> still
+    counts every name. <b>A formula does not care what you are looking at.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Sort the whole table by age, smallest first. Which row is at the very bottom, and why is it not
+    the 210?</q>
+    <div class="ans">The person with <b>no age at all</b> &mdash; Sanjay Menon. <b>Excel always puts
+    blank cells last, in both directions.</b> The 210 is on the last row that has a number in it, one
+    above him.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Excel showed me a box called Sort Warning. What are the two choices and which one do I
+    want?</q>
+    <div class="ans"><b>Expand the selection</b> &mdash; which is already chosen and is the one you want
+    &mdash; and <b>Continue with the current selection</b>, which sorts your one column on its own and
+    wrecks the file. <b>Read that box. Do not close it.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>In the Remove Duplicates box, what did you tick, and what would happen if you ticked only
+    <code>name</code>?</q>
+    <div class="ans"><b>All twelve columns</b>, so a row is only a duplicate if it matches on all
+    twelve. Tick only <code>name</code> and Excel deletes anybody who shares a name with somebody above
+    them. There are <b>20 first names and 10 last names</b> in this file &mdash; 200 possible names for
+    201 people &mdash; so names <b>must</b> repeat, and you would delete real people.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Two rows are duplicates. Which one does Excel keep, and when would that matter?</q>
+    <div class="ans">It keeps <b>the first one it meets</b> and deletes the rest. It never asks. Here
+    both copies were identical so it made no difference &mdash; but the day two rows for one customer
+    have <b>different</b> addresses, the order your rows happen to be in decides which address survives.
+    <b>That is why you colour them and look first.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>201 rows became 200 and three numbers in column Q changed. Which three, and how many formulas
+    did you retype?</q>
+    <div class="ans"><b>rows 201&rarr;200, ages 200&rarr;199, salaries 199&rarr;198.</b> And
+    <b>none</b> &mdash; they corrected themselves, because a spreadsheet is rules that are always
+    running. <code>MIN</code> and <code>MAX</code> did not move, because Anita Patel was neither the
+    &minus;4 nor the 210.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Conditional formatting turned two cells red. What did it change in the data?</q>
+    <div class="ans"><b>Nothing at all.</b> It only added colour. It is a <b>rule</b> &mdash; &ldquo;go
+    red if you are less than zero&rdquo; &mdash; and it re-checks itself. Type 29 over the &minus;4 and
+    <b>the red disappears on its own</b>, because the cell stopped passing the test.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Go To Special &rarr; Blanks selected three cells. Which three, and what should you type into
+    them?</q>
+    <div class="ans"><b>K9</b> and <b>K44</b>, two missing salaries, and <b>I93</b>, one missing age.
+    And you type <b>nothing</b>. A zero in a salary says this person earns nothing; a zero in an age
+    says they were born this year. <b>Mark them yellow, write down the three addresses, and ask whoever
+    owns the data.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Column C is <code>name</code> and column D is <code>department</code>. What happens if I run
+    Text to Columns on C and leave the Destination box alone?</q>
+    <div class="ans">First names stay in C and <b>last names are written straight into D</b>. Two
+    hundred departments gone, with no warning and no prompt. <b>Change the destination to an empty
+    column</b> &mdash; never split into a column that has something to its right.</div></div></div>
+
+   <div class="aq"><div>
+    <q>I split the names into S and T. How do I check all 200 rows worked without scrolling?</q>
+    <div class="ans"><code>=COUNTA(T2:T201)</code>. It should say <b>200</b> &mdash; 200 people, 200 last
+    names. If it says 197, three names did not split and you now know how many to go and find.
+    <b>Yesterday's check, doing a new job.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q><code>=LEN(A208)</code> says 12 and the cell looks like it says <code>Anita Patel</code>, which
+    is eleven characters. And then <code>TRIM</code> gave me a clean name in another column &mdash; why
+    is the job not finished?</q>
+    <div class="ans">The twelfth character is a <b>space at the end</b>, which nobody can see.
+    And the job is not finished because <b><code>TRIM</code> did not fix the original column</b> &mdash;
+    it built a clean copy somewhere else. You have to Copy it and <b>Paste Special &rarr; Values</b> over
+    the original, then delete the helper. Paste normally and you paste the formulas, and the whole thing
+    turns into <code>#REF!</code>.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why can't I just sort the one column I care about?&rdquo;</h5>
+  <p>&ldquo;Because a row is only one person for as long as the twelve values stay side by side. There is
+  nothing inside the file holding them together &mdash; no link, no key, nothing. Sort one column and
+  that column slides past the other eleven, and now Rahul Sharma is being paid Aditya Gupta's salary.
+  <b>And the worst part is that every total on the sheet is still correct</b>, because the same numbers
+  are still in the same column. Select the whole table, every time. If Excel offers to expand the
+  selection, say yes.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;I sorted and now I cannot get the original order back.&rdquo;</h5>
+  <p>&ldquo;There is no unsort button, and that catches everybody once. <code>Ctrl</code>+<code>Z</code>
+  works if you do it now. After that, the only way home is a column that was already in order
+  &mdash; and this file has one. <code>emp_id</code> runs 1001, 1002, 1003 straight down the rows, so
+  sorting by <code>emp_id</code> smallest to largest puts the file back the way it was written.
+  <b>That is what an id column is for.</b> Nobody ever reports on it and it is the only thing that can
+  save you.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is a filter the same as deleting? Where did my hundred and fifty-six rows
+  go?&rdquo;</h5>
+  <p>&ldquo;They are still there, behind the ones you can see. Look at the row numbers down the left
+  &mdash; they went blue and they skip. Every number that is missing is a row that is still in the file.
+  And your summary block has not moved either, because <b>a formula does not care what you are looking
+  at</b>. That is the test: if the formula changed, something was deleted. If it did not, something was
+  hidden.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should we put zero in the three blank cells, or the average?&rdquo;</h5>
+  <p>&ldquo;Neither, and not yet. A zero in a salary cell says <b>this person earns nothing</b>, which is
+  a completely different fact from <b>we do not know what they earn</b>, and you proved yesterday that it
+  drags the average down permanently and nothing warns you. Putting the average in is worse in a quiet
+  way &mdash; the number stops being wrong and starts being invented, and nobody reading the file later
+  can tell the difference. <b>Mark the three cells, write the three addresses down, and ask whoever owns
+  the data.</b> That is the professional answer and it is the answer in an interview
+  too.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My Remove Duplicates said zero duplicates found.&rdquo;</h5>
+  <p>&ldquo;Then somebody has already run it, or your selection did not include the whole table. Press
+  <code>Ctrl</code>+<code>Home</code>, type <code>A1:L202</code> into the Name Box, and try again.
+  And if it says 0 and your file still ends at row 202, check the <b>My data has headers</b> box &mdash;
+  with it unticked Excel treats row 1 as an employee, which does not change the answer here but does
+  change what it tells you.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I undo Remove Duplicates?&rdquo;</h5>
+  <p>&ldquo;Yes. <code>Ctrl</code>+<code>Z</code> brings the row straight back. That is not the thing to
+  be nervous about. The thing to be nervous about is that <b>it deleted a row without showing you which
+  one</b>, and it told you the count afterwards. If you had ticked the wrong boxes it would have deleted
+  thirty rows just as quietly and still only told you a number. <b>Colour them first, look at them, then
+  press the button.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Where is Go To Special on my laptop? <code>Ctrl</code>+<code>G</code> does
+  nothing.&rdquo;</h5>
+  <p>&ldquo;Use the ribbon and you never have to care: <b>Home &rarr; Find &amp; Select &rarr; Go To
+  Special</b>, on the far right of the Home tab. That route is the same on Windows and on a Mac and in
+  every version. <code>F5</code> usually opens the same Go To box if you prefer a key. <b>Do not spend
+  two minutes on a keyboard shortcut</b> &mdash; the button is always there.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does Google Sheets have all of this?&rdquo;</h5>
+  <p>&ldquo;Almost all of it, under slightly different names. <b>Data &rarr; Sort range</b>,
+  <b>Data &rarr; Create a filter</b>, <b>Data &rarr; Data cleanup &rarr; Remove duplicates</b>,
+  <b>Format &rarr; Conditional formatting</b>, <b>Data &rarr; Split text to columns</b>, and
+  <code>TRIM</code>, <code>PROPER</code>, <code>UPPER</code>, <code>LOWER</code> and <code>LEN</code>
+  are identical. <b>The one thing Sheets does not have is Go To Special.</b> You find blanks there a
+  different way &mdash; put a filter on the column and tick only <b>(Blanks)</b> in the dropdown, which
+  gives you the same three rows. Same job, different door.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;If our file is already clean, why are we learning
+  <code>TRIM</code>?&rdquo;</h5>
+  <p>&ldquo;Two honest reasons. One, it gets asked in interviews &mdash; <code>TRIM</code> and
+  <code>PROPER</code> are two of the most asked text functions there are, and &lsquo;our file did not
+  need it&rsquo; is not an answer you can give in a room. Two, this file is the exception. <b>A file with
+  no stray spaces and nothing spelled two ways is rare</b>, and the reason you could not find any dirt
+  today is that I went and checked, not that dirt is unusual. That is why I typed those five rows in
+  front of you instead of pretending they were yours.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="ab23">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -26464,7 +28606,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","ab23","ab24","ab25","ab26","ab27","ab28","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","ab23","ab24","ab25","ab26","ab27","ab28","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
