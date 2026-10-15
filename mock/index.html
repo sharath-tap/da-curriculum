@@ -456,6 +456,16 @@ body[data-batch="sep"] .augnote{display:block}
 .augnote code{background:rgba(93,42,26,.10);color:var(--sienna);
   border:1px solid rgba(93,42,26,.20);padding:1px 5px;border-radius:5px;font-weight:500}
 
+.startlist{border:1px solid var(--hair);border-radius:16px;padding:17px 20px 19px;margin:0 0 26px}
+.startlist ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+/* exactly TWO grid items per row - the ::before box and ONE span. a bare <b>
+   alongside a text node makes a third item and it wraps onto its own line. */
+.startlist li{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;
+  font-size:16.5px;line-height:1.5;color:var(--slate)}
+.startlist li::before{content:"";width:15px;height:15px;margin-top:4px;border-radius:4px;
+  border:1.5px solid var(--smoke)}
+.startlist b{color:var(--ink);font-weight:450}
+
 .round{border-top:1px solid var(--hair);padding-top:30px;margin-top:38px}
 .round:first-of-type{border-top:0;margin-top:0;padding-top:0}
 .rhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
@@ -547,6 +557,13 @@ nav:not(.tapnav){top:var(--tapnav-h,46px)!important}
 
 <section style="padding-top:40px">
  <div class="wrap">
+  <div class="startlist">
+   <span class="lbl">Before any question</span>
+   <ul>
+    <li><span>Ask for a <b>self-introduction</b>.</span></li>
+    <li><span>Ask for the <b>resume</b>.</span></li>
+   </ul>
+  </div>
   <div class="augnote"><b>September B2 selected.</b> 20 questions are hidden &mdash; functions and
   <code>def</code>, <code>while</code> / <code>break</code> / <code>continue</code>,
   <code>lambda</code>, <code>map</code> / <code>filter</code> / <code>reduce</code>, recursion,
