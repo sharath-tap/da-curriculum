@@ -613,13 +613,21 @@ try{var _t=localStorage.getItem("steep-theme");
 
   <div class="track">
    <div class="trackhead">
-    <h2>August B3 &mdash; Python</h2>
+    <h2>August B3 + September B2 &mdash; Python</h2>
     <span class="badge live">Running now</span>
-    <span class="badge">22 delivered &middot; 6 scripts ready</span>
+    <span class="badge">Merged 08 Oct &middot; D29 next</span>
    </div>
-   <p class="tracknote">The newest batch, still in Python. Regex and list comprehension closed on
-   5&nbsp;Oct. Six sessions remain before NumPy: the loop they have never met, file handling, a CSV by
-   hand, two of OOP, then arrays. All six scripts are written, through to the NumPy intro.</p>
+   <p class="tracknote"><b>These two batches became one class on 8 October</b> &mdash; from D24 onward
+   both playlists carry the same recording. Delivered since: file handling, error handling, then three
+   sessions on classes and objects. <b>D29 closes object orientation</b> with all four pillars in one
+   session, and NumPy starts the week after.
+   <br><br>
+   <b>One thing to carry into every joint session.</b> The September batch joined at file handling and
+   skipped the whole functions block &mdash; across all eleven of their own recordings,
+   <code>def</code> appears <b>zero</b> times and <code>lambda</code> <b>zero</b>. They have met methods
+   inside a class and nothing else. D29 repairs that in its first fourteen minutes without announcing
+   it; <code>lambda</code> still needs fifteen minutes before <code>.apply()</code> arrives in
+   Pandas.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="ab23">
@@ -657,7 +665,13 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="id">B3 DAY 28</span><h3>The First Library</h3>
      <p>NumPy. Opens on <code>[100,200,300] * 2</code> repeating against the array doubling, times a
      million numbers live, and ends on the condition-in-brackets that Pandas is built from.</p>
-     <span class="foot">Script ready &middot; 13 Oct</span></button>
+     <span class="foot">Script ready &middot; after D29</span></button>
+
+    <button class="dcard full" data-go="ab29">
+     <span class="id">D29 &middot; JOINT</span><h3>The Four Words, And Where You Already Knew Them</h3>
+     <p>All four pillars in one session, on one eight-line class called <code>Column</code> &mdash;
+     which turns out, in the last ten minutes, to be a pandas <code>Series</code>.</p>
+     <span class="foot">Script ready &middot; closes OOP</span></button>
    </div>
   </div>
 
@@ -25431,6 +25445,941 @@ float64</div>
  </div>
 </section>
 </div>
+<div class="day" id="ab29">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">August B3 + September B2 &middot; day 29 &middot; 90 minutes &middot; full script &middot; closes object orientation</p>
+  <h1 class="display">The Four Words,<br>And Where You<br>Already Knew Them</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:680px">
+   All four pillars in one session, at the depth a data analyst actually needs. The whole class is
+   built on one eight-line class called <code>Column</code> &mdash; which turns out, in the last ten
+   minutes, to be a pandas Series.</p>
+  <div class="glance">
+   <div class="gcell"><b>4</b><span>words, one session</span></div>
+   <div class="gcell"><b>8</b><span>lines of code, reused all day</span></div>
+   <div class="gcell"><b>0</b><span>new ideas after the close</span></div>
+   <div class="gcell"><b>Series</b><span>what they built without knowing</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Do not teach four separate topics. Teach one small class, four times.</h4>
+   <p style="color:var(--sienna)">Four pillars taught as four separate lectures is how this subject
+   loses a room. Instead you build <b style="color:var(--sienna)">one</b> tiny class &mdash; a
+   <code>Column</code> that holds a name and some numbers and can average itself &mdash; and then you
+   look at that same class four times, from four angles. Each pillar is a <b style="color:var(--sienna)">new
+   question about code they already have on screen</b>, never a new example.</p>
+   <p style="color:var(--sienna)">Then in the last ten minutes you import pandas and show them that
+   <code>df["salary"]</code> is <b style="color:var(--sienna)">exactly the class they just wrote</b>,
+   written properly by somebody else. Next week stops being a new subject and becomes the thing they
+   were already doing.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Half this room has never written <code>def</code> on its own.</b> The September batch joined
+   at file handling on 8 October and skipped the whole functions block &mdash; no <code>def</code>, no
+   arguments, no lambda. They have met methods inside a class over the last three sessions and nothing
+   else. <b>So the first fourteen minutes quietly repair that</b>, framed as &ldquo;let us look at the
+   shape of a function on its own&rdquo;, not as catch-up. <b>Do not announce that anybody is
+   behind.</b></li>
+   <li><b>Open on <code>type()</code>, not on a definition.</b> <code>type(5)</code> says
+   <b>class</b>. So does <code>type("hello")</code>. They have been using classes since week one and
+   nobody told them the word. That is the only hook this session needs, and it costs two
+   minutes.</li>
+   <li><b>One class, all day. Do not invent a second example.</b> Every pillar is a new question about
+   <code>Column</code>. The moment you reach for a dog and a cat, the thread breaks and they stop
+   seeing what it has to do with data.</li>
+   <li><b>Inheritance is the weakest one for a data analyst. Give it the least time.</b> They will use
+   it roughly never. Polymorphism and abstraction are what they meet every single day in pandas. Budget
+   accordingly &mdash; 14 minutes for inheritance, 18 for polymorphism.</li>
+   <li><b>Surface level means surface level.</b> No private variables, no double underscore, no
+   <code>super()</code>, no abstract base classes, no class variables against instance variables, no
+   multiple inheritance. If somebody asks, answer in one sentence and say it is not needed for data
+   work. The list of what you are deliberately leaving out is at the bottom of this page.</li>
+   <li><b>Hold the pandas reveal to the last ten minutes.</b> It is the payoff. If you show
+   <code>df</code> at minute twenty, the four pillars become homework instead of a story.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what each of the four words actually means in
+  one plain sentence, the one distinction students always muddle, and why any of this matters to
+  somebody who only wants to analyse data.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the four words, one sentence each</h5>
+
+   <div class="mth">
+    <div class="mrow"><b>encapsulation</b><div>Keep the <b>data and the things that work on it in one
+    box</b>. The box is the class.</div></div>
+    <div class="mrow"><b>abstraction</b><div>Give people <b>a simple button</b> and hide the
+    complicated part behind it. They use it without knowing how it works.</div></div>
+    <div class="mrow"><b>inheritance</b><div>A new class <b>starts with everything</b> an existing class
+    had, and adds to it. You do not write the old parts again.</div></div>
+    <div class="mrow"><b>polymorphism</b><div><b>The same word does the right thing</b> for different
+    kinds of data. <code>len()</code> on a word counts letters; on a list it counts items.</div></div>
+   </div>
+
+   <p>That is the whole vocabulary. Everything else in this session is those four sentences, shown on
+   running code.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; encapsulation against abstraction, which is the one they muddle</h5>
+
+   <h6>They sound the same and they are not</h6>
+   <p>Both involve hiding something, which is why every student mixes them up. The difference is
+   <b>what is being hidden, and from whom</b>.</p>
+   <div class="mth">
+    <div class="mrow"><b>encapsulation</b><div>Is about <b>where the code lives</b>. The salary numbers
+    and the function that averages them live together inside one class instead of being two separate
+    things you have to keep in step.</div></div>
+    <div class="mrow"><b>abstraction</b><div>Is about <b>what you are allowed to ignore</b>. You type
+    <code>.mean()</code> and never find out there is a loop inside it.</div></div>
+    <div class="mrow warn2"><b>say it like this</b><div><b>Encapsulation is packing the box.
+    Abstraction is not having to look inside it.</b> One is how the code is organised; the other is how
+    little the user needs to know.</div></div>
+   </div>
+
+   <h6>Why that distinction is worth two minutes of your time</h6>
+   <p>It is the most common interview follow-up on this topic, and &ldquo;both of them hide
+   things&rdquo; is the most common wrong answer. One sentence each, said clearly once, is enough.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; why a data analyst should care at all</h5>
+
+   <h6>Be honest: they will almost never write a class</h6>
+   <p>In a normal data job you are not going to design class hierarchies. If you tell them this is for
+   building software, the half of the room that wants to analyse data will switch off, and they will be
+   right to.</p>
+
+   <h6>What is actually true</h6>
+   <p>They will <b>use</b> classes other people wrote, constantly, for the rest of the course and the
+   rest of their careers. Every single thing they touch in pandas is an object.</p>
+   <div class="mcalc">pd.DataFrame     is a class
+df              is an object
+df.head()       is a method
+df.shape        is an attribute</div>
+   <div class="keyline">
+    <b>This session is not about writing classes. It is about being able to read the tool you are
+    about to pick up.</b><br><br>
+    Next week they type <code>pd.read_csv()</code> and get something back. Today decides whether that
+    something is a mystery or a thing they understand the shape of.
+   </div>
+
+   <h6>The honest ranking for a data analyst</h6>
+   <div class="mth">
+    <div class="mrow"><b>every day</b><div><b>Abstraction</b> and <b>polymorphism</b>.
+    <code>df.describe()</code> hides eight calculations. <code>.mean()</code> behaves differently on a
+    number column and a text column.</div></div>
+    <div class="mrow"><b>often enough</b><div><b>Encapsulation</b> &mdash; it is why
+    <code>df.mean()</code> is attached to the data instead of being a separate function you feed the
+    data into.</div></div>
+    <div class="mrow warn2"><b>rarely</b><div><b>Inheritance.</b> Worth knowing the word because it is
+    asked in interviews. Not worth thirty minutes.</div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-14 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 14</span><h3>You have been using classes since week one</h3></div>
+   <p class="objective">Two minutes to prove it, then twelve to put the shape of a function back on the
+   board where everybody can see it.</p>
+
+   <div class="stage">Laptops open. Everybody types this. Say nothing about the four pillars yet
+   &mdash; do not even write the word on the board.</div>
+
+   <div class="speak">
+    <p>Before we add anything new, type these four lines and tell me what you notice.</p>
+   </div>
+
+   <div class="typeit">Type this</div>
+<pre><code><span class="k">print</span>(<span class="k">type</span>(<span class="o">5</span>))
+<span class="k">print</span>(<span class="k">type</span>(<span class="c">"hello"</span>))
+<span class="k">print</span>(<span class="k">type</span>([<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>]))
+<span class="k">print</span>(<span class="k">type</span>({<span class="c">"a"</span>: <span class="o">1</span>}))</code></pre>
+   <div class="screen">&lt;class 'int'&gt;
+&lt;class 'str'&gt;
+&lt;class 'list'&gt;
+&lt;class 'dict'&gt;</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What word is in all four answers?&rdquo;</div>
+    <div class="a"><b>class.</b> Wait for somebody to say it. Then do not explain &mdash; just let it
+    sit for a second, because the next sentence is the whole hook.</div>
+   </div>
+
+   <div class="speak">
+    <p>Every one of them says <b>class</b>.</p>
+    <p>A number is a class. A piece of text is a class. A list is a class. A dictionary is a class.</p>
+    <p>You have been using classes since the first week of this course. Nobody told you the word,
+    because you did not need it yet.</p>
+    <p>And every time you wrote <code>.upper()</code> on a string, or <code>.append()</code> on a list,
+    or <code>.keys()</code> on a dictionary &mdash; that was a <b>method</b>. A function that belongs to
+    a class.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Today is not a new subject.</b><br><br>
+    It is four words put onto things you have been doing for six weeks without a name for them. That is
+    the whole session.
+   </div>
+
+   <div class="stage">Now the function shape, for twelve minutes. Frame it as &ldquo;a method is a
+   function that lives inside a class, so let us look at a plain function on its own first&rdquo;.
+   <b>Do not frame it as revision and do not say anybody missed it.</b></div>
+
+   <div class="speak">
+    <p>A method is a function that lives inside a class. So before we go further, let us put a plain
+    function on the screen on its own, with nothing around it.</p>
+    <p>Here is one that takes a list of numbers and gives back the average.</p>
+   </div>
+
+   <div class="typeit">Type this &mdash; four parts to notice, and I will name them after</div>
+<pre><code><span class="k">def</span> average(numbers):
+    total = <span class="o">0</span>
+    <span class="k">for</span> n <span class="k">in</span> numbers:
+        total = total + n
+    <span class="k">return</span> total / <span class="k">len</span>(numbers)
+
+
+<span class="k">print</span>(average([<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>]))</code></pre>
+   <div class="screen">55000.0</div>
+
+   <div class="typeit">The four parts, on the board, and leave this up all session</div>
+<pre><code>  def        the word that says "I am making a function"
+  average    the name I chose. I will use this name to run it later
+  numbers    what I must hand it. this is the PARAMETER
+  return     what comes back out
+
+
+  nothing happens when you write a function.
+  it only runs when you CALL it by name.</code></pre>
+
+   <div class="speak">
+    <p>Four parts. <code>def</code>, a name, what goes in, and what comes back out.</p>
+    <p>And notice the last line on the board, because it catches everybody once. Writing a function
+    does <b>nothing</b>. It is a recipe sitting on a shelf. It only runs the moment you call its
+    name.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Look at the call. <code>average(...)</code>. Where have you seen that shape
+    before?&rdquo;</div>
+    <div class="a">Everywhere. <code>len(x)</code>, <code>print(x)</code>, <code>sum(x)</code>,
+    <code>max(x)</code>. <b>All of them are functions somebody else wrote and you called by name.</b>
+    The only new thing today is that you can write your own.</div>
+   </div>
+
+   <div class="warn"><b>If anybody is stuck on the indentation, fix it now and not later.</b>
+   Everything indented under the <code>def</code> line belongs to the function. The first line that goes
+   back to the left margin is outside it again. They will meet exactly the same rule inside a class in
+   four minutes, so it is worth getting right once.</div>
+  </div>
+
+  <!-- 14-32 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">14 &ndash; 32</span><h3>Encapsulation &mdash; put the data and the work in one box</h3></div>
+   <p class="objective">Build the class that carries the entire session. Eight lines, and it does not
+   change again.</p>
+
+   <div class="speak">
+    <p>Look at what we just wrote. The function <code>average</code> is in one place. The salary numbers
+    are somewhere else, in a list. Every time I want an average I have to <b>carry the numbers over to
+    the function</b> and hand them in.</p>
+    <p>That works. It also means the numbers and the thing that understands them are two separate
+    objects that I have to keep in step myself.</p>
+    <p>So let us put them in one box instead.</p>
+   </div>
+
+   <div class="typeit">This class is the whole session. Type it carefully.</div>
+<pre><code><span class="k">class</span> Column:
+
+    <span class="k">def</span> __init__(self, name, values):
+        self.name   = name
+        self.values = values
+
+    <span class="k">def</span> mean(self):
+        <span class="k">return</span> <span class="k">sum</span>(self.values) / <span class="k">len</span>(self.values)
+
+    <span class="k">def</span> biggest(self):
+        <span class="k">return</span> <span class="k">max</span>(self.values)</code></pre>
+
+   <div class="typeit">Now use it</div>
+<pre><code>salary = Column(<span class="c">"salary"</span>, [<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>])
+
+<span class="k">print</span>(salary.name)
+<span class="k">print</span>(salary.values)
+<span class="k">print</span>(salary.mean())
+<span class="k">print</span>(salary.biggest())</code></pre>
+   <div class="screen">salary
+[50000, 62000, 48000, 60000]
+55000.0
+62000</div>
+
+   <div class="stage">Put the two versions side by side on the board before you say anything. The
+   difference is visual and they will spot it themselves.</div>
+
+   <div class="typeit">The old way and the new way, side by side</div>
+<pre><code>  BEFORE                            AFTER
+
+  values = [50000, 62000, ...]      salary = Column("salary", [50000, ...])
+  average(values)                   salary.mean()
+
+  two things I keep in step         one thing that knows its own numbers</code></pre>
+
+   <div class="speak">
+    <p><code>average(values)</code> needed me to hand it the data.</p>
+    <p><code>salary.mean()</code> does not. <b>The data is already inside.</b> I never mention the
+    numbers at all &mdash; the object is standing on them.</p>
+    <p>That is the first word. <b>Encapsulation.</b> The data and the things that work on that data,
+    kept in one box.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Encapsulation is why you write <code>df.mean()</code> and not <code>mean(df)</code>.</b><br><br>
+    Next week, when you have a real table in pandas, you will not pass it into anything. You will put a
+    dot after it, because everything that understands that table is already attached to it.
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why does <code>mean</code> need <code>self</code> written inside the
+    brackets, when I called it with empty brackets?&rdquo;</div>
+    <div class="a">Because <code>self</code> is <b>the particular box we are talking about</b>. When you
+    write <code>salary.mean()</code>, Python quietly passes <code>salary</code> in as
+    <code>self</code>. You do not type it because the thing before the dot <em>is</em> it. One sentence,
+    then move &mdash; do not go deeper today.</div>
+   </div>
+  </div>
+
+  <!-- 32-48 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">32 &ndash; 48</span><h3>Abstraction &mdash; one button, and you never look inside</h3></div>
+   <p class="objective">Same class, nothing new typed. A different question about code already on
+   screen.</p>
+
+   <div class="stage">Nothing new is typed in this block. Put the <code>Column</code> class back on
+   screen and ask about it. The whole point is that the code has not changed.</div>
+
+   <div class="speak">
+    <p>Now I want to ask a completely different question about the same class.</p>
+    <p>When you ran <code>salary.mean()</code>, what did you have to know about how it works?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Did you need to know there is a <code>sum</code> and a <code>len</code> and a
+    division inside it?&rdquo;</div>
+    <div class="a"><b>No.</b> You typed the name and got the answer. Push once more: &ldquo;if I went
+    into that class right now and rewrote <code>mean</code> with a loop instead, would your line
+    change?&rdquo; <b>It would not.</b> That is the whole idea.</div>
+   </div>
+
+   <div class="speak">
+    <p>You typed six characters and got an answer. You never looked inside.</p>
+    <p>And if I rewrote the inside of <code>mean</code> tonight &mdash; made it faster, made it handle
+    empty lists &mdash; <b>your line of code would not change at all.</b></p>
+    <p>That is the second word. <b>Abstraction.</b> A simple button on the outside, the complicated part
+    hidden behind it.</p>
+   </div>
+
+   <div class="speak">
+    <p>And you have been on the receiving end of this since day one.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; things they use without ever having looked inside</div>
+<pre><code>  len("hello")        you have never seen how it counts
+  sorted(marks)       you have never seen the sorting algorithm
+  "abc".upper()       you have never seen it walk the letters
+  open("data.txt")    you have never seen it talk to the hard disk
+
+  every one of these is somebody else's complicated code
+  behind a short, simple name.</code></pre>
+
+   <div class="keyline">
+    <b>Encapsulation is packing the box. Abstraction is not having to look inside it.</b><br><br>
+    One is about where the code lives. The other is about how little you need to know to use it. They
+    sound the same and they are not, and that difference is asked in interviews.
+   </div>
+
+   <div class="speak">
+    <p>Here is why this matters more to you than to almost anybody else in the building.</p>
+    <p>Next week you will type one line to open a file with two hundred rows and twelve columns, work
+    out the type of every column, and hand it back to you as a table.</p>
+    <p>That one line sits on top of <b>thousands</b> of lines somebody else wrote. You will never read
+    one of them. <b>That is not laziness. That is the deal.</b></p>
+   </div>
+
+   <div class="warn"><b>Expect &ldquo;so should we never look inside?&rdquo;</b> Answer it straight:
+   look inside when it breaks, or when you are curious and have time. Not before. A data analyst who
+   insists on understanding every line of pandas before using it will still be reading in
+   March.</div>
+  </div>
+
+  <!-- 48-62 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">48 &ndash; 62</span><h3>Inheritance &mdash; start with everything, then add</h3></div>
+   <p class="objective">The shortest block on purpose. They need the word and one working example, not
+   a hierarchy.</p>
+
+   <div class="stage">Fourteen minutes, and be disciplined about it. This is the pillar a data analyst
+   uses least. Resist every invitation to go deeper &mdash; the time belongs to polymorphism.</div>
+
+   <div class="speak">
+    <p>Suppose I want a special kind of column, just for salaries, that can also show the numbers in
+    lakhs.</p>
+    <p>I could write a whole new class. But it would need a name, and values, and a mean, and a biggest
+    &mdash; and I have already written all of that.</p>
+    <p>So instead I say: <b>this new class is a Column, plus one more thing.</b></p>
+   </div>
+
+   <div class="typeit">Two lines in the brackets is the whole idea</div>
+<pre><code><span class="k">class</span> SalaryColumn(Column):
+
+    <span class="k">def</span> in_lakhs(self):
+        <span class="k">return</span> [v / <span class="o">100000</span> <span class="k">for</span> v <span class="k">in</span> self.values]</code></pre>
+
+   <div class="typeit">Now watch what it can already do</div>
+<pre><code>pay = SalaryColumn(<span class="c">"salary"</span>, [<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>])
+
+<span class="k">print</span>(pay.mean())
+<span class="k">print</span>(pay.biggest())
+<span class="k">print</span>(pay.in_lakhs())</code></pre>
+   <div class="screen">55000.0
+62000
+[0.5, 0.62, 0.48, 0.6]</div>
+
+   <div class="stage">Stop here and let them look at the first two lines of output before you explain
+   anything.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Scroll up to <code>SalaryColumn</code>. Where is <code>mean</code> written in
+    it?&rdquo;</div>
+    <div class="a"><b>It is not.</b> There is no <code>mean</code> anywhere in that class, and no
+    <code>biggest</code>, and no <code>__init__</code>. They all still work. Let the room sit with that
+    for a moment &mdash; it is the only surprising thing in the block.</div>
+   </div>
+
+   <div class="speak">
+    <p>There is no <code>mean</code> in <code>SalaryColumn</code>. There is no <code>__init__</code>
+    either. I did not write them.</p>
+    <p>They came for free, because of the two words in brackets &mdash; <code>(Column)</code>. That says
+    <b>start with everything Column has, then let me add.</b></p>
+    <p>That is the third word. <b>Inheritance.</b></p>
+   </div>
+
+   <div class="typeit">The two names, because interviews ask for them</div>
+<pre><code>  Column          the PARENT class   (also called the base class)
+  SalaryColumn    the CHILD class    (also called the derived class)
+
+  the child gets everything the parent had, and can add more.</code></pre>
+
+   <div class="warn"><b>Be straight with them about how much this matters.</b> As a data analyst you
+   will use inheritance roughly never. You should know the word and recognise the brackets, because it
+   is an interview question. That is the honest size of it, and saying so buys you credibility for the
+   next block, which <em>does</em> matter.</div>
+  </div>
+
+  <!-- 62-80 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">62 &ndash; 80</span><h3>Polymorphism &mdash; the same word, the right behaviour</h3></div>
+   <p class="objective">The one they have used the longest without a name. Start with what they already
+   know, then do it to their own class.</p>
+
+   <div class="stage">Eighteen minutes, the longest block. Open with the built-ins, because they have
+   been living with this since week one and recognising it is the whole lesson.</div>
+
+   <div class="speak">
+    <p>Last word, and it is the one you have been using the longest. Type these.</p>
+   </div>
+
+   <div class="typeit">Six lines you can already predict</div>
+<pre><code><span class="k">print</span>(<span class="k">len</span>(<span class="c">"hello"</span>))
+<span class="k">print</span>(<span class="k">len</span>([<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>]))
+<span class="k">print</span>(<span class="k">len</span>({<span class="c">"a"</span>: <span class="o">1</span>, <span class="c">"b"</span>: <span class="o">2</span>}))
+
+<span class="k">print</span>(<span class="o">2</span> + <span class="o">3</span>)
+<span class="k">print</span>(<span class="c">"2"</span> + <span class="c">"3"</span>)
+<span class="k">print</span>([<span class="o">1</span>, <span class="o">2</span>] + [<span class="o">3</span>])</code></pre>
+   <div class="screen">5
+3
+2
+5
+23
+[1, 2, 3]</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;One word, <code>len</code>. It counted letters, then items, then keys. Did you
+    ever have to tell it which one to do?&rdquo;</div>
+    <div class="a"><b>Never.</b> And the same with the plus sign &mdash; it <b>added</b> two numbers,
+    it <b>joined</b> two pieces of text, and it <b>stuck together</b> two lists. Same symbol, three
+    jobs. They have been relying on this since week one without a word for it.</div>
+   </div>
+
+   <div class="speak">
+    <p>One word, <code>len</code>. Three completely different kinds of thing. Three correct answers.
+    And you never once had to say which kind you had.</p>
+    <p>Same with the plus sign. Two and three gives <b>five</b>. Text two and text three gives
+    <b>twenty-three</b> &mdash; it joined them. Two lists gives one longer list.</p>
+    <p>That is the fourth word. <b>Polymorphism.</b> The same word, doing the right thing for whatever
+    it is given.</p>
+   </div>
+
+   <div class="stage">Now do it to their own class. This is the moment the four pillars stop being
+   vocabulary and start being something they built.</div>
+
+   <div class="speak">
+    <p>Now let us do that ourselves. What should happen if somebody asks a column of <b>names</b> for
+    its average?</p>
+   </div>
+
+   <div class="typeit">A second child class &mdash; and this time we replace a method instead of adding one</div>
+<pre><code><span class="k">class</span> TextColumn(Column):
+
+    <span class="k">def</span> mean(self):
+        <span class="k">return</span> <span class="c">"a text column has no average"</span></code></pre>
+
+   <div class="typeit">Now ask all three the same question</div>
+<pre><code>salary = Column(<span class="c">"salary"</span>, [<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>])
+pay    = SalaryColumn(<span class="c">"salary"</span>, [<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>])
+name   = TextColumn(<span class="c">"name"</span>, [<span class="c">"Asha"</span>, <span class="c">"Ravi"</span>, <span class="c">"Meena"</span>, <span class="c">"Vikram"</span>])
+
+<span class="k">for</span> c <span class="k">in</span> [salary, pay, name]:
+    <span class="k">print</span>(c.name, <span class="c">"->"</span>, c.mean())</code></pre>
+   <div class="screen">salary -> 55000.0
+salary -> 55000.0
+name -> a text column has no average</div>
+
+   <div class="speak">
+    <p>Look at that loop. It says <code>c.mean()</code> <b>once</b>.</p>
+    <p>It does not check what kind of column it has. It does not have an if-else in it. It just asks,
+    and each object answers in its own way.</p>
+    <p><code>TextColumn</code> has its own <code>mean</code>, so Python uses that one instead of the
+    one it inherited. Same name, different behaviour. <b>Nobody has to remember which one to
+    call.</b></p>
+   </div>
+
+   <div class="keyline">
+    <b>This is the pillar you will meet every single day next week.</b><br><br>
+    <code>df["salary"].mean()</code> gives you a number. <code>df["name"].mean()</code> does not,
+    because a column of names has no average. <b>Same method name, different behaviour, decided by what
+    is in the column.</b> You will not have to think about it, and now you know why.
+   </div>
+
+   <div class="qbox">
+    <div class="q">If you have a spare minute: &ldquo;try <code>name.biggest()</code>. What do you
+    expect?&rdquo;</div>
+    <div class="a">It returns <code>Vikram</code>. <code>max</code> on text gives the one that comes
+    last alphabetically. <b>Polymorphism again, and we did not write a line for it</b> &mdash; it came
+    from <code>max</code> being built that way. A nice bonus if time allows; skip it if you are
+    behind.</div>
+   </div>
+  </div>
+
+  <!-- 80-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Close &mdash; what you actually built today</h3></div>
+   <p class="objective">The reveal. Ten minutes, and it sets up the whole of next week.</p>
+
+   <div class="stage">This is the payoff for the entire session. <b>Do not rush it and do not run it
+   early.</b> If anybody still has the <code>Column</code> class on screen, tell them to keep it
+   there.</div>
+
+   <div class="speak">
+    <p>Keep your <code>Column</code> class on the screen. I want to show you one thing and then we are
+    finished.</p>
+   </div>
+
+   <div class="typeit">Type this. Three lines.</div>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+df = pd.read_csv(<span class="c">"employees.csv"</span>)
+
+<span class="k">print</span>(<span class="k">type</span>(df))
+<span class="k">print</span>(<span class="k">type</span>(df[<span class="c">"salary"</span>]))</code></pre>
+   <div class="screen">&lt;class 'pandas.core.frame.DataFrame'&gt;
+&lt;class 'pandas.core.series.Series'&gt;</div>
+
+   <div class="speak">
+    <p>Both say <b>class</b>. Same word we started the session with.</p>
+    <p>And look at the second one. A single column of that file is a thing called a <b>Series</b>.</p>
+   </div>
+
+   <div class="typeit">Now put them side by side</div>
+<pre><code>  WHAT YOU WROTE TODAY            WHAT PANDAS GIVES YOU
+
+  Column                          Series
+  salary.name                     df["salary"].name
+  salary.values                   df["salary"].values
+  salary.mean()                   df["salary"].mean()
+  salary.biggest()                df["salary"].max()</code></pre>
+
+   <div class="speak">
+    <p>That class you wrote today &mdash; a name, some values, and a <code>mean</code> &mdash; is a
+    <b>Series</b>. Somebody wrote it properly, with four hundred methods instead of two, and tested it
+    for fifteen years.</p>
+    <p>You wrote eight lines of it in forty minutes.</p>
+    <p>And every one of the four words is in there. The data and the methods are in one box
+    &mdash; <b>encapsulation</b>. You type <code>.mean()</code> and never see inside &mdash;
+    <b>abstraction</b>. A DataFrame is built on top of other pandas classes &mdash;
+    <b>inheritance</b>. And <code>.mean()</code> behaves differently on numbers and on text &mdash;
+    <b>polymorphism</b>.</p>
+   </div>
+
+   <div class="typeit">The four lines. If everything else goes, keep these.</div>
+<pre><code>1.  ENCAPSULATION   data and the work on it, in one box.
+                    that is why you write df.mean() and not mean(df).
+
+2.  ABSTRACTION     a simple button, complicated part hidden.
+                    pd.read_csv() is thousands of lines. you type one.
+
+3.  INHERITANCE     class Child(Parent) - start with everything
+                    the parent had, then add. you will rarely write it.
+
+4.  POLYMORPHISM    same word, right behaviour for what it is given.
+                    len("hi") is 2, len([1,2,3]) is 3. nobody told it which.
+
+
+   encapsulation is PACKING the box.
+   abstraction is NOT HAVING TO LOOK inside it.
+</code></pre>
+
+   <div class="speak">
+    <p>Next week we stop writing classes and start using the best one ever written for this job.</p>
+    <p>You will not need to remember a single thing about <code>self</code> or <code>__init__</code>.
+    You will need exactly one idea: <b>the thing you get back knows how to do things to itself, and you
+    reach them with a dot.</b></p>
+    <p>That is it. That is why we did today.</p>
+   </div>
+
+   <div class="warn"><b>What you deliberately did not teach, so you can say so if challenged.</b>
+   Private variables and the double underscore, <code>super()</code>, abstract base classes, class
+   variables against instance variables, multiple inheritance, <code>@property</code>, dunder methods
+   beyond <code>__init__</code>, and method resolution order. <b>None of it is needed to use pandas</b>,
+   and all of it would have cost you the pandas reveal at the end. If a student asks about one, answer
+   in a sentence and move on.</div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Six steps, every line of code, every board item. If you lose your place, this
+  page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 14</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Classes since week one, and the shape of a function</p>
+   <p class="rs-say"><b>Land this:</b> do not write &ldquo;four pillars&rdquo; on the board yet. Open
+   cold on <code>type()</code>.</p>
+   <div class="rs-code"><pre><code><span class="k">print</span>(<span class="k">type</span>(<span class="o">5</span>)); <span class="k">print</span>(<span class="k">type</span>(<span class="c">"hello"</span>)); <span class="k">print</span>(<span class="k">type</span>([<span class="o">1</span>,<span class="o">2</span>,<span class="o">3</span>])); <span class="k">print</span>(<span class="k">type</span>({<span class="c">"a"</span>:<span class="o">1</span>}))</code></pre></div>
+   <div class="rs-out">&lt;class 'int'&gt;  &lt;class 'str'&gt;  &lt;class 'list'&gt;  &lt;class 'dict'&gt;</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;what word is in all four?&rdquo; &mdash; <b>class</b>. Then:
+   six weeks of <code>.upper()</code>, <code>.append()</code>, <code>.keys()</code> were all
+   <b>methods</b>. <b>Today is not a new subject.</b></div>
+   <p class="rs-do" style="margin-top:12px">Then the function shape &mdash; frame as &ldquo;a method is
+   a function inside a class, so let us see one alone&rdquo;. <b>Never say revision.</b></p>
+   <div class="rs-code"><pre><code><span class="k">def</span> average(numbers):
+    total = <span class="o">0</span>
+    <span class="k">for</span> n <span class="k">in</span> numbers:
+        total = total + n
+    <span class="k">return</span> total / <span class="k">len</span>(numbers)
+
+<span class="k">print</span>(average([<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>]))</code></pre></div>
+   <div class="rs-out">55000.0</div>
+   <div class="rs-board"><b>Four parts, leave on the board:</b> <code>def</code> &middot; the name you
+   chose &middot; the <b>parameter</b> &middot; <code>return</code>.<br><br>
+   <b>And:</b> writing a function does nothing. It runs only when you <b>call</b> it. Then point at
+   <code>len(x)</code>, <code>sum(x)</code>, <code>print(x)</code> &mdash; same shape, somebody else's
+   functions.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">14 &ndash; 32</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Encapsulation</p>
+   <p class="rs-say"><b>Land this:</b> this class carries the whole session. It does not change
+   again.</p>
+   <div class="rs-code"><pre><code><span class="k">class</span> Column:
+    <span class="k">def</span> __init__(self, name, values):
+        self.name   = name
+        self.values = values
+    <span class="k">def</span> mean(self):
+        <span class="k">return</span> <span class="k">sum</span>(self.values) / <span class="k">len</span>(self.values)
+    <span class="k">def</span> biggest(self):
+        <span class="k">return</span> <span class="k">max</span>(self.values)
+
+salary = Column(<span class="c">"salary"</span>, [<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>])
+<span class="k">print</span>(salary.name, salary.mean(), salary.biggest())</code></pre></div>
+   <div class="rs-out">salary 55000.0 62000</div>
+   <div class="rs-board"><b>On the board, side by side:</b> <code>average(values)</code> made you hand
+   over the data &middot; <code>salary.mean()</code> does not, <b>the data is already inside</b>.<br><br>
+   <b>Encapsulation is why you write <code>df.mean()</code> and not <code>mean(df)</code>.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> &ldquo;why <code>self</code> in the
+   brackets when I called it empty?&rdquo; &mdash; <code>self</code> is <b>the box we are talking
+   about</b>; the thing before the dot is it. <b>One sentence, then move.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">32 &ndash; 48</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Abstraction &mdash; nothing new is typed</p>
+   <p class="rs-say"><b>Land this:</b> same class back on screen, different question. The code has not
+   changed and that is the point.</p>
+   <div class="rs-board"><b>Ask:</b> &ldquo;when you ran <code>salary.mean()</code>, what did you need
+   to know about how it works?&rdquo; &mdash; <b>nothing</b>. Then: &ldquo;if I rewrote the inside
+   tonight, would your line change?&rdquo; &mdash; <b>no</b>.</div>
+   <div class="rs-code"><pre><code>len("hello")      sorted(marks)      "abc".upper()      open("data.txt")
+
+somebody else's complicated code behind a short simple name.</code></pre></div>
+   <div class="rs-board"><b>The line that gets remembered:</b> encapsulation is <b>packing</b> the box,
+   abstraction is <b>not having to look inside</b> it. One is where code lives, the other is how little
+   you need to know. <b>Interviews ask for this difference.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> &ldquo;should we never look
+   inside?&rdquo; &mdash; look when it breaks, or when you are curious and have time. Not before.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">48 &ndash; 62</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Inheritance &mdash; keep it short on purpose</p>
+   <p class="rs-say"><b>Land this:</b> 14 minutes, no more. This is the pillar they use least. The time
+   belongs to polymorphism.</p>
+   <div class="rs-code"><pre><code><span class="k">class</span> SalaryColumn(Column):
+    <span class="k">def</span> in_lakhs(self):
+        <span class="k">return</span> [v / <span class="o">100000</span> <span class="k">for</span> v <span class="k">in</span> self.values]
+
+pay = SalaryColumn(<span class="c">"salary"</span>, [<span class="o">50000</span>, <span class="o">62000</span>, <span class="o">48000</span>, <span class="o">60000</span>])
+<span class="k">print</span>(pay.mean()); <span class="k">print</span>(pay.biggest()); <span class="k">print</span>(pay.in_lakhs())</code></pre></div>
+   <div class="rs-out">55000.0
+62000
+[0.5, 0.62, 0.48, 0.6]</div>
+   <div class="rs-board"><b>Stop. Ask:</b> &ldquo;where is <code>mean</code> written in
+   <code>SalaryColumn</code>?&rdquo; &mdash; <b>it is not.</b> No <code>__init__</code> either. All free,
+   from the two words in brackets.<br><br>
+   <b>Column</b> = parent / base &middot; <b>SalaryColumn</b> = child / derived.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Be straight:</b> as a data analyst you will use this
+   roughly never. Know the word, recognise the brackets, it is an interview question. <b>Saying so buys
+   credibility for the next block.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">62 &ndash; 80</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Polymorphism &mdash; the longest block</p>
+   <p class="rs-say"><b>Land this:</b> open with built-ins. They have been using this since week one
+   and recognising it is the lesson.</p>
+   <div class="rs-code"><pre><code><span class="k">len</span>(<span class="c">"hello"</span>)  <span class="k">len</span>([<span class="o">1</span>,<span class="o">2</span>,<span class="o">3</span>])  <span class="k">len</span>({<span class="c">"a"</span>:<span class="o">1</span>,<span class="c">"b"</span>:<span class="o">2</span>})      <span class="o">2</span>+<span class="o">3</span>   <span class="c">"2"</span>+<span class="c">"3"</span>   [<span class="o">1</span>,<span class="o">2</span>]+[<span class="o">3</span>]</code></pre></div>
+   <div class="rs-out">5   3   2        5   23   [1, 2, 3]</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;did you ever tell <code>len</code> which one to do?&rdquo;
+   &mdash; <b>never</b>. Plus <b>added</b>, then <b>joined</b>, then <b>stuck together</b>. Same symbol,
+   three jobs.</div>
+   <p class="rs-do" style="margin-top:12px">Then do it to their own class</p>
+   <div class="rs-code"><pre><code><span class="k">class</span> TextColumn(Column):
+    <span class="k">def</span> mean(self):
+        <span class="k">return</span> <span class="c">"a text column has no average"</span>
+
+name = TextColumn(<span class="c">"name"</span>, [<span class="c">"Asha"</span>, <span class="c">"Ravi"</span>, <span class="c">"Meena"</span>, <span class="c">"Vikram"</span>])
+<span class="k">for</span> c <span class="k">in</span> [salary, pay, name]:
+    <span class="k">print</span>(c.name, <span class="c">"->"</span>, c.mean())</code></pre></div>
+   <div class="rs-out">salary -> 55000.0
+salary -> 55000.0
+name -> a text column has no average</div>
+   <div class="rs-board"><b>The loop says <code>c.mean()</code> once.</b> No if-else, no type check.
+   Each object answers in its own way.<br><br>
+   <b>Next week:</b> <code>df["salary"].mean()</code> gives a number,
+   <code>df["name"].mean()</code> does not. <b>Same name, different behaviour, decided by what is in the
+   column.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Spare minute only:</b> <code>name.biggest()</code>
+   returns <b>Vikram</b> &mdash; <code>max</code> on text is alphabetical. Polymorphism they did not
+   write. <b>Skip if behind.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">80 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The reveal</p>
+   <p class="rs-say"><b>Do not run this early.</b> It is the payoff for the whole session. Tell them to
+   keep <code>Column</code> on screen.</p>
+   <div class="rs-code"><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.read_csv(<span class="c">"employees.csv"</span>)
+<span class="k">print</span>(<span class="k">type</span>(df)); <span class="k">print</span>(<span class="k">type</span>(df[<span class="c">"salary"</span>]))</code></pre></div>
+   <div class="rs-out">&lt;class 'pandas.core.frame.DataFrame'&gt;
+&lt;class 'pandas.core.series.Series'&gt;</div>
+   <div class="rs-code"><pre><code>  WHAT YOU WROTE TODAY        WHAT PANDAS GIVES YOU
+
+  Column                      Series
+  salary.name                 df["salary"].name
+  salary.values               df["salary"].values
+  salary.mean()               df["salary"].mean()
+  salary.biggest()            df["salary"].max()</code></pre></div>
+   <div class="rs-board"><b>Say it slowly:</b> the class you wrote today <b>is a Series</b>. Somebody
+   wrote it properly, with four hundred methods instead of two, and tested it for fifteen years. You
+   wrote eight lines of it in forty minutes.<br><br>
+   All four words are in there: one box (<b>encapsulation</b>) &middot; never look inside
+   (<b>abstraction</b>) &middot; built on other pandas classes (<b>inheritance</b>) &middot;
+   <code>.mean()</code> differs on numbers and text (<b>polymorphism</b>).</div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up next week:</b> &ldquo;you will not need
+   <code>self</code> or <code>__init__</code> again. You need one idea &mdash; <b>the thing you get back
+   knows how to do things to itself, and you reach them with a dot.</b>&rdquo;</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Twelve questions, in order, with the answer under each one.
+  Numbers 3, 4 and 9 are the three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What did <code>type(5)</code> and <code>type("hello")</code> both say?</q>
+    <div class="ans"><b>class.</b> A number is a class, text is a class, a list is a class. You have
+    been using them since week one.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is a <b>method</b>?</q>
+    <div class="ans">A <b>function that lives inside a class</b>. Every <code>.upper()</code> and
+    <code>.append()</code> you have ever written was one.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Say encapsulation in one sentence.</q>
+    <div class="ans"><b>The data and the things that work on it, kept in one box.</b> That is why
+    <code>salary.mean()</code> needs nothing handed to it &mdash; the numbers are already
+    inside.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Say abstraction in one sentence, and tell me how it is different from encapsulation.</q>
+    <div class="ans"><b>A simple button with the complicated part hidden behind it.</b> The difference:
+    <b>encapsulation is packing the box, abstraction is not having to look inside it.</b> One is where
+    the code lives; the other is how little you need to know.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>SalaryColumn</code> has only one method written in it. So why does
+    <code>pay.mean()</code> work?</q>
+    <div class="ans">Because of <code>(Column)</code> in the brackets. It <b>starts with everything
+    Column had</b> &mdash; <code>__init__</code>, <code>mean</code> and <code>biggest</code> all came
+    free. That is inheritance.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What are the two names for the two classes in inheritance?</q>
+    <div class="ans"><b>Parent and child</b> &mdash; also called <b>base and derived</b>. The child gets
+    everything the parent had and can add more.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>len("hello")</code> gave 5 and <code>len([1,2,3])</code> gave 3. Did you have to tell
+    <code>len</code> which kind of thing you had?</q>
+    <div class="ans"><b>No.</b> One word, the right answer for whatever it was given. That is
+    polymorphism, and you have been using it since week one.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>"2" + "3"</code> gave <code>23</code>, not 5. Is that a bug?</q>
+    <div class="ans"><b>No.</b> Plus means <b>add</b> for numbers and <b>join</b> for text. Same symbol,
+    different job, decided by what you gave it.</div></div></div>
+
+   <div class="aq"><div>
+    <q>The loop at the end said <code>c.mean()</code> once, with no if-else in it. How did it get a
+    different answer for the name column?</q>
+    <div class="ans">Because <code>TextColumn</code> has <b>its own</b> <code>mean</code>, so Python
+    uses that one instead of the inherited one. <b>Each object answers in its own way and the loop never
+    has to ask what it is holding.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What is <code>self</code>?</q>
+    <div class="ans"><b>The particular box we are talking about.</b> When you write
+    <code>salary.mean()</code>, the thing before the dot is passed in as <code>self</code>. That is why
+    you never type it yourself.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Does writing a function make it run?</q>
+    <div class="ans"><b>No.</b> It is a recipe on a shelf. It runs only when you <b>call</b> it by
+    name.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>type(df["salary"])</code> said <code>Series</code>. What is a Series, in terms of what we
+    built today?</q>
+    <div class="ans"><b>It is our <code>Column</code> class, written properly.</b> A name, some values,
+    and methods that work on them &mdash; except with four hundred methods instead of two. <b>That is
+    the whole point of today.</b></div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Will we have to write classes in our job?&rdquo;</h5>
+  <p>&ldquo;Almost certainly not, and I am not going to pretend otherwise. As a data analyst you will
+  <b>use</b> classes other people wrote, every single day, and design them roughly never. That is
+  exactly why today was one session and not six &mdash; you need to be able to <b>read</b> the tool you
+  are about to pick up, not build one.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Then why is it asked in interviews?&rdquo;</h5>
+  <p>&ldquo;Because the four words are a quick way to find out whether you understand the language or
+  only copy from it. You will not be asked to design a system. You will be asked what the four are and
+  what the difference is between two of them. One clear sentence each is a better answer than a long
+  one.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the difference between a class and an object again?&rdquo;</h5>
+  <p>&ldquo;The class is the <b>plan</b>. The object is a <b>thing built from that plan</b>. We wrote
+  <code>Column</code> once, and then made <code>salary</code>, <code>pay</code> and <code>name</code>
+  from it &mdash; one class, three objects, each holding different numbers.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why is it <code>self</code>? Can I call it something else?&rdquo;</h5>
+  <p>&ldquo;You can, and it would still work &mdash; it is just the name of the first parameter. But
+  every Python programmer on earth writes <code>self</code>, so anybody reading your code expects it.
+  Write <code>self</code> and do not think about it again.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the double underscore in <code>__init__</code>?&rdquo;</h5>
+  <p>&ldquo;It marks a name that Python itself uses, so you can tell it apart from one you invented.
+  <code>__init__</code> is the one Python runs automatically the moment you make an object. There are
+  others and you do not need them for data work.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can one class inherit from two classes?&rdquo;</h5>
+  <p>&ldquo;Yes, Python allows it. It also creates questions about which parent wins when both have the
+  same method, and the answer is a set of rules you will not need. <b>Not for this course.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the point of <code>TextColumn.mean()</code> if it just returns a
+  message?&rdquo;</h5>
+  <p>&ldquo;It is there to show that a child can <b>replace</b> a method, not only add one. And it is
+  exactly what pandas does &mdash; ask a text column for its average and it will refuse, in its own way.
+  The refusal is the correct behaviour, not a failure.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Do we have to remember all this for next week?&rdquo;</h5>
+  <p>&ldquo;One thing. <b>What you get back knows how to do things to itself, and you reach them with a
+  dot.</b> If you remember that, you will not be confused by anything in pandas. The four words are for
+  your interview, not for Monday.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is this the same as the OOP in Java?&rdquo;</h5>
+  <p>&ldquo;Same four ideas, different spelling. Java forces you to put everything inside a class and is
+  much stricter about types. Python lets you write a plain function when a plain function is all you
+  need, which is most of the time in data work.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="n1">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -28606,7 +29555,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","ab23","ab24","ab25","ab26","ab27","ab28","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
