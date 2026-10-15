@@ -5,7 +5,8 @@ import os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 PAGES = [("teach","Teach"),("reference","Reference"),("statistics","Statistics"),
-         ("interview","Interview"),("prepare","Prepare"),("august","August B3"),("plan","Plan")]
+         ("interview","Interview"),("mock","Mock"),("prepare","Prepare"),("august","August B3"),
+         ("plan","Plan")]
 
 CSS = """<style id="tapnav-css">
 /* Self-contained: the nav defines every colour it uses, so it cannot inherit a
