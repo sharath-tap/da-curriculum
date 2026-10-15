@@ -17569,6 +17569,12 @@ M4:  =K4-$Q$10      ->  -32658.41</div>
     row two.</p>
    </div>
 
+   <div class="typeit">Four words on the board. That is the entire vocabulary for today.</div>
+<pre><code>  CELL        one box.  named by its column letter + row number.  K5
+  NAME BOX    top left.  tells you where you are, and jumps you anywhere
+  HEADER      row 1.  the column names.  NOT a person
+  ROW COUNT   Ctrl + Down from A1  ->  A202,  minus the header  =  201</code></pre>
+
    <div class="typeit">Two shortcuts, and the answer to &ldquo;how many rows is this?&rdquo;</div>
 <pre><code>  click A1  then  Ctrl + Down     <span class="c">jumps to the last filled cell in the column</span>
   Ctrl + Home                     <span class="c">jumps back to A1 from anywhere</span></code></pre>
@@ -17848,8 +17854,16 @@ middle salary      68647</div>
 <pre><code>=AVERAGE(B2:B202)</code></pre>
    <div class="screen">2.32</div>
 
+   <div class="typeit">What the four numbers in that column actually mean</div>
+<pre><code>  1  =  Sales          <span class="c">these are NAMES that happen to be written</span>
+  2  =  Tech           <span class="c">with digits. the average of a name is not</span>
+  3  =  HR             <span class="c">a thing. there is no "department 2.32".</span>
+  4  =  Marketing</code></pre>
+
    <div class="speak">
     <p>Two point three two. The average department number.</p>
+    <p>Department 2 is Tech and department 3 is HR. So 2.32 is somewhere between Tech and HR, which is
+    not a sentence that means anything.</p>
     <p>You remember this one. It is a label that happens to be written with digits, and averaging it
     means nothing at all.</p>
     <p>Excel did not stop me. Excel does not know that <code>dept_id</code> is a name and not a
@@ -18656,6 +18670,169 @@ N2    =H2-$Q$14      ->  -3.78, 5.22, -6.78, 3.22, 1.22, -4.78 ...</code></pre><
   calculate on it, check it. Power BI is where you <b>show</b> it to somebody who will never touch the
   numbers. Power BI comes after this module, and most of what you learn here carries straight
   over.&rdquo;</p></div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <div class="sumhead"><h2 class="h">The whole session, in order</h2><span class="n">keep this one open</span></div>
+  <p class="sumnote">Every cell you touch and every formula you type, in the order you type them, with
+  what should appear. Nothing here is explanation &mdash; the explanations are above. This is the one to
+  have behind your screen so the flow does not break.</p>
+  <div class="sumcard"><pre><code><span class="c"># ==== 0-12   OPEN IT.  SAY "DO NOT SCROLL" BEFORE THEY TOUCH THE MOUSE ====</span>
+<span class="c">#   row 5   Lakshmi Kumar   Tech   5200000     the 52 lakh outlier</span>
+<span class="c">#   row 9   Manoj Kumar     HR     (empty)     a missing salary</span>
+<span class="c">#   both on the first screen. nobody has typed anything.</span>
+
+    click A1, then Ctrl + Down        <span class="c"># A202.  minus the header = 201 rows</span>
+    Ctrl + Home                       <span class="c"># back to A1</span>
+    File &gt; Save As &gt; Excel Workbook   <span class="c"># employees.xlsx  BEFORE ANY FORMULA</span>
+
+<span class="c">#   the four words: CELL K5 . NAME BOX top left . HEADER row 1 . 201 data rows</span>
+<span class="c">#   201 and not 200 - there is a duplicate row. FLAG IT, DO NOT FIX IT.</span>
+
+
+<span class="c"># ==== 12-26   THE EQUALS SIGN.   scratch cell A205, far below the data ====</span>
+A205    38                            <span class="c"># a VALUE</span>
+A205    =20+18                        <span class="c"># shows 38. formula bar shows the RULE</span>
+A205    =K5                           <span class="c"># 5200000   an ADDRESS, fetched right now</span>
+A205    =AVERAGE(I2:I202)             <span class="c"># 38.175    the colon means THROUGH</span>
+        Decrease Decimal x2           <span class="c"># shows 38.2, still HOLDS 38.175</span>
+
+<span class="c">#   no "=" and excel reads it as TEXT. the = is the switch, not decoration.</span>
+<span class="c">#   then CLEAR A205.</span>
+
+
+<span class="c"># ==== 26-44   THE SUMMARY BLOCK.   labels in P, formulas in Q ====</span>
+P1   rows              Q1    =COUNTA(C2:C202)        <span class="c"># 201</span>
+P2   ages              Q2    =COUNT(I2:I202)         <span class="c"># 200</span>
+P3   average age       Q3    =AVERAGE(I2:I202)       <span class="c"># 38.175</span>
+P4   middle age        Q4    =MEDIAN(I2:I202)        <span class="c"># 37</span>
+P5   youngest          Q5    =MIN(I2:I202)           <span class="c"># -4</span>
+P6   oldest            Q6    =MAX(I2:I202)           <span class="c"># 210</span>
+<span class="c">#    row 7 stays EMPTY</span>
+P8   salaries          Q8    =COUNT(K2:K202)         <span class="c"># 199</span>
+P9   total salary      Q9    =SUM(K2:K202)           <span class="c"># 19034033</span>
+P10  average salary    Q10   =AVERAGE(K2:K202)       <span class="c"># 95648.41</span>
+P11  middle salary     Q11   =MEDIAN(K2:K202)        <span class="c"># 68647</span>
+
+<span class="c">#   201 rows, 200 ages, 199 salaries -> one age and two salaries missing.</span>
+<span class="c">#   say ROWS, not PEOPLE. one of them is the duplicate.</span>
+
+    =COUNT(C2:C202)                   <span class="c"># 0         a name is not a number</span>
+    =COUNTBLANK(K2:K202)              <span class="c"># 2         the two empty salaries</span>
+    Name Box: A152                    <span class="c"># Aditya Gupta  HR  age -4  salary 33085</span>
+
+    =SUM(K2:K202)/COUNTA(C2:C202)     <span class="c"># 94696.68  divided by 201 - WRONG</span>
+    =AVERAGE(K2:K202)                 <span class="c"># 95648.41  divided by 199 - right</span>
+<span class="c">#   AVERAGE SKIPS blanks. it does not call them zero.</span>
+
+    =AVERAGE(B2:B202)                 <span class="c"># 2.32</span>
+<span class="c">#   1 = Sales   2 = Tech   3 = HR   4 = Marketing</span>
+<span class="c">#   no tool will ever ask whether your question makes sense.</span>
+
+
+<span class="c"># ==== 44-56   CHANGE ONE CELL AND WATCH THE SUMMARY BLOCK ====</span>
+    K5  becomes  520000
+
+<span class="c">#                      before        after</span>
+<span class="c">#   total salary     19034033      14354033</span>
+<span class="c">#   average salary   95648.41      72130.82</span>
+<span class="c">#   middle salary       68647         68647    unchanged - still the largest</span>
+
+<span class="c">#   "how many formulas did i re-run?"   NONE.</span>
+<span class="c">#   "where does it say i changed that?"  NOWHERE. no log, no mark on the cell.</span>
+<span class="c">#   the hard row limit is 1,048,576. five million rows will not open at all.</span>
+    Ctrl + Z                          <span class="c"># put it back</span>
+
+
+<span class="c"># ==== 56-74   THE DOLLAR SIGN.   LET IT BREAK FIRST. DO NOT WARN THEM. ====</span>
+M1   gap from average                 <span class="c"># a label, no equals sign</span>
+M2   =K2-Q10                          <span class="c"># -47884.41   correct</span>
+     double-click the fill handle     <span class="c"># the small square, bottom right of M2</span>
+
+<span class="c">#   M2 -47884.41    M3 17405    M4 62990    M5 5200000    M6 62556</span>
+<span class="c">#   nothing went red. row 3 is believably wrong. the rest is column K copied.</span>
+<span class="c">#   formula bar:  M3 =K3-Q11 . M4 =K4-Q12 . Q12 down is EMPTY, and empty = 0</span>
+
+M2   =K2-$Q$10                        <span class="c"># $Q locks the letter, $10 locks the row</span>
+     double-click the fill handle again
+
+<span class="c">#   M2 -47884.41   M3 -9596.41   M4 -32658.41   M5 5104351.59   M6 -33092.41</span>
+<span class="c">#   M8 -34723.41   M9 -95648.41  &lt;- Manoj has NO salary.  0 - 95648.41</span>
+
+<span class="c">#   187 of the 199 are negative. 94% earn below the average. that is row 5.</span>
+<span class="c">#   F4 adds the dollars while typing. dead on most macs - just type them.</span>
+<span class="c">#   fill handle misbehaving? copy M2, type M3:M202 in the Name Box, paste.</span>
+
+
+<span class="c"># ==== 74-86   THEIR TURN.   experience is column H ====</span>
+P13  experience           Q13  =COUNT(H2:H202)       <span class="c"># 201</span>
+P14  average experience   Q14  =AVERAGE(H2:H202)     <span class="c"># 7.781094527 -> 7.78</span>
+P15  middle experience    Q15  =MEDIAN(H2:H202)      <span class="c"># 8</span>
+P16  least experience     Q16  =MIN(H2:H202)         <span class="c"># 0</span>
+P17  most experience      Q17  =MAX(H2:H202)         <span class="c"># 15</span>
+
+N1   years above average
+N2   =H2-$Q$14                        <span class="c"># -3.78  5.22  -6.78  3.22  1.22  -4.78</span>
+
+<span class="c">#   201 of 201 - nothing missing. the check works both ways.</span>
+<span class="c">#   experience 7.78 vs median 8   -> no outlier, mean and median agree</span>
+<span class="c">#   salary 95648 vs median 68647  -> one outlier, 27,000 apart. that is skew.</span>
+<span class="c">#   walk the room for exactly two mistakes: a missing "=" and a missing "$".</span></code></pre></div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="sumhead"><h2 class="h">The final board</h2><span class="n">leave this up</span></div>
+  <p class="sumnote">The last five minutes. Everything from today that they need to carry into
+  Thursday, and nothing else. Put it on screen, or paste it into a cell and let them keep the
+  file.</p>
+  <div class="sumcard"><pre><code><span class="c"># ---- WHAT A CELL HOLDS ----</span>
+=            <span class="c"># tells excel "this is a RULE, not a value"</span>
+no =         <span class="c"># excel reads it as TEXT. the commonest mistake in the room</span>
+
+<span class="c"># ---- HOW TO SAY WHICH CELLS ----</span>
+K5           <span class="c"># one cell.  column K, row 5</span>
+I2:I202      <span class="c"># the colon means THROUGH. 201 cells, because row 1 is the header</span>
+$Q$10        <span class="c"># the dollars mean DO NOT MOVE when this formula is copied</span>
+
+<span class="c"># ---- THE EIGHT FUNCTIONS FROM TODAY ----</span>
+=COUNTA(C2:C202)       <span class="c"># 201        counts anything that is not empty</span>
+=COUNT(I2:I202)        <span class="c"># 200        counts NUMBERS only</span>
+=COUNTBLANK(K2:K202)   <span class="c"># 2          counts empty cells</span>
+=SUM(K2:K202)          <span class="c"># 19034033   adds them up</span>
+=AVERAGE(K2:K202)      <span class="c"># 95648.41   the mean</span>
+=MEDIAN(K2:K202)       <span class="c"># 68647      the middle one</span>
+=MIN(I2:I202)          <span class="c"># -4         the smallest</span>
+=MAX(I2:I202)          <span class="c"># 210        the largest</span>
+
+<span class="c"># ---- THE FOUR THINGS THAT CATCH PEOPLE ----</span>
+<span class="c"># 1  A BLANK IS NOT A ZERO</span>
+<span class="c">#       AVERAGE / COUNT / SUM   ->  SKIP it</span>
+<span class="c">#       plus / minus / times    ->  treat it as 0</span>
+<span class="c">#    same cell, two behaviours, same sheet, and nobody tells you</span>
+<span class="c">#</span>
+<span class="c"># 2  WHAT YOU SEE IS NOT WHAT THE CELL HOLDS</span>
+<span class="c">#       decrease decimal shows 38.2. the cell still holds 38.175</span>
+<span class="c">#</span>
+<span class="c"># 3  COPYING A FORMULA MOVES ITS ADDRESSES - that is the useful part</span>
+<span class="c">#       $Q$10 is how you stop it. the broken version does not crash.</span>
+<span class="c">#       it quietly turns your column into a copy of the one next door</span>
+<span class="c">#</span>
+<span class="c"># 4  A .csv CANNOT STORE A FORMULA</span>
+<span class="c">#       save as .xlsx, or lose every formula and never be told</span>
+
+<span class="c"># ---- THE FOUR CLICKS ----</span>
+Ctrl + Down      <span class="c"># last filled cell in the column</span>
+Ctrl + Home      <span class="c"># back to A1</span>
+Name Box         <span class="c"># type any address to jump straight there</span>
+fill handle      <span class="c"># double-click the small square to fill to the bottom</span>
+
+<span class="c"># ---- AND THE ONE SENTENCE ----</span>
+<span class="c">#   a script is instructions you RUN.</span>
+<span class="c">#   a spreadsheet is rules that are ALWAYS RUNNING.</span></code></pre></div>
  </div>
 </section>
 </div>
