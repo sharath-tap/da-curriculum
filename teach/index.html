@@ -477,6 +477,7 @@ try{var _t=localStorage.getItem("steep-theme");
  var n=document.querySelector('.tapnav');
  if(n)document.documentElement.style.setProperty('--tapnav-h',n.offsetHeight+'px');}catch(e){}}
  f();addEventListener('resize',f);addEventListener('load',f);})();</script>
+
 <nav>
  <div class="navin">
   <span class="logo">Teach</span>
@@ -736,7 +737,7 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="trackhead">
     <h2>Excel</h2>
     <span class="badge">Follows Data Visualisation</span>
-    <span class="badge live">Days 1-2 scripts ready</span>
+    <span class="badge live">Days 1-3 scripts ready</span>
    </div>
    <p class="tracknote">Excel comes <b>after</b> Python on purpose, and that changes what the module is
    about. They already know every concept in it &mdash; mean, median, outliers, grouping, correlation,
@@ -762,12 +763,12 @@ try{var _t=localStorage.getItem("steep-theme");
      and all three blanks selected at once.</p>
      <span class="foot">Script ready &middot; pays back two day-1 promises</span></button>
 
-    <div class="dcard soon">
-     <span class="id">EXCEL 3</span><h3>Asking With Conditions</h3>
-     <p><code>IF</code>, then <code>IFS</code>, then <code>COUNTIF</code>, <code>SUMIF</code> and
-     <code>AVERAGEIF</code>, then the plural versions. The department counts rebuilt without
-     <code>value_counts</code>.</p>
-     <span class="foot">Planned &middot; script not written</span></div>
+    <button class="dcard full" data-go="x3">
+     <span class="id">EXCEL 3</span><h3>Formulas That Ask a Question</h3>
+     <p><code>IF</code>, <code>IFS</code>, then the <code>COUNTIF</code> family and the plural
+     versions. <code>value_counts</code> rebuilt in four cells &mdash; and an
+     <code>AVERAGEIF</code> that is perfectly correct and completely useless.</p>
+     <span class="foot">Script ready &middot; the Tech average</span></button>
 
     <div class="dcard soon">
      <span class="id">EXCEL 4</span><h3>VLOOKUP, and What Replaced It</h3>
@@ -20976,6 +20977,965 @@ bangalore  ->  Bangalore   [x] Match case      1 changed</code></pre></div>
  </div>
 </section>
 </div>
+<div class="day" id="x3">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 3 &middot; merged class &middot; 90 minutes &middot; full script &middot; the session that pays for the module</p>
+  <h1 class="display">Formulas That<br>Ask a Question</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Every formula so far has worked on <em>all</em> the rows. Today one of them asks a question first
+   and only counts the rows that answer yes &mdash; and the first thing it rebuilds is
+   <code>value_counts()</code>.</p>
+  <div class="glance">
+   <div class="gcell"><b>64</b><span>in Sales, from a formula</span></div>
+   <div class="gcell"><b>198</b><span>not 200. the blanks again</span></div>
+   <div class="gcell"><b>1,89,753</b><span>a correct, useless average</span></div>
+   <div class="gcell"><b>2</b><span>conditions, one answer</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">The whole day in one sentence</h4>
+   <p style="color:var(--sienna)">Up to now <code>AVERAGE(K2:K201)</code> has meant <b style="color:var(--sienna)">average
+   everything</b>. Today it becomes <code>AVERAGEIF</code> &mdash; <b style="color:var(--sienna)">average
+   only the rows where something is true</b>. That one change is the difference between a sheet that
+   reports and a sheet that answers.</p>
+   <p style="color:var(--sienna)">And it hands you the best mistake in the module. <code>AVERAGEIF</code>
+   on the Tech department returns <b style="color:var(--sienna)">1,89,753</b>. The formula is perfectly
+   correct. The answer is useless, and they already know exactly why.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Open the cleaned file from Thursday, not the original.</b> It has <b>200 rows</b>, so the
+   data now runs <code>2</code> to <code>201</code>, not 202. Every range on this page says 201. If
+   somebody is on the old file their numbers will be one out all session and neither of you will know
+   why.</li>
+   <li><b>The summary block in P and Q should already read 200 / 199 / 198.</b> It corrected itself
+   when the duplicate went. Thirty seconds confirming that at the start saves twenty minutes of
+   mismatched answers later.</li>
+   <li><b>Teach <code>IF</code> before anything with the word COUNT in it.</b> They need to see a
+   condition on its own, on one row, before they see one buried inside a counting formula. The order
+   matters more than it looks.</li>
+   <li><b>Let the Tech average happen and do not warn them.</b> <code>AVERAGEIF</code> on Tech returns
+   1,89,753 and it is the moment the session is built around. If you flag it in advance you have given
+   away the answer and it becomes a demonstration instead of a discovery.</li>
+   <li><b>Say the quotes rule once, early, and then point at it all day.</b> Text in a condition needs
+   quotes. A comparison needs quotes. A plain number does not. They will get this wrong four times
+   before it sticks, and every one of those is a <code>0</code>, not an error.</li>
+   <li><b>COUNTIFS is the same function with more commas.</b> Do not teach it as a new idea. Teach it
+   as &ldquo;the one you already know, asked twice&rdquo;, and it costs you ten minutes instead of
+   thirty.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what a condition actually is to Excel, the
+  quoting rule that causes every silent failure, and why the Tech average comes out the way it does.
+  Part three is the session, so read it properly.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; a condition is a question with a yes-or-no answer</h5>
+
+   <h6>Excel has been doing this quietly since day one</h6>
+   <p>Type <code>=K2&gt;50000</code> into any empty cell. It returns <b>TRUE</b> or <b>FALSE</b>.
+   Nothing else. That is a condition, and it is the whole building block.</p>
+   <p>Everything today is that one idea wrapped in something useful. <code>IF</code> picks between two
+   answers depending on it. <code>COUNTIF</code> counts the rows where it came out TRUE.
+   <code>SUMIF</code> adds up those rows. <code>AVERAGEIF</code> averages them.</p>
+
+   <div class="mth">
+    <h6>The four shapes</h6>
+    <div class="mrow"><b>IF</b><div><code>IF(test, what if yes, what if no)</code> &mdash; works on
+    <b>one row at a time</b> and returns a value.</div></div>
+    <div class="mrow"><b>COUNTIF</b><div><code>COUNTIF(where to look, what to look for)</code> &mdash;
+    works on a <b>whole range</b> and returns one number.</div></div>
+    <div class="mrow"><b>SUMIF</b><div><code>SUMIF(where to test, what to look for, what to add)</code>
+    &mdash; <b>three</b> parts, and the third is a different column from the first.</div></div>
+    <div class="mrow warn2"><b>the trap</b><div><code>IF</code> takes the <b>test first</b>.
+    <code>SUMIF</code> takes the <b>range first</b> and the test second. The order is genuinely
+    inconsistent and they will swap them.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the quotes, which cause every silent failure today</h5>
+
+   <h6>The rule, in three lines</h6>
+   <div class="mcalc">COUNTIF(D2:D201, "Sales")        text        -> quotes
+COUNTIF(K2:K201, "&gt;50000")        a comparison -> quotes, the &gt; INSIDE them
+COUNTIF(H2:H201, 10)             a plain number -> no quotes needed</div>
+   <p>The one that catches everybody is the middle line. The greater-than sign goes <b>inside</b> the
+   quotes, along with the number. <code>"&gt;50000"</code> is a single piece of text that Excel reads as
+   an instruction.</p>
+
+   <h6>Pointing at a cell instead of typing the number</h6>
+   <p>To compare against a cell &mdash; the average sitting in Q10, say &mdash; you cannot write
+   <code>"&gt;Q10"</code>, because that is the literal text &ldquo;greater than Q10&rdquo;. You have to
+   glue the two together with <code>&amp;</code>:</p>
+   <div class="mcalc">=COUNTIF(K2:K201, "&gt;"&amp;Q10)       correct
+=COUNTIF(K2:K201, "&gt;Q10")        gives 0, and no error</div>
+   <div class="warn"><b>Both of those run.</b> One is right and one returns zero. There is no red,
+   no warning, no <code>#VALUE!</code>. This is the same shape of failure as the missing dollar sign
+   on day 1 &mdash; <b>a wrong answer that looks like a real answer</b>, and it is worth saying out
+   loud that this is now the second time.</div>
+
+   <h6>What <code>&amp;</code> actually does</h6>
+   <p>It joins two things into one piece of text. <code>"&gt;"&amp;Q10</code> becomes
+   <code>"&gt;95829.66"</code> before <code>COUNTIF</code> ever sees it. They do not need the theory,
+   but they do need to know that the <code>&amp;</code> is not decoration.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; why the Tech average comes out at 1,89,753</h5>
+
+   <h6>The number, and why it is not a bug</h6>
+   <p><code>=AVERAGEIF(D2:D201, "Tech", K2:K201)</code> returns <b>1,89,753.54</b>. Tech does not pay
+   nineteen lakh. Nobody in Tech earns nineteen lakh.</p>
+   <p>There are 48 salaries in Tech. Forty-seven of them are between <b>56,727</b> and
+   <b>1,16,894</b>. The forty-eighth is <b>52,00,000</b> &mdash; Lakshmi Kumar on row 5, the same
+   person they have been tripping over since statistics.</p>
+   <div class="mcalc">AVERAGEIF Tech, all 48 salaries   1,89,753.54
+the same 47, without her            83,152.55</div>
+
+   <h6>Why this is the most valuable thing on the page</h6>
+   <p>Every previous mistake in this module was a <b>mistake</b> &mdash; a missing dollar sign, a
+   one-column sort, a blank treated as a zero. You could fix the formula and the answer came right.</p>
+   <p>This one is different. <b>The formula is correct.</b> The range is correct, the condition is
+   correct, the arithmetic is correct. And the answer is still useless, because one row in the data is
+   nothing like the others.</p>
+   <div class="keyline">
+    <b>A correct formula is not the same thing as a correct answer.</b><br><br>
+    No software will ever tell you the difference. They first met this on day 1, when a perfectly
+    correct average described a company containing somebody aged minus four. Today they meet it again
+    in a formula they wrote themselves, and that is why the module keeps coming back to this
+    file.
+   </div>
+
+   <h6>What to say when somebody asks what to do about it</h6>
+   <p>Not &ldquo;delete the row&rdquo;. The honest answer is the one from statistics: <b>report the
+   median alongside the average</b>, or report the average with the outlier named. The fix is in how
+   you present the number, not in quietly changing the data.</p>
+   <div class="warn"><b>There is no <code>MEDIANIF</code> in Excel.</b> It genuinely does not exist.
+   If somebody asks for it, say so plainly &mdash; it needs an array formula, and the clean way to get
+   a median per department is a <b>pivot table</b>, which is session five. It is a good question and
+   it deserves a straight answer rather than a workaround.</div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>Check the file, and the question for today</h3></div>
+   <p class="objective">Thirty seconds confirming the row count, then a question they can only answer
+   by hand.</p>
+
+   <div class="stage">Everybody opens <b>employees.xlsx</b> &mdash; the cleaned one from Thursday, not
+   the original. <b>Check this before anything else.</b> If somebody is on the old file their numbers
+   will be one out all session.</div>
+
+   <div class="speak">
+    <p>Open Thursday's file. Look at your summary block in P and Q, and tell me the first three
+    numbers.</p>
+   </div>
+   <div class="screen">rows             200
+ages             199
+salaries         198</div>
+
+   <div class="speak">
+    <p>Two hundred. Not two hundred and one, because the duplicate is gone. So our data now runs from
+    row <b>2</b> to row <b>201</b>.</p>
+    <p>Every formula today ends in <b>201</b>. Write that on the corner of your screen.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;How many people are in Sales? You already know two ways to find out.&rdquo;</div>
+    <div class="a">Filter the department column and read the status bar. Or sort by department and
+    count. <b>Both work, and both are something you do with your hands.</b> Let them say it, then ask
+    the follow-up: &ldquo;now how do you put that number in a cell, so it stays?&rdquo; Nobody
+    can.</div>
+   </div>
+
+   <div class="speak">
+    <p>Both of those work. And both of them are you, doing something, and then reading a number off
+    the screen.</p>
+    <p>If the file changes tomorrow, you have to do it again. And you cannot put it in a report,
+    because it is not in a cell.</p>
+    <p>Today every formula learns to ask a question first.</p>
+   </div>
+  </div>
+
+  <!-- 10-28 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10 &ndash; 28</span><h3>IF &mdash; the first formula that decides</h3></div>
+   <p class="objective">A condition on one row, on its own, before it goes anywhere near a count.</p>
+
+   <div class="stage">Start with the condition completely bare. No <code>IF</code> around it yet
+   &mdash; they need to see what a condition returns before they see what it is for.</div>
+
+   <div class="speak">
+    <p>Go to <b>M1</b> and type a label: <b>above or below</b>. Then in M2, before we do anything
+    clever, type this.</p>
+   </div>
+
+   <div class="typeit">M2 &mdash; just the question, nothing around it</div>
+<pre><code>=K2&gt;50000</code></pre>
+   <div class="screen">FALSE</div>
+
+   <div class="speak">
+    <p><b>FALSE.</b> Rahul Sharma earns 47,764, which is not more than fifty thousand.</p>
+    <p>That is a <b>condition</b>. You ask Excel a question that can only be answered yes or no, and
+    it answers TRUE or FALSE. Nothing else.</p>
+    <p>Useful, and ugly. Nobody wants a report full of the word FALSE. So we wrap it in something that
+    turns it into a real answer.</p>
+   </div>
+
+   <div class="typeit">M2 again, this time wrapped in IF</div>
+<pre><code>=IF(K2&gt;50000, <span class="c">"Above 50k"</span>, <span class="c">"Below 50k"</span>)</code></pre>
+   <div class="screen">Below 50k</div>
+
+   <div class="typeit">Three parts, on the board, and leave it up all session</div>
+<pre><code>  =IF(  the question  ,  what to put if YES  ,  what to put if NO  )
+
+        K2&gt;50000          "Above 50k"           "Below 50k"
+
+  the question is the SAME condition you just typed on its own.
+  IF only chooses between two answers based on it.</code></pre>
+
+   <div class="speak">
+    <p>Three parts, separated by commas. The question, then what to put if the answer is yes, then
+    what to put if it is no.</p>
+    <p>And notice the <b>quotes</b> around the two answers. They are text, so they need quotes. Keep
+    looking at those quotes today &mdash; they are going to cause you trouble in about twenty
+    minutes.</p>
+   </div>
+
+   <div class="stage">Now make it useful. Not a made-up fifty thousand, but a comparison against the
+   real average sitting in the summary block. <b>This is where the dollar sign comes back.</b></div>
+
+   <div class="speak">
+    <p>Fifty thousand is a number I invented. Let us compare against something real.</p>
+    <p>Your average salary is in <b>Q10</b>. Look at it &mdash; <b>95,829.66</b>. That moved on
+    Thursday when the duplicate went, and the formula corrected itself without being asked.</p>
+    <p>Now, every row has its own salary. But all two hundred rows share <b>one</b> average.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;So what do I need on the Q10, before I fill this down?&rdquo;</div>
+    <div class="a">The <b>dollar signs</b>. <code>$Q$10</code>. Second session in a row &mdash; and if
+    somebody answers this without being prompted, that is the day 1 lesson landing.</div>
+   </div>
+
+   <div class="typeit">M2, properly, then fill down to row 201</div>
+<pre><code>=IF(K2&gt;$Q$10, <span class="c">"Above average"</span>, <span class="c">"Below average"</span>)</code></pre>
+   <div class="screen">M2   Below average
+M3   Below average
+M4   Below average
+M5   Above average     &lt;-- the 52 lakh
+M6   Below average
+M7   Below average</div>
+
+   <div class="speak">
+    <p>Scroll down it. It is almost entirely <b>Below average</b>.</p>
+    <p>You saw this on day 1, when we drew the gap column and nearly every number came out negative. It
+    is the same fact wearing different clothes.</p>
+    <p>In about half an hour you will be able to count these two words exactly, with one formula, and
+    we will find out just how lopsided this company is.</p>
+   </div>
+
+   <div class="warn"><b>Expect the blank rows, and answer it now rather than later.</b> Row 9 is Manoj
+   Kumar, who has no salary. His cell says <b>Below average</b>, because an empty cell in a comparison
+   behaves like zero and zero is below the average. <b>It is wrong, and nothing marks it as wrong.</b>
+   Third time this file has done that to them.</div>
+  </div>
+
+  <!-- 28-40 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">28 &ndash; 40</span><h3>IFS &mdash; when two answers are not enough</h3></div>
+   <p class="objective">Three bands instead of two. Twelve minutes, and resist going further.</p>
+
+   <div class="speak">
+    <p><code>IF</code> gives you two answers. Real questions often have three.</p>
+    <p>Take <b>experience</b>, column H. Say under five years is Junior, five to nine is Mid, ten and
+    above is Senior. That is three answers, and <code>IF</code> only has room for two.</p>
+   </div>
+
+   <div class="typeit">N1 a label, then N2 &mdash; conditions in order, each with its answer after it</div>
+<pre><code>=IFS(H2&gt;=<span class="o">10</span>, <span class="c">"Senior"</span>, H2&gt;=<span class="o">5</span>, <span class="c">"Mid"</span>, H2&gt;=<span class="o">0</span>, <span class="c">"Junior"</span>)</code></pre>
+   <div class="screen">N2   Junior      (4 years)
+N3   Senior      (13 years)
+N4   Junior      (1 year)
+N5   Senior      (11 years)
+N6   Mid         (9 years)
+N7   Junior      (3 years)</div>
+
+   <div class="speak">
+    <p>No nesting, no extra brackets. Just pairs: <b>condition, answer, condition, answer</b>, for as
+    many as you need.</p>
+    <p>And the order matters more than anything else in this formula. <code>IFS</code> checks them
+    <b>top to bottom and stops at the first one that is true.</b></p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Thirteen years. Is that greater than or equal to ten? Yes. Is it also greater
+    than or equal to five?&rdquo;</div>
+    <div class="a">Also yes &mdash; and also greater than zero. <b>All three conditions are true for
+    that person.</b> They get Senior because that one was written first and IFS stopped there. Make
+    somebody say this out loud; it is the only idea in the block.</div>
+   </div>
+
+   <div class="typeit">What happens if you write them the other way round</div>
+<pre><code>=IFS(H2&gt;=<span class="o">0</span>, <span class="c">"Junior"</span>, H2&gt;=<span class="o">5</span>, <span class="c">"Mid"</span>, H2&gt;=<span class="o">10</span>, <span class="c">"Senior"</span>)
+
+   everyone is Junior. every single row.
+   the first condition is true for everybody, so IFS never
+   looks at the other two. no error. no warning.</code></pre>
+
+   <div class="keyline">
+    <b>Write the narrowest condition first.</b><br><br>
+    Widest-first is not an error and does not look like one &mdash; it quietly returns the same answer
+    for every row. If a column of 200 rows all says the same thing, that is the first thing to
+    suspect.
+   </div>
+
+   <div class="warn"><b><code>IFS</code> needs Excel 2019 or Microsoft 365.</b> On an older copy it
+   simply does not exist and you get <code>#NAME?</code>. The old way is nesting &mdash;
+   <code>=IF(H2&gt;=10,"Senior",IF(H2&gt;=5,"Mid","Junior"))</code>. Show it once, say it is what you
+   will see in older files, and move on. Do not make them write it.</div>
+  </div>
+
+  <!-- 40-58 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">40 &ndash; 58</span><h3>COUNTIF &mdash; and value_counts comes back</h3></div>
+   <p class="objective">The question from minute five, answered in a cell. Then the blanks, one more
+   time.</p>
+
+   <div class="speak">
+    <p>Back to the question I asked at the start. <b>How many people are in Sales?</b></p>
+    <p>Not filter it and read a number off the bottom of the screen. Put the answer <b>in a
+    cell</b>, so it is still there tomorrow and still right if the file changes.</p>
+   </div>
+
+   <div class="typeit">Go to V1. Labels in V, formulas in W.</div>
+<pre><code>V1   Sales        W1   =COUNTIF(D2:D201, <span class="c">"Sales"</span>)</code></pre>
+   <div class="screen">64</div>
+
+   <div class="speak">
+    <p>Two parts. <b>Where to look</b> &mdash; the whole department column. And <b>what to look
+    for</b> &mdash; the word Sales, in quotes, because it is text.</p>
+    <p>Now do the other three.</p>
+   </div>
+
+   <div class="typeit">V2 down to V4, same shape</div>
+<pre><code>V2   Tech         W2   =COUNTIF(D2:D201, <span class="c">"Tech"</span>)
+V3   HR           W3   =COUNTIF(D2:D201, <span class="c">"HR"</span>)
+V4   Marketing    W4   =COUNTIF(D2:D201, <span class="c">"Marketing"</span>)
+V5   check        W5   =SUM(W1:W4)</code></pre>
+   <div class="screen">Sales        64
+Tech         49
+HR           45
+Marketing    42
+check       200</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why did I add that last row?&rdquo;</div>
+    <div class="a">Because <b>200 is the number of rows in the file</b>. If the four counts add up to
+    200, every single person has been counted exactly once &mdash; no department was missed, nothing
+    was spelled two different ways. <b>If it came to 198, two people are in a department you have not
+    listed.</b> Teach the check, not just the count.</div>
+   </div>
+
+   <div class="speak">
+    <p>Four numbers, and they add to two hundred. Which means nothing is missing and nothing is
+    double-counted.</p>
+    <p>Some of you have seen this exact output before. In pandas it was <code>value_counts()</code>,
+    one line. Here it is four formulas and a check &mdash; <b>and unlike value_counts, these four
+    cells update themselves the moment somebody changes a department.</b></p>
+   </div>
+
+   <div class="stage">Now the numeric version, and the blank trap. <b>Do not rush this</b> &mdash; it
+   is the third time the blanks have bitten them and the first time they can prove it.</div>
+
+   <div class="speak">
+    <p>Text is one thing. Now count a comparison &mdash; how many people earn more than the
+    average?</p>
+    <p>And here is where the quotes get strange, so watch carefully. The greater-than sign goes
+    <b>inside</b> the quotes.</p>
+   </div>
+
+   <div class="typeit">W7 and W8 &mdash; note the ampersand</div>
+<pre><code>V7   above avg    W7   =COUNTIF(K2:K201, <span class="c">"&gt;"</span>&amp;$Q$10)
+V8   below avg    W8   =COUNTIF(K2:K201, <span class="c">"&lt;"</span>&amp;$Q$10)
+V9   check        W9   =W7+W8</code></pre>
+   <div class="screen">above avg     12
+below avg    186
+check        198</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Twelve and one eighty-six. That is one hundred and ninety-eight. We have two
+    hundred rows. Where are the other two?&rdquo;</div>
+    <div class="a">The <b>two blank salaries</b>. Manoj Kumar and Pooja Rao. A blank is not above the
+    average and it is not below it &mdash; <code>COUNTIF</code> with a number test <b>skips it
+    entirely</b>. Wait for them to find this. It is the third different way this file has taught them
+    the same lesson.</div>
+   </div>
+
+   <div class="keyline">
+    <b>Twelve people out of 198 earn more than the average salary of this company.</b><br><br>
+    That is six per cent. Ninety-four per cent earn less than average. You told them that number on
+    day 1 and they had to take your word for it &mdash; <b>now they have counted it themselves, in
+    two cells.</b>
+   </div>
+
+   <div class="speak">
+    <p>And look at what the check row did for us again. 198, not 200. The formula did not warn us
+    &mdash; <b>we caught it because we added the two numbers up and knew what the answer should
+    be.</b></p>
+    <p>That is the habit. Every time you break a column into groups, <b>add the groups back up.</b></p>
+   </div>
+
+   <div class="warn"><b>The failure to show them, in a spare cell, so they recognise it later.</b>
+   Type <code>=COUNTIF(K2:K201,"&gt;$Q$10")</code> &mdash; with the Q10 inside the quotes and no
+   ampersand. It returns <b>0</b>. No error, no red, no warning. It is looking for salaries greater
+   than the literal text &ldquo;$Q$10&rdquo;, and nothing matches. <b>Second time this module a wrong
+   answer has looked exactly like a real one.</b></div>
+  </div>
+
+  <!-- 58-74 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">58 &ndash; 74</span><h3>SUMIF and AVERAGEIF &mdash; the answer that is wrong</h3></div>
+   <p class="objective">Three columns instead of two, then the number the whole session is built
+   around.</p>
+
+   <div class="speak">
+    <p><code>COUNTIF</code> counts the rows that match. <code>SUMIF</code> adds up a number for those
+    rows instead.</p>
+    <p>And it needs <b>one more part</b>, because the column you test and the column you add are not
+    the same column. You test <b>department</b> and you add <b>salary</b>.</p>
+   </div>
+
+   <div class="typeit">The three parts &mdash; put this on the board</div>
+<pre><code>  =SUMIF(  where to TEST  ,  what to look for  ,  what to ADD  )
+
+           D2:D201            "Sales"             K2:K201
+           department                             salary
+
+  COUNTIF has two parts. SUMIF has three.
+  the third one is the column you actually want the total of.</code></pre>
+
+   <div class="typeit">V11 down, total salary by department</div>
+<pre><code>W11   =SUMIF(D2:D201, <span class="c">"Sales"</span>,     K2:K201)
+W12   =SUMIF(D2:D201, <span class="c">"Tech"</span>,      K2:K201)
+W13   =SUMIF(D2:D201, <span class="c">"HR"</span>,        K2:K201)
+W14   =SUMIF(D2:D201, <span class="c">"Marketing"</span>, K2:K201)</code></pre>
+   <div class="screen">Sales       4264991
+Tech        9108170
+HR          2495026
+Marketing   3106086</div>
+
+   <div class="speak">
+    <p>Tech is paying more than twice what Sales pays. But Tech only has 49 people and Sales has 64.</p>
+    <p>So totals are not comparable. We need the <b>average</b> per department. Same shape, one word
+    different.</p>
+   </div>
+
+   <div class="stage">This is the moment. Let them type all four and read the output themselves.
+   <b>Say nothing.</b></div>
+
+   <div class="typeit">V16 down &mdash; AVERAGEIF, same three parts</div>
+<pre><code>W16   =AVERAGEIF(D2:D201, <span class="c">"Sales"</span>,     K2:K201)
+W17   =AVERAGEIF(D2:D201, <span class="c">"Tech"</span>,      K2:K201)
+W18   =AVERAGEIF(D2:D201, <span class="c">"HR"</span>,        K2:K201)
+W19   =AVERAGEIF(D2:D201, <span class="c">"Marketing"</span>, K2:K201)</code></pre>
+   <div class="screen">Sales        66640.48
+Tech        189753.54
+HR           56705.14
+Marketing    73954.43</div>
+
+   <div class="qbox">
+    <div class="q">Let them look at it. Then: &ldquo;does the Tech number look right to you?&rdquo;</div>
+    <div class="a"><b>No.</b> Nearly nineteen lakh average, against about sixty to seventy thousand
+    everywhere else. Somebody will say the formula is wrong. <b>It is not.</b> Let them check it
+    against the other three &mdash; same formula, one word different, and those three are
+    fine.</div>
+   </div>
+
+   <div class="speak">
+    <p>One lakh eighty-nine thousand. Tech does not pay that. <b>Nobody in Tech earns that.</b></p>
+    <p>And the formula is right. Same formula as the other three. Same range, same column, correct
+    arithmetic.</p>
+    <p>So who is doing this?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">Wait. Do not answer it.</div>
+    <div class="a">Somebody will get there: <b>Lakshmi Kumar, row 5, Tech, 52,00,000.</b> The same
+    person from statistics, from the visualisation session, and from day 1 of this module. <b>Let the
+    room find her.</b></div>
+   </div>
+
+   <div class="typeit">Prove it &mdash; take her out and run it again</div>
+<pre><code>AVERAGEIF Tech, all 48 salaries         189753.54
+the same 47 people, without her          83152.55
+
+one row in 200 moved the department average
+by more than a lakh.</code></pre>
+
+   <div class="keyline">
+    <b>A correct formula is not the same thing as a correct answer.</b><br><br>
+    Everything that has gone wrong in this module so far was a <em>mistake</em> &mdash; a missing
+    dollar sign, a one-column sort, a blank read as a zero. You fixed the formula and the answer came
+    right.<br><br>
+    <b>This one you cannot fix by fixing the formula.</b> The formula is already right. The data has
+    somebody in it who is nothing like the others, and no software on earth will tell you that.
+   </div>
+
+   <div class="speak">
+    <p>So what do you actually do? You do <b>not</b> quietly delete her &mdash; she is a real
+    employee and that is real money.</p>
+    <p>You report the <b>median</b> next to the average, which is exactly what you learned to do in
+    statistics. Or you report the average and say out loud that one person is carrying it.</p>
+    <p>The fix is in how you present the number. <b>Not in changing the data.</b></p>
+   </div>
+
+   <div class="warn"><b>Expect &ldquo;so is there a MEDIANIF?&rdquo; and answer it straight.</b>
+   <b>No. It does not exist in Excel.</b> It is a fair question and the honest answer is that getting
+   a median per department properly needs a <b>pivot table</b>, which is session five. Do not
+   improvise an array formula at the board.</div>
+  </div>
+
+  <!-- 74-84 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">74 &ndash; 84</span><h3>Two conditions at once &mdash; just add an S</h3></div>
+   <p class="objective">Not a new idea. The same function, asked twice. Ten minutes.</p>
+
+   <div class="speak">
+    <p>Last thing, and it is the easiest of the day. A real question is rarely about one thing.</p>
+    <p>Not &ldquo;how many in Sales&rdquo;, but <b>&ldquo;how many in Sales have been here ten years
+    or more&rdquo;</b>. Two conditions, one answer.</p>
+    <p>Add an <b>S</b> to the end of the function name and keep adding pairs.</p>
+   </div>
+
+   <div class="typeit">The shape &mdash; and watch where the answer column moved</div>
+<pre><code>  =COUNTIFS(  range1, test1,  range2, test2  )
+
+  =SUMIFS(  what to ADD  ,  range1, test1,  range2, test2  )
+            ^^^^^^^^^^^
+            in SUMIFS the thing you add comes FIRST.
+            in SUMIF it came LAST. yes, really.</code></pre>
+
+   <div class="typeit">Try it</div>
+<pre><code>=COUNTIFS(D2:D201, <span class="c">"Sales"</span>, H2:H201, <span class="c">"&gt;=10"</span>)</code></pre>
+   <div class="screen">32</div>
+
+   <div class="speak">
+    <p>Thirty-two people in Sales with ten years or more. Half the department.</p>
+    <p>And the conditions are joined by <b>AND</b>, never OR. A row is counted only if it passes
+    <b>every</b> test you listed.</p>
+   </div>
+
+   <div class="stage">Now the grid. This is the payoff for the whole session, and it previews the
+   pivot table in session five without naming it yet.</div>
+
+   <div class="speak">
+    <p>Now watch what two conditions let you build. Set up a small grid &mdash; departments down the
+    side, ratings across the top.</p>
+   </div>
+
+   <div class="typeit">One formula, filled across and down. Note which half is locked.</div>
+<pre><code>=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)
+
+   $D$2:$D$201   the department column, locked completely
+   $V23          the department name - column locked, row free
+   $G$2:$G$201   the rating column, locked completely
+   W$22          the rating name - row locked, column free</code></pre>
+
+   <div class="screen">             Poor  Average  Good  Excellent   total
+Sales          17       14    19         14      64
+Tech           15        8    13         13      49
+HR             12        9    11         13      45
+Marketing      14       11     8          9      42
+
+total          58       42    51         49     200</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Add the row totals. Now add the column totals. What do you get both
+    times?&rdquo;</div>
+    <div class="a"><b>200 both ways.</b> Sixteen cells, one formula, and every single person counted
+    exactly once. Same check as the department counts earlier, now in two directions.</div>
+   </div>
+
+   <div class="warn"><b>The half-locks are the hard part and you said you would skip them on day 1.</b>
+   This is why they exist. <code>$V23</code> keeps the department as you fill <em>across</em>;
+   <code>W$22</code> keeps the rating as you fill <em>down</em>. If anybody is stuck, <b>let them
+   write sixteen separate formulas</b> &mdash; the grid is the point, not the shortcut. Fix it one to
+   one while the rest move on.</div>
+
+   <div class="speak">
+    <p>Sixteen numbers, from one formula, and they add up correctly in both directions.</p>
+    <p>Hold on to this. In session five there is a tool that builds this entire grid by
+    <b>dragging two words</b>, with no formula at all. You will appreciate it a great deal more having
+    built it by hand first.</p>
+   </div>
+  </div>
+
+  <!-- 84-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">84 &ndash; 90</span><h3>Close</h3></div>
+
+   <div class="typeit">The five lines. If everything else goes, keep these.</div>
+<pre><code>1.  a CONDITION is a question with a yes/no answer.
+    =K2&gt;50000 on its own returns TRUE or FALSE.
+    everything today is that, wrapped in something useful.
+
+2.  IF decides for ONE ROW.    COUNTIF / SUMIF / AVERAGEIF
+    work on a WHOLE RANGE and give back one number.
+
+3.  the quotes:
+      "Sales"        text          -> quotes
+      "&gt;50000"       a comparison  -> quotes, &gt; INSIDE
+      "&gt;"&amp;$Q$10     vs a cell     -> join with &amp;
+    get this wrong and you get 0. not an error. ZERO.
+
+4.  IFS stops at the FIRST condition that is true.
+    narrowest first. widest first = every row the same answer.
+
+5.  ALWAYS ADD THE GROUPS BACK UP.
+    64+49+45+42 = 200   correct
+    12+186      = 198   the two blank salaries, again</code></pre>
+
+   <div class="speak">
+    <p>And the one that is not about Excel at all.</p>
+    <p><b>AVERAGEIF on Tech gave us one lakh eighty-nine thousand, and the formula was perfect.</b></p>
+    <p>You can write a formula correctly, point it at the right column, and still get an answer that
+    would be a lie if you put it in a report. Excel will never tell you. Pandas never told you either.
+    That part stays your job for the rest of your career.</p>
+   </div>
+
+   <div class="speak">
+    <p>Tuesday is the one every interview asks about. You have two sheets &mdash; a list of employees
+    and a list of departments &mdash; and you need to pull information from one into the other.</p>
+    <p>That is <code>VLOOKUP</code>. It is the single most-asked Excel question for a fresher analyst,
+    and it breaks in three specific ways that I am going to make happen on purpose.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Seven steps, every formula, every number it should produce. If you lose your
+  place, this page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Check the file, and the question</p>
+   <p class="rs-say"><b>Land this:</b> everybody on <b>Thursday's cleaned file</b>. 200 rows, so data
+   runs <b>2 to 201</b>. Every range today ends in 201.</p>
+   <div class="rs-out">rows 200 | ages 199 | salaries 198</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;how many people are in Sales?&rdquo; &mdash; they say
+   filter, or sort and count. <b>Then the follow-up:</b> &ldquo;now put that number in a cell so it is
+   still there tomorrow.&rdquo; <b>Nobody can.</b> That is the session.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 28</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">IF &mdash; the first formula that decides</p>
+   <p class="rs-say"><b>Land this:</b> show the condition <b>bare</b> before wrapping it. They need to
+   see TRUE/FALSE on its own.</p>
+   <div class="rs-code"><pre><code>M2   =K2&gt;50000                                          <span class="c">FALSE</span>
+M2   =IF(K2&gt;50000, <span class="c">"Above 50k"</span>, <span class="c">"Below 50k"</span>)            <span class="c">Below 50k</span>
+M2   =IF(K2&gt;$Q$10, <span class="c">"Above average"</span>, <span class="c">"Below average"</span>)   <span class="c">fill to 201</span></code></pre></div>
+   <div class="rs-board"><b>Three parts:</b> the question, what if yes, what if no. <b>Quotes on the
+   text answers.</b><br><br>
+   <b>Ask before filling down:</b> &ldquo;what does Q10 need?&rdquo; &mdash; <b>the dollar signs.</b>
+   Every row has its own salary; all 200 share one average. <b>Second session in a row.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect:</b> row 9, Manoj Kumar, no salary, says
+   <b>Below average</b>. Empty behaves like zero. <b>Wrong, and nothing marks it wrong.</b> Third time
+   this file has done that.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">28 &ndash; 40</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">IFS &mdash; three bands</p>
+   <div class="rs-code"><pre><code>N2   =IFS(H2&gt;=<span class="o">10</span>, <span class="c">"Senior"</span>, H2&gt;=<span class="o">5</span>, <span class="c">"Mid"</span>, H2&gt;=<span class="o">0</span>, <span class="c">"Junior"</span>)
+
+     Senior 79 | Mid 65 | Junior 56</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;13 years &mdash; is it &gt;=10? yes. also &gt;=5? also
+   yes.&rdquo; <b>All three are true.</b> They get Senior because it was written first and
+   <b>IFS stops at the first true one</b>.<br><br>
+   <b>Write the narrowest condition first.</b> Widest first and every row says Junior &mdash; no
+   error, no warning.</div>
+   <div class="rs-board" style="margin-top:8px"><b>If somebody gets <code>#NAME?</code></b> they are
+   on Excel 2016 or older. Show the nested version once, do not make them write it.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">40 &ndash; 58</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">COUNTIF, and the blanks again</p>
+   <div class="rs-code"><pre><code>W1   =COUNTIF(D2:D201, <span class="c">"Sales"</span>)          64
+W2   =COUNTIF(D2:D201, <span class="c">"Tech"</span>)           49
+W3   =COUNTIF(D2:D201, <span class="c">"HR"</span>)             45
+W4   =COUNTIF(D2:D201, <span class="c">"Marketing"</span>)      42
+W5   =SUM(W1:W4)                       <span class="o">200</span>  &lt;-- the check</code></pre></div>
+   <div class="rs-board"><b>Ask why the check row exists:</b> four counts adding to <b>200</b> proves
+   everybody was counted once. <b>198 would mean two people are in a department you did not
+   list.</b><br><br>
+   This is <code>value_counts()</code> &mdash; except these four cells <b>update themselves</b>.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>W7   =COUNTIF(K2:K201, <span class="c">"&gt;"</span>&amp;$Q$10)       12
+W8   =COUNTIF(K2:K201, <span class="c">"&lt;"</span>&amp;$Q$10)      186
+W9   =W7+W8                            <span class="o">198</span>  &lt;-- not 200</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;where are the other two?&rdquo; &mdash; the <b>two blank
+   salaries</b>. A blank is neither above nor below; COUNTIF skips it.<br><br>
+   <b>12 of 198 earn above average. Ninety-four per cent earn below it</b> &mdash; you told them that
+   on day 1 and <b>now they have counted it.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Show the failure:</b>
+   <code>=COUNTIF(K2:K201,"&gt;$Q$10")</code> with Q10 inside the quotes returns <b>0</b>. No error.
+   <b>Second time a wrong answer has looked like a real one.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">58 &ndash; 74</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">SUMIF, AVERAGEIF &mdash; and the wrong answer</p>
+   <p class="rs-say"><b>Land this:</b> SUMIF has <b>three</b> parts &mdash; test range, what to look
+   for, <b>what to add</b>. Then let the Tech average happen. <b>Do not warn them.</b></p>
+   <div class="rs-code"><pre><code>=SUMIF(D2:D201, <span class="c">"Sales"</span>, K2:K201)       4264991
+=SUMIF(D2:D201, <span class="c">"Tech"</span>, K2:K201)        9108170
+=SUMIF(D2:D201, <span class="c">"HR"</span>, K2:K201)          2495026
+=SUMIF(D2:D201, <span class="c">"Marketing"</span>, K2:K201)   3106086
+
+=AVERAGEIF(D2:D201, <span class="c">"Sales"</span>, K2:K201)     66640.48
+=AVERAGEIF(D2:D201, <span class="c">"Tech"</span>, K2:K201)     <span class="o">189753.54</span>
+=AVERAGEIF(D2:D201, <span class="c">"HR"</span>, K2:K201)        56705.14
+=AVERAGEIF(D2:D201, <span class="c">"Marketing"</span>, K2:K201) 73954.43</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;does Tech look right?&rdquo; Somebody says the formula is
+   broken. <b>It is not</b> &mdash; same formula as the other three.<br><br>
+   <b>Wait for them to name her:</b> Lakshmi Kumar, row 5, Tech, <b>52,00,000</b>. Same person from
+   statistics, from visualisation, from day 1.<br><br>
+   Without her: <b>83,152.55</b> across 47 people. <b>One row moved a department average by over a
+   lakh.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>The line:</b> a correct formula is not the same
+   thing as a correct answer. Every earlier error was a <em>mistake</em> you could fix.
+   <b>This one you cannot fix by fixing the formula.</b><br><br>
+   <b>What to do:</b> report the <b>median</b> beside the average, or name the outlier. <b>Not</b>
+   delete the row.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Expect &ldquo;is there a MEDIANIF?&rdquo;</b>
+   &mdash; <b>no, it does not exist.</b> Median per department needs a <b>pivot table</b>, session
+   five. Do not improvise at the board.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">74 &ndash; 84</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two conditions &mdash; add an S</p>
+   <div class="rs-code"><pre><code>=COUNTIFS(D2:D201, <span class="c">"Sales"</span>, H2:H201, <span class="c">"&gt;=10"</span>)        32
+
+  in SUMIFS the column you ADD comes FIRST.
+  in SUMIF it came LAST. yes, really.</code></pre></div>
+   <div class="rs-board">Conditions are joined by <b>AND</b>, never OR. A row counts only if it passes
+   <b>every</b> test.</div>
+   <p class="rs-do" style="margin-top:12px">Then the grid &mdash; one formula, filled both ways</p>
+   <div class="rs-code"><pre><code>=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)
+
+             Poor  Average  Good  Excellent   total
+Sales          17       14    19         14      64
+Tech           15        8    13         13      49
+HR             12        9    11         13      45
+Marketing      14       11     8          9      42
+total          58       42    51         49     <span class="o">200</span></code></pre></div>
+   <div class="rs-board"><b>Add it both ways &mdash; 200 each time.</b> Sixteen cells, one formula,
+   everybody counted once.<br><br>
+   <b>The half-locks are why you skipped them on day 1.</b> <code>$V23</code> holds as you fill
+   across, <code>W$22</code> holds as you fill down. <b>Anybody stuck writes sixteen formulas</b>
+   &mdash; the grid is the point.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Tease session five:</b> a tool builds this whole
+   grid by dragging two words. <b>They will appreciate it having built it by hand.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">84 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close</p>
+   <div class="rs-code"><pre><code>1.  a CONDITION is a question with a yes/no answer
+2.  IF = one row.  COUNTIF/SUMIF/AVERAGEIF = a whole range
+3.  "Sales" / "&gt;50000" / "&gt;"&amp;$Q$10   - wrong quotes = 0, not an error
+4.  IFS stops at the FIRST true condition - narrowest first
+5.  ALWAYS ADD THE GROUPS BACK UP   64+49+45+42=200   12+186=198</code></pre></div>
+   <div class="rs-board"><b>The line that is not about Excel:</b> AVERAGEIF gave 1,89,753 and the
+   formula was perfect. <b>You can write a formula correctly and still get an answer that would be a
+   lie in a report.</b> Excel will not tell you. Pandas never did either.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up Tuesday:</b> two sheets, and you need to
+   pull information from one into the other. <b>VLOOKUP</b> &mdash; the single most-asked Excel
+   question for a fresher, and it breaks in three ways we will cause on purpose.</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order, with the answer under each
+  one. Numbers 5, 9 and 12 are the three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What does <code>=K2&gt;50000</code> return on its own, with no <code>IF</code> around it?</q>
+    <div class="ans"><b>TRUE or FALSE.</b> Nothing else. That is a condition, and everything today is
+    that one thing wrapped in something useful.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What are the three parts of an <code>IF</code>?</q>
+    <div class="ans">The <b>question</b>, <b>what to put if yes</b>, <b>what to put if no</b> &mdash;
+    separated by commas. Text answers need quotes.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the difference between <code>IF</code> and <code>COUNTIF</code>?</q>
+    <div class="ans"><code>IF</code> works on <b>one row</b> and gives back a value for that row.
+    <code>COUNTIF</code> works on a <b>whole range</b> and gives back <b>one number</b> for all of
+    it.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why did <code>=IF(K2&gt;Q10, ...)</code> go wrong when you filled it down, and what fixed it?</q>
+    <div class="ans">Q10 moved down with the formula, so row 3 compared against Q11. <b>Dollar signs
+    &mdash; <code>$Q$10</code>.</b> Every row has its own salary; all 200 rows share one
+    average.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Write the condition for &ldquo;more than fifty thousand&rdquo; inside a <code>COUNTIF</code>.
+    Where do the quotes go?</q>
+    <div class="ans"><code>"&gt;50000"</code> &mdash; <b>the greater-than sign goes inside the
+    quotes</b>, together with the number. It is one piece of text that Excel reads as an
+    instruction.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why does <code>=COUNTIF(K2:K201,"&gt;$Q$10")</code> return 0 instead of an error?</q>
+    <div class="ans">Because it is looking for salaries greater than the <b>literal text</b>
+    &ldquo;$Q$10&rdquo;, and nothing matches. You need <code>"&gt;"&amp;$Q$10</code> to join the sign
+    to the cell's value. <b>A wrong answer that looks like a real one.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Your four department counts are 64, 49, 45 and 42. Why did you add them up?</q>
+    <div class="ans">They come to <b>200</b>, which is the number of rows. That proves <b>every person
+    was counted exactly once</b> &mdash; nothing missed, nothing spelled two ways. <b>Always add the
+    groups back up.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Above average is 12, below average is 186. That is 198. Where are the other two rows?</q>
+    <div class="ans">The <b>two blank salaries</b>. A blank is not above the average and not below it
+    &mdash; <code>COUNTIF</code> with a number test <b>skips it entirely</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>How many parts does <code>SUMIF</code> have, and what is the extra one?</q>
+    <div class="ans"><b>Three.</b> Where to test, what to look for, and <b>what to add</b> &mdash;
+    because the column you test (department) is not the column you add
+    (salary).</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>AVERAGEIF</code> on Tech returned 1,89,753. Is the formula wrong?</q>
+    <div class="ans"><b>No. The formula is perfectly correct.</b> One person in Tech earns 52,00,000
+    and she drags the average up on her own. Without her it is <b>83,152</b> across 47
+    people.</div></div></div>
+
+   <div class="aq"><div>
+    <q>So should you delete her row?</q>
+    <div class="ans"><b>No.</b> She is a real employee earning real money. Report the <b>median</b>
+    beside the average, or report the average and name the outlier. <b>The fix is in how you present
+    it, not in changing the data.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>In an <code>IFS</code>, somebody with 13 years passes all three conditions. Why do they come
+    out as Senior?</q>
+    <div class="ans">Because <code>IFS</code> checks <b>top to bottom and stops at the first true
+    one</b>. Senior was written first. <b>Put the narrowest condition first</b> &mdash; widest first
+    and every row gets the same answer, with no error.</div></div></div>
+
+   <div class="aq"><div>
+    <q>In <code>COUNTIFS</code> with two conditions, does a row need to pass both or just one?</q>
+    <div class="ans"><b>Both.</b> The conditions are joined by AND, never OR. A row counts only if it
+    passes <b>every</b> test you listed.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Can I use <code>COUNTIF</code> with two conditions?&rdquo;</h5>
+  <p>&ldquo;No &mdash; that is exactly what <code>COUNTIFS</code> is for. The <b>S</b> means more than
+  one. Same for <code>SUMIFS</code> and <code>AVERAGEIFS</code>. And once you are used to them you can
+  just always write the S version, even with one condition; it works
+  perfectly well.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why does <code>SUMIF</code> put the column to add at the end, but
+  <code>SUMIFS</code> puts it at the front?&rdquo;</h5>
+  <p>&ldquo;Because <code>SUMIFS</code> takes any number of condition pairs after it, so the thing you
+  are adding has to come first or Excel would not know where the list stops. It is inconsistent and it
+  catches everybody. <b>Check the order every single time you write a SUMIFS.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is there a <code>MEDIANIF</code>?&rdquo;</h5>
+  <p>&ldquo;No. It does not exist in Excel, and that is a real gap &mdash; you just saw exactly why you
+  would want one. Getting a median per department properly needs a <b>pivot table</b>, which is session
+  five.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My <code>COUNTIF</code> says 0 and I know the value is there.&rdquo;</h5>
+  <p>&ldquo;Three usual causes. The quotes are in the wrong place &mdash; the sign has to be
+  <em>inside</em> them. Or you are comparing against a cell and left out the <code>&amp;</code>. Or
+  there is a trailing space in the data, so <code>"Sales"</code> does not match
+  <code>"Sales&nbsp;"</code>. That last one is what <code>TRIM</code> was
+  for.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does <code>COUNTIF</code> care about capital letters?&rdquo;</h5>
+  <p>&ldquo;No. <code>"sales"</code>, <code>"Sales"</code> and <code>"SALES"</code> all count the same
+  rows. That is usually helpful and occasionally not &mdash; if you genuinely need case to matter, it
+  takes a different formula and it is rare enough that you should look it up when it
+  happens.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I use a wildcard, like counting everybody whose name starts with
+  A?&rdquo;</h5>
+  <p>&ldquo;Yes. <code>=COUNTIF(C2:C201,"A*")</code> gives <b>33</b>. The <code>*</code> means any
+  number of characters, the same as it did in Find and Replace on Thursday. It works on text, not on
+  numbers.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;I got <code>#NAME?</code> on the <code>IFS</code>.&rdquo;</h5>
+  <p>&ldquo;Your Excel is older than 2019, so that function does not exist there. The old way is
+  putting one <code>IF</code> inside another. It gives the same answer and it is much harder to read,
+  which is why they added <code>IFS</code>.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Could we do all of this in pandas instead?&rdquo;</h5>
+  <p>&ldquo;Yes, and in fewer lines &mdash; <code>value_counts</code> and <code>groupby</code> do most
+  of today in two. The difference is the same one as day 1: these cells <b>recalculate themselves</b>
+  when the data changes, and the person you hand the file to can see the formula and check it. You will
+  use both.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why do we build the grid by hand if a pivot table does it?&rdquo;</h5>
+  <p>&ldquo;So that when the pivot table gives you a number you do not trust, you know what it is
+  doing underneath and can check one cell of it yourself. People who only know the button cannot
+  debug it.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="ab23">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -29731,7 +30691,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
