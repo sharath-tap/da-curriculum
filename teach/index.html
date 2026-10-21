@@ -737,16 +737,16 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="trackhead">
     <h2>Excel</h2>
     <span class="badge">Follows Data Visualisation</span>
-    <span class="badge live">All 6 scripts ready</span>
+    <span class="badge live">All 9 scripts ready</span>
    </div>
-   <p class="tracknote">Excel comes <b>after</b> Python on purpose, and that changes what the module is
-   about. They already know every concept in it &mdash; mean, median, outliers, grouping, correlation,
-   charts. <b>Nothing here is new statistics.</b> What is new is a grid, a formula bar, and a tool that
-   recalculates itself the moment a cell changes. Six sessions, because the mechanical surface is real:
-   the lookup family and pivot tables are a full session each, and those two are what a fresher analyst
-   interview actually asks about. Every session runs on <code>employees.csv</code> &mdash; the same file
-   they have had since statistics day 1, which is why day 1 opens with the fifty-two lakh salary sitting
-   on row 5 where anybody can see it.</p>
+   <p class="tracknote">Excel comes <b>after</b> Python and SQL on purpose, and that changes what the
+   module is about. They already know every concept in it &mdash; mean, median, outliers, grouping,
+   correlation, charts, and all six joins. <b>Nothing here is new statistics and nothing is a new join.</b>
+   What is new is a grid, a formula bar, and a tool that recalculates itself the moment a cell changes.
+   <b>Nine sessions.</b> Six on the sheet, then <b>three that no comparison course covers</b>: the text
+   and date functions, and two on the <b>Power Query Editor</b> &mdash; which is the same editor as Power
+   BI's, so two of that module's sessions are done early. Every session runs on
+   <code>employees.csv</code>, the file they have had since statistics day 1.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="x1">
@@ -788,14 +788,41 @@ try{var _t=localStorage.getItem("steep-theme");
      <p>Charts off the pivots, formats so a salary stops looking like a phone number, and a summary page
      built live &mdash; including the one sentence that keeps it from being a trap. Closes the
      module.</p>
+     <span class="foot">Script ready &middot; charts and the handover</span></button>
+
+    <button class="dcard full" data-go="x7">
+     <span class="id">EXCEL 7</span><h3>Cutting Text, and Dates That Are Really Numbers</h3>
+     <p>LEFT, RIGHT, MID and FIND, then the date functions &mdash; and the weekday column that does not
+     exist until you build it, at which point <b>48 people turn out to have been hired at a
+     weekend</b>.</p>
+     <span class="foot">Script ready &middot; the best finding in the module</span></button>
+
+    <button class="dcard full" data-go="x8">
+     <span class="id">EXCEL 8</span><h3>Cleaning With Steps, Not Formulas</h3>
+     <p>Power Query, part one. Applied Steps, profiling, the primary key test &mdash;
+     <code>name</code> has 129 distinct values for 200 people &mdash; and Group By. <b>The same editor
+     as Power BI.</b></p>
+     <span class="foot">Script ready &middot; Power BI, early</span></button>
+
+    <button class="dcard full" data-go="x9">
+     <span class="id">EXCEL 9</span><h3>The Joins You Already Know, With a Mouse</h3>
+     <p>All six joins as a dropdown &mdash; revision, since they have SQL &mdash; then the anti joins
+     they wrote without knowing the name. Closes on a slicer that filters one chart of four and does not
+     say so.</p>
      <span class="foot">Script ready &middot; closes the module</span></button>
    </div>
 
    <div class="planbanner" style="margin-top:16px">
     <b>What this module deliberately does not teach, so you can say so when asked.</b>
     No macros and no VBA &mdash; it is a programming language, they already have a better one, and no
-    fresher job asks for it. No Power Query, because Power BI does the same job in the next module and
-    does it better. No array formulas. No <code>OFFSET</code> or <code>INDIRECT</code>.
+    fresher job asks for it. No 3D charts, because the perspective distorts them and the visualisation
+    module taught the opposite. No array formulas. No <code>OFFSET</code> or <code>INDIRECT</code>. No
+    colour scales or icon sets, since data bars teach the idea.
+    <br><br>
+    <b>Power Query is in, and that is a reversal.</b> It was going to be left to Power BI &mdash; but the
+    editor in Excel and the editor in Power BI are the same tool, so teaching it here means Power BI's
+    first two sessions arrive already known, on a file they have had for eight sessions instead of one
+    they have never seen.
     <br><br>
     <b>What that time buys instead</b> is a full session on the lookup family and a full session on pivot
     tables, which are the two things an interviewer will actually reach for. Day 1 also spends eighteen
@@ -24628,6 +24655,3005 @@ every page: a title with a date . the n (200)
  </div>
 </section>
 </div>
+<div class="day" id="x7">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 7 &middot; merged class &middot; 90 minutes &middot; full script &middot; text and dates</p>
+  <h1 class="display">Cutting Text,<br>and Dates That<br>Are Really Numbers</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Two column types the module has walked past six times. By the end of this session the
+   <code>join_date</code> column answers a question nobody has asked it &mdash; and the answer is a
+   data-quality problem sitting in plain sight.</p>
+  <div class="glance">
+   <div class="gcell"><b>48</b><span>people hired at a weekend</span></div>
+   <div class="gcell"><b>129</b><span>names for 200 people</span></div>
+   <div class="gcell"><b>1</b><span>the position a space is at</span></div>
+   <div class="gcell"><b>4295</b><span>days since the first hire</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">The finding to drive at</h4>
+   <p style="color:var(--sienna)">Pull the weekday out of <code>join_date</code> and count it.
+   <b style="color:var(--sienna)">Saturday 23, Sunday 25 &mdash; forty-eight of two hundred people
+   started at a weekend.</b> Real companies do not start a quarter of their staff on a Saturday.</p>
+   <p style="color:var(--sienna)">Nobody could have found that with a sort, a filter, a
+   <code>COUNTIF</code> or a pivot table, because <b style="color:var(--sienna)">the weekday was never
+   a column</b>. One function made it one. That is the argument for this entire session, and it is
+   worth ten minutes at the end.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Open on what they already did to this column, and why it was not enough.</b> On day 2 they
+   split <code>name</code> with Text to Columns. That worked, it was <b>destructive</b>, and it does not
+   update. Today is the formula version. Frame it as the upgrade, not as a new topic.</li>
+   <li><b>The <code>FIND</code> idea is the only hard thing today.</b> <code>LEFT</code> and
+   <code>RIGHT</code> need to know <em>how many</em> characters, and the answer is different on every
+   row. <code>FIND</code> is what makes the count come from the data instead of from you. Give it its
+   own block and do not rush it.</li>
+   <li><b>A date is a number. Prove it in the first two minutes of the dates half.</b> Format a
+   <code>join_date</code> cell as General and let them see <code>43103</code>. Everything about date
+   arithmetic follows from that one fact and nothing makes sense without it.</li>
+   <li><b>Do not teach every date function.</b> <code>TODAY</code>, <code>YEAR</code>,
+   <code>MONTH</code>, <code>WEEKDAY</code>, <code>DAYS</code> and <code>DATEDIF</code> earn their
+   place. <code>NOW</code>, <code>EOMONTH</code>, <code>NETWORKDAYS</code> and the rest can be named
+   and skipped.</li>
+   <li><b><code>DATEDIF</code> is undocumented and you should say so.</b> It does not appear in Excel's
+   function list, it will not autocomplete, and it still works in every version. Students will think
+   they have typed it wrong. Tell them before they do.</li>
+   <li><b>Save the weekend finding for the last fifteen minutes.</b> It is the payoff. If you lead with
+   it, the functions become homework instead of the tools that found it.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: why counting characters is the whole problem
+  with text functions, what a date actually is, and why <code>WEEKDAY</code> returning a number is a
+  feature rather than an annoyance.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; text functions all count characters, and that is the difficulty</h5>
+
+   <div class="mth">
+    <div class="mrow"><b>LEFT</b><div><code>LEFT(text, n)</code> &mdash; the first <b>n</b>
+    characters.</div></div>
+    <div class="mrow"><b>RIGHT</b><div><code>RIGHT(text, n)</code> &mdash; the last <b>n</b>
+    characters.</div></div>
+    <div class="mrow"><b>MID</b><div><code>MID(text, start, n)</code> &mdash; <b>n</b> characters
+    beginning at position <b>start</b>. Counting starts at <b>1</b>, not 0.</div></div>
+    <div class="mrow"><b>LEN</b><div><code>LEN(text)</code> &mdash; how many characters there are,
+    <b>spaces included</b>.</div></div>
+    <div class="mrow warn2"><b>the problem</b><div>All of them need a <b>number</b>. On real data that
+    number is <b>different on every row</b> &mdash; Rahul Sharma breaks at 6, Karthik Kumar at
+    8.</div></div>
+   </div>
+
+   <h6>Which is what <code>FIND</code> is for</h6>
+   <p><code>FIND(" ", C2)</code> returns <b>the position of the space</b>. For
+   <code>Rahul Sharma</code> that is <b>6</b>. So the first name is the first <code>6 − 1</code>
+   characters, and that subtraction is the whole trick.</p>
+   <div class="mcalc">=LEFT(C2, FIND(" ",C2) - 1)              Rahul
+=RIGHT(C2, LEN(C2) - FIND(" ",C2))      Sharma</div>
+   <p>Read the second one out loud: <em>take from the right, as many characters as the total length
+   minus where the space is.</em> 12 − 6 = 6, and <code>Sharma</code> is six letters.</p>
+
+   <h6>Why bother, when Text to Columns did this on day 2</h6>
+   <div class="mth">
+    <div class="mrow"><b>Text to Columns</b><div><b>Destructive and one-off.</b> It overwrites, it
+    cannot be undone later, and a new row typed tomorrow is not split.</div></div>
+    <div class="mrow"><b>the formulas</b><div><b>Live.</b> Fix a typo in the name and both halves
+    correct themselves. New row, fill down, done.</div></div>
+    <div class="mrow warn2"><b>so</b><div>Text to Columns to <b>clean up an import once</b>. Formulas
+    for <b>anything that will receive new data.</b></div></div>
+   </div>
+
+   <div class="warn"><b>One honest caveat.</b> All of this assumes <b>exactly one space</b>. Our file
+   has exactly one in all 200 names &mdash; verified. A real name column has middle names, initials and
+   double-barrelled surnames, and then <code>FIND</code> finds only the first space and the formula
+   quietly gets it wrong. <b>Say so, and say that checking is your job.</b></div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; a date is a number, and everything follows from that</h5>
+
+   <h6>Prove it before you explain it</h6>
+   <p>Click a <code>join_date</code> cell and set the format to <b>General</b>. Rahul Sharma's
+   <code>2018-01-03</code> becomes <b>43103</b>.</p>
+   <p>That is the number of days since <b>1 January 1900</b>, which Excel treats as day 1. A date is
+   that count. The calendar you see is a <b>number format</b> sitting on top of it &mdash; exactly like
+   the currency format on day 6.</p>
+
+   <div class="keyline">
+    <b>Once you accept that, date arithmetic stops being strange.</b><br><br>
+    Subtracting two dates gives a number of days because <b>they were always numbers</b>. Adding 30 to
+    a date gives a date thirty days later. Sorting dates works because sorting numbers works.
+   </div>
+
+   <div class="mth">
+    <h6>The six worth teaching</h6>
+    <div class="mrow"><b>TODAY()</b><div>Today's date. <b>Empty brackets and it still needs
+    them.</b> Recalculates every time the file opens.</div></div>
+    <div class="mrow"><b>YEAR MONTH DAY</b><div>Pull one part out as a number. This is how you group by
+    year in a pivot.</div></div>
+    <div class="mrow"><b>WEEKDAY</b><div>Which day of the week, as a number. <b>1 is Sunday</b> by
+    default, 7 is Saturday.</div></div>
+    <div class="mrow"><b>DAYS</b><div><code>DAYS(end, start)</code> &mdash; days between two dates.
+    <b>End first.</b> Backwards gives a negative.</div></div>
+    <div class="mrow warn2"><b>DATEDIF</b><div>Whole years, months or days between two dates.
+    <b>Undocumented</b> &mdash; it will not autocomplete and it still works.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; <code>WEEKDAY</code> returns a number, and that is the point</h5>
+
+   <h6>It looks unhelpful and it is the most useful thing today</h6>
+   <p><code>=WEEKDAY(L2)</code> on 3 January 2018 returns <b>4</b>. Not &ldquo;Wednesday&rdquo;.
+   A number between 1 and 7, where 1 is Sunday.</p>
+   <p>Students want the word. But a <b>number can be counted, compared and tested</b>, and a word
+   cannot be tested as easily. <code>=IF(WEEKDAY(L2)&gt;=6, "weekend", "weekday")</code> is a column
+   you can <code>COUNTIF</code>.</p>
+
+   <h6>And that is how the finding appears</h6>
+   <div class="mcalc">Monday     23        Friday     35
+Tuesday    22        Saturday   23
+Wednesday  26        Sunday     25
+Thursday   46                      ----
+                     total        200</div>
+   <p><b>Forty-eight of two hundred people started at a weekend.</b> Twenty-four per cent. No real
+   company does that.</p>
+   <div class="keyline">
+    <b>This is the first finding in the whole module that needed a column that did not exist.</b><br><br>
+    Sorting could not find it. Filtering could not. <code>COUNTIF</code> could not, and neither could
+    a pivot table &mdash; because <b>the weekday was never in the file</b>. A function had to make it
+    before anything could count it.
+   </div>
+
+   <h6>What to say about the Thursday 46</h6>
+   <p>Somebody will notice Thursday is double Monday. <b>Be careful here and be honest:</b> that is one
+   count on two hundred rows, and it may be nothing. The weekend result is different in kind &mdash; it
+   is not a <em>pattern</em>, it is <b>values that should not exist at all</b>. Teach the difference
+   between an interesting number and an impossible one.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>You already split this column once</h3></div>
+   <p class="objective">Open on day 2's work and the reason it was not enough.</p>
+
+   <div class="stage">Cleaned file, 200 rows, data 2 to 201. Scroll to the <b>S</b> and <b>T</b> columns
+   from day 2, where they split the names with Text to Columns.</div>
+
+   <div class="speak">
+    <p>On day two you split the name column into first and last name. Columns S and T. It worked.</p>
+    <p>Now type a new name into <b>C202</b>, just under the data. Anything you like.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Did it split?&rdquo;</div>
+    <div class="a"><b>No.</b> S202 and T202 are empty. <b>Text to Columns was a one-off</b> &mdash; it
+    ran once and finished. It does not watch the column.</div>
+   </div>
+
+   <div class="speak">
+    <p>Nothing happened. Text to Columns ran once, on the rows that existed at the time, and
+    stopped.</p>
+    <p>It also <b>overwrote</b> whatever was in the next column, which is why I made you check before
+    running it.</p>
+    <p>Today we do the same split with <b>formulas</b>, which means it stays alive. New row, fill down,
+    done. And on the way we meet the functions interviews actually ask about.</p>
+   </div>
+
+   <div class="stage">Delete the test row from C202 before moving on.</div>
+  </div>
+
+  <!-- 10-22 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10 &ndash; 22</span><h3>LEFT, RIGHT, MID, LEN</h3></div>
+   <p class="objective">The four that cut text. Twelve minutes, on fixed numbers, before the hard
+   part.</p>
+
+   <div class="speak">
+    <p>Four functions, and all four need the same thing from you: <b>a number</b>. How many characters.</p>
+    <p>Go to an empty column &mdash; use <b>AB</b> &mdash; and try them on row 2, which is Rahul
+    Sharma.</p>
+   </div>
+
+   <div class="typeit">AB2 down to AB5, one per row</div>
+<pre><code>=LEN(C2)          <span class="c">how many characters altogether</span>
+=LEFT(C2, <span class="o">5</span>)      <span class="c">first 5</span>
+=RIGHT(C2, <span class="o">6</span>)     <span class="c">last 6</span>
+=MID(C2, <span class="o">7</span>, <span class="o">6</span>)    <span class="c">6 characters starting at position 7</span></code></pre>
+   <div class="screen">12
+Rahul
+Sharma
+Sharma</div>
+
+   <div class="speak">
+    <p><b>Twelve characters</b> in &ldquo;Rahul Sharma&rdquo;. Count them &mdash; five, then a space,
+    then six. The space counts.</p>
+    <p><code>LEFT</code> with 5 gives Rahul. <code>RIGHT</code> with 6 gives Sharma.</p>
+    <p>And <code>MID</code> gives Sharma too, a different way &mdash; start at position 7, take 6. The
+    R of Rahul is position 1, not position 0.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Now fill all four down three rows and look at what happens.&rdquo;</div>
+    <div class="a">Row 3 is <b>Karthik Kumar</b>, 13 characters. <code>LEFT(...,5)</code> gives
+    <code>Karth</code>. <code>RIGHT(...,6)</code> gives <code>_Kumar</code> with a leading space.
+    <b>Every row needs a different number and we typed one.</b></div>
+   </div>
+
+   <div class="screen">AB3   Karth        should be Karthik
+AB4   Karth        should be Karthik
+AB5   Laksh        should be Lakshmi</div>
+
+   <div class="speak">
+    <p>Karth. Karth. Laksh.</p>
+    <p>The formula is doing exactly what I said &mdash; take five. The problem is that <b>five was my
+    number, not the data's number.</b></p>
+    <p>Rahul breaks at five. Karthik breaks at seven. Lakshmi at seven. <b>We need the number to come
+    out of the row.</b></p>
+   </div>
+  </div>
+
+  <!-- 22-38 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">22 &ndash; 38</span><h3>FIND &mdash; letting the data count for you</h3></div>
+   <p class="objective">The one genuinely hard idea of the day. Sixteen minutes, built up slowly.</p>
+
+   <div class="stage">Do <code>FIND</code> completely on its own first. <b>They must see what it returns
+   before they see it inside something else.</b></div>
+
+   <div class="speak">
+    <p>One more function, on its own, in an empty cell.</p>
+   </div>
+
+   <div class="typeit">AC2, then fill down a few rows</div>
+<pre><code>=FIND(<span class="c">" "</span>, C2)</code></pre>
+   <div class="screen">AC2    6      Rahul Sharma
+AC3    8      Karthik Kumar
+AC4    8      Karthik Reddy
+AC5    8      Lakshmi Kumar
+AC6    6      Arjun Sharma
+AC7    6      Sneha Reddy</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is that number?&rdquo;</div>
+    <div class="a"><b>Where the space is.</b> In Rahul Sharma the space is the 6th character. In
+    Karthik Kumar it is the 8th. <b>The number we needed, and it came from the row.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>That is the position of the space. And notice it is <b>different on every row</b>, which is
+    exactly what we were missing.</p>
+    <p>So now we put one inside the other.</p>
+    <p>The first name is everything before the space. The space is at 6, so we want the first
+    <b>5</b>. Six minus one.</p>
+   </div>
+
+   <div class="typeit">AD1 a label, then AD2</div>
+<pre><code>=LEFT(C2, FIND(<span class="c">" "</span>, C2) - <span class="o">1</span>)</code></pre>
+   <div class="screen">Rahul
+Karthik
+Karthik
+Lakshmi
+Arjun
+Sneha</div>
+
+   <div class="speak">
+    <p>Every one correct, and we never typed a length.</p>
+    <p>Read it inside out, the way you read <code>INDEX</code> and <code>MATCH</code> on day four.
+    <b><code>FIND</code> works out where the space is. <code>LEFT</code> takes one character fewer than
+    that.</b></p>
+   </div>
+
+   <div class="stage">Now the last name. <b>This one is harder</b> &mdash; make them try before you
+   show it.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Now the last name. You have <code>LEN</code> and you have
+    <code>FIND</code>. How many characters from the right?&rdquo;</div>
+    <div class="a"><b>Total length minus the position of the space.</b> Rahul Sharma is 12 long, space
+    at 6, so 12 − 6 = 6, and Sharma is six letters. <b>Give them two minutes on this</b> &mdash; it is
+    the moment the idea sticks or does not.</div>
+   </div>
+
+   <div class="typeit">AE1 a label, then AE2</div>
+<pre><code>=RIGHT(C2, LEN(C2) - FIND(<span class="c">" "</span>, C2))</code></pre>
+   <div class="screen">Sharma
+Kumar
+Reddy
+Kumar
+Sharma
+Reddy</div>
+
+   <div class="speak">
+    <p>Say it in words: <b>take from the right, as many characters as the length minus where the space
+    is.</b></p>
+    <p>Twelve minus six is six. Sharma. Thirteen minus eight is five. Kumar.</p>
+    <p>And no minus one this time &mdash; because we are counting from the far end, and the space is
+    already excluded.</p>
+   </div>
+
+   <div class="warn"><b>Say the limitation out loud, because it is the honest thing to do.</b> This
+   works because <b>every one of our 200 names has exactly one space</b> &mdash; I checked. Give it a
+   middle name, an initial or a double-barrelled surname and <code>FIND</code> finds only the
+   <em>first</em> space and the last name comes out wrong. <b>No error. Just wrong.</b> Checking that
+   assumption is your job, not Excel's.</div>
+  </div>
+
+  <!-- 38-48 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">38 &ndash; 48</span><h3>Putting text back together, and finding what you cannot see</h3></div>
+   <p class="objective">CONCAT and SUBSTITUTE. Ten minutes, and the second one is a genuine tool.</p>
+
+   <div class="speak">
+    <p>Taking text apart has an opposite. <code>CONCAT</code> joins values into one.</p>
+   </div>
+
+   <div class="typeit">Any empty cell</div>
+<pre><code>=CONCAT(AE2, <span class="c">", "</span>, AD2)                <span class="c">surname-first version</span>
+=CONCAT(C2, <span class="c">" ("</span>, D2, <span class="c">")"</span>)             <span class="c">name with department</span></code></pre>
+   <div class="screen">Sharma, Rahul
+Rahul Sharma (HR)</div>
+
+   <div class="speak">
+    <p>Anything in quotes is text you are adding yourself &mdash; a comma, a space, a bracket. Anything
+    without quotes is a cell.</p>
+    <p>You can also do this with the ampersand: <code>=AE2 &amp; ", " &amp; AD2</code>. Same result.
+    You met <code>&amp;</code> on day three, joining the greater-than sign to a cell.</p>
+   </div>
+
+   <div class="stage">Now <code>SUBSTITUTE</code>, and teach it as a <b>detection tool</b> rather than a
+   replace tool. That is what makes it worth ten minutes.</div>
+
+   <div class="speak">
+    <p>Last text function, and it is the most useful one for real work.</p>
+    <p>On day two I told you a trailing space is invisible and breaks every comparison. And I had to
+    <b>make up five rows</b> to show you, because our file is clean.</p>
+    <p>Here is how you find them for real, without inventing anything.</p>
+   </div>
+
+   <div class="typeit">Any empty cell &mdash; replace every space with a visible character</div>
+<pre><code>=SUBSTITUTE(C2, <span class="c">" "</span>, <span class="c">"&#183;"</span>)</code></pre>
+   <div class="screen">Rahul&#183;Sharma        <span class="c">one space, where it should be</span></div>
+
+   <div class="speak">
+    <p>Now every space is a dot you can see. Fill it down the whole column and scan it.</p>
+    <p>A name with a trailing space would show as <code>Rahul&#183;Sharma&#183;</code>. Two spaces in
+    the middle would show as <code>Rahul&#183;&#183;Sharma</code>. <b>An invisible problem becomes a
+    visible one.</b></p>
+   </div>
+
+   <div class="keyline">
+    <b>This is the technique, and it generalises.</b><br><br>
+    When something invisible is breaking a match, <b>replace it with something visible and look</b>.
+    It beats guessing, and it beats running <code>TRIM</code> on everything and hoping. First find out
+    whether you have a problem.
+   </div>
+
+   <div class="warn"><b>Mention the fourth argument and move on.</b>
+   <code>SUBSTITUTE(C2," ","&#183;",1)</code> replaces <b>only the first</b> space. Useful
+   occasionally, not today. Leave it out and it replaces all of them.</div>
+  </div>
+
+  <!-- 48-60 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">48 &ndash; 60</span><h3>A date is a number</h3></div>
+   <p class="objective">Prove it in two minutes. Everything else today depends on it.</p>
+
+   <div class="stage">Do not explain first. <b>Change the format and let them see it.</b></div>
+
+   <div class="speak">
+    <p>Column L is <code>join_date</code>. Click <b>L2</b> &mdash; it says 2018-01-03.</p>
+    <p>Now, on the Home tab, change the number format from Date to <b>General</b>.</p>
+   </div>
+   <div class="screen">43103</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is 43103?&rdquo;</div>
+    <div class="a">The <b>number of days since 1 January 1900</b>, which Excel calls day 1. <b>A date
+    has always been a number.</b> The calendar you see is a number format sitting on top of it &mdash;
+    exactly like the currency format on day 6.</div>
+   </div>
+
+   <div class="speak">
+    <p>Forty-three thousand one hundred and three days since the first of January nineteen hundred.</p>
+    <p>That is what Excel has been storing all along. <b>The date you see is a format</b>, the same way
+    &#8377;52,00,000 was a format over 5200000.</p>
+    <p>Put it back to Short Date.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Everything about dates follows from this one fact.</b><br><br>
+    Subtracting two dates gives a number of days, because they were always numbers. Adding 30 to a
+    date gives a date thirty days later. Sorting dates works because sorting numbers works. <b>There is
+    no date magic. There is a number with a costume on.</b>
+   </div>
+
+   <div class="typeit">Two quick ones, in any empty cell</div>
+<pre><code>=TODAY()                 <span class="c">today's date. empty brackets, and it needs them</span>
+=L2 + <span class="o">30</span>                 <span class="c">thirty days after Rahul joined</span></code></pre>
+   <div class="screen">23-10-2026
+02-02-2018</div>
+
+   <div class="warn"><b>One thing to say about <code>TODAY()</code>.</b> It recalculates every time the
+   file opens, so a sheet using it says something different next week. <b>That is usually what you
+   want</b> for "days since joining", and it is a problem if you are saving a report that should be
+   frozen. If it must not move, copy the cell and Paste Special as Values.</div>
+  </div>
+
+  <!-- 60-74 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">60 &ndash; 74</span><h3>Pulling a date apart, and measuring between two</h3></div>
+   <p class="objective">Four functions, fourteen minutes. One of them is undocumented.</p>
+
+   <div class="speak">
+    <p>If a date is a number, we can take it apart. Three functions, one part each.</p>
+   </div>
+
+   <div class="typeit">AF, AG, AH &mdash; label each, then fill down</div>
+<pre><code>=YEAR(L2)          <span class="c">2018</span>
+=MONTH(L2)         <span class="c">1</span>
+=DAY(L2)           <span class="c">3</span></code></pre>
+   <div class="screen">AF2   2018     AG2    1     AH2    3
+AF3   2024     AG3    7     AH3    2
+AF4   2025     AG4    3     AH4    4
+AF5   2022     AG5   10     AH5   15</div>
+
+   <div class="speak">
+    <p>You met <code>YEAR</code> on day six, when we charted hiring by year. Now you have the other
+    two.</p>
+    <p><b>And remember what we found then</b> &mdash; those come back as <b>numbers</b>. Month 1 is
+    January, and Excel will happily average your month column and tell you the average month is 6.4,
+    which is not a fact about anything.</p>
+   </div>
+
+   <div class="stage">Now the two that measure a gap between dates. <b>Warn them about
+   <code>DATEDIF</code> before they type it.</b></div>
+
+   <div class="speak">
+    <p>Two ways to measure the distance between two dates. First, in days.</p>
+   </div>
+
+   <div class="typeit">AI1 a label, then AI2, filled down</div>
+<pre><code>=DAYS(TODAY(), L2)</code></pre>
+   <div class="screen">AI2   3215      Rahul, joined Jan 2018
+AI3    843      Karthik Kumar, joined Jul 2024
+AI4    598      Karthik Reddy, joined Mar 2025
+AI5   1469      Lakshmi Kumar, joined Oct 2022</div>
+
+   <div class="speak">
+    <p><b>End date first, start date second.</b> Get them the wrong way round and you get a negative
+    number, which is the clue that you have.</p>
+    <p>Three thousand two hundred and fifteen days is hard to read. Most of the time you want years.
+    And for that there is a function I have to warn you about.</p>
+   </div>
+
+   <div class="warn"><b>Say this before anybody types it.</b> <code>DATEDIF</code> <b>will not
+   autocomplete.</b> Type <code>=DAT</code> and Excel offers DATE, DATEVALUE, DAYS &mdash; not
+   DATEDIF. It is undocumented, left in for compatibility, and it works in every version of Excel.
+   <b>Type it in full and trust it.</b> Students always think they have made a spelling mistake.</div>
+
+   <div class="typeit">AJ1 a label, then AJ2, filled down</div>
+<pre><code>=DATEDIF(L2, TODAY(), <span class="c">"y"</span>)</code></pre>
+   <div class="screen">AJ2    8       Rahul, 8 full years
+AJ3    2
+AJ4    1
+AJ5    4
+AJ6    4</div>
+
+   <div class="speak">
+    <p>Eight full years. And note the argument order is the <b>opposite</b> of <code>DAYS</code>
+    &mdash; start date first here, end date second.</p>
+    <p>Yes, that is inconsistent. No, there is no reason. <b>Check the order every time you write
+    either of them.</b></p>
+    <p>The third argument is in quotes: <code>"y"</code> for whole years, <code>"m"</code> for whole
+    months, <code>"d"</code> for days.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Sort the tenure column. What is the longest anybody has been here, and the
+    shortest?&rdquo;</div>
+    <div class="a"><b>Eleven years</b> at the top. <b>Zero</b> at the bottom &mdash; somebody joined
+    less than a year ago. The average is <b>5.55 years</b>, which is a genuinely useful number to have
+    about a company and did not exist in the file ten minutes ago.</div>
+   </div>
+  </div>
+
+  <!-- 74-86 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">74 &ndash; 86</span><h3>The column that was never there</h3></div>
+   <p class="objective">The payoff. Twelve minutes, and it is the best finding in the module.</p>
+
+   <div class="stage">This is the close. <b>Build it with them and let the count arrive before you say
+   anything about it.</b></div>
+
+   <div class="speak">
+    <p>One more date function, and then a question nobody has asked this file.</p>
+    <p><b>Which day of the week do people join on?</b></p>
+    <p>Think about whether you could answer that with anything you know. Sort? Filter?
+    <code>COUNTIF</code>? A pivot table?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Could any tool from the last six sessions answer that?&rdquo;</div>
+    <div class="a"><b>No. Not one.</b> Because <b>the weekday is not a column in this file.</b> You
+    cannot sort, filter, count or pivot a column that does not exist. <b>Let that land before you
+    move.</b></div>
+   </div>
+
+   <div class="typeit">AK1 a label, then AK2, filled down to 201</div>
+<pre><code>=WEEKDAY(L2)</code></pre>
+   <div class="screen">AK2    4      3 Jan 2018 was a Wednesday
+AK3    3      2 Jul 2024 was a Tuesday
+AK4    3
+AK5    7      15 Oct 2022 was a Saturday
+AK6    6
+AK7    5
+
+   1 = Sunday, 2 = Monday ... 7 = Saturday</div>
+
+   <div class="speak">
+    <p>A number, not a word. <b>And that is what we want</b>, because a number can be counted and a
+    word is harder to test.</p>
+    <p>Now count them. Seven <code>COUNTIF</code>s, which you have been able to write since day
+    three.</p>
+   </div>
+
+   <div class="typeit">Labels in AM, formulas in AN</div>
+<pre><code>AM1  Sunday       AN1  =COUNTIF(AK2:AK201, <span class="o">1</span>)
+AM2  Monday       AN2  =COUNTIF(AK2:AK201, <span class="o">2</span>)
+AM3  Tuesday      AN3  =COUNTIF(AK2:AK201, <span class="o">3</span>)
+AM4  Wednesday    AN4  =COUNTIF(AK2:AK201, <span class="o">4</span>)
+AM5  Thursday     AN5  =COUNTIF(AK2:AK201, <span class="o">5</span>)
+AM6  Friday       AN6  =COUNTIF(AK2:AK201, <span class="o">6</span>)
+AM7  Saturday     AN7  =COUNTIF(AK2:AK201, <span class="o">7</span>)
+AM8  check        AN8  =SUM(AN1:AN7)</code></pre>
+   <div class="screen">Sunday       25
+Monday       23
+Tuesday      22
+Wednesday    26
+Thursday     46
+Friday       35
+Saturday     23
+check       200</div>
+
+   <div class="stage">Stop. <b>Say nothing.</b> Let them read it.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Anything in that list bother you?&rdquo;</div>
+    <div class="a">Somebody will say <b>Thursday, 46</b> &mdash; double Monday. Take it, then redirect:
+    &ldquo;add Saturday and Sunday together.&rdquo; <b>Twenty-three plus twenty-five is forty-eight.
+    Forty-eight of two hundred people started at a weekend.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Saturday twenty-three. Sunday twenty-five. <b>Forty-eight people.</b></p>
+    <p>That is <b>twenty-four per cent of this company</b> starting work on a Saturday or a Sunday.</p>
+    <p>No company does that. Whatever generated these dates was not asked to avoid weekends, and
+    nobody noticed until somebody made a column that did not exist.</p>
+   </div>
+
+   <div class="keyline">
+    <b>This is the first finding in the whole module that no earlier tool could have reached.</b><br><br>
+    Sorting could not find it. Filtering could not. <code>COUNTIF</code>, <code>SUMIF</code>, a lookup
+    and a pivot table all could not &mdash; <b>because the weekday was never in the file.</b> A
+    function had to create the column before anything could count it.
+   </div>
+
+   <div class="stage">Last two minutes of the block, and this distinction matters.</div>
+
+   <div class="speak">
+    <p>One more thing, about the Thursday forty-six.</p>
+    <p>Somebody spotted it and they were right to. But be careful: that is <b>one count on two hundred
+    rows</b>, and uneven numbers happen. It might mean something. It might be nothing.</p>
+    <p>The weekend result is <b>a different kind of thing</b>. That is not a pattern that might be
+    noise &mdash; those are <b>values that should not exist at all.</b></p>
+   </div>
+
+   <div class="keyline">
+    <b>An interesting number and an impossible number are not the same thing.</b><br><br>
+    Thursday 46 is <b>interesting</b> &mdash; worth a look, might be nothing. Forty-eight weekend
+    start dates is <b>impossible</b> &mdash; something is wrong upstream and you should say so.
+    Knowing which one you are holding is most of the job.
+   </div>
+  </div>
+
+  <!-- 86-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">86 &ndash; 90</span><h3>Close</h3></div>
+
+   <div class="typeit">The five lines. If everything else goes, keep these.</div>
+<pre><code>1.  LEFT / RIGHT / MID all need a NUMBER of characters.
+    on real data that number changes every row - so FIND it:
+      =LEFT(C2, FIND(" ",C2) - 1)              first name
+      =RIGHT(C2, LEN(C2) - FIND(" ",C2))       last name
+    read it INSIDE OUT, like INDEX and MATCH.
+
+2.  SUBSTITUTE is a DETECTION tool, not just a replace tool.
+      =SUBSTITUTE(C2," ","&#183;")   makes invisible spaces visible
+    find out IF you have a problem before you clean it.
+
+3.  A DATE IS A NUMBER. 2018-01-03 is 43103.
+    the calendar is a number FORMAT on top of it.
+    so subtracting dates works, and adding 30 works.
+
+4.  DAYS(end, start)      <- end first
+    DATEDIF(start, end, "y")  <- start first.  yes, inconsistent.
+    DATEDIF does NOT autocomplete. type it in full anyway.
+
+5.  WEEKDAY returns 1-7, with 1 = SUNDAY.
+    a number can be counted. that is how we found the 48.</code></pre>
+
+   <div class="speak">
+    <p>Everything today was about making a column that was not there. The first name was not a column.
+    The tenure was not a column. The weekday was not a column.</p>
+    <p>Six sessions of asking this file questions, and the most interesting answer came from a column
+    we had to build first.</p>
+   </div>
+
+   <div class="speak">
+    <p>Next session changes tools. Still Excel, but a different window inside it.</p>
+    <p>Everything you have done for seven sessions, you have done <b>on the sheet, with formulas</b>.
+    Next time we open the <b>Power Query Editor</b>, where you clean data with <b>steps instead of
+    formulas</b> &mdash; and every step is written down, named, and can be undone next month by
+    somebody who was not you.</p>
+    <p>It is also, exactly, the editor inside Power BI. So the next two sessions are the first two
+    sessions of that module, taught early.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Eight steps, every formula, every number. If you lose your place, this page
+  alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">You already split this column once</p>
+   <p class="rs-say"><b>Open on day 2's work.</b> Scroll to columns S and T, then have them type a name
+   into <b>C202</b>.</p>
+   <div class="rs-board"><b>Ask:</b> &ldquo;did it split?&rdquo; &mdash; <b>no.</b> Text to Columns was
+   a <b>one-off</b>, and it <b>overwrote</b> the next column when it ran.<br><br>
+   Today is the formula version: <b>it stays alive.</b> New row, fill down, done. <b>Delete the test
+   row before moving on.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 22</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">LEFT, RIGHT, MID, LEN &mdash; on fixed numbers first</p>
+   <div class="rs-code"><pre><code>AB2  =LEN(C2)           12      the space counts
+AB3  =LEFT(C2, <span class="o">5</span>)       Rahul
+AB4  =RIGHT(C2, <span class="o">6</span>)      Sharma
+AB5  =MID(C2, <span class="o">7</span>, <span class="o">6</span>)    Sharma   counting starts at 1, not 0</code></pre></div>
+   <div class="rs-board"><b>Then fill all four down three rows.</b> Row 3 is Karthik Kumar, 13
+   characters &mdash; <code>LEFT(...,5)</code> gives <b>Karth</b>.<br><br>
+   <b>The formula is right. Five was MY number, not the data's.</b> Rahul breaks at 5, Karthik at 7.
+   <b>The number has to come out of the row.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">22 &ndash; 38</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">FIND &mdash; the hard idea. Sixteen minutes.</p>
+   <p class="rs-say"><b>Do FIND on its own first.</b> They must see what it returns before they see it
+   nested.</p>
+   <div class="rs-code"><pre><code>AC2  =FIND(<span class="c">" "</span>, C2)      6  Rahul Sharma
+                        8  Karthik Kumar
+                        8  Karthik Reddy
+                        6  Arjun Sharma</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;what is that number?&rdquo; &mdash; <b>where the space
+   is</b>, and it is <b>different on every row</b>. That is exactly what was missing.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>AD2  =LEFT(C2, FIND(<span class="c">" "</span>, C2) - <span class="o">1</span>)          Rahul / Karthik / Lakshmi
+AE2  =RIGHT(C2, LEN(C2) - FIND(<span class="c">" "</span>, C2))  Sharma / Kumar / Reddy</code></pre></div>
+   <div class="rs-board"><b>Make them try the RIGHT one before you show it</b> &mdash; two minutes. It
+   is the moment the idea sticks or does not.<br><br>
+   <b>Say it in words:</b> take from the right, as many characters as <b>the length minus where the
+   space is</b>. 12 − 6 = 6, and Sharma is six letters. <b>No minus one this time</b>, because
+   counting from the far end already excludes the space.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Say the limitation.</b> This works because <b>all
+   200 names have exactly one space</b> &mdash; verified. A middle name or an initial and FIND finds
+   only the <em>first</em> space. <b>No error. Just wrong.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">38 &ndash; 48</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">CONCAT, and SUBSTITUTE as a detection tool</p>
+   <div class="rs-code"><pre><code>=CONCAT(AE2, <span class="c">", "</span>, AD2)            Sharma, Rahul
+=CONCAT(C2, <span class="c">" ("</span>, D2, <span class="c">")"</span>)         Rahul Sharma (HR)
+=AE2 &amp; <span class="c">", "</span> &amp; AD2                   same thing with &amp;</code></pre></div>
+   <div class="rs-board">Quotes = text you are adding. No quotes = a cell. They met <code>&amp;</code>
+   on day 3, joining <code>"&gt;"</code> to a cell.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>=SUBSTITUTE(C2, <span class="c">" "</span>, <span class="c">"&#183;"</span>)       Rahul&#183;Sharma</code></pre></div>
+   <div class="rs-board"><b>Teach it as DETECTION, not replacement.</b> On day 2 you had to <b>invent
+   five rows</b> to show a trailing space. This finds them for real.<br><br>
+   A trailing space shows as <code>Rahul&#183;Sharma&#183;</code>. A double space as
+   <code>Rahul&#183;&#183;Sharma</code>. <b>Replace the invisible with something visible and
+   look.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">48 &ndash; 60</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">A date is a number &mdash; prove it, do not explain it</p>
+   <div class="rs-code"><pre><code>click L2, Home tab, change the format from Date to GENERAL
+
+   43103        days since 1 Jan 1900, which Excel calls day 1</code></pre></div>
+   <div class="rs-board"><b>The date you see is a FORMAT</b> &mdash; same as &#8377;52,00,000 over
+   5200000 on day 6. <b>Put it back to Short Date.</b><br><br>
+   Everything follows: subtracting two dates gives days <b>because they were always numbers</b>.
+   <b>There is no date magic. There is a number with a costume on.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>=TODAY()        23-10-2026    empty brackets, and it needs them
+=L2 + <span class="o">30</span>        02-02-2018    thirty days after Rahul joined</code></pre></div>
+   <div class="rs-board"><b>TODAY() recalculates every time the file opens.</b> Right for "days since
+   joining", wrong for a frozen report &mdash; Paste Special as Values if it must not move.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">60 &ndash; 74</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Taking a date apart, and measuring a gap</p>
+   <div class="rs-code"><pre><code>=YEAR(L2)   2018      =MONTH(L2)   1      =DAY(L2)   3</code></pre></div>
+   <div class="rs-board">They met YEAR on day 6. <b>These come back as NUMBERS</b> &mdash; Excel will
+   average your month column and say 6.4, which is not a fact about anything. <b>Sixth session, same
+   lesson.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>AI2  =DAYS(TODAY(), L2)              3215  843  598  1469
+AJ2  =DATEDIF(L2, TODAY(), <span class="c">"y"</span>)        8    2    1     4</code></pre></div>
+   <div class="rs-board"><b>WARN THEM BEFORE THEY TYPE IT:</b> <code>DATEDIF</code> <b>does not
+   autocomplete.</b> Type <code>=DAT</code> and Excel offers DATE, DATEVALUE, DAYS &mdash; not DATEDIF.
+   Undocumented, works everywhere. <b>Type it in full and trust it.</b><br><br>
+   <b>The orders are opposite.</b> DAYS takes <b>end first</b>. DATEDIF takes <b>start first</b>. Yes,
+   inconsistent. <b>Check it every time.</b> Third argument in quotes: "y" "m" "d".</div>
+   <div class="rs-board" style="margin-top:8px"><b>Sort the tenure column:</b> longest <b>11 years</b>,
+   shortest <b>0</b>, average <b>5.55</b>. <b>A useful number that did not exist ten minutes
+   ago.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">74 &ndash; 86</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The column that was never there &mdash; the payoff</p>
+   <p class="rs-say"><b>Ask first:</b> &ldquo;which day of the week do people join on? Could sorting,
+   filtering, COUNTIF or a pivot answer that?&rdquo; <b>No &mdash; not one.</b> The weekday is not a
+   column. <b>Let it land.</b></p>
+   <div class="rs-code"><pre><code>AK2  =WEEKDAY(L2)        4 = Wednesday     1 = Sunday ... 7 = Saturday
+
+AN1  =COUNTIF(AK2:AK201, <span class="o">1</span>)   Sunday      25
+AN2  =COUNTIF(AK2:AK201, <span class="o">2</span>)   Monday      23
+AN3  =COUNTIF(AK2:AK201, <span class="o">3</span>)   Tuesday     22
+AN4  =COUNTIF(AK2:AK201, <span class="o">4</span>)   Wednesday   26
+AN5  =COUNTIF(AK2:AK201, <span class="o">5</span>)   Thursday    46
+AN6  =COUNTIF(AK2:AK201, <span class="o">6</span>)   Friday      35
+AN7  =COUNTIF(AK2:AK201, <span class="o">7</span>)   Saturday    23
+AN8  =SUM(AN1:AN7)               check      <span class="o">200</span></code></pre></div>
+   <div class="rs-board"><b>Stop. Say nothing.</b> Then: &ldquo;anything bother you?&rdquo; Somebody
+   says <b>Thursday 46</b>. Take it, then redirect: <b>&ldquo;add Saturday and Sunday.&rdquo;</b><br><br>
+   <b>23 + 25 = 48. Twenty-four per cent of the company started at a weekend.</b> No company does
+   that.</div>
+   <div class="rs-board" style="margin-top:8px"><b>The line:</b> sorting could not find this, nor
+   filtering, nor COUNTIF, nor a lookup, nor a pivot &mdash; <b>because the weekday was never in the
+   file.</b> A function had to create the column before anything could count it.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Last two minutes, and the distinction matters:</b>
+   Thursday 46 is <b>interesting</b> &mdash; one count on 200 rows, might be nothing. Forty-eight
+   weekend starts is <b>impossible</b> &mdash; something is wrong upstream. <b>Knowing which one you
+   are holding is most of the job.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">86 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close</p>
+   <div class="rs-code"><pre><code>1. LEFT/RIGHT/MID need a NUMBER. on real data, FIND it.
+   =LEFT(C2, FIND(" ",C2)-1)   =RIGHT(C2, LEN(C2)-FIND(" ",C2))
+2. SUBSTITUTE is a DETECTION tool. =SUBSTITUTE(C2," ","&#183;")
+3. A DATE IS A NUMBER. 2018-01-03 = 43103. the calendar is a format.
+4. DAYS(end,start) / DATEDIF(start,end,"y"). opposite orders.
+   DATEDIF does not autocomplete. type it anyway.
+5. WEEKDAY gives 1-7, 1=SUNDAY. a number can be counted -> the 48.</code></pre></div>
+   <div class="rs-board"><b>The line:</b> everything today made a column that was not there &mdash; the
+   first name, the tenure, the weekday. <b>Seven sessions asking this file questions, and the most
+   interesting answer came from a column we had to build first.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up next session:</b> still Excel, different
+   window. <b>Power Query Editor</b> &mdash; cleaning with <b>steps instead of formulas</b>, each one
+   written down and named. <b>And it is exactly the editor inside Power BI</b>, so the next two
+   sessions are that module's first two, taught early.</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 4, 7 and 12 are the
+  three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What do <code>LEFT</code>, <code>RIGHT</code> and <code>MID</code> all need from you?</q>
+    <div class="ans">A <b>number</b> &mdash; how many characters. And on real data that number is
+    <b>different on every row</b>, which is the whole difficulty.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Does <code>LEN</code> count spaces?</q>
+    <div class="ans"><b>Yes.</b> &ldquo;Rahul Sharma&rdquo; is <b>12</b> &mdash; five, a space, and
+    six.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What does <code>FIND(" ", C2)</code> give you back?</q>
+    <div class="ans">The <b>position</b> of the space, not the space itself. <b>6</b> for Rahul Sharma,
+    <b>8</b> for Karthik Kumar.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why is there a <code>&minus; 1</code> in the first-name formula but not in the last-name one?</q>
+    <div class="ans">Counting from the <b>left</b>, position 6 <em>is</em> the space, so you take one
+    fewer. Counting from the <b>right</b>, length minus position <b>already excludes</b> the
+    space.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why not just use Text to Columns, which you did on day 2?</q>
+    <div class="ans">Text to Columns is <b>one-off and destructive</b> &mdash; it overwrites, and a new
+    row typed tomorrow is not split. <b>Formulas stay alive.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What breaks the name formulas?</q>
+    <div class="ans"><b>A second space</b> &mdash; a middle name, an initial, a double-barrelled
+    surname. <code>FIND</code> finds only the first one. <b>No error, just a wrong
+    answer.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>You formatted a date cell as General and got <code>43103</code>. What is that?</q>
+    <div class="ans">The <b>number of days since 1 January 1900</b>. <b>A date has always been a
+    number</b> &mdash; the calendar is a number format on top of it.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why can you subtract one date from another and get a sensible answer?</q>
+    <div class="ans">Because <b>they were both numbers all along</b>. Nothing special is happening
+    &mdash; it is ordinary subtraction.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Which comes first in <code>DAYS</code>, and which comes first in <code>DATEDIF</code>?</q>
+    <div class="ans"><code>DAYS(<b>end</b>, start)</code>. <code>DATEDIF(<b>start</b>, end, "y")</code>.
+    <b>Opposite orders, for no reason.</b> A negative from DAYS means you have them the wrong way
+    round.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why will <code>DATEDIF</code> not autocomplete?</q>
+    <div class="ans">It is <b>undocumented</b> &mdash; left in for compatibility and missing from
+    Excel's function list. <b>It still works in every version.</b> Type it in
+    full.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>WEEKDAY</code> returned 4, not &ldquo;Wednesday&rdquo;. Why is the number better?</q>
+    <div class="ans">Because a <b>number can be counted, compared and tested</b>. That is how seven
+    <code>COUNTIF</code>s produced the weekday table.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Forty-eight people started at a weekend. Why could none of the earlier tools have found that?</q>
+    <div class="ans">Because <b>the weekday was never a column in the file</b>. You cannot sort, filter,
+    count or pivot a column that does not exist. <b>A function had to build it
+    first.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Thursday has 46 and Monday has 23. Is that the same kind of finding as the weekend one?</q>
+    <div class="ans"><b>No.</b> Thursday 46 is <b>interesting</b> &mdash; one count on 200 rows, and it
+    might be nothing. Forty-eight weekend start dates are <b>impossible</b> &mdash; something is wrong
+    upstream.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Is there an easier way to split a name?&rdquo;</h5>
+  <p>&ldquo;Three, and you should know all of them. <b>Text to Columns</b> for a one-off import.
+  <b>Flash Fill</b> &mdash; type the first answer, press <code>Ctrl</code>+<code>E</code>, and Excel
+  guesses the pattern, which is brilliant and unpredictable. And <b>TEXTSPLIT</b> if you have Microsoft
+  365. The formula version is the one that works everywhere and that you can explain in an
+  interview.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the difference between <code>FIND</code> and
+  <code>SEARCH</code>?&rdquo;</h5>
+  <p>&ldquo;<code>FIND</code> is case sensitive and <code>SEARCH</code> is not.
+  <code>SEARCH</code> also accepts wildcards. For finding a space it makes no difference at all. For
+  finding a letter it does.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My formula returned <code>#VALUE!</code>.&rdquo;</h5>
+  <p>&ldquo;Usually <code>FIND</code> did not find what you asked for. <code>FIND(" ", C2)</code> on a
+  name with <b>no space</b> gives <code>#VALUE!</code>, and then everything wrapped around it fails
+  too. Wrap it in <code>IFERROR</code> once you have looked at which rows are
+  failing.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I use <code>CONCAT</code> or should it be
+  <code>CONCATENATE</code>?&rdquo;</h5>
+  <p>&ldquo;<code>CONCATENATE</code> is the old one and still works. <code>CONCAT</code> replaced it
+  and accepts ranges. <code>TEXTJOIN</code> is better still, because it takes the separator once rather
+  than between every pair. Use <code>&amp;</code> for two or three things and
+  <code>TEXTJOIN</code> for many.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why does my date show as <code>#####</code>?&rdquo;</h5>
+  <p>&ldquo;The column is too narrow. Not an error &mdash; double-click the column border. You met this
+  on day one.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why is 1 Sunday and not Monday?&rdquo;</h5>
+  <p>&ldquo;An American default, and it catches everybody. You can change it with the second argument
+  &mdash; <code>WEEKDAY(L2, 2)</code> makes Monday 1. <b>If you use the second argument, write down
+  which one you used</b>, because the next person reading your sheet will assume the
+  default.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should we delete the weekend rows?&rdquo;</h5>
+  <p>&ldquo;No &mdash; and this is the same answer as the 52-lakh salary. You do not know yet whether
+  the date is wrong or whether this company genuinely does weekend inductions. <b>Report it and ask
+  whoever owns the data.</b> Deleting a quarter of your rows because they look odd is how you turn a
+  data problem into a reporting problem.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does pandas do this?&rdquo;</h5>
+  <p>&ldquo;Yes, and more neatly. <code>.str.split()</code> handles the name, and
+  <code>.dt.dayofweek</code> gives you the weekday without the 1-is-Sunday surprise. The reason you are
+  learning the Excel version is that half your career will be spent in files other people built, and
+  those files are full of <code>LEFT</code> and <code>FIND</code>.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Will the next session still be Excel?&rdquo;</h5>
+  <p>&ldquo;Yes. Same file, same application, different window inside it. The Power Query Editor opens
+  from the Data tab. The only thing that changes is that you will clean data with <b>recorded steps</b>
+  rather than formulas &mdash; and that editor is identical to the one inside Power BI, which is why we
+  are doing it now rather than later.&rdquo;</p></div>
+ </div>
+</section>
+</div>
+<div class="day" id="x8">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 8 &middot; merged class &middot; 90 minutes &middot; full script &middot; Power Query, part one</p>
+  <h1 class="display">Cleaning With<br>Steps, Not<br>Formulas</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Same Excel, same file, a different window inside it. Every clean-up becomes a <b>named step in a
+   list</b> &mdash; which means it can be read, reordered and undone next month by somebody who was
+   not you.</p>
+  <div class="glance">
+   <div class="gcell"><b>129</b><span>distinct names, for 200 people</span></div>
+   <div class="gcell"><b>1</b><span>column that can be a key</span></div>
+   <div class="gcell"><b>0</b><span>formulas written</span></div>
+   <div class="gcell"><b>=</b><span>the same editor as Power BI</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Say this in minute one and mean it</h4>
+   <p style="color:var(--sienna)">The Power Query Editor in Excel and the Power Query Editor in Power BI
+   are <b style="color:var(--sienna)">the same tool</b>. Same ribbon, same Applied Steps panel, same
+   dialogs, same language underneath. <b style="color:var(--sienna)">Today and Thursday are the first
+   two sessions of the Power BI module, taught early</b>, in a file they have known for eight
+   sessions.</p>
+   <p style="color:var(--sienna)">And the finding to drive at: <code>name</code> has
+   <b style="color:var(--sienna)">129 distinct values for 200 people</b>. Seventy-one people share a
+   name with somebody else. <b style="color:var(--sienna)">A name cannot identify a person in this
+   file</b>, and the profiler says so in two numbers.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Work on a copy, and say why.</b> <code>Close &amp; Load</code> writes a new sheet and leaves
+   the original alone, so Power Query is the safest thing in the module &mdash; but they have just spent
+   seven sessions being told to back up, and the habit should not break here.</li>
+   <li><b>Distinct against unique is the one definition to get right.</b> <b>Distinct</b> = how many
+   different values. <b>Unique</b> = how many appear exactly once. They are not synonyms and the whole
+   profiling block collapses if the room has them muddled. Do the seven-value worked example on the
+   board before touching Excel.</li>
+   <li><b>Applied Steps is the point of the session, not a feature of it.</b> Every other tool in this
+   module did something and forgot. This one writes down what it did, in order, in English. Keep
+   pointing at the panel.</li>
+   <li><b>Let them delete a step and watch the data come back.</b> It is the single most reassuring
+   thing in Power Query and it is why people trust it. Thirty seconds, enormous payoff.</li>
+   <li><b>Group By is <code>groupby</code> and they should be told so.</b> They know pandas, they know
+   SQL <code>GROUP BY</code>, and they built the same thing with <code>SUMIF</code> on day 3 and a pivot
+   on day 5. <b>Fourth way to the same answer</b> &mdash; naming that is better than pretending it is
+   new.</li>
+   <li><b>Do not teach the M language.</b> Show the formula bar once, say the steps are writing code
+   for them, and move on. It is the right thing to know exists and the wrong thing to spend ten minutes
+   on.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what Power Query is for and when a formula is
+  the better answer, the distinct-versus-unique definition, and why the primary key test matters on a
+  file they think they know.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; what it is, and when not to use it</h5>
+
+   <h6>The honest description</h6>
+   <p>Power Query is a place to <b>record a sequence of clean-up operations</b> that runs again on new
+   data. You point it at a table, click your way through the fixes, and it keeps a numbered list of
+   everything you did.</p>
+
+   <div class="mth">
+    <div class="mrow"><b>a formula</b><div>Lives <b>in a cell</b>, recalculates instantly, and anybody
+    can see it by clicking the cell.</div></div>
+    <div class="mrow"><b>a query</b><div>Lives <b>beside the sheet</b>, runs when you refresh, and
+    produces a whole table at once.</div></div>
+    <div class="mrow"><b>use a formula</b><div>For something that belongs <b>next to the data</b> and
+    must update the instant a cell changes &mdash; a gap from the average, a tenure
+    column.</div></div>
+    <div class="mrow warn2"><b>use a query</b><div>For <b>the same clean-up every month</b> on a new
+    file, for joining and stacking tables, and for anything you need to <b>hand over with the work
+    visible</b>.</div></div>
+   </div>
+
+   <h6>The argument that actually matters to a fresher</h6>
+   <p>On day 2 they cleaned this file with sort, filter, Remove Duplicates, Find and Replace and Text to
+   Columns. It worked. <b>And none of it was written down.</b> Next month's file arrives and they do all
+   of it again from memory, in whatever order they happen to remember.</p>
+   <div class="keyline">
+    <b>Power Query's real product is not the cleaning. It is the list.</b><br><br>
+    Twelve named steps that anybody can read, reorder, or delete one of. The same twelve ran last month
+    and will run next month in the same order. <b>Day 2 was faster. This is repeatable, and repeatable
+    is what a job pays for.</b>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; distinct and unique are not the same word</h5>
+
+   <h6>The definitions, and they matter</h6>
+   <div class="mth">
+    <div class="mrow"><b>distinct</b><div>How many <b>different values</b> there are. A value that
+    appears five times is counted <b>once</b>.</div></div>
+    <div class="mrow"><b>unique</b><div>How many values appear <b>exactly once</b>. A value that
+    appears five times is <b>not counted at all</b>.</div></div>
+    <div class="mrow warn2"><b>and</b><div><code>null</code> is treated as <b>a value like any
+    other</b> in both counts.</div></div>
+   </div>
+
+   <h6>Do this on the board before you open Excel</h6>
+   <div class="mcalc">a City column, 7 rows:   Pune, Delhi, Pune, Goa, null, Delhi, Agra
+
+   Pune    appears 2x    distinct? yes    unique? NO
+   Delhi   appears 2x    distinct? yes    unique? NO
+   Goa     appears 1x    distinct? yes    unique? yes
+   null    appears 1x    distinct? yes    unique? yes
+   Agra    appears 1x    distinct? yes    unique? yes
+
+   DISTINCT = 5     UNIQUE = 3</div>
+   <p>Distinct is <b>always</b> greater than or equal to unique. If somebody tells you unique is bigger,
+   they have swapped the definitions.</p>
+
+   <h6>What those two numbers tell you about our file</h6>
+   <div class="mcalc">column        distinct   unique   nulls
+
+emp_id             200      200       0
+name               129       77       0
+department           4        0       0
+salary             199      198       2
+age                 39        3       1
+join_date          195      190       0</div>
+   <p><code>department</code> has <b>4 distinct and 0 unique</b> &mdash; four values, every one repeated,
+   none appearing exactly once. That pattern is the signature of a <b>category</b>.</p>
+   <p><code>emp_id</code> has <b>200 and 200</b>. Every value different, every value appearing once.
+   That is the signature of an <b>identifier</b>.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the primary key test, on a file they think they know</h5>
+
+   <h6>The test, in one line</h6>
+   <p>A column can identify a row only if <b>distinct = unique = the number of rows</b>, <b>and</b> it
+   has <b>no nulls</b>.</p>
+
+   <div class="mth">
+    <div class="mrow"><b>emp_id</b><div>200 / 200 / no nulls. <b>This is the key.</b></div></div>
+    <div class="mrow warn2"><b>name</b><div><b>129 distinct, 77 unique.</b> Seventy-one people share a
+    name with somebody. <b>A name cannot identify a person in this file.</b></div></div>
+    <div class="mrow"><b>salary</b><div><b>198 distinct, 198 unique</b> &mdash; every value different.
+    And it <b>still fails</b>, because two are null. <b>All different is not
+    enough.</b></div></div>
+    <div class="mrow"><b>height_cm</b><div>146 / 108. Not close.</div></div>
+   </div>
+
+   <h6>Why this is worth a block and not a sentence</h6>
+   <p>They have joined tables in SQL for a whole module. Every one of those joins was on a key. <b>This
+   is where you find out whether a column can be one</b>, before you join on it and get silently wrong
+   answers.</p>
+   <div class="keyline">
+    <b>The <code>salary</code> result is the one to dwell on.</b><br><br>
+    Every single value is different. It looks like a perfect identifier by the first half of the test
+    and fails on the second half. <b>Two nulls, and the column is useless as a key</b> &mdash; because
+    two rows would both be &ldquo;the one with no salary&rdquo;.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>A different window, and why</h3></div>
+   <p class="objective">Open the editor, and name what it is before they touch anything.</p>
+
+   <div class="stage">Cleaned file, 200 rows. <b>Back it up first</b> &mdash; they have been told for
+   seven sessions and the habit should not break today.</div>
+
+   <div class="speak">
+    <p>On day two you cleaned this file. Sort, filter, Remove Duplicates, Find and Replace, Text to
+    Columns. It worked.</p>
+    <p>Question. <b>Where is the list of what you did?</b></p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Next month a new file arrives with the same problems. How do you do it
+    again?&rdquo;</div>
+    <div class="a"><b>From memory.</b> In whatever order you happen to remember, hoping you have not
+    forgotten one. <b>Nothing recorded what you did on Thursday.</b> Let them sit with
+    that.</div>
+   </div>
+
+   <div class="speak">
+    <p>From memory. And if a colleague has to do it instead of you, they cannot, because there is
+    nothing to read.</p>
+    <p>Today we clean the same file in a different window, where <b>every single thing you do gets
+    written down, named, and listed in order.</b></p>
+   </div>
+
+   <div class="typeit">Click any cell inside the data</div>
+<pre><code>  Data  ->  Get &amp; Transform Data  ->  From Table/Range</code></pre>
+
+   <div class="warn"><b>It will ask you to create a table first and the dialog matters.</b> Check the
+   range reads <code>$A$1:$L$201</code> and that <b>My table has headers is ticked</b>. If it is not,
+   your column names become Column1, Column2, and every step afterwards is harder to
+   read.</div>
+
+   <div class="speak">
+    <p>A whole new window. This is the <b>Power Query Editor</b>.</p>
+    <p>Three things to find before we do anything. The <b>data</b> in the middle. The <b>Queries</b>
+    list on the left, with our one table in it. And on the right, the one that matters &mdash;
+    <b>Applied Steps</b>.</p>
+   </div>
+
+   <div class="screen">APPLIED STEPS
+  Source
+  Changed Type</div>
+
+   <div class="speak">
+    <p>Two steps already, and we have not clicked anything. <b>Source</b> is &ldquo;I read the
+    table&rdquo;. <b>Changed Type</b> is Excel guessing which columns are numbers, text and dates.</p>
+    <p>Click <b>Source</b> and look at the data. Then click <b>Changed Type</b>. You are stepping
+    backwards and forwards through your own work.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Say this now and keep saying it.</b><br><br>
+    This window and the Power Query window inside <b>Power BI</b> are the same tool. Same ribbon, same
+    Applied Steps, same dialogs. <b>Today and Thursday are the first two sessions of the Power BI
+    module, taught early</b> &mdash; on a file you have known for eight sessions instead of one you
+    have never seen.
+   </div>
+  </div>
+
+  <!-- 12-32 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12 &ndash; 32</span><h3>Profiling &mdash; what the two numbers mean</h3></div>
+   <p class="objective">Twenty minutes. Do the definition on the board before the software.</p>
+
+   <div class="stage">Board first. <b>Do not open the profiler until the seven-row example is
+   done</b> &mdash; the whole block fails if distinct and unique are muddled.</div>
+
+   <div class="speak">
+    <p>Before I show you the tool, two words that are not the same word. Seven rows, on the board.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; a City column, 7 rows</div>
+<pre><code>   Pune, Delhi, Pune, Goa, null, Delhi, Agra
+
+   Pune    appears 2 times
+   Delhi   appears 2 times
+   Goa     appears 1 time
+   null    appears 1 time
+   Agra    appears 1 time</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;How many <b>different</b> values are there?&rdquo; then &ldquo;how many appear
+    <b>exactly once</b>?&rdquo;</div>
+    <div class="a"><b>Distinct = 5</b> &mdash; Pune, Delhi, Goa, null, Agra. <b>Unique = 3</b> &mdash;
+    only Goa, null and Agra appear once. <b>Pune and Delhi are distinct but not unique.</b> Make
+    somebody say that sentence.</div>
+   </div>
+
+   <div class="speak">
+    <p><b>Distinct</b> is how many different values. <b>Unique</b> is how many appear exactly once.</p>
+    <p>Pune is distinct &mdash; it is one of the different values. Pune is <b>not</b> unique &mdash; it
+    appears twice.</p>
+    <p>And <code>null</code> counts as a value in both. It is not ignored.</p>
+    <p><b>Distinct is always bigger than or equal to unique.</b> If you ever get it the other way round,
+    you have swapped the definitions.</p>
+   </div>
+
+   <div class="stage">Now the tool.</div>
+
+   <div class="typeit">The View tab &mdash; tick one at a time</div>
+<pre><code>  View  ->  [x] Column distribution
+            [x] Column quality
+            [x] Column profile</code></pre>
+
+   <div class="speak">
+    <p>Tick <b>Column distribution</b> first. A small bar chart appears above every column with two
+    numbers under it.</p>
+    <p>Look along the row and read them out.</p>
+   </div>
+   <div class="screen">emp_id        200 distinct    200 unique
+name          129 distinct     77 unique
+department      4 distinct      0 unique
+city            4 distinct      0 unique
+salary        199 distinct    198 unique
+age            39 distinct      3 unique</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Two hundred people. One hundred and twenty-nine names. What does that
+    mean?&rdquo;</div>
+    <div class="a"><b>Names repeat.</b> Only 77 people have a name nobody else has, so <b>123 rows
+    share a name with somebody</b>. There is more than one Karthik Kumar in this company. <b>Let them
+    work it out from the two numbers rather than telling them.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>One hundred and twenty-nine different names among two hundred people. Seventy-seven of them
+    appear exactly once.</p>
+    <p>Which means <b>a name does not identify a person in this file</b>, and you now know that in two
+    numbers rather than by scrolling.</p>
+   </div>
+
+   <div class="speak">
+    <p>Now look at <code>department</code>. <b>Four distinct, zero unique.</b></p>
+    <p>Four values, and not one of them appears exactly once. <b>That pattern is what a category looks
+    like</b> &mdash; and <code>emp_id</code>, at two hundred and two hundred, is what an identifier
+    looks like.</p>
+    <p>You can tell what a column <em>is</em> from those two numbers, before you read a single
+    value.</p>
+   </div>
+
+   <div class="stage">Now Column quality and Column profile, briefly &mdash; then the primary key
+   test, which is the block's real content.</div>
+
+   <div class="typeit">Tick Column quality &mdash; three percentages under each header</div>
+<pre><code>   Valid     Error     Empty
+
+   salary:   99% valid   0% error   1% empty      <span class="c">the two blanks</span>
+   age:     100% valid   0% error   0% empty      <span class="c">rounds up - there is 1</span></code></pre>
+
+   <div class="warn"><b>The rounding is worth naming.</b> One null in 200 rows rounds to 0% or 1%
+   depending on the column, so <b>a percentage can hide a single bad row.</b> Click the column and read
+   <b>Column profile</b> at the bottom for the actual count. Percentages are for scanning; counts are
+   for deciding.</div>
+
+   <div class="warn"><b>And the one that will embarrass somebody in a job.</b> At the bottom left it
+   says <b>&ldquo;Column profiling based on top 1000 rows&rdquo;</b>. Click it and switch to <b>based
+   on entire data set</b>. Our file has 200 rows so it changes nothing today &mdash; on a hundred
+   thousand rows it is the difference between a real profile and a guess.</div>
+  </div>
+
+  <!-- 32-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">32 &ndash; 44</span><h3>The primary key test</h3></div>
+   <p class="objective">Twelve minutes, and it connects straight to their SQL module.</p>
+
+   <div class="speak">
+    <p>You have spent a whole module joining tables in SQL. Every one of those joins was on a key.</p>
+    <p><b>This is how you find out whether a column can be a key</b>, before you join on it and get
+    quietly wrong answers.</p>
+   </div>
+
+   <div class="typeit">The test, on the board</div>
+<pre><code>  a column can identify a row only if:
+
+     distinct  =  unique  =  the number of rows
+     AND
+     there are no nulls
+
+  both halves. not one.</code></pre>
+
+   <div class="typeit">Check four columns against it</div>
+<pre><code>  column        distinct  unique  nulls   verdict
+
+  emp_id            200     200      0    KEY
+  name              129      77      0    no - names repeat
+  salary            198     198      2    no - and look closely
+  height_cm         146     108      0    no - not close</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Look at <code>salary</code>. Every single value is different. Why is it not a
+    key?&rdquo;</div>
+    <div class="a"><b>The two nulls.</b> It passes the first half of the test perfectly and fails the
+    second. <b>All different is not enough</b> &mdash; if you joined on salary, two rows would both be
+    &ldquo;the one with no salary&rdquo;. <b>This is the one to dwell on.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>One hundred and ninety-eight distinct, one hundred and ninety-eight unique. Every value in that
+    column is different from every other.</p>
+    <p>And it is still useless as a key, because <b>two rows have no value at all.</b></p>
+    <p>That is why the test has two halves. <b>All different is not enough.</b></p>
+   </div>
+
+   <div class="keyline">
+    <b>And the one that is genuinely surprising.</b><br><br>
+    Most people, handed an employee file, would say the name identifies the person. <b>129 and 77 says
+    it does not</b> &mdash; and you can see that in two seconds, without scrolling, without sorting,
+    without a <code>COUNTIF</code>.
+   </div>
+  </div>
+
+  <!-- 44-62 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 &ndash; 62</span><h3>Cleaning with steps, and deleting one</h3></div>
+   <p class="objective">The heart of the session. Eighteen minutes, and the delete is the moment.</p>
+
+   <div class="stage">Everything here has a day-2 equivalent. <b>Name the equivalent each time</b>
+   &mdash; it is what makes the session feel like an upgrade rather than a restart.</div>
+
+   <div class="speak">
+    <p>Now we clean, and I want you to watch the right-hand panel more than the data.</p>
+    <p>First job: our file has two blank salaries and one blank age. In this window they show as
+    <b>null</b>, in italics. That is what a blank Excel cell looks like in here.</p>
+   </div>
+
+   <div class="typeit">Right-click the <b>age</b> column header</div>
+<pre><code>  Remove Columns  ->  no, not that
+
+  instead: click the column, then
+  Home  ->  Remove Rows  ->  Remove Blank Rows        <span class="c">careful - whole rows</span></code></pre>
+
+   <div class="speak">
+    <p>Actually, stop. Before we remove anything, look at what that would do.</p>
+    <p><b>Remove Blank Rows takes out the entire row</b>, not the blank cell. One missing age and we
+    lose everything else we know about that person &mdash; their salary, their department, their
+    rating.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Is that what we want?&rdquo;</div>
+    <div class="a"><b>Almost never.</b> Same decision as day 1 with the blank salaries &mdash; a blank
+    means <em>we do not know</em>, and throwing the row away loses eleven things you did know. <b>Do it
+    anyway, so they see it, then undo it.</b></div>
+   </div>
+
+   <div class="typeit">Do it, look, then undo it</div>
+<pre><code>  click the age column, Home -> Remove Rows -> Remove Blank Rows
+
+     APPLIED STEPS                      row count drops 200 -> 199
+       Source
+       Changed Type
+       Removed Blank Rows      <-- a new step, and it is NAMED
+
+  now click the X beside "Removed Blank Rows"</code></pre>
+   <div class="screen">200 rows again. the person is back.</div>
+
+   <div class="speak">
+    <p>The row came back.</p>
+    <p>Think about what just happened. In the normal Excel window, deleting a row is <b>gone</b>
+    &mdash; you have <code>Ctrl</code>+<code>Z</code> for about as long as the file is open, and after
+    that it is in a backup or nowhere.</p>
+    <p>Here, the delete was <b>a step in a list</b>, and removing the step removed the delete.</p>
+   </div>
+
+   <div class="keyline">
+    <b>This is why people trust Power Query.</b><br><br>
+    Nothing you do here destroys anything. The original table is untouched and every change is an
+    instruction sitting in a list. <b>Delete the instruction and the change never happened.</b><br><br>
+    Compare day 2, where Text to Columns silently overwrote the column next door and the only
+    protection was a backup copy you remembered to make.
+   </div>
+
+   <div class="stage">Now three real cleaning steps, fast. <b>Name the day-2 equivalent for each
+   one.</b></div>
+
+   <div class="typeit">Three steps, and the Applied Steps list after each</div>
+<pre><code>1. select the name column
+   Transform -> Format -> Trim                      <span class="c">= TRIM, day 2</span>
+       step appears: "Trimmed Text"
+
+2. select the department column
+   Transform -> Replace Values -> find HR, replace with Human Resources
+       step appears: "Replaced Value"               <span class="c">= Find &amp; Replace, day 2</span>
+
+3. select the name column
+   Add Column -> Extract -> Text Before Delimiter -> type a space
+       step appears: "Inserted Text Before Delimiter"
+                                                    <span class="c">= day 7's FIND formula,</span>
+                                                    <span class="c">   without the formula</span></code></pre>
+
+   <div class="speak">
+    <p>Look at step three. On Thursday you wrote
+    <code>=LEFT(C2, FIND(" ", C2) - 1)</code> and I made you read it inside out.</p>
+    <p>Here it is two clicks and a space. <b>Same answer, no formula.</b></p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;So was Thursday a waste of time?&rdquo;</div>
+    <div class="a"><b>No &mdash; and the answer is the same as pivot tables on day 5.</b> You know what
+    those two clicks are doing. If the column comes out wrong you can work out why, and if you are in a
+    formula-only file you can still write it. <b>People who only know the button cannot tell when the
+    button is wrong.</b></div>
+   </div>
+
+   <div class="warn"><b>Transform against Add Column, and it catches everybody.</b> The
+   <b>Transform</b> tab changes the column <b>in place</b>. The <b>Add Column</b> tab does the same
+   thing into a <b>new column</b> and keeps the original. The step names tell you which you used
+   &mdash; <code>Trimmed Text</code> against <code>Inserted Trimmed Text</code>. <b>If a column vanished
+   when you meant to add one, you were on the wrong tab.</b></div>
+
+   <div class="speak">
+    <p>One last thing about the list. <b>Click on step two and look at the data.</b> You are seeing the
+    table as it was before steps three and four happened.</p>
+    <p>You can click any step and see the table at that moment. <b>It is a history you can walk
+    through</b>, which is something no amount of Ctrl+Z gives you.</p>
+   </div>
+  </div>
+
+  <!-- 62-78 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">62 &ndash; 78</span><h3>Group By &mdash; the fifth way to the same answer</h3></div>
+   <p class="objective">Sixteen minutes. They have four ways to this answer already and should be
+   told so.</p>
+
+   <div class="speak">
+    <p>One more operation, and you already know what it does four different ways.</p>
+    <p>I want the number of people and the total salary, per department.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Name every way you could already get that.&rdquo;</div>
+    <div class="a"><b>Day 3</b> &mdash; <code>COUNTIF</code> and <code>SUMIF</code>, four formulas each.
+    <b>Day 5</b> &mdash; a pivot table, drag two fields. <b>SQL</b> &mdash;
+    <code>GROUP BY department</code>. <b>Pandas</b> &mdash;
+    <code>df.groupby("department")</code>. <b>Take all four from the room.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Four ways already, and here is the fifth. It is called <b>Group By</b>, which is the same name
+    SQL uses, because it is the same operation.</p>
+   </div>
+
+   <div class="typeit">Select the department column, then Transform &rarr; Group By</div>
+<pre><code>  Group by:          department
+
+  New column name:   headcount
+  Operation:         Count Rows
+
+  then click "Advanced" to add a second one:
+
+  New column name:   total salary
+  Operation:         Sum
+  Column:            salary</code></pre>
+   <div class="screen">department     headcount   total salary
+Sales                 64        4264991
+Tech                  49        9108170
+HR                    45        2495026
+Marketing             42        3106086</div>
+
+   <div class="speak">
+    <p>Four rows. Same four numbers you got with <code>COUNTIF</code> on day three and with a pivot on
+    day five.</p>
+    <p>And notice <b>Count Rows</b> rather than counting a column. It counts rows, so it does not care
+    about the blank salaries &mdash; Tech is 49 here. The <b>Sum</b> skips them, which is why the total
+    is over 48 salaries, not 49.</p>
+   </div>
+
+   <div class="warn"><b>And the thing Group By does that the others do not.</b> It <b>replaces</b> your
+   table. The 200 rows are gone and you have four. That is right if the summary is what you want, and
+   wrong if you still need the detail. <b>Right-click the query in the left-hand pane and choose
+   Reference or Duplicate first</b> if you need both.</div>
+
+   <div class="speak">
+    <p>Which is the real difference from a pivot table. A pivot <b>sits beside</b> your data and leaves
+    it alone. Group By <b>becomes</b> your data.</p>
+   </div>
+
+   <div class="stage">Now load it, and show that the sheet is untouched.</div>
+
+   <div class="typeit">Home &rarr; Close &amp; Load</div>
+<pre><code>  Close &amp; Load            puts the result on a NEW SHEET
+  Close &amp; Load To...      lets you choose: sheet, pivot table, or
+                          connection only (load nothing, just keep the query)</code></pre>
+
+   <div class="speak">
+    <p>A new sheet with four rows. And your original 200-row sheet is <b>exactly as it was</b>.</p>
+    <p>Power Query never edited your data. It read it, worked out what you wanted, and wrote the answer
+    somewhere else.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Now go back in. Right-click the result table &rarr; Table &rarr; Edit
+    Query.&rdquo;</div>
+    <div class="a">The editor opens with <b>every step still listed</b>. That is the whole point &mdash;
+    the work is saved, not just the answer. <b>Next month's file goes through the same list in the same
+    order.</b></div>
+   </div>
+  </div>
+
+  <!-- 78-86 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">78 &ndash; 86</span><h3>Their turn</h3></div>
+   <p class="objective">Eight minutes. One query, start to finish.</p>
+
+   <div class="stage">Put it on the board and walk the room. <b>The thing to check over shoulders is
+   whether they are on Transform or Add Column.</b></div>
+
+   <div class="speak">
+    <p>One query, from scratch, and load it to a new sheet.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>  from employees, produce ONE table showing, per city:
+
+      how many people
+      their average salary
+
+  and before you build it, answer from the profiler:
+      is "city" a column you could join on?  why or why not?</code></pre>
+
+   <div class="typeit">The answer</div>
+<pre><code>  Group by city | Count Rows | Average of salary
+
+      Chennai      61     <span class="o">156864.75</span>   <span class="c">&lt;-- look at this one</span>
+      Bangalore    54      68355.41
+      Hyderabad    48      71412.88
+      Pune         37      67871.61
+                  ---
+                  200
+
+  and the profiler question:
+      city = 4 distinct, 0 unique.  NOT a key.
+      it is a CATEGORY - four values, every one repeated.
+      you join TO a city table ON city, you do not join city to
+      employees expecting one row back.</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Do your four counts add to two hundred?&rdquo;</div>
+    <div class="a">61 + 54 + 48 + 37 = <b>200</b>. <b>Same check as every session since day
+    three.</b> If it does not, a step earlier in the list dropped rows.</div>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Chennai averages one lakh fifty-six thousand and the other three are around
+    seventy. Why?&rdquo;</div>
+    <div class="a"><b>She lives in Chennai.</b> Lakshmi Kumar, row 5, 52 lakh. <b>Eighth session, and
+    she has now broken a department average, a pivot, a bonus bill and a city average.</b> If the room
+    spots this without prompting, the module has worked.</div>
+   </div>
+
+   <div class="keyline">
+    <b>A new tool, a new grouping, and the same one person distorting it.</b><br><br>
+    Power Query did not warn you either. <b>No tool in this module has ever warned you</b> &mdash; you
+    caught it because you know this file and you looked at the number before you reported it.
+   </div>
+  </div>
+
+  <!-- 86-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">86 &ndash; 90</span><h3>Close</h3></div>
+
+   <div class="typeit">The five lines. If everything else goes, keep these.</div>
+<pre><code>1.  Data -> Get &amp; Transform -> From Table/Range
+    SAME EDITOR AS POWER BI. not similar. the same one.
+
+2.  APPLIED STEPS is the product, not a feature.
+    every click becomes a NAMED step. click any step to see the
+    table at that moment. delete a step and the change never happened.
+
+3.  DISTINCT = how many different values
+    UNIQUE   = how many appear exactly once
+    null counts as a value in both. distinct >= unique, always.
+
+4.  PRIMARY KEY TEST: distinct = unique = row count, AND no nulls.
+      emp_id  200/200/0   -> key
+      name    129/77/0    -> no. 71 people share a name.
+      salary  198/198/2   -> no. all different, still fails.
+
+5.  GROUP BY = SQL GROUP BY = pandas groupby = day 3's SUMIF
+    = day 5's pivot. fifth route to the same four numbers.
+    but it REPLACES your table. Reference the query first if you
+    still need the detail rows.</code></pre>
+
+   <div class="speak">
+    <p>Day two cleaned this file faster than today did. <b>And nothing from day two was written
+    down.</b></p>
+    <p>That is the trade. Slower to set up, and then it runs again next month, in order, on a file you
+    have not seen, by somebody who is not you.</p>
+   </div>
+
+   <div class="speak">
+    <p>Thursday we use the other half of this window, and it is the half you already understand.</p>
+    <p><b>Merge</b> joins two tables side by side &mdash; which is a SQL join, with the same six kinds
+    you already know. <b>Append</b> stacks them on top of each other, which is
+    <code>UNION ALL</code>.</p>
+    <p>Then slicers, and a dashboard that somebody else can actually click.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Seven steps, every click, every number. If you lose your place, this page
+  alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 12</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">A different window, and why</p>
+   <p class="rs-say"><b>Open on the gap.</b> &ldquo;On day 2 you cleaned this file. <b>Where is the list
+   of what you did?</b>&rdquo; &mdash; there isn't one. Next month: <b>from memory</b>, and a colleague
+   cannot do it at all.</p>
+   <div class="rs-code"><pre><code>click inside the data
+Data -> Get &amp; Transform Data -> From Table/Range
+
+  CHECK the dialog: range $A$1:$L$201, "My table has headers" TICKED
+  (unticked = Column1, Column2, and every later step is unreadable)</code></pre></div>
+   <div class="rs-out">APPLIED STEPS
+  Source
+  Changed Type</div>
+   <div class="rs-board"><b>Two steps already and nobody clicked anything.</b> Source = "I read the
+   table". Changed Type = Excel guessing the column types. <b>Click each one and watch the data.</b>
+   They are stepping through their own work.<br><br>
+   <b>Say it and keep saying it:</b> this window and the Power Query window in <b>Power BI</b> are the
+   same tool. <b>Today and Thursday are that module's first two sessions, taught early.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">12 &ndash; 32</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Profiling &mdash; board first, software second</p>
+   <p class="rs-say"><b>Do NOT open the profiler until the seven-row example is done.</b> The block
+   fails if distinct and unique are muddled.</p>
+   <div class="rs-code"><pre><code>Pune, Delhi, Pune, Goa, null, Delhi, Agra
+
+   DISTINCT = 5     how many DIFFERENT values
+   UNIQUE   = 3     how many appear EXACTLY ONCE  (Goa, null, Agra)
+
+   Pune is distinct but NOT unique.  null counts as a value in both.
+   distinct >= unique, always.</code></pre></div>
+   <div class="rs-board"><b>Make somebody say:</b> &ldquo;Pune is distinct but not unique.&rdquo;</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>View -> [x] Column distribution
+
+  emp_id       200 distinct   200 unique
+  name         <span class="o">129 distinct    77 unique</span>
+  department     4 distinct     0 unique
+  city           4 distinct     0 unique
+  salary       199 distinct   198 unique
+  age           39 distinct     3 unique</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;200 people, 129 names &mdash; what does that mean?&rdquo;
+   <b>Names repeat.</b> 123 rows share a name with somebody. <b>Let them work it out from the two
+   numbers.</b><br><br>
+   <b>department 4/0</b> = the signature of a <b>category</b>. <b>emp_id 200/200</b> = the signature of
+   an <b>identifier</b>. <b>You can tell what a column IS from two numbers.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Column quality:</b> percentages round &mdash; one
+   null in 200 can show as 0%. <b>Percentages are for scanning, counts are for deciding.</b><br><br>
+   <b>Bottom left:</b> "based on top 1000 rows" &rarr; switch to <b>entire data set</b>. No difference
+   today; on 100,000 rows it is the difference between a profile and a guess.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">32 &ndash; 44</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The primary key test</p>
+   <p class="rs-say"><b>Connect it to SQL:</b> &ldquo;you spent a module joining tables. Every join was
+   on a key. <b>This is how you find out whether a column can be one</b> &mdash; before you join on it
+   and get quietly wrong answers.&rdquo;</p>
+   <div class="rs-code"><pre><code>  distinct = unique = row count   AND   no nulls      <span class="c">both halves</span>
+
+  emp_id       200  200  0    KEY
+  name         129   77  0    no - names repeat
+  salary       198  198  2    no - and look closely
+  height_cm    146  108  0    no - not close</code></pre></div>
+   <div class="rs-board"><b>Dwell on salary.</b> &ldquo;Every single value is different. Why is it not a
+   key?&rdquo; &mdash; <b>the two nulls.</b> Passes the first half perfectly, fails the second. <b>All
+   different is not enough</b> &mdash; two rows would both be "the one with no salary".</div>
+   <div class="rs-board" style="margin-top:8px"><b>The surprising one:</b> most people handed an
+   employee file would say the <b>name</b> identifies the person. <b>129 and 77 says it does not</b>
+   &mdash; visible in two seconds, no scrolling, no sorting, no COUNTIF.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">44 &ndash; 62</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Cleaning with steps &mdash; and the delete is the moment</p>
+   <p class="rs-say"><b>Watch the right-hand panel more than the data.</b> Blanks show as <b>null</b> in
+   italics here.</p>
+   <div class="rs-code"><pre><code>click the age column
+Home -> Remove Rows -> Remove Blank Rows      200 -> 199
+
+   APPLIED STEPS now has a NAMED step: "Removed Blank Rows"
+
+now click the X beside that step            ->  200 rows. back.</code></pre></div>
+   <div class="rs-board"><b>Ask before doing it:</b> &ldquo;Remove Blank Rows takes the <b>whole
+   row</b>. Is that what we want?&rdquo; &mdash; <b>almost never.</b> One missing age loses the eleven
+   things you did know. <b>Do it anyway so they see it, then undo it.</b><br><br>
+   <b>The point:</b> in normal Excel a delete is gone. Here it was <b>a step in a list</b>, and removing
+   the step removed the delete. <b>Nothing here destroys anything.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>1. name column      Transform -> Format -> Trim          = TRIM, day 2
+2. department       Transform -> Replace Values          = Find&amp;Replace, day 2
+3. name column      Add Column -> Extract ->
+                    Text Before Delimiter -> a space     = day 7's FIND formula</code></pre></div>
+   <div class="rs-board"><b>Step 3 is the one to stop on.</b> Thursday that was
+   <code>=LEFT(C2, FIND(" ",C2)-1)</code> read inside out. Here it is two clicks.<br><br>
+   <b>Expect:</b> &ldquo;so was Thursday wasted?&rdquo; &mdash; <b>same answer as pivot tables.</b> You
+   know what the clicks do, so you can tell when they are wrong. <b>People who only know the button
+   cannot.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Transform vs Add Column catches everybody.</b>
+   Transform changes <b>in place</b>; Add Column makes a <b>new column</b>. The step names tell you:
+   <code>Trimmed Text</code> vs <code>Inserted Trimmed Text</code>. <b>Column vanished? Wrong
+   tab.</b><br><br>
+   <b>Finally:</b> click step 2 and look at the data &mdash; <b>a history you can walk through</b>,
+   which no amount of Ctrl+Z gives you.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">62 &ndash; 78</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Group By &mdash; the fifth route to the same answer</p>
+   <p class="rs-say"><b>Ask first:</b> &ldquo;name every way you could already get headcount and total
+   salary per department.&rdquo; <b>Take all four:</b> day 3 COUNTIF/SUMIF &middot; day 5 pivot &middot;
+   SQL GROUP BY &middot; pandas groupby.</p>
+   <div class="rs-code"><pre><code>select department, Transform -> Group By
+
+  Group by          department
+  New column name   headcount      Operation  Count Rows
+  (Advanced)        total salary   Operation  Sum    Column  salary
+
+      Sales      64   4264991
+      Tech       49   9108170
+      HR         45   2495026
+      Marketing  42   3106086</code></pre></div>
+   <div class="rs-board"><b>Count Rows counts rows</b>, so Tech is 49 and the blanks do not matter.
+   <b>Sum skips them</b>, so that total is over 48 salaries, not 49. <b>Same distinction as every
+   session.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>What Group By does that the others do not: it
+   REPLACES your table.</b> 200 rows gone, four remain. <b>Right-click the query &rarr; Reference or
+   Duplicate first</b> if you need the detail too.<br><br>
+   A pivot <b>sits beside</b> your data. Group By <b>becomes</b> it.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>Home -> Close &amp; Load            result on a NEW SHEET, original untouched
+     Close &amp; Load To...          sheet / pivot / connection only
+
+then: right-click the result -> Table -> Edit Query    every step still there</code></pre></div>
+   <div class="rs-board"><b>The work is saved, not just the answer.</b> Next month's file goes through
+   the same list in the same order.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">78 &ndash; 86</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Their turn</p>
+   <p class="rs-say"><b>Check over shoulders whether they are on Transform or Add Column.</b> That is
+   the one thing that goes wrong.</p>
+   <div class="rs-code"><pre><code>per city: how many people, and their average salary
+and from the profiler: is "city" a column you could join on?
+
+  Chennai     61   <span class="o">156864.75</span>
+  Bangalore   54    68355.41
+  Hyderabad   48    71412.88
+  Pune        37    67871.61
+             ---
+             200
+
+  city = 4 distinct, 0 unique -> NOT a key. a CATEGORY.</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;Chennai averages 1,56,864 and the rest are around 70,000.
+   Why?&rdquo; &mdash; <b>she lives in Chennai.</b> Lakshmi Kumar, row 5, 52 lakh.<br><br>
+   <b>Eighth session. She has now broken a department average, a pivot, a bonus bill and a city
+   average.</b> If the room spots it unprompted, the module has worked. <b>And Power Query did not warn
+   them either.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">86 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close</p>
+   <div class="rs-code"><pre><code>1. Data -> Get &amp; Transform -> From Table/Range. SAME EDITOR AS POWER BI.
+2. APPLIED STEPS is the product. named steps, click any one, delete any one.
+3. DISTINCT = different values. UNIQUE = appear exactly once. null counts.
+4. KEY TEST: distinct = unique = rows, AND no nulls.
+   emp_id 200/200/0 key . name 129/77/0 no . salary 198/198/2 no
+5. GROUP BY = SQL = pandas = day 3 SUMIF = day 5 pivot. but it
+   REPLACES your table - Reference the query if you need the detail.</code></pre></div>
+   <div class="rs-board"><b>The honest trade:</b> day 2 cleaned this file faster than today did, <b>and
+   nothing from day 2 was written down</b>. Slower to set up, then it runs again next month, in order,
+   by somebody who is not you.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up Thursday:</b> the other half of this window,
+   and the half they already understand. <b>Merge</b> = a SQL join, same six kinds. <b>Append</b> =
+   <code>UNION ALL</code>. Then <b>slicers</b>, and a dashboard somebody else can click.</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 3, 6 and 9 are the
+  three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>Where does the Power Query Editor open from, and what else uses the same editor?</q>
+    <div class="ans"><code>Data &rarr; Get &amp; Transform Data &rarr; From Table/Range</code>. And
+    <b>Power BI uses the same one</b> &mdash; not a similar one, the same tool.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is in the Applied Steps panel, and why does it matter more than the data?</q>
+    <div class="ans">Every action you took, <b>named and in order</b>. It matters because <b>day 2's
+    cleaning was not written down anywhere</b> &mdash; this is.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Define distinct and unique.</q>
+    <div class="ans"><b>Distinct</b> = how many different values. <b>Unique</b> = how many appear
+    exactly once. In Pune, Delhi, Pune, Goa, null, Delhi, Agra: <b>distinct 5, unique
+    3</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Can unique ever be larger than distinct?</q>
+    <div class="ans"><b>No, never.</b> Every unique value is also a distinct value. If you get that
+    result you have swapped the definitions.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Does <code>null</code> count in those two numbers?</q>
+    <div class="ans"><b>Yes</b> &mdash; it is treated as a value like any other in both
+    counts.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What are the two halves of the primary key test?</q>
+    <div class="ans"><b>distinct = unique = the number of rows</b>, <b>and</b> <b>no nulls</b>. Both
+    halves. Not one.</div></div></div>
+
+   <div class="aq"><div>
+    <q><code>salary</code> has 198 distinct and 198 unique. Why is it not a key?</q>
+    <div class="ans"><b>Two nulls.</b> Every value is different, and it still fails, because two rows
+    would both be &ldquo;the one with no salary&rdquo;. <b>All different is not
+    enough.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q><code>name</code> has 129 distinct for 200 rows. What does that tell you?</q>
+    <div class="ans"><b>Names repeat</b> &mdash; only 77 people have a name nobody else has. <b>A name
+    cannot identify a person in this file.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>You deleted some rows, then deleted the step. What happened, and why can normal Excel not do
+    that?</q>
+    <div class="ans"><b>The rows came back.</b> The delete was an <b>instruction in a list</b>, not a
+    change to the data. In the normal window a deleted row is gone once Ctrl+Z runs
+    out.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the difference between the Transform tab and the Add Column tab?</q>
+    <div class="ans"><b>Transform changes the column in place. Add Column makes a new one and keeps the
+    original.</b> The step name tells you which:
+    <code>Trimmed&nbsp;Text</code> against <code>Inserted&nbsp;Trimmed&nbsp;Text</code>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Name four other ways you already knew to get headcount per department.</q>
+    <div class="ans"><code>COUNTIF</code> (day 3), a <b>pivot table</b> (day 5), SQL
+    <code>GROUP BY</code>, and pandas <code>groupby</code>. <b>Group By is the
+    fifth.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What does Group By do to your table that a pivot table does not?</q>
+    <div class="ans">It <b>replaces</b> it &mdash; 200 rows become 4. A pivot <b>sits beside</b> your
+    data. <b>Reference or Duplicate the query first</b> if you still need the
+    detail.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Your Chennai average came out at 1,56,864 against about 70,000 everywhere else. What is going
+    on?</q>
+    <div class="ans"><b>Lakshmi Kumar, row 5, 52 lakh, lives in Chennai.</b> Eighth session, and she has
+    now distorted a department average, a pivot, a bonus bill and a city average. <b>Power Query did not
+    warn you either.</b></div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Is this Power BI?&rdquo;</h5>
+  <p>&ldquo;It is half of Power BI, inside Excel. The Power Query Editor is where Power BI does all its
+  cleaning and joining, and it is the same window with the same buttons. What Power BI adds on top is the
+  modelling and the visuals. <b>So two of your Power BI sessions are already done.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is that code in the formula bar?&rdquo;</h5>
+  <p>&ldquo;It is called M, and every step you click writes a line of it. You can read it, and
+  occasionally you will edit it. <b>You do not need to learn it</b> &mdash; in four years of this work I
+  would expect you to type M by hand perhaps twice. Know it exists so it does not frighten
+  you.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I reorder the steps?&rdquo;</h5>
+  <p>&ldquo;Yes &mdash; drag them in the panel. And it matters: trimming before replacing gives a
+  different result from replacing before trimming. <b>If a query stops working after you reorder it, that
+  is a real dependency you have just discovered</b>, not a bug.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does the query update when the data changes?&rdquo;</h5>
+  <p>&ldquo;Not on its own &mdash; same as a pivot table. <code>Data &rarr; Refresh All</code> runs every
+  query and every pivot in the workbook. <b>Third session running where something does not update
+  itself</b>, so it is worth a habit: refresh on open, refresh after a change, refresh before you send
+  it.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is <b>Connection only</b> in Close &amp; Load To?&rdquo;</h5>
+  <p>&ldquo;It keeps the query without writing the result to a sheet. You use it for a table that only
+  exists to be joined to another one &mdash; there is no reason to put a lookup table on a sheet where
+  somebody can edit it. <b>You will use it on Thursday.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should I clean in Power Query or with formulas?&rdquo;</h5>
+  <p>&ldquo;Formulas for things that belong next to the data and must update the moment a cell changes.
+  Power Query for <b>the same clean-up every month on a new file</b>, for joining and stacking tables,
+  and for anything you have to hand over with the work visible. <b>Most real projects use
+  both.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why did my column names come out as Column1, Column2?&rdquo;</h5>
+  <p>&ldquo;<b>My table has headers</b> was unticked in the dialog at the start. Excel treated your
+  header row as data. Delete the query and start again with it ticked &mdash; it is faster than fixing
+  it.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is Power Query in Google Sheets?&rdquo;</h5>
+  <p>&ldquo;No. This is the first thing in the module with no Sheets equivalent. If you are on Sheets you
+  would use <code>QUERY()</code> or a script, and neither gives you the Applied Steps list. <b>Worth
+  knowing if a job hands you Sheets rather than Excel.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;It says my query is slow.&rdquo;</h5>
+  <p>&ldquo;On 200 rows it will not be. On large data the usual cause is doing the filtering late &mdash;
+  if you are going to throw rows away, <b>throw them away in the first step</b>, so every later step has
+  less to work on. That rule carries straight into Power BI.&rdquo;</p></div>
+ </div>
+</section>
+</div>
+<div class="day" id="x9">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 9 &middot; merged class &middot; 90 minutes &middot; full script &middot; closes Excel</p>
+  <h1 class="display">The Joins You<br>Already Know,<br>With a Mouse</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Six join kinds they have written in SQL for a whole module, now as a dropdown. Then a dashboard
+   somebody else can actually click &mdash; and the one setting that makes a slicer look like it is
+   working when it is not.</p>
+  <div class="glance">
+   <div class="gcell"><b>158</b><span>rows from an inner join</span></div>
+   <div class="gcell"><b>42</b><span>that the anti join finds</span></div>
+   <div class="gcell"><b>1</b><span>department with nobody in it</span></div>
+   <div class="gcell"><b>4</b><span>charts, 1 slicer, 1 trap</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">This is revision for the first half and new for the second</h4>
+   <p style="color:var(--sienna)">They have written all six joins in SQL. <b style="color:var(--sienna)">Do
+   not teach what an inner join returns.</b> Put the SQL beside the dialog, confirm the rules are
+   identical, and spend the time on the <b style="color:var(--sienna)">anti joins</b> &mdash; the two
+   they wrote as <code>LEFT JOIN &hellip; WHERE x IS NULL</code> and never had a button for.</p>
+   <p style="color:var(--sienna)">The lookup table is built to make every number tie back to 200:
+   <b style="color:var(--sienna)">inner 158, left anti 42, and 158 + 42 = 200.</b> And it contains one
+   department with nobody in it, so the right anti join has something to find.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Build the departments table deliberately broken, and do not explain why yet.</b> It is
+   <b>missing Marketing</b> and it <b>contains Legal, which has no employees</b>. Both gaps are
+   deliberate: without them, every join returns 200 rows and the six kinds look identical.</li>
+   <li><b>Put the SQL on the board next to the dialog.</b> <code>SELECT * FROM a INNER JOIN b ON
+   a.id = b.id</code> beside <b>Merge Queries &rarr; Join Kind: Inner</b>. Same rules, different
+   clicks. Saying that explicitly saves twenty-five minutes.</li>
+   <li><b>The anti joins get the time.</b> In SQL they wrote those as a left join with a null check, and
+   most of them will not have realised it had a name. Here it is one dropdown entry and it answers the
+   most useful question in data checking: <em>what is in this file that is not in that one?</em></li>
+   <li><b>Report Connections is the trap and it must happen on screen.</b> A new slicer is linked to
+   <b>one</b> pivot table. Click it and one chart of four moves. Do not fix it straight away &mdash; let
+   them see three charts ignoring the filter.</li>
+   <li><b>Watch the clock at minute 60.</b> If merge and append have overrun, cut <b>append</b> &mdash;
+   it is the easiest to explain in two minutes later. <b>Do not cut the slicers</b>, because a static
+   dashboard is what they already built on day 6.</li>
+   <li><b>This closes the Excel module.</b> Leave eight minutes for the round-up and the handover. Nine
+   sessions on one file deserves saying out loud.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: the six joins as row counts on our own file,
+  what makes the anti joins worth a block, and why a slicer silently filters one chart.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the six joins, as numbers on our file</h5>
+
+   <h6>The two tables</h6>
+   <div class="mcalc">employees        200 rows.  department column holds
+                 Sales 64, Tech 49, HR 45, Marketing 42
+
+departments        4 rows:
+                 Sales      Priya Nair     floor 2
+                 Tech       Arun Menon     floor 4
+                 HR         Kavita Iyer    floor 1
+                 Legal      Rohit Desai    floor 3
+
+  NOTE: Marketing is missing from departments.
+        Legal has no employees.
+        Both deliberate.</div>
+
+   <div class="mth">
+    <h6>What each join returns, joining employees to departments on department</h6>
+    <div class="mrow"><b>inner</b><div><b>158</b> &mdash; only employees whose department is in the
+    table. Marketing's 42 drop out. 64 + 49 + 45.</div></div>
+    <div class="mrow"><b>left outer</b><div><b>200</b> &mdash; every employee kept. The 42 Marketing
+    rows get <code>null</code> for head and floor.</div></div>
+    <div class="mrow"><b>right outer</b><div><b>159</b> &mdash; every department kept. 158 matched, plus
+    one row for Legal with nulls where the employee should be.</div></div>
+    <div class="mrow"><b>full outer</b><div><b>201</b> &mdash; everything from both sides. 200 employees
+    plus the orphan Legal row.</div></div>
+    <div class="mrow"><b>left anti</b><div><b>42</b> &mdash; employees with <b>no</b> match. All
+    Marketing. <em>What is in my file that is not in theirs?</em></div></div>
+    <div class="mrow warn2"><b>right anti</b><div><b>1</b> &mdash; departments with <b>no</b> employees.
+    Legal. <em>What is in their file that is not in mine?</em></div></div>
+   </div>
+
+   <div class="keyline">
+    <b>The check that makes it memorable.</b><br><br>
+    <b>inner 158 + left anti 42 = 200.</b> Every employee is either matched or unmatched, and those two
+    joins split them exactly. <b>Same add-the-groups-back-up habit as every session since day
+    three.</b>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; why the anti joins earn the block</h5>
+
+   <h6>They have written them without knowing the name</h6>
+   <p>In SQL, &ldquo;rows in A with no match in B&rdquo; is a left join plus a null check:</p>
+   <div class="mcalc">SELECT a.*
+FROM employees a
+LEFT JOIN departments b ON a.department = b.department
+WHERE b.department IS NULL;</div>
+   <p>That is a left anti join. Most of the room will have written exactly that and never heard it
+   called anything. <b>Here it is one entry in a dropdown.</b></p>
+
+   <h6>Why it is the most useful join in data work</h6>
+   <p>Because it answers the question you ask every time two files are supposed to agree and do not:</p>
+   <div class="mth">
+    <div class="mrow"><b>left anti</b><div><b>What is in mine that is not in theirs?</b> &mdash; orders
+    with no matching customer, employees in a department that does not
+    exist.</div></div>
+    <div class="mrow"><b>right anti</b><div><b>What is in theirs that is not in mine?</b> &mdash; a
+    product nobody ordered, a department with nobody in it.</div></div>
+    <div class="mrow warn2"><b>and</b><div>An inner join <b>hides both</b>. It silently returns the
+    overlap and tells you nothing about what it dropped. <b>That is the danger, and it is the
+    fourth-session repeat of a wrong answer looking like a right one.</b></div></div>
+   </div>
+
+   <div class="warn"><b>The habit worth teaching with it.</b> Before any join on real data, run the
+   <b>anti join first</b> and see how many rows do not match. If it is zero, join with confidence. If it
+   is 42, you have just learned something about your data that the inner join would have thrown
+   away.</div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; why a slicer filters one chart</h5>
+
+   <h6>What a slicer actually is</h6>
+   <p>A set of clickable buttons, one per value in a field. Clicking <b>Tech</b> filters the pivot
+   tables that slicer is <b>connected to</b> &mdash; and when you create it, it is connected to exactly
+   one: the pivot behind the chart you had selected.</p>
+
+   <h6>So the first test looks like a bug</h6>
+   <div class="mcalc">four charts on the dashboard, from four pivot tables
+insert a slicer, click "Tech"
+
+   chart 1    filters
+   chart 2    does not move
+   chart 3    does not move
+   chart 4    does not move</div>
+   <p>Nothing errored. One chart is filtered and three are showing the whole company, <b>on the same
+   screen, under the same slicer.</b> A reader has no way to tell.</p>
+
+   <div class="keyline">
+    <b>This is the worst failure in the module and it is the last one.</b><br><br>
+    The dashboard looks interactive. It responds when you click. And three of its four charts are
+    answering a different question from the one the slicer says is selected. <b>Nothing is red.</b><br><br>
+    <b>Slicer tab &rarr; Report Connections &rarr; tick every pivot table.</b> Every slicer. Every time.
+   </div>
+
+   <h6>And one more time, the thing that does not update</h6>
+   <p>Slicers filter a pivot. A pivot is a snapshot. So a dashboard with slicers is <b>still stale</b>
+   until you refresh it &mdash; the slicer will cheerfully filter yesterday's numbers.
+   <code>Data &rarr; Refresh All</code> does every query and every pivot in the workbook at once.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>Build the second table, deliberately broken</h3></div>
+   <p class="objective">Type it live. Do not say yet why Marketing is missing.</p>
+
+   <div class="stage">Cleaned file open, and Tuesday's query still in the workbook. Make a new sheet
+   called <b>departments</b> and type four rows in front of them.</div>
+
+   <div class="speak">
+    <p>New sheet, call it <b>departments</b>, and type this. Four rows.</p>
+   </div>
+
+   <div class="typeit">Type it by hand &mdash; it takes a minute</div>
+<pre><code>        A              B                C
+
+ 1   department     head             floor
+ 2   Sales          Priya Nair           2
+ 3   Tech           Arun Menon           4
+ 4   HR             Kavita Iyer          1
+ 5   Legal          Rohit Desai          3</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Our employees sit in four departments. Look at this table. Spot
+    anything?&rdquo;</div>
+    <div class="a">Two things, and somebody will get at least one. <b>Marketing is missing.</b> And
+    <b>Legal is in here but no employee is in Legal.</b> If nobody spots it, move on &mdash; the joins
+    will show them in ten minutes.</div>
+   </div>
+
+   <div class="speak">
+    <p>Marketing is not in this table. And Legal is, with nobody in it.</p>
+    <p>I did that on purpose, and in ten minutes you will see exactly why. <b>If both tables matched
+    perfectly, all six joins would return the same two hundred rows and you would learn nothing.</b></p>
+   </div>
+
+   <div class="typeit">Load it as a query, and do not put it on a sheet</div>
+<pre><code>  click inside the departments table
+  Data -> From Table/Range           ->  the editor opens
+
+  Home -> Close &amp; Load To...  ->  Only Create Connection</code></pre>
+
+   <div class="speak">
+    <p><b>Only Create Connection.</b> We talked about this on Tuesday &mdash; the table exists as a
+    query, but nothing lands on a sheet.</p>
+    <p>That is right for a lookup table. There is no reason to put it somewhere a colleague can type
+    over it.</p>
+   </div>
+  </div>
+
+  <!-- 10-34 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10 &ndash; 34</span><h3>Merge &mdash; the six you already know</h3></div>
+   <p class="objective">Twenty-four minutes. Revision for four of them, teaching for two.</p>
+
+   <div class="stage">Put the SQL on the board beside the dialog. <b>Say explicitly that this is
+   revision</b> &mdash; it changes how fast you can move.</div>
+
+   <div class="speak">
+    <p>You have written all six of these in SQL. I am not going to explain what an inner join returns.</p>
+    <p>What I am going to show you is where the button is, and then the two you wrote without knowing
+    they had a name.</p>
+   </div>
+
+   <div class="typeit">On the board, and leave it up</div>
+<pre><code>  SELECT * FROM employees a
+  INNER JOIN departments b ON a.department = b.department
+                    |
+                    v
+  Merge Queries  ->  Join Kind: Inner
+
+  same rules. same six kinds. different clicks.</code></pre>
+
+   <div class="typeit">Open the employees query, then merge</div>
+<pre><code>  Home -> Merge Queries
+
+    top table:      employees      click the "department" column header
+    bottom table:   departments    click the "department" column header
+    Join Kind:      Inner
+
+  the dialog tells you at the bottom:
+    "The selection matches 158 of 200 rows from the first table."</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;158 of 200. Where did the other 42 go, and can you name them before we
+    look?&rdquo;</div>
+    <div class="a"><b>Marketing.</b> 64 + 49 + 45 = 158, and Marketing is 42. <b>The dialog told us
+    before we clicked OK</b> &mdash; that line at the bottom is the most useful thing in the window and
+    most people never read it.</div>
+   </div>
+
+   <div class="speak">
+    <p>Read that line at the bottom of the dialog every single time. <b>It tells you how many rows
+    matched before you commit to anything.</b></p>
+    <p>158 of 200. Sixty-four Sales, forty-nine Tech, forty-five HR. The forty-two Marketing people have
+    nothing to match to, and an inner join drops them.</p>
+   </div>
+
+   <div class="stage">Now cycle the Join Kind dropdown and read the row count each time. <b>Fast</b>
+   &mdash; this is the revision half.</div>
+
+   <div class="typeit">Change only the dropdown, five times</div>
+<pre><code>  Inner                    158    only the matches
+  Left Outer               200    all employees. Marketing gets null
+  Right Outer              159    all departments. 158 + Legal with nulls
+  Full Outer               201    everything. 200 + the orphan Legal row
+  Left Anti                 42    employees with NO match
+  Right Anti                 1    departments with NO employees</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Add the inner join and the left anti join together.&rdquo;</div>
+    <div class="a"><b>158 + 42 = 200.</b> Every employee is either matched or not matched, and those two
+    joins split them exactly. <b>Same check as every session since day three</b> &mdash; add the groups
+    back up.</div>
+   </div>
+
+   <div class="stage">Now slow down. <b>The last two are the new ones.</b></div>
+
+   <div class="speak">
+    <p>The first four you know. The last two have names you may not have met.</p>
+    <p>In SQL, how did you ask for &ldquo;rows in A with no match in B&rdquo;?</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; what they have already written</div>
+<pre><code>  SELECT a.*
+  FROM employees a
+  LEFT JOIN departments b ON a.department = b.department
+  WHERE b.department IS NULL;
+
+  that is a LEFT ANTI JOIN.
+  here it is one entry in a dropdown.</code></pre>
+
+   <div class="speak">
+    <p>A left join plus a null check. Most of you have written that. <b>It has a name, and here it has a
+    button.</b></p>
+    <p>And it answers the question you ask every time two files are supposed to agree and do not:
+    <b>what is in mine that is not in theirs?</b></p>
+   </div>
+
+   <div class="typeit">Set it to Left Anti and look</div>
+<pre><code>  42 rows. every one of them Marketing.
+
+  "there are 42 employees in a department that does not exist
+   in the departments table."</code></pre>
+
+   <div class="speak">
+    <p>Forty-two rows, all Marketing. That is a <b>finding</b>, not an error &mdash; either the
+    departments table is incomplete or those employees are coded wrong, and somebody has to decide
+    which.</p>
+    <p>Now flip it. <b>Right Anti.</b></p>
+   </div>
+
+   <div class="screen">1 row.   Legal   Rohit Desai   floor 3
+
+"there is a department with nobody in it."</div>
+
+   <div class="keyline">
+    <b>These two are the most useful joins in data work and the inner join hides both.</b><br><br>
+    An inner join silently returns the overlap and tells you nothing about what it dropped. <b>Run the
+    anti join first</b> &mdash; if it returns zero rows, join with confidence. If it returns 42, you
+    have learned something the inner join would have thrown away.<br><br>
+    <b>Fourth session running: a wrong answer looking exactly like a right one.</b>
+   </div>
+
+   <div class="warn"><b>One thing about the merged column, because it confuses everybody once.</b> After
+   a merge you get a new column with the word <b>Table</b> in every cell, not the values. Click the
+   <b>two-arrow expand icon</b> in its header and pick which columns you want. <b>Untick &ldquo;Use
+   original column name as prefix&rdquo;</b> or you get <code>departments.head</code> instead of
+   <code>head</code>.</div>
+  </div>
+
+  <!-- 34-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">34 &ndash; 44</span><h3>Append &mdash; stacking instead of joining</h3></div>
+   <p class="objective">Ten minutes. This is <code>UNION ALL</code> and should be said so.</p>
+
+   <div class="stage">If the merge block overran, <b>this is the block to shorten</b>. The idea is
+   explainable in two minutes.</div>
+
+   <div class="speak">
+    <p>Merge puts tables <b>side by side</b> and adds columns. There is an opposite that puts them
+    <b>on top of each other</b> and adds rows.</p>
+    <p>In SQL you know it already.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>  SELECT * FROM employees
+  UNION ALL
+  SELECT * FROM new_hires
+            |
+            v
+  Home -> Append Queries
+
+  MERGE  adds COLUMNS.  joins on a matching value.
+  APPEND adds ROWS.     stacks, matching up the column names.</code></pre>
+
+   <div class="speak">
+    <p>Make a third sheet with three new hires &mdash; same column headings as the main file.</p>
+   </div>
+
+   <div class="typeit">A new sheet, three rows, headings spelled exactly as in employees</div>
+<pre><code>  emp_id   name            department   city       salary
+
+  1201     Anil Varma      Marketing    Pune       58000
+  1202     Sneha Pillai    Tech         Chennai    74000
+  1203     Rakesh Jain     Sales        Bangalore  51000</code></pre>
+
+   <div class="typeit">Load as a connection, then append</div>
+<pre><code>  Home -> Append Queries -> Append Queries as New
+
+     Table to append:   new_hires
+
+  200 + 3  =  203 rows</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Scroll to the bottom. What is in the age, rating and join_date columns for
+    those three?&rdquo;</div>
+    <div class="a"><code>null</code>. Our new-hires sheet only had five columns, so the other seven are
+    empty for those rows. <b>Append matches on column name</b> &mdash; what is missing comes through as
+    null.</div>
+   </div>
+
+   <div class="warn"><b>The thing that actually goes wrong with append, and it is always this.</b> If
+   one sheet says <code>department</code> and the other says <code>Department</code> or
+   <code>dept</code>, Power Query treats them as <b>two different columns</b> &mdash; you get both, each
+   half full of nulls, and 203 rows that look right until you total something.<br><br>
+   <b>So: nulls after an append usually mean a misnamed column, not missing data.</b> Check the column
+   count before you check anything else.</div>
+  </div>
+
+  <!-- 44-68 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 &ndash; 68</span><h3>Slicers, and the setting that lies to you</h3></div>
+   <p class="objective">Twenty-four minutes. The failure must happen on screen. Protect this block.</p>
+
+   <div class="stage">Open the dashboard sheet from day 6. It has charts on it from several pivot
+   tables. <b>If somebody's dashboard is gone, two pivots and two charts is enough.</b></div>
+
+   <div class="speak">
+    <p>Open the dashboard you built on day six. Four charts, from four pivot tables.</p>
+    <p>It is a good sheet and it has one thing wrong with it: <b>a reader cannot do anything.</b> They
+    can look at the whole company and that is all. If a manager wants to see Tech on its own, they have
+    to come and ask you.</p>
+   </div>
+
+   <div class="typeit">Click any one chart, then</div>
+<pre><code>  Insert -> Slicer -> tick "department" -> OK</code></pre>
+
+   <div class="speak">
+    <p>Four buttons, one per department. Drag it to the top of the sheet and make it a bit smaller.</p>
+    <p>Now click <b>Tech</b>, and <b>watch all four charts.</b></p>
+   </div>
+
+   <div class="stage">Let it fail. <b>Say nothing for a few seconds.</b> One chart will filter and three
+   will not.</div>
+
+   <div class="screen">chart 1    filtered to Tech
+chart 2    unchanged - still the whole company
+chart 3    unchanged
+chart 4    unchanged</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What just happened?&rdquo;</div>
+    <div class="a">One chart filtered. <b>Three did not.</b> No error, nothing red, and the slicer
+    plainly says Tech is selected. <b>Wait for somebody to say it is broken, then say it is not.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Nothing is broken. A new slicer is connected to <b>exactly one</b> pivot table &mdash; the one
+    behind the chart I had selected when I made it.</p>
+    <p>Now look at what is on screen. <b>The slicer says Tech. One chart is showing Tech. Three are
+    showing the whole company.</b> And a reader has no way at all to tell which is which.</p>
+   </div>
+
+   <div class="keyline">
+    <b>This is the worst failure in the module, and it is the last one.</b><br><br>
+    The dashboard looks interactive. It <em>responds</em> when you click it. And three of its four
+    charts are answering a different question from the one the slicer says is selected.<br><br>
+    <b>Nine sessions, and the most dangerous thing in Excel is still something that does not look like
+    an error.</b>
+   </div>
+
+   <div class="typeit">The fix, and it is one dialog</div>
+<pre><code>  click the slicer
+  Slicer tab -> Report Connections
+
+     [x] PivotTable1
+     [x] PivotTable2
+     [x] PivotTable3
+     [x] PivotTable4
+
+  tick EVERY pivot table. OK.</code></pre>
+
+   <div class="speak">
+    <p>Click Tech again. <b>All four charts move together.</b></p>
+    <p>Report Connections, for every slicer, every time. If you add a fifth chart next month, you have
+    to come back and tick it.</p>
+   </div>
+
+   <div class="warn"><b>Which is why pivot table names matter, and nobody ever renames them.</b> That
+   dialog lists <code>PivotTable1</code> to <code>PivotTable4</code> and gives you no clue which is
+   which. On a dashboard with eight charts you will be guessing. <b>Rename each pivot when you build it</b>
+   &mdash; click inside it, PivotTable Analyze, and change the name box to something like
+   <code>pvt_dept_count</code>.</div>
+
+   <div class="stage">Now add two more slicers so they repeat the Report Connections step
+   themselves.</div>
+
+   <div class="speak">
+    <p>Add two more. <b>city</b> and <b>education</b>. And for each one, go straight to Report
+    Connections and tick everything.</p>
+   </div>
+
+   <div class="typeit">Then test that the slicers combine</div>
+<pre><code>  click  department = Tech    AND    city = Chennai
+
+  every chart now shows Tech employees in Chennai only.
+  the slicers stack - a row must match ALL of them.</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Tech and Chennai. What number should you be suspicious of?&rdquo;</div>
+    <div class="a">The <b>average salary</b>. <b>She is Tech and she is in Chennai</b> &mdash; Lakshmi
+    Kumar, row 5, 52 lakh. <b>Ninth session.</b> Filtering to a smaller group makes one outlier
+    <em>worse</em>, not better, because she is a bigger share of fewer people.</div>
+   </div>
+
+   <div class="typeit">What the average salary actually does as you filter</div>
+<pre><code>  whole company          95,829      18 lakh over 198 people
+  Tech only             1,89,754
+  Tech AND Chennai      <span class="o">3,83,893</span>      18 people, 17 salaries
+
+  the same woman, as a share of a smaller and smaller group.
+
+  Tech + Chennai without her:   82,887   over 16 people</code></pre>
+
+   <div class="speak">
+    <p>Three lakh eighty-four thousand. <b>Four times the company average</b>, on a dashboard a manager
+    is clicking through.</p>
+    <p><b>She is Tech and she is in Chennai.</b> The smaller you make the group, the more she distorts
+    it &mdash; she is a bigger share of fewer people. Take her out and those eighteen become
+    eighty-three thousand.</p>
+    <p>A slicer does not protect you from an outlier. <b>It makes one worse, quietly, while the reader
+    is clicking.</b></p>
+   </div>
+
+   <div class="stage">Last four minutes of the block. <b>The refresh, one final time.</b></div>
+
+   <div class="speak">
+    <p>One last thing, and you have heard it twice already.</p>
+    <p>Slicers filter pivot tables. Pivot tables are <b>snapshots</b>. So a dashboard with slicers on it
+    is <b>still showing old numbers</b> until somebody refreshes &mdash; the slicer will happily filter
+    yesterday's data all day.</p>
+   </div>
+
+   <div class="typeit">The one that does everything</div>
+<pre><code>  Data -> Refresh All
+
+  runs every QUERY and refreshes every PIVOT in the workbook.
+  on open. after a change. before you send it.</code></pre>
+  </div>
+
+  <!-- 68-82 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">68 &ndash; 82</span><h3>Their turn &mdash; the whole thing</h3></div>
+   <p class="objective">Fourteen minutes. Query, join, dashboard. Everything from nine sessions.</p>
+
+   <div class="stage">Put the brief up and walk the room. <b>Ask one question per desk: &ldquo;did you
+   run the anti join first?&rdquo;</b></div>
+
+   <div class="speak">
+    <p>One task, and it uses most of the module.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>  the departments table now has a floor number.
+
+  1.  before joining anything - run the LEFT ANTI join and tell me
+      how many employees you are about to lose, and who.
+
+  2.  then LEFT JOIN so you keep all 200, and expand to bring in
+      "floor".
+
+  3.  build a pivot: headcount by floor.
+
+  4.  put it on the dashboard with a slicer, connected to EVERY
+      pivot table.
+
+  5.  what is on the floor column for the Marketing rows, and what
+      would you write about it on the summary sheet?</code></pre>
+
+   <div class="typeit">The answers</div>
+<pre><code>1.  Left Anti -> 42 rows, all Marketing.
+    "I am about to lose 42 people" - said BEFORE the join, not after.
+
+2.  Left Outer -> 200 rows kept. expand, untick the prefix box.
+
+3.  floor 1 = 45 (HR)    floor 2 = 64 (Sales)    floor 4 = 49 (Tech)
+    floor (blank) = 42   (Marketing - no department row, so no floor)
+    floor 3 = 0 rows     (Legal has nobody) - it does not appear at all
+
+4.  Report Connections. every pivot. or three charts lie.
+
+5.  "42 employees (21%) have no floor recorded, because Marketing is
+     missing from the departments table. Headcount by floor covers
+     158 of 200 employees."
+    THAT sentence is the answer. not the pivot.</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Floor 3 is Legal and it has nobody. Does it show on your pivot as a zero?&rdquo;</div>
+    <div class="a"><b>No &mdash; it does not appear at all.</b> A left join keeps employees, and no
+    employee is on floor 3, so there is no row to group. <b>A missing category is invisible on a pivot
+    table</b>, which is exactly what the right anti join was for.</div>
+   </div>
+
+   <div class="warn"><b>What you will find walking the room.</b> Somebody joined first and ran the anti
+   join afterwards &mdash; <b>point out that they found out after committing.</b> Somebody has
+   <code>departments.floor</code> as a column name because they left the prefix box ticked. And somebody
+   has a beautiful dashboard where <b>one chart responds to the slicer.</b></div>
+  </div>
+
+  <!-- 82-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">82 &ndash; 90</span><h3>Closing nine sessions</h3></div>
+   <p class="objective">Eight minutes. Say it properly &mdash; this is the end of the module.</p>
+
+   <div class="typeit">The five lines from today</div>
+<pre><code>1.  MERGE adds COLUMNS - it is a SQL join. same six kinds.
+    APPEND adds ROWS - it is UNION ALL.
+
+2.  READ THE LINE AT THE BOTTOM OF THE MERGE DIALOG.
+    "matches 158 of 200 rows" - before you click OK.
+
+3.  RUN THE ANTI JOIN FIRST. it answers "what will I lose?"
+    inner 158 + left anti 42 = 200.
+    an inner join hides what it dropped and never tells you.
+
+4.  A NEW SLICER IS CONNECTED TO ONE PIVOT TABLE.
+    Slicer tab -> Report Connections -> tick every one.
+    otherwise three charts show the whole company under a filter
+    that says Tech. nothing goes red.
+
+5.  Data -> Refresh All. on open, after a change, before sending.</code></pre>
+
+   <div class="speak">
+    <p>Nine sessions. One file. Two hundred rows.</p>
+    <p>That was deliberate, and here is what it bought you: by session four you knew this file well
+    enough to <b>see when an answer was wrong</b>. Every mistake in this module was only visible because
+    you knew what the right answer looked like.</p>
+   </div>
+
+   <div class="typeit">The five things that were never about Excel</div>
+<pre><code>1.  A BLANK IS NOT A ZERO.
+    six of the nine sessions.
+
+2.  A WRONG ANSWER LOOKS EXACTLY LIKE A RIGHT ONE.
+    no $ . the one-column sort . "&gt;$Q$10" in quotes . VLOOKUP with
+    no FALSE . Count of salary . a slicer connected to one pivot.
+    not one of them went red.
+
+3.  A CORRECT FORMULA IS NOT A CORRECT ANSWER.
+    AVERAGEIF on Tech: 1,89,753. perfect formula, useless answer.
+
+4.  ALWAYS ADD THE GROUPS BACK UP.
+    64+49+45+42 = 200.  12+186 = 198.  158+42 = 200.
+
+5.  NO TOOL ASKS WHETHER YOUR QUESTION MAKES SENSE.
+    average dept_id 2.32 . average joining year 2020.4 .
+    48 people hired at a weekend . one person at 44% of the
+    bonus bill and 27% of all salary.</code></pre>
+
+   <div class="speak">
+    <p>And one person. Lakshmi Kumar, row five, fifty-two lakh.</p>
+    <p>She broke a mean on day one. A sort on day two. An <code>AVERAGEIF</code> on day three. A bonus
+    bill on day four. A pivot on day five. A city average on Tuesday. And a slicer today.</p>
+    <p><b>Nine sessions and not one tool ever warned you about her.</b> You caught her every time because
+    you looked at the number before you reported it. <b>That is the job.</b></p>
+   </div>
+
+   <div class="speak">
+    <p>Next module is Power BI, and two of its sessions are already behind you.</p>
+    <p>The Power Query Editor you used on Tuesday and today is <b>the same window</b> in Power BI. The
+    merges, the appends, the Applied Steps, Group By &mdash; all identical. A pivot table becomes a
+    visual. A slicer is still called a slicer.</p>
+    <p>What is genuinely new there is the data model and a language called DAX. <b>Everything
+    else you already have.</b></p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Six steps, every click, every row count. If you lose your place, this page
+  alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Build the second table, deliberately broken</p>
+   <p class="rs-say"><b>Type it live.</b> Do not say yet why Marketing is missing.</p>
+   <div class="rs-code"><pre><code>new sheet "departments", four rows:
+
+   Sales   Priya Nair    2
+   Tech    Arun Menon    4
+   HR      Kavita Iyer   1
+   Legal   Rohit Desai   3
+
+Data -> From Table/Range -> Close &amp; Load To... -> Only Create Connection</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;our employees sit in four departments. Spot
+   anything?&rdquo; &mdash; <b>Marketing is missing</b>, and <b>Legal has nobody in it</b>. Both
+   deliberate: <b>if the tables matched, all six joins would return 200 rows and they would learn
+   nothing.</b><br><br>
+   <b>Only Create Connection</b> &mdash; no reason to put a lookup table where a colleague can type over
+   it.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 34</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Merge &mdash; revision for four, teaching for two</p>
+   <p class="rs-say"><b>Say it explicitly: this is revision.</b> Put the SQL beside the dialog and move
+   fast.</p>
+   <div class="rs-code"><pre><code>SELECT * FROM employees a
+INNER JOIN departments b ON a.department = b.department
+              |
+Merge Queries -> Join Kind: Inner      same rules, different clicks</code></pre></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>Home -> Merge Queries
+   top: employees, click "department" | bottom: departments, same
+
+   the dialog says: "matches 158 of 200 rows from the first table"</code></pre></div>
+   <div class="rs-board"><b>Ask before clicking OK:</b> &ldquo;158 of 200 &mdash; where did 42 go, and
+   can you name them?&rdquo; <b>Marketing.</b> 64+49+45 = 158.<br><br>
+   <b>That line at the bottom is the most useful thing in the window and nobody reads it.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>cycle the Join Kind dropdown - read the count each time
+
+   Inner         158    only the matches
+   Left Outer    200    all employees, Marketing gets null
+   Right Outer   159    158 + Legal with nulls
+   Full Outer    201    200 + the orphan Legal row
+   Left Anti      42    employees with NO match
+   Right Anti      1    departments with NO employees</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;inner plus left anti?&rdquo; &mdash; <b>158 + 42 =
+   200.</b> Those two joins split every employee exactly. <b>Add the groups back up, same as every
+   session.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>NOW SLOW DOWN &mdash; the anti joins are the new
+   bit.</b> Ask how they wrote "rows in A with no match in B" in SQL:
+   <code>LEFT JOIN &hellip; WHERE b.department IS NULL</code>. <b>That is a left anti join. It has a
+   name and here it has a button.</b><br><br>
+   <b>Left anti 42, all Marketing</b> &mdash; a finding, not an error. <b>Right anti 1, Legal</b> &mdash;
+   a department with nobody in it.<br><br>
+   <b>Run the anti join FIRST.</b> Zero rows &rarr; join with confidence. 42 rows &rarr; you learned
+   something the inner join would have thrown away. <b>Fourth session: a wrong answer looking like a
+   right one.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>After the merge:</b> a column full of the word
+   <b>Table</b>. Click the <b>two-arrow expand icon</b>, pick your columns, and <b>untick "use original
+   column name as prefix"</b> or you get <code>departments.head</code>.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">34 &ndash; 44</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Append &mdash; this is UNION ALL</p>
+   <p class="rs-say"><b>If merge overran, this is the block to shorten.</b> The idea takes two
+   minutes.</p>
+   <div class="rs-code"><pre><code>SELECT * FROM employees UNION ALL SELECT * FROM new_hires
+            |
+Home -> Append Queries
+
+   MERGE  adds COLUMNS, joins on a matching value
+   APPEND adds ROWS, stacks and matches up column NAMES</code></pre></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>new sheet, 3 rows, headings spelled EXACTLY as in employees:
+   1201 Anil Varma   Marketing  Pune       58000
+   1202 Sneha Pillai Tech       Chennai    74000
+   1203 Rakesh Jain  Sales      Bangalore  51000
+
+Append Queries as New  ->  200 + 3 = 203 rows</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;scroll down &mdash; what is in age, rating and join_date for
+   those three?&rdquo; <b>null.</b> Append matches on <b>column name</b>; what is missing comes through
+   as null.</div>
+   <div class="rs-board" style="margin-top:8px"><b>What actually goes wrong, always:</b> one sheet says
+   <code>department</code>, the other <code>Department</code> &mdash; Power Query treats them as
+   <b>two columns</b>, each half null, and 203 rows that look right until you total something.
+   <b>Nulls after an append usually mean a misnamed column, not missing data.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">44 &ndash; 68</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Slicers &mdash; and the setting that lies. Protect this block.</p>
+   <p class="rs-say"><b>Let it fail on screen. Say nothing for a few seconds.</b></p>
+   <div class="rs-code"><pre><code>open day 6's dashboard. click ONE chart.
+Insert -> Slicer -> tick "department" -> OK
+
+click "Tech" and watch ALL FOUR charts:
+
+   chart 1   filtered to Tech
+   chart 2   unchanged - the whole company
+   chart 3   unchanged
+   chart 4   unchanged</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;what just happened?&rdquo; Somebody says it is broken.
+   <b>It is not.</b> A new slicer is connected to <b>exactly one</b> pivot &mdash; the one behind the
+   chart you had selected.<br><br>
+   <b>The slicer says Tech. One chart shows Tech. Three show the whole company. A reader cannot
+   tell.</b><br><br>
+   <b>The worst failure in the module, and it is the last one.</b> It <em>responds</em> when you click
+   it, and three of four charts answer a different question. <b>Nothing is red.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>click the slicer -> Slicer tab -> Report Connections
+   [x] PivotTable1  [x] PivotTable2  [x] PivotTable3  [x] PivotTable4
+
+click Tech again -> all four move together</code></pre></div>
+   <div class="rs-board"><b>Every slicer. Every time.</b> Add a fifth chart next month and you come back
+   and tick it.<br><br>
+   <b>Which is why pivot names matter and nobody renames them.</b> That dialog says PivotTable1 to 4 and
+   gives no clue which is which. <b>Rename each one when you build it</b> &mdash; PivotTable Analyze,
+   name box, <code>pvt_dept_count</code>.</div>
+   <p class="rs-do" style="margin-top:12px">Add city and education slicers &mdash; they do Report Connections themselves</p>
+   <div class="rs-code"><pre><code>department = Tech  AND  city = Chennai      slicers STACK (match all)
+
+  whole company      95,829
+  Tech only         1,89,754
+  Tech AND Chennai  <span class="o">3,83,893</span>     18 people, 17 salaries
+  the same 18 without her:  82,887</code></pre></div>
+   <div class="rs-board"><b>Ask which number to be suspicious of</b> &mdash; the average salary. <b>She
+   is Tech AND Chennai.</b> Ninth session.<br><br>
+   <b>Four times the company average, on a dashboard a manager is clicking.</b> The smaller the group,
+   the more one outlier distorts it. <b>A slicer makes an outlier worse, quietly.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Last four minutes:</b> slicers filter pivots, pivots
+   are <b>snapshots</b> &mdash; so a slicer will happily filter yesterday's data.
+   <b>Data &rarr; Refresh All</b>: every query and every pivot. <b>On open, after a change, before
+   sending.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">68 &ndash; 82</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Their turn &mdash; the whole thing</p>
+   <p class="rs-say"><b>One question per desk: &ldquo;did you run the anti join first?&rdquo;</b></p>
+   <div class="rs-code"><pre><code>1. LEFT ANTI first - how many will you lose, and who?
+2. then LEFT OUTER, expand, bring in "floor"
+3. pivot: headcount by floor
+4. on the dashboard, with a slicer, connected to EVERY pivot
+5. what is on floor for the Marketing rows, and what do you WRITE?</code></pre></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>1.  42 rows, all Marketing - found BEFORE committing, not after
+2.  200 rows kept. untick the prefix box.
+3.  floor 1 = 45 (HR)   floor 2 = 64 (Sales)   floor 4 = 49 (Tech)
+    floor blank = 42 (Marketing)    total 200
+    floor 3 = DOES NOT APPEAR (Legal has nobody)
+4.  Report Connections, or three charts lie
+5.  "42 employees (21%) have no floor recorded, because Marketing is
+     missing from the departments table. Headcount by floor covers
+     158 of 200."       <- THAT sentence is the answer, not the pivot</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;floor 3 is Legal with nobody &mdash; does it show as a
+   zero?&rdquo; <b>No, it does not appear at all.</b> No employee on floor 3, so no row to group.
+   <b>A missing category is invisible on a pivot</b> &mdash; which is exactly what the right anti join
+   was for.</div>
+   <div class="rs-board" style="margin-top:8px"><b>What you will find:</b> somebody joined first and
+   anti-joined after &mdash; <b>they found out after committing</b>. Somebody has
+   <code>departments.floor</code> from the prefix box. And somebody has a beautiful dashboard where
+   <b>one chart responds.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">82 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Closing nine sessions</p>
+   <div class="rs-code"><pre><code>1. MERGE adds COLUMNS (a SQL join). APPEND adds ROWS (UNION ALL).
+2. READ THE LINE AT THE BOTTOM OF THE MERGE DIALOG.
+3. RUN THE ANTI JOIN FIRST. inner 158 + left anti 42 = 200.
+4. A NEW SLICER IS CONNECTED TO ONE PIVOT. Report Connections.
+5. Data -> Refresh All. on open, after a change, before sending.</code></pre></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>THE FIVE THAT WERE NEVER ABOUT EXCEL
+
+1. a blank is not a zero.                     six of the nine sessions
+2. a wrong answer looks exactly like a right one.
+   no $ . one-column sort . "&gt;$Q$10" . VLOOKUP with no FALSE .
+   Count of salary . a slicer on one pivot.   none went red.
+3. a correct formula is not a correct answer.  AVERAGEIF Tech 1,89,753
+4. always add the groups back up.  64+49+45+42=200 . 158+42=200
+5. no tool asks whether your question makes sense.
+   dept_id 2.32 . joining year 2020.4 . 48 weekend hires .
+   one person = 44% of the bonus bill and 27% of all salary</code></pre></div>
+   <div class="rs-board"><b>Say the one-file point out loud:</b> nine sessions on 200 rows was
+   deliberate. <b>By session four they knew it well enough to see when an answer was wrong</b> &mdash;
+   and that is the only reason any of the module's mistakes were visible.</div>
+   <div class="rs-board" style="margin-top:8px"><b>Then her:</b> a mean on day 1, a sort on day 2, an
+   AVERAGEIF on day 3, a bonus bill on day 4, a pivot on day 5, a city average on Tuesday, a slicer
+   today. <b>Nine sessions and not one tool ever warned them.</b> They caught her every time because
+   they looked at the number before reporting it. <b>That is the job.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Hand over to Power BI:</b> two of its sessions are
+   already done. <b>Same Power Query window. A pivot becomes a visual. A slicer is still a slicer.</b>
+   What is new there is the data model and DAX. <b>Everything else they already have.</b></div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions &mdash; the last four are about the whole
+  module. Numbers 5, 8 and 10 are the ones that matter.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What is the difference between Merge and Append?</q>
+    <div class="ans"><b>Merge adds columns</b> &mdash; it is a SQL join, on a matching value.
+    <b>Append adds rows</b> &mdash; it is <code>UNION ALL</code>, stacking and matching up column
+    names.</div></div></div>
+
+   <div class="aq"><div>
+    <q>The merge dialog said &ldquo;matches 158 of 200 rows&rdquo;. What should you do with that?</q>
+    <div class="ans"><b>Read it before you click OK.</b> It tells you how many rows matched while you
+    can still change your mind. <b>42 employees were about to be dropped.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Inner join gave 158 and left anti gave 42. What do those two add up to, and why?</q>
+    <div class="ans"><b>200.</b> Every employee either matched or did not, and those two joins split them
+    exactly.</div></div></div>
+
+   <div class="aq"><div>
+    <q>How did you write a left anti join in SQL?</q>
+    <div class="ans"><code>LEFT JOIN &hellip; WHERE b.key IS NULL</code>. <b>You have written it. It has
+    a name, and in Power Query it is one entry in a dropdown.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Why run the anti join <em>before</em> the real join?</q>
+    <div class="ans">Because it tells you <b>what you are about to lose</b>. An inner join silently
+    returns the overlap and <b>never mentions what it dropped</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Right anti gave one row, Legal. What does that mean?</q>
+    <div class="ans"><b>A department with nobody in it.</b> And it would be <b>invisible on a pivot
+    table</b>, because there are no employee rows to group.</div></div></div>
+
+   <div class="aq"><div>
+    <q>After a merge, your new column just says &ldquo;Table&rdquo; in every cell. What now?</q>
+    <div class="ans">Click the <b>two-arrow expand icon</b> in its header and choose the columns you
+    want. <b>Untick the prefix box</b> or everything comes through as
+    <code>departments.something</code>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>You inserted a slicer and clicked Tech. One chart filtered and three did not. Is it broken?</q>
+    <div class="ans"><b>No.</b> A new slicer is connected to <b>one</b> pivot table &mdash; the one
+    behind the chart you had selected. <b>Slicer tab &rarr; Report Connections &rarr; tick every
+    one.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Why is that the most dangerous thing in the module?</q>
+    <div class="ans">Because <b>the dashboard responds when you click it.</b> It looks like it is
+    working, three of four charts are answering a different question, and <b>nothing is
+    red.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>You filtered to Tech and Chennai and the average salary was 3,83,893. What is going on?</q>
+    <div class="ans"><b>She is Tech and she is in Chennai.</b> Eighteen people, and one of them earns
+    52 lakh. <b>The smaller the group, the more one outlier distorts it</b> &mdash; a slicer makes it
+    worse, not better.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Name three things in this module that do not update themselves.</q>
+    <div class="ans"><b>Pivot tables</b>, <b>Power Query queries</b>, and <b>anything a slicer is
+    filtering</b>, because it is filtering a pivot. <b><code>Data &rarr; Refresh All</code></b> does the
+    lot.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Across nine sessions, name three mistakes that produced no error message.</q>
+    <div class="ans">Any three of: the missing <b>$</b>; the <b>one-column sort</b>;
+    <code>"&gt;$Q$10"</code> in quotes; <b>VLOOKUP with no FALSE</b>; <b>Count of salary</b> in a pivot;
+    a <b>slicer connected to one pivot</b>. <b>Not one of them went red.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Why did we spend nine sessions on the same two hundred rows?</q>
+    <div class="ans">Because by session four you knew the file well enough to <b>see when an answer was
+    wrong</b> &mdash; and that is the only reason any of the module's mistakes were
+    visible.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Should I join in Power Query or in SQL?&rdquo;</h5>
+  <p>&ldquo;In SQL, whenever the data is already in a database &mdash; the server is faster and you bring
+  back less. Power Query is for joining things that are <b>not</b> in the same database: a spreadsheet
+  somebody emailed you against a table from the system. <b>That is most of real analyst work, and it is
+  why this exists.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is a fuzzy match?&rdquo;</h5>
+  <p>&ldquo;A tickbox in the merge dialog that matches values which are nearly the same &mdash;
+  &lsquo;Marketing&rsquo; against &lsquo;Marketting&rsquo;. It is occasionally a lifesaver and it is a
+  guess. <b>Never use it without checking what it matched</b>, because it will cheerfully pair two
+  things that are genuinely different.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I join on two columns?&rdquo;</h5>
+  <p>&ldquo;Yes &mdash; hold <code>Ctrl</code> and click a second column in each table, in the same
+  order. Same as <code>ON a.x = b.x AND a.y = b.y</code>. <b>The order matters</b>, and getting it wrong
+  gives you a join that runs and returns the wrong rows.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My merge returned more rows than I started with.&rdquo;</h5>
+  <p>&ldquo;Then the column you joined on is <b>not unique in the second table</b> &mdash; one employee
+  matched two department rows and you got both. <b>That is the primary key test from Tuesday</b>, and
+  this is exactly why it matters. Profile the lookup table before you join to
+  it.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is a slicer the same as the Filters box in a pivot?&rdquo;</h5>
+  <p>&ldquo;Same job, different audience. The Filters box is a small dropdown for whoever built the
+  sheet. A slicer is big clickable buttons for whoever <b>reads</b> it, and one slicer can drive several
+  pivots at once, which the Filters box cannot.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can a slicer control pivots built from different tables?&rdquo;</h5>
+  <p>&ldquo;Only if they share the same source. Ours all come from one table, so Report Connections lists
+  them all. Pivots from genuinely different sources need the data model, which is Power BI's
+  territory.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is a timeline?&rdquo;</h5>
+  <p>&ldquo;A slicer for dates &mdash; a sliding bar instead of buttons, so a reader can drag across
+  months or quarters. <code>Insert &rarr; Timeline</code>, and it needs a real date column. It takes
+  Report Connections exactly the same way, and people forget it exactly as
+  often.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is all of this in Power BI?&rdquo;</h5>
+  <p>&ldquo;The Power Query half is identical &mdash; same window, same merges, same Applied Steps.
+  Pivot tables become visuals and slicers are still called slicers. <b>What is new there is the data
+  model, which is how you relate tables permanently rather than merging them, and DAX, which is the
+  formula language.</b> You arrive knowing more than half of it.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What should I practise before Power BI?&rdquo;</h5>
+  <p>&ldquo;Two things. Build three or four <b>pivot tables</b> on questions nobody set you. And do one
+  <b>merge with the anti join first</b>, on any two files you can find. Those are the two habits that
+  carry straight across, and the anti join is the one that will make you look like you have done this
+  before.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="ab23">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -33383,7 +36409,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","x4","x5","x6","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","x4","x5","x6","x7","x8","x9","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
