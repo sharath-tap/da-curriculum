@@ -737,7 +737,7 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="trackhead">
     <h2>Excel</h2>
     <span class="badge">Follows Data Visualisation</span>
-    <span class="badge live">Days 1-3 scripts ready</span>
+    <span class="badge live">All 6 scripts ready</span>
    </div>
    <p class="tracknote">Excel comes <b>after</b> Python on purpose, and that changes what the module is
    about. They already know every concept in it &mdash; mean, median, outliers, grouping, correlation,
@@ -770,24 +770,25 @@ try{var _t=localStorage.getItem("steep-theme");
      <code>AVERAGEIF</code> that is perfectly correct and completely useless.</p>
      <span class="foot">Script ready &middot; the Tech average</span></button>
 
-    <div class="dcard soon">
-     <span class="id">EXCEL 4</span><h3>VLOOKUP, and What Replaced It</h3>
-     <p>The single most-asked Excel question in a fresher interview. <code>VLOOKUP</code>, the three ways
-     it breaks, then <code>INDEX</code> + <code>MATCH</code>, <code>XLOOKUP</code> and
-     <code>IFERROR</code>.</p>
-     <span class="foot">Planned &middot; script not written</span></div>
+    <button class="dcard full" data-go="x4">
+     <span class="id">EXCEL 4</span><h3>Pulling Data From Another Sheet</h3>
+     <p>The most-asked Excel question in a fresher interview. <code>VLOOKUP</code>, all three breaks live,
+     then <code>IFERROR</code>, <code>INDEX</code>+<code>MATCH</code> and <code>XLOOKUP</code> &mdash; and
+     one person turning out to be 44% of the bonus bill.</p>
+     <span class="foot">Script ready &middot; three breaks, on purpose</span></button>
 
-    <div class="dcard soon">
-     <span class="id">EXCEL 5</span><h3>Pivot Tables</h3>
-     <p>This is <code>groupby</code> with a mouse, and they already know <code>groupby</code>. Rows,
-     Columns, Values, Filters &mdash; then count against sum against average, and per cent of total.</p>
-     <span class="foot">Planned &middot; script not written</span></div>
+    <button class="dcard full" data-go="x5">
+     <span class="id">EXCEL 5</span><h3>The Grid, Without the Formulas</h3>
+     <p>Tuesday's sixteen-formula grid, rebuilt by dragging two words. The four boxes, Count against Sum
+     against Average &mdash; and the one thing in Excel that does <b>not</b> update itself.</p>
+     <span class="foot">Script ready &middot; the payoff for day 3</span></button>
 
-    <div class="dcard soon">
+    <button class="dcard full" data-go="x6">
      <span class="id">EXCEL 6</span><h3>One Sheet Somebody Else Can Read</h3>
-     <p>Charts with a mouse, number formats, data bars, and a one-page summary built live from the
-     cleaned file. Closes the module and hands over to Power BI.</p>
-     <span class="foot">Planned &middot; script not written</span></div>
+     <p>Charts off the pivots, formats so a salary stops looking like a phone number, and a summary page
+     built live &mdash; including the one sentence that keeps it from being a trap. Closes the
+     module.</p>
+     <span class="foot">Script ready &middot; closes the module</span></button>
    </div>
 
    <div class="planbanner" style="margin-top:16px">
@@ -800,6 +801,11 @@ try{var _t=localStorage.getItem("steep-theme");
     tables, which are the two things an interviewer will actually reach for. Day 1 also spends eighteen
     minutes on the dollar sign alone, because it is the one mistake in Excel that produces two hundred
     wrong rows and no error message.
+    <br><br>
+    <b>All six run on the same 200 rows, on purpose.</b> By session six they know the file well enough to
+    see when an answer is wrong &mdash; which is the only reason the module's mistakes are visible at all.
+    Five of the six sessions are caught out by the same two blank salaries, and the 52-lakh earner breaks
+    something in four of them.
    </div>
   </div>
 
@@ -21936,6 +21942,2692 @@ total          58       42    51         49     <span class="o">200</span></code
  </div>
 </section>
 </div>
+<div class="day" id="x4">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 4 &middot; merged class &middot; 90 minutes &middot; full script &middot; the one interviews ask about</p>
+  <h1 class="display">Pulling Data<br>From Another Sheet</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   <code>VLOOKUP</code> is the single most-asked Excel question for a fresher analyst. It is also the
+   one that breaks most often, in three specific ways &mdash; and all three are going to happen on
+   screen today.</p>
+  <div class="glance">
+   <div class="gcell"><b>4</b><span>arguments, and all four matter</span></div>
+   <div class="gcell"><b>FALSE</b><span>the one you always type</span></div>
+   <div class="gcell"><b>#N/A</b><span>not a bug</span></div>
+   <div class="gcell"><b>43.8%</b><span>of the bonus bill, one person</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Build the second sheet in front of them, by hand</h4>
+   <p style="color:var(--sienna)">Everything so far has lived on one sheet. Today there are two, and
+   the job is to pull a number out of the second one into the first. <b style="color:var(--sienna)">Type
+   the second sheet live</b>, four rows, in about a minute &mdash; if it arrives already made, half the
+   room never understands what is being looked up in what.</p>
+   <p style="color:var(--sienna)">The session lands on a real number. Rate the company's bonuses off
+   the rating column and the bill comes to <b style="color:var(--sienna)">&#8377;17,81,426</b>. Of
+   that, <b style="color:var(--sienna)">&#8377;7,80,000</b> goes to one person &mdash; Lakshmi Kumar,
+   row 5, again. <b style="color:var(--sienna)">Forty-four per cent of the entire bonus bill is one
+   employee</b>, and they will have computed it themselves.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Rehearse the broken version before the working one.</b> Day 4 has the same shape as day 1 and
+   day 3 &mdash; let it fail, let them look at it, then fix it. The three failures are the content. A
+   session where VLOOKUP works first time teaches almost nothing.</li>
+   <li><b>Say &ldquo;FALSE, always&rdquo; in minute fifteen and keep saying it.</b> The fourth argument
+   is optional, which is the single worst design decision in Excel. Leave it out and you get
+   <em>approximate</em> matching, which returns wrong answers silently. They should type
+   <code>FALSE</code> every time without thinking.</li>
+   <li><b>Do not skip the <code>#N/A</code> block.</b> Students see it as a failure and start deleting
+   rows to make it go away. It is Excel saying <em>this value is not in your lookup table</em>, which
+   is usually a real finding about the data.</li>
+   <li><b>INDEX + MATCH is taught to answer one question, not as a second method.</b> The question is
+   &ldquo;what if the thing I want is to the <em>left</em> of what I am looking up?&rdquo; Introduce it
+   there and it takes twelve minutes. Introduce it as an alternative and it takes forty and nobody
+   remembers which argument goes where.</li>
+   <li><b>Check who has <code>XLOOKUP</code> before you teach it.</b> It needs Microsoft 365 or Excel
+   2021. On anything older it is <code>#NAME?</code>. Ask for a show of hands in minute seventy and
+   teach it to whoever has it &mdash; but <b>VLOOKUP is what the interview asks</b>, so it keeps the
+   main hour.</li>
+   <li><b>Keep the two sheets visibly separate on screen.</b> Name the second one
+   <code>bonus</code>, and let them watch the formula build itself when you click across to it. The
+   sheet name appearing in the middle of their formula is the moment the idea lands.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what the four arguments actually mean, the
+  three failures and why none of them produce an error, and why <code>INDEX</code> and
+  <code>MATCH</code> exist at all. Part two is the session.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the four arguments, in plain words</h5>
+
+   <div class="mth">
+    <div class="mrow"><b>1 &mdash; what</b><div>The value you are <b>looking for</b>. Usually a cell on
+    the row you are standing on. <code>G2</code>, the rating.</div></div>
+    <div class="mrow"><b>2 &mdash; where</b><div>The <b>block of cells to search in</b>. And the thing
+    you are looking for must be in its <b>first column</b>. This is the rule everything else follows
+    from.</div></div>
+    <div class="mrow"><b>3 &mdash; which</b><div><b>How many columns across</b> to count, once it finds
+    the row. Not a letter. A <b>number</b>, counting the first column of the block as 1.</div></div>
+    <div class="mrow warn2"><b>4 &mdash; how</b><div><code>FALSE</code> means <b>exact match
+    only</b>. <code>TRUE</code>, or leaving it out, means <b>approximate</b>. <b>Type FALSE. Every
+    time.</b></div></div>
+   </div>
+
+   <h6>Say it as one sentence</h6>
+   <div class="mcalc">=VLOOKUP( what I am looking for ,
+          where to look for it ,
+          how many columns across to bring back ,
+          FALSE )</div>
+   <p>The <b>V</b> stands for vertical &mdash; it searches <em>down</em> the first column of your
+   block. There is an <code>HLOOKUP</code> that searches across a row instead, and you will meet it
+   roughly never.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the three failures, and why none of them look like failures</h5>
+
+   <h6>Failure one &mdash; the block moves when you fill down</h6>
+   <p>This is day 1 again. The lookup block is <b>one fixed place</b>, the same for all 200 rows. Fill
+   a formula down without locking it and row 3 searches one row lower, row 4 two rows lower, and by row
+   6 the block has slid off the bottom of your four-row table entirely.</p>
+   <div class="mcalc">=VLOOKUP(G2, bonus!A2:B5, 2, FALSE)     row 2  - correct
+=VLOOKUP(G3, bonus!A3:B6, 2, FALSE)     row 3  - already wrong
+=VLOOKUP(G6, bonus!A6:B9, 2, FALSE)     row 6  - block is empty</div>
+   <p>Rows at the top return the right answer. Rows further down return <code>#N/A</code>. <b>The
+   column half works</b>, which is why people think the data is at fault rather than the formula.</p>
+
+   <h6>Failure two &mdash; leaving out the fourth argument</h6>
+   <p><code>=VLOOKUP(G2, bonus!$A$2:$B$5, 2)</code> runs perfectly. No error. And it is doing
+   <b>approximate</b> matching, which on an unsorted text column returns whatever it happens to land
+   on.</p>
+   <div class="warn"><b>This is the most dangerous default in Excel.</b> The argument is optional, and
+   the value it defaults to is the one you almost never want. There is no warning, no colour, no mark
+   on the cell. <b>The answer is simply wrong.</b></div>
+
+   <h6>Failure three &mdash; somebody inserts a column</h6>
+   <p>The third argument is a <b>number</b>, counted by hand. Insert a column into the middle of the
+   lookup table and every formula pointing at it is now bringing back the wrong field &mdash; and the
+   formula has not changed, so nothing suggests anything happened.</p>
+   <div class="keyline">
+    <b>All three failures return a value or an #N/A. None of them says &ldquo;you made a
+    mistake&rdquo;.</b><br><br>
+    This is the third session running where a wrong answer has looked exactly like a real one. By now
+    they should expect it &mdash; <b>and that expectation is most of what this module is teaching.</b>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; why <code>INDEX</code> and <code>MATCH</code> exist</h5>
+
+   <h6>The one thing VLOOKUP genuinely cannot do</h6>
+   <p>The value you look up has to be in the <b>first column</b> of the block. So VLOOKUP can only ever
+   bring back something to the <b>right</b> of it.</p>
+   <p>Give somebody a table with <code>name</code> in column B and <code>emp_id</code> in column A, ask
+   them to find the name for a given id, and VLOOKUP does it happily. Reverse it &mdash; find the id
+   for a given name &mdash; and it cannot, because the name is to the right.</p>
+
+   <div class="mth">
+    <h6>The two halves</h6>
+    <div class="mrow"><b>MATCH</b><div>Gives you <b>which position</b> a value sits at in a list.
+    <code>MATCH("Tech", D2:D201, 0)</code> returns a row number, not a value.</div></div>
+    <div class="mrow"><b>INDEX</b><div>Gives you <b>the value at a position</b>.
+    <code>INDEX(C2:C201, 3)</code> returns the third name.</div></div>
+    <div class="mrow"><b>together</b><div><code>INDEX</code> asks <code>MATCH</code> where to look.
+    The two columns are named <b>separately</b>, so neither has to be left or right of the
+    other.</div></div>
+    <div class="mrow warn2"><b>the zero</b><div><code>MATCH</code> has the same trap as VLOOKUP's
+    fourth argument. The third argument must be <code>0</code> for an exact match. <b>Type the
+    zero.</b></div></div>
+   </div>
+
+   <h6>And then <code>XLOOKUP</code>, which fixes all of it</h6>
+   <p>One function. You name the lookup column and the return column separately, so direction stops
+   mattering. It defaults to <b>exact match</b>, so the dangerous default is gone. And it has a built-in
+   place to put the &ldquo;if not found&rdquo; answer, so you do not need
+   <code>IFERROR</code> around it.</p>
+   <div class="warn"><b>Teach it, but do not lead with it.</b> It needs Microsoft 365 or Excel 2021, so
+   some of the room will not have it, and <b>the interview question is still VLOOKUP</b> &mdash;
+   because the files they will be handed were built by people who only had VLOOKUP.</div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>Two sheets, and a number that is on the wrong one</h3></div>
+   <p class="objective">Build the second sheet live. Make the problem obvious before naming the
+   function.</p>
+
+   <div class="stage">Open the cleaned file. <b>200 rows, data runs 2 to 201.</b> Then make a second
+   sheet in front of them &mdash; the plus sign at the bottom of the window.</div>
+
+   <div class="speak">
+    <p>The company is paying bonuses this year, and the rule is simple. Your bonus depends on your
+    rating.</p>
+    <p>Poor gets nothing. Average gets five per cent of salary. Good gets ten. Excellent gets
+    fifteen.</p>
+    <p>Everybody's rating is already in our file, column G. But those four percentages are not. So let
+    us put them somewhere.</p>
+   </div>
+
+   <div class="typeit">Click the + at the bottom, rename the new sheet <b>bonus</b>, and type four rows</div>
+<pre><code>        A            B
+
+ 1   rating       percent
+ 2   Poor              0
+ 3   Average           5
+ 4   Good             10
+ 5   Excellent        15</code></pre>
+
+   <div class="speak">
+    <p>Four rows. That is the whole second sheet.</p>
+    <p>Now back to the first sheet. Row two is Rahul Sharma, HR, rating <b>Poor</b>, salary
+    47,764.</p>
+    <p>I want his bonus percentage sitting next to him on <em>this</em> sheet. It is on the other
+    sheet. How do I get it across?</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Two hundred rows. How would you do it by hand?&rdquo;</div>
+    <div class="a">Read the rating, go to the other sheet, find that rating, read the percentage, come
+    back, type it. <b>Two hundred times.</b> Let somebody describe it out loud &mdash; the tedium is
+    the argument for the function.</div>
+   </div>
+
+   <div class="speak">
+    <p>You read the rating. You go to the other sheet. You find that rating. You read the number next
+    to it. You come back and type it in.</p>
+    <p>That is exactly what <code>VLOOKUP</code> does. <b>Those five steps, as one formula.</b></p>
+   </div>
+  </div>
+
+  <!-- 12-32 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12 &ndash; 32</span><h3>VLOOKUP, one argument at a time</h3></div>
+   <p class="objective">Build it slowly. Twenty minutes, and do not fill it down until the end.</p>
+
+   <div class="speak">
+    <p>Go to <b>X1</b> on the main sheet and label it <b>bonus pct</b>. Then in X2 start typing, and
+    stop after each comma while I explain it.</p>
+   </div>
+
+   <div class="typeit">X2 &mdash; type it in four stages. Stop at every comma.</div>
+<pre><code>=VLOOKUP(G2,                                    <span class="c">1. WHAT am I looking for?  his rating</span>
+
+=VLOOKUP(G2, bonus!$A$2:$B$5,                   <span class="c">2. WHERE do I look?  the four rows</span>
+
+=VLOOKUP(G2, bonus!$A$2:$B$5, 2,                <span class="c">3. WHICH column do I bring back?</span>
+
+=VLOOKUP(G2, bonus!$A$2:$B$5, 2, FALSE)         <span class="c">4. HOW?  exact match only</span></code></pre>
+   <div class="screen">0</div>
+
+   <div class="speak">
+    <p>Zero. Rahul is rated Poor, and Poor gets nothing. That is correct.</p>
+    <p>Now the four parts, because every one of them will catch you at some point.</p>
+   </div>
+
+   <div class="typeit">On the board &mdash; leave this up all session</div>
+<pre><code>  G2                   WHAT.   the rating on this row
+
+  bonus!$A$2:$B$5      WHERE.  the sheet name, then an exclamation mark,
+                               then the block. LOCKED, because this block
+                               is the same for all 200 rows.
+
+  2                    WHICH.  a NUMBER, not a letter. count the first
+                               column of the block as 1. rating is 1,
+                               percent is 2. so: 2.
+
+  FALSE                HOW.    exact match. always. type it every time.</code></pre>
+
+   <div class="speak">
+    <p>The second argument is the one to look at twice. <code>bonus!</code> is the sheet name, then an
+    exclamation mark, then the cells. <b>And it has dollar signs on it.</b></p>
+    <p>You know why by now. Every row has its own rating, but all two hundred rows look it up in
+    <b>the same four cells.</b> Third session in a row.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why is the third argument a 2 and not a B?&rdquo;</div>
+    <div class="a">Because it counts <b>from the start of your block</b>, not from the start of the
+    sheet. The block begins at column A, so A is 1 and B is 2. <b>If the block began at column D, then
+    D would be 1.</b> This catches people constantly.</div>
+   </div>
+
+   <div class="stage">Now fill it down. <b>It will work.</b> They should see it succeed once before
+   you break it.</div>
+
+   <div class="typeit">Double-click the fill handle</div>
+<pre><code>        G            X
+
+ 2   Poor             0
+ 3   Poor             0
+ 4   Good            10
+ 5   Excellent       15
+ 6   Excellent       15
+ 7   Poor             0</code></pre>
+
+   <div class="speak">
+    <p>Two hundred lookups, done. Now turn it into actual money.</p>
+   </div>
+
+   <div class="typeit">Y1 a label, then Y2, filled down</div>
+<pre><code>=K2 * X2 / <span class="o">100</span></code></pre>
+   <div class="screen">Y2        0.00      Poor
+Y3        0.00      Poor
+Y4     6299.00      Good, 10% of 62990
+Y5   780000.00      Excellent, 15% of 52,00,000
+Y6     9383.40      Excellent, 15% of 62556</div>
+
+   <div class="speak">
+    <p>Look at row five.</p>
+    <p><b>Seven lakh eighty thousand rupees.</b> One person's bonus.</p>
+   </div>
+  </div>
+
+  <!-- 32-48 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">32 &ndash; 48</span><h3>The three ways it breaks</h3></div>
+   <p class="objective">All three live, in order, with a Ctrl+Z after each. Sixteen minutes.</p>
+
+   <div class="stage">Work on a spare copy of the column so the good one survives. <b>Do each break,
+   look at it, undo it.</b></div>
+
+   <div class="speak">
+    <p>That formula works. Now I am going to break it three times, because these are the three
+    things that will actually go wrong on you, and none of them says &ldquo;error&rdquo;.</p>
+   </div>
+
+   <div class="typeit">Break one &mdash; take the dollar signs off and fill down again</div>
+<pre><code>=VLOOKUP(G2, bonus!A2:B5, 2, FALSE)
+
+   row 2   searches  bonus!A2:B5     0        correct
+   row 3   searches  bonus!A3:B6     0        correct BY LUCK
+   row 4   searches  bonus!A4:B7     10       correct BY LUCK
+   row 5   searches  bonus!A5:B8     #N/A     the block has slid off
+   row 6   searches  bonus!A6:B9     #N/A
+   row 7   searches  bonus!A7:B10    #N/A</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;The first three rows are right. Does that mean the formula is right?&rdquo;</div>
+    <div class="a"><b>No.</b> They are right because the value they wanted happened to still be inside
+    the sliding block. <b>Correct by luck is not correct.</b> The block slid one row per row and ran out
+    of table by row 5.</div>
+   </div>
+
+   <div class="speak">
+    <p>The top of the column is right and the bottom is broken, which is the worst possible shape for a
+    mistake &mdash; because you look at the top, it looks fine, and you move on.</p>
+    <p><b>Ctrl+Z.</b> Dollar signs go back on.</p>
+   </div>
+
+   <div class="typeit">Break two &mdash; leave out the fourth argument entirely</div>
+<pre><code>=VLOOKUP(G2, bonus!$A$2:$B$5, 2)
+
+   no FALSE. no error. the formula runs.
+   and it is now doing APPROXIMATE matching on a text column
+   that is not sorted - so it returns whatever it lands on.</code></pre>
+
+   <div class="speak">
+    <p>Nothing turned red. Nothing complained. Excel let me leave out an argument and <b>quietly chose
+    a default for me</b> &mdash; and the default is the one you almost never want.</p>
+    <p>Approximate matching has a real use and we will see it in ten minutes. But on a column of words
+    that are not in order, it just returns something. Possibly the right thing. Possibly not.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Type <code>FALSE</code>. Every single time.</b><br><br>
+    It is four extra characters and it is the difference between a formula that is right and a formula
+    that is right by accident. If you learn one habit from today, learn this one.
+   </div>
+
+   <div class="typeit">Break three &mdash; go to the bonus sheet and insert a column</div>
+<pre><code>   right-click column B on the bonus sheet  ->  Insert
+
+        A            B              C
+
+ 1   rating       (new)         percent
+ 2   Poor                            0
+ 3   Average                         5
+
+   the formula still says  2.  it has not changed.
+   but column 2 of the block is now the EMPTY one.</code></pre>
+   <div class="screen">X2    0
+X3    0
+X4    0
+X5    0
+      every row is now 0. nothing errored.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;I did not touch the formula. Why did the answers change?&rdquo;</div>
+    <div class="a">Because the third argument is a <b>number you counted by hand</b>, and the thing it
+    was counting moved. <b>Excel does not renumber it for you.</b> Somebody tidying up the lookup table
+    next month will do exactly this and never find out.</div>
+   </div>
+
+   <div class="speak">
+    <p>I did not touch the formula. Somebody else tidied up a different sheet, and now every bonus in
+    this company is zero.</p>
+    <p><b>Ctrl+Z.</b> And remember this one when we get to <code>XLOOKUP</code> at the end, because it
+    is the specific problem that function was invented to solve.</p>
+   </div>
+  </div>
+
+  <!-- 48-58 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">48 &ndash; 58</span><h3>#N/A is a sentence, not a crash</h3></div>
+   <p class="objective">Ten minutes. Make them read the error before hiding it.</p>
+
+   <div class="stage">Cause it on purpose &mdash; type a rating that is not in the lookup table.</div>
+
+   <div class="speak">
+    <p>Go to any empty cell and look up something that does not exist.</p>
+   </div>
+
+   <div class="typeit">Any spare cell</div>
+<pre><code>=VLOOKUP(<span class="c">"Outstanding"</span>, bonus!$A$2:$B$5, <span class="o">2</span>, FALSE)</code></pre>
+   <div class="screen">#N/A</div>
+
+   <div class="speak">
+    <p><code>#N/A</code> means <b>not available</b>. And it is not Excel failing. It is Excel telling
+    you something true: <b>the value you asked for is not in the table you pointed at.</b></p>
+    <p>That is usually a real finding. A rating spelled differently. A department that exists in one
+    file and not the other. A trailing space, which you met on Thursday.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Read every <code>#N/A</code> before you hide it.</b><br><br>
+    The instinct is to make it go away so the sheet looks clean. But each one is a row where your two
+    files disagree, and that disagreement is often the most interesting thing in the data.
+   </div>
+
+   <div class="speak">
+    <p>Once you have read them and you know why they are there, <em>then</em> you can tidy them up. That
+    is <code>IFERROR</code>.</p>
+   </div>
+
+   <div class="typeit">Wrap the whole thing</div>
+<pre><code>=IFERROR( VLOOKUP(G2, bonus!$A$2:$B$5, <span class="o">2</span>, FALSE) , <span class="c">"not rated"</span> )</code></pre>
+
+   <div class="typeit">Two parts, on the board</div>
+<pre><code>  =IFERROR(  the thing to try  ,  what to show if it fails  )
+
+  it does NOT fix anything. it hides the error and
+  puts your own words there instead.</code></pre>
+
+   <div class="warn"><b>Say this plainly, because it is the way <code>IFERROR</code> gets misused.</b>
+   It does not repair the lookup. The value is still not in your table. <b>Wrapping every formula in
+   <code>IFERROR</code> from the start is how people hide data problems from themselves for
+   months.</b> Read the errors first, then hide them.</div>
+  </div>
+
+  <!-- 58-70 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">58 &ndash; 70</span><h3>The one VLOOKUP cannot do</h3></div>
+   <p class="objective">Twelve minutes. One question, and INDEX + MATCH is the answer to it.</p>
+
+   <div class="speak">
+    <p>One more thing about VLOOKUP, and it is the thing that makes people reach for something
+    else.</p>
+    <p>Our main sheet has <code>emp_id</code> in column A and <code>name</code> in column C.</p>
+    <p>Give me an id, I will find you the name &mdash; VLOOKUP does that happily, because the name is to
+    the <b>right</b> of the id.</p>
+    <p>Now give me a <b>name</b> and ask me for the <b>id</b>.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Can VLOOKUP do that?&rdquo;</div>
+    <div class="a"><b>No.</b> The thing you look up has to be in the <b>first column</b> of the block,
+    and it can only bring back something to the right. The id is to the <b>left</b> of the name. <b>Not
+    hard &mdash; impossible.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Not difficult. <b>Impossible.</b> So we take the job apart into two pieces.</p>
+    <p>Piece one: <b>where</b> is that name? Not what is it &mdash; <em>where</em>.</p>
+   </div>
+
+   <div class="typeit">MATCH on its own, in a spare cell</div>
+<pre><code>=MATCH(<span class="c">"Karthik Reddy"</span>, C2:C201, <span class="o">0</span>)</code></pre>
+   <div class="screen">3</div>
+
+   <div class="speak">
+    <p><b>Three.</b> Not his id, not his salary. His <b>position</b> &mdash; he is the third name in
+    that list.</p>
+    <p>And note the <b>zero</b> at the end. That is <code>MATCH</code>'s version of
+    <code>FALSE</code>. Same trap, same rule: <b>type the zero every time.</b></p>
+    <p>Piece two: give me the value at a position.</p>
+   </div>
+
+   <div class="typeit">INDEX on its own</div>
+<pre><code>=INDEX(A2:A201, <span class="o">3</span>)</code></pre>
+   <div class="screen">1003</div>
+
+   <div class="speak">
+    <p>The third employee id. Now put one inside the other, and the 3 becomes the question instead of a
+    typed number.</p>
+   </div>
+
+   <div class="typeit">Together</div>
+<pre><code>=INDEX(A2:A201, MATCH(<span class="c">"Karthik Reddy"</span>, C2:C201, <span class="o">0</span>))</code></pre>
+   <div class="screen">1003</div>
+
+   <div class="keyline">
+    <b>Read it inside out, every time.</b><br><br>
+    <code>MATCH</code> finds <b>which row</b>. <code>INDEX</code> brings back <b>the value in that
+    row</b>.<br><br>
+    And because you name the two columns <b>separately</b>, it does not matter which one is to the left.
+    That is the entire reason this pair exists.
+   </div>
+
+   <div class="warn"><b>Twelve minutes, and then stop.</b> Do not drill it, do not do five examples. The
+   goal is that they recognise <code>INDEX(..., MATCH(...))</code> in somebody else's file and know what
+   it is doing. <b>Writing it fluently is not a day-4 skill.</b></div>
+  </div>
+
+  <!-- 70-84 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">70 &ndash; 84</span><h3>XLOOKUP, and the legitimate use of TRUE</h3></div>
+   <p class="objective">Fourteen minutes. Check who has it first.</p>
+
+   <div class="stage">Ask for hands: <b>who has Microsoft 365 or Excel 2021?</b> Whoever does can type
+   along. Everybody else watches and writes it down, because they will meet it on a work laptop.</div>
+
+   <div class="speak">
+    <p>Everything we just did &mdash; the locked block, the counted column number, the compulsory
+    FALSE, the INDEX and MATCH pair &mdash; exists because VLOOKUP was designed in the eighties.</p>
+    <p>Microsoft eventually fixed it. One function.</p>
+   </div>
+
+   <div class="typeit">The same bonus lookup, the modern way</div>
+<pre><code>=XLOOKUP(G2, bonus!$A$2:$A$5, bonus!$B$2:$B$5)</code></pre>
+   <div class="screen">0</div>
+
+   <div class="typeit">What changed, point by point</div>
+<pre><code>  VLOOKUP                           XLOOKUP
+
+  one block, first column must      TWO SEPARATE columns.
+  hold the thing you look up        look left or right, it does not care
+
+  count the columns yourself        no counting. you name the column.
+  (breaks when one is inserted)     insert all you like, nothing breaks
+
+  FALSE or it guesses               exact match by DEFAULT
+
+  wrap it in IFERROR                4th argument IS the "if not found"</code></pre>
+
+   <div class="typeit">And the not-found message comes free</div>
+<pre><code>=XLOOKUP(G2, bonus!$A$2:$A$5, bonus!$B$2:$B$5, <span class="c">"not rated"</span>)</code></pre>
+
+   <div class="speak">
+    <p>No counting. No compulsory FALSE. No <code>IFERROR</code> wrapped round the outside. And it
+    looks left as happily as it looks right, so <code>INDEX</code> and <code>MATCH</code> are not
+    needed for that either.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;So why did we spend an hour on VLOOKUP?&rdquo;</div>
+    <div class="a">Two honest reasons. <b>The interview asks about VLOOKUP</b>, not XLOOKUP. And
+    <b>every file you are handed was built by somebody who only had VLOOKUP</b> &mdash; you will spend
+    far more time reading other people's than writing your own. <b>Answer this directly; it is a fair
+    question.</b></div>
+   </div>
+
+   <div class="stage">Last ten minutes of the block. Now show the one case where <code>TRUE</code> is
+   the right answer, so the morning's rule has a reason behind it.</div>
+
+   <div class="speak">
+    <p>One last thing. I told you to always type FALSE. Here is the exception, so you know why the rule
+    exists.</p>
+    <p>Suppose we grade salaries into bands. Under fifty thousand is band D. Fifty to eighty is C.
+    Eighty to one-twenty is B. Above that is A.</p>
+    <p>You cannot list every possible salary. But you can list where each band <b>starts</b>.</p>
+   </div>
+
+   <div class="typeit">A third sheet, called <b>bands</b>. Note it is sorted ascending.</div>
+<pre><code>        A            B
+
+ 1   from         band
+ 2       0         D
+ 3   50000         C
+ 4   80000         B
+ 5  120000         A</code></pre>
+
+   <div class="typeit">And here TRUE is correct</div>
+<pre><code>=VLOOKUP(K2, bands!$A$2:$B$5, <span class="o">2</span>, TRUE)</code></pre>
+   <div class="screen">K2    47764   -> D       under 50000
+K4    62990   -> C       between 50000 and 80000
+K3    86052   -> B       between 80000 and 120000
+K5  5200000   -> A       above 120000</div>
+
+   <div class="speak">
+    <p><code>TRUE</code> means <b>if you cannot find it exactly, use the largest value that is still
+    smaller.</b> 47,764 is not in the table, so it falls back to the 0 row &mdash; band D.</p>
+    <p>And that only works because <b>the table is sorted smallest to largest.</b> Sort it any other way
+    and the answers are nonsense, with no error.</p>
+   </div>
+
+   <div class="keyline">
+    <b>TRUE is for bands and ranges, on a sorted table, and nothing else.</b><br><br>
+    Grades, tax slabs, shipping tiers, salary bands. <b>Everywhere else, FALSE.</b> And when you do use
+    TRUE, write it out rather than leaving the argument off &mdash; so that anybody reading your sheet
+    can see you meant it.
+   </div>
+  </div>
+
+  <!-- 84-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">84 &ndash; 90</span><h3>Close &mdash; and the number</h3></div>
+
+   <div class="speak">
+    <p>Before the summary, one number. Total up the bonus column.</p>
+   </div>
+
+   <div class="typeit">Any empty cell</div>
+<pre><code>=SUM(Y2:Y201)</code></pre>
+   <div class="screen">1781426.45</div>
+
+   <div class="speak">
+    <p>Seventeen lakh eighty-one thousand. That is the company's whole bonus bill.</p>
+    <p>Now look back at row five. Lakshmi Kumar's bonus on its own was <b>seven lakh eighty
+    thousand</b>.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What share of the entire bonus bill is one person?&rdquo;</div>
+    <div class="a"><b>Forty-four per cent.</b> 780000 divided by 1781426. One employee out of two
+    hundred is nearly half the bonus budget. <b>Let them compute it.</b></div>
+   </div>
+
+   <div class="keyline">
+    <b>&#8377;7,80,000 of a &#8377;17,81,426 bill. Forty-four per cent, one person.</b><br><br>
+    Every formula today was correct. The lookup was correct, the percentage was correct, the
+    multiplication was correct. And if you put &ldquo;total bonus: 17.8 lakh&rdquo; in a report without
+    mentioning that nearly half of it is one person, <b>you have told the truth and misled
+    everybody.</b>
+   </div>
+
+   <div class="typeit">The five lines. If everything else goes, keep these.</div>
+<pre><code>1.  =VLOOKUP( what, where, which column as a NUMBER, FALSE )
+    the thing you look up must be in the FIRST column of "where".
+
+2.  LOCK the "where" block. $A$2:$B$5. it is the same for every row.
+
+3.  TYPE FALSE. always. leaving it out means approximate matching
+    and approximate matching returns wrong answers with no error.
+
+4.  #N/A means "not in your table". READ IT before you hide it.
+    IFERROR hides it. it does not fix it.
+
+5.  can't look LEFT     -> INDEX( column , MATCH( value, column, 0 ) )
+    got Excel 2021/365  -> XLOOKUP, and forget all of the above</code></pre>
+
+   <div class="speak">
+    <p>Thursday is the one that makes all of this feel like hard work for no reason.</p>
+    <p>Remember the grid we built on Tuesday &mdash; sixteen <code>COUNTIFS</code> formulas, departments
+    down the side, ratings across the top? Thursday you build that same grid by <b>dragging two
+    words</b>. No formulas at all.</p>
+    <p>It is called a pivot table, and it is the most useful thing in Excel.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Seven steps, every formula, every number. If you lose your place, this page
+  alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 12</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Two sheets, and the job</p>
+   <p class="rs-say"><b>Land this:</b> build the second sheet <b>live</b>, by hand, in a minute. If it
+   arrives ready-made, half the room never sees what is being looked up in what.</p>
+   <div class="rs-code"><pre><code>new sheet, rename it  bonus
+
+        A            B
+ 1   rating       percent
+ 2   Poor              0
+ 3   Average           5
+ 4   Good             10
+ 5   Excellent        15</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;200 rows &mdash; how would you do this by hand?&rdquo;
+   Read the rating, cross to the other sheet, find it, read the number, come back, type it.
+   <b>Two hundred times.</b> That is exactly what VLOOKUP does.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">12 &ndash; 32</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">VLOOKUP, one argument at a time</p>
+   <p class="rs-say"><b>Stop at every comma.</b> Four stages, four explanations.</p>
+   <div class="rs-code"><pre><code>X1   bonus pct
+X2   =VLOOKUP(G2, bonus!$A$2:$B$5, <span class="o">2</span>, FALSE)        -> 0
+
+  G2                WHAT    the rating on this row
+  bonus!$A$2:$B$5   WHERE   sheet name + ! + block. LOCKED.
+  2                 WHICH   a NUMBER. first column of the BLOCK is 1.
+  FALSE             HOW     exact match. always.</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;why 2 and not B?&rdquo; &mdash; it counts <b>from the start
+   of the block</b>, not the sheet. If the block began at D, then D would be 1.<br><br>
+   <b>The dollars:</b> every row has its own rating, all 200 look it up in <b>the same four cells</b>.
+   Third session running.</div>
+   <p class="rs-do" style="margin-top:12px">Fill down &mdash; let it work &mdash; then turn it into money</p>
+   <div class="rs-code"><pre><code>Y2   =K2 * X2 / <span class="o">100</span>
+
+     Y4     6299.00    Good, 10% of 62990
+     Y5   <span class="o">780000.00</span>    Excellent, 15% of 52,00,000</code></pre></div>
+   <div class="rs-board"><b>Stop on row 5.</b> Seven lakh eighty thousand, one person's bonus. Say it
+   and move on &mdash; it comes back at the close.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">32 &ndash; 48</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The three breaks &mdash; do each, look, undo</p>
+   <div class="rs-code"><pre><code>BREAK 1   take the $ off:   =VLOOKUP(G2, bonus!A2:B5, 2, FALSE)
+          rows 2-4 correct BY LUCK, rows 5+ all #N/A
+          the block slides one row per row and runs out of table</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;the first three are right &mdash; is the formula
+   right?&rdquo; <b>No. Correct by luck is not correct.</b> Top right, bottom broken &mdash; the worst
+   shape, because you check the top and move on. <b>Ctrl+Z.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>BREAK 2   drop the 4th argument:  =VLOOKUP(G2, bonus!$A$2:$B$5, 2)
+          runs. no error. now APPROXIMATE matching on unsorted text.</code></pre></div>
+   <div class="rs-board"><b>Excel let you leave an argument out and picked a default</b> &mdash; and
+   the default is the one you never want. <b>Type FALSE. Every time. Four characters.</b>
+   <b>Ctrl+Z.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>BREAK 3   on the bonus sheet, right-click column B -> Insert
+          the formula still says 2. column 2 is now the EMPTY one.
+          every bonus becomes 0. nothing errors.</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;I never touched the formula &mdash; why did it
+   change?&rdquo; The third argument is a number <b>you counted by hand</b> and the thing it counted
+   moved. <b>Excel does not renumber it.</b> Point forward: this is what XLOOKUP was invented for.
+   <b>Ctrl+Z.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">48 &ndash; 58</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">#N/A, and IFERROR</p>
+   <div class="rs-code"><pre><code>=VLOOKUP(<span class="c">"Outstanding"</span>, bonus!$A$2:$B$5, <span class="o">2</span>, FALSE)     -> #N/A
+
+=IFERROR( VLOOKUP(G2, bonus!$A$2:$B$5, <span class="o">2</span>, FALSE) , <span class="c">"not rated"</span> )</code></pre></div>
+   <div class="rs-board"><b>#N/A is a sentence, not a crash:</b> <em>the value you asked for is not in
+   the table you pointed at</em>. Usually a real finding &mdash; a different spelling, a trailing
+   space, a department in one file and not the other.<br><br>
+   <b>Read every #N/A before you hide it.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Say plainly:</b> IFERROR <b>does not fix
+   anything</b>. It hides the error and puts your words there. Wrapping everything in IFERROR from the
+   start is how people hide data problems from themselves for months.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">58 &ndash; 70</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The one it cannot do &mdash; INDEX + MATCH</p>
+   <p class="rs-say"><b>Land this:</b> one question only. <code>emp_id</code> is in A, <code>name</code>
+   is in C. Name from id &mdash; fine. <b>Id from name &mdash; impossible</b>, because the id is to the
+   left.</p>
+   <div class="rs-code"><pre><code>=MATCH(<span class="c">"Karthik Reddy"</span>, C2:C201, <span class="o">0</span>)                          3
+=INDEX(A2:A201, <span class="o">3</span>)                                     1003
+=INDEX(A2:A201, MATCH(<span class="c">"Karthik Reddy"</span>, C2:C201, <span class="o">0</span>))     1003</code></pre></div>
+   <div class="rs-board"><b>MATCH gives a POSITION, not a value</b> &mdash; he is the third name.
+   <b>INDEX gives the value at a position.</b> Read it inside out.<br><br>
+   The <b>0</b> is MATCH's version of FALSE. Same trap, same rule.<br><br>
+   Two columns named <b>separately</b>, so left or right stops mattering. <b>That is the whole reason
+   the pair exists.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Twelve minutes then stop.</b> The goal is
+   recognising it in somebody else's file. <b>Writing it fluently is not a day-4 skill.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">70 &ndash; 84</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">XLOOKUP, then the legitimate TRUE</p>
+   <p class="rs-say"><b>Hands up first:</b> who has Microsoft 365 or Excel 2021? Others watch and write
+   it down &mdash; they will meet it on a work laptop.</p>
+   <div class="rs-code"><pre><code>=XLOOKUP(G2, bonus!$A$2:$A$5, bonus!$B$2:$B$5)
+=XLOOKUP(G2, bonus!$A$2:$A$5, bonus!$B$2:$B$5, <span class="c">"not rated"</span>)
+
+  two SEPARATE columns - left or right, no counting,
+  exact match by DEFAULT, and the 4th argument IS the IFERROR</code></pre></div>
+   <div class="rs-board"><b>Expect:</b> &ldquo;then why an hour on VLOOKUP?&rdquo; &mdash; two honest
+   reasons. <b>The interview asks VLOOKUP.</b> And <b>every file you are handed was built by somebody
+   who only had VLOOKUP</b>. Answer it straight.</div>
+   <p class="rs-do" style="margin-top:12px">Then the exception to the morning's rule</p>
+   <div class="rs-code"><pre><code>new sheet  bands   (SORTED ascending - this is why it works)
+   0 D | 50000 C | 80000 B | 120000 A
+
+=VLOOKUP(K2, bands!$A$2:$B$5, <span class="o">2</span>, TRUE)
+
+   47764 -> D    62990 -> C    86052 -> B    5200000 -> A</code></pre></div>
+   <div class="rs-board"><b>TRUE = if you cannot find it exactly, take the largest value still
+   smaller.</b> Only works because the table is <b>sorted ascending</b>.<br><br>
+   <b>TRUE is for bands and ranges and nothing else</b> &mdash; grades, tax slabs, shipping tiers.
+   And write it out rather than omitting it, so a reader can see you meant it.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">84 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close &mdash; the number</p>
+   <div class="rs-code"><pre><code>=SUM(Y2:Y201)        1781426.45      the whole bonus bill
+Lakshmi Kumar, row 5  780000.00      one person</code></pre></div>
+   <div class="rs-board"><b>Ask them to compute the share: 44 per cent.</b> One employee of two hundred
+   is nearly half the bonus budget.<br><br>
+   <b>Every formula today was correct.</b> Put &ldquo;total bonus 17.8 lakh&rdquo; in a report without
+   saying half is one person and <b>you have told the truth and misled everybody.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up Thursday:</b> Tuesday's grid &mdash; sixteen
+   COUNTIFS formulas &mdash; gets rebuilt by <b>dragging two words</b>. No formulas. That is the pivot
+   table.</div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 3, 5 and 8 are the
+  three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What are the four arguments of <code>VLOOKUP</code>, in order?</q>
+    <div class="ans"><b>What</b> you are looking for, <b>where</b> to look, <b>which column</b> to
+    bring back as a number, and <b>how</b> &mdash; <code>FALSE</code> for exact.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Where must the value you are looking up sit, inside the block?</q>
+    <div class="ans">In the <b>first column</b> of the block. That is the rule everything else follows
+    from, and it is why VLOOKUP can only bring back something to the <b>right</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why is the third argument <code>2</code> and not <code>B</code>?</q>
+    <div class="ans">Because it counts <b>from the start of your block</b>, not the start of the sheet.
+    The block starts at column A, so A is 1 and B is 2. <b>If the block started at D, then D would be
+    1.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>I filled my VLOOKUP down. The first three rows are right and the rest say <code>#N/A</code>.
+    What did I forget?</q>
+    <div class="ans">The <b>dollar signs</b> on the lookup block. It slid down one row per row until it
+    ran off the bottom of the table. <b>The first three were right by luck, not because the formula
+    was right.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What happens if you leave the fourth argument out entirely?</q>
+    <div class="ans">It does <b>approximate</b> matching, which on unsorted text returns whatever it
+    lands on. <b>No error, no warning, just a wrong answer.</b> Type
+    <code>FALSE</code>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Somebody inserted a column into my lookup table and every answer changed, but I never touched my
+    formula. Why?</q>
+    <div class="ans">The third argument is a <b>number you counted by hand</b>. When the columns moved,
+    Excel did <b>not</b> renumber it, so it is now bringing back a different field.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What does <code>#N/A</code> actually mean?</q>
+    <div class="ans"><b>Not available</b> &mdash; the value you asked for is <b>not in the table you
+    pointed at</b>. It is not a crash. It is usually a real finding about your
+    data.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Does <code>IFERROR</code> fix the problem?</q>
+    <div class="ans"><b>No.</b> It hides the error and shows your own words instead. The value is still
+    missing from the table. <b>Read the errors before you hide them.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q><code>emp_id</code> is column A and <code>name</code> is column C. Can VLOOKUP find the id for a
+    given name?</q>
+    <div class="ans"><b>No &mdash; impossible, not just hard.</b> The id is to the <b>left</b> of the
+    name, and VLOOKUP only looks right.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What does <code>MATCH</code> give you back?</q>
+    <div class="ans">A <b>position</b>, not a value. <code>MATCH("Karthik Reddy", C2:C201, 0)</code>
+    returns <b>3</b> &mdash; he is the third name in the list.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why does <code>INDEX</code> with <code>MATCH</code> work where VLOOKUP cannot?</q>
+    <div class="ans">Because you name the two columns <b>separately</b>, so neither has to be left or
+    right of the other.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Name two things <code>XLOOKUP</code> fixes.</q>
+    <div class="ans">Any two of: looks <b>left or right</b>; <b>no column counting</b>, so inserting a
+    column does not break it; <b>exact match by default</b>; and the <b>not-found answer is built
+    in</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>When is <code>TRUE</code> actually the right answer?</q>
+    <div class="ans">For <b>bands and ranges on a sorted table</b> &mdash; grades, tax slabs, salary
+    bands. You list where each band <b>starts</b>, and TRUE takes the largest value still smaller than
+    yours. <b>Nowhere else.</b></div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Should I just always use <code>XLOOKUP</code>?&rdquo;</h5>
+  <p>&ldquo;If everybody who will open your file has it, yes &mdash; it is better in every way. But you
+  cannot control who opens your file, and an older Excel shows <code>#NAME?</code> where your formula
+  was. On a shared company file, VLOOKUP is the safe choice. That is not a technical answer, it is a
+  practical one.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is <code>HLOOKUP</code>?&rdquo;</h5>
+  <p>&ldquo;The same thing sideways &mdash; it searches across the first <em>row</em> instead of down
+  the first column. You will meet it almost never, because data is nearly always stored with one record
+  per row. Know the name, nothing more.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I use a whole column, like <code>bonus!A:B</code>?&rdquo;</h5>
+  <p>&ldquo;It works, and it saves you locking anything. On a four-row table nobody will notice. On a
+  hundred thousand rows it makes the sheet slow, because every formula searches every row. <b>Learn to
+  write the exact range</b> &mdash; it is a better habit and it makes you think about where your data
+  actually ends.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My VLOOKUP says <code>#N/A</code> but I can see the value is
+  there.&rdquo;</h5>
+  <p>&ldquo;Almost always one of three things. A <b>trailing space</b> &mdash; which is what
+  <code>TRIM</code> was for on Thursday. Or one side is <b>text and the other is a number</b>, so
+  <code>"1001"</code> never matches <code>1001</code>. Or the value is outside the block you
+  pointed at.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does it matter if the lookup table is on a different file, not just a
+  different sheet?&rdquo;</h5>
+  <p>&ldquo;It works, and I would avoid it. The formula then contains a file path, and the day somebody
+  moves or renames that file every lookup breaks. <b>Keep the lookup table in the same workbook, on its
+  own sheet.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What if there are two rows with the same value in the lookup table?&rdquo;</h5>
+  <p>&ldquo;VLOOKUP takes the <b>first one it finds</b> and stops. It does not warn you that there was a
+  second. If duplicates are possible in your lookup table, that is a data problem to fix before you look
+  anything up &mdash; which is exactly what Remove Duplicates was for.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is <code>INDEX</code> and <code>MATCH</code> faster than
+  <code>VLOOKUP</code>?&rdquo;</h5>
+  <p>&ldquo;Slightly, on very large sheets, because it only reads the two columns you named rather than
+  the whole block. At your scale it makes no difference at all. <b>Use it for the left-lookup problem,
+  not for speed.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Could pandas do this?&rdquo;</h5>
+  <p>&ldquo;Yes &mdash; it is <code>merge</code>, and it is one line. It also handles the duplicate
+  problem properly instead of silently taking the first match. The reason you are learning this version
+  is that the files you will be handed have VLOOKUPs in them, and somebody will ask you why a column of
+  them is returning zero.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;The 44 per cent &mdash; should we leave her out of the report?&rdquo;</h5>
+  <p>&ldquo;No. She is a real employee and that is real money the company is paying. You report the
+  total <b>and</b> you say that one person accounts for nearly half of it. That sentence is the actual
+  finding &mdash; it is far more useful to whoever reads your report than the total on its
+  own.&rdquo;</p></div>
+ </div>
+</section>
+</div>
+<div class="day" id="x5">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 5 &middot; merged class &middot; 90 minutes &middot; full script &middot; the one they will use every day</p>
+  <h1 class="display">The Grid,<br>Without the Formulas</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   On Tuesday they built a sixteen-cell grid with sixteen <code>COUNTIFS</code> formulas and a
+   half-locked reference. Today they build the same grid by <b>dragging two words</b>, in about nine
+   seconds.</p>
+  <div class="glance">
+   <div class="gcell"><b>4</b><span>boxes, and that is the tool</span></div>
+   <div class="gcell"><b>0</b><span>formulas written</span></div>
+   <div class="gcell"><b>Count</b><span>the default, and usually wrong</span></div>
+   <div class="gcell"><b>32%</b><span>of the company is Sales</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Open on Tuesday's grid, still on the sheet</h4>
+   <p style="color:var(--sienna)">Do not start with &ldquo;today we learn pivot tables&rdquo;. Start by
+   scrolling to the <code>COUNTIFS</code> grid they built on Tuesday, and asking how long it took. Then
+   build the identical thing in front of them with <b style="color:var(--sienna)">no formula at
+   all</b>, and put the two side by side.</p>
+   <p style="color:var(--sienna)">That comparison is the entire argument for the session, and it only
+   works because they did the hard version first. <b style="color:var(--sienna)">This is the payoff
+   Tuesday was earning.</b></p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>They must still have Tuesday's grid on the sheet.</b> The whole opening depends on putting
+   the old grid and the new pivot next to each other. If somebody deleted it, have them rebuild two
+   cells of it &mdash; enough to see the formula in the bar.</li>
+   <li><b>The default aggregation is Count, and it is usually not what you want.</b> Drag salary into
+   Values and Excel may well count it rather than add it. Let that happen, let them read a column of
+   64 / 49 / 45 / 42 where they expected money, and fix it together. <b>It is the single most common
+   pivot mistake in the world.</b></li>
+   <li><b>Say &ldquo;Count of salary is not the salary&rdquo; out loud at least twice.</b> It is how a
+   wrong pivot gets into a real report &mdash; the numbers look plausible and the heading says what it
+   is doing, and nobody reads the heading.</li>
+   <li><b>The Tech average comes back today, and it is the same lesson from a new angle.</b> The pivot
+   will cheerfully show 1,89,753 as the Tech average. <b>A pivot table does not protect you from an
+   outlier</b> &mdash; it just finds it faster. Say so.</li>
+   <li><b>The menu layout differs between Excel versions and between Excel and Sheets.</b> Field names
+   and box names are stable; where the buttons live is not. Do not promise an exact menu path &mdash;
+   show it on your screen, then walk the room, because two or three people will have it somewhere
+   else.</li>
+   <li><b>Refresh is not automatic, and this is the one thing that will embarrass them in a job.</b>
+   Change a cell in the data and the pivot does <em>not</em> move &mdash; the exact opposite of
+   everything they learned on day 1. Demonstrate it deliberately.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what the four boxes actually do, why Count is
+  the default and why that matters, and the one way a pivot table behaves unlike every other formula in
+  this module.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; the four boxes, and what each one means</h5>
+
+   <div class="mth">
+    <div class="mrow"><b>Rows</b><div>What goes <b>down the side</b>. Excel finds every different value
+    in that column and gives each one a row. Drop <code>department</code> here and you get four
+    rows.</div></div>
+    <div class="mrow"><b>Columns</b><div>What goes <b>across the top</b>. Same idea, sideways. Drop
+    <code>rating</code> here and you get four columns.</div></div>
+    <div class="mrow"><b>Values</b><div>The <b>number in the middle</b>, and <b>how</b> to work it out
+    &mdash; count, sum, average, min, max.</div></div>
+    <div class="mrow"><b>Filters</b><div>Sits <b>above the whole table</b> and cuts which rows are
+    included at all. Drop <code>city</code> here and you can see the same table for Chennai
+    only.</div></div>
+   </div>
+
+   <h6>Why they already understand this</h6>
+   <p>Rows plus Columns plus a Count is exactly the <code>COUNTIFS</code> grid from Tuesday. Rows plus
+   a Sum is the <code>SUMIF</code> list from Tuesday. <b>A pivot table is not a new idea &mdash; it is
+   the same four functions with a drag-and-drop front end.</b></p>
+   <div class="keyline">
+    Say this early, because it changes how the room listens: <b>you already know what a pivot table
+    computes. Today is about not having to write it.</b>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; Count, and the most common pivot mistake there is</h5>
+
+   <h6>What Excel does when you drop a field into Values</h6>
+   <p>If the column is <b>text</b>, Excel counts it &mdash; there is nothing else it could do. If the
+   column is <b>numbers</b>, it usually sums it. But when a number column contains blanks or anything
+   it is unsure about, <b>it falls back to Count</b>.</p>
+   <p>Our salary column has <b>two blanks</b>. So dropping salary into Values can give you
+   <b>Count of salary</b>, and a Tech row reading <b>48</b> instead of <b>&#8377;91,08,170</b>.</p>
+
+   <h6>Why that gets into real reports</h6>
+   <div class="mcalc">Count of salary    Sales 64   Tech 48   HR 44   Marketing 42
+Sum of salary      Sales 4264991   Tech 9108170   HR 2495026 ...</div>
+   <p>The count column looks like a perfectly reasonable set of numbers. It is a plausible answer to a
+   different question. And the only thing on screen telling you which one you are looking at is the
+   small heading in the corner that says <b>Count of</b> rather than <b>Sum of</b>.</p>
+   <div class="warn"><b>Teach them to read that heading first, every single time, before they read any
+   number underneath it.</b> It is the one habit that stops a wrong pivot leaving the building. The fix
+   is right-click the number, <b>Summarize Values By</b>, and choose <b>Sum</b>.</div>
+
+   <h6>One more thing the blanks do</h6>
+   <p>Average of salary for Tech is computed over <b>48 salaries, not 49 people</b>. The pivot skips the
+   blank, exactly as <code>AVERAGE</code> and <code>AVERAGEIF</code> did. It is consistent &mdash; and
+   it means the count beside an average is not always the count of rows.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the one way a pivot behaves unlike everything else</h5>
+
+   <h6>It does not update itself</h6>
+   <p>Everything in this module so far has recalculated the instant a cell changed. That was the whole
+   argument on day 1 &mdash; <em>a spreadsheet is rules that are always running</em>.</p>
+   <p><b>A pivot table is not.</b> It takes a snapshot of the data when you build it. Change a salary in
+   the source and the pivot keeps showing the old number, indefinitely, with nothing to indicate it is
+   stale.</p>
+   <div class="mcalc">change K5 from 5200000 to 520000
+
+   the summary block in P and Q     updates immediately
+   every COUNTIF and SUMIF          updates immediately
+   the pivot table                  does NOT. it keeps the old number.
+
+   right-click the pivot -> Refresh   (or Data -> Refresh All)</div>
+
+   <h6>Why this one matters more than it sounds</h6>
+   <p>It is how a stale number ends up in a monthly report. Somebody fixes the data, sends the file on,
+   and the pivot on the next sheet is still reporting last month &mdash; and because every other cell
+   in the workbook did update, the file looks perfectly consistent.</p>
+   <div class="keyline">
+    <b>Refresh is a habit, not a feature.</b><br><br>
+    Open a file with a pivot in it &rarr; refresh before you read anything. Change the data &rarr;
+    refresh. Hand the file on &rarr; refresh first. <b>It costs one right-click and it is the difference
+    between a current report and a confident wrong one.</b>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>Tuesday's grid, and how long it took</h3></div>
+   <p class="objective">Ten minutes of setup that makes the other eighty land. Do not skip it.</p>
+
+   <div class="stage">Everybody scrolls to the <code>COUNTIFS</code> grid from Tuesday. <b>Click into
+   one of the cells so the formula shows in the bar.</b></div>
+
+   <div class="speak">
+    <p>Scroll to the grid we built on Tuesday. Click any cell inside it and look at the formula
+    bar.</p>
+   </div>
+   <div class="screen">=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Honestly &mdash; how long did that grid take you on Tuesday?&rdquo;</div>
+    <div class="a">Ten minutes at least, and the half-locked references confused most of the room.
+    <b>Let them say it. Do not defend it.</b> That difficulty is about to become the point.</div>
+   </div>
+
+   <div class="speak">
+    <p>Sixteen cells. One formula with four arguments and two different kinds of lock, filled in two
+    directions. It works, and it took us most of a block to get right.</p>
+    <p>Now watch me build exactly that, with <b>no formula at all</b>.</p>
+   </div>
+
+   <div class="stage">Build it live, fast, without explaining yet. Click a cell in the data, Insert,
+   PivotTable, OK. Drag <b>department</b> to Rows, <b>rating</b> to Columns, <b>name</b> to Values.
+   <b>Say nothing while you do it.</b></div>
+
+   <div class="screen">Count of name   Poor  Average  Good  Excellent  Grand Total
+Sales             17       14    19         14           64
+Tech              15        8    13         13           49
+HR                12        9    11         13           45
+Marketing         14       11     8          9           42
+Grand Total       58       42    51         49          200</div>
+
+   <div class="speak">
+    <p>Same sixteen numbers. Same row totals. Same column totals. Same two hundred in the corner.</p>
+    <p>I wrote nothing. I dragged three words into three boxes.</p>
+    <p>And this is why we did it the hard way on Tuesday &mdash; because you now know <b>exactly</b>
+    what this thing is computing, and you could check any one of those sixteen cells by hand if you
+    did not trust it.</p>
+   </div>
+
+   <div class="keyline">
+    <b>A pivot table is not a new idea.</b><br><br>
+    It is <code>COUNTIFS</code>, <code>SUMIF</code> and <code>AVERAGEIF</code> with a drag-and-drop
+    front end. <b>You already know what it computes. Today is about not having to write it.</b>
+   </div>
+  </div>
+
+  <!-- 10-26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10 &ndash; 26</span><h3>Build one from scratch, slowly</h3></div>
+   <p class="objective">Now they do it. One field at a time, so the four boxes mean something.</p>
+
+   <div class="stage">Delete the demo pivot. Everybody builds their own from zero. <b>Walk them through
+   one field at a time and pause after each.</b></div>
+
+   <div class="speak">
+    <p>Delete mine. You are going to build your own, and we are going to add one field at a time so you
+    can see what each box does.</p>
+    <p>Click any cell <b>inside the data</b>. Then <b>Insert</b>, then <b>PivotTable</b>.</p>
+   </div>
+
+   <div class="typeit">The dialog &mdash; check the range before you click OK</div>
+<pre><code>  Table/Range:    Sheet1!$A$1:$L$201        <span class="c">it should find this itself</span>
+  New Worksheet   <span class="c">leave this selected - keep the pivot off the data sheet</span></code></pre>
+
+   <div class="warn"><b>Check that range says 201 and not 202.</b> Excel guesses it from where your data
+   stops. If somebody still has stray practice values far down the sheet, the range will be wrong and
+   their totals will not match anybody else's. <b>This is the first thing to check when two people get
+   different numbers.</b></div>
+
+   <div class="speak">
+    <p>A blank panel, and a list of your column names on the right. Those are your <b>fields</b> &mdash;
+    just the headings from row 1.</p>
+    <p>Four boxes underneath. Drag <b>department</b> into <b>Rows</b> first, and nothing else.</p>
+   </div>
+   <div class="screen">Row Labels
+HR
+Marketing
+Sales
+Tech
+Grand Total</div>
+
+   <div class="speak">
+    <p>Four rows, alphabetical, and a Grand Total with nothing in it &mdash; because we have not told it
+    what to count yet.</p>
+    <p><b>Rows means: find every different value in this column and give each one a line.</b> That is
+    it.</p>
+    <p>Now drag <b>name</b> into <b>Values</b>.</p>
+   </div>
+   <div class="screen">Row Labels   Count of name
+HR                      45
+Marketing               42
+Sales                   64
+Tech                    49
+Grand Total            200</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Where have you seen those four numbers before?&rdquo;</div>
+    <div class="a">Tuesday's <code>COUNTIF</code> list, and before that <code>value_counts()</code> in
+    pandas. <b>Three different tools, identical answer.</b> And the Grand Total is 200, which is the
+    same check they built by hand on Tuesday &mdash; except the pivot adds it for free.</div>
+   </div>
+
+   <div class="speak">
+    <p>Now drag <b>rating</b> into <b>Columns</b>, and the grid appears.</p>
+    <p>Four boxes. <b>Rows</b> down the side. <b>Columns</b> across the top. <b>Values</b> in the middle.
+    <b>Filters</b> we will get to.</p>
+    <p>That is the whole tool. Everything else today is choosing what goes in which box.</p>
+   </div>
+  </div>
+
+  <!-- 26-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26 &ndash; 44</span><h3>Count of salary is not the salary</h3></div>
+   <p class="objective">The most common pivot mistake in the world. Let it happen.</p>
+
+   <div class="stage">Take <b>rating</b> back out of Columns so the table is simple again. Then drag
+   <b>salary</b> into Values. <b>Do not warn them what is about to happen.</b></div>
+
+   <div class="speak">
+    <p>Take rating back out for a moment. Now I want money instead of headcount, so drag <b>salary</b>
+    into <b>Values</b>, and take <b>name</b> out.</p>
+   </div>
+   <div class="screen">Row Labels   Count of salary
+HR                      44
+Marketing               42
+Sales                   64
+Tech                    48
+Grand Total            198</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Is that money?&rdquo;</div>
+    <div class="a"><b>No.</b> HR does not pay a total of forty-four rupees. <b>It counted the salaries
+    instead of adding them.</b> Wait for somebody to notice the numbers are suspiciously small and
+    suspiciously familiar.</div>
+   </div>
+
+   <div class="speak">
+    <p>HR is not paying forty-four rupees. Excel <b>counted</b> the salaries instead of adding
+    them.</p>
+    <p>And look at the heading. It says <b>Count of salary</b>. It told us exactly what it was doing. We
+    just did not read it.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Two hundred rows, but the Grand Total says 198. Why?&rdquo;</div>
+    <div class="a">The <b>two blank salaries</b>, again. Count of salary counts the ones that exist.
+    <b>Fourth session running that those two blanks have shown up</b>, and by now the room should see it
+    coming.</div>
+   </div>
+
+   <div class="speak">
+    <p>Right-click any number in the pivot. <b>Summarize Values By</b>. Choose <b>Sum</b>.</p>
+   </div>
+   <div class="screen">Row Labels   Sum of salary
+HR                 2495026
+Marketing          3106086
+Sales              4264991
+Tech               9108170
+Grand Total       18974273</div>
+
+   <div class="speak">
+    <p>That is money. And those four numbers are exactly the <code>SUMIF</code> answers from
+    Tuesday.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Read the heading before you read the numbers.</b><br><br>
+    <b>Count of salary</b> and <b>Sum of salary</b> are two completely different questions, and the only
+    thing on screen that distinguishes them is one small word in the corner. A pivot showing counts where
+    it should show sums looks entirely reasonable, <b>and that is how it gets into a report.</b>
+   </div>
+
+   <div class="stage">Now the callback. Same right-click, choose Average. <b>They should see this one
+   coming &mdash; and that is the point.</b></div>
+
+   <div class="speak">
+    <p>Right-click again. <b>Summarize Values By</b>, then <b>Average</b>.</p>
+   </div>
+   <div class="screen">Row Labels   Average of salary
+HR                   56705.14
+Marketing            73954.43
+Sales                66640.48
+Tech                189753.54
+Grand Total           95829.66</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Tech again. Does a pivot table protect you from that?&rdquo;</div>
+    <div class="a"><b>No.</b> It is the same 1,89,753 from Tuesday, the same one person on row 5. A
+    pivot table does not check your data &mdash; <b>it just finds the problem faster.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>One lakh eighty-nine thousand. Same number as Tuesday, same person causing it.</p>
+    <p>A pivot table is faster than writing <code>AVERAGEIF</code> sixteen times. It is <b>not</b>
+    smarter. It will not tell you one person is distorting a department, and nothing ever will.</p>
+   </div>
+  </div>
+
+  <!-- 44-58 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 &ndash; 58</span><h3>Per cent of total, and the filter box</h3></div>
+   <p class="objective">The two things that turn a pivot from a table into an answer.</p>
+
+   <div class="speak">
+    <p>Put it back to a count of name. Sales has 64 people. Is that a lot?</p>
+    <p>You cannot tell, because 64 only means something next to 200. So let us ask for the share
+    instead.</p>
+   </div>
+
+   <div class="typeit">Drag <b>name</b> into Values a <em>second</em> time, so you have two value columns</div>
+<pre><code>  right-click the second one  ->  Show Values As  ->  % of Grand Total</code></pre>
+   <div class="screen">Row Labels   Count of name   % of total
+HR                      45       22.50%
+Marketing               42       21.00%
+Sales                   64       32.00%
+Tech                    49       24.50%
+Grand Total            200      100.00%</div>
+
+   <div class="speak">
+    <p><b>Thirty-two per cent of this company is Sales.</b> Almost a third.</p>
+    <p>That is a sentence you could put in a report. &ldquo;Sixty-four&rdquo; is not.</p>
+    <p>And notice I kept the count <b>next to</b> the percentage. Always show both &mdash; a percentage
+    on its own hides how many people it is actually describing.</p>
+   </div>
+
+   <div class="warn"><b>&ldquo;% of Grand Total&rdquo; is one of several options and the others are
+   genuinely useful.</b> <b>% of Row Total</b> and <b>% of Column Total</b> answer different questions
+   on the same grid. <b>Name them, show one, do not drill all of them</b> &mdash; they are easy to find
+   once they know the menu exists.</div>
+
+   <div class="stage">Now the fourth box, which has been empty all session.</div>
+
+   <div class="speak">
+    <p>One box we have not used. Drag <b>city</b> into <b>Filters</b>.</p>
+    <p>A dropdown appears above the whole table. Choose <b>Chennai</b>.</p>
+   </div>
+   <div class="screen">city:  Chennai
+
+Row Labels   Count of name
+HR                      ..
+Marketing               ..
+Sales                   ..
+Tech                    ..
+Grand Total             61</div>
+
+   <div class="speak">
+    <p>Sixty-one. The whole table has been recomputed for Chennai only, and the breakdown underneath it
+    is now the Chennai breakdown.</p>
+    <p>Switch it to Bangalore &mdash; <b>54</b>. Hyderabad &mdash; <b>48</b>. Pune &mdash; <b>37</b>.
+    Those four add to two hundred, which is your check again.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is the difference between putting city in Filters and putting it in
+    Rows?&rdquo;</div>
+    <div class="a"><b>Rows</b> shows you <b>all four cities at once</b>, side by side, so you can
+    compare them. <b>Filters</b> shows you <b>one at a time</b>, with everything else hidden. Use Rows
+    to compare, Filters to focus. <b>Good question to make somebody answer rather than telling
+    them.</b></div>
+   </div>
+
+   <div class="warn"><b>Clear the filter before moving on, and say why.</b> A pivot with a filter left on
+   is the second-best way to put a wrong number in a report &mdash; the dropdown is small, it sits above
+   the table, and a reader who has not noticed it will take the total at face value. <b>Check the filter
+   box before you trust a pivot anybody else built.</b></div>
+  </div>
+
+  <!-- 58-72 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">58 &ndash; 72</span><h3>The thing that does not update</h3></div>
+   <p class="objective">The one behaviour that contradicts day 1. Demonstrate it deliberately.</p>
+
+   <div class="stage">This block is why they will not embarrass themselves in a job. <b>Do the
+   demonstration, do not just describe it.</b></div>
+
+   <div class="speak">
+    <p>On day one I told you the whole point of a spreadsheet: <b>a script is instructions you run, a
+    spreadsheet is rules that are always running.</b> Change one cell and everything moves.</p>
+    <p>Watch this. Go back to the data sheet and change <b>K5</b> &mdash; the fifty-two lakh &mdash; to
+    <b>520000</b>. Then look at your summary block in P and Q.</p>
+   </div>
+   <div class="screen">average salary    72130.82      <span class="c">moved instantly, as always</span></div>
+
+   <div class="speak">
+    <p>Moved immediately, as it has all module. Now go to the pivot sheet.</p>
+   </div>
+   <div class="screen">Average of salary
+Tech              189753.54     <span class="c">unchanged. still the old number.</span></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why has the pivot not moved?&rdquo;</div>
+    <div class="a">Because a pivot table works from a <b>snapshot</b> taken when you built it, not from
+    the live cells. <b>It is the one thing in Excel that does not recalculate on its own</b>, and there
+    is nothing on screen to tell you it is stale.</div>
+   </div>
+
+   <div class="speak">
+    <p>The pivot is showing a number that is no longer true, and it looks exactly as confident as it did
+    five minutes ago.</p>
+    <p>Right-click anywhere in the pivot and choose <b>Refresh</b>.</p>
+   </div>
+   <div class="screen">Average of salary
+Tech               92253.54     <span class="c">now it agrees with the data</span></div>
+
+   <div class="keyline">
+    <b>This is how a stale number gets into a monthly report.</b><br><br>
+    Somebody corrects the data. Every formula in the workbook updates. The pivot on the next sheet does
+    not, and the file looks perfectly consistent &mdash; because everything <em>else</em> did move.<br><br>
+    <b>Refresh when you open a file with a pivot in it. Refresh after you change data. Refresh before
+    you send it.</b> One right-click.
+   </div>
+
+   <div class="speak">
+    <p><b>Ctrl+Z</b> to put the salary back, and refresh again so the pivot agrees.</p>
+   </div>
+
+   <div class="warn"><b>Two more things that bite, worth one sentence each.</b> <b>Adding new rows to
+   the bottom of your data does not add them to the pivot</b> &mdash; the pivot remembers the range it
+   was built from, and refreshing will not help; you have to change the source range. And
+   <b>Data &rarr; Refresh All</b> updates every pivot in the workbook at once, which is the one to use
+   when a file has several.</div>
+  </div>
+
+  <!-- 72-84 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">72 &ndash; 84</span><h3>Their turn</h3></div>
+   <p class="objective">Twelve minutes, three questions, no help unless asked. Walk the room.</p>
+
+   <div class="stage">Put the three questions on the board and stop talking. <b>These are deliberately
+   phrased as questions, not as instructions</b> &mdash; working out which box each field goes in is
+   the skill.</div>
+
+   <div class="speak">
+    <p>Three questions. Not three sets of instructions &mdash; three <b>questions</b>. Working out which
+    field goes in which box is the whole job.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>  1.  Which city has the most employees, and what share of
+      the company is it?
+
+  2.  What is the average experience in each department?
+
+  3.  How many people of each education level are in each city?
+      (two fields, not one)</code></pre>
+
+   <div class="stage">After twelve minutes, take the answers from the room. Ask <b>which box</b> each
+   field went in before you accept the number.</div>
+
+   <div class="typeit">Answers &mdash; question 1</div>
+<pre><code>  Rows    city        Values   count of name, plus a second copy
+                               shown as % of Grand Total
+
+  Chennai        61     30.50%      <span class="c">the most</span>
+  Bangalore      54     27.00%
+  Hyderabad      48     24.00%
+  Pune           37     18.50%
+  Grand Total   200    100.00%</code></pre>
+
+   <div class="typeit">Answers &mdash; question 2</div>
+<pre><code>  Rows    department     Values   experience, Summarize By AVERAGE
+
+  Marketing      9.12
+  Sales          8.25
+  HR             7.20
+  Tech           6.61
+  Grand Total    7.79
+
+  <span class="c">note: experience has NO blanks, so the count beside each</span>
+  <span class="c">average is the full headcount. unlike salary.</span>
+  <span class="c">and no outlier either - so unlike the salary averages,</span>
+  <span class="c">these four can be compared with each other honestly.</span></code></pre>
+
+   <div class="typeit">Answers &mdash; question 3</div>
+<pre><code>  Rows    city       Columns   education      Values   count of name
+
+               Bachelors  Masters  Diploma   Total
+  Chennai             26       18       17      61
+  Bangalore           21       18       15      54
+  Hyderabad           15       17       16      48
+  Pune                15       11       11      37
+  Total               77       64       59     200
+
+  <span class="c">totals to 200 both ways. same check as every other session.</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">On question 3: &ldquo;which field did you put in Rows, and why that one?&rdquo;</div>
+    <div class="a">Either works and the grid just transposes. <b>The real answer is: put the one with
+    more values down the side</b>, because a table is easier to read long than wide. Four cities down,
+    three education levels across. <b>That is a judgement, not a rule, and it is worth saying so.</b></div>
+   </div>
+
+   <div class="warn"><b>The two things you will find while walking the room.</b> Somebody has
+   <b>Count</b> where they need <b>Average</b> on question 2 &mdash; third time today. And somebody
+   still has the <b>city filter from the last block</b> left on, so every number they produce is Chennai
+   only and all their totals are 61. <b>Both are the lesson.</b></div>
+  </div>
+
+  <!-- 84-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">84 &ndash; 90</span><h3>Close</h3></div>
+
+   <div class="typeit">The five lines. If everything else goes, keep these.</div>
+<pre><code>1.  FOUR BOXES, and that is the whole tool:
+      Rows      what goes down the side
+      Columns   what goes across the top
+      Values    the number in the middle, AND how to work it out
+      Filters   cuts which rows are included at all
+
+2.  READ THE HEADING BEFORE THE NUMBERS.
+    "Count of salary" and "Sum of salary" are different questions.
+    right-click -> Summarize Values By -> Sum / Average / Count
+
+3.  SHOW A PERCENTAGE NEXT TO THE COUNT, never instead of it.
+    right-click -> Show Values As -> % of Grand Total
+    Sales is 64 people, which is 32% of the company.
+
+4.  A PIVOT DOES NOT UPDATE ITSELF. it is a snapshot.
+    right-click -> Refresh.  on open, after a change, before sending.
+
+5.  IT IS NOT SMARTER THAN YOU. Tech still averages 1,89,753,
+    because one person still earns 52 lakh. a pivot finds the
+    problem faster. it does not notice it for you.</code></pre>
+
+   <div class="speak">
+    <p>Everything you built today, you could already compute on Tuesday with <code>COUNTIFS</code> and
+    <code>SUMIF</code>. Today was about doing it in nine seconds instead of ten minutes &mdash; and about
+    being able to check it, because you know what it is doing underneath.</p>
+    <p>People who only know the button cannot tell when the button is wrong.</p>
+   </div>
+
+   <div class="speak">
+    <p>Next session is the last one of the module, and it is the one where somebody else finally gets to
+    read your work.</p>
+    <p>Charts, with a mouse instead of matplotlib. Number formats, so a salary column stops looking like
+    a phone number. And one summary sheet, built live, that you could actually send to a manager.</p>
+    <p>Then Power BI, where everything you learned today has a different name and does the same
+    thing.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Seven steps, every field placement, every number. If you lose your place,
+  this page alone is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Tuesday's grid, and how long it took</p>
+   <p class="rs-say"><b>Do not open by naming pivot tables.</b> Scroll to Tuesday's COUNTIFS grid, click
+   a cell, show the formula bar, and ask how long it took.</p>
+   <div class="rs-out">=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)</div>
+   <div class="rs-board"><b>Then build the same thing live, saying nothing.</b> Insert &rarr;
+   PivotTable &rarr; department to <b>Rows</b>, rating to <b>Columns</b>, name to <b>Values</b>.
+   Sixteen identical numbers, 200 in the corner, no formula.<br><br>
+   <b>A pivot table is not a new idea</b> &mdash; it is COUNTIFS and SUMIF with a drag-and-drop front
+   end. <b>They did the hard version first, so they can check any cell of this by hand.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 26</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Build one from scratch, one field at a time</p>
+   <div class="rs-code"><pre><code>click inside the data -> Insert -> PivotTable
+  Table/Range:  Sheet1!$A$1:$L$201      <span class="c">CHECK it says 201, not 202</span>
+  New Worksheet                        <span class="c">keep the pivot off the data sheet</span></code></pre></div>
+   <div class="rs-board"><b>If two people get different numbers, check this range first.</b> Stray
+   practice values far down the sheet make Excel guess wrong.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>department -> ROWS        four rows, alphabetical, empty Grand Total
+name       -> VALUES      HR 45 | Marketing 42 | Sales 64 | Tech 49 | 200
+rating     -> COLUMNS     the grid appears</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;where have you seen those four numbers?&rdquo; &mdash;
+   Tuesday's COUNTIF, and <code>value_counts()</code> before that. <b>Three tools, identical
+   answer.</b> The Grand Total of 200 is the check they built by hand &mdash; the pivot adds it
+   free.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">26 &ndash; 44</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Count of salary is not the salary</p>
+   <p class="rs-say"><b>Do not warn them.</b> Take rating out, take name out, drag <b>salary</b> into
+   Values, and let it count.</p>
+   <div class="rs-out">Count of salary:  HR 44 | Marketing 42 | Sales 64 | Tech 48 | 198</div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;is that money?&rdquo; &mdash; HR does not pay forty-four
+   rupees. <b>And the heading said Count of salary all along.</b><br><br>
+   <b>Ask the second one:</b> &ldquo;why 198 and not 200?&rdquo; &mdash; <b>the two blank salaries,
+   fourth session running.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>right-click a number -> Summarize Values By -> Sum
+
+  HR 2495026 | Marketing 3106086 | Sales 4264991 | Tech 9108170
+  Grand Total 18974273          <span class="c">= Tuesday's SUMIF answers</span></code></pre></div>
+   <div class="rs-board"><b>Read the heading before the numbers.</b> Count of / Sum of are different
+   questions and one small word in the corner is all that separates them.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>right-click -> Summarize Values By -> Average
+
+  HR 56705.14 | Marketing 73954.43 | Sales 66640.48 | Tech <span class="o">189753.54</span></code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;does a pivot protect you from that?&rdquo; &mdash; <b>no.</b>
+   Same number as Tuesday, same person on row 5. <b>A pivot finds the problem faster. It is not
+   smarter.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">44 &ndash; 58</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Per cent of total, and the filter box</p>
+   <div class="rs-code"><pre><code>drag name into VALUES a SECOND time
+right-click it -> Show Values As -> % of Grand Total
+
+  HR 45 22.50% | Marketing 42 21.00% | Sales 64 <span class="o">32.00%</span> | Tech 49 24.50%</code></pre></div>
+   <div class="rs-board"><b>&ldquo;Thirty-two per cent of this company is Sales&rdquo; is a sentence for
+   a report. &ldquo;Sixty-four&rdquo; is not.</b><br><br>
+   <b>Keep the count beside the percentage</b> &mdash; a percentage alone hides how many people it
+   describes.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>city -> FILTERS     dropdown above the table
+
+  Chennai 61 | Bangalore 54 | Hyderabad 48 | Pune 37   -> 200</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;Filters versus Rows &mdash; what is the difference?&rdquo;
+   <b>Rows compares all four at once. Filters shows one at a time.</b> Compare with Rows, focus with
+   Filters.<br><br>
+   <b>Clear the filter and say why:</b> a pivot with a filter left on is how a wrong number reaches a
+   report. <b>Check the filter box on any pivot somebody else built.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">58 &ndash; 72</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">The thing that does not update</p>
+   <p class="rs-say"><b>Demonstrate it, do not describe it.</b> This block is why they will not
+   embarrass themselves in a job.</p>
+   <div class="rs-code"><pre><code>change K5 from 5200000 to 520000
+
+  summary block in P/Q    72130.82    moved instantly, as always
+  the pivot               <span class="o">189753.54</span>  UNCHANGED. still the old number.
+
+right-click the pivot -> Refresh      ->  92253.54</code></pre></div>
+   <div class="rs-board"><b>On day 1 you told them a spreadsheet is rules that are always running.
+   A pivot is the exception.</b> It works from a <b>snapshot</b> and nothing on screen says it is
+   stale.<br><br>
+   <b>That is how a stale number reaches a monthly report</b> &mdash; everything <em>else</em> updated,
+   so the file looks consistent.<br><br>
+   <b>Refresh on open, after a change, before sending.</b> <b>Ctrl+Z</b> and refresh again.</div>
+   <div class="rs-board" style="margin-top:8px"><b>One sentence each:</b> adding rows below your data
+   does <b>not</b> add them to the pivot and refreshing will not help &mdash; the source range has to
+   change. And <b>Data &rarr; Refresh All</b> does every pivot in the workbook.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">72 &ndash; 84</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Their turn &mdash; three questions, not three instructions</p>
+   <p class="rs-say"><b>Put them on the board and stop talking.</b> Working out which box each field
+   goes in is the skill. <b>Ask which box before you accept a number.</b></p>
+   <div class="rs-code"><pre><code>1. which city has the most employees, and what share is it?
+2. average experience in each department?
+3. how many of each education level in each city?  (two fields)</code></pre></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>1.  Rows city | Values count of name + a 2nd copy as % of Grand Total
+    Chennai 61 30.50% | Bangalore 54 27.00% | Hyderabad 48 24.00%
+    Pune 37 18.50%
+
+2.  Rows department | Values experience, AVERAGE
+    Marketing 9.12 | Sales 8.25 | HR 7.20 | Tech 6.61 | total 7.79
+    <span class="c">no blanks and no outlier - so these four CAN be compared honestly</span>
+
+3.  Rows city | Columns education | Values count of name
+                 Bachelors  Masters  Diploma  Total
+    Chennai             26       18       17     61
+    Bangalore           21       18       15     54
+    Hyderabad           15       17       16     48
+    Pune                15       11       11     37
+    Total               77       64       59    200</code></pre></div>
+   <div class="rs-board"><b>On question 3 ask which field went in Rows and why.</b> Either works.
+   <b>The real answer: put the one with more values down the side</b>, because a table reads better long
+   than wide. <b>A judgement, not a rule.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Two things you will find walking the room:</b>
+   <b>Count where Average belongs</b> on question 2 &mdash; third time today. And somebody still has
+   <b>the city filter on</b>, so every total they produce is 61. <b>Both are the lesson.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">84 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Close</p>
+   <div class="rs-code"><pre><code>1.  FOUR BOXES: Rows down | Columns across | Values the number
+    AND how to work it out | Filters cuts which rows count at all
+2.  READ THE HEADING FIRST. Count of / Sum of are different questions
+3.  percentage NEXT TO the count, never instead of it. Sales = 32%
+4.  A PIVOT DOES NOT UPDATE ITSELF. right-click -> Refresh
+5.  it is NOT smarter than you. Tech still averages 1,89,753</code></pre></div>
+   <div class="rs-board"><b>The line:</b> everything today was computable on Tuesday. Today was nine
+   seconds instead of ten minutes &mdash; <b>and being able to check it, because you know what it is
+   doing underneath. People who only know the button cannot tell when the button is wrong.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Set up the last session:</b> charts with a mouse,
+   number formats so a salary stops looking like a phone number, and one summary sheet built live that
+   you could send to a manager. <b>Then Power BI, where all of today has different names and does the
+   same thing.</b></div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 4, 8 and 10 are the
+  three that matter. Take each answer from a different person.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>Name the four boxes and what each one does.</q>
+    <div class="ans"><b>Rows</b> down the side, <b>Columns</b> across the top, <b>Values</b> the number
+    in the middle and how to work it out, <b>Filters</b> cuts which rows are included at
+    all.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Which formulas from Tuesday does a pivot table replace?</q>
+    <div class="ans"><code>COUNTIFS</code> for the grid, <code>SUMIF</code> and <code>AVERAGEIF</code>
+    for the lists. <b>It computes the same things</b> &mdash; you just do not write
+    them.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Your pivot says HR is 44 and Sales is 64 for salary. Is that money?</q>
+    <div class="ans"><b>No &mdash; it counted instead of adding.</b> The heading says <b>Count of
+    salary</b>. Right-click, Summarize Values By, Sum.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Count of salary gives a Grand Total of 198 but there are 200 rows. Why?</q>
+    <div class="ans">The <b>two blank salaries</b>. Count of salary counts the ones that exist. Fourth
+    session those two have shown up.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the first thing you should read on any pivot table?</q>
+    <div class="ans"><b>The heading in the corner</b> &mdash; Count of, Sum of, Average of. It is the
+    only thing on screen telling you which question is being answered.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why show a percentage next to the count rather than instead of it?</q>
+    <div class="ans">Because a percentage alone <b>hides how many people it describes</b>. Thirty-two
+    per cent of two hundred is a different thing from thirty-two per cent of
+    eight.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the difference between putting <code>city</code> in Filters and in Rows?</q>
+    <div class="ans"><b>Rows</b> shows all four cities at once so you can compare.
+    <b>Filters</b> shows one at a time with the rest hidden. <b>Compare with Rows, focus with
+    Filters.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>I changed a salary in the data. Why did the pivot not move?</q>
+    <div class="ans">Because a pivot works from a <b>snapshot</b>, not from the live cells. <b>It is the
+    one thing in Excel that does not recalculate on its own.</b> Right-click,
+    Refresh.</div></div></div>
+
+   <div class="aq"><div>
+    <q>When should you refresh?</q>
+    <div class="ans"><b>When you open a file with a pivot in it, after you change the data, and before
+    you send it to anybody.</b> One right-click.</div></div></div>
+
+   <div class="aq"><div>
+    <q>I added twenty new rows under my data and refreshed. They are not in the pivot. Why?</q>
+    <div class="ans">The pivot remembers <b>the range it was built from</b>, and new rows are outside it.
+    <b>Refreshing will not help</b> &mdash; you have to change the source
+    range.</div></div></div>
+
+   <div class="aq"><div>
+    <q>The pivot says Tech averages 1,89,753. Is the pivot wrong?</q>
+    <div class="ans"><b>No.</b> It is the correct average of the Tech salaries, and one of them is 52
+    lakh. <b>A pivot does not check your data. It finds the problem faster, it does not notice it for
+    you.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Somebody hands you a pivot table. Name two things to check before you trust a number on it.</q>
+    <div class="ans">Any two of: <b>the Count of / Sum of heading</b>; whether a <b>filter</b> is left
+    on; whether it has been <b>refreshed</b>; and whether the <b>source range</b> covers all the
+    data.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why did we build the grid by hand on Tuesday if today took nine seconds?</q>
+    <div class="ans">So that you know <b>what the pivot is computing</b> and could check any cell of it
+    yourself. <b>People who only know the button cannot tell when the button is
+    wrong.</b></div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Can I put more than one field in Rows?&rdquo;</h5>
+  <p>&ldquo;Yes, and it nests them &mdash; department, then city inside each department, with subtotals.
+  It is genuinely useful and it gets unreadable fast. <b>Two levels is usually the most anybody can
+  read.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What is the difference between a pivot table and just sorting and
+  filtering?&rdquo;</h5>
+  <p>&ldquo;Sorting and filtering show you <b>rows of your data</b>. A pivot shows you <b>a summary of
+  all of it</b> &mdash; a number per group, computed across rows you never see. Filtering hides rows; a
+  pivot aggregates them.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is a pivot table the same as <code>groupby</code> in pandas?&rdquo;</h5>
+  <p>&ldquo;Close enough that the answer is yes. Rows is what you group by, Values is what you aggregate
+  and how. <code>df.groupby("department")["salary"].mean()</code> is the Average of salary by department
+  you built today. <b>Same operation, different front end.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why does my pivot table show a blank row?&rdquo;</h5>
+  <p>&ldquo;Because some rows in your data have nothing in that field, and the pivot gives them their own
+  group called <code>(blank)</code>. <b>That is useful, not untidy</b> &mdash; it is telling you how many
+  rows are missing that value.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I make a chart from a pivot table?&rdquo;</h5>
+  <p>&ldquo;Yes &mdash; it is called a pivot chart, and it updates with the pivot. That is the next
+  session, and it is the fastest way in Excel to go from raw rows to a picture somebody else can
+  read.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I edit the numbers inside a pivot table?&rdquo;</h5>
+  <p>&ldquo;No, and that is deliberate. A pivot is a view of your data, not a copy you can type over. If
+  a number is wrong, the data is wrong &mdash; go and fix it there, then refresh.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Does Google Sheets have pivot tables?&rdquo;</h5>
+  <p>&ldquo;Yes, and the four boxes are the same four boxes with slightly different names. The menu
+  layout differs and the summarize option is called something else. <b>If you understand the four boxes,
+  you can find your way around any version.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;My percentages add up to 99.99 per cent.&rdquo;</h5>
+  <p>&ldquo;Rounding. Each one got rounded to two decimals and the leftovers do not cancel out. It is not
+  an error and you should not fix it by editing numbers &mdash; if it matters for a report, show one
+  fewer decimal place.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should I use pivot tables or formulas?&rdquo;</h5>
+  <p>&ldquo;Pivot for exploring &mdash; when you do not yet know what you are looking for and you want to
+  try six breakdowns in two minutes. Formulas for anything that has to sit in a report and update itself,
+  because they recalculate and a pivot does not. <b>Most real work uses both on the same
+  file.</b>&rdquo;</p></div>
+ </div>
+</section>
+</div>
+<div class="day" id="x6">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Excel day 6 &middot; merged class &middot; 90 minutes &middot; full script &middot; closes the module</p>
+  <h1 class="display">One Sheet<br>Somebody Else<br>Can Read</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Five sessions of finding things out. This one is about handing it over &mdash; charts with a mouse,
+   numbers that look like money, and one page a manager could open without you standing next to
+   them.</p>
+  <div class="glance">
+   <div class="gcell"><b>3</b><span>clicks to a chart</span></div>
+   <div class="gcell"><b>2025</b><span>a year that is not a number</span></div>
+   <div class="gcell"><b>1</b><span>sheet, built live</span></div>
+   <div class="gcell"><b>6</b><span>sessions, closed</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">They have already done the hard half of this</h4>
+   <p style="color:var(--sienna)">This class spent five sessions on Data Visualisation. They know what a
+   bar chart is for, why a pie chart is usually a bad idea, and that a truncated axis can lie. <b style="color:var(--sienna)">Do
+   not teach any of that again.</b> Today is only <b style="color:var(--sienna)">where the buttons
+   are</b>, plus the formatting that decides whether anybody reads the sheet at all.</p>
+   <p style="color:var(--sienna)">So the charts half runs fast and the <b style="color:var(--sienna)">assembly</b>
+   half gets the time. Ending the module on a finished page they built themselves is worth more than
+   another chart type.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Say in minute one that the chart-choosing rules are not being repeated.</b> They had a whole
+   visualisation module. Treating them as beginners here wastes twenty minutes and is faintly
+   insulting. <b>Point back to it instead: &ldquo;you already know which chart. Today is where the
+   button is.&rdquo;</b></li>
+   <li><b>Build charts from the pivot tables, not from the raw data.</b> It is two clicks instead of
+   selecting ranges, it updates with the pivot, and it quietly makes Thursday's session look like it
+   was worth doing.</li>
+   <li><b>The number formats matter more than the charts, and they will not believe that.</b> A salary
+   column reading <code>5200000</code> instead of <code>&#8377;52,00,000</code> is the single thing
+   that makes a sheet look like a student exercise. Spend the time.</li>
+   <li><b>The year trap is the one real gotcha of the day.</b> Pull a year out of a date and Excel gives
+   you a number, so a chart of joins per year will happily put a trendline through it and the axis will
+   read <code>2,015</code> with a thousands separator. <b>Catch it live.</b></li>
+   <li><b>Budget the last twenty-five minutes for assembly and protect them.</b> If you overrun on
+   charts, cut a chart type &mdash; do not cut the dashboard. <b>The finished page is the
+   deliverable.</b></li>
+   <li><b>Decide now whether you are closing the module with a round-up.</b> The last five minutes
+   carry six sessions and hand over to Power BI. It is worth saying properly rather than running out of
+   time and waving.</li>
+  </ol>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what a number format actually changes, the
+  year trap and why it happens, and what makes a sheet readable by somebody who was not in the
+  room.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; a number format changes what you see, never what is stored</h5>
+
+   <h6>They met this on day 1 and it comes back as a tool</h6>
+   <p>Day 1: they pressed Decrease Decimal, the cell showed <b>38.2</b>, and it still held
+   <b>38.175</b>. Same idea, now used on purpose.</p>
+   <div class="mcalc">the cell holds          5200000
+you can display it as   5200000
+                        52,00,000
+                        &#8377;52,00,000
+                        52.0 L
+                        5.2e+06
+
+every formula pointing at it still uses 5200000.</div>
+
+   <div class="mth">
+    <h6>The four that matter today</h6>
+    <div class="mrow"><b>comma</b><div>Thousands separators. <b>Excel's default is the international
+    grouping</b> &mdash; 5,200,000. The Indian lakh grouping needs a custom format, and whether it is
+    worth doing depends who is reading.</div></div>
+    <div class="mrow"><b>currency</b><div>Adds the symbol. <b>Accounting</b> format also lines the
+    symbols up down the column and puts zeroes as dashes, which reads better in a
+    report.</div></div>
+    <div class="mrow"><b>percentage</b><div>Multiplies the displayed value by 100 and adds a sign.
+    <b>This one genuinely catches people</b> &mdash; format a cell holding <code>15</code> as a
+    percentage and it shows <b>1500%</b>.</div></div>
+    <div class="mrow warn2"><b>date</b><div>A date is stored as a <b>number of days</b>. Format it as
+    General and you get <code>45678</code>. That is not corruption &mdash; it is what was always
+    underneath.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the year trap</h5>
+
+   <h6>What goes wrong</h6>
+   <p>To chart joins per year you first need a year column, which is <code>=YEAR(L2)</code>. That
+   returns <b>2015</b> &mdash; and 2015 is a <b>number</b>, not a label.</p>
+   <p>So when you chart it, three things happen that nobody asked for. The axis reads
+   <b>2,015</b> with a thousands separator. Excel may offer to put a <b>trendline</b> through the
+   years. And on a scatter or line it will happily <b>interpolate between them</b>.</p>
+
+   <h6>Why it matters beyond being ugly</h6>
+   <p>It is the <code>dept_id</code> problem again, in its last form. <code>dept_id</code> averaged to
+   2.32 because a label was stored as digits. A year is the same thing: <b>digits that are a name, not
+   a quantity</b>.</p>
+   <div class="keyline">
+    <b>Fifth session, same lesson.</b><br><br>
+    Excel will do arithmetic on anything that looks like a number, and it will never ask whether the
+    arithmetic means anything. <b>Average department: 2.32. Average joining year: 2020.4.</b> Both
+    compute. Neither is a fact.
+   </div>
+
+   <h6>The fix, and it is a formatting fix</h6>
+   <p>Format the axis labels as <b>text</b> or turn the thousands separator off, and never accept the
+   trendline. If you want to be thorough, build the year column as
+   <code>=TEXT(L2,"yyyy")</code> so it is a label from the start &mdash; though a pivot grouped by year
+   handles it for you, which is the easier route.</p>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; what makes a sheet readable to somebody who was not there</h5>
+
+   <h6>The test to teach them</h6>
+   <p><b>Could you send this to somebody and say nothing?</b> Not &ldquo;is it correct&rdquo; &mdash;
+   correct is assumed by now. Could a manager open it, read it, and not have to ask you a single
+   question?</p>
+
+   <div class="mth">
+    <div class="mrow"><b>a title</b><div>On the sheet, not just the tab. <b>What this is, and as at
+    when.</b> A number with no date on it is a number nobody can check.</div></div>
+    <div class="mrow"><b>units</b><div>Rupees or lakhs, people or percentages. <b>Say it next to the
+    number</b>, not in your head.</div></div>
+    <div class="mrow"><b>the n</b><div>How many rows this is built on. 200. A summary without its
+    denominator is the most common way a sheet misleads
+    honestly.</div></div>
+    <div class="mrow warn2"><b>the caveat</b><div><b>The 52-lakh earner belongs on the page.</b> One
+    line: <em>one employee accounts for 27% of total salary; averages shown alongside medians.</em>
+    That sentence is the difference between a report and a
+    trap.</div></div>
+   </div>
+
+   <h6>And the thing they will not think of</h6>
+   <p>Put the summary on <b>its own sheet</b>, and put it <b>first</b>. A reader who opens a workbook
+   and lands on 200 rows of raw data will close it. <b>Right-click the tab, Move, to the front.</b> It
+   costs five seconds and it changes who reads your work.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
+ <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
+ a grey box is a direction for you, not words to say.</p></div>
+</section>
+
+<section style="padding-top:8px">
+ <div class="wrap">
+
+  <!-- 0-8 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">0 &ndash; 8</span><h3>What today is, and what it is not</h3></div>
+   <p class="objective">Set the frame in eight minutes. They are not beginners at charts and should not
+   be treated as any.</p>
+
+   <div class="stage">Say this plainly at the top. It changes how the room listens for the rest of the
+   session.</div>
+
+   <div class="speak">
+    <p>You spent five whole sessions on charts in the visualisation module. You know which chart answers
+    which question. You know a pie chart is usually the wrong answer. You know an axis that does not
+    start at zero can tell a true lie.</p>
+    <p><b>I am not teaching any of that again.</b></p>
+    <p>Today is two things. <b>Where the buttons are in Excel</b>, which takes about half an hour. And
+    then the part nobody teaches &mdash; <b>making a sheet that somebody else can actually read.</b></p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;In five sessions of statistics and six of Excel, how many times have you
+    handed your work to anybody?&rdquo;</div>
+    <div class="a"><b>Not once.</b> Everything has been for them, on their own screen, with them there
+    to explain it. <b>That is the gap this session closes.</b></div>
+   </div>
+
+   <div class="speak">
+    <p>Every number you have found in this file, you found for yourself, with yourself there to explain
+    it.</p>
+    <p>In a job that is not what happens. You find something and somebody else reads it, in a different
+    room, next week, without you. <b>Today is about that.</b></p>
+   </div>
+  </div>
+
+  <!-- 8-26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">8 &ndash; 26</span><h3>Charts, from the pivot tables</h3></div>
+   <p class="objective">Fast. Three chart types in eighteen minutes, built off Thursday's pivots.</p>
+
+   <div class="stage">Go to the pivot sheet from Thursday. <b>Build the charts from the pivots, not the
+   raw data</b> &mdash; two clicks instead of selecting ranges, and they update with the pivot.</div>
+
+   <div class="speak">
+    <p>Open Thursday's pivot with department down the side and a count of name.</p>
+    <p>Click any cell inside it. Then <b>Insert</b>, then <b>Column chart</b>, the plain clustered
+    one.</p>
+   </div>
+
+   <div class="screen">a bar chart appears, already labelled with the four departments
+Sales 64 | Tech 49 | HR 45 | Marketing 42</div>
+
+   <div class="speak">
+    <p>It took the labels and the numbers straight from the pivot. No range selecting, no typing.</p>
+    <p>And it is linked &mdash; change the pivot and the chart follows. That is the only reason to build
+    it from a pivot rather than from the raw rows.</p>
+   </div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is missing from that chart?&rdquo;</div>
+    <div class="a">A <b>title</b> and <b>axis labels</b> &mdash; the rule they were given on day 1 of
+    visualisation and should recite back without prompting. <b>If the room says it, that module
+    worked.</b></div>
+   </div>
+
+   <div class="typeit">Fix it &mdash; the three things, same as matplotlib, different buttons</div>
+<pre><code>  click the chart -> the + button on the right
+
+  [x] Chart Title        type: Employees by department
+  [x] Axis Titles        bottom: Department   left: People
+  [ ] Legend             TURN IT OFF - one series, nothing to distinguish
+  [ ] Gridlines          optional, usually off for a report</code></pre>
+
+   <div class="speak">
+    <p>Turn the <b>legend off</b> for a single-series chart. A legend that says
+    &ldquo;Total&rdquo; next to one colour is noise, and noise is what makes a sheet look amateur.</p>
+   </div>
+
+   <div class="stage">Second chart, from the grid pivot. <b>Thirty seconds</b> &mdash; the point is that
+   a second series is where a legend becomes necessary.</div>
+
+   <div class="speak">
+    <p>Now the grid pivot &mdash; department down, rating across. Same two clicks.</p>
+    <p>Four bars per department, four colours, and <b>now you need the legend</b>, because without it
+    nobody knows which colour is Excellent. One series, no legend. More than one, legend.</p>
+   </div>
+
+   <div class="stage">Third, and this is where the year trap happens. <b>Let it.</b></div>
+
+   <div class="speak">
+    <p>Last one. How has hiring changed over the years?</p>
+    <p>We need a year, and our dates are in column L. So on the data sheet, make a year column.</p>
+   </div>
+
+   <div class="typeit">Z1 a label, then Z2, filled down</div>
+<pre><code>=YEAR(L2)</code></pre>
+   <div class="screen">2018
+2024
+2025
+2022
+2022</div>
+
+   <div class="speak">
+    <p>Now build a pivot with <b>year</b> in Rows and a count of name, and chart it as a <b>line</b>,
+    because this is change over time.</p>
+   </div>
+
+   <div class="screen">2015  16     2019  15     2023  17
+2016  14     2020  22     2024  17
+2017  17     2021  24     2025  18
+2018  15     2022  25
+                                    total 200</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Look at the bottom axis. What is wrong with it?&rdquo;</div>
+    <div class="a">It reads <b>2,015</b> with a thousands separator, because Excel thinks the year is a
+    quantity. Somebody may also be offered a <b>trendline</b> through it. <b>Same problem as
+    <code>dept_id</code> averaging to 2.32</b> &mdash; fifth session, same lesson.</div>
+   </div>
+
+   <div class="speak">
+    <p>Two thousand and fifteen, written as <b>two comma zero one five</b>. Excel has decided the year
+    is a quantity.</p>
+    <p>You have met this exactly before. <code>dept_id</code> averaged to 2.32 because a <b>label was
+    stored as digits</b>. A year is the same thing. You can compute the average joining year of this
+    company &mdash; it comes to about 2020.4 &mdash; and it is not a fact about anything.</p>
+    <p>Right-click the axis, <b>Format Axis</b>, <b>Number</b>, and turn the thousands separator
+    off.</p>
+   </div>
+
+   <div class="keyline">
+    <b>Excel will do arithmetic on anything shaped like a number.</b><br><br>
+    It did it to <code>dept_id</code> on day 1. It is doing it to the year now. <b>It has never once
+    asked whether the arithmetic means anything, and it never will.</b>
+   </div>
+  </div>
+
+  <!-- 26-42 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26 &ndash; 42</span><h3>Numbers that look like money</h3></div>
+   <p class="objective">The part they will not expect to matter. It matters more than the charts.</p>
+
+   <div class="stage">Put the raw salary column on screen next to a formatted one. <b>The comparison
+   does the arguing.</b></div>
+
+   <div class="speak">
+    <p>Look at the salary column. <code>47764</code>. <code>86052</code>. <code>5200000</code>.</p>
+    <p>Those are correct and they are hard to read. You have to count digits to tell five million from
+    five hundred thousand, and in a column of two hundred you will get it wrong.</p>
+   </div>
+
+   <div class="typeit">Select the salary column &mdash; Home tab</div>
+<pre><code>  the comma button  (,)     ->  5,200,000
+  the currency dropdown     ->  &#8377;5,200,000
+  Accounting format         ->  &#8377;  5,200,000     symbols aligned, zeroes as -</code></pre>
+
+   <div class="speak">
+    <p>Same numbers. Every formula still reads the same value. <b>Only the display changed</b> &mdash;
+    exactly like Decrease Decimal on day one.</p>
+    <p>And one honest note. Excel's comma gives you <b>5,200,000</b>, the international grouping. If
+    your reader expects <b>52,00,000</b>, that needs a custom format &mdash; worth knowing it exists,
+    not worth twenty minutes today.</p>
+   </div>
+
+   <div class="warn"><b>The percentage trap, and it will happen to somebody.</b> Take the bonus
+   percentage column from Tuesday &mdash; it holds <code>15</code>, meaning fifteen per cent. Format it
+   as Percentage and it shows <b>1500%</b>. Excel assumes a percentage cell holds
+   <code>0.15</code>, not <code>15</code>. <b>Either divide by 100 first, or leave it as a plain number
+   with &ldquo;%&rdquo; in the heading.</b></div>
+
+   <div class="stage">Now data bars &mdash; three clicks, and the one piece of conditional formatting
+   that belongs on a summary.</div>
+
+   <div class="speak">
+    <p>One more. Select the department counts in your pivot &mdash; 64, 49, 45, 42.</p>
+    <p><b>Home</b>, <b>Conditional Formatting</b>, <b>Data Bars</b>, pick a colour.</p>
+   </div>
+
+   <div class="screen">Sales        64  ████████████████████
+Tech         49  ███████████████
+HR           45  ██████████████
+Marketing    42  █████████████</div>
+
+   <div class="speak">
+    <p>A bar chart inside the cells, and the numbers are still there.</p>
+    <p>On Thursday you turned the minus four red with conditional formatting. Same menu, different job
+    &mdash; that one was <b>finding a problem</b>, this one is <b>helping somebody read</b>.</p>
+   </div>
+
+   <div class="warn"><b>One caution, because it is the same lie as a truncated axis.</b> By default the
+   longest bar fills the cell, so the bars are relative to <b>each other</b>, not to zero or to a total.
+   Four bars reading 64, 49, 45, 42 look dramatically different when the real spread is modest.
+   <b>They learned this exact point in visualisation &mdash; it applies here too.</b></div>
+  </div>
+
+  <!-- 42-66 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">42 &ndash; 66</span><h3>Build the summary sheet, live</h3></div>
+   <p class="objective">Twenty-four minutes, and the deliverable of the module. Protect this time.</p>
+
+   <div class="stage">Everybody builds this with you, step by step. <b>If you are running late, cut a
+   chart from the last block, not this.</b></div>
+
+   <div class="speak">
+    <p>Now we put it together. New sheet, and call it <b>Summary</b>.</p>
+    <p>And then the first thing most people never do &mdash; right-click the tab, <b>Move</b>, and send
+    it to the <b>front</b>.</p>
+    <p>Somebody who opens your workbook and lands on two hundred rows of raw data will close it. The
+    first thing they see should be the answer.</p>
+   </div>
+
+   <div class="typeit">The skeleton. Type the text first, numbers after.</div>
+<pre><code>  A1    Employee Summary
+  A2    200 employees  |  as at 21 October 2026  |  source: employees.xlsx
+
+  A4    HEADLINE
+  A5    Total employees             200
+  A6    Total salary bill           &#8377;1,89,74,273
+  A7    Average salary              &#8377;95,830
+  A8    Median salary               &#8377;69,035
+
+  A10   One employee earns &#8377;52,00,000 - 27% of the total salary bill.
+        Medians are shown alongside averages for this reason.</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why is the average and the median both on there?&rdquo;</div>
+    <div class="a">Because they disagree by twenty-six thousand, and <b>that disagreement is the
+    finding</b>. One number on its own would be a trap. They learned this in statistics; today they are
+    acting on it.</div>
+   </div>
+
+   <div class="speak">
+    <p>Read line A10 out loud to yourselves.</p>
+    <p>That is the single most valuable line on the whole sheet, and it is a sentence, not a number.</p>
+    <p>Without it, &ldquo;average salary 95,830&rdquo; is true and misleading. With it, your reader
+    knows exactly what they are looking at. <b>That line is the difference between a report and a
+    trap.</b></p>
+   </div>
+
+   <div class="typeit">Then the breakdown, and the charts underneath</div>
+<pre><code>  A12   BY DEPARTMENT
+        Sales       64    32.0%    avg &#8377;66,640
+        Tech        49    24.5%    avg &#8377;1,89,754   <span class="c">&lt;- flag this one</span>
+        HR          45    22.5%    avg &#8377;56,705
+        Marketing   42    21.0%    avg &#8377;73,954
+
+  A20   paste the department chart here
+  H20   paste the hiring-by-year chart here</code></pre>
+
+   <div class="warn"><b>The Tech average needs its own note and this is the test of whether the module
+   landed.</b> Putting <code>&#8377;1,89,754</code> on a summary sheet with no comment is exactly the
+   mistake every session has been warning about. <b>Add: <em>Tech average is distorted by one
+   52-lakh salary; excluding it the Tech average is &#8377;83,153.</em></b> If a student adds that
+   line unprompted, they have understood the whole module.</div>
+
+   <div class="stage">Last five minutes of the block &mdash; the tidy-up that makes it look
+   deliberate.</div>
+
+   <div class="typeit">Four things, two minutes</div>
+<pre><code>  bold A1, make it 16pt          a title should look like a title
+  View -> Gridlines OFF          the single biggest visual change
+  widen the columns              no ##### anywhere
+  freeze the top rows            if the sheet scrolls at all</code></pre>
+
+   <div class="speak">
+    <p><b>Turn the gridlines off.</b> View tab, untick Gridlines.</p>
+    <p>That one takes two seconds and does more than anything else on the list. A sheet with gridlines
+    looks like a spreadsheet. A sheet without them looks like a document.</p>
+   </div>
+
+   <div class="keyline">
+    <b>The test, and it is the only one that matters now.</b><br><br>
+    Could you email this to somebody and <b>say nothing</b>? Not &ldquo;is it correct&rdquo; &mdash;
+    correct is assumed by session six. <b>Could a manager open it, understand it, and not need to ask
+    you a single question?</b>
+   </div>
+  </div>
+
+  <!-- 66-80 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">66 &ndash; 80</span><h3>Their turn &mdash; one page, their choice</h3></div>
+   <p class="objective">Fourteen minutes. A second summary sheet, on a question you have not answered
+   for them.</p>
+
+   <div class="stage">Put the brief up and stop talking. <b>Walk the room and ask one question at each
+   desk: &ldquo;who is this for?&rdquo;</b></div>
+
+   <div class="speak">
+    <p>Your turn. A second summary sheet, on a question we have <b>not</b> answered together.</p>
+    <p>Pick one of these three and build one page for it.</p>
+   </div>
+
+   <div class="typeit">On the board</div>
+<pre><code>  1.  Which city should we open the next office in?
+
+  2.  Is experience actually rewarded with salary in this company?
+
+  3.  Which department has the best ratings, and does that match
+      what it is paid?
+
+  every page needs:  a title with a date  .  the n (200)
+                     at least one chart   .  at least one caveat line</code></pre>
+
+   <div class="qbox">
+    <div class="q">At each desk, ask only this: &ldquo;who is this for, and what do you want them to
+    do after reading it?&rdquo;</div>
+    <div class="a">Most will not have thought about it. <b>That question is the whole exercise</b>
+    &mdash; a page built for a named reader looks completely different from a page built to show what
+    you can do.</div>
+   </div>
+
+   <div class="warn"><b>What you will find walking the room.</b> Charts with <b>no titles</b>, after an
+   entire visualisation module &mdash; point at it, do not lecture. <b>No caveat line</b>, which is the
+   one to insist on. And somebody will have put <b>every number they know</b> on the page; ask them
+   which three a manager would actually read, and watch them cut it
+   themselves.</div>
+  </div>
+
+  <!-- 80-90 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">80 &ndash; 90</span><h3>Closing the module</h3></div>
+   <p class="objective">Ten minutes. Six sessions, and the handover. Say it properly.</p>
+
+   <div class="typeit">What they can do now that they could not three weeks ago</div>
+<pre><code>  day 1   =   .  ranges  .  $  .  blank is not a zero
+  day 2   sort  .  filter  .  duplicates  .  find every blank
+  day 3   IF  .  IFS  .  COUNTIF / SUMIF / AVERAGEIF  .  COUNTIFS
+  day 4   VLOOKUP  .  IFERROR  .  INDEX+MATCH  .  XLOOKUP
+  day 5   pivot tables  .  and refresh
+  day 6   charts  .  formats  .  a page somebody else can read</code></pre>
+
+   <div class="speak">
+    <p>Six sessions. And every one of them, on the same two hundred rows you have had since the first
+    day of statistics.</p>
+    <p>That was deliberate. By now you know this file well enough to spot when an answer is wrong, and
+    <b>that is the only reason any of the mistakes in this module were visible.</b></p>
+   </div>
+
+   <div class="typeit">The five things that were not about Excel at all</div>
+<pre><code>1.  a blank is not a zero.
+    it showed up in five of the six sessions.
+
+2.  a wrong answer looks exactly like a right one.
+    no dollar sign. one-column sort. "&gt;$Q$10" in quotes.
+    VLOOKUP with no FALSE. Count of salary. every one silent.
+
+3.  a correct formula is not a correct answer.
+    AVERAGEIF on Tech was perfect and useless.
+
+4.  always add the groups back up.
+    64+49+45+42 = 200 correct.  12+186 = 198, and that told us something.
+
+5.  no tool asks whether your question makes sense.
+    average dept_id = 2.32.  average joining year = 2020.4.
+    both compute. neither is a fact.</code></pre>
+
+   <div class="speak">
+    <p>None of those five are Excel. They are all true of pandas, and they will all be true of Power
+    BI.</p>
+   </div>
+
+   <div class="speak">
+    <p>Which is where we go next.</p>
+    <p>Power BI does everything you learned on Thursday &mdash; grouping, aggregating, filtering &mdash;
+    and it does it on millions of rows instead of two hundred, and it builds the charts for you.</p>
+    <p>You will recognise more of it than you expect. A pivot table is a Power BI visual. A
+    <code>SUMIF</code> is a measure. The four boxes are the four wells. <b>Different names, same
+    ideas.</b></p>
+    <p>And the one thing it will not do for you is the line in A10 &mdash; the sentence that says what
+    the number does not. <b>That has been your job since day one and it stays your job.</b></p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+
+  <div class="runsheet">
+ <div class="rs-head">
+  <h4>The session, as a run sheet</h4>
+  <p>Everything in order. Six steps, every click, every number. If you lose your place, this page alone
+  is enough.</p>
+ </div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 8</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">What today is, and is not</p>
+   <p class="rs-say"><b>Say it plainly at the top:</b> &ldquo;you had five sessions on charts. I am not
+   teaching which chart to use again. Today is <b>where the buttons are</b>, and then the part nobody
+   teaches &mdash; making a sheet somebody else can read.&rdquo;</p>
+   <div class="rs-board"><b>Ask:</b> &ldquo;in eleven sessions, how many times have you handed your work
+   to anybody?&rdquo; &mdash; <b>not once.</b> Everything has been on their own screen with them there
+   to explain it. <b>That is the gap this session closes.</b></div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">8 &ndash; 26</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Charts, from the pivots</p>
+   <p class="rs-say"><b>Build from the pivot, not the raw data</b> &mdash; two clicks, no range
+   selecting, and it updates with the pivot.</p>
+   <div class="rs-code"><pre><code>click inside the pivot -> Insert -> Column chart
+   Sales 64 | Tech 49 | HR 45 | Marketing 42
+
+the + button:  [x] Chart Title   [x] Axis Titles
+               [ ] Legend  <- OFF for one series</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;what is missing?&rdquo; &mdash; <b>title and axis
+   labels</b>, the day-1 rule from visualisation. <b>If they say it unprompted, that module
+   worked.</b><br><br>
+   One series &rarr; no legend. More than one &rarr; legend. The grid pivot chart shows why.</div>
+   <p class="rs-do" style="margin-top:12px">Third chart &mdash; and let the year trap happen</p>
+   <div class="rs-code"><pre><code>Z2  =YEAR(L2)    filled down
+pivot: year in Rows, count of name, charted as a LINE
+
+  2015 16 | 2016 14 | 2017 17 | 2018 15 | 2019 15 | 2020 22
+  2021 24 | 2022 25 | 2023 17 | 2024 17 | 2025 18      = 200</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;look at the bottom axis &mdash; what is wrong?&rdquo; It
+   reads <b>2,015</b> with a thousands separator. Excel thinks a year is a quantity.<br><br>
+   <b>Same as dept_id averaging to 2.32</b> &mdash; a label stored as digits. The average joining year
+   is about 2020.4 and it is not a fact about anything. <b>Fifth session, same lesson.</b><br><br>
+   Fix: right-click axis &rarr; Format Axis &rarr; Number &rarr; separator off.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">26 &ndash; 42</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Numbers that look like money</p>
+   <div class="rs-code"><pre><code>select the salary column, Home tab
+
+  the comma (,)        5,200,000
+  currency dropdown    &#8377;5,200,000
+  Accounting           &#8377;  5,200,000    aligned symbols, zeroes as -</code></pre></div>
+   <div class="rs-board"><b>Same numbers, display only</b> &mdash; exactly like Decrease Decimal on day
+   1.<br><br>
+   <b>Honest note:</b> Excel's comma is the international grouping, 5,200,000. The lakh grouping
+   (52,00,000) needs a custom format &mdash; mention it exists, do not spend twenty minutes.</div>
+   <div class="rs-board" style="margin-top:8px"><b>The percentage trap, it will happen:</b> the bonus
+   column holds <code>15</code> meaning 15%. Format as Percentage &rarr; <b>1500%</b>. Excel expects
+   <code>0.15</code>. <b>Divide by 100 first, or keep it plain with % in the heading.</b></div>
+   <p class="rs-do" style="margin-top:12px">Data bars &mdash; three clicks</p>
+   <div class="rs-code"><pre><code>select the counts -> Home -> Conditional Formatting -> Data Bars
+
+  Sales 64 ████████████████████   Tech 49 ███████████████
+  HR    45 ██████████████         Marketing 42 █████████████</code></pre></div>
+   <div class="rs-board">Thursday the same menu turned the &minus;4 <b>red</b> &mdash; that was
+   <b>finding a problem</b>. This is <b>helping somebody read</b>.<br><br>
+   <b>Caution:</b> by default the longest bar fills the cell, so bars are relative to <b>each other,
+   not zero</b>. <b>Same lie as a truncated axis</b> &mdash; they learned it in visualisation.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">42 &ndash; 66</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Build the summary sheet, live</p>
+   <p class="rs-say"><b>Protect these 24 minutes.</b> Running late? <b>Cut a chart, not the
+   dashboard.</b> The finished page is the deliverable of the module.</p>
+   <div class="rs-code"><pre><code>new sheet "Summary", then right-click the tab -> Move -> TO THE FRONT
+
+A1   Employee Summary
+A2   200 employees | as at 21 October 2026 | source: employees.xlsx
+
+A5   Total employees      200
+A6   Total salary bill    &#8377;1,89,74,273
+A7   Average salary       &#8377;95,830
+A8   Median salary        &#8377;69,035
+
+A10  One employee earns &#8377;52,00,000 - 27% of the total salary bill.
+     Medians are shown alongside averages for this reason.</code></pre></div>
+   <div class="rs-board"><b>Ask:</b> &ldquo;why both the average and the median?&rdquo; &mdash; they
+   disagree by twenty-six thousand and <b>that disagreement is the finding</b>.<br><br>
+   <b>Read A10 out loud.</b> It is the most valuable line on the sheet and it is a <b>sentence, not a
+   number</b>. Without it, &ldquo;average 95,830&rdquo; is true and misleading. <b>That line is the
+   difference between a report and a trap.</b></div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>A12  BY DEPARTMENT
+     Sales      64   32.0%   avg &#8377;66,640
+     Tech       49   24.5%   avg &#8377;1,89,754   <span class="o">&lt;- needs its own note</span>
+     HR         45   22.5%   avg &#8377;56,705
+     Marketing  42   21.0%   avg &#8377;73,954
+
+A20  department chart        H20  hiring-by-year chart</code></pre></div>
+   <div class="rs-board"><b>This is the test of whether the module landed.</b> Putting
+   &#8377;1,89,754 on a summary with no comment is the exact mistake every session warned about.
+   <b>Add: <em>Tech average is distorted by one 52-lakh salary; excluding it, &#8377;83,153.</em></b>
+   A student who adds that unprompted has understood the whole module.</div>
+   <div class="rs-code" style="margin-top:12px"><pre><code>bold A1, 16pt  .  View -> Gridlines OFF  .  widen columns  .  freeze</code></pre></div>
+   <div class="rs-board"><b>Gridlines off is two seconds and does more than anything else.</b> With
+   them it looks like a spreadsheet. Without them it looks like a document.<br><br>
+   <b>The test:</b> could you email this and <b>say nothing</b>?</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">66 &ndash; 80</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Their turn &mdash; one page, their choice</p>
+   <div class="rs-code"><pre><code>1. which city should we open the next office in?
+2. is experience actually rewarded with salary here?
+3. which department has the best ratings, and does that match its pay?
+
+every page: a title with a date . the n (200)
+            at least one chart  . at least one caveat line</code></pre></div>
+   <div class="rs-board"><b>At each desk ask only this:</b> &ldquo;who is this for, and what do you
+   want them to do after reading it?&rdquo; Most will not have thought about it. <b>That question is
+   the whole exercise.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>What you will find:</b> charts with <b>no titles</b>
+   after a whole visualisation module &mdash; point, do not lecture. <b>No caveat line</b> &mdash;
+   insist on that one. And somebody with <b>every number they know</b> on the page; ask which three a
+   manager would read and <b>watch them cut it themselves</b>.</div>
+  </div></div>
+
+ <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">80 &ndash; 90</span></div>
+  <div class="rs-body">
+   <p class="rs-topic">Closing the module</p>
+   <div class="rs-code"><pre><code>THE FIVE THINGS THAT WERE NOT ABOUT EXCEL
+
+1. a blank is not a zero.                 five of the six sessions
+2. a wrong answer looks exactly like a right one.
+   no $ . one-column sort . "&gt;$Q$10" . VLOOKUP with no FALSE
+   . Count of salary.  every one of them silent.
+3. a correct formula is not a correct answer.   AVERAGEIF on Tech
+4. always add the groups back up.   64+49+45+42=200 . 12+186=198
+5. no tool asks whether your question makes sense.
+   average dept_id 2.32 . average joining year 2020.4</code></pre></div>
+   <div class="rs-board"><b>Say the point of the one file:</b> six sessions on the same 200 rows was
+   deliberate. <b>They know it well enough to spot a wrong answer &mdash; which is the only reason any
+   of the mistakes were visible.</b></div>
+   <div class="rs-board" style="margin-top:8px"><b>Hand over to Power BI:</b> it does Thursday's work
+   on millions of rows and draws the charts for you. <b>A pivot is a visual. A SUMIF is a measure. The
+   four boxes are the four wells.</b> Different names, same ideas.<br><br>
+   <b>And the one thing it will not do is write line A10</b> &mdash; the sentence saying what the
+   number does not. <b>That has been their job since day one and it stays their job.</b></div>
+  </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions &mdash; the last five are about the whole
+  module, not just today. Numbers 3, 7 and 11 are the ones that matter.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>You formatted a salary as currency. What changed in the cell?</q>
+    <div class="ans"><b>Only what you see.</b> The cell still holds the same number and every formula
+    pointing at it still uses the same number. Same as Decrease Decimal on day
+    1.</div></div></div>
+
+   <div class="aq"><div>
+    <q>When should a chart have a legend and when should it not?</q>
+    <div class="ans"><b>One series, no legend</b> &mdash; there is nothing to distinguish.
+    <b>More than one, legend</b>, or nobody knows which colour is which.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Your year axis reads 2,015. What has Excel assumed, and where have you seen this before?</q>
+    <div class="ans">That the year is a <b>quantity</b> rather than a label. <b>Same as
+    <code>dept_id</code> averaging to 2.32</b> &mdash; digits that are a name, not a
+    number.</div></div></div>
+
+   <div class="aq"><div>
+    <q>I formatted a cell holding <code>15</code> as a percentage and it says 1500%. Why?</q>
+    <div class="ans">Excel expects a percentage cell to hold <b>0.15</b>, not 15. Divide by 100 first,
+    or keep it as a plain number with the % in the heading.</div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the problem with data bars, by default?</q>
+    <div class="ans">The longest bar fills the cell, so bars are relative to <b>each other, not to
+    zero</b>. A modest spread can look dramatic. <b>Same lie as a truncated
+    axis.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Why does the summary sheet go first in the workbook?</q>
+    <div class="ans">Because somebody who opens it and lands on <b>200 rows of raw data will close
+    it</b>. The first thing a reader sees should be the answer.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why is the median on the summary next to the average?</q>
+    <div class="ans">Because they <b>disagree by twenty-six thousand</b>, and that disagreement is the
+    finding. Either number alone would be a trap.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Four things every summary page needs.</q>
+    <div class="ans">A <b>title with a date</b>. The <b>units</b>. The <b>n</b> &mdash; how many rows it
+    is built on. And at least one <b>caveat line</b> saying what the numbers do not
+    say.</div></div></div>
+
+   <div class="aq"><div>
+    <q>You put &#8377;1,89,754 as the Tech average on a summary. What else must go on the page?</q>
+    <div class="ans">That it is <b>distorted by one 52-lakh salary</b>, and that without it the Tech
+    average is &#8377;83,153. <b>A number like that on a report with no note is the mistake this whole
+    module has been warning about.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the test for whether a sheet is finished?</q>
+    <div class="ans"><b>Could you send it to somebody and say nothing?</b> Not &ldquo;is it
+    correct&rdquo; &mdash; could a manager open it, read it, and not have to ask you a single
+    question.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Across six sessions, how many times did a blank cell cause a wrong answer?</q>
+    <div class="ans"><b>Five of the six.</b> The gap column, <code>AVERAGE</code> dividing by 199,
+    <code>COUNTIF</code> giving 198, the <code>IF</code> calling Manoj below average, and Count of
+    salary in the pivot. <b>A blank is not a zero.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>Name three mistakes from this module that produced no error message.</q>
+    <div class="ans">Any three of: the missing <b>dollar sign</b>; the <b>one-column sort</b>;
+    <code>"&gt;$Q$10"</code> inside quotes returning 0; <b>VLOOKUP with no FALSE</b>; the lookup block
+    not locked; and <b>Count of salary</b> in a pivot. <b>Every one looked like a real
+    answer.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>What is the one thing no tool will ever do for you?</q>
+    <div class="ans"><b>Ask whether your question makes sense.</b> Average <code>dept_id</code> is 2.32.
+    Average joining year is 2020.4. Both compute perfectly and neither is a fact about
+    anything.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why can't Excel show 52,00,000 with the comma button?&rdquo;</h5>
+  <p>&ldquo;Because the comma button uses the international grouping &mdash; every three digits. The
+  Indian lakh-crore grouping needs a custom number format. It is worth knowing it exists; whether you
+  use it depends entirely on who is reading your sheet, and for most company reporting the
+  international one is what is expected.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is this what a dashboard is?&rdquo;</h5>
+  <p>&ldquo;It is the simplest version of one. A real dashboard adds slicers, so the reader can filter it
+  themselves, and it refreshes from live data rather than a file. That is Power BI, and it is the next
+  module. <b>But the thinking is identical</b> &mdash; one page, a named reader, the headline first,
+  and the caveats visible.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Should I use pie charts at all?&rdquo;</h5>
+  <p>&ldquo;You answered this yourselves in the visualisation module. Rarely &mdash; people compare
+  lengths well and angles badly. The one case it works is a small number of parts of one whole where
+  you only need a rough sense, like our four departments. With more than about five slices it becomes
+  unreadable.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I paste an Excel chart into PowerPoint?&rdquo;</h5>
+  <p>&ldquo;Yes, and you get a choice when you paste. <b>Link it</b> and it updates when the Excel file
+  changes, but breaks if the file moves. <b>Paste it as a picture</b> and it is frozen for ever. For a
+  deck you will present once, paste the picture &mdash; a broken link in front of a room is
+  worse.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;How do I stop somebody editing my summary sheet?&rdquo;</h5>
+  <p>&ldquo;Review tab, Protect Sheet. It stops accidental typing, not a determined person. If the
+  numbers genuinely must not change, send a PDF. <b>A protected sheet is a courtesy, not
+  security.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why did we never use macros or VBA?&rdquo;</h5>
+  <p>&ldquo;Because you already have a better programming language. VBA exists so that people who only
+  have Excel can automate it; you have Python. <b>No fresher analyst job will ask you for VBA</b>, and
+  the time was better spent on lookups and pivots, which they all ask about.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is Excel or Python better for this?&rdquo;</h5>
+  <p>&ldquo;Wrong question, and it is worth answering properly because an interviewer may ask it.
+  <b>Excel for data a human will look at and numbers somebody wants to change while you watch. Python
+  for data a human cannot look at and for anything you have to do every week.</b> The honest answer is
+  that you will use both on the same file, often in the same hour.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Do I put Excel on my CV?&rdquo;</h5>
+  <p>&ldquo;Yes, and be specific. &lsquo;Excel&rsquo; on a CV means nothing. <b>&lsquo;Pivot tables,
+  VLOOKUP and INDEX-MATCH, conditional formatting, summary reporting&rsquo;</b> means you have actually
+  used it. And you can now answer follow-up questions on every one of those, which is the part that
+  matters in the interview.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What should I practise before Power BI?&rdquo;</h5>
+  <p>&ldquo;One thing: <b>pivot tables</b>. Build four or five from this file on questions nobody asked
+  you. Power BI is pivot tables with better charts and more data, so every minute there pays off twice.
+  If you have extra time after that, VLOOKUP &mdash; because that is what the interview will
+  ask.&rdquo;</p></div>
+ </div>
+</section>
+</div>
 <div class="day" id="ab23">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -30691,7 +33383,7 @@ df[&quot;dept_id&quot;].mean()                     <span class="c"># 2.32  &lt;-
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","x4","x5","x6","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
