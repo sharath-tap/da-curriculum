@@ -857,9 +857,9 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="foot">Full script &middot; 19 functions</span></button>
 
     <button class="dcard full" data-go="n2">
-     <span class="id">N2</span><h3>Operations and Aggregation</h3>
-     <p>Arithmetic across arrays, sum/mean/min/max, the axis rule, and broadcasting.</p>
-     <span class="foot">Full script &middot; 16 functions</span></button>
+     <span class="id">N2</span><h3>Slicing, Arithmetic and Aggregation</h3>
+     <p>Index and slice a line and a matrix, maths on a whole array, sum/mean/min/max/std/cumsum, argmin, median, and the axis rule.</p>
+     <span class="foot">Full script &middot; 12 functions</span></button>
 
     <button class="dcard full" data-go="n3">
      <span class="id">N3</span><h3>Filtering, Sorting and Reshaping</h3>
@@ -33861,25 +33861,27 @@ q.sum(axis=1)                <span class="c"># per row            axis=1 goes AC
 <div class="day" id="n2">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">N2 &middot; July B2 only &middot; 90 minutes &middot; fast pace</p>
-  <h1 class="display">Operations<br>and Aggregation</h1>
+  <p class="tag" style="margin-bottom:16px">N2 &middot; as delivered &middot; 87 minutes &middot; steady pace</p>
+  <h1 class="display">Slicing, Arithmetic<br>and Aggregation</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:660px">
-   Doing maths across whole arrays, summarising them down to numbers, and the one idea that confuses
-   everybody &mdash; <code>axis</code>.
+   Pulling pieces out of an array, doing maths on a whole array at once, and squeezing an array down
+   to a single number &mdash; plus the two traps: <b>nothing is saved unless you store it</b>, and
+   <b>some things are functions, not methods</b>.
   </p>
 
   <div class="glance">
-   <div class="gcell"><b>90</b><span>minutes</span></div>
-   <div class="gcell"><b>16</b><span>functions</span></div>
-   <div class="gcell"><b>22</b><span>min on axis</span></div>
-   <div class="gcell"><b>4</b><span>groups</span></div>
+   <div class="gcell"><b>87</b><span>minutes</span></div>
+   <div class="gcell"><b>12</b><span>functions</span></div>
+   <div class="gcell"><b>9</b><span>slice forms</span></div>
+   <div class="gcell"><b>3</b><span>groups</span></div>
   </div>
 
   <div class="pace">
-   <b>Pace note.</b> Blocks one and two are quick &mdash; sixty seconds a function. <b>Block three is
-   the exception.</b> The axis rule gets twenty-two minutes because it is the single most confused idea
-   in NumPy and it reappears in every Pandas session afterwards. Do not compress it to buy time
-   elsewhere.
+   <b>Pace note.</b> The first half is slicing &mdash; it feels like Python revision, so it moves fast
+   and they stay confident. <b>The second half is where the real content is:</b> arithmetic on a whole
+   array, then the aggregate functions. Protect the last twenty minutes &mdash; <code>std</code>,
+   <code>argmin</code>, <code>median</code> and <code>cumsum</code> all land there and they are the
+   ones that come up again in Pandas.
   </div>
  </div>
 </section>
@@ -33888,24 +33890,33 @@ q.sum(axis=1)                <span class="c"># per row            axis=1 goes AC
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Draw the axis diagram on the board before they arrive</b> (below). You will point at it for
-   twenty minutes straight.</li>
-   <li><b>Decide your axis phrasing and stick to it all session.</b> Mixing &ldquo;down the rows&rdquo;
-   and &ldquo;along axis zero&rdquo; mid-explanation is what loses people.</li>
-   <li><b>Run the broadcasting block yourself.</b> The column-vector example is the one that looks like
-   magic if you have not seen it.</li>
+   <li><b>Draw the index ruler on the board before they arrive</b> (below). Positive on top, negative
+   underneath. You will point at it for the whole first half.</li>
+   <li><b>Know the two error messages by heart.</b> You are going to trigger both of them on purpose:
+   <code>can only concatenate list (not "int") to list</code> and
+   <code>'numpy.ndarray' object has no attribute 'median'</code>. They are the lesson, not an accident.</li>
+   <li><b>Decide your axis phrasing and stick to it.</b> Mixing &ldquo;down the rows&rdquo; and
+   &ldquo;along axis zero&rdquo; mid-sentence is what loses people.</li>
+   <li><b>They have not seen array-plus-array yet</b> and they do not need it today. One array and one
+   number is the whole arithmetic story for this session. Park anything shape-related.</li>
   </ol>
 
   <div class="lbl">On the board &mdash; leave it up all session</div>
-<pre><code>                 axis=0  goes DOWN
-                     |
-                     v
-              col0  col1  col2
-    row0       10    20    30      ---&gt;  axis=1 goes ACROSS
-    row1       40    50    60      ---&gt;
+<pre><code>    ar  =  [ 10   20   30   40   50 ]
 
-    a.sum(axis=0)  =  [50 70 90]     one number per COLUMN
-    a.sum(axis=1)  =  [60 150]       one number per ROW
+           0    1    2    3    4        &lt;-- positive index
+          -5   -4   -3   -2   -1        &lt;-- negative index
+
+    ar[1:4]      take from 1, STOP BEFORE 4      [20 30 40]
+    ar[::2]      every 2nd one                   [10 30 50]
+
+         ar[ start : stop : step ]
+                  stop is never included
+
+
+    axis=0 goes DOWN            col0  col1  col2
+        |                row0    10    20    30   ---&gt; axis=1 ACROSS
+        v                row1    40    50    60   ---&gt;
 
     THE RULE:  axis is the direction that DISAPPEARS</code></pre>
  </div>
@@ -33914,339 +33925,382 @@ q.sum(axis=1)                <span class="c"># per row            axis=1 goes AC
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-8 -->
+  <!-- 0-6 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 – 8</span><h3>Set up and recap</h3></div>
+   <div class="bhead"><span class="clock">0 – 6</span><h3>Recap and today&rsquo;s arrays</h3></div>
 
    <div class="typeit">Type this &mdash; used for the whole session</div>
-<pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+<pre><code>import numpy as np
 
-b = np.array([15, 8, 42, 4, 23])
+ar = np.array([10, 20, 30, 40, 50])
 
-a = np.array([[10, 20, 30],
-              [40, 50, 60]])</code></pre>
-
-   <div class="speak">
-    <p>Last session you built arrays and pulled pieces out. Today you do maths on them.</p>
-    <p>Three things: <b>arithmetic</b> across a whole array, <b>aggregation</b> down to a single number,
-    and <b>axis</b> &mdash; which is how you do that on a table instead of a line. The third one is the
-    session; the first two are quick.</p>
-   </div>
-  </div>
-
-  <!-- 8-26 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">8 – 26</span><h3>Arithmetic &mdash; everything is element-wise</h3></div>
-   <p class="objective">Eighteen minutes. Brisk &mdash; the idea is identical for every operator.</p>
-
-   <div class="fngroup">
-    <h4>Array and a single number</h4>
-
-    <div class="fn">
-     <span class="sig">arr + &minus; * / value</span>
-     <p class="does">Applies to <b>every element</b>. No loop, ever.</p>
-     <div class="ex">b                         <span class="o">[15  8 42  4 23]</span>
-
-b + 10                    <span class="o">[25 18 52 14 33]</span>
-b * 2                     <span class="o">[30 16 84  8 46]</span>
-b / 2                     <span class="o">[ 7.5  4.  21.   2.  11.5]</span></div>
-     <div class="gotcha"><code>/</code> always gives <b>floats</b>, even when it divides evenly.</div>
-    </div>
-
-    <div class="fn">
-     <span class="sig">arr ** &nbsp; // &nbsp; %</span>
-     <p class="does">Power, floor division, remainder &mdash; all element-wise too.</p>
-     <div class="ex">b ** 2                    <span class="o">[ 225   64 1764   16  529]</span>
-b // 2                    <span class="o">[ 7  4 21  2 11]</span>
-b % 2                     <span class="o">[1 0 0 0 1]</span></div>
-     <div class="gotcha"><code>% 2</code> gives 1 for odd, 0 for even &mdash; the standard way to
-     split a column by parity.</div>
-    </div>
-   </div>
-
-   <div class="fngroup">
-    <h4>Array and another array</h4>
-
-    <div class="fn">
-     <span class="sig">arr1 + arr2</span>
-     <p class="does">Adds them <b>position by position</b>. Same shape required.</p>
-     <div class="ex">c = np.array([1, 2, 3, 4, 5])
-
-b + c                     <span class="o">[16 10 45  8 28]</span></div>
-     <div class="gotcha">Mismatched shapes raise a <b>ValueError about broadcasting</b>. When you see
-     that word, print both shapes &mdash; the answer is always there.</div>
-    </div>
-   </div>
-
-   <div class="fngroup">
-    <h4>Maths functions</h4>
-
-    <div class="fn">
-     <span class="sig">np.sqrt() &nbsp; np.log() &nbsp; np.exp() &nbsp; np.abs()</span>
-     <p class="does">Also element by element.</p>
-     <div class="ex">np.sqrt(np.array([4, 9, 16]))     <span class="o">[2. 3. 4.]</span></div>
-    </div>
-
-    <div class="fn">
-     <span class="sig">np.round(arr, decimals)</span>
-     <p class="does">Rounds every value.</p>
-     <div class="ex">np.round(b / 3, 2)        <span class="o">[ 5.    2.67 14.    1.33  7.67]</span></div>
-    </div>
-   </div>
-
-   <div class="pace"><b>Say once and move on:</b> every operator and every maths function works the same
-   way &mdash; it goes to each element. You do not need to memorise a list. If it makes sense on one
-   number, it works on the whole array.</div>
-  </div>
-
-  <!-- 26-42 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">26 – 42</span><h3>Aggregation &mdash; array down to one number</h3></div>
-   <p class="objective">Sixteen minutes. Nine functions, all the same shape of idea.</p>
-
-   <div class="fngroup">
-    <h4>The six you will use daily</h4>
-
-    <div class="fn">
-     <span class="sig">arr.sum() .mean() .min() .max()</span>
-     <p class="does">Reduce the whole array to a single value.</p>
-     <div class="ex">b.sum()                   <span class="o">92</span>
-b.mean()                  <span class="o">18.4</span>
-b.min()                   <span class="o">4</span>
-b.max()                   <span class="o">42</span></div>
-    </div>
-
-    <div class="fn">
-     <span class="sig">arr.std() &nbsp;/&nbsp; np.median(arr)</span>
-     <p class="does">Spread, and the middle value.</p>
-     <div class="ex">b.std()                   <span class="o">13.46</span>
-np.median(b)              <span class="o">15.0</span></div>
-     <div class="gotcha"><b>median is not a method</b> &mdash; it is <code>np.median(b)</code>, not
-     <code>b.median()</code>. Odd inconsistency, and everyone trips on it once.</div>
-    </div>
-   </div>
-
-   <div class="fngroup">
-    <h4>Position and running totals</h4>
-
-    <div class="fn">
-     <span class="sig">arr.argmin() &nbsp;/&nbsp; arr.argmax()</span>
-     <p class="does">The <b>position</b> of the smallest or largest value, not the value itself.</p>
-     <div class="ex">b                         <span class="o">[15  8 42  4 23]</span>
-
-b.max()                   <span class="o">42</span>      the value
-b.argmax()                <span class="o">2</span>       where it is</div>
-     <div class="gotcha">Use it to find <b>which</b> row had the highest sales, then index back into
-     your other data with that position.</div>
-    </div>
-
-    <div class="fn">
-     <span class="sig">arr.cumsum()</span>
-     <p class="does">Running total &mdash; same length, each value is everything so far.</p>
-     <div class="ex">b.cumsum()                <span class="o">[15 23 65 69 92]</span></div>
-     <div class="gotcha">Standard for running revenue or cumulative counts over time.</div>
-    </div>
-   </div>
-  </div>
-
-  <!-- 42-64 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">42 – 64</span><h3>axis &mdash; the one that matters</h3></div>
-   <p class="objective">Twenty-two minutes. Slow down here. This reappears in every Pandas session
-   for the rest of the course.</p>
+sales = np.array([[10, 20, 30],
+                  [40, 50, 60],
+                  [70, 80, 90]])</code></pre>
 
    <div class="speak">
-    <p>Everything so far was a straight line of numbers. Now a table &mdash; and a new question appears
-    that did not exist before.</p>
-    <p>If I ask for the sum of this table, do I want the total? Or a total for each column?
-    Or a total for each row? <b>Three different questions, and NumPy needs you to say which.</b>
-    That is all <code>axis</code> is.</p>
+    <p>Last session you made arrays and asked them questions &mdash; how many dimensions, what shape,
+    what size, what type. You did not take anything out of them yet.</p>
+    <p>Today, three things. <b>One</b>, getting pieces out &mdash; one value, or a range of values.
+    <b>Two</b>, doing maths on the whole array in one line. <b>Three</b>, collapsing the array down to
+    a single number: total, average, biggest, smallest.</p>
+    <p>You already know slicing from Python lists. So the first part is you discovering that the same
+    thing works here. The new material starts after that.</p>
+   </div>
+  </div>
+
+  <!-- 6-14 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">6 – 14</span><h3>One value at a time &mdash; index</h3></div>
+   <p class="objective">Eight minutes. Fast, call-and-response, keep pointing at the board.</p>
+
+<pre><code>ar[0]      <span class="c"># 10    first</span>
+ar[3]      <span class="c"># 40    fourth</span>
+ar[-1]     <span class="c"># 50    last</span>
+ar[-2]     <span class="c"># 40    second from the end</span></code></pre>
+
+   <div class="speak">
+    <p>Counting starts at zero. <code>ar[0]</code> is the first one, not the second one. This is not new
+    &mdash; it was the same for lists and the same for strings.</p>
+    <p>Now the other direction. If I want the last value, I could count and say <code>ar[4]</code>. But
+    what if the array has nine hundred values? Do you want to count them? No. So you count
+    <b>backwards</b> &mdash; <code>-1</code> is the last one. Always. It does not matter how long the
+    array is.</p>
    </div>
 
-   <div class="fngroup">
-    <h4>Three questions, three answers</h4>
+   <div class="askq">
+    <div class="aq">I want 40. Give me two different ways to ask for it.</div>
+    <div class="aq">What is <code>ar[-5]</code>? And what would <code>ar[-6]</code> do?</div>
+   </div>
 
-    <div class="fn">
-     <span class="sig">a.sum()</span>
-     <p class="does">No axis &mdash; the grand total. Everything collapses to one number.</p>
-     <div class="ex">a                         <span class="o">[[10 20 30]</span>
-                          <span class="o"> [40 50 60]]</span>
+   <div class="keyline">Positive counts from the front and starts at 0. Negative counts from the back
+   and starts at &minus;1. There is no &minus;0.</div>
+  </div>
 
-a.sum()                   <span class="o">210</span></div>
-    </div>
+  <!-- 14-28 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">14 – 28</span><h3>A range of values &mdash; slicing</h3></div>
+   <p class="objective">Fourteen minutes. The &ldquo;stop is not included&rdquo; rule needs to be said
+   three times in three different ways.</p>
 
-    <div class="fn">
-     <span class="sig">a.sum(axis=0)</span>
-     <p class="does"><b>Down the rows.</b> One number per column.</p>
-     <div class="ex">a.sum(axis=0)             <span class="o">[50 70 90]</span>
+   <h4>On a straight line of numbers</h4>
+<pre><code>ar[1:4]    <span class="c"># [20 30 40]   from 1, stop BEFORE 4</span>
+ar[:3]     <span class="c"># [10 20 30]   no start = from the beginning</span>
+ar[2:]     <span class="c"># [30 40 50]   no stop  = all the way to the end</span>
+ar[-3:]    <span class="c"># [30 40 50]   last three</span></code></pre>
 
-  10 + 40 = 50
-  20 + 50 = 70
-  30 + 60 = 90</div>
-     <div class="gotcha">Three columns in, three numbers out. <b>The rows disappeared.</b></div>
-    </div>
+   <div class="speak">
+    <p>Two numbers with a colon between them. The first is where you start. The second is where you
+    stop &mdash; and here is the part everybody gets wrong: <b>the stop is not included.</b></p>
+    <p><code>ar[1:4]</code> gives you index 1, 2 and 3. Not 4. Think of it as &ldquo;start at 1, stop
+    <i>before</i> 4&rdquo;. Say it that way every single time and they will stop making the mistake.</p>
+    <p>If you leave the left side empty it means from the start. Leave the right side empty, it means
+    to the end. And you can use negative numbers here too &mdash; <code>ar[-3:]</code> means
+    &ldquo;start three from the back and keep going&rdquo;, which is the last three values.</p>
+   </div>
 
-    <div class="fn">
-     <span class="sig">a.sum(axis=1)</span>
-     <p class="does"><b>Across the columns.</b> One number per row.</p>
-     <div class="ex">a.sum(axis=1)             <span class="o">[ 60 150]</span>
+   <div class="warn"><b>Do not mix directions.</b> Something like <code>ar[-3:2]</code> will confuse
+   them and usually returns an empty array, because you are asking it to walk forwards from a point
+   that is already past the stop. Keep negatives on their own.</div>
 
-  10 + 20 + 30 = 60
-  40 + 50 + 60 = 150</div>
-     <div class="gotcha">Two rows in, two numbers out. <b>The columns disappeared.</b></div>
-    </div>
+   <h4>On a matrix &mdash; row first, then column</h4>
+<pre><code>sales[0]         <span class="c"># [10 20 30]    the whole first row</span>
+sales[-1]        <span class="c"># [70 80 90]    the last row</span>
+sales[1, 2]      <span class="c"># 60            row 1, column 2 - ONE value</span>
+sales[:, 0]      <span class="c"># [10 40 70]    every row, column 0 - a whole column</span>
+sales[0:2, 0:2]  <span class="c"># [[10 20]</span>
+                 <span class="c">#  [40 50]]     top-left corner block</span></code></pre>
+
+   <div class="speak">
+    <p>A matrix works differently, and this is where you slow down. Now you need <b>two</b> pieces of
+    information, separated by a comma: which row, then which column. Row first. Always row first.</p>
+    <p>Look at <code>sales[:, 0]</code>. The colon on its own means &ldquo;all of them&rdquo;. So that
+    reads as &ldquo;every row, but only column zero&rdquo; &mdash; and that gives you a full column.
+    That one line is how you pull out a single column of data, and you will use it constantly.</p>
+   </div>
+
+   <div class="askq">
+    <div class="aq">Give me 80 in one line.</div>
+    <div class="aq">Give me the middle column.</div>
+    <div class="aq">What is the difference between <code>sales[1]</code> and <code>sales[:, 1]</code>?</div>
+   </div>
+  </div>
+
+  <!-- 28-34 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">28 – 34</span><h3>The third number &mdash; step</h3></div>
+   <p class="objective">Six minutes. Quick addition to something they already have.</p>
+
+<pre><code>ar[::2]     <span class="c"># [10 30 50]           every second value</span>
+ar[0:5:2]   <span class="c"># [10 30 50]           the same thing, written out fully</span>
+ar[1::2]    <span class="c"># [20 40]              every second, starting from 1</span>
+ar[::-1]    <span class="c"># [50 40 30 20 10]     step backwards = reversed</span></code></pre>
+
+   <div class="speak">
+    <p>There is a third slot. Start, stop, and now <b>step</b> &mdash; how big a jump to take each time.
+    By default the step is one, which is why you have never had to think about it.</p>
+    <p>Put a 2 there and it takes every second value. And if you leave start and stop empty, it just
+    runs the whole array with that jump &mdash; <code>ar[::2]</code>.</p>
+    <p>Now the fun one. What if the step is <b>negative</b>? It walks backwards. So
+    <code>ar[::-1]</code> hands you the whole array reversed. One line, no loop.</p>
+   </div>
+
+   <div class="keyline"><code>ar[start : stop : step]</code> &mdash; leave any of the three empty and
+   NumPy fills in the sensible default: beginning, end, and one.</div>
+  </div>
+
+  <!-- 34-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">34 – 44</span><h3>Maths on a whole array at once</h3></div>
+   <p class="objective">Ten minutes. This is the first genuinely new idea of the day. Do the list
+   comparison &mdash; it is what makes the point land.</p>
+
+<pre><code>ar + 5      <span class="c"># [15 25 35 45 55]</span>
+ar - 5      <span class="c"># [ 5 15 25 35 45]</span>
+ar * 2      <span class="c"># [ 20  40  60  80 100]</span>
+ar / 10     <span class="c"># [1. 2. 3. 4. 5.]      division always gives decimals</span></code></pre>
+
+   <div class="speak">
+    <p>Write <code>ar + 5</code>. One number, one array, and the 5 reaches <b>every single element</b>.
+    You did not write a loop. You did not touch them one at a time.</p>
+    <p>Notice the division. Even when it divides perfectly, you get decimals back &mdash; 1.0, not 1.
+    That is normal and it is worth them noticing now so it does not surprise them later.</p>
+   </div>
+
+   <div class="warn"><b>The trap &mdash; do this on purpose.</b> Run <code>ar + 5</code>, then on the
+   next line <code>print(ar)</code>. The array is <b>unchanged</b>: <code>[10 20 30 40 50]</code>.
+   Ask them why. Because you never stored the answer anywhere. To keep it you have to write
+   <code>ar = ar + 5</code>. Most of them will have assumed the array changed by itself.</div>
+
+   <div class="stage">
+    <div class="lbl">Why NumPy exists &mdash; try the same thing on a list</div>
+<pre><code>marks = [10, 20, 30]
+marks + 5     <span class="c"># TypeError: can only concatenate list (not "int") to list</span>
+marks * 2     <span class="c"># [10, 20, 30, 10, 20, 30]   repeats it - not what you wanted!</span></code></pre>
+   </div>
+
+   <div class="speak">
+    <p>Now the same thing on an ordinary Python list. It breaks. The error says it can only
+    <i>concatenate</i> &mdash; the plus sign on a list means &ldquo;join two lists&rdquo;, so when you
+    give it a number it has no idea what you want.</p>
+    <p>And multiply is worse, because it does not error &mdash; it quietly <b>repeats the list</b>.
+    That is a wrong answer, which is more dangerous than an error.</p>
+    <p>So: this is the reason NumPy exists. Arithmetic on a whole column of numbers. A list cannot do
+    it. An array can.</p>
    </div>
 
    <div class="qbox">
-    <div class="q">The rule to give them, and to repeat three times</div>
-    <div class="a"><b>axis is the direction that disappears.</b><br>
-    Sum along axis 0 and the rows vanish &mdash; you are left with one value per column.
-    Sum along axis 1 and the columns vanish. Students who memorise &ldquo;0 is down&rdquo; forget it in
-    a week. Students who learn <b>&ldquo;the axis you name is the one that gets collapsed&rdquo;</b>
-    can work it out forever.</div>
-   </div>
+    <div class="lbl">Worked example &mdash; give everyone a 10% hike</div>
+<pre><code>salary = np.array([10000, 25000, 38000])
 
-   <div class="stage">Point at the board diagram, not the screen, while you say that. Then have the room
-   predict the next three outputs <b>before</b> you run them.</div>
-
-   <div class="fngroup">
-    <h4>It works on every aggregation</h4>
-
-    <div class="fn">
-     <span class="sig">a.mean(axis=0) &nbsp; a.max(axis=1) &nbsp; a.min(axis=0)</span>
-     <p class="does">Same rule, every function.</p>
-     <div class="ex">a.mean(axis=0)            <span class="o">[25. 35. 45.]</span>   average per column
-a.max(axis=1)             <span class="o">[30 60]</span>        largest in each row</div>
-    </div>
-   </div>
-
-   <div class="qbox">
-    <div class="q">Rapid fire &mdash; ask for the answer before running each</div>
-    <div class="a">Using the 2&times;3 array: <b>a.sum(axis=0)?</b> [50 70 90]. <b>a.max(axis=1)?</b> [30 60].
-    <b>a.mean()?</b> 35.0. <b>How many numbers does axis=0 return?</b> Three &mdash; one per column.
-    That last question is the real test of whether the rule landed.</div>
-   </div>
-
-   <div class="pace"><b>Worth saying out loud:</b> in Pandas, <code>axis=0</code> means down the rows and
-   <code>axis=1</code> means across the columns &mdash; exactly the same. Learn it once here and it
-   carries for the rest of the course.</div>
-  </div>
-
-  <!-- 64-78 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">64 – 78</span><h3>Broadcasting</h3></div>
-   <p class="objective">Fourteen minutes. Name the thing they have already been using.</p>
-
-   <div class="speak">
-    <p>You have been doing this since the first session without a name for it. When you write
-    <code>b * 2</code>, that single number gets <b>stretched</b> to match every element. That stretching
-    is called <b>broadcasting</b>.</p>
-    <p>It also works between arrays of different shapes, as long as the shapes are compatible.</p>
-   </div>
-
-   <div class="fngroup">
-    <h4>Three levels</h4>
-
-    <div class="fn">
-     <span class="sig">array + single number</span>
-     <p class="does">The number is stretched to every element.</p>
-     <div class="ex">a + 100                   <span class="o">[[110 120 130]</span>
-                          <span class="o"> [140 150 160]]</span></div>
-    </div>
-
-    <div class="fn">
-     <span class="sig">2-D array + row</span>
-     <p class="does">A row of 3 is stretched down to match both rows.</p>
-     <div class="ex">row = np.array([1, 2, 3])
-
-a + row                   <span class="o">[[11 22 33]</span>
-                          <span class="o"> [41 52 63]]</span></div>
-     <div class="gotcha">Adds 1 to the first column, 2 to the second, 3 to the third &mdash;
-     <b>for every row</b>. Useful for applying per-column adjustments.</div>
-    </div>
-
-    <div class="fn">
-     <span class="sig">2-D array + column</span>
-     <p class="does">A column of 2 is stretched across to match all three columns.</p>
-     <div class="ex">col = np.array([[100], [200]])
-
-a + col                   <span class="o">[[110 120 130]</span>
-                          <span class="o"> [240 250 260]]</span></div>
-     <div class="gotcha">Note the double brackets &mdash; that makes it a <b>column</b> (shape 2,1)
-     rather than a row. Get that wrong and you get a shape error.</div>
-    </div>
-   </div>
-
-   <div class="pace"><b>The working rule:</b> shapes are compared from the right. A dimension matches if
-   the sizes are equal or one of them is 1. Do not go deeper than this &mdash; it is enough for
-   everything they will meet, and the full rules are a rabbit hole.</div>
-  </div>
-
-  <!-- 78-90 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">78 – 90</span><h3>Practice</h3></div>
-
-   <div class="typeit">On screen</div>
-<pre><code>sales = np.array([[120, 150, 90],
-                  [200, 180, 210],
-                  [ 80, 110, 130]])
-      rows = 3 shops,  columns = Jan / Feb / Mar
-
- 1.  Total sales across everything
- 2.  Total per month          (one number per column)
- 3.  Total per shop           (one number per row)
- 4.  Average per shop
- 5.  Best month for each shop
- 6.  Which shop had the highest single figure? (position)
- 7.  Add a 10% bonus to every value
- 8.  Add 50 to January only, using broadcasting
- 9.  Running total for the whole flattened array</code></pre>
-
-   <div class="typeit">Answers</div>
-<pre><code> 1.  sales.sum()                    <span class="o">1270</span>
- 2.  sales.sum(axis=0)              <span class="o">[400 440 430]</span>
- 3.  sales.sum(axis=1)              <span class="o">[360 590 320]</span>
- 4.  sales.mean(axis=1)             <span class="o">[120.  196.7 106.7]</span>
- 5.  sales.max(axis=1)              <span class="o">[150 210 130]</span>
- 6.  sales.argmax()                 <span class="o">5</span>  (flattened position)
- 7.  sales * 1.1
- 8.  sales + np.array([50, 0, 0])
- 9.  sales.flatten().cumsum()</code></pre>
-
-   <div class="qbox">
-    <div class="q">Questions 2 and 3 are the whole lab</div>
-    <div class="a">If a student can look at &ldquo;total per month&rdquo; and reach for
-    <b>axis=0</b> without pausing, the session worked. If they guess, go back to the board diagram and
-    ask which direction has to disappear to leave one number per month.</div>
+salary * 10 / 100            <span class="c"># [1000. 2500. 3800.]    the hike AMOUNT only</span>
+salary + salary * 10 / 100   <span class="c"># [11000. 27500. 41800.]  the new salary</span>
+salary * 1.10                <span class="c"># [11000. 27500. 41800.]  same answer, shorter</span></code></pre>
    </div>
 
    <div class="speak">
-    <p>Next session closes NumPy: <b>filtering</b> by condition, sorting, and reshaping. The filtering
-    part is the most useful thing in the whole library &mdash; it is exactly how you will pull rows out
-    of a table in Pandas.</p>
+    <p>Your manager says: everyone gets a 10% hike, update the salary column. Do not jump to code
+    &mdash; do the maths first. What is 10% of 10,000? One thousand. So the new salary is 11,000.</p>
+    <p>Now, ten percent means ten divided by a hundred. Most of them will write
+    <code>salary * 10 / 100</code> and stop. Let them. Then ask what they are looking at &mdash; those
+    are the <b>hike amounts</b>, not the new salaries. You still have to add it on.</p>
+    <p>Then show the short version: multiplying by 1.10 does both steps at once. Same answer. Both are
+    correct; the second is what you would actually write.</p>
    </div>
   </div>
+
+  <!-- 44-56 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">44 – 56</span><h3>Whole array down to one number</h3></div>
+   <p class="objective">Twelve minutes. Four functions, same pattern &mdash; roughly a minute each,
+   then practice.</p>
+
+<pre><code>salary.sum()     <span class="c"># 73000</span>
+salary.mean()    <span class="c"># 24333.33...     the average</span>
+salary.min()     <span class="c"># 10000</span>
+salary.max()     <span class="c"># 38000</span></code></pre>
+
+   <div class="speak">
+    <p>Different shape of question now. Before, you put an array in and got an array out. Here you put
+    an array in and get <b>one number</b> out. The whole column becomes a single answer.</p>
+    <p>These are the four you will use every day of your working life. Total, average, smallest,
+    biggest. Attach them with a dot, and remember the brackets &mdash; it is a function, so it needs
+    the brackets even though there is nothing inside them.</p>
+   </div>
+
+   <div class="askq">
+    <div class="aq">Total salary the company is paying?</div>
+    <div class="aq">What is the average, and is anybody actually earning that amount?</div>
+    <div class="aq">Who earns the most &mdash; and does <code>max</code> tell you <i>who</i>, or just
+    <i>how much</i>?</div>
+   </div>
+  </div>
+
+  <!-- 56-64 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">56 – 64</span><h3>axis &mdash; the same functions on a table</h3></div>
+   <p class="objective">Eight minutes. Board first, code second. Make them say how many numbers come
+   back before they say what the numbers are.</p>
+
+<pre><code>sales.sum()          <span class="c"># 450             everything added together</span>
+sales.sum(axis=0)    <span class="c"># [120 150 180]   DOWN the rows -&gt; one per COLUMN</span>
+sales.sum(axis=1)    <span class="c"># [ 60 150 240]   ACROSS       -&gt; one per ROW</span>
+
+sales.mean(axis=0)   <span class="c"># [40. 50. 60.]   works on every one of them</span>
+sales.max(axis=1)    <span class="c"># [30 60 90]      biggest in each row</span></code></pre>
+
+   <div class="speak">
+    <p>On a matrix, &ldquo;what is the total&rdquo; is not a complete question. The total of each
+    column? Each row? Everything at once? You have to say which, and the way you say it is
+    <code>axis</code>.</p>
+    <p>Plain <code>sales.sum()</code> with nothing inside gives you one grand total for all nine
+    numbers.</p>
+    <p>Now <code>axis=0</code>. Point at the board: it goes <b>down</b>. You are squashing the rows
+    together, so the rows vanish and what is left is one number for each column. <code>axis=1</code>
+    goes <b>across</b> &mdash; columns vanish, one number per row.</p>
+    <p>Here is the trick to remember it: <b>axis is the direction that disappears.</b> Do not memorise
+    the number &mdash; ask yourself which direction has to collapse to get the answer you want.</p>
+   </div>
+
+   <div class="keyline">The <code>axis</code> parameter is not special to <code>sum</code>. It works on
+   <code>mean</code>, <code>min</code>, <code>max</code> &mdash; all of them.</div>
+
+   <div class="askq">
+    <div class="aq">If each row is a region and each column is a month &mdash; which axis gives me the
+    monthly totals?</div>
+    <div class="aq">Before you run it: how many numbers will <code>sales.mean(axis=1)</code> give back?</div>
+   </div>
+  </div>
+
+  <!-- 64-72 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">64 – 72</span><h3>Two from the NumPy toolbox &mdash; sqrt and round</h3></div>
+   <p class="objective">Eight minutes. The function-versus-method distinction gets introduced here and
+   it pays off in the next block.</p>
+
+<pre><code>nums = np.array([9, 16, 25, 36, 49])
+
+np.sqrt(nums)         <span class="c"># [3. 4. 5. 6. 7.]     square root of every element</span>
+
+np.round(nums / 3)       <span class="c"># [ 3.  5.  8. 12. 16.]            decimals dropped</span>
+np.round(nums / 3, 2)    <span class="c"># [ 3.    5.33  8.33 12.   16.33]  keep 2 places</span></code></pre>
+
+   <div class="speak">
+    <p>Square root of all five, in one line. Three, four, five, six, seven &mdash; they can check those
+    in their head, which is exactly why I picked those numbers.</p>
+    <p>But look at <b>how</b> it is written. It is <code>np.sqrt(nums)</code> &mdash; the array goes
+    <i>inside the brackets</i>. You cannot write <code>nums.sqrt()</code>. Try it and you get
+    <code>'numpy.ndarray' object has no attribute 'sqrt'</code>.</p>
+    <p>Round is the same shape. <code>nums / 3</code> gives you a long ugly decimal. Wrap it in
+    <code>np.round</code> and the decimals go. Add a second argument &mdash; a comma and a 2 &mdash;
+    and it keeps two decimal places instead. Any number you put there is how many places you keep.</p>
+   </div>
+
+   <div class="warn"><b>Say this out loud now, it saves you five minutes later.</b> Some things attach
+   to the array with a dot: <code>salary.sum()</code>. Others live inside NumPy and take the array as
+   an input: <code>np.sqrt(nums)</code>. There is no rule you can work out from first principles
+   &mdash; you learn which is which. The next block has the one that catches everybody.</div>
+  </div>
+
+  <!-- 72-84 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">72 – 84</span><h3>The last four &mdash; and one deliberate error</h3></div>
+   <p class="objective">Twelve minutes. Do not let this get squeezed. <code>median</code> is where the
+   error demo goes.</p>
+
+   <h4>Spread</h4>
+<pre><code>salary.std()     <span class="c"># 11440.67     standard deviation</span></code></pre>
+
+   <div class="speak">
+    <p>You saw <code>std</code> in the Pandas introduction already. Standard deviation &mdash; it tells
+    you the <b>spread</b>. Are the salaries all clustered together, or wildly far apart? Average alone
+    cannot tell you that. Same function, same meaning, now on an array.</p>
+   </div>
+
+   <h4>Position, not value</h4>
+<pre><code>salary.argmin()  <span class="c"># 0    WHERE the smallest is, not what it is</span>
+salary.argmax()  <span class="c"># 2    WHERE the largest is</span></code></pre>
+
+   <div class="speak">
+    <p><code>min</code> told you the smallest salary is 10,000. But <b>which employee</b>? That is a
+    different question, and <code>min</code> cannot answer it.</p>
+    <p><code>argmin</code> gives you the <b>index</b> &mdash; the position. Here it is 0, meaning the
+    very first one. And <code>argmax</code> gives 2, the third one.</p>
+    <p>Why does that matter? Because once you have the position, you can go and look up the name at
+    that same position in another array. You do not have to hunt for it yourself. That is the whole
+    point of these two.</p>
+   </div>
+
+   <h4>Middle value &mdash; and the error you want them to see</h4>
+<pre><code>salary.median()     <span class="c"># AttributeError: 'numpy.ndarray' object</span>
+                    <span class="c">#                has no attribute 'median'</span>
+
+np.median(salary)   <span class="c"># 25000.0      this is the correct way</span></code></pre>
+
+   <div class="speak">
+    <p>Median is the middle value. Ask for it the way they have been asking for everything else
+    &mdash; <code>salary.median()</code> &mdash; and let it fail. Let them read the error.</p>
+    <p>It says the array has no attribute called median. Which is true. Every other function today
+    attached to the array with a dot, so naturally they assume this one does too. It does not.</p>
+    <p>Median lives inside NumPy. So you write <code>np.median</code> &mdash; and then, carefully,
+    <b>which</b> array do you want the median of? You have to pass it in:
+    <code>np.median(salary)</code>.</p>
+   </div>
+
+   <div class="warn"><b>&ldquo;Why is it like this?&rdquo;</b> Honest answer: NumPy is just inconsistent
+   here, for historical reasons. Do not try to invent a rule. Tell them <code>median</code> is the one
+   to remember, and that when a dot version fails, try the <code>np.</code> version.</div>
+
+   <h4>Running total</h4>
+<pre><code>salary.cumsum()  <span class="c"># [10000 35000 73000]</span></code></pre>
+
+   <div class="speak">
+    <p>Last one. Cumulative sum &mdash; it keeps adding as it goes. First value stays 10,000. Then
+    10,000 plus 25,000 is 35,000. Then plus 38,000 is 73,000.</p>
+    <p>And notice where the last number lands: 73,000, which is exactly what <code>sum()</code> gave
+    you. The final value of a cumulative sum is always the total.</p>
+    <p>This is how you build a running total &mdash; sales so far this month, total paid out to date.
+    One function.</p>
+   </div>
+  </div>
+
+  <!-- 84-87 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">84 – 87</span><h3>Close</h3></div>
+   <div class="speak">
+    <p>Put the summary on screen. Tell them tomorrow is <b>filtering</b> &mdash; today they learned to
+    take a slice by <i>position</i>; next they take it by <i>condition</i>. &ldquo;Give me only the
+    salaries above thirty thousand.&rdquo; That is the next step.</p>
+   </div>
+  </div>
+
  </div>
 </section>
 
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
-  <div class="qa"><h5>How do I remember which axis is which?</h5>
-  <p>"Do not memorise the number. Ask which direction has to <b>disappear</b> to give you the answer you
-  want. One number per column means the rows must collapse, and that is axis 0."</p></div>
-  <div class="qa"><h5>Why is it np.median(b) and not b.median()?</h5>
-  <p>"Historical inconsistency in NumPy. Some things are methods on the array, some are functions in the
-  module. Median, unique and concatenate are functions. You get used to it."</p></div>
-  <div class="qa"><h5>What is a ValueError about broadcasting?</h5>
-  <p>"Your shapes are not compatible. Print both shapes. Compared from the right, each dimension must
-  either match or be 1."</p></div>
-  <div class="qa"><h5>Does axis work on 3-D arrays?</h5>
-  <p>"Yes, and there is an axis 2. Same rule &mdash; the axis you name collapses. You will meet it with
-  images. Not today."</p></div>
+  <div class="qa"><h5>Why is the stop value not included?</h5>
+  <p>&ldquo;Same reason counting starts at zero &mdash; it is a convention, and it makes the maths tidy.
+  <code>ar[0:3]</code> gives you exactly 3 values. Stop minus start is how many you get. That is the
+  useful way to remember it.&rdquo;</p></div>
+  <div class="qa"><h5>Why did my array not change when I added 5 to it?</h5>
+  <p>&ldquo;Because you did not store the answer. <code>ar + 5</code> calculates a new array and throws
+  it away. If you want to keep it, write <code>ar = ar + 5</code>.&rdquo;</p></div>
+  <div class="qa"><h5>Why is it np.median(salary) and not salary.median()?</h5>
+  <p>&ldquo;Inconsistency in NumPy. Some things are methods on the array, some are functions in the
+  module. <code>median</code> and <code>sqrt</code> and <code>round</code> are functions. <code>sum</code>,
+  <code>mean</code>, <code>std</code>, <code>cumsum</code> are methods. If one way fails, try the
+  other.&rdquo;</p></div>
   <div class="qa"><h5>Is argmax the value or the position?</h5>
-  <p>"The position. <code>max</code> gives the value, <code>argmax</code> gives you where it is. On a
-  2-D array without an axis it gives the position in the flattened version."</p></div>
+  <p>&ldquo;The position. <code>max</code> gives you the value, <code>argmax</code> gives you where it
+  is. If two values tie, you get the first one.&rdquo;</p></div>
+  <div class="qa"><h5>How do I remember which axis is which?</h5>
+  <p>&ldquo;Do not memorise the number. Ask which direction has to <b>disappear</b> to give you the
+  answer you want. One number per column means the rows collapse, and that is axis 0.&rdquo;</p></div>
+  <div class="qa"><h5>Can I add two arrays together?</h5>
+  <p>&ldquo;Yes, and it works position by position &mdash; but their shapes have to agree. We are not
+  doing that today. One array and one number is enough for now.&rdquo;</p></div>
  </div>
 </section>
 
@@ -34254,78 +34308,107 @@ a + col                   <span class="o">[[110 120 130]</span>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">If things go sideways</h2>
   <ul class="l">
-   <li><b>Running long</b> &mdash; cut <b>broadcasting</b> back to the single-number case only. The row
-   and column cases can wait; the axis rule cannot.</li>
-   <li><b>Running short</b> &mdash; give them a 4&times;5 array and ask for every aggregation both ways.
-   Repetition is what fixes axis.</li>
-   <li><b>Axis is not landing</b> &mdash; stop the code entirely. Go to the board and have them tell you
-   how many numbers come back, before asking what those numbers are. Counting the output is easier than
-   predicting it, and it teaches the same rule.</li>
-   <li><b>Someone asks about <code>keepdims</code></b> &mdash; it stops the dimension collapsing.
-   One sentence, park it.</li>
+   <li><b>Running long</b> &mdash; compress the <b>step</b> block to <code>ar[::2]</code> and
+   <code>ar[::-1]</code> only, and drop the <code>sales[0:2, 0:2]</code> corner-block example. Do
+   <b>not</b> buy time out of the last block &mdash; <code>median</code>, <code>argmin</code> and
+   <code>cumsum</code> are the ones that reappear in Pandas.</li>
+   <li><b>Running short</b> &mdash; give them the <code>sales</code> matrix and ask for every
+   aggregation both ways, <code>axis=0</code> and <code>axis=1</code>. Repetition is what fixes axis.</li>
+   <li><b>Slicing is not landing</b> &mdash; stop coding. Go to the ruler on the board and have them
+   read the answer off it by pointing. Then write the line.</li>
+   <li><b>Axis is not landing</b> &mdash; ask how many numbers come back before asking what they are.
+   Counting the output is easier than predicting it and it teaches the same rule.</li>
+   <li><b>Someone asks about array-plus-array or different shapes</b> &mdash; that is broadcasting. One
+   sentence, park it, move on. It has not been covered and it is not needed today.</li>
+   <li><b>Someone asks why not just use a loop</b> &mdash; good question, take it. A loop touches one
+   value at a time in Python; NumPy does the whole array in compiled code. On three values you cannot
+   tell. On three million you can.</li>
   </ul>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Video reference for this session</h2>
-  <p class="cap" style="margin-bottom:18px">One B3 session covers everything in today's script.</p>
-
-  <div class="lbl">What June B3 was shown</div>
-  <a class="vid" href="https://www.youtube.com/watch?v=nWt-u-q8H4Q&list=PLU1Y2E2tOW6Q" target="_blank" rel="noopener"><span class="src">B3 D28</span><span>Aggregate, Indexing &amp; Slicing &mdash; sum/mean, the axis rule, broadcasting</span><span class="dur">76 min</span></a>
-   
-  <div class="lbl" style="margin-top:22px">Compact alternative</div>
-  <a class="vid" href="https://www.udemy.com/course/complete-data-analyst-bootcamp-from-basics-to-advanced/learn/" target="_blank" rel="noopener"><span class="src">Udemy &sect;4</span><span>Numpy In Python &mdash; aggregation section</span><span class="dur">28:16</span></a>
-   
-  <div class="pace" style="margin-top:20px"><b>Worth watching D28 specifically for the axis explanation.</b>
-  It is the hardest idea in this session and it is useful to hear how it was pitched the first time
-  round, before you decide how to pitch it yourself.</div>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">16 functions</span></div>
+  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">12 functions</span></div>
   <p class="sumnote">Put this on screen in the last two minutes, or paste it into a cell and let them keep it. Every command from the session, in order, with what it does.</p>
   <div class="sumcard"><pre><code>import numpy as np
-b = np.array([15, 8, 42, 4, 23])
-c = np.array([1, 2, 3, 4, 5])
-a = np.array([[10,20,30],[40,50,60]])
 
-<span class="c"># ---- ARITHMETIC: every operator reaches every element ----</span>
-b + 10                       <span class="c"># [25 18 52 14 33]</span>
-b * 2                        <span class="c"># [30 16 84 8 46]</span>
-b / 2                        <span class="c"># floats always, even when it divides evenly</span>
-b ** 2                       <span class="c"># power</span>
-b // 2                       <span class="c"># floor division</span>
-b % 2                        <span class="c"># remainder: 1 = odd, 0 = even</span>
-b + c                        <span class="c"># position by position, same shape required</span>
-np.sqrt(np.array([4,9,16]))  <span class="c"># [2. 3. 4.]         maths funcs are element-wise too</span>
-np.round(b / 3, 2)           <span class="c"># round every value</span>
+ar     = np.array([10, 20, 30, 40, 50])
+salary = np.array([10000, 25000, 38000])
+sales  = np.array([[10,20,30],[40,50,60],[70,80,90]])
 
-<span class="c"># ---- AGGREGATION: array down to one number ----</span>
-b.sum()                      <span class="c"># 92</span>
-b.mean()                     <span class="c"># 18.4</span>
-b.min(), b.max()             <span class="c"># 4  42</span>
-b.std()                      <span class="c"># 13.46              spread</span>
-np.median(b)                 <span class="c"># 15.0               FUNCTION, not a method</span>
-b.argmin()                   <span class="c"># 3                  POSITION of the smallest</span>
-b.argmax()                   <span class="c"># 2                  POSITION of the largest</span>
-b.cumsum()                   <span class="c"># [15 23 65 69 92]   running total</span>
+<span class="c"># ---- ONE VALUE: index. Counting starts at 0. ----</span>
+ar[0]                <span class="c"># 10                    first</span>
+ar[3]                <span class="c"># 40                    fourth</span>
+ar[-1]               <span class="c"># 50                    last - no counting needed</span>
+ar[-2]               <span class="c"># 40                    second from the end</span>
 
-<span class="c"># ---- AXIS: the one that matters ----</span>
-a.sum()                      <span class="c"># 210                grand total</span>
-a.sum(axis=0)                <span class="c"># [50 70 90]         DOWN the rows -&gt; per column</span>
-a.sum(axis=1)                <span class="c"># [60 150]           ACROSS -&gt; per row</span>
-a.mean(axis=0)               <span class="c"># per column average</span>
-a.max(axis=1)                <span class="c"># largest in each row</span>
+<span class="c"># ---- A RANGE: slicing. ar[start : stop : step] ----</span>
+<span class="c"># THE RULE: stop is NEVER included. "start at 1, stop BEFORE 4"</span>
+ar[1:4]              <span class="c"># [20 30 40]            index 1, 2, 3</span>
+ar[:3]               <span class="c"># [10 20 30]            empty start = from the beginning</span>
+ar[2:]               <span class="c"># [30 40 50]            empty stop  = to the end</span>
+ar[-3:]              <span class="c"># [30 40 50]            last three</span>
+ar[::2]              <span class="c"># [10 30 50]            step 2 = every second one</span>
+ar[0:5:2]            <span class="c"># [10 30 50]            same thing, written out fully</span>
+ar[1::2]             <span class="c"># [20 40]               every second, starting at 1</span>
+ar[::-1]             <span class="c"># [50 40 30 20 10]      negative step = reversed</span>
+
+<span class="c"># ---- SLICING A MATRIX: [row, column] - ROW FIRST ----</span>
+sales[0]             <span class="c"># [10 20 30]            whole first row</span>
+sales[-1]            <span class="c"># [70 80 90]            last row</span>
+sales[1, 2]          <span class="c"># 60                    row 1, column 2 - one value</span>
+sales[:, 0]          <span class="c"># [10 40 70]            ":" = ALL rows -&gt; a whole column</span>
+sales[0:2, 0:2]      <span class="c"># [[10 20] [40 50]]     top-left block</span>
+
+<span class="c"># ---- ARITHMETIC: one number reaches EVERY element ----</span>
+ar + 5               <span class="c"># [15 25 35 45 55]</span>
+ar - 5               <span class="c"># [ 5 15 25 35 45]</span>
+ar * 2               <span class="c"># [ 20  40  60  80 100]</span>
+ar / 10              <span class="c"># [1. 2. 3. 4. 5.]      division ALWAYS gives decimals</span>
+ar = ar + 5          <span class="c"># NOTHING IS SAVED unless you store it back!</span>
+
+<span class="c"># why not a list?   marks = [10, 20, 30]</span>
+<span class="c">#   marks + 5  -&gt; TypeError: can only concatenate list (not "int") to list</span>
+<span class="c">#   marks * 2  -&gt; [10,20,30,10,20,30]  repeats it - a WRONG answer, not an error</span>
+
+<span class="c"># real task: give everyone a 10% hike</span>
+salary * 10 / 100            <span class="c"># [1000. 2500. 3800.]      the hike amount ONLY</span>
+salary + salary * 10 / 100   <span class="c"># [11000. 27500. 41800.]   the new salary</span>
+salary * 1.10                <span class="c"># [11000. 27500. 41800.]   same answer, shorter</span>
+
+<span class="c"># ---- AGGREGATION: whole array down to ONE number ----</span>
+salary.sum()         <span class="c"># 73000</span>
+salary.mean()        <span class="c"># 24333.33              the average</span>
+salary.min()         <span class="c"># 10000</span>
+salary.max()         <span class="c"># 38000</span>
+salary.std()         <span class="c"># 11440.67              spread - seen in pandas already</span>
+salary.cumsum()      <span class="c"># [10000 35000 73000]   running total; last one = sum()</span>
+salary.argmin()      <span class="c"># 0                     POSITION of smallest, not the value</span>
+salary.argmax()      <span class="c"># 2                     POSITION of largest</span>
+
+<span class="c"># ---- THE ONE THAT CATCHES EVERYBODY ----</span>
+salary.median()      <span class="c"># AttributeError: 'numpy.ndarray' has no attribute 'median'</span>
+np.median(salary)    <span class="c"># 25000.0               median is a FUNCTION, not a method</span>
+
+<span class="c"># ---- MATHS FUNCTIONS: array goes INSIDE the brackets ----</span>
+nums = np.array([9, 16, 25, 36, 49])
+np.sqrt(nums)        <span class="c"># [3. 4. 5. 6. 7.]      nums.sqrt() does NOT exist</span>
+np.round(nums / 3)       <span class="c"># [ 3.  5.  8. 12. 16.]            decimals dropped</span>
+np.round(nums / 3, 2)    <span class="c"># [ 3.  5.33  8.33 12.  16.33]     keep 2 places</span>
+
+<span class="c"># ---- AXIS: same functions, but on a table ----</span>
+sales.sum()          <span class="c"># 450                   grand total of all nine</span>
+sales.sum(axis=0)    <span class="c"># [120 150 180]         DOWN the rows  -&gt; per COLUMN</span>
+sales.sum(axis=1)    <span class="c"># [ 60 150 240]         ACROSS         -&gt; per ROW</span>
+sales.mean(axis=0)   <span class="c"># [40. 50. 60.]         works on mean/min/max too</span>
+sales.max(axis=1)    <span class="c"># [30 60 90]            biggest in each row</span>
 <span class="c"># RULE: axis is the direction that DISAPPEARS</span>
 
-<span class="c"># ---- BROADCASTING: shapes stretched to fit ----</span>
-a + 100                      <span class="c"># scalar stretched to every element</span>
-a + np.array([1,2,3])        <span class="c"># a row stretched down both rows</span>
-a + np.array([[100],[200]])  <span class="c"># a column stretched across, note double brackets</span></code></pre></div>
+<span class="c"># ---- NOT COVERED TODAY (park these if asked) ----</span>
+<span class="c">#   array + array, different shapes  -&gt; broadcasting</span>
+<span class="c">#   ** // %  on arrays</span>
+<span class="c">#   filtering by condition, np.where, sort, reshape  -&gt; next session</span></code></pre></div>
  </div>
 </section>
 </div>
