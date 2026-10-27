@@ -778,10 +778,10 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="foot">Script ready &middot; 32 numbered steps</span></button>
 
     <button class="dcard full" data-go="x5">
-     <span class="id">EXCEL 5</span><h3>The Grid, Without the Formulas</h3>
-     <p>Tuesday's sixteen-formula grid, rebuilt by dragging two words. The four boxes, Count against Sum
-     against Average &mdash; and the one thing in Excel that does <b>not</b> update itself.</p>
-     <span class="foot">Script ready &middot; the payoff for day 3</span></button>
+     <span class="id">EXCEL 5</span><h3>The Table That Builds Itself</h3>
+     <p>Tuesday's sixteen-formula grid, rebuilt by dragging three words. The four boxes, Count against Sum
+     against Average, % of total, filters &mdash; and the one thing in Excel that does <b>not</b> update itself.</p>
+     <span class="foot">Full script &middot; 30 steps &middot; the payoff for day 3</span></button>
 
     <button class="dcard full" data-go="x6">
      <span class="id">EXCEL 6</span><h3>One Sheet Somebody Else Can Read</h3>
@@ -22808,27 +22808,25 @@ total          58       42    51         49     <span class="o">200</span></code
 <div class="day" id="x5">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Excel day 5 &middot; merged class &middot; 90 minutes &middot; full script &middot; the one they will use every day</p>
-  <h1 class="display">The Grid,<br>Without the Formulas</h1>
+  <p class="tag" style="margin-bottom:16px">Excel day 5 &middot; merged class &middot; 90 minutes &middot; full script &middot; pivot tables</p>
+  <h1 class="display">The Table That<br>Builds Itself</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   On Tuesday they built a sixteen-cell grid with sixteen <code>COUNTIFS</code> formulas and a
-   half-locked reference. Today they build the same grid by <b>dragging two words</b>, in about nine
-   seconds.</p>
+   On Tuesday they spent ten minutes building a sixteen-cell summary with <code>COUNTIFS</code>.
+   Today they build the same table by <b>dragging three words</b> &mdash; and then learn the four
+   ways it can quietly lie to them.</p>
   <div class="glance">
-   <div class="gcell"><b>4</b><span>boxes, and that is the tool</span></div>
-   <div class="gcell"><b>0</b><span>formulas written</span></div>
-   <div class="gcell"><b>Count</b><span>the default, and usually wrong</span></div>
-   <div class="gcell"><b>32%</b><span>of the company is Sales</span></div>
+   <div class="gcell"><b>4</b><span>boxes, that is all</span></div>
+   <div class="gcell"><b>3</b><span>drags replace 16 formulas</span></div>
+   <div class="gcell"><b>198</b><span>not 200 &mdash; read the heading</span></div>
+   <div class="gcell"><b>&#8377;52L</b><span>still there, still hiding</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">Open on Tuesday's grid, still on the sheet</h4>
-   <p style="color:var(--sienna)">Do not start with &ldquo;today we learn pivot tables&rdquo;. Start by
-   scrolling to the <code>COUNTIFS</code> grid they built on Tuesday, and asking how long it took. Then
-   build the identical thing in front of them with <b style="color:var(--sienna)">no formula at
-   all</b>, and put the two side by side.</p>
-   <p style="color:var(--sienna)">That comparison is the entire argument for the session, and it only
-   works because they did the hard version first. <b style="color:var(--sienna)">This is the payoff
-   Tuesday was earning.</b></p>
+   <h4 style="color:var(--sienna)">Today's big idea</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">What if Excel could build that entire
+   summary table for us?</b></p>
+   <p style="color:var(--sienna)">That is exactly what a pivot table does. It is not a new
+   calculation &mdash; it is <b style="color:var(--sienna)">a faster interface for the counting and
+   summing they already know how to do.</b></p>
   </div>
  </div>
 </section>
@@ -22837,873 +22835,817 @@ total          58       42    51         49     <span class="o">200</span></code
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>They must still have Tuesday's grid on the sheet.</b> The whole opening depends on putting
-   the old grid and the new pivot next to each other. If somebody deleted it, have them rebuild two
-   cells of it &mdash; enough to see the formula in the bar.</li>
-   <li><b>The default aggregation is Count, and it is usually not what you want.</b> Drag salary into
-   Values and Excel may well count it rather than add it. Let that happen, let them read a column of
-   64 / 49 / 45 / 42 where they expected money, and fix it together. <b>It is the single most common
-   pivot mistake in the world.</b></li>
-   <li><b>Say &ldquo;Count of salary is not the salary&rdquo; out loud at least twice.</b> It is how a
-   wrong pivot gets into a real report &mdash; the numbers look plausible and the heading says what it
-   is doing, and nobody reads the heading.</li>
-   <li><b>The Tech average comes back today, and it is the same lesson from a new angle.</b> The pivot
-   will cheerfully show 1,89,753 as the Tech average. <b>A pivot table does not protect you from an
-   outlier</b> &mdash; it just finds it faster. Say so.</li>
-   <li><b>The menu layout differs between Excel versions and between Excel and Sheets.</b> Field names
-   and box names are stable; where the buttons live is not. Do not promise an exact menu path &mdash;
-   show it on your screen, then walk the room, because two or three people will have it somewhere
-   else.</li>
-   <li><b>Refresh is not automatic, and this is the one thing that will embarrass them in a job.</b>
-   Change a cell in the data and the pivot does <em>not</em> move &mdash; the exact opposite of
-   everything they learned on day 1. Demonstrate it deliberately.</li>
+   <li><b>Have Tuesday's <code>COUNTIFS</code> grid open on screen before you start.</b> The whole
+   opening depends on them seeing the thing they are about to replace.</li>
+   <li><b>Check the source range on your own machine first.</b> If you have practice data sitting
+   below row 201, Excel will swallow it and your numbers will not match this script.</li>
+   <li><b>Excel sorts the labels alphabetically.</b> Ratings will come out <b>Average, Excellent,
+   Good, Poor</b> &mdash; not in the order that makes sense. Section 7 deals with it; do not be
+   surprised on screen.</li>
+   <li><b>The refresh demo in sections 20 and 21 is the most important ten minutes of the day.</b>
+   Do not cut it. A stale pivot table in a report is a career problem, not an Excel problem.</li>
+   <li><b>Do not let them write a single formula today.</b> Every time somebody asks "but what is the
+   formula?", point at the four boxes. That discomfort is the lesson landing.</li>
   </ol>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Three things: what the four boxes actually do, why Count is
-  the default and why that matters, and the one way a pivot table behaves unlike every other formula in
-  this module.</p>
 
-  <div class="understand">
-   <h5>Part one &middot; the four boxes, and what each one means</h5>
-
-   <div class="mth">
-    <div class="mrow"><b>Rows</b><div>What goes <b>down the side</b>. Excel finds every different value
-    in that column and gives each one a row. Drop <code>department</code> here and you get four
-    rows.</div></div>
-    <div class="mrow"><b>Columns</b><div>What goes <b>across the top</b>. Same idea, sideways. Drop
-    <code>rating</code> here and you get four columns.</div></div>
-    <div class="mrow"><b>Values</b><div>The <b>number in the middle</b>, and <b>how</b> to work it out
-    &mdash; count, sum, average, min, max.</div></div>
-    <div class="mrow"><b>Filters</b><div>Sits <b>above the whole table</b> and cuts which rows are
-    included at all. Drop <code>city</code> here and you can see the same table for Chennai
-    only.</div></div>
-   </div>
-
-   <h6>Why they already understand this</h6>
-   <p>Rows plus Columns plus a Count is exactly the <code>COUNTIFS</code> grid from Tuesday. Rows plus
-   a Sum is the <code>SUMIF</code> list from Tuesday. <b>A pivot table is not a new idea &mdash; it is
-   the same four functions with a drag-and-drop front end.</b></p>
-   <div class="keyline">
-    Say this early, because it changes how the room listens: <b>you already know what a pivot table
-    computes. Today is about not having to write it.</b>
-   </div>
-  </div>
-
-  <div class="understand">
-   <h5>Part two &middot; Count, and the most common pivot mistake there is</h5>
-
-   <h6>What Excel does when you drop a field into Values</h6>
-   <p>If the column is <b>text</b>, Excel counts it &mdash; there is nothing else it could do. If the
-   column is <b>numbers</b>, it usually sums it. But when a number column contains blanks or anything
-   it is unsure about, <b>it falls back to Count</b>.</p>
-   <p>Our salary column has <b>two blanks</b>. So dropping salary into Values can give you
-   <b>Count of salary</b>, and a Tech row reading <b>48</b> instead of <b>&#8377;91,08,170</b>.</p>
-
-   <h6>Why that gets into real reports</h6>
-   <div class="mcalc">Count of salary    Sales 64   Tech 48   HR 44   Marketing 42
-Sum of salary      Sales 4264991   Tech 9108170   HR 2495026 ...</div>
-   <p>The count column looks like a perfectly reasonable set of numbers. It is a plausible answer to a
-   different question. And the only thing on screen telling you which one you are looking at is the
-   small heading in the corner that says <b>Count of</b> rather than <b>Sum of</b>.</p>
-   <div class="warn"><b>Teach them to read that heading first, every single time, before they read any
-   number underneath it.</b> It is the one habit that stops a wrong pivot leaving the building. The fix
-   is right-click the number, <b>Summarize Values By</b>, and choose <b>Sum</b>.</div>
-
-   <h6>One more thing the blanks do</h6>
-   <p>Average of salary for Tech is computed over <b>48 salaries, not 49 people</b>. The pivot skips the
-   blank, exactly as <code>AVERAGE</code> and <code>AVERAGEIF</code> did. It is consistent &mdash; and
-   it means the count beside an average is not always the count of rows.</p>
-  </div>
-
-  <div class="understand">
-   <h5>Part three &middot; the one way a pivot behaves unlike everything else</h5>
-
-   <h6>It does not update itself</h6>
-   <p>Everything in this module so far has recalculated the instant a cell changed. That was the whole
-   argument on day 1 &mdash; <em>a spreadsheet is rules that are always running</em>.</p>
-   <p><b>A pivot table is not.</b> It takes a snapshot of the data when you build it. Change a salary in
-   the source and the pivot keeps showing the old number, indefinitely, with nothing to indicate it is
-   stale.</p>
-   <div class="mcalc">change K5 from 5200000 to 520000
-
-   the summary block in P and Q     updates immediately
-   every COUNTIF and SUMIF          updates immediately
-   the pivot table                  does NOT. it keeps the old number.
-
-   right-click the pivot -> Refresh   (or Data -> Refresh All)</div>
-
-   <h6>Why this one matters more than it sounds</h6>
-   <p>It is how a stale number ends up in a monthly report. Somebody fixes the data, sends the file on,
-   and the pivot on the next sheet is still reporting last month &mdash; and because every other cell
-   in the workbook did update, the file looks perfectly consistent.</p>
-   <div class="keyline">
-    <b>Refresh is a habit, not a feature.</b><br><br>
-    Open a file with a pivot in it &rarr; refresh before you read anything. Change the data &rarr;
-    refresh. Hand the file on &rarr; refresh first. <b>It costs one right-click and it is the difference
-    between a current report and a confident wrong one.</b>
-   </div>
-  </div>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
- <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
- a grey box is a direction for you, not words to say.</p></div>
-</section>
-
-<section style="padding-top:8px">
- <div class="wrap">
-
-  <!-- 0-10 -->
+  <!-- 1 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>Tuesday's grid, and how long it took</h3></div>
-   <p class="objective">Ten minutes of setup that makes the other eighty land. Do not skip it.</p>
+   <div class="bhead"><span class="clock">1</span><h3>Start with Tuesday's COUNTIFS table</h3></div>
 
-   <div class="stage">Everybody scrolls to the <code>COUNTIFS</code> grid from Tuesday. <b>Click into
-   one of the cells so the formula shows in the bar.</b></div>
+   <div class="stage">Go to the <code>COUNTIFS</code> grid you built on Tuesday. Click any cell in it.</div>
 
-   <div class="speak">
-    <p>Scroll to the grid we built on Tuesday. Click any cell inside it and look at the formula
-    bar.</p>
-   </div>
-   <div class="screen">=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)</div>
+   <div class="typeit">What is in the formula bar</div>
+<pre><code>=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)</code></pre>
 
    <div class="qbox">
-    <div class="q">&ldquo;Honestly &mdash; how long did that grid take you on Tuesday?&rdquo;</div>
-    <div class="a">Ten minutes at least, and the half-locked references confused most of the room.
-    <b>Let them say it. Do not defend it.</b> That difficulty is about to become the point.</div>
+    <div class="q">&ldquo;How long did this table take you to build?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>Sixteen cells. One formula with four arguments and two different kinds of lock, filled in two
-    directions. It works, and it took us most of a block to get right.</p>
-    <p>Now watch me build exactly that, with <b>no formula at all</b>.</p>
-   </div>
-
-   <div class="stage">Build it live, fast, without explaining yet. Click a cell in the data, Insert,
-   PivotTable, OK. Drag <b>department</b> to Rows, <b>rating</b> to Columns, <b>name</b> to Values.
-   <b>Say nothing while you do it.</b></div>
-
-   <div class="screen">Count of name   Poor  Average  Good  Excellent  Grand Total
-Sales             17       14    19         14           64
-Tech              15        8    13         13           49
-HR                12        9    11         13           45
-Marketing         14       11     8          9           42
-Grand Total       58       42    51         49          200</div>
-
-   <div class="speak">
-    <p>Same sixteen numbers. Same row totals. Same column totals. Same two hundred in the corner.</p>
-    <p>I wrote nothing. I dragged three words into three boxes.</p>
-    <p>And this is why we did it the hard way on Tuesday &mdash; because you now know <b>exactly</b>
-    what this thing is computing, and you could check any one of those sixteen cells by hand if you
-    did not trust it.</p>
-   </div>
-
-   <div class="keyline">
-    <b>A pivot table is not a new idea.</b><br><br>
-    It is <code>COUNTIFS</code>, <code>SUMIF</code> and <code>AVERAGEIF</code> with a drag-and-drop
-    front end. <b>You already know what it computes. Today is about not having to write it.</b>
+    <p>Let them answer. It was about ten minutes. And look at what went into it &mdash; sixteen cells,
+    one formula written carefully, dollar signs in exactly the right places, copied across, copied
+    down.</p>
+    <p>Now say it plainly: <b>today I am going to build that same table without writing a single
+    formula.</b></p>
    </div>
   </div>
 
-  <!-- 10-26 -->
+  <!-- 2 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">10 &ndash; 26</span><h3>Build one from scratch, slowly</h3></div>
-   <p class="objective">Now they do it. One field at a time, so the four boxes mean something.</p>
-
-   <div class="stage">Delete the demo pivot. Everybody builds their own from zero. <b>Walk them through
-   one field at a time and pause after each.</b></div>
+   <div class="bhead"><span class="clock">2</span><h3>Create the pivot table</h3></div>
 
    <div class="speak">
-    <p>Delete mine. You are going to build your own, and we are going to add one field at a time so you
-    can see what each box does.</p>
-    <p>Click any cell <b>inside the data</b>. Then <b>Insert</b>, then <b>PivotTable</b>.</p>
+    <p>Go back to the employee data. Click <b>any cell inside the data</b> &mdash; you do not need to
+    select anything.</p>
    </div>
 
-   <div class="typeit">The dialog &mdash; check the range before you click OK</div>
-<pre><code>  Table/Range:    Sheet1!$A$1:$L$201        <span class="c">it should find this itself</span>
-  New Worksheet   <span class="c">leave this selected - keep the pivot off the data sheet</span></code></pre>
-
-   <div class="warn"><b>Check that range says 201 and not 202.</b> Excel guesses it from where your data
-   stops. If somebody still has stray practice values far down the sheet, the range will be wrong and
-   their totals will not match anybody else's. <b>This is the first thing to check when two people get
-   different numbers.</b></div>
+   <div class="typeit">Then</div>
+<pre><code>Insert  &gt;  PivotTable</code></pre>
 
    <div class="speak">
-    <p>A blank panel, and a list of your column names on the right. Those are your <b>fields</b> &mdash;
-    just the headings from row 1.</p>
-    <p>Four boxes underneath. Drag <b>department</b> into <b>Rows</b> first, and nothing else.</p>
+    <p>Excel works out the range by itself and offers you this:</p>
    </div>
-   <div class="screen">Row Labels
-HR
+
+<pre><code>Sheet1!$A$1:$L$201</code></pre>
+
+   <div class="speak">
+    <p>Choose <b>New Worksheet</b>, then <b>OK</b>.</p>
+   </div>
+
+   <div class="warn"><b>Check the range before you click OK.</b> It must end at <code>$L$201</code>.
+   If anybody has old practice data sitting below the dataset, Excel will include it &mdash; and that
+   one person will get different numbers from everybody else all session, with nothing on screen to
+   explain why. <b>Always check the source range before building a pivot table.</b></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">3</span><h3>Understand the four boxes</h3></div>
+
+   <div class="speak">
+    <p>A panel opens on the right. At the top is a list of fields &mdash; and they should recognise
+    every one of them, because they are just the <b>column names</b>.</p>
+   </div>
+
+<pre><code>department      city
+name            education
+rating          experience
+salary          ...</code></pre>
+
+   <div class="speak">
+    <p>Underneath are four empty boxes.</p>
+   </div>
+
+<pre><code>Rows        Columns        Values        Filters</code></pre>
+
+   <div class="speak">
+    <p>Do not explain them yet. Say <b>&ldquo;we will take these one at a time&rdquo;</b> and move
+    on. Four abstract definitions up front is how this session loses people.</p>
+   </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">4</span><h3>Rows &mdash; what goes down?</h3></div>
+
+   <div class="typeit">Drag <code>department</code> into <code>Rows</code></div>
+<pre><code>HR
 Marketing
 Sales
 Tech
-Grand Total</div>
+Grand Total</code></pre>
 
    <div class="speak">
-    <p>Four rows, alphabetical, and a Grand Total with nothing in it &mdash; because we have not told it
-    what to count yet.</p>
-    <p><b>Rows means: find every different value in this column and give each one a line.</b> That is
-    it.</p>
-    <p>Now drag <b>name</b> into <b>Values</b>.</p>
+    <p>That is all that happened. <b>Rows means: take every different value in this column, and give
+    each one a row.</b></p>
+    <p>Four departments in the column, four rows in the table. Nothing more mysterious than that.</p>
    </div>
-   <div class="screen">Row Labels   Count of name
-HR                      45
-Marketing               42
-Sales                   64
-Tech                    49
-Grand Total            200</div>
+
+   <div class="keyline"><b>Rows = every distinct value, one per line.</b></div>
+  </div>
+
+  <!-- 5 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">5</span><h3>Values &mdash; what should Excel calculate?</h3></div>
+
+   <div class="typeit">Now drag <code>name</code> into <code>Values</code></div>
+<pre><code>HR             45
+Marketing      42
+Sales          64
+Tech           49
+Grand Total   200</code></pre>
 
    <div class="qbox">
-    <div class="q">&ldquo;Where have you seen those four numbers before?&rdquo;</div>
-    <div class="a">Tuesday's <code>COUNTIF</code> list, and before that <code>value_counts()</code> in
-    pandas. <b>Three different tools, identical answer.</b> And the Grand Total is 200, which is the
-    same check they built by hand on Tuesday &mdash; except the pivot adds it for free.</div>
+    <div class="q">&ldquo;Where have you seen these four numbers before?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>Now drag <b>rating</b> into <b>Columns</b>, and the grid appears.</p>
-    <p>Four boxes. <b>Rows</b> down the side. <b>Columns</b> across the top. <b>Values</b> in the middle.
-    <b>Filters</b> we will get to.</p>
-    <p>That is the whole tool. Everything else today is choosing what goes in which box.</p>
+    <p>Wait for it. They have seen them twice &mdash; on Tuesday with <code>COUNTIF</code>, and well
+    before that in Python with <code>value_counts()</code>.</p>
+    <p>Same question. Different tool. <b>The pivot table has just done the counting for us.</b></p>
    </div>
   </div>
 
-  <!-- 26-44 -->
+  <!-- 6 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">26 &ndash; 44</span><h3>Count of salary is not the salary</h3></div>
-   <p class="objective">The most common pivot mistake in the world. Let it happen.</p>
+   <div class="bhead"><span class="clock">6</span><h3>Grand total</h3></div>
 
-   <div class="stage">Take <b>rating</b> back out of Columns so the table is simple again. Then drag
-   <b>salary</b> into Values. <b>Do not warn them what is about to happen.</b></div>
+<pre><code>45 + 42 + 64 + 49  =  200</code></pre>
 
    <div class="speak">
-    <p>Take rating back out for a moment. Now I want money instead of headcount, so drag <b>salary</b>
-    into <b>Values</b>, and take <b>name</b> out.</p>
+    <p>Excel adds the Grand Total row for free, and it is worth more than it looks.</p>
+    <p>If these four groups are supposed to account for <b>every</b> employee, then the total has to
+    come back to 200. It does. <b>That is a check you get for nothing, and you should take it every
+    time.</b></p>
    </div>
-   <div class="screen">Row Labels   Count of salary
-HR                      44
-Marketing               42
-Sales                   64
-Tech                    48
-Grand Total            198</div>
+  </div>
+
+  <!-- 7 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">7</span><h3>Columns &mdash; what goes across?</h3></div>
+
+   <div class="typeit">Drag <code>rating</code> into <code>Columns</code></div>
+<pre><code>Count of name   Poor  Average  Good  Excellent   Grand Total
+
+HR                12        9    11         13            45
+Marketing         14       11     8          9            42
+Sales             17       14    19         14            64
+Tech              15        8    13         13            49
+
+Grand Total       58       42    51         49           200</code></pre>
+
+   <div class="warn"><b>Excel will not give you that column order.</b> It sorts text alphabetically,
+   so you will actually see <b>Average, Excellent, Good, Poor</b>. Drag the column headers into
+   Poor &rarr; Excellent order by hand. Worth doing, and worth naming why: <b>rating is an ordinal
+   variable</b> &mdash; the categories have a real order, which they met in the statistics module.
+   Alphabetical throws that order away.</div>
+
+   <div class="speak">
+    <p>Now put this table next to Tuesday's grid. <b>Same sixteen numbers.</b></p>
+    <p>On Tuesday you wrote the formulas. Today you dragged two words.</p>
+   </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">8</span><h3>The four boxes &mdash; put this on the board</h3></div>
+
+<pre><code>ROWS      -&gt;  what goes DOWN the side
+
+COLUMNS   -&gt;  what goes ACROSS the top
+
+VALUES    -&gt;  what number do I calculate?
+
+FILTERS   -&gt;  which data should I include?</code></pre>
+
+   <div class="keyline"><b>That is essentially the whole concept.</b> Everything else today is a
+   consequence of those four lines.</div>
+  </div>
+
+  <!-- 9 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">9</span><h3>The most common pivot mistake</h3></div>
+
+   <div class="stage">Take <code>rating</code> out of Columns. Take <code>name</code> out of Values.
+   Now drag <code>salary</code> into <b>Values</b>.</div>
+
+<pre><code>Count of salary
+
+HR             44
+Marketing      42
+Sales          64
+Tech           48
+Grand Total   198</code></pre>
 
    <div class="qbox">
     <div class="q">&ldquo;Is that money?&rdquo;</div>
-    <div class="a"><b>No.</b> HR does not pay a total of forty-four rupees. <b>It counted the salaries
-    instead of adding them.</b> Wait for somebody to notice the numbers are suspiciously small and
-    suspiciously familiar.</div>
    </div>
 
    <div class="speak">
-    <p>HR is not paying forty-four rupees. Excel <b>counted</b> the salaries instead of adding
+    <p>No. And most of the room will not notice. Excel is <b>counting</b> the salaries, not adding
     them.</p>
-    <p>And look at the heading. It says <b>Count of salary</b>. It told us exactly what it was doing. We
-    just did not read it.</p>
+    <p>Everything they need to spot it is right there in the heading.</p>
+   </div>
+
+   <div class="screen">Count of salary</div>
+
+   <div class="keyline"><b>The heading tells you exactly what Excel did.</b> Read it before you read
+   the numbers.</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10</span><h3>Why is the grand total 198?</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;We have 200 employees. Why does this say 198?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>They already know this one &mdash; they found it in day 1 and again in Tuesday's
+    <code>COUNTIF</code> check. <b>Two salaries are blank.</b></p>
+    <p><code>COUNT</code> only counts values that are actually there.</p>
+   </div>
+
+<pre><code>  200 employees
+-   2 missing salaries
+= 198 salaries counted</code></pre>
+
+   <div class="speak">
+    <p>And look at the two departments that dropped: <b>HR is 44 and Tech is 48</b>, against 45 and
+    49 people. One blank each &mdash; Manoj Kumar in HR, Pooja Rao in Tech.</p>
+   </div>
+
+   <div class="keyline"><b><code>Count of salary</code> and <code>Sum of salary</code> are completely
+   different questions.</b> Always read the heading before the number.</div>
+  </div>
+
+  <!-- 11 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">11</span><h3>Change Count to Sum</h3></div>
+
+   <div class="typeit">Right-click any number in the pivot table</div>
+<pre><code>Summarize Values By  &gt;  Sum</code></pre>
+
+<pre><code>Sum of salary
+
+HR              2,495,026
+Marketing       3,106,086
+Sales           4,264,991
+Tech            9,108,170
+Grand Total    18,974,273</code></pre>
+
+   <div class="speak">
+    <p>Now that is money.</p>
    </div>
 
    <div class="qbox">
-    <div class="q">&ldquo;Two hundred rows, but the Grand Total says 198. Why?&rdquo;</div>
-    <div class="a">The <b>two blank salaries</b>, again. Count of salary counts the ones that exist.
-    <b>Fourth session running that those two blanks have shown up</b>, and by now the room should see it
-    coming.</div>
+    <div class="q">&ldquo;Where have we seen these before?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>Right-click any number in the pivot. <b>Summarize Values By</b>. Choose <b>Sum</b>.</p>
+    <p>Tuesday, with <code>SUMIF</code>. The same four numbers.</p>
+    <p>So be clear about what just happened: <b>the pivot table did not invent a new calculation. It
+    gave you a faster way to run one you already knew.</b></p>
    </div>
-   <div class="screen">Row Labels   Sum of salary
-HR                 2495026
-Marketing          3106086
-Sales              4264991
-Tech               9108170
-Grand Total       18974273</div>
+  </div>
+
+  <!-- 12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12</span><h3>Change Sum to Average</h3></div>
+
+   <div class="typeit">Right-click again</div>
+<pre><code>Summarize Values By  &gt;  Average</code></pre>
+
+<pre><code>Average of salary
+
+HR              56,705.14
+Marketing       73,954.43
+Sales           66,640.48
+Tech           189,753.54
+Grand Total     95,829.66</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Tech again. Does the pivot table protect us from the outlier?&rdquo;</div>
+   </div>
 
    <div class="speak">
-    <p>That is money. And those four numbers are exactly the <code>SUMIF</code> answers from
-    Tuesday.</p>
+    <p>It does not. One employee on <b>&#8377;52 lakh</b> is still dragging Tech's average up to
+    <b>&#8377;1,89,753</b>, exactly as it did on Tuesday with <code>AVERAGEIF</code> and in Python
+    before that.</p>
+    <p>The pivot table is not clever enough to stop and say <i>&ldquo;this looks strange&rdquo;</i>.
+    It calculated precisely what you asked for.</p>
+   </div>
+
+   <div class="keyline"><b>A pivot table finds the problem faster. It does not understand the problem
+   for you.</b></div>
+  </div>
+
+  <!-- 13 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">13</span><h3>Count vs Sum vs Average</h3></div>
+
+   <div class="mth">
+    <h6>Three settings, three questions</h6>
+    <div class="mrow"><b>Count</b><div>How many are there? &rarr; <code>Count of salary</code> =
+    how many salaries <b>exist</b></div></div>
+    <div class="mrow"><b>Sum</b><div>How much in total? &rarr; <code>Sum of salary</code> = the
+    <b>total</b> salary bill</div></div>
+    <div class="mrow"><b>Average</b><div>What is the typical value? &rarr;
+    <code>Average of salary</code> = the <b>mean</b> salary</div></div>
+   </div>
+
+   <div class="speak">
+    <p>Three clicks apart, three completely different answers. Nothing on the screen warns you if you
+    pick the wrong one &mdash; except the heading.</p>
+   </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">14</span><h3>Percentage of total</h3></div>
+
+   <div class="stage">Put <code>name</code> back into Values, so you are looking at
+   <code>Count of name</code> again.</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Sales has 64 employees. Is 64 a lot?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>They cannot answer it, and they should notice that they cannot. <b>64 means nothing until you
+    compare it with the total.</b></p>
+   </div>
+
+<pre><code>64 / 200  =  32%</code></pre>
+
+   <div class="speak">
+    <p>They could work that out by hand in a spare cell. But the pivot table will do it for them.</p>
+   </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">15</span><h3>Add the same value twice</h3></div>
+
+   <div class="speak">
+    <p>This is the move nobody guesses. Drag <code>name</code> into <b>Values a second time</b>. You
+    now have two identical columns.</p>
+    <p>On the second one:</p>
+   </div>
+
+   <div class="typeit">Right-click the second column</div>
+<pre><code>Show Values As  &gt;  % of Grand Total</code></pre>
+
+<pre><code>Department      Count      % of Total
+
+HR                 45          22.50%
+Marketing          42          21.00%
+Sales              64          32.00%
+Tech               49          24.50%
+
+Grand Total       200         100.00%</code></pre>
+
+   <div class="speak">
+    <p>Now you can say something you could not say five minutes ago: <b>Sales is 32% of the
+    company.</b> That is a far more useful sentence than &ldquo;Sales has 64 employees&rdquo;.</p>
+   </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">16</span><h3>Always show count AND percentage</h3></div>
+
+   <div class="speak">
+    <p>Do not report the percentage on its own.</p>
+   </div>
+
+<pre><code>  32%                    &lt;-- not enough
+  64 employees -&gt; 32%    &lt;-- this</code></pre>
+
+   <div class="speak">
+    <p>Because a percentage with no denominator hides the thing that decides whether you should trust
+    it at all:</p>
+   </div>
+
+<pre><code>32% of 10      =     3.2
+32% of 200     =      64
+32% of 10,000  =   3,200</code></pre>
+
+   <div class="keyline"><b>Same percentage, three completely different claims.</b> The percentage
+   needs the count beside it.</div>
+  </div>
+
+  <!-- 17 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">17</span><h3>Filters &mdash; focus on one group</h3></div>
+
+   <div class="typeit">Drag <code>city</code> into <code>Filters</code></div>
+<pre><code>A dropdown appears ABOVE the pivot table.
+Select:  Chennai</code></pre>
+
+   <div class="speak">
+    <p>The whole table recalculates using Chennai employees only.</p>
+   </div>
+
+   <div class="screen">Grand Total = 61</div>
+
+   <div class="typeit">Now try each one in turn</div>
+<pre><code>Chennai     61
+Bangalore   54
+Hyderabad   48
+Pune        37
+            ---
+            200</code></pre>
+
+   <div class="speak">
+    <p>And again the four add back to 200. <b>Take the check.</b></p>
+   </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18</span><h3>Rows vs Filters</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is the difference between putting <code>city</code> in Rows and
+    putting it in Filters?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>In <b>Rows</b>, you see all four cities at once, side by side. In <b>Filters</b>, you pick one
+    and see only that one.</p>
+    <p>Both are correct. They answer different questions.</p>
+   </div>
+
+<pre><code>ROWS     -&gt;  COMPARE
+FILTER   -&gt;  FOCUS</code></pre>
+
+   <div class="keyline">If the question is <b>&ldquo;which city is biggest?&rdquo;</b> you need Rows.
+   If it is <b>&ldquo;what does Chennai look like?&rdquo;</b> you need Filters.</div>
+  </div>
+
+  <!-- 19 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">19</span><h3>Clear the filter &mdash; and why</h3></div>
+
+   <div class="stage">Before going on: <b>clear the city filter.</b></div>
+
+   <div class="speak">
+    <p>Now explain why that is not just housekeeping. Imagine somebody opens this file next week and
+    sees:</p>
+   </div>
+
+   <div class="screen">Grand Total = 61</div>
+
+   <div class="speak">
+    <p>and does not notice the small word <code>Chennai</code> sitting in the filter box above it.
+    They will walk away believing the company has <b>61 employees</b>. It has 200.</p>
+    <p>Nothing is broken. No error appears. The number is simply <b>an answer to a question nobody
+    realised was being asked.</b></p>
+   </div>
+
+   <div class="keyline"><b>Before trusting a pivot table &mdash; yours or anyone else's &mdash; check
+   whether a filter is active.</b></div>
+  </div>
+
+  <!-- 20 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">20</span><h3>The pivot table does NOT update by itself</h3></div>
+
+   <div class="speak">
+    <p>This is the demonstration that matters most today. Do it slowly.</p>
+    <p>Go back to the data. Find <code>K5</code> &mdash; the <b>&#8377;52 lakh</b> salary. Change
+    it:</p>
+   </div>
+
+   <div class="typeit">In the source data</div>
+<pre><code>K5:   5200000   -&gt;   520000</code></pre>
+
+   <div class="speak">
+    <p>First look at your ordinary summary formulas from day 1. They have <b>already</b> changed, the
+    instant you pressed Enter:</p>
+   </div>
+
+<pre><code>average salary     95,829.66   -&gt;   72,193.30</code></pre>
+
+   <div class="speak">
+    <p>Now go to the pivot table. It still says:</p>
+   </div>
+
+   <div class="screen">Tech &nbsp; 189,753.54</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why didn't the pivot table change?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Let that sit. Every formula on the sheet updated; this one table did not.</p>
+    <p>Because <b>a pivot table is a snapshot</b> &mdash; a copy of the data as it was when the table
+    was built or last refreshed. It is not a live formula.</p>
+   </div>
+
+   <div class="warn"><b>A note for you, not for the board.</b> Day 1 reported this same change as
+   <b>72,130.82</b>, and that was correct <b>on day 1's file</b> &mdash; 201 rows, 199 salaries.
+   Since Tuesday's Remove Duplicates the sheet has 200 rows and 198 salaries, so the same edit now
+   lands on <b>72,193.30</b>. If a student quotes the old figure, they are reading from an
+   uncleaned file.</div>
+  </div>
+
+  <!-- 21 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">21</span><h3>Refresh</h3></div>
+
+   <div class="typeit">Right-click anywhere inside the pivot table</div>
+<pre><code>Refresh</code></pre>
+
+   <div class="speak">
+    <p>Now it catches up:</p>
+   </div>
+
+<pre><code>Average of salary
+
+Tech   189,753.54   -&gt;   92,253.54</code></pre>
+
+   <div class="speak">
+    <p>And notice what that number tells you. Tech's average fell by nearly a lakh because
+    <b>one row changed</b>. That is the outlier's whole weight, made visible.</p>
    </div>
 
    <div class="keyline">
-    <b>Read the heading before you read the numbers.</b><br><br>
-    <b>Count of salary</b> and <b>Sum of salary</b> are two completely different questions, and the only
-    thing on screen that distinguishes them is one small word in the corner. A pivot showing counts where
-    it should show sums looks entirely reasonable, <b>and that is how it gets into a report.</b>
-   </div>
-
-   <div class="stage">Now the callback. Same right-click, choose Average. <b>They should see this one
-   coming &mdash; and that is the point.</b></div>
-
-   <div class="speak">
-    <p>Right-click again. <b>Summarize Values By</b>, then <b>Average</b>.</p>
-   </div>
-   <div class="screen">Row Labels   Average of salary
-HR                   56705.14
-Marketing            73954.43
-Sales                66640.48
-Tech                189753.54
-Grand Total           95829.66</div>
-
-   <div class="qbox">
-    <div class="q">&ldquo;Tech again. Does a pivot table protect you from that?&rdquo;</div>
-    <div class="a"><b>No.</b> It is the same 1,89,753 from Tuesday, the same one person on row 5. A
-    pivot table does not check your data &mdash; <b>it just finds the problem faster.</b></div>
-   </div>
-
-   <div class="speak">
-    <p>One lakh eighty-nine thousand. Same number as Tuesday, same person causing it.</p>
-    <p>A pivot table is faster than writing <code>AVERAGEIF</code> sixteen times. It is <b>not</b>
-    smarter. It will not tell you one person is distorting a department, and nothing ever will.</p>
+    <b>Refresh after changing the source data.</b><br><br>
+    Especially: when you open an old file, after any edit to the data, and
+    <b>always before you send a report to anybody.</b>
    </div>
   </div>
 
-  <!-- 44-58 -->
+  <!-- 22 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">44 &ndash; 58</span><h3>Per cent of total, and the filter box</h3></div>
-   <p class="objective">The two things that turn a pivot from a table into an answer.</p>
+   <div class="bhead"><span class="clock">22</span><h3>The harder version &mdash; new rows</h3></div>
 
    <div class="speak">
-    <p>Put it back to a count of name. Sales has 64 people. Is that a lot?</p>
-    <p>You cannot tell, because 64 only means something next to 200. So let us ask for the share
-    instead.</p>
+    <p>Refresh handles changed cells. It does not always handle <b>new rows</b>.</p>
+    <p>The pivot table remembers the range it was built on:</p>
    </div>
 
-   <div class="typeit">Drag <b>name</b> into Values a <em>second</em> time, so you have two value columns</div>
-<pre><code>  right-click the second one  ->  Show Values As  ->  % of Grand Total</code></pre>
-   <div class="screen">Row Labels   Count of name   % of total
-HR                      45       22.50%
-Marketing               42       21.00%
-Sales                   64       32.00%
-Tech                    49       24.50%
-Grand Total            200      100.00%</div>
+<pre><code>A1:L201</code></pre>
 
    <div class="speak">
-    <p><b>Thirty-two per cent of this company is Sales.</b> Almost a third.</p>
-    <p>That is a sentence you could put in a report. &ldquo;Sixty-four&rdquo; is not.</p>
-    <p>And notice I kept the count <b>next to</b> the percentage. Always show both &mdash; a percentage
-    on its own hides how many people it is actually describing.</p>
+    <p>Add two new employees in rows 202 and 203, hit Refresh, and they may simply not appear
+    &mdash; because as far as the pivot table is concerned, the data still stops at row 201.</p>
+    <p>For that you have to change the source range itself:</p>
    </div>
 
-   <div class="warn"><b>&ldquo;% of Grand Total&rdquo; is one of several options and the others are
-   genuinely useful.</b> <b>% of Row Total</b> and <b>% of Column Total</b> answer different questions
-   on the same grid. <b>Name them, show one, do not drill all of them</b> &mdash; they are easy to find
-   once they know the menu exists.</div>
-
-   <div class="stage">Now the fourth box, which has been empty all session.</div>
+<pre><code>PivotTable Analyze  &gt;  Change Data Source</code></pre>
 
    <div class="speak">
-    <p>One box we have not used. Drag <b>city</b> into <b>Filters</b>.</p>
-    <p>A dropdown appears above the whole table. Choose <b>Chennai</b>.</p>
-   </div>
-   <div class="screen">city:  Chennai
-
-Row Labels   Count of name
-HR                      ..
-Marketing               ..
-Sales                   ..
-Tech                    ..
-Grand Total             61</div>
-
-   <div class="speak">
-    <p>Sixty-one. The whole table has been recomputed for Chennai only, and the breakdown underneath it
-    is now the Chennai breakdown.</p>
-    <p>Switch it to Bangalore &mdash; <b>54</b>. Hyderabad &mdash; <b>48</b>. Pune &mdash; <b>37</b>.
-    Those four add to two hundred, which is your check again.</p>
+    <p>And if a workbook has several pivot tables, there is one command for all of them:</p>
    </div>
 
-   <div class="qbox">
-    <div class="q">&ldquo;What is the difference between putting city in Filters and putting it in
-    Rows?&rdquo;</div>
-    <div class="a"><b>Rows</b> shows you <b>all four cities at once</b>, side by side, so you can
-    compare them. <b>Filters</b> shows you <b>one at a time</b>, with everything else hidden. Use Rows
-    to compare, Filters to focus. <b>Good question to make somebody answer rather than telling
-    them.</b></div>
-   </div>
-
-   <div class="warn"><b>Clear the filter before moving on, and say why.</b> A pivot with a filter left on
-   is the second-best way to put a wrong number in a report &mdash; the dropdown is small, it sits above
-   the table, and a reader who has not noticed it will take the total at face value. <b>Check the filter
-   box before you trust a pivot anybody else built.</b></div>
+<pre><code>Data  &gt;  Refresh All</code></pre>
   </div>
 
-  <!-- 58-72 -->
+  <!-- 23 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">58 &ndash; 72</span><h3>The thing that does not update</h3></div>
-   <p class="objective">The one behaviour that contradicts day 1. Demonstrate it deliberately.</p>
-
-   <div class="stage">This block is why they will not embarrass themselves in a job. <b>Do the
-   demonstration, do not just describe it.</b></div>
+   <div class="bhead"><span class="clock">23</span><h3>Their turn &mdash; question 1</h3></div>
 
    <div class="speak">
-    <p>On day one I told you the whole point of a spreadsheet: <b>a script is instructions you run, a
-    spreadsheet is rules that are always running.</b> Change one cell and everything moves.</p>
-    <p>Watch this. Go back to the data sheet and change <b>K5</b> &mdash; the fifty-two lakh &mdash; to
-    <b>520000</b>. Then look at your summary block in P and Q.</p>
+    <p>Stop explaining now. Three questions, and walk the room.</p>
    </div>
-   <div class="screen">average salary    72130.82      <span class="c">moved instantly, as always</span></div>
-
-   <div class="speak">
-    <p>Moved immediately, as it has all module. Now go to the pivot sheet.</p>
-   </div>
-   <div class="screen">Average of salary
-Tech              189753.54     <span class="c">unchanged. still the old number.</span></div>
 
    <div class="qbox">
-    <div class="q">&ldquo;Why has the pivot not moved?&rdquo;</div>
-    <div class="a">Because a pivot table works from a <b>snapshot</b> taken when you built it, not from
-    the live cells. <b>It is the one thing in Excel that does not recalculate on its own</b>, and there
-    is nothing on screen to tell you it is stale.</div>
+    <div class="q">&ldquo;Which city has the most employees, and what percentage of the company is
+    it?&rdquo;</div>
+   </div>
+
+   <div class="typeit">What they need to build</div>
+<pre><code>Rows            -&gt;  city
+Values          -&gt;  Count of name
+Values (again)  -&gt;  Show Values As  &gt;  % of Grand Total</code></pre>
+
+<pre><code>Chennai        61      30.50%
+Bangalore      54      27.00%
+Hyderabad      48      24.00%
+Pune           37      18.50%
+Grand Total   200     100.00%</code></pre>
+
+   <div class="speak">
+    <p>The answer you want out loud: <b>Chennai, with 61 employees &mdash; 30.5% of the
+    company.</b> Count and percentage together, exactly as in section 16.</p>
+   </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">24</span><h3>Question 2</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is the average experience in each department?&rdquo;</div>
+   </div>
+
+   <div class="typeit">What they need to build</div>
+<pre><code>Rows     -&gt;  department
+Values   -&gt;  experience
+         -&gt;  Summarize Values By  &gt;  Average</code></pre>
+
+<pre><code>Average of experience
+
+Marketing       9.12
+Sales           8.25
+HR              7.20
+Tech            6.61
+Grand Total     7.80</code></pre>
+
+   <div class="speak">
+    <p>Two things to draw out here, and they are both about contrast with salary.</p>
+    <p><b>Experience has no blanks.</b> So unlike <code>Count of salary</code>, these averages are
+    built on the full headcount of every department &mdash; 45, 42, 64 and 49.</p>
+    <p>And <b>there is no outlier wrecking it.</b> The departments sit between 6.6 and 9.1 years;
+    the grand total of 7.80 is genuinely typical. Compare that with Tech's salary average, which was
+    typical of nobody at all.</p>
+   </div>
+
+   <div class="keyline">Same pivot table, same three clicks &mdash; but this time the average is
+   <b>worth reporting</b>. The tool did not change. The data did.</div>
+  </div>
+
+  <!-- 25 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">25</span><h3>Question 3</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;How many people of each education level are in each city?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>The pivot is showing a number that is no longer true, and it looks exactly as confident as it did
-    five minutes ago.</p>
-    <p>Right-click anywhere in the pivot and choose <b>Refresh</b>.</p>
+    <p>This one needs <b>two</b> categorical fields, so it is the first time they have to choose what
+    goes where.</p>
    </div>
-   <div class="screen">Average of salary
-Tech               92253.54     <span class="c">now it agrees with the data</span></div>
+
+   <div class="typeit">What they need to build</div>
+<pre><code>Rows      -&gt;  city
+Columns   -&gt;  education
+Values    -&gt;  Count of name</code></pre>
+
+<pre><code>             Bachelors   Masters   Diploma   Total
+
+Bangalore           21        18        15      54
+Chennai             26        18        17      61
+Hyderabad           15        17        16      48
+Pune                15        11        11      37
+
+Total               77        64        59     200</code></pre>
+
+   <div class="speak">
+    <p>And the check works in <b>both directions</b> now &mdash; the row totals come to 200 and so do
+    the column totals. On a two-way table that is a genuinely strong check.</p>
+   </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26</span><h3>A small design decision</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Could we have swapped them round?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Yes. <code>Rows &rarr; education</code> and <code>Columns &rarr; city</code> gives exactly the
+    same numbers, just transposed. Neither is wrong.</p>
+    <p>But four cities fit comfortably down the side, and three education levels fit comfortably
+    across the top. The other way round is wider and harder to read.</p>
+   </div>
+
+   <div class="keyline"><b>Rows and Columns are partly a readability decision, not a correctness
+   rule.</b> When both work, pick the one somebody else can read.</div>
+  </div>
+
+  <!-- 27 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">27</span><h3>The four mistakes to watch for</h3></div>
+
+   <div class="speak">
+    <p>While they practise, these are what you will actually find. In this order of frequency.</p>
+   </div>
+
+   <div class="mth">
+    <h6>What you will see, and what it is</h6>
+    <div class="mrow"><b>Count, not Average</b><div>They dragged <code>experience</code> in and Excel
+    chose <code>Count of experience</code>. Fix: <b>Summarize Values By &rarr; Average</b></div></div>
+    <div class="mrow"><b>Grand Total = 61</b><div>Chennai is still selected in Filters from section
+    17. Fix: <b>clear the filter</b></div></div>
+    <div class="mrow"><b>Two students disagree</b><div>Different source ranges &mdash; one of them
+    swallowed practice data below row 201. Fix: <b>Change Data Source</b></div></div>
+    <div class="mrow"><b>The old number</b><div>They edited the data and did not refresh. Fix:
+    <b>right-click &rarr; Refresh</b></div></div>
+   </div>
+
+   <div class="speak">
+    <p>Notice that <b>not one of these produces an error message.</b> Every single one gives a
+    confident, well-formatted, wrong answer. That is the thread running through the whole module.</p>
+   </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">28</span><h3>The five things you must remember</h3></div>
+
+   <div class="typeit">On the board, and leave it up</div>
+<pre><code>1   FOUR BOXES
+      Rows     -&gt;  what goes down the side
+      Columns  -&gt;  what goes across the top
+      Values   -&gt;  what number, and which calculation
+      Filters  -&gt;  which data to include
+
+2   READ THE HEADING
+      Count of salary  =/=  Sum of salary  =/=  Average of salary
+
+3   SHOW COUNT AND PERCENTAGE
+      not  "32%"   but   "64 employees, 32%"
+
+4   REFRESH
+      a pivot table is a SNAPSHOT, not a formula
+      refresh before you send anything
+
+5   IT IS NOT SMARTER THAN YOU
+      it will calculate Tech's average as 1,89,753
+      and never once mention the 52 lakh</code></pre>
+  </div>
+
+  <!-- 29 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">29</span><h3>The connection to everything so far</h3></div>
+
+   <div class="speak">
+    <p>This is the part to say properly, because it changes how they file today away in their heads.</p>
+   </div>
+
+<pre><code>  COUNTIF      -&gt;  how many?
+  SUMIF        -&gt;  how much?
+  AVERAGEIF    -&gt;  what is the average?
+  COUNTIFS     -&gt;  how many, on two conditions?
+                        |
+                        v
+  PIVOT TABLE  -&gt;  let Excel build all of these for me</code></pre>
+
+   <div class="speak">
+    <p>Underneath, today asked <b>exactly the same questions</b> as Tuesday. And Tuesday asked the
+    same questions as <code>value_counts()</code> and <code>groupby()</code> did in Python.</p>
+    <p>So do not let them file this as &ldquo;pivot tables, a new and complicated topic&rdquo;. It is
+    <b>a faster interface for calculations they already understand.</b></p>
+   </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">30</span><h3>Close</h3></div>
+
+   <div class="mth">
+    <h6>The cheat sheet &mdash; give them this</h6>
+    <div class="mrow"><b>Headcount by department</b><div>Rows &rarr; department &middot; Values &rarr;
+    Count of name</div></div>
+    <div class="mrow"><b>Total salary by department</b><div>Rows &rarr; department &middot; Values
+    &rarr; Sum of salary</div></div>
+    <div class="mrow"><b>Average salary by department</b><div>Rows &rarr; department &middot; Values
+    &rarr; Average of salary</div></div>
+    <div class="mrow"><b>Department by rating</b><div>Rows &rarr; department &middot; Columns &rarr;
+    rating &middot; Values &rarr; Count of name</div></div>
+    <div class="mrow"><b>Share of the company</b><div>Values a second time &rarr; Show Values As
+    &rarr; % of Grand Total</div></div>
+    <div class="mrow"><b>Only one city</b><div>city &rarr; <b>Filters</b> &mdash; focus</div></div>
+    <div class="mrow"><b>Compare the cities</b><div>city &rarr; <b>Rows</b> &mdash; compare</div></div>
+    <div class="mrow"><b>Education by city</b><div>Rows &rarr; city &middot; Columns &rarr; education
+    &middot; Values &rarr; Count of name</div></div>
+   </div>
+
+   <div class="speak">
+    <p>Say it as a comparison, because the comparison is the point: <b>on Tuesday we spent ten
+    minutes building a sixteen-cell table. Today we built the same thing by dragging three
+    fields.</b></p>
+    <p>But do not let them leave thinking the tool did the work.</p>
+   </div>
 
    <div class="keyline">
-    <b>This is how a stale number gets into a monthly report.</b><br><br>
-    Somebody corrects the data. Every formula in the workbook updates. The pivot on the next sheet does
-    not, and the file looks perfectly consistent &mdash; because everything <em>else</em> did move.<br><br>
-    <b>Refresh when you open a file with a pivot in it. Refresh after you change data. Refresh before
-    you send it.</b> One right-click.
+    <b>A pivot table makes the analysis faster. It does not make the analyst unnecessary.</b><br><br>
+    You still choose the fields. You still choose Count, Sum or Average. You still check the source
+    range, check for a stray filter, refresh it &mdash; and then look at the answer and ask whether
+    it actually makes sense.<br><br>
+    That is the whole difference between <b>somebody who can click PivotTable</b> and <b>somebody who
+    can analyse data.</b>
    </div>
 
    <div class="speak">
-    <p><b>Ctrl+Z</b> to put the salary back, and refresh again so the pivot agrees.</p>
-   </div>
-
-   <div class="warn"><b>Two more things that bite, worth one sentence each.</b> <b>Adding new rows to
-   the bottom of your data does not add them to the pivot</b> &mdash; the pivot remembers the range it
-   was built from, and refreshing will not help; you have to change the source range. And
-   <b>Data &rarr; Refresh All</b> updates every pivot in the workbook at once, which is the one to use
-   when a file has several.</div>
-  </div>
-
-  <!-- 72-84 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">72 &ndash; 84</span><h3>Their turn</h3></div>
-   <p class="objective">Twelve minutes, three questions, no help unless asked. Walk the room.</p>
-
-   <div class="stage">Put the three questions on the board and stop talking. <b>These are deliberately
-   phrased as questions, not as instructions</b> &mdash; working out which box each field goes in is
-   the skill.</div>
-
-   <div class="speak">
-    <p>Three questions. Not three sets of instructions &mdash; three <b>questions</b>. Working out which
-    field goes in which box is the whole job.</p>
-   </div>
-
-   <div class="typeit">On the board</div>
-<pre><code>  1.  Which city has the most employees, and what share of
-      the company is it?
-
-  2.  What is the average experience in each department?
-
-  3.  How many people of each education level are in each city?
-      (two fields, not one)</code></pre>
-
-   <div class="stage">After twelve minutes, take the answers from the room. Ask <b>which box</b> each
-   field went in before you accept the number.</div>
-
-   <div class="typeit">Answers &mdash; question 1</div>
-<pre><code>  Rows    city        Values   count of name, plus a second copy
-                               shown as % of Grand Total
-
-  Chennai        61     30.50%      <span class="c">the most</span>
-  Bangalore      54     27.00%
-  Hyderabad      48     24.00%
-  Pune           37     18.50%
-  Grand Total   200    100.00%</code></pre>
-
-   <div class="typeit">Answers &mdash; question 2</div>
-<pre><code>  Rows    department     Values   experience, Summarize By AVERAGE
-
-  Marketing      9.12
-  Sales          8.25
-  HR             7.20
-  Tech           6.61
-  Grand Total    7.79
-
-  <span class="c">note: experience has NO blanks, so the count beside each</span>
-  <span class="c">average is the full headcount. unlike salary.</span>
-  <span class="c">and no outlier either - so unlike the salary averages,</span>
-  <span class="c">these four can be compared with each other honestly.</span></code></pre>
-
-   <div class="typeit">Answers &mdash; question 3</div>
-<pre><code>  Rows    city       Columns   education      Values   count of name
-
-               Bachelors  Masters  Diploma   Total
-  Chennai             26       18       17      61
-  Bangalore           21       18       15      54
-  Hyderabad           15       17       16      48
-  Pune                15       11       11      37
-  Total               77       64       59     200
-
-  <span class="c">totals to 200 both ways. same check as every other session.</span></code></pre>
-
-   <div class="qbox">
-    <div class="q">On question 3: &ldquo;which field did you put in Rows, and why that one?&rdquo;</div>
-    <div class="a">Either works and the grid just transposes. <b>The real answer is: put the one with
-    more values down the side</b>, because a table is easier to read long than wide. Four cities down,
-    three education levels across. <b>That is a judgement, not a rule, and it is worth saying so.</b></div>
-   </div>
-
-   <div class="warn"><b>The two things you will find while walking the room.</b> Somebody has
-   <b>Count</b> where they need <b>Average</b> on question 2 &mdash; third time today. And somebody
-   still has the <b>city filter from the last block</b> left on, so every number they produce is Chennai
-   only and all their totals are 61. <b>Both are the lesson.</b></div>
-  </div>
-
-  <!-- 84-90 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">84 &ndash; 90</span><h3>Close</h3></div>
-
-   <div class="typeit">The five lines. If everything else goes, keep these.</div>
-<pre><code>1.  FOUR BOXES, and that is the whole tool:
-      Rows      what goes down the side
-      Columns   what goes across the top
-      Values    the number in the middle, AND how to work it out
-      Filters   cuts which rows are included at all
-
-2.  READ THE HEADING BEFORE THE NUMBERS.
-    "Count of salary" and "Sum of salary" are different questions.
-    right-click -> Summarize Values By -> Sum / Average / Count
-
-3.  SHOW A PERCENTAGE NEXT TO THE COUNT, never instead of it.
-    right-click -> Show Values As -> % of Grand Total
-    Sales is 64 people, which is 32% of the company.
-
-4.  A PIVOT DOES NOT UPDATE ITSELF. it is a snapshot.
-    right-click -> Refresh.  on open, after a change, before sending.
-
-5.  IT IS NOT SMARTER THAN YOU. Tech still averages 1,89,753,
-    because one person still earns 52 lakh. a pivot finds the
-    problem faster. it does not notice it for you.</code></pre>
-
-   <div class="speak">
-    <p>Everything you built today, you could already compute on Tuesday with <code>COUNTIFS</code> and
-    <code>SUMIF</code>. Today was about doing it in nine seconds instead of ten minutes &mdash; and about
-    being able to check it, because you know what it is doing underneath.</p>
-    <p>People who only know the button cannot tell when the button is wrong.</p>
-   </div>
-
-   <div class="speak">
-    <p>Next session is the last one of the module, and it is the one where somebody else finally gets to
-    read your work.</p>
-    <p>Charts, with a mouse instead of matplotlib. Number formats, so a salary column stops looking like
-    a phone number. And one summary sheet, built live, that you could actually send to a manager.</p>
-    <p>Then Power BI, where everything you learned today has a different name and does the same
-    thing.</p>
+    <p>Next session moves off the grid of numbers entirely &mdash; <b>charts and reporting</b>.
+    Turning all of this into something another person can understand in five seconds.</p>
    </div>
   </div>
- </div>
-</section>
 
-<section class="fog">
- <div class="wrap">
-
-  <div class="runsheet">
- <div class="rs-head">
-  <h4>The session, as a run sheet</h4>
-  <p>Everything in order. Seven steps, every field placement, every number. If you lose your place,
-  this page alone is enough.</p>
- </div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Tuesday's grid, and how long it took</p>
-   <p class="rs-say"><b>Do not open by naming pivot tables.</b> Scroll to Tuesday's COUNTIFS grid, click
-   a cell, show the formula bar, and ask how long it took.</p>
-   <div class="rs-out">=COUNTIFS($D$2:$D$201, $V23, $G$2:$G$201, W$22)</div>
-   <div class="rs-board"><b>Then build the same thing live, saying nothing.</b> Insert &rarr;
-   PivotTable &rarr; department to <b>Rows</b>, rating to <b>Columns</b>, name to <b>Values</b>.
-   Sixteen identical numbers, 200 in the corner, no formula.<br><br>
-   <b>A pivot table is not a new idea</b> &mdash; it is COUNTIFS and SUMIF with a drag-and-drop front
-   end. <b>They did the hard version first, so they can check any cell of this by hand.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 26</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Build one from scratch, one field at a time</p>
-   <div class="rs-code"><pre><code>click inside the data -> Insert -> PivotTable
-  Table/Range:  Sheet1!$A$1:$L$201      <span class="c">CHECK it says 201, not 202</span>
-  New Worksheet                        <span class="c">keep the pivot off the data sheet</span></code></pre></div>
-   <div class="rs-board"><b>If two people get different numbers, check this range first.</b> Stray
-   practice values far down the sheet make Excel guess wrong.</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>department -> ROWS        four rows, alphabetical, empty Grand Total
-name       -> VALUES      HR 45 | Marketing 42 | Sales 64 | Tech 49 | 200
-rating     -> COLUMNS     the grid appears</code></pre></div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;where have you seen those four numbers?&rdquo; &mdash;
-   Tuesday's COUNTIF, and <code>value_counts()</code> before that. <b>Three tools, identical
-   answer.</b> The Grand Total of 200 is the check they built by hand &mdash; the pivot adds it
-   free.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">26 &ndash; 44</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Count of salary is not the salary</p>
-   <p class="rs-say"><b>Do not warn them.</b> Take rating out, take name out, drag <b>salary</b> into
-   Values, and let it count.</p>
-   <div class="rs-out">Count of salary:  HR 44 | Marketing 42 | Sales 64 | Tech 48 | 198</div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;is that money?&rdquo; &mdash; HR does not pay forty-four
-   rupees. <b>And the heading said Count of salary all along.</b><br><br>
-   <b>Ask the second one:</b> &ldquo;why 198 and not 200?&rdquo; &mdash; <b>the two blank salaries,
-   fourth session running.</b></div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>right-click a number -> Summarize Values By -> Sum
-
-  HR 2495026 | Marketing 3106086 | Sales 4264991 | Tech 9108170
-  Grand Total 18974273          <span class="c">= Tuesday's SUMIF answers</span></code></pre></div>
-   <div class="rs-board"><b>Read the heading before the numbers.</b> Count of / Sum of are different
-   questions and one small word in the corner is all that separates them.</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>right-click -> Summarize Values By -> Average
-
-  HR 56705.14 | Marketing 73954.43 | Sales 66640.48 | Tech <span class="o">189753.54</span></code></pre></div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;does a pivot protect you from that?&rdquo; &mdash; <b>no.</b>
-   Same number as Tuesday, same person on row 5. <b>A pivot finds the problem faster. It is not
-   smarter.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">44 &ndash; 58</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Per cent of total, and the filter box</p>
-   <div class="rs-code"><pre><code>drag name into VALUES a SECOND time
-right-click it -> Show Values As -> % of Grand Total
-
-  HR 45 22.50% | Marketing 42 21.00% | Sales 64 <span class="o">32.00%</span> | Tech 49 24.50%</code></pre></div>
-   <div class="rs-board"><b>&ldquo;Thirty-two per cent of this company is Sales&rdquo; is a sentence for
-   a report. &ldquo;Sixty-four&rdquo; is not.</b><br><br>
-   <b>Keep the count beside the percentage</b> &mdash; a percentage alone hides how many people it
-   describes.</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>city -> FILTERS     dropdown above the table
-
-  Chennai 61 | Bangalore 54 | Hyderabad 48 | Pune 37   -> 200</code></pre></div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;Filters versus Rows &mdash; what is the difference?&rdquo;
-   <b>Rows compares all four at once. Filters shows one at a time.</b> Compare with Rows, focus with
-   Filters.<br><br>
-   <b>Clear the filter and say why:</b> a pivot with a filter left on is how a wrong number reaches a
-   report. <b>Check the filter box on any pivot somebody else built.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">58 &ndash; 72</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">The thing that does not update</p>
-   <p class="rs-say"><b>Demonstrate it, do not describe it.</b> This block is why they will not
-   embarrass themselves in a job.</p>
-   <div class="rs-code"><pre><code>change K5 from 5200000 to 520000
-
-  summary block in P/Q    72130.82    moved instantly, as always
-  the pivot               <span class="o">189753.54</span>  UNCHANGED. still the old number.
-
-right-click the pivot -> Refresh      ->  92253.54</code></pre></div>
-   <div class="rs-board"><b>On day 1 you told them a spreadsheet is rules that are always running.
-   A pivot is the exception.</b> It works from a <b>snapshot</b> and nothing on screen says it is
-   stale.<br><br>
-   <b>That is how a stale number reaches a monthly report</b> &mdash; everything <em>else</em> updated,
-   so the file looks consistent.<br><br>
-   <b>Refresh on open, after a change, before sending.</b> <b>Ctrl+Z</b> and refresh again.</div>
-   <div class="rs-board" style="margin-top:8px"><b>One sentence each:</b> adding rows below your data
-   does <b>not</b> add them to the pivot and refreshing will not help &mdash; the source range has to
-   change. And <b>Data &rarr; Refresh All</b> does every pivot in the workbook.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">72 &ndash; 84</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Their turn &mdash; three questions, not three instructions</p>
-   <p class="rs-say"><b>Put them on the board and stop talking.</b> Working out which box each field
-   goes in is the skill. <b>Ask which box before you accept a number.</b></p>
-   <div class="rs-code"><pre><code>1. which city has the most employees, and what share is it?
-2. average experience in each department?
-3. how many of each education level in each city?  (two fields)</code></pre></div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>1.  Rows city | Values count of name + a 2nd copy as % of Grand Total
-    Chennai 61 30.50% | Bangalore 54 27.00% | Hyderabad 48 24.00%
-    Pune 37 18.50%
-
-2.  Rows department | Values experience, AVERAGE
-    Marketing 9.12 | Sales 8.25 | HR 7.20 | Tech 6.61 | total 7.79
-    <span class="c">no blanks and no outlier - so these four CAN be compared honestly</span>
-
-3.  Rows city | Columns education | Values count of name
-                 Bachelors  Masters  Diploma  Total
-    Chennai             26       18       17     61
-    Bangalore           21       18       15     54
-    Hyderabad           15       17       16     48
-    Pune                15       11       11     37
-    Total               77       64       59    200</code></pre></div>
-   <div class="rs-board"><b>On question 3 ask which field went in Rows and why.</b> Either works.
-   <b>The real answer: put the one with more values down the side</b>, because a table reads better long
-   than wide. <b>A judgement, not a rule.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>Two things you will find walking the room:</b>
-   <b>Count where Average belongs</b> on question 2 &mdash; third time today. And somebody still has
-   <b>the city filter on</b>, so every total they produce is 61. <b>Both are the lesson.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">84 &ndash; 90</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Close</p>
-   <div class="rs-code"><pre><code>1.  FOUR BOXES: Rows down | Columns across | Values the number
-    AND how to work it out | Filters cuts which rows count at all
-2.  READ THE HEADING FIRST. Count of / Sum of are different questions
-3.  percentage NEXT TO the count, never instead of it. Sales = 32%
-4.  A PIVOT DOES NOT UPDATE ITSELF. right-click -> Refresh
-5.  it is NOT smarter than you. Tech still averages 1,89,753</code></pre></div>
-   <div class="rs-board"><b>The line:</b> everything today was computable on Tuesday. Today was nine
-   seconds instead of ten minutes &mdash; <b>and being able to check it, because you know what it is
-   doing underneath. People who only know the button cannot tell when the button is wrong.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>Set up the last session:</b> charts with a mouse,
-   number formats so a salary stops looking like a phone number, and one summary sheet built live that
-   you could send to a manager. <b>Then Power BI, where all of today has different names and does the
-   same thing.</b></div>
-  </div></div>
-
-  </div>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
-  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 4, 8 and 10 are the
-  three that matter. Take each answer from a different person.</p>
-
-  <div class="askq">
-
-   <div class="aq"><div>
-    <q>Name the four boxes and what each one does.</q>
-    <div class="ans"><b>Rows</b> down the side, <b>Columns</b> across the top, <b>Values</b> the number
-    in the middle and how to work it out, <b>Filters</b> cuts which rows are included at
-    all.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Which formulas from Tuesday does a pivot table replace?</q>
-    <div class="ans"><code>COUNTIFS</code> for the grid, <code>SUMIF</code> and <code>AVERAGEIF</code>
-    for the lists. <b>It computes the same things</b> &mdash; you just do not write
-    them.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Your pivot says HR is 44 and Sales is 64 for salary. Is that money?</q>
-    <div class="ans"><b>No &mdash; it counted instead of adding.</b> The heading says <b>Count of
-    salary</b>. Right-click, Summarize Values By, Sum.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Count of salary gives a Grand Total of 198 but there are 200 rows. Why?</q>
-    <div class="ans">The <b>two blank salaries</b>. Count of salary counts the ones that exist. Fourth
-    session those two have shown up.</div></div></div>
-
-   <div class="aq"><div>
-    <q>What is the first thing you should read on any pivot table?</q>
-    <div class="ans"><b>The heading in the corner</b> &mdash; Count of, Sum of, Average of. It is the
-    only thing on screen telling you which question is being answered.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Why show a percentage next to the count rather than instead of it?</q>
-    <div class="ans">Because a percentage alone <b>hides how many people it describes</b>. Thirty-two
-    per cent of two hundred is a different thing from thirty-two per cent of
-    eight.</div></div></div>
-
-   <div class="aq"><div>
-    <q>What is the difference between putting <code>city</code> in Filters and in Rows?</q>
-    <div class="ans"><b>Rows</b> shows all four cities at once so you can compare.
-    <b>Filters</b> shows one at a time with the rest hidden. <b>Compare with Rows, focus with
-    Filters.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>I changed a salary in the data. Why did the pivot not move?</q>
-    <div class="ans">Because a pivot works from a <b>snapshot</b>, not from the live cells. <b>It is the
-    one thing in Excel that does not recalculate on its own.</b> Right-click,
-    Refresh.</div></div></div>
-
-   <div class="aq"><div>
-    <q>When should you refresh?</q>
-    <div class="ans"><b>When you open a file with a pivot in it, after you change the data, and before
-    you send it to anybody.</b> One right-click.</div></div></div>
-
-   <div class="aq"><div>
-    <q>I added twenty new rows under my data and refreshed. They are not in the pivot. Why?</q>
-    <div class="ans">The pivot remembers <b>the range it was built from</b>, and new rows are outside it.
-    <b>Refreshing will not help</b> &mdash; you have to change the source
-    range.</div></div></div>
-
-   <div class="aq"><div>
-    <q>The pivot says Tech averages 1,89,753. Is the pivot wrong?</q>
-    <div class="ans"><b>No.</b> It is the correct average of the Tech salaries, and one of them is 52
-    lakh. <b>A pivot does not check your data. It finds the problem faster, it does not notice it for
-    you.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>Somebody hands you a pivot table. Name two things to check before you trust a number on it.</q>
-    <div class="ans">Any two of: <b>the Count of / Sum of heading</b>; whether a <b>filter</b> is left
-    on; whether it has been <b>refreshed</b>; and whether the <b>source range</b> covers all the
-    data.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Why did we build the grid by hand on Tuesday if today took nine seconds?</q>
-    <div class="ans">So that you know <b>what the pivot is computing</b> and could check any cell of it
-    yourself. <b>People who only know the button cannot tell when the button is
-    wrong.</b></div></div></div>
-
-  </div>
- </div>
-</section>
-
-<section>
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
-
-  <div class="qa"><h5>&ldquo;Can I put more than one field in Rows?&rdquo;</h5>
-  <p>&ldquo;Yes, and it nests them &mdash; department, then city inside each department, with subtotals.
-  It is genuinely useful and it gets unreadable fast. <b>Two levels is usually the most anybody can
-  read.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;What is the difference between a pivot table and just sorting and
-  filtering?&rdquo;</h5>
-  <p>&ldquo;Sorting and filtering show you <b>rows of your data</b>. A pivot shows you <b>a summary of
-  all of it</b> &mdash; a number per group, computed across rows you never see. Filtering hides rows; a
-  pivot aggregates them.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Is a pivot table the same as <code>groupby</code> in pandas?&rdquo;</h5>
-  <p>&ldquo;Close enough that the answer is yes. Rows is what you group by, Values is what you aggregate
-  and how. <code>df.groupby("department")["salary"].mean()</code> is the Average of salary by department
-  you built today. <b>Same operation, different front end.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Why does my pivot table show a blank row?&rdquo;</h5>
-  <p>&ldquo;Because some rows in your data have nothing in that field, and the pivot gives them their own
-  group called <code>(blank)</code>. <b>That is useful, not untidy</b> &mdash; it is telling you how many
-  rows are missing that value.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Can I make a chart from a pivot table?&rdquo;</h5>
-  <p>&ldquo;Yes &mdash; it is called a pivot chart, and it updates with the pivot. That is the next
-  session, and it is the fastest way in Excel to go from raw rows to a picture somebody else can
-  read.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Can I edit the numbers inside a pivot table?&rdquo;</h5>
-  <p>&ldquo;No, and that is deliberate. A pivot is a view of your data, not a copy you can type over. If
-  a number is wrong, the data is wrong &mdash; go and fix it there, then refresh.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Does Google Sheets have pivot tables?&rdquo;</h5>
-  <p>&ldquo;Yes, and the four boxes are the same four boxes with slightly different names. The menu
-  layout differs and the summarize option is called something else. <b>If you understand the four boxes,
-  you can find your way around any version.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;My percentages add up to 99.99 per cent.&rdquo;</h5>
-  <p>&ldquo;Rounding. Each one got rounded to two decimals and the leftovers do not cancel out. It is not
-  an error and you should not fix it by editing numbers &mdash; if it matters for a report, show one
-  fewer decimal place.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Should I use pivot tables or formulas?&rdquo;</h5>
-  <p>&ldquo;Pivot for exploring &mdash; when you do not yet know what you are looking for and you want to
-  try six breakdowns in two minutes. Formulas for anything that has to sit in a report and update itself,
-  because they recalculate and a pivot does not. <b>Most real work uses both on the same
-  file.</b>&rdquo;</p></div>
  </div>
 </section>
 </div>
