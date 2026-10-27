@@ -207,12 +207,16 @@ ol.n li b{color:var(--ink);font-weight:450}
 .trackhead .badge.live{background:var(--ink);color:var(--paper)}
 .tracknote{font-size:16px;line-height:1.55;color:var(--slate);margin-bottom:20px;max-width:640px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px}
+/* `color` must be explicit: a card is a BUTTON element, and buttons do not inherit
+   colour - they fall back to the UA's `buttontext` (black), which is invisible on the
+   dark --mist card. Setting it here lets h3 pick up the theme token. */
 .dcard{background:var(--mist);border:0;border-radius:20px;padding:20px;text-align:left;font:inherit;
+  color:var(--ink);
   cursor:pointer;display:flex;flex-direction:column;gap:8px;min-height:132px;
   transition:transform .15s,opacity .15s}
 .dcard:hover{transform:translateY(-3px);opacity:.86}
 .dcard .id{font-family:var(--mono);font-size:12.5px;color:var(--ash);letter-spacing:.04em}
-.dcard h3{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.25;letter-spacing:-.25px}
+.dcard h3{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.25;letter-spacing:-.25px;color:var(--ink)}
 .dcard p{font-size:14.5px;line-height:1.45;color:var(--slate)}
 .dcard .foot{margin-top:auto;padding-top:6px;font-size:12.5px;color:var(--ash)}
 .dcard.soon{background:transparent;outline:1px dashed var(--hair);outline-offset:-1px;cursor:not-allowed}
@@ -507,11 +511,7 @@ try{var _t=localStorage.getItem("steep-theme");
     <span class="badge">Module closed</span>
     <span class="badge">All 13 scripts written</span>
    </div>
-   <p class="tracknote">Now running to <b>13 sessions</b>, not 10. Day 2's material needed 2.2 sessions
-   once taught properly, and that shifted everything after it. Nothing has been dropped &mdash; all 105
-   teach-live concepts still land, and binomial, Poisson and ANOVA stay on self-study. What changed is
-   the budget: day 11 split into confidence intervals and hypothesis testing, which spent the buffer, so
-   the module closed on 13 with nothing spare.</p>
+   <p class="tracknote">Thirteen sessions, all delivered. Everything runs on <code>employees.csv</code>.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="d1">
@@ -617,17 +617,7 @@ try{var _t=localStorage.getItem("steep-theme");
     <span class="badge live">Running now</span>
     <span class="badge">Merged 08 Oct &middot; D29 next</span>
    </div>
-   <p class="tracknote"><b>These two batches became one class on 8 October</b> &mdash; from D24 onward
-   both playlists carry the same recording. Delivered since: file handling, error handling, then three
-   sessions on classes and objects. <b>D29 closes object orientation</b> with all four pillars in one
-   session, and NumPy starts the week after.
-   <br><br>
-   <b>One thing to carry into every joint session.</b> The September batch joined at file handling and
-   skipped the whole functions block &mdash; across all eleven of their own recordings,
-   <code>def</code> appears <b>zero</b> times and <code>lambda</code> <b>zero</b>. They have met methods
-   inside a class and nothing else. D29 repairs that in its first fourteen minutes without announcing
-   it; <code>lambda</code> still needs fifteen minutes before <code>.apply()</code> arrives in
-   Pandas.</p>
+   <p class="tracknote"><b>One class since 8 October</b> &mdash; both playlists carry the same recording from D24. D29 closes object orientation; NumPy starts the week after.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="ab23">
@@ -681,11 +671,7 @@ try{var _t=localStorage.getItem("steep-theme");
     <span class="badge live">Running now</span>
     <span class="badge">5 sessions &middot; all scripts ready</span>
    </div>
-   <p class="tracknote">Cut from nine sessions to five, deliberately. Power BI and Tableau follow this
-   module and they draw the charts for you &mdash; so the matplotlib craft that a BI tool replaces has
-   been dropped, and the time moved into <b>reading</b> charts and <b>choosing</b> them. That part
-   transfers to every tool and it is what interviews actually test. Every chart comes from
-   <code>employees.csv</code>, which they have known for thirteen sessions.</p>
+   <p class="tracknote">Five sessions, every script ready. Every chart comes from <code>employees.csv</code>.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="v1">
@@ -722,13 +708,8 @@ try{var _t=localStorage.getItem("steep-theme");
    <div class="nextup">
  <div class="nu-head"><b>Where the course is right now</b><span>viz running &middot; Excel written ahead</span></div>
  <div class="nu-body">
-  <p class="nu-line">Statistics is <b>closed</b> &mdash; all 13 sessions delivered. Data Visualisation is
-  <b>running</b>, and all five scripts plus the day 1 to day 3 beat sheets are ready. <b>Excel day 1 is
-  written and can be taught the day visualisation ends</b>; days 2 to 6 are planned and not yet
-  scripted.</p>
-  <p class="nu-foot">Then Power BI, Tableau and projects. There is <b>no machine learning module</b>, and
-  <b>no Excel before Data Visualisation</b> &mdash; the charting habits from viz are what make the Excel
-  chart session short.</p>
+  <p class="nu-line">Statistics is closed. Data Visualisation is running. Excel is scripted, days 1 to 9.</p>
+  <p class="nu-foot">Then Power BI, Tableau and projects. There is <b>no machine learning module</b>.</p>
  </div>
 </div>
   </div>
@@ -739,14 +720,7 @@ try{var _t=localStorage.getItem("steep-theme");
     <span class="badge">Follows Data Visualisation</span>
     <span class="badge live">All 9 scripts ready</span>
    </div>
-   <p class="tracknote">Excel comes <b>after</b> Python and SQL on purpose, and that changes what the
-   module is about. They already know every concept in it &mdash; mean, median, outliers, grouping,
-   correlation, charts, and all six joins. <b>Nothing here is new statistics and nothing is a new join.</b>
-   What is new is a grid, a formula bar, and a tool that recalculates itself the moment a cell changes.
-   <b>Nine sessions.</b> Six on the sheet, then <b>three that no comparison course covers</b>: the text
-   and date functions, and two on the <b>Power Query Editor</b> &mdash; which is the same editor as Power
-   BI's, so two of that module's sessions are done early. Every session runs on
-   <code>employees.csv</code>, the file they have had since statistics day 1.</p>
+   <p class="tracknote">Nine sessions on <code>employees.csv</code> &mdash; six on the sheet, then text and dates, then two on the Power Query Editor.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="x1">
@@ -842,12 +816,7 @@ try{var _t=localStorage.getItem("steep-theme");
     <span class="badge">Reference</span>
     <span class="badge">Pandas 1 delivered to B2</span>
    </div>
-   <p class="tracknote">June B3 and July B2 are <b>one class</b> now, so the parity rule is retired and
-   these six pages are a reference rather than a schedule. <b>Pandas 1</b> was delivered to July B2.
-   <b>Pandas 2</b> is the parity session &mdash; 27 functions June B3 already had in D34 to D37.
-   <b>Pandas 3</b> holds the 30 functions neither batch has seen, verified absent from all seven B3
-   recordings and both B2 sessions. <b>N1 to N3</b> are the NumPy sessions, and August B3 reaches the
-   same ground from its own day 28.</p>
+   <p class="tracknote">June B3 and July B2 are <b>one class</b>, so these pages are a reference rather than a schedule.</p>
 
    <div class="cards">
     <button class="dcard full" data-go="n1">
@@ -929,11 +898,7 @@ try{var _t=localStorage.getItem("steep-theme");
    <div><span class="pil self">skip</span> Self-study or reference. Not spoken.</div>
   </div>
 
-  <div class="planbanner">
-   <b>The plan does not change.</b> Ten days, plus day 11 as buffer. Nothing below moves a session
-   boundary &mdash; this is a map of the notes onto the plan you already approved, not a new plan.
   </div>
- </div>
 </section>
 
 <section class="fog">
@@ -1157,11 +1122,7 @@ try{var _t=localStorage.getItem("steep-theme");
   </div>
 
   <div class="planbanner" style="margin-top:20px">
-   <b>The four biggest self-study blocks.</b> Binomial and Poisson (&sect;16), the non-normal continuous
-   distributions (&sect;17.3&ndash;17.5), and ANOVA (&sect;28) all go to Udemy &sect;7&ndash;&sect;8 with
-   a ten-minute Q&amp;A on the day that needs them. Together they would cost roughly three live sessions,
-   which is most of what the 15&rarr;10 compression bought.
-  </div>
+   <b>On self-study.</b> Binomial and Poisson (&sect;16), the non-normal continuous distributions (&sect;17.3&ndash;17.5) and ANOVA (&sect;28) &mdash; Udemy &sect;7&ndash;&sect;8, with a ten-minute Q&amp;A on the day that needs them.</div>
  </div>
 </section>
 </div>
@@ -4516,12 +4477,6 @@ df[&quot;salary&quot;].mean() - df[&quot;salary&quot;].median()   <span class="c
 df[&quot;salary&quot;].max()                            <span class="c"># 5,200,000  the reason</span>
 df[&quot;salary&quot;].skew()                           <span class="c"># 14.06   big and positive = lopsided</span></code></pre></div>
 
-  <div class="planbanner" style="margin-top:20px">
-   <b>Note on the plan.</b> Absorbing day 2's sampling half means <b>spread</b> &mdash; range, IQR,
-   variance, standard deviation, the n&minus;1 trap and the 68-95-99.7 rule &mdash; moves to day 4,
-   and shape and outliers to day 5. Everything after shifts by one session. Day 11 was booked as
-   buffer for exactly this.
-  </div>
  </div>
 </section>
 </div>
@@ -11447,10 +11402,8 @@ margin +/- 1 % -> need 9604 people</div>
    fake difference can plausibly get.</p>
 
    <h6>Teach it as a pretend</h6>
-   <p>Do not reach for a courtroom analogy here, however tempting. An earlier version of this script
-   used one and it was cut &mdash; the borrowed words turned out to be harder than the idea they were
-   explaining, and students ended up learning the analogy instead of the statistics.</p>
-   <p>What replaced it is simpler and is what the test literally does:</p>
+   <p>Do not reach for a courtroom analogy here, however tempting &mdash; students end up learning
+   the analogy instead of the statistics. Say what the test literally does:</p>
    <div class="mth">
     <div class="mrow"><b>Step 1</b> &mdash; pretend there is no real difference at all.</div>
     <div class="mrow"><b>Step 2</b> &mdash; ask: if that were true, how often would we get a gap this
@@ -13404,10 +13357,7 @@ days 11-13  DECIDE        intervals, tests, and honesty</code></pre></div>
 
    </div>
    <div class="planbanner" style="margin-top:20px">
-    <b>The module ends here.</b> Day 11 split into confidence intervals and hypothesis testing exactly
-    as the notes predicted, which spent the day 13 buffer &mdash; so there is no spare session left in
-    statistics. Data Visualisation follows.
-   </div>
+    <b>The module ends here.</b> Data Visualisation follows.</div>
   </div>
  </div>
 </section>
@@ -35817,10 +35767,7 @@ pd.merge(emp, dept, on=&quot;dept_id&quot;)       <span class="c"># join on a sh
 pd.merge(a, b, on=&quot;id&quot;, how=&quot;left&quot;)     <span class="c"># keep every row from the left table</span></code></pre></div>
 
   <div class="planbanner" style="margin-top:20px">
-   <b>Where this leaves you.</b> B2 now knows everything B3 knows. On Monday the merged class resumes
-   with statistics, and the thirty remaining Pandas functions can be taught to both batches together
-   whenever you want to give them that context.
-  </div>
+   <b>Where this leaves you.</b> B2 now knows everything B3 knows.</div>
  </div>
 </section>
 </div>
