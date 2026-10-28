@@ -838,9 +838,9 @@ try{var _t=localStorage.getItem("steep-theme");
 
     <button class="dcard full" data-go="pd1">
      <span class="id">PANDAS 1</span><h3>Giving the Data Its Names Back</h3>
-     <p>Series and DataFrame, the index, loc against iloc, then read_csv on the real file &mdash; and
-     info() and describe() finding the missing salaries and the 52-lakh row.</p>
-     <span class="foot">Full script &middot; 12 functions &middot; 88 min</span></button>
+     <p>zeros_like, then Series and DataFrame, read_csv, info and describe &mdash; and four ways into a
+     cell: loc, iloc, at and iat. Includes the loc slice that returns one row too many.</p>
+     <span class="foot">Full script &middot; 16 functions &middot; 88 min &middot; gaps table</span></button>
 
     <button class="dcard full" data-go="pd2">
      <span class="id">PANDAS 2</span><h3>Cleaning It, Then Summarising It</h3>
@@ -34364,26 +34364,26 @@ np.concatenate((x,y), axis=1)   <span class="c"># same as hstack   - across</spa
 <div class="day" id="pd1">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">PD1 &middot; as delivered &middot; 88 minutes &middot; pandas introduction</p>
+  <p class="tag" style="margin-bottom:16px">PD1 &middot; NumPy day 4 &middot; as delivered &middot; 88 minutes &middot; pandas introduction</p>
   <h1 class="display">Giving the Data<br>Its Names Back</h1>
-  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:660px">
-   Three sessions of arrays that could only hold one type and had no column names. Today the data
-   gets <b>labels, mixed types and a header row</b> &mdash; and a real file gets opened for the
-   first time.
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Three NumPy functions to finish, then the library that holds <b>real</b> data &mdash; labels,
+   mixed types, a header row, and four different ways of reaching a single cell.
   </p>
 
   <div class="glance">
    <div class="gcell"><b>88</b><span>minutes</span></div>
-   <div class="gcell"><b>2</b><span>objects: Series, DataFrame</span></div>
-   <div class="gcell"><b>201</b><span>rows in the real file</span></div>
-   <div class="gcell"><b>1</b><span>line to read it</span></div>
+   <div class="gcell"><b>201</b><span>&times; 12 = 2,412 cells</span></div>
+   <div class="gcell"><b>4</b><span>ways in: loc iloc at iat</span></div>
+   <div class="gcell"><b>1</b><span>slice that includes its stop</span></div>
   </div>
 
-  <div class="pace">
-   <b>Pace note.</b> The opening is a short NumPy recap &mdash; keep it to ten minutes, it is there to
-   make the contrast, not to re-teach. <b>The money is in <code>read_csv</code> onward</b>: that is
-   the first time they open real data, and <code>info()</code> and <code>describe()</code> are what
-   they will run first on every file for the rest of their careers.
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">The one that catches everybody</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)"><code>loc</code> slicing INCLUDES
+   the last value.</b> <code>df.loc[0:3]</code> gives you <b style="color:var(--sienna)">four</b>
+   rows, not three. Every slice they have ever written &mdash; lists, strings, NumPy &mdash; excluded
+   the stop. This one does not.</p>
   </div>
  </div>
 </section>
@@ -34392,261 +34392,353 @@ np.concatenate((x,y), axis=1)   <span class="c"># same as hstack   - across</spa
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Have <code>employees.csv</code> in the same folder as the notebook.</b> If the path is
-   wrong you will lose ten minutes to <code>FileNotFoundError</code> on five different machines.</li>
-   <li><b>Build the DataFrame from a dictionary first, by hand.</b> It is three columns and takes two
-   minutes, and it is what makes the header row feel obvious rather than magic.</li>
-   <li><b>Do not use <code>set_index</code> to explain <code>loc</code>.</b> Use a Series with its own
-   labels instead &mdash; on a plain 0,1,2 index <code>loc</code> and <code>iloc</code> give
-   identical answers and the distinction lands as pointless.</li>
-   <li><b>The file has deliberate problems and today you only NAME them.</b>
-   <code>info()</code> will show the missing salaries. Point, say &ldquo;tomorrow&rdquo;, move on
-   &mdash; fixing them is the whole of the next session.</li>
+   <li><b>Get the CSV to them before the session, not during it.</b> The drive link failed in class
+   last time and a chunk of the room could not follow along. Put the file in the shared folder the
+   night before and check one student can open it.</li>
+   <li><b>Copy and paste column names, always.</b> Type <code>"Name"</code> instead of
+   <code>"name"</code> and you get a bare <code>KeyError</code> with no hint about case. This cost
+   real minutes last time &mdash; now it is a teaching point instead of an accident.</li>
+   <li><b>Use <code>index=[2,1,0]</code> for the loc/iloc demo.</b> On a normal 0,1,2 index the two
+   give identical answers and the whole distinction looks pointless. Reversed, <code>loc[2]</code> is
+   10 and <code>iloc[2]</code> is 30, and the difference is undeniable.</li>
+   <li><b>Say &ldquo;panel data&rdquo; out loud.</b> They assume the library is named after the
+   animal. It is not, and the real reason tells them what it is for.</li>
   </ol>
 
   <div class="lbl">On the board &mdash; leave it up all session</div>
-<pre><code>    NUMPY                          PANDAS
-
-    one type only                  every column its own type
-    no column names                named columns
-    positions only                 labels AND positions
-    numbers                        numbers, text, dates, blanks
-
-           ARRAY            ->     SERIES      one column, labelled
-           TABLE OF NUMBERS ->     DATAFRAME   many columns, named
+<pre><code>    COLUMN has a NAME.      ROW has a NUMBER.
 
 
-    .loc[ label ]        by NAME
-    .iloc[ position ]    by NUMBER</code></pre>
+    df.loc [ row LABEL , column NAME ]      slice INCLUDES the stop
+    df.iloc[ row NUMBER, column NUMBER ]    slice EXCLUDES the stop
+
+    df.at  [ row LABEL , column NAME ]      ONE cell
+    df.iat [ row NUMBER, column NUMBER ]    ONE cell
+
+
+    two conditions:   df[ (cond1) & (cond2) ]
+                           ^^^^^^   ^^^^^^^
+                      brackets are NOT optional.  "and" does not work.</code></pre>
  </div>
 </section>
 
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-14 -->
+  <!-- 1 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 – 14</span><h3>A short recap, and the wall NumPy hits</h3></div>
+   <div class="bhead"><span class="clock">0 – 12</span><h3>Three NumPy functions to finish</h3></div>
 
-   <div class="typeit">Two from yesterday, quickly</div>
-<pre><code>import numpy as np
+   <div class="typeit">The identity matrix</div>
+<pre><code>np.identity(3)
 
-np.identity(3)        <span class="c"># n x n, ones down the diagonal</span>
-
-A = np.array([5, 12, 18, 7, 3, 25])
-A[A &gt; 10]             <span class="c"># [12 18 25]   the two-step, once more</span></code></pre>
+<span class="c"># [[1. 0. 0.]</span>
+<span class="c">#  [0. 1. 0.]</span>
+<span class="c">#  [0. 0. 1.]]</span></code></pre>
 
    <div class="speak">
-    <p>Ten minutes on yesterday, no more. Filtering especially &mdash; it comes straight back today on
-    real columns.</p>
-    <p>Then set up the problem. Everything so far has been <b>numbers with no names</b>. Ask them to
-    picture the employee file: names, departments, cities, salaries, joining dates. Text and numbers
-    and dates together, column headings, and some cells simply empty.</p>
-    <p><b>An array cannot hold that.</b> One type only, no headings. Put a name in and every salary
-    becomes text and the maths dies.</p>
-    <p>So pandas. Same NumPy underneath &mdash; the speed is still there &mdash; but with labels,
-    mixed types and a header row on top.</p>
+    <p>One argument, and you get an <code>n</code> by <code>n</code> square with <b>ones all down the
+    diagonal</b> and zeros everywhere else. Some of them will remember it from school maths.</p>
    </div>
 
-   <div class="typeit">The import, and the convention</div>
-<pre><code>import pandas as pd</code></pre>
+   <div class="typeit">Two that copy a shape</div>
+<pre><code>ar = np.array([[1, 2, 3],
+               [4, 5, 6]])
 
-   <div class="keyline"><b><code>np</code> for NumPy, <code>pd</code> for pandas.</b> Not rules, but
-   every tutorial, every answer online and every interviewer writes them this way.</div>
+np.zeros_like(ar)     <span class="c"># [[0 0 0]</span>
+                      <span class="c">#  [0 0 0]]</span>
+
+np.ones_like(ar)      <span class="c"># [[1 1 1]</span>
+                      <span class="c">#  [1 1 1]]</span></code></pre>
+
+   <div class="speak">
+    <p>These are the useful ones. <code>zeros_like</code> takes an array you already have and gives
+    you back <b>another array of exactly the same shape</b>, filled with zeros.</p>
+    <p>Ask why that is better than <code>np.zeros((2,3))</code>. Because <b>you did not have to know
+    the shape.</b> You often want a blank copy of something whose size you have not checked &mdash;
+    and if the original changes, this still matches.</p>
+    <p><code>ones_like</code> is the same with ones. Those two plus <code>identity</code> close out
+    NumPy.</p>
+   </div>
   </div>
 
-  <!-- 14-26 -->
+  <!-- 2 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">14 – 26</span><h3>Series &mdash; one column, with labels</h3></div>
+   <div class="bhead"><span class="clock">12 – 18</span><h3>Why pandas, and where the name comes from</h3></div>
 
-<pre><code>s = pd.Series([87, 92, 78])
+   <div class="qbox">
+    <div class="q">&ldquo;Why do you think it is called pandas?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Somebody will say the animal. <b>It is not.</b> It is short for <b>panel data</b> &mdash; the
+    term for data collected repeatedly over time, which is what banks and agencies generate
+    constantly. The library was built to manage exactly that.</p>
+    <p>And then the point that matters. Everything so far has been <b>numbers with no names</b>. The
+    employee file has names, departments, cities, salaries and joining dates &mdash; text and numbers
+    together, column headings, and some cells simply empty.</p>
+    <p><b>An array cannot hold that.</b> One type only. Put a name in and every salary becomes text
+    and the maths dies.</p>
+   </div>
+
+   <div class="keyline"><b>DataFrame = a table. Series = one column.</b> That is the whole object
+   model, and the rest of the session is reaching into them.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18 – 28</span><h3>Series &mdash; one column</h3></div>
+
+<pre><code>import pandas as pd
+
+s = pd.Series([10, 20, 30])
 print(s)
 
-<span class="c"># 0    87</span>
-<span class="c"># 1    92</span>
-<span class="c"># 2    78</span></code></pre>
+<span class="c"># 0    10</span>
+<span class="c"># 1    20</span>
+<span class="c"># 2    30</span>
+<span class="c"># dtype: int64</span></code></pre>
 
    <div class="speak">
-    <p>Looks like an array, but ask what the extra column of 0, 1, 2 is. <b>Nobody typed that.</b>
-    Pandas added it, and it is called the <b>index</b> &mdash; the label on each row.</p>
-    <p>And if pandas can add labels, you can choose them.</p>
-   </div>
-
-<pre><code>s = pd.Series([87, 92, 78], index=[<span class="c">"Rahul"</span>, <span class="c">"Priya"</span>, <span class="c">"Amit"</span>])
-
-<span class="c"># Rahul    87</span>
-<span class="c"># Priya    92</span>
-<span class="c"># Amit     78</span></code></pre>
-
-   <div class="speak">
-    <p>Now the marks have names attached. <b>That is the whole difference between an array and a
-    Series</b> &mdash; a Series knows what each value belongs to.</p>
-    <p>Keep this one on screen; the next block needs it.</p>
+    <p><code>Series</code> is a <b>class</b>, so calling it is calling a constructor &mdash; the same
+    thing they did with their own classes in Python. Worth naming; it makes the capital S look
+    deliberate rather than odd.</p>
+    <p>Then point at the left-hand column. <b>Nobody typed 0, 1, 2.</b> Pandas added it, and it is
+    called the <b>index</b> &mdash; the label on each row.</p>
+    <p>And <code>dtype: int64</code> at the bottom is the same <code>dtype</code> from day 1. A Series
+    is still one type.</p>
    </div>
   </div>
 
-  <!-- 26-40 -->
+  <!-- 4 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">26 – 40</span><h3>DataFrame &mdash; built from a dictionary</h3></div>
-   <p class="objective">Fourteen minutes. Build it by hand &mdash; it is what makes a table stop
-   being magic.</p>
+   <div class="bhead"><span class="clock">28 – 38</span><h3>Choosing your own index</h3></div>
+   <p class="objective">Ten minutes, and it is the setup for the whole second half. Do not skip it.</p>
 
-   <div class="typeit">They already know how to write this</div>
-<pre><code>data = {
-    <span class="c">"name"</span>:   [<span class="c">"Rahul"</span>, <span class="c">"Priya"</span>, <span class="c">"Amit"</span>],
-    <span class="c">"dept"</span>:   [<span class="c">"HR"</span>, <span class="c">"Tech"</span>, <span class="c">"Sales"</span>],
-    <span class="c">"salary"</span>: [47764, 62990, 51200]
+<pre><code>s = pd.Series([10, 20, 30], index=[2, 1, 0])
+print(s)
+
+<span class="c"># 2    10</span>
+<span class="c"># 1    20</span>
+<span class="c"># 0    30</span></code></pre>
+
+   <div class="speak">
+    <p>If pandas can add labels, you can choose them. Add <code>index=</code> and a list.</p>
+    <p>And deliberately put them in backwards: <b>2, 1, 0</b>. It looks pointless and it is about to
+    be the most useful thing in the session.</p>
+    <p>Read the table out with them. <b>The row labelled 2 holds the value 10.</b> The row in
+    position 2 &mdash; the third one down &mdash; holds 30. <b>The label and the position have come
+    apart.</b></p>
+   </div>
+
+   <div class="keyline">Keep this on screen. When <code>loc</code> and <code>iloc</code> arrive, this
+   is the example that makes them different.</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">38 – 46</span><h3>DataFrame &mdash; built from a dictionary</h3></div>
+
+<pre><code>d = {
+    <span class="c">"name"</span>: [<span class="c">"Alex"</span>, <span class="c">"Bob"</span>, <span class="c">"Charlie"</span>],
+    <span class="c">"age"</span>:  [10, 20, 30]
 }
 
-df = pd.DataFrame(data)</code></pre>
+df = pd.DataFrame(d)</code></pre>
 
-   <div class="screen">    name   dept  salary
-0  Rahul     HR   47764
-1  Priya   Tech   62990
-2   Amit  Sales   51200</div>
-
-   <div class="speak">
-    <p>Start from the dictionary, because they wrote dictionaries weeks ago. Keys and values, nothing
-    new.</p>
-    <p>Then hand it to <code>pd.DataFrame</code> and let them look at what came back. Ask the question
-    that makes it click: <b>where did the column headings come from?</b></p>
-    <p>The <b>keys became the column names</b>. The lists became the columns underneath them. A
-    DataFrame is just a set of Series standing side by side, sharing one index.</p>
-    <p>And note what it is holding &mdash; text in two columns, numbers in the third,
-    <b>in the same object</b>. That is the thing an array could not do.</p>
-   </div>
-
-   <div class="typeit">Two quick questions you can now ask it</div>
-<pre><code>df.columns    <span class="c"># Index(['name', 'dept', 'salary'], dtype='object')</span>
-df.shape      <span class="c"># (3, 3)     rows, columns - same as NumPy</span></code></pre>
+   <div class="screen">      name  age
+0     Alex   10
+1      Bob   20
+2  Charlie   30</div>
 
    <div class="speak">
-    <p><code>shape</code> is the same attribute from day 1, no brackets, same meaning. <b>Everything
-    you learned about inspecting an array still applies here.</b></p>
+    <p>Build the dictionary with them, out loud &mdash; curly braces, key, colon, value. They wrote
+    dictionaries weeks ago, so nothing here is new until the last line.</p>
+    <p>Then hand it to <code>pd.DataFrame</code> and ask the question that makes it click: <b>where
+    did the column headings come from?</b></p>
+    <p>The <b>keys became the column names.</b> The lists became the columns underneath. A DataFrame
+    is a set of Series standing side by side, sharing one index.</p>
+    <p>And look at what it holds &mdash; <b>text in one column, numbers in the other, in the same
+    object.</b> That is the thing an array could not do.</p>
    </div>
   </div>
 
-  <!-- 40-52 -->
+  <!-- 6 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">40 – 52</span><h3>loc and iloc</h3></div>
-
-   <div class="stage">Use the <b>labelled Series</b> from earlier &mdash; Rahul, Priya, Amit.</div>
-
-<pre><code>s.loc[<span class="c">"Priya"</span>]   <span class="c"># 92     by LABEL</span>
-s.iloc[1]        <span class="c"># 92     by POSITION</span></code></pre>
-
-   <div class="speak">
-    <p>Same answer, two completely different questions. <code>loc</code> asked <b>&ldquo;the one
-    called Priya&rdquo;</b>. <code>iloc</code> asked <b>&ldquo;the one in position 1&rdquo;</b>.</p>
-    <p>Right now that feels like a distinction without a difference. So break it:</p>
-   </div>
-
-<pre><code>s.loc[1]    <span class="c"># KeyError: 1</span></code></pre>
-
-   <div class="speak">
-    <p>There is no row <b>labelled</b> 1 &mdash; the labels are names. <code>loc</code> only speaks
-    labels, so it fails.</p>
-    <p><b>That is why there are two.</b> On a default index of 0, 1, 2 they look identical, because
-    the label and the position happen to be the same number. The moment your labels are anything
-    else, they stop agreeing.</p>
-   </div>
-
-   <div class="keyline"><b><code>loc</code> = label. <code>iloc</code> = index position.</b> The
-   <code>i</code> stands for integer.</div>
-  </div>
-
-  <!-- 52-70 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">52 – 70</span><h3>The real file &mdash; one line to open it</h3></div>
-   <p class="objective">Eighteen minutes. This is the session.</p>
+   <div class="bhead"><span class="clock">46 – 58</span><h3>The real file</h3></div>
 
 <pre><code>df = pd.read_csv(<span class="c">"employees.csv"</span>)
-df.shape      <span class="c"># (201, 12)</span></code></pre>
+
+df.shape      <span class="c"># (201, 12)</span>
+df.columns    <span class="c"># all 12 names</span></code></pre>
 
    <div class="speak">
-    <p>One line, and two hundred and one rows of real data are in memory. Let that land &mdash; in
-    plain Python this was <code>open()</code>, a loop, and splitting every line on a comma.</p>
-    <p><b>201 rows and 12 columns.</b> Write the two numbers on the board; they get used all day.</p>
+    <p>One line, and 201 rows of real data are in memory. In plain Python this was
+    <code>open()</code>, a loop, and splitting every line on a comma.</p>
+    <p><b>201 rows and 12 columns.</b> Make them multiply it: <b>2,412 cells</b> in the table. That
+    is the number that makes <code>head()</code> obviously necessary.</p>
    </div>
 
    <div class="typeit">Look at it &mdash; never print the whole thing</div>
-<pre><code>df.head()     <span class="c"># first 5 rows</span>
-df.head(3)    <span class="c"># first 3</span>
-df.tail(3)    <span class="c"># last 3</span>
-df.columns    <span class="c"># all 12 column names</span></code></pre>
+<pre><code>df.head()      <span class="c"># first 5 - the default</span>
+df.head(2)     <span class="c"># first 2</span>
+df.tail(10)    <span class="c"># LAST 10, not the first</span></code></pre>
 
    <div class="speak">
-    <p>The habit to build: <b><code>head()</code> first, always.</b> On a file this size printing
-    everything is annoying; on a real one it hangs the notebook.</p>
-    <p>Read the twelve column names out with them &mdash; <code>emp_id</code>,
-    <code>department</code>, <code>city</code>, <code>education</code>, <code>rating</code>,
-    <code>experience</code>, <code>age</code>, <code>salary</code>, <code>join_date</code> and the
-    rest. <b>This file is the one they will still be using in Excel months from now.</b></p>
+    <p>The habit to build: <b><code>head()</code> first, always.</b> On this file printing everything
+    is annoying; on a real one it hangs the notebook.</p>
+    <p>Read the twelve column names out together. <b>This is the file they will still be using in
+    Excel months from now.</b></p>
    </div>
 
-   <div class="typeit">And filtering comes straight back</div>
-<pre><code>df[df[<span class="c">"salary"</span>] &gt; 100000]     <span class="c"># 10 rows</span></code></pre>
-
-   <div class="speak">
-    <p>Exactly yesterday's two-step, on a named column. The condition in the brackets, the answer
-    comes back. <b>Nothing new &mdash; and that is the point worth making.</b></p>
-   </div>
+   <div class="warn"><b>Distribute the CSV before the session.</b> Last time it went out by QR code
+   and drive link during the class, the link would not open, and the room split into people who could
+   type along and people who could only watch. Put it in the shared folder the night before.</div>
   </div>
 
-  <!-- 70-82 -->
+  <!-- 7 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">70 – 82</span><h3>The two you run on every new file</h3></div>
+   <div class="bhead"><span class="clock">58 – 66</span><h3>The two you run on every new file</h3></div>
 
 <pre><code>df.info()</code></pre>
 
    <div class="speak">
-    <p>Twelve columns, their types, and <b>how many non-null values each one holds</b>. Most say 201.
+    <p>Twelve columns, their types, and <b>how many non-null values each one holds.</b> Most say 201.
     Two do not.</p>
-    <p>Get them to find them: <b><code>age</code> has 200 and <code>salary</code> has 199.</b> So one
-    age and two salaries are simply <b>missing</b>.</p>
-    <p>Do not fix it. Name it, write it on the board, and say that tomorrow is entirely about this.
-    <b>Finding out what is missing is the first thing you do with any file you did not create.</b></p>
+    <p>Make them find the two: <b><code>age</code> has 200 and <code>salary</code> has 199.</b> So one
+    age and two salaries are simply missing.</p>
+    <p>Do not fix it today. Name it, write it on the board, and say tomorrow is entirely about this.</p>
    </div>
 
 <pre><code>df.describe()</code></pre>
 
    <div class="speak">
-    <p>Count, mean, standard deviation, min, the three quartiles and max &mdash; for every numeric
-    column at once. All of it vocabulary from statistics.</p>
-    <p>Then go to the salary column and let them read two numbers next to each other:</p>
+    <p>Count, mean, standard deviation, min, the three quartiles and max, for every numeric column at
+    once. All of it vocabulary they already have from statistics.</p>
+    <p>Then put two numbers side by side:</p>
    </div>
 
    <div class="screen">count     199.00      mean   95648.41
 50%     68647.00      max  5200000.00</div>
 
    <div class="speak">
-    <p><b>The average is 95,648 and the middle is 68,647.</b> Ask why they are twenty-seven thousand
-    apart. Then look at <code>max</code>: <b>52,00,000.</b></p>
-    <p>One row. That is the whole answer, and they found it in a single command on their first day
-    with the file. <b>That is what <code>describe()</code> is for</b> &mdash; not the numbers
-    themselves, but the questions they raise.</p>
+    <p><b>Average 95,648. Middle 68,647.</b> Twenty-seven thousand apart. Then look at
+    <code>max</code>: <b>52,00,000.</b></p>
+    <p>One row explains the whole gap, and they found it on their first day with the file.</p>
    </div>
 
    <div class="keyline"><b><code>info()</code> then <code>describe()</code>.</b> What is missing, then
-   what is strange. Two commands, before any analysis at all.</div>
+   what is strange &mdash; before any analysis at all.</div>
   </div>
 
-  <!-- 82-88 -->
+  <!-- 8 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">82 – 88</span><h3>Close</h3></div>
+   <div class="bhead"><span class="clock">66 – 76</span><h3>loc and iloc</h3></div>
+   <p class="objective">Ten minutes. Go back to the reversed-index Series first.</p>
 
-   <div class="askq">
-    <div class="aq">How many people earn below the average? (Is that number surprising?)</div>
-    <div class="aq">Show the last two rows, and only the name and salary columns.</div>
-    <div class="aq">Build your own DataFrame of four students and three columns.</div>
+<pre><code>s = pd.Series([10, 20, 30], index=[2, 1, 0])
+
+s.loc[2]     <span class="c"># 10    the row LABELLED 2</span>
+s.iloc[2]    <span class="c"># 30    the row in POSITION 2</span></code></pre>
+
+   <div class="speak">
+    <p>Same number in the brackets. <b>Completely different answers.</b></p>
+    <p><code>loc</code> went looking for the row <b>called</b> 2, which is the first one, holding 10.
+    <code>iloc</code> counted to position 2 and found 30.</p>
+    <p>That is the entire distinction, and the reversed index is what makes it visible. On a normal
+    0, 1, 2 index they agree every time &mdash; which is exactly why people never learn the
+    difference until it bites them.</p>
+   </div>
+
+   <h4>And now the slice that breaks the rule</h4>
+<pre><code>df.loc[0:3]     <span class="c"># FOUR rows - 0, 1, 2 and 3</span>
+df.loc[0:2]     <span class="c"># three rows</span>
+
+df.iloc[0:3]    <span class="c"># three rows - 0, 1, 2</span></code></pre>
+
+   <div class="speak">
+    <p>Ask them to predict <code>df.loc[0:3]</code> before running it. <b>They will say three.</b>
+    Every slice they have ever written excluded the stop &mdash; lists, strings, <code>arange</code>,
+    NumPy, all of it.</p>
+    <p>It gives <b>four</b>. <code>loc</code> works on labels, and when you ask for labels 0 through
+    3 it gives you all four of them. <b><code>loc</code> is inclusive.</b></p>
+    <p>So for the first three rows you write <code>loc[0:2]</code>. And <code>iloc[0:3]</code> gives
+    three, because <code>iloc</code> works on positions and behaves like every other slice.</p>
+   </div>
+
+   <div class="warn"><b>This is the most common bug in the session and it is silent.</b> One extra row
+   in a result is not an error and nothing goes red. If a count is off by exactly one,
+   <b><code>loc</code> is the first thing to check.</b></div>
+  </div>
+
+  <!-- 9 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">76 – 82</span><h3>One cell &mdash; at and iat</h3></div>
+
+   <div class="speak">
+    <p>Before the syntax, the rule that makes it make sense:</p>
+   </div>
+
+   <div class="keyline"><b>A column has a NAME. A row has a NUMBER.</b></div>
+
+<pre><code>df.at[0, <span class="c">"name"</span>]    <span class="c"># 'Rahul Sharma'   row number, column NAME</span>
+df.iat[0, 2]         <span class="c"># 'Rahul Sharma'   row number, column NUMBER</span></code></pre>
+
+   <div class="speak">
+    <p>Both take two things &mdash; which row, then which column &mdash; and both return <b>one
+    cell</b>. The difference is only how you name the column.</p>
+    <p><code>iat</code> is the safer one <b>when you do not remember the column name</b>, because it
+    counts instead. The cost is that <code>2</code> tells a reader nothing, where
+    <code>"name"</code> tells them everything.</p>
+   </div>
+
+   <div class="warn"><b>Do this one on purpose, because it cost real time last session.</b>
+   <code>df.at[0, "Name"]</code> with a capital N raises a bare <code>KeyError: 'Name'</code>. It does
+   <b>not</b> say &ldquo;wrong case&rdquo; &mdash; it behaves exactly as if the column does not
+   exist.<br><br>
+   <b>Pandas column names are case sensitive.</b> The habit that prevents it:
+   <b>copy the name out of <code>df.columns</code> rather than typing it.</b></div>
+  </div>
+
+  <!-- 10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">82 – 88</span><h3>Two conditions at once</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Everyone in Tech earning fifty thousand or more.&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>Close on the honest state of things: <b>they can now open a file, look at it, and describe it.
-    They cannot yet clean it.</b></p>
-    <p>And the file has three problems they have already seen with their own eyes &mdash; two missing
-    salaries, one missing age, and a salary of 52 lakh. Tomorrow is sorting, missing values,
-    grouping and joining. <b>That is the session that turns this into analysis.</b></p>
+    <p>They can already do one condition. Ask for both, and let them write it the way Python taught
+    them:</p>
+   </div>
+
+<pre><code>df[(df[<span class="c">"salary"</span>] &gt;= 50000) and (df[<span class="c">"department"</span>] == <span class="c">"Tech"</span>)]
+
+<span class="c"># ValueError: The truth value of a Series is ambiguous.</span></code></pre>
+
+   <div class="speak">
+    <p><b><code>and</code> does not work</b>, and the error tells you why if you read it.
+    <code>and</code> expects <b>one</b> true-or-false. You handed it 201 of them &mdash; a whole
+    column &mdash; and it has no idea whether that counts as true.</p>
+    <p>So you use <code>&amp;</code>, which compares <b>row by row</b> instead.</p>
+   </div>
+
+<pre><code>df[(df[<span class="c">"salary"</span>] &gt;= 50000) &amp; (df[<span class="c">"department"</span>] == <span class="c">"Tech"</span>)]
+
+<span class="c"># 48 rows</span></code></pre>
+
+   <div class="speak">
+    <p>Forty-eight people. And note the <b>brackets around each condition</b> &mdash; they are not
+    decoration. Leave them out and you get a <code>TypeError</code>, because <code>&amp;</code> binds
+    tighter than <code>&gt;=</code> and pandas ends up comparing the wrong things.</p>
+    <p>Close there. <b>Tomorrow: sorting, the missing values they found in <code>info()</code>, the
+    duplicate row, and grouping.</b></p>
+   </div>
+
+   <div class="keyline">
+    <b><code>&amp;</code> for and. <code>|</code> for or. Brackets round every condition, every
+    time.</b>
    </div>
   </div>
 
@@ -34656,25 +34748,27 @@ df.columns    <span class="c"># all 12 column names</span></code></pre>
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
+  <div class="qa"><h5>Why does loc[0:3] give four rows?</h5>
+  <p>&ldquo;Because <code>loc</code> works on <b>labels</b>, not positions, and you asked for labels 0
+  to 3 &mdash; all four exist. <code>iloc</code> works on positions and excludes the stop like every
+  other slice in Python.&rdquo;</p></div>
+  <div class="qa"><h5>When would I ever use iat over at?</h5>
+  <p>&ldquo;When you do not know the column name &mdash; looping over columns, or working with a file
+  whose headings you have not read yet. If you do know the name, use <code>at</code>; it is readable
+  and it cannot silently point at the wrong column when the order changes.&rdquo;</p></div>
+  <div class="qa"><h5>KeyError, but the column is right there?</h5>
+  <p>&ldquo;Check the case. <code>Name</code> and <code>name</code> are different columns as far as
+  pandas is concerned, and the error does not tell you that. Copy the name out of
+  <code>df.columns</code>.&rdquo;</p></div>
+  <div class="qa"><h5>Why can't I just use and?</h5>
+  <p>&ldquo;<code>and</code> wants one true-or-false. A condition on a column gives 201 of them.
+  <code>&amp;</code> compares them row by row, which is what you actually meant.&rdquo;</p></div>
   <div class="qa"><h5>Is a DataFrame just a dictionary?</h5>
-  <p>&ldquo;It is built from one very happily, but no. A dictionary cannot give you
-  <code>describe()</code>, cannot filter on a condition, and has no index. The dictionary is the
-  input, not the thing.&rdquo;</p></div>
-  <div class="qa"><h5>When do I use loc and when iloc?</h5>
-  <p>&ldquo;<code>loc</code> when you know the label, <code>iloc</code> when you know the position. On
-  this file the labels are 0 to 200, so they look the same &mdash; they stop being the same as soon as
-  the index is anything but a row count.&rdquo;</p></div>
+  <p>&ldquo;It is built from one happily, but no. A dictionary has no index, cannot filter on a
+  condition and has no <code>describe()</code>. The dictionary is the input, not the thing.&rdquo;</p></div>
   <div class="qa"><h5>Why does describe() skip some columns?</h5>
-  <p>&ldquo;It only does numeric columns by default. There is no mean of a city name. You can ask for
-  the text columns too, but the useful question for those is a count of each value &mdash; that is
-  tomorrow.&rdquo;</p></div>
-  <div class="qa"><h5>FileNotFoundError &mdash; but the file is right there?</h5>
-  <p>&ldquo;It is not in the folder the notebook is running from. Either move it next to the notebook
-  or give the full path. This will happen to everybody once.&rdquo;</p></div>
-  <div class="qa"><h5>What does dtype object mean?</h5>
-  <p>&ldquo;Text, usually. Pandas says <code>object</code> where NumPy would have said string. If a
-  column you expected to be numeric says <code>object</code>, something non-numeric is hiding in
-  it.&rdquo;</p></div>
+  <p>&ldquo;Numeric columns only by default. There is no mean of a city name. The useful question for
+  text columns is a count of each value, and that is tomorrow.&rdquo;</p></div>
  </div>
 </section>
 
@@ -34682,74 +34776,153 @@ df.columns    <span class="c"># all 12 column names</span></code></pre>
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">If things go sideways</h2>
   <ul class="l">
-   <li><b>Running long</b> &mdash; cut the NumPy recap to filtering only and drop
-   <code>np.identity</code>. Do not shorten <code>info()</code> and <code>describe()</code>.</li>
-   <li><b>Running short</b> &mdash; have them answer five questions about the file using only
-   <code>head</code>, <code>shape</code>, <code>columns</code> and a filter. Fluency on those four is
-   worth more than another function.</li>
-   <li><b>The file will not load</b> &mdash; fix it for the room immediately, do not debug one laptop
-   while twenty people wait. Have the full path ready to paste.</li>
-   <li><b><code>loc</code> versus <code>iloc</code> feels pointless</b> &mdash; that is because on a
-   default index it <em>is</em>. Run <code>s.loc[1]</code> and let the <code>KeyError</code> make the
-   argument for you.</li>
-   <li><b>Someone asks how to fix the blanks</b> &mdash; &ldquo;tomorrow, first hour&rdquo;. Write it
-   on the board so it is visibly owed, not dodged.</li>
+   <li><b>Running long</b> &mdash; cut <code>iat</code> to one sentence and drop
+   <code>np.identity</code>. Do <b>not</b> cut the <code>loc[0:3]</code> demonstration or the two
+   conditions; those are the two things they will get wrong in the wild.</li>
+   <li><b>Running short</b> &mdash; have them pull five specific cells out of the file using a
+   different one of <code>loc</code>, <code>iloc</code>, <code>at</code> and <code>iat</code> each
+   time. Fluency across the four is the whole session.</li>
+   <li><b>The CSV will not load</b> &mdash; fix it for the room at once, do not debug one laptop while
+   twenty wait. Have the full path ready to paste, and a backup copy on a USB stick.</li>
+   <li><b>loc versus iloc feels pointless</b> &mdash; you are demonstrating it on a default index. Go
+   back to <code>index=[2,1,0]</code>; it is the only version of this that lands.</li>
+   <li><b>A KeyError nobody can explain</b> &mdash; it is the case of the column name, nine times out
+   of ten.</li>
   </ul>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">12 functions</span></div>
+  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">16 functions</span></div>
   <p class="sumnote">Put this on screen in the last two minutes, or paste it into a cell and let them keep it. Every command from the session, in order, with what it does.</p>
   <div class="sumcard"><pre><code>import numpy as np
 import pandas as pd
 
-<span class="c"># ---- RECAP: what an array CANNOT do ----</span>
+<span class="c"># ---- FINISHING NUMPY ----</span>
 np.identity(3)            <span class="c"># n x n, ones down the diagonal</span>
-A = np.array([5,12,18,7,3,25])
-A[A &gt; 10]                 <span class="c"># [12 18 25]   the two-step, from day 3</span>
+ar = np.array([[1,2,3], [4,5,6]])
+np.zeros_like(ar)         <span class="c"># [[0 0 0] [0 0 0]]   SAME SHAPE as ar, all zeros</span>
+np.ones_like(ar)          <span class="c"># [[1 1 1] [1 1 1]]   same shape, all ones</span>
+<span class="c"># the point of _like: you do not have to know the shape yourself.</span>
+
+<span class="c"># ---- WHY PANDAS ----</span>
+<span class="c"># "pandas" = PANEL DATA. not the animal.</span>
 <span class="c"># an array holds ONE type and has NO column names.</span>
-<span class="c"># real data is text + numbers + dates + blanks, with headings. hence pandas.</span>
+<span class="c"># real data is text + numbers + dates + blanks, with headings.</span>
+<span class="c">#   DataFrame = a TABLE        Series = ONE COLUMN</span>
 
-<span class="c"># ---- SERIES: one column, with labels ----</span>
-pd.Series([87, 92, 78])   <span class="c"># 0,1,2 added for you - that is the INDEX</span>
-s = pd.Series([87,92,78], index=["Rahul","Priya","Amit"])   <span class="c"># your own labels</span>
+<span class="c"># ---- SERIES ----</span>
+s = pd.Series([10, 20, 30])          <span class="c"># 0,1,2 added for you - that is the INDEX</span>
+s = pd.Series([10, 20, 30], index=[2, 1, 0])   <span class="c"># choose your own labels</span>
+<span class="c"># 2 -> 10 , 1 -> 20 , 0 -> 30   the LABEL and the POSITION now disagree</span>
 
-<span class="c"># ---- DATAFRAME: many columns, from a dictionary ----</span>
-data = {"name": ["Rahul","Priya","Amit"], "dept": ["HR","Tech","Sales"]}
-data["salary"] = [47764, 62990, 51200]
-df = pd.DataFrame(data)   <span class="c"># the KEYS become the column names</span>
-df.columns                <span class="c"># ['name', 'dept', 'salary']</span>
-df.shape                  <span class="c"># (3, 3)    same attribute as NumPy, no brackets</span>
-
-<span class="c"># ---- LOC vs ILOC ----</span>
-s.loc["Priya"]            <span class="c"># 92    by LABEL</span>
-s.iloc[1]                 <span class="c"># 92    by POSITION  (i = integer)</span>
-s.loc[1]                  <span class="c"># KeyError: 1   there is no row LABELLED 1</span>
-<span class="c"># on a default 0,1,2 index they agree. that is the only reason they look alike.</span>
+<span class="c"># ---- DATAFRAME, FROM A DICTIONARY ----</span>
+d = {"name": ["Alex", "Bob", "Charlie"], "age": [10, 20, 30]}
+df = pd.DataFrame(d)      <span class="c"># the KEYS become the column names</span>
 
 <span class="c"># ---- THE REAL FILE ----</span>
 df = pd.read_csv("employees.csv")
-df.shape                  <span class="c"># (201, 12)</span>
-df.head()                 <span class="c"># first 5     ALWAYS look before you analyse</span>
-df.head(3) / df.tail(3)   <span class="c"># first 3 / last 3</span>
-df.columns                <span class="c"># all 12 names</span>
-df[df["salary"] &gt; 100000] <span class="c"># 10 rows     the day-3 two-step, on a named column</span>
-
-<span class="c"># ---- THE TWO YOU RUN ON EVERY NEW FILE ----</span>
-df.info()                 <span class="c"># types + NON-NULL COUNTS</span>
-                          <span class="c">#   age     200 of 201  -> 1 missing</span>
-                          <span class="c">#   salary  199 of 201  -> 2 missing</span>
+df.shape                  <span class="c"># (201, 12)   ->  201 x 12 = 2,412 cells</span>
+df.columns                <span class="c"># all 12 names - COPY FROM HERE, do not type them</span>
+df.head()                 <span class="c"># first 5 (default)</span>
+df.head(2)                <span class="c"># first 2</span>
+df.tail(10)               <span class="c"># LAST 10</span>
+df.info()                 <span class="c"># types + non-null counts</span>
+                          <span class="c">#   age    200 of 201  -> 1 missing</span>
+                          <span class="c">#   salary 199 of 201  -> 2 missing</span>
 df.describe()             <span class="c"># count/mean/std/min/25/50/75/max, numeric only</span>
-                          <span class="c">#   salary  mean 95,648.41  vs  median 68,647.00</span>
-                          <span class="c">#           max  5,200,000   &lt;- ONE row explains the gap</span>
-<span class="c"># info() = what is MISSING.   describe() = what is STRANGE.</span>
+                          <span class="c">#   mean 95,648.41  vs  median 68,647.00</span>
+                          <span class="c">#   max  5,200,000  &lt;- ONE row explains the gap</span>
 
-<span class="c"># ---- NAMED TODAY, FIXED TOMORROW ----</span>
-<span class="c">#   the 2 missing salaries, the 1 missing age, the 52-lakh outlier</span>
-<span class="c">#   sorting, grouping, joining           -&gt; day 5</span>
-<span class="c">#   .str , between , isin , query , apply -&gt; gaps table on PD3</span></code></pre></div>
+<span class="c"># ---- FOUR WAYS IN.  column has a NAME, row has a NUMBER. ----</span>
+s.loc[2]                  <span class="c"># 10    the row LABELLED 2</span>
+s.iloc[2]                 <span class="c"># 30    the row in POSITION 2</span>
+<span class="c"># same number in the brackets, different answers. that is the whole difference.</span>
+
+df.loc[0:3]               <span class="c"># FOUR rows!  loc slicing INCLUDES the stop</span>
+df.loc[0:2]               <span class="c"># three rows</span>
+df.iloc[0:3]              <span class="c"># three rows - iloc EXCLUDES it, like every other slice</span>
+<span class="c"># off by exactly one? check loc. it is silent - no error, just one extra row.</span>
+
+df.at[0, "name"]          <span class="c"># 'Rahul Sharma'   row number, column NAME</span>
+df.iat[0, 2]              <span class="c"># 'Rahul Sharma'   row number, column NUMBER</span>
+df.at[0, "Name"]          <span class="c"># KeyError: 'Name'   PANDAS IS CASE SENSITIVE</span>
+
+<span class="c"># ---- TWO CONDITIONS AT ONCE ----</span>
+df[(df["salary"] &gt;= 50000) and (df["department"] == "Tech")]
+<span class="c"># ValueError: The truth value of a Series is ambiguous</span>
+<span class="c"># "and" wants ONE true/false. you gave it 201.</span>
+
+df[(df["salary"] &gt;= 50000) &amp; (df["department"] == "Tech")]   <span class="c"># 48 rows</span>
+<span class="c"># &amp; for AND , | for OR , and BRACKETS round every condition.</span>
+<span class="c"># no brackets -> TypeError. &amp; binds tighter than &gt;=.</span></code></pre></div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Not covered in this session</h2>
+  <p class="cap" style="margin-bottom:20px">Checked against the day 4 recording. These are the things a
+  student might reasonably expect after today and will not have. The first three are worth adding.</p>
+
+  <div class="expl">
+   <div class="erow"><div class="cd">.str.upper()<br>.str.strip()<br>.str.contains()</div>
+   <div class="tx"><b>WORTH ADDING.</b> Text cleaning on a column. Today handled numbers and
+   conditions, but nothing can touch a messy <code>name</code> or <code>city</code> &mdash; stray
+   spaces, mixed case. Given that a <b>case-sensitivity bug</b> cost time in this very session, it is
+   a natural follow-on. <b>15 minutes.</b></div></div>
+
+   <div class="erow"><div class="cd">pd.to_datetime()<br>.dt.year / .dt.month</div>
+   <div class="tx"><b>WORTH ADDING.</b> The file has a <code>join_date</code> column and it was never
+   opened. Right now it is just text. No question about <i>when</i> anybody joined can be answered,
+   and Excel day 7 teaches the same ideas on the same column. <b>20 minutes.</b></div></div>
+
+   <div class="erow"><div class="cd">df["new"] = ...</div>
+   <div class="tx"><b>WORTH ADDING &mdash; 5 minutes.</b> Creating a new column. They can read and
+   filter every column in the file and cannot yet <b>add</b> one. It is one line and it is the
+   natural next thing anybody tries.</div></div>
+
+   <div class="erow"><div class="cd">df.loc[rows, cols]</div>
+   <div class="tx">Using <code>loc</code> with <b>both</b> arguments to take a block &mdash;
+   <code>df.loc[0:4, "name":"city"]</code>. Only the row half was shown. Useful, and it is where the
+   inclusive-slice rule bites hardest, since the column slice is inclusive too.</div></div>
+
+   <div class="erow"><div class="cd">.between()<br>.isin()</div>
+   <div class="tx">Tidier filtering &mdash; <code>.between(5, 10)</code> rather than two conditions,
+   <code>.isin(["HR","Tech"])</code> rather than three <code>or</code>s. <b>Not needed</b>; everything
+   today can already be written with <code>&amp;</code> and <code>|</code>. Five minutes for
+   readability if you have them. <b>Note:</b> these have previously been recorded as taught in this
+   session. They were not &mdash; every apparent mention is the ordinary English
+   &ldquo;between&rdquo;.</div></div>
+
+   <div class="erow"><div class="cd">.query()</div>
+   <div class="tx">Filtering written as a string: <code>df.query("salary &gt; 50000")</code>. Reads
+   nicely, avoids the bracket problem entirely, and is skippable &mdash; the bracket form is what they
+   will meet everywhere else. <b>Mention only.</b></div></div>
+
+   <div class="erow"><div class="cd">set_index()<br>reset_index()</div>
+   <div class="tx">Turning a column into the row labels. Directly relevant, because it is the
+   <i>realistic</i> reason an index stops being 0, 1, 2 &mdash; today that was faked with
+   <code>index=[2,1,0]</code>. <b>10 minutes, and it strengthens the loc/iloc story.</b></div></div>
+
+   <div class="erow"><div class="cd">df.dtypes<br>.astype()</div>
+   <div class="tx"><code>dtypes</code> was named in passing but never run on its own, and
+   <code>astype</code> &mdash; which they had on day 1 for arrays &mdash; was not shown on a column.
+   One line each, and <code>astype</code> returns properly in day 5.</div></div>
+
+   <div class="erow"><div class="cd">value_counts()<br>unique()</div>
+   <div class="tx">Mentioned once in passing and not demonstrated. <b>Both arrive properly in day
+   5</b>, so this is only a gap if somebody asks today &mdash; which they will, as soon as they want
+   to know how many people are in each department.</div></div>
+  </div>
+
+  <div class="keyline" style="margin-top:22px">
+   <b>Two things from this session to carry forward.</b><br><br>
+   The <code>loc</code> inclusive slice and the case-sensitive column name are both <b>silent</b>
+   &mdash; one gives an extra row, the other gives a <code>KeyError</code> that blames the wrong
+   thing. Neither looks like a mistake while you are making it.
+  </div>
  </div>
 </section>
 </div>
