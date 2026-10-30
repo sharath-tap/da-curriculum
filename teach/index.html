@@ -843,9 +843,10 @@ try{var _t=localStorage.getItem("steep-theme");
 
     <button class="dcard full" data-go="pd2">
      <span class="id">PANDAS 2</span><h3>Cleaning It, Then Summarising It</h3>
-     <p>value_counts, sort_values, isnull, dropna against fillna, duplicates, astype, rename, then
-     groupby and merge. 201 rows in, 200 out &mdash; and four things that go wrong without an error.</p>
-     <span class="foot">Full script &middot; 13 functions &middot; 102 min</span></button>
+     <p>Every line from the longest session &mdash; sorting with tiebreakers, the isnull family, dropna
+     and fillna, duplicates, types, median/mode/std/var, groupby and aggregate, concat and merge with
+     left and right joins. Four live failures, all kept.</p>
+     <span class="foot">Full script &middot; 30 functions &middot; 102 min</span></button>
 
     <button class="dcard full" data-go="pd3">
      <span class="id">PANDAS 3</span><h3>What Was Not Covered</h3>
@@ -34908,26 +34909,27 @@ df[(df["salary"] &gt;= 50000) &amp; (df["department"] == "Tech")]   <span class=
 <div class="day" id="pd2">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">PD2 &middot; as delivered &middot; 102 minutes &middot; sorting, missing values, grouping, joining</p>
+  <p class="tag" style="margin-bottom:16px">PD2 &middot; NumPy day 5 &middot; as delivered &middot; 102 minutes &middot; sorting, missing values, summarising, joining</p>
   <h1 class="display">Cleaning It,<br>Then Summarising It</h1>
-  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:660px">
-   Yesterday they found three problems in the file and fixed none of them. Today they fix all three
-   &mdash; and then ask the question every analyst gets paid for: <b>what is the average, by
-   group?</b>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   The longest session in the block, and the one that carries the most. Thirty-odd functions &mdash;
+   and four of them <b>do nothing at all unless you store the result.</b>
   </p>
 
   <div class="glance">
-   <div class="gcell"><b>102</b><span>minutes &mdash; the longest</span></div>
-   <div class="gcell"><b>13</b><span>functions</span></div>
-   <div class="gcell"><b>201</b><span>rows in, 200 out</span></div>
-   <div class="gcell"><b>3</b><span>problems, all fixed</span></div>
+   <div class="gcell"><b>201</b><span>rows &mdash; never deduped today</span></div>
+   <div class="gcell"><b>153+48</b><span>the answer to yesterday</span></div>
+   <div class="gcell"><b>4</b><span>live failures, all useful</span></div>
+   <div class="gcell"><b>1</b><span>line that destroyed the table</span></div>
   </div>
 
-  <div class="pace">
-   <b>Pace note.</b> This is the longest session in the block and it carries the most. The cleaning
-   half is step-by-step and forgiving; <b><code>groupby</code> is the one that needs real time</b>
-   &mdash; it is the single most used function in the whole library and it reappears as a pivot table
-   in Excel. If something must be cut, cut <code>concat</code>, not grouping.
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">The thread running through the whole session</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">Nothing here changes your table.</b>
+   <code>dropna</code>, <code>fillna</code>, <code>drop_duplicates</code>, <code>rename</code>,
+   <code>astype</code>, <code>sort_values</code> &mdash; every one of them hands back a
+   <b style="color:var(--sienna)">new</b> table and leaves the original alone. It caught the trainer
+   twice in this very session, on screen.</p>
   </div>
  </div>
 </section>
@@ -34936,322 +34938,593 @@ df[(df["salary"] &gt;= 50000) &amp; (df["department"] == "Tech")]   <span class=
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Read the file fresh at the start.</b> All of today's numbers are the <b>201-row</b> figures
-   until <code>drop_duplicates</code> runs. If somebody re-reads a cleaned copy half way through, their
-   numbers stop matching yours.</li>
-   <li><b>Write the three problems on the board before you start</b> &mdash; two missing salaries, one
-   missing age, one duplicate row. Tick them off as you go. The session has a visible finish line.</li>
-   <li><b>Every cleaning function returns a NEW table.</b> None of them change the original. Say it
-   once at the start and then let somebody prove it by forgetting.</li>
-   <li><b>Do not teach the join types.</b> Name them in one sentence &mdash; left, right, inner, full
-   outer &mdash; and teach <code>merge</code> on a matching key only. The types need their own session
-   and this one is already the longest.</li>
-   <li><b>Build the merge demo from two small dictionaries</b>, not from the employee file. Three rows
-   against three rows makes the lost row visible; two hundred rows hides it.</li>
+   <li><b>This session never removes the duplicate row.</b> Everything runs on <b>201 rows</b>, so
+   Sales is <b>65</b> here and not 64, and the mean salary is <b>95,648</b>. Do not quietly clean the
+   file first or none of your numbers will match the page.</li>
+   <li><b>Let the four failures happen.</b> <code>dropna</code> that saves nothing, the
+   <code>fillna</code> that replaces the whole DataFrame with one column, <code>astype(int)</code> on
+   a column with a blank, and <code>df.median()</code> on text. Each one is thirty seconds and each
+   one teaches more than the function did.</li>
+   <li><b>Draw the four-row table before the groupby block.</b> Alex/Tech, Bob/HR, Charlie/Tech,
+   David/HR. The whole explanation hangs on asking <i>&ldquo;two names, one cell &mdash; what would
+   you print?&rdquo;</i></li>
+   <li><b>Have the two merge dictionaries ready to paste.</b> Building them live costs five minutes
+   you need for the join types.</li>
   </ol>
 
-  <div class="lbl">On the board &mdash; tick these off</div>
-<pre><code>    THE FILE'S THREE PROBLEMS
+  <div class="lbl">On the board &mdash; leave it up all session</div>
+<pre><code>    NOTHING SAVES ITSELF
 
-    [ ]  2 missing salaries       ->  isnull / fillna / dropna
-    [ ]  1 missing age            ->  same
-    [ ]  1 duplicate row          ->  duplicated / drop_duplicates
-
-         201 rows in   ->   200 rows out
+        df.dropna()              throws the answer away
+        df = df.dropna()         keeps it
 
 
-    GROUPBY, in three words:     SPLIT  ->  APPLY  ->  COMBINE
-                                 by dept   the mean   one table</code></pre>
+    ONE COLUMN -> a name.    MORE THAN ONE -> a LIST.
+
+        df.sort_values("department")                 fine
+        df.sort_values("department", "salary")       TypeError
+        df.sort_values(["department", "salary"])     fine
+
+
+    GROUP BY  ->  pick a COLUMN  ->  apply a FUNCTION
+       dept          salary              mean
+                                    one row in, one number out</code></pre>
  </div>
 </section>
 
 <section style="padding-top:8px">
  <div class="wrap">
 
-  <!-- 0-8 -->
+  <!-- 0-6 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 – 8</span><h3>Open it again</h3></div>
+   <div class="bhead"><span class="clock">0 – 6</span><h3>Yesterday's assignment, answered</h3></div>
 
-   <div class="typeit">Fresh read &mdash; every number today starts from 201</div>
+   <div class="typeit">Set up</div>
 <pre><code>import pandas as pd
+df = pd.read_csv(<span class="c">"employees.csv"</span>)</code></pre>
 
-df = pd.read_csv(<span class="c">"employees.csv"</span>)
-df.shape        <span class="c"># (201, 12)</span></code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;How many people are in Tech <b>and</b> earn over fifty thousand?&rdquo;</div>
+   </div>
 
    <div class="speak">
-    <p>Yesterday ended with three problems named and none fixed. Today they all get fixed, and then
-    the file finally gets used to answer a real question.</p>
-    <p>Two halves: <b>cleaning</b>, then <b>summarising</b>. The cleaning half is a sequence of small
-    functions. The second half is one big idea.</p>
+    <p>They could already <b>show</b> those rows. They were asked to <b>count</b> them. Take the
+    attempts first.</p>
+   </div>
+
+   <div class="typeit">The obvious try</div>
+<pre><code>df[(df[<span class="c">"salary"</span>] &gt; 50000) &amp; (df[<span class="c">"department"</span>] == <span class="c">"Tech"</span>)].count()</code></pre>
+
+   <div class="screen">emp_id 48 &nbsp;&middot;&nbsp; dept_id 48 &nbsp;&middot;&nbsp; name 48 &nbsp;&middot;&nbsp; ...</div>
+
+   <div class="speak">
+    <p>It works &mdash; <b>48</b> &mdash; but it answers twelve times, once per column. Usable, not
+    clean.</p>
+   </div>
+
+   <div class="typeit">Now try value_counts on the filtered table</div>
+<pre><code>df[(df[<span class="c">"salary"</span>] &gt; 50000) &amp; (df[<span class="c">"department"</span>] == <span class="c">"Tech"</span>)].value_counts()</code></pre>
+
+   <div class="speak">
+    <p>A wall of output and no answer. Ask why. Because <code>df[...]</code> has already
+    <b>thrown away</b> the rows that failed &mdash; it is counting whole rows of the survivors.</p>
+    <p>So drop the <code>df[ ]</code> wrapper and run <code>value_counts</code> on the
+    <b>condition itself</b>:</p>
+   </div>
+
+   <div class="typeit">The fix</div>
+<pre><code>((df[<span class="c">"salary"</span>] &gt; 50000) &amp; (df[<span class="c">"department"</span>] == <span class="c">"Tech"</span>)).value_counts()</code></pre>
+
+   <div class="screen">False &nbsp; 153
+True &nbsp;&nbsp; 48</div>
+
+   <div class="speak">
+    <p>Forty-eight who qualify, a hundred and fifty-three who do not &mdash; and <b>153 + 48 =
+    201</b>, every row accounted for.</p>
+   </div>
+
+   <div class="keyline"><b>A condition is a column of True and False.</b> Count the condition, not the
+   rows it survives.</div>
+  </div>
+
+  <!-- 6-20 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">6 – 20</span><h3>Sorting</h3></div>
+   <p class="objective">Fourteen minutes. Easy, and it ends on the one piece of syntax everybody gets
+   wrong.</p>
+
+<pre><code>df[<span class="c">"salary"</span>]                    <span class="c"># one column, unsorted</span>
+
+df.sort_values(<span class="c">"salary"</span>)</code></pre>
+
+   <div class="screen">33,085 &nbsp; 35,118 &nbsp; 36,711 &nbsp; 37,159 &nbsp; 39,493 &nbsp; ... &nbsp; 1,06,170 &nbsp; 1,16,894 &nbsp; 52,00,000</div>
+
+   <div class="speak">
+    <p>The employee IDs are shuffled now &mdash; the table is in <b>salary</b> order instead. Ascending
+    by default, smallest first, and the 52 lakh sits alone at the bottom.</p>
+   </div>
+
+   <div class="typeit">It takes any column</div>
+<pre><code>df.sort_values(<span class="c">"emp_id"</span>)
+df.sort_values(<span class="c">"dept_id"</span>)
+df.sort_values(<span class="c">"name"</span>)           <span class="c"># text sorts ALPHABETICALLY</span>
+df.sort_values(<span class="c">"department"</span>)
+df.sort_values(<span class="c">"experience"</span>)
+df.sort_values(<span class="c">"height_cm"</span>)</code></pre>
+
+   <div class="speak">
+    <p>Ask whether a <b>name</b> can be sorted before you run it. Half will say no.</p>
+    <p>It can &mdash; alphabetically. Use the school attendance register: the teacher never called
+    names in random order. <b>That is why records are stored sorted</b> &mdash; finding something is
+    faster.</p>
+   </div>
+
+   <h4>Two columns &mdash; the tiebreaker</h4>
+   <div class="qbox">
+    <div class="q">&ldquo;Sort by department. If two people are in the same department, sort those by
+    salary.&rdquo;</div>
+   </div>
+
+<pre><code>df.sort_values(<span class="c">"department"</span>, <span class="c">"salary"</span>)      <span class="c"># TypeError</span>
+
+df.sort_values([<span class="c">"department"</span>, <span class="c">"salary"</span>])    <span class="c"># correct - ONE list</span></code></pre>
+
+   <div class="speak">
+    <p>Let the comma version fail first. More than one column has to arrive as <b>one list</b>, inside
+    square brackets.</p>
+    <p>Now compare. Sorted by department alone, HR's salaries ran 47, 66, 68, 55 &mdash; no order at
+    all. With both, HR runs <b>33,085 &middot; 35,118 &middot; 36,711 &middot; 37,159</b>. <b>Salary
+    is the tiebreaker.</b></p>
+    <p>And it keeps going &mdash; same department <i>and</i> same salary? Add experience. Same again?
+    Add employee ID.</p>
+   </div>
+
+<pre><code>df.sort_values([<span class="c">"department"</span>, <span class="c">"salary"</span>, <span class="c">"experience"</span>, <span class="c">"emp_id"</span>])</code></pre>
+
+   <h4>Turning it round</h4>
+<pre><code>df.sort_values([<span class="c">"department"</span>, <span class="c">"salary"</span>], ascending=<span class="c">False</span>)</code></pre>
+
+   <div class="speak">
+    <p>Open the documentation and find the parameter with them &mdash; <code>ascending</code>, default
+    <code>True</code>. That is why everything so far came out smallest-first.</p>
+   </div>
+
+   <div class="askq">
+    <div class="aq"><b>Task.</b> Sort by <b>city</b>, then department within the city, then salary
+    within the department &mdash; descending.</div>
+    <div class="aq">Answer: <code>df.sort_values(["city","department","salary"], ascending=False)</code></div>
+   </div>
+
+   <div class="keyline">They are writing <code>ORDER BY city, department, salary DESC</code> &mdash;
+   the same thing they are learning in SQL, in one function instead of a query.</div>
+  </div>
+
+  <!-- 20-26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">20 – 26</span><h3>Finding the gaps</h3></div>
+
+<pre><code>df.isnull()              <span class="c"># True/False for all 201 x 12 cells - unreadable</span>
+
+df.isnull().sum()        <span class="c"># age       1</span>
+                         <span class="c"># salary    2</span>
+                         <span class="c"># everything else 0</span></code></pre>
+
+   <div class="speak">
+    <p>Run <code>isnull()</code> alone first and let them see it is useless &mdash; a wall of False.
+    Then <code>.sum()</code> turns it into the most useful line of the session.</p>
+    <p><b>One person has no age. Two have no salary.</b></p>
+   </div>
+
+   <h4>And on one column</h4>
+<pre><code>df[<span class="c">"age"</span>].isnull()           <span class="c"># just that column</span>
+df[<span class="c">"age"</span>].isnull().sum()     <span class="c"># 1</span>
+df[<span class="c">"age"</span>].isnull().any()     <span class="c"># True    is there AT LEAST one?</span>
+df[<span class="c">"age"</span>].isnull().all()     <span class="c"># False   are they ALL null?</span></code></pre>
+
+   <div class="keyline"><b>Before you write a single line of analysis, run
+   <code>df.isnull().sum()</code>.</b> An analyst inspects the table first.</div>
+  </div>
+
+  <!-- 26-35 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26 – 35</span><h3>dropna &mdash; and the line that saves nothing</h3></div>
+   <p class="objective">Nine minutes. The failure here is the most valuable thirty seconds in the
+   session. <b>Do it on purpose.</b></p>
+
+<pre><code>df.dropna()
+df.isnull().sum()        <span class="c"># age 1, salary 2   -  NOTHING CHANGED</span></code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;It says it dropped them. Why is it still one and two?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Because <code>dropna</code> <b>returns a new table</b> and you threw it away. The original was
+    never touched.</p>
+   </div>
+
+<pre><code>df = df.dropna()         <span class="c"># NOW store it</span>
+df.isnull().sum()        <span class="c"># all zero</span>
+df.shape                 <span class="c"># (198, 12)   201 -&gt; 198</span></code></pre>
+
+   <div class="speak">
+    <p><b>Three</b> rows gone, not two &mdash; because the missing age belongs to a different person.
+    <code>dropna()</code> removes a row if <b>any</b> column in it is empty.</p>
+   </div>
+
+   <h4>Drop on one column only</h4>
+<pre><code>df = pd.read_csv(<span class="c">"employees.csv"</span>)        <span class="c"># back to 201</span>
+
+df = df.dropna(subset=<span class="c">"salary"</span>)
+df.shape                 <span class="c"># (199, 12)   only the 2 blank salaries</span>
+df.isnull().sum()        <span class="c"># salary 0   but age is STILL 1</span></code></pre>
+
+   <div class="speak">
+    <p><code>subset</code> says <i>&ldquo;only look at this column&rdquo;</i>. Two rows go, the
+    missing age survives.</p>
+   </div>
+
+   <h4>Drop the column instead of the row</h4>
+<pre><code>df = df.dropna(axis=1)
+df.isnull().sum()        <span class="c"># the AGE COLUMN has gone entirely</span></code></pre>
+
+   <div class="speak">
+    <p>Same <code>axis</code> from NumPy. <code>axis=0</code> is the default and means rows;
+    <code>axis=1</code> means columns.</p>
+    <p>Say what you just did out loud, because it is brutal: <b>&ldquo;one person did not give their
+    age, so I deleted everybody's age.&rdquo;</b></p>
+   </div>
+
+   <div class="warn"><b>Order matters here.</b> Salary's blanks were already removed by the
+   <code>subset</code> step, so <code>age</code> is the only column left with a gap and the only one
+   dropped. Run <code>axis=1</code> on the untouched file and you lose <b>age and salary
+   both</b>.</div>
+  </div>
+
+  <!-- 35-40 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">35 – 40</span><h3>fillna &mdash; and the line that destroyed the table</h3></div>
+
+<pre><code>df = pd.read_csv(<span class="c">"employees.csv"</span>)
+
+df[<span class="c">"salary"</span>].fillna(10)       <span class="c"># every blank salary becomes 10 rupees</span></code></pre>
+
+   <div class="speak">
+    <p>Pick a deliberately silly value. Ten rupees is obviously wrong, which keeps the attention on
+    the mechanism.</p>
+    <p>And note what it <b>cannot</b> take: <code>"unknown"</code> will not go into a numeric column.</p>
+   </div>
+
+   <div class="warn"><b>The mistake worth making on screen.</b> Store it the lazy way:
+   <code>df = df["salary"].fillna(10)</code>. The next line, <code>df.isnull().sum()</code>, reports
+   a single zero &mdash; and then every later line fails with no <code>salary</code> column at all.
+   <br><br>
+   <b>You just replaced the whole DataFrame with one column.</b> Recover by re-reading the file and
+   using a different name:</div>
+
+<pre><code>df = pd.read_csv(<span class="c">"employees.csv"</span>)
+df1 = df[<span class="c">"salary"</span>].fillna(10)
+df1.isnull().sum()       <span class="c"># 0</span></code></pre>
+
+   <div class="speak">
+    <p>And say what you would actually do in a job: not 10 &mdash; the <b>median</b> for a salary, the
+    <b>median</b> for an age, the word <code>"unknown"</code> for a missing department.</p>
+   </div>
+
+<pre><code>df[<span class="c">"age"</span>].fillna(df[<span class="c">"age"</span>].median())
+df[<span class="c">"department"</span>].fillna(<span class="c">"unknown"</span>)</code></pre>
+  </div>
+
+  <!-- 40-44 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">40 – 44</span><h3>Duplicates</h3></div>
+
+<pre><code>df[<span class="c">"dept_id"</span>]              <span class="c"># 1,2,3,4 over and over - obviously repeated</span>
+
+df.duplicated()               <span class="c"># True/False, one per ROW</span>
+df.duplicated().sum()         <span class="c"># 1</span>
+df.drop_duplicates()          <span class="c"># 200 rows</span></code></pre>
+
+   <div class="speak">
+    <p>Same shape as <code>isnull</code> &mdash; True or False per row, so <code>.sum()</code> counts
+    them. <b>Exactly one row in this file is a complete copy of another.</b></p>
+   </div>
+
+   <h4>Duplicates in one column</h4>
+<pre><code>df.drop_duplicates(<span class="c">"department"</span>)
+df.drop_duplicates(subset=<span class="c">"department"</span>)   <span class="c"># same thing, named</span></code></pre>
+
+   <div class="screen">HR &nbsp;&middot;&nbsp; Marketing &nbsp;&middot;&nbsp; Tech &nbsp;&middot;&nbsp; Sales &nbsp;&mdash;&nbsp; 4 rows</div>
+
+   <div class="speak">
+    <p>This is a different job from the one above. It keeps the <b>first row of each department</b>
+    and throws away 197 perfectly good rows &mdash; which is how you get a list of the distinct
+    values.</p>
    </div>
   </div>
 
-  <!-- 8-20 -->
+  <!-- 44-50 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">8 – 20</span><h3>Counting and ordering</h3></div>
+   <div class="bhead"><span class="clock">44 – 50</span><h3>Types, names, and a new column</h3></div>
 
-<pre><code>df[<span class="c">"department"</span>].value_counts()
-
-<span class="c"># Sales        65</span>
-<span class="c"># Tech         49</span>
-<span class="c"># HR           45</span>
-<span class="c"># Marketing    42</span></code></pre>
+<pre><code>pd.dtypes                <span class="c"># AttributeError - pandas has no dtypes</span>
+df.dtypes                <span class="c"># int64 / object / float64 per column</span></code></pre>
 
    <div class="speak">
-    <p>The first genuinely useful one-liner. <b>How many of each?</b> &mdash; on any text column,
-    sorted biggest first for free.</p>
-    <p>Get them to add it up: 65 and 49 and 45 and 42 is 201. <b>Every row accounted for</b>, which is
-    the same check they will take from a pivot table's grand total later.</p>
+    <p>Worth the slip: <code>dtypes</code> belongs to <b>your table</b>, not to the library.</p>
    </div>
 
-<pre><code>df.sort_values(<span class="c">"salary"</span>)                       <span class="c"># smallest first (the default)</span>
-df.sort_values(<span class="c">"salary"</span>, ascending=<span class="c">False</span>)      <span class="c"># biggest first</span></code></pre>
+<pre><code>df[<span class="c">"age"</span>].astype(int)
+<span class="c"># IntCastingNaNError: Cannot convert non-finite values (NA or inf) to integer</span>
 
-   <div class="screen">Lakshmi Kumar   5200000.0
-Kavya Gupta      116894.0
-Suresh Patel     106170.0</div>
+df[<span class="c">"experience"</span>].astype(int)     <span class="c"># works</span></code></pre>
 
    <div class="speak">
-    <p><code>sort_values</code> needs to be told <b>which column</b> &mdash; that is the one thing
-    people forget. Ascending is the default; <code>ascending=False</code> flips it.</p>
-    <p>And sorting biggest-first puts the problem at the top of the screen: <b>52 lakh, then 1.17
-    lakh.</b> A forty-fold gap between first and second. <b>Sorting is the fastest outlier detector
-    you own.</b></p>
+    <p>Age refuses, and the reason is the blank from twenty minutes ago &mdash; <b>there is no integer
+    for &ldquo;missing&rdquo;.</b> Experience has no gaps, so it converts.</p>
+    <p>So the order in a real job is: <b>fill or drop first, convert second.</b></p>
    </div>
 
-   <div class="warn"><b>Sorting does not change the file.</b> It hands back a sorted copy. Print
-   <code>df.head()</code> straight after and the original order is still there. Same rule as
-   <code>flatten</code> and <code>ar + 5</code> &mdash; nothing is saved unless you save it.</div>
-  </div>
-
-  <!-- 20-34 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">20 – 34</span><h3>Finding the gaps</h3></div>
-
-<pre><code>df.isnull()           <span class="c"># True / False for every single cell</span>
-
-df.isnull().sum()     <span class="c"># age       1</span>
-                      <span class="c"># salary    2</span>
-                      <span class="c"># everything else 0</span></code></pre>
+<pre><code>df.rename(columns={<span class="c">"rating"</span>: <span class="c">"feedback"</span>})</code></pre>
 
    <div class="speak">
-    <p>Run <code>isnull()</code> on its own first and let them see the problem with it &mdash; a wall
-    of True and False, 201 rows by 12 columns. <b>Useless to a human.</b></p>
-    <p>Then add <code>.sum()</code>, and it becomes the most useful line in the session. Remember
-    from day 3: <b>True counts as 1.</b> So summing a column of True/False counts the Trues &mdash;
-    which means it counts the blanks, per column.</p>
-    <p>Two missing salaries and one missing age, in one line. <code>info()</code> told them this
-    yesterday by making them subtract; <b>this just tells them.</b></p>
+    <p>A dictionary &mdash; <b>old name on the left, new name on the right.</b></p>
    </div>
 
-   <div class="keyline"><b><code>df.isnull().sum()</code></b> &mdash; the first line to run on any file
-   you did not create. Worth committing to memory.</div>
-  </div>
-
-  <!-- 34-50 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">34 – 50</span><h3>Two ways to deal with a blank</h3></div>
-   <p class="objective">Sixteen minutes. The choice matters more than the syntax.</p>
-
-   <h4>Throw the row away</h4>
-<pre><code>df.dropna().shape[0]      <span class="c"># 198</span></code></pre>
+   <h4>Adding a column that was not there</h4>
+<pre><code>df[<span class="c">"bonus"</span>] = df[<span class="c">"salary"</span>] * 10</code></pre>
 
    <div class="speak">
-    <p>201 becomes 198. Ask why it lost <b>three</b> rows when only two salaries are missing.</p>
-    <p>Because the missing <b>age</b> is on a different person. <code>dropna()</code> removes a row if
-    <b>any</b> column in it is empty &mdash; not just the one you were worried about. <b>Two problems,
-    three rows gone.</b></p>
-    <p>That is the cost. On this file it is 1.5% and survivable. On a file where every row has one
-    blank somewhere, <code>dropna()</code> deletes everything.</p>
+    <p>Name a column that does not exist, assign to it, and it appears on the end of the table.</p>
    </div>
 
-   <h4>Fill it in instead</h4>
-<pre><code>df[<span class="c">"salary"</span>].fillna(0)
-df[<span class="c">"salary"</span>].fillna(0).sum()     <span class="c"># 19034033.0</span></code></pre>
-
-   <div class="speak">
-    <p>The row stays and the blank becomes a value you chose.</p>
-    <p>Now ask the real question: <b>is zero a good choice here?</b> It is not. It says those two
-    people earn nothing, which is a claim the file never made, and it drags the average down.</p>
-    <p>Better options are the <b>mean</b> or the <b>median</b> of the column &mdash; and after
-    yesterday's <code>describe()</code> they know the median is the safer one when there is an
-    outlier.</p>
-   </div>
-
-   <div class="keyline">
-    <b>There is no correct answer, only a declared one.</b><br><br>
-    <code>dropna()</code> &mdash; you lose rows, but every number left is real.<br>
-    <code>fillna()</code> &mdash; you keep rows, but some numbers are now invented.<br><br>
-    Whichever you pick, <b>say so in the report.</b>
-   </div>
+   <div class="warn"><b>Check this one before you teach it.</b> It was described in the session as
+   &ldquo;ten percent&rdquo; but written as <code>* 10</code>, which is <b>ten times the salary</b>, not
+   a tenth of it. A 10% bonus is <code>df["salary"] * 0.10</code>. Either fix the multiplier or rename
+   the column &mdash; but do not say &ldquo;10%&rdquo; over <code>* 10</code>.</div>
   </div>
 
   <!-- 50-62 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">50 – 62</span><h3>The duplicate row</h3></div>
+   <div class="bhead"><span class="clock">50 – 62</span><h3>Summarising one column</h3></div>
 
-<pre><code>df.duplicated().sum()         <span class="c"># 1</span>
-df.drop_duplicates().shape    <span class="c"># (200, 12)</span></code></pre>
-
-   <div class="speak">
-    <p><code>duplicated()</code> is the same shape of tool as <code>isnull()</code> &mdash; True or
-    False per row, so <code>.sum()</code> counts them. <b>One row in this file is an exact copy of
-    another.</b></p>
-    <p><code>drop_duplicates()</code> removes it and 201 becomes <b>200</b>.</p>
-    <p>Now go back and re-run <code>value_counts()</code> on department. <b>Sales was 65 and is now
-    64.</b> The duplicate was a Sales employee &mdash; so every departmental number they wrote down
-    twenty minutes ago was wrong by one.</p>
-    <p>That is the lesson, and it is worth stopping on: <b>clean first, count second.</b> Counting a
-    dirty file gives you confident wrong answers.</p>
-   </div>
-
-   <div class="warn"><b>From here on the file has 200 rows.</b> Say it out loud and write it on the
-   board. Every number for the rest of today &mdash; and every Excel session later &mdash; is a
-   200-row number.</div>
-  </div>
-
-  <!-- 62-70 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">62 – 70</span><h3>Two small repairs</h3></div>
-
-<pre><code>df[<span class="c">"experience"</span>].astype(float)        <span class="c"># int64 -&gt; float64</span>
-
-df.rename(columns={<span class="c">"salary"</span>: <span class="c">"monthly_pay"</span>})</code></pre>
+<pre><code>df.median()
+<span class="c"># TypeError: Cannot convert ['Rahul Sharma' 'Karthik Kumar' ...]</span></code></pre>
 
    <div class="speak">
-    <p><code>astype</code> they met on day 1 on an array; it works the same on a column. The usual
-    real-world need is the opposite direction &mdash; a number column that arrived as text and will
-    not do maths until you convert it.</p>
-    <p><code>rename</code> takes a dictionary: <b>old name to new name.</b> Columns arriving with
-    names like <code>sal_amt_inr</code> is normal, and fixing them early makes every later line
-    readable.</p>
-    <p>Both hand back a new table. Neither changes anything in place.</p>
+    <p>It fails, and the error names the culprit. <b>There is no middle value of a list of
+    names</b> &mdash; a median needs sorting, and sorting these tells you nothing numeric.</p>
    </div>
+
+<pre><code>df[<span class="c">"salary"</span>].median()        <span class="c"># 68647.0</span></code></pre>
+
+   <h4>Mode &mdash; and the bracket nobody expects</h4>
+<pre><code>df[<span class="c">"department"</span>].mode()     <span class="c"># 0    Sales        &lt;- a Series, not a value</span>
+df[<span class="c">"department"</span>].mode()[0]  <span class="c"># Sales</span>
+df[<span class="c">"city"</span>].mode()[0]        <span class="c"># Chennai</span></code></pre>
+
+   <div class="speak">
+    <p>Mode is <b>the value that appears most often</b>. But it comes back as a Series with an index
+    <code>0</code> beside it, because a column can have <b>two</b> equally common values. Add
+    <code>[0]</code> to take the first.</p>
+    <p>And it answers a real question &mdash; <i>which city do most of our people work in?</i>
+    <b>Chennai.</b></p>
+   </div>
+
+   <h4>Spread</h4>
+<pre><code>df[<span class="c">"salary"</span>].std()           <span class="c"># 364031.90</span>
+df[<span class="c">"salary"</span>].var()           <span class="c"># 132519227501.47</span></code></pre>
+
+   <div class="speak">
+    <p>Standard deviation is the <b>spread</b> &mdash; are the salaries bunched together or thrown
+    wide apart? Three and a half lakh says wide, and they know why.</p>
+    <p>Then the relationship, on the calculator in front of them: <b>variance is standard deviation
+    squared, and standard deviation is the square root of variance.</b> Same fact, two forms.</p>
+    <p>Do not derive the formula. One minute on <i>subtract the mean, square, add up, divide by n,
+    square root</i> &mdash; then say statistics covers it properly next week, and move on.</p>
+   </div>
+
+   <div class="keyline"><b>Four functions for summarising:</b> <code>median</code>,
+   <code>mode</code>, <code>std</code>, <code>var</code>.</div>
   </div>
 
-  <!-- 70-86 -->
+  <!-- 62-81 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">70 – 86</span><h3>groupby &mdash; the one that matters</h3></div>
-   <p class="objective">Sixteen minutes, and protect every one of them. This is the most used function
-   in pandas.</p>
+   <div class="bhead"><span class="clock">62 – 81</span><h3>groupby &mdash; the one that matters</h3></div>
+   <p class="objective">Nineteen minutes, and protect every one. This is the most used function in
+   pandas and it reappears as a pivot table in Excel.</p>
+
+<pre><code>df[<span class="c">"salary"</span>].mean()          <span class="c"># 95648.41</span></code></pre>
 
    <div class="qbox">
-    <div class="q">&ldquo;What is the average salary <b>in each department</b>?&rdquo;</div>
+    <div class="q">&ldquo;So we pay a fresher in HR ninety-five thousand?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>Let them try it with what they have. They can filter to HR and take the mean. Then Tech. Then
-    Sales. Then Marketing. <b>Four filters, four means, by hand.</b></p>
-    <p>Then ask what happens with forty departments. That discomfort is the setup.</p>
+    <p>Obviously not. That is the average of the <b>whole company</b>, and Tech drags it up. To set a
+    salary for an HR hire you need <b>HR's</b> average.</p>
+   </div>
+
+   <div class="typeit">Draw this on the board before any code</div>
+<pre><code>name      department
+
+Alex      Tech
+Bob       HR
+Charlie   Tech
+David     HR</code></pre>
+
+   <div class="speak">
+    <p>Group by department. Tech becomes one row, HR becomes one row. <b>Now what goes in the name
+    column?</b> Two names, one cell. You cannot write &ldquo;Alex, Charlie&rdquo;.</p>
+    <p>That is exactly why the next line prints nothing:</p>
+   </div>
+
+<pre><code>df.groupby(<span class="c">"department"</span>)
+<span class="c"># &lt;pandas...DataFrameGroupBy object at 0x...&gt;   no output</span>
+
+df.groupby(<span class="c">"department"</span>)[<span class="c">"salary"</span>]
+<span class="c"># still nothing - many salaries per group, nothing to show</span></code></pre>
+
+   <div class="speak">
+    <p>It grouped. It just has <b>nothing it can print</b>, because every group holds many rows.</p>
+    <p>You have to say <b>what one number should stand for the group.</b></p>
    </div>
 
 <pre><code>df.groupby(<span class="c">"department"</span>)[<span class="c">"salary"</span>].mean()
 
 <span class="c"># HR            56705.14</span>
 <span class="c"># Marketing     73954.43</span>
-<span class="c"># Sales         66640.48</span>
+<span class="c"># Sales         66534.63</span>
 <span class="c"># Tech         189753.54</span></code></pre>
 
    <div class="speak">
-    <p>Read the line out in three pieces, because that is exactly what it does. <b>Group by
-    department</b> &mdash; split the 200 rows into four piles. <b>Take the salary column</b> &mdash;
-    of each pile. <b>Mean</b> &mdash; of each.</p>
-    <p>Split, apply, combine. One line replaced four filters.</p>
-    <p>Then point at Tech: <b>1,89,753.</b> More than double everybody else. Ask whether Tech really
-    pays double &mdash; and they already know the answer, because they met the 52 lakh yesterday and
-    again when they sorted.</p>
-    <p><b>Nothing warned them.</b> <code>groupby</code> answered the question it was asked, perfectly,
-    and the answer is misleading.</p>
+    <p>Ten people in HR, <b>one</b> average. That is what SQL calls an <b>aggregate</b> or
+    <b>multi-row</b> function &mdash; many rows in, one value out. They meet the same word in SQL this
+    week.</p>
+    <p>And now the question has a real answer: hiring for HR, you look at <b>56,705</b>, not 95,648.
+    Marketing 73,954. Sales 66,534. Tech &mdash; 1,89,753, and they already know not to trust it.</p>
    </div>
 
-   <div class="typeit">More than one summary at a time</div>
-<pre><code>df.groupby(<span class="c">"department"</span>)[<span class="c">"salary"</span>].agg([<span class="c">"count"</span>, <span class="c">"mean"</span>, <span class="c">"max"</span>])
+   <h4>Any column, any function</h4>
+<pre><code>df.groupby(<span class="c">"department"</span>)[<span class="c">"height_cm"</span>].mean()   <span class="c"># all ~168 - a boring, true answer</span>
+df.groupby(<span class="c">"department"</span>)[<span class="c">"experience"</span>].mean()  <span class="c"># HR 7.2, Mkt 9.1, Sales 8.2, Tech 6.6</span></code></pre>
 
-<span class="c">#             count       mean        max</span>
-<span class="c"># HR             44   56705.14    80039.0</span>
-<span class="c"># Marketing      42   73954.43   106170.0</span>
-<span class="c"># Sales          64   66640.48    93417.0</span>
-<span class="c"># Tech           48  189753.54  5200000.0</span></code></pre>
+   <h4>Counting the groups</h4>
+<pre><code>df.groupby(<span class="c">"department"</span>).size()
+
+<span class="c"># HR 45 , Marketing 42 , Sales 65 , Tech 49</span></code></pre>
 
    <div class="speak">
-    <p><code>agg</code> takes a list and gives you a column for each. And this table makes the outlier
-    impossible to miss &mdash; <b>every other department maxes out around a lakh; Tech's max is 52
-    lakh.</b></p>
-    <p>One more thing to catch, and it is the best detail in the session. <b>Count says Tech is 48 and
-    HR is 44</b>, but <code>value_counts</code> said 49 and 45. Ask why.</p>
-    <p>Because the two missing salaries belong to one Tech employee and one HR employee, and
-    <code>groupby</code> <b>silently skips the blanks.</b> It did not warn, it did not error &mdash;
-    it just quietly counted fewer people. <b>This exact gap shows up again in Excel as 49 against
-    48.</b></p>
+    <p>Ask why <code>size()</code> works when the bare groupby did not. <b>Because it also returns one
+    number per group.</b> That is the whole rule.</p>
    </div>
 
-   <div class="keyline"><b>Split, apply, combine.</b> And it ignores missing values without telling
-   you &mdash; which is why <code>isnull().sum()</code> comes first.</div>
+   <h4>Several summaries at once</h4>
+<pre><code>df.groupby(<span class="c">"department"</span>)[<span class="c">"salary"</span>].aggregate([<span class="c">"count"</span>, <span class="c">"max"</span>, <span class="c">"min"</span>, <span class="c">"mean"</span>, <span class="c">"sum"</span>])
+
+<span class="c">#             count        max      min       mean        sum</span>
+<span class="c"># HR             44    80039.0  33085.0   56705.14  2495026.0</span>
+<span class="c"># Marketing      42   106170.0  49259.0   73954.43  3106086.0</span>
+<span class="c"># Sales          65    93417.0  39493.0   66534.63  4324751.0</span>
+<span class="c"># Tech           48  5200000.0  56727.0  189753.54  9108170.0</span></code></pre>
+
+   <div class="speak">
+    <p>One call, five columns. And two things jump out of it.</p>
+    <p><b>Tech's max is 52 lakh</b> against everyone else's one lakh &mdash; the outlier, visible
+    without looking for it. And <b>count says HR 44 and Tech 48</b>, while <code>size()</code> said 45
+    and 49. The two missing salaries are one HR and one Tech, and <code>aggregate</code> skipped them
+    silently. <b><code>size()</code> counts rows; <code>count</code> counts values.</b></p>
+   </div>
+
+   <div class="keyline"><b>Group by a column, pick a column, apply a function.</b> If the function
+   does not reduce a group to one value, nothing prints.</div>
   </div>
 
-  <!-- 86-98 -->
+  <!-- 81-97 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">86 – 98</span><h3>Two tables into one</h3></div>
+   <div class="bhead"><span class="clock">81 – 97</span><h3>Two tables into one</h3></div>
 
-   <div class="typeit">Build these by hand &mdash; small enough to see what happens</div>
-<pre><code>a = pd.DataFrame({<span class="c">"emp_id"</span>: [1, 2, 3],
-                  <span class="c">"name"</span>:   [<span class="c">"Rahul"</span>, <span class="c">"Priya"</span>, <span class="c">"Amit"</span>]})
-
-b = pd.DataFrame({<span class="c">"emp_id"</span>: [2, 3, 4],
-                  <span class="c">"bonus"</span>:  [5000, 7000, 6000]})</code></pre>
-
-   <h4>concat &mdash; stack them</h4>
-<pre><code>pd.concat([a, b])
-
-<span class="c">#    emp_id   name   bonus</span>
-<span class="c"># 0       1  Rahul     NaN</span>
-<span class="c"># 1       2  Priya     NaN</span>
-<span class="c"># 2       3   Amit     NaN</span>
-<span class="c"># 0       2    NaN  5000.0</span>
-<span class="c"># 1       3    NaN  7000.0</span>
-<span class="c"># 2       4    NaN  6000.0</span></code></pre>
+   <div class="typeit">Build two small tables out of the big one</div>
+<pre><code>a = df.head(3)[[<span class="c">"name"</span>, <span class="c">"department"</span>]]
+b = df.tail(3)[[<span class="c">"name"</span>, <span class="c">"department"</span>]]</code></pre>
 
    <div class="speak">
-    <p>Six rows, and <b>full of NaN</b>. Ask what went wrong. Nothing did &mdash; <code>concat</code>
-    stacks tables on top of each other, and these two do not have the same columns, so every cell that
-    does not exist comes back blank.</p>
-    <p>It is <code>vstack</code> from NumPy, for named columns. Useful when the tables have the
-    <b>same</b> shape &mdash; twelve monthly files, say. Wrong tool here.</p>
+    <p>Note the <b>double brackets</b> again &mdash; two columns means a list. And
+    <code>head(3)</code> then picking columns is a chain they have not written before.</p>
    </div>
 
-   <h4>merge &mdash; match them up</h4>
-<pre><code>pd.merge(a, b, on=<span class="c">"emp_id"</span>)
-
-<span class="c">#    emp_id   name  bonus</span>
-<span class="c">#         2  Priya   5000</span>
-<span class="c">#         3   Amit   7000</span></code></pre>
+   <h4>concat &mdash; stacking</h4>
+<pre><code>pd.concat([a, b])        <span class="c"># 6 rows - three, then three underneath</span></code></pre>
 
    <div class="speak">
-    <p>This is what they wanted. <code>merge</code> uses a <b>shared column</b> &mdash; here
-    <code>emp_id</code> &mdash; to line the rows up, so each person's name sits next to their own
-    bonus.</p>
-    <p>Now the question that matters: <b>three rows and three rows went in. Two came out. Who is
-    missing?</b></p>
-    <p>Rahul has no bonus. Employee 4 has a bonus but no name. <b>Neither appears at all</b>, and
-    nothing told you they had gone.</p>
-    <p>That is what SQL calls an <b>inner join</b>, and it is the default. Name left, right and full
-    outer in one sentence and stop &mdash; they are a session of their own.</p>
+    <p>Row-wise by default. Attach one table under another.</p>
    </div>
 
-   <div class="warn"><b>Always check the row count after a merge.</b> A merge that silently drops rows
-   looks exactly like a merge that worked. Print <code>len()</code> before and after, every time.</div>
+   <h4>concat sideways</h4>
+<pre><code>a = df.head(3)[[<span class="c">"name"</span>]]
+b = df.tail(3)[[<span class="c">"salary"</span>]]
+
+pd.concat([a, b], axis=1)
+
+<span class="c">#        name      salary</span>
+<span class="c"># 0      Rahul Sharma   NaN</span>
+<span class="c"># 1      Karthik Kumar  NaN</span>
+<span class="c"># 2      Karthik Reddy  NaN</span>
+<span class="c"># 198    NaN            78169.0</span>
+<span class="c"># 199    NaN            66075.0</span>
+<span class="c"># 200    NaN            59760.0</span></code></pre>
+
+   <div class="speak">
+    <p>Same <code>axis</code> again. And look at the result &mdash; <b>full of NaN</b>, because rows 0,
+    1, 2 have a name and no salary, and rows 198, 199, 200 have a salary and no name. They were never
+    the same people.</p>
+    <p>The trainer's framing is worth keeping: <b>this is behaving like a full outer join</b> &mdash;
+    everything from both sides, blanks where there is no partner.</p>
+   </div>
+
+   <div class="keyline"><b><code>concat</code> glues tables together by position.</b> It does not match
+   anything up. For that you need <code>merge</code>.</div>
   </div>
 
-  <!-- 98-102 -->
+  <!-- 97-102 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">98 – 102</span><h3>Close</h3></div>
+   <div class="bhead"><span class="clock">97 – 102</span><h3>merge, and the join types</h3></div>
+
+   <div class="typeit">Two tables with something in common</div>
+<pre><code>employee = pd.DataFrame({<span class="c">"name"</span>: [<span class="c">"Rahul"</span>, <span class="c">"Priya"</span>, <span class="c">"Alex"</span>],
+                         <span class="c">"dept_id"</span>: [1, 2, 5]})
+
+department = pd.DataFrame({<span class="c">"dept_id"</span>: [1, 2],
+                           <span class="c">"department"</span>: [<span class="c">"Tech"</span>, <span class="c">"Sales"</span>]})</code></pre>
+
    <div class="speak">
-    <p>Tick off the board. <b>Three problems found yesterday, three fixed today, 201 rows down to
-    200.</b></p>
-    <p>And name the thread running through the whole session: <b>almost nothing here raised an
-    error.</b> The dirty count, the zero-filled average, the Tech average, the merge that lost two
-    people &mdash; every one of them produced a confident, well-formatted, wrong answer.</p>
-    <p>The functions are the easy part. <b>Checking the answer is the job.</b></p>
+    <p>Two entities, exactly like an ER diagram. <code>dept_id</code> is the <b>primary key</b> in the
+    department table and a <b>foreign key</b> in the employee table &mdash; and that shared column is
+    the only reason a join is possible at all.</p>
+    <p>Note Alex sits in department <b>5</b>, which does not exist. That is deliberate.</p>
+   </div>
+
+<pre><code>pd.merge(employee, department)
+pd.merge(employee, department, on=<span class="c">"dept_id"</span>)   <span class="c"># say which column, always</span>
+
+<span class="c">#  name  dept_id department</span>
+<span class="c"># Rahul        1       Tech</span>
+<span class="c"># Priya        2      Sales</span></code></pre>
+
+   <div class="speak">
+    <p>Three rows in, <b>two out. Alex is gone</b>, and nothing said so.</p>
+    <p>That default is SQL's <b>inner join</b> &mdash; only rows that match on <b>both</b> sides.</p>
+   </div>
+
+<pre><code>pd.merge(employee, department, on=<span class="c">"dept_id"</span>, how=<span class="c">"left"</span>)
+
+<span class="c">#  name  dept_id department</span>
+<span class="c"># Rahul        1       Tech</span>
+<span class="c"># Priya        2      Sales</span>
+<span class="c"># Alex         5        NaN     &lt;- kept, with a blank</span></code></pre>
+
+   <div class="speak">
+    <p><b>Left join:</b> everything that matches, <i>plus</i> everything in the left table. Alex comes
+    back with <code>NaN</code> where his department should be &mdash; which is the honest answer.</p>
+   </div>
+
+<pre><code>pd.merge(employee, department, on=<span class="c">"dept_id"</span>, how=<span class="c">"right"</span>)
+<span class="c"># Alex disappears again - nothing extra on the right side</span></code></pre>
+
+   <div class="speak">
+    <p>Name the rest in one sentence &mdash; <b>full outer, natural, cross, self</b> &mdash; and say
+    they belong to SQL, where they get taught properly.</p>
+   </div>
+
+   <div class="warn"><b>Always check the row count after a merge.</b> Three rows became two and no
+   error appeared. A merge that silently drops people looks exactly like a merge that worked.</div>
+
+   <div class="speak">
+    <p>Close by naming the thread: <b>almost nothing today raised an error.</b> The dropna that saved
+    nothing, the fillna that ate the table, the merge that lost Alex &mdash; every one produced a
+    confident, well-formatted, wrong result.</p>
+    <p>Tell them to type all of it again over the weekend. <b>Monday is statistics, and pandas comes
+    with it.</b></p>
    </div>
   </div>
 
@@ -35261,26 +35534,28 @@ b = pd.DataFrame({<span class="c">"emp_id"</span>: [2, 3, 4],
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Questions you will get</h2>
-  <div class="qa"><h5>Should I drop the blanks or fill them?</h5>
-  <p>&ldquo;Depends what you lose. Dropping costs rows but every number left is real. Filling keeps
-  rows but invents numbers. For two rows out of 201, drop. For half the file, fill &mdash; and say so
-  in the report.&rdquo;</p></div>
+  <div class="qa"><h5>Why did nothing change when I ran dropna?</h5>
+  <p>&ldquo;Because it returns a new table and you did not keep it. <code>df = df.dropna()</code>. This
+  is true of <b>every</b> cleaning function today.&rdquo;</p></div>
   <div class="qa"><h5>Why did dropna take three rows when only two salaries are missing?</h5>
-  <p>&ldquo;Because a different person is missing an age. It drops a row if <b>any</b> column is
-  blank. If you only care about salary, use <code>df.dropna(subset=['salary'])</code>.&rdquo;</p></div>
-  <div class="qa"><h5>Why does groupby count 48 Tech when there are 49?</h5>
-  <p>&ldquo;One Tech employee has no salary, and <code>groupby</code> skips blanks without telling
-  you. It is the single best reason to run <code>isnull().sum()</code> first.&rdquo;</p></div>
+  <p>&ldquo;A different person is missing an age. It drops a row if <b>any</b> column is blank. Use
+  <code>subset</code> if you only care about one.&rdquo;</p></div>
+  <div class="qa"><h5>Why does sort_values need square brackets for two columns?</h5>
+  <p>&ldquo;Because the second argument of the function is something else &mdash;
+  <code>axis</code>. Your list of columns has to arrive as <b>one</b> argument, so it goes in
+  brackets.&rdquo;</p></div>
+  <div class="qa"><h5>Why does mode() print a 0 next to the answer?</h5>
+  <p>&ldquo;It returns a Series, because a column can have two equally common values. <code>[0]</code>
+  takes the first one.&rdquo;</p></div>
+  <div class="qa"><h5>Why is groupby count 44 when size is 45?</h5>
+  <p>&ldquo;<code>size()</code> counts <b>rows</b>. <code>count</code> counts <b>values</b>, and one HR
+  salary is blank. The gap between them is your missing data.&rdquo;</p></div>
   <div class="qa"><h5>concat or merge?</h5>
-  <p>&ldquo;<code>concat</code> when the tables have the <b>same columns</b> and you want more rows.
-  <code>merge</code> when they have a <b>shared key</b> and you want more columns. Same rows or same
-  columns &mdash; that is the question.&rdquo;</p></div>
-  <div class="qa"><h5>Where did my two rows go after the merge?</h5>
-  <p>&ldquo;They had no match on the other side. The default keeps only rows present in both. Changing
-  that is the <code>how=</code> argument, and the four join types are a session of their own.&rdquo;</p></div>
-  <div class="qa"><h5>Why didn't my file change?</h5>
-  <p>&ldquo;Every one of these returns a new table. <code>df = df.drop_duplicates()</code> if you want
-  to keep it. This will catch everybody at least once.&rdquo;</p></div>
+  <p>&ldquo;<code>concat</code> glues by position and matches nothing. <code>merge</code> lines rows up
+  on a shared column. Same rows or same columns &mdash; that is the question.&rdquo;</p></div>
+  <div class="qa"><h5>Where did Alex go?</h5>
+  <p>&ldquo;He had no match on the right. The default is an inner join. <code>how="left"</code> keeps
+  him with a blank.&rdquo;</p></div>
  </div>
 </section>
 
@@ -35288,92 +35563,176 @@ b = pd.DataFrame({<span class="c">"emp_id"</span>: [2, 3, 4],
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">If things go sideways</h2>
   <ul class="l">
-   <li><b>Running long</b> &mdash; cut <code>concat</code> and go straight to <code>merge</code>, and
-   drop <code>rename</code>. Do <b>not</b> take time out of <code>groupby</code>.</li>
-   <li><b>Running short</b> &mdash; group by <code>city</code>, then by <code>education</code>, then
-   ask for count, mean and max on each. Repetition on <code>groupby</code> is never wasted.</li>
-   <li><b><code>groupby</code> is not landing</b> &mdash; go back to doing it by hand. Four filters,
-   four means, written on the board, then the one line that replaces them. The relief is the
-   teaching.</li>
-   <li><b>Numbers do not match between students</b> &mdash; somebody cleaned before counting, or
-   re-read the file mid-session. Have everyone print <code>df.shape</code> and find out who is on 201
-   and who is on 200.</li>
-   <li><b>Somebody asks about pivot tables</b> &mdash; good instinct, and it is genuinely the same
-   idea. It is not in this block at all; it arrives in Excel.</li>
+   <li><b>Running long</b> &mdash; cut <code>concat</code> sideways and the <code>var()</code>
+   derivation. Do <b>not</b> take time out of <code>groupby</code> or the <code>dropna</code>
+   failure.</li>
+   <li><b>Running short</b> &mdash; group by <code>city</code>, then by <code>education</code>, with
+   count, mean and max each time. Repetition on groupby is never wasted.</li>
+   <li><b>groupby is not landing</b> &mdash; go back to the four-row table and the question
+   &ldquo;what goes in the name cell?&rdquo;. That is the whole idea; the syntax is nothing.</li>
+   <li><b>Numbers do not match between students</b> &mdash; somebody stored a cleaning step and
+   somebody did not. Have everyone print <code>df.shape</code> and find who is not on 201.</li>
+   <li><b>Somebody asks about pivot tables</b> &mdash; good instinct, same idea, and it is not in this
+   block at all. It arrives in Excel.</li>
   </ul>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">13 functions</span></div>
-  <p class="sumnote">Put this on screen in the last two minutes, or paste it into a cell and let them keep it. Every command from the session, in order, with what it does.</p>
+  <div class="sumhead"><h2 class="h">Summary &mdash; every line from today</h2><span class="n">30 functions</span></div>
+  <p class="sumnote">Every command from the session, in order, with what it does and what it printed. Paste it into a cell and let them keep it &mdash; the trainer's own closing instruction was to type all of it again over the weekend.</p>
   <div class="sumcard"><pre><code>import pandas as pd
-df = pd.read_csv("employees.csv")      <span class="c"># (201, 12)  - fresh read</span>
+df = pd.read_csv("employees.csv")      <span class="c"># (201, 12) - NOT deduped today</span>
 
-<span class="c"># ---- COUNT AND ORDER ----</span>
-df["department"].value_counts()   <span class="c"># Sales 65, Tech 49, HR 45, Marketing 42</span>
-                                  <span class="c"># 65+49+45+42 = 201. every row accounted for.</span>
-df.sort_values("salary")                    <span class="c"># smallest first (default)</span>
-df.sort_values("salary", ascending=False)   <span class="c"># biggest first</span>
-                                  <span class="c"># 5,200,000 then 116,894 - a 40x gap. SORTING FINDS OUTLIERS.</span>
+<span class="c"># ---- 0. YESTERDAY'S ASSIGNMENT: how many, not which ----</span>
+df[(df["salary"] &gt; 50000) &amp; (df["department"] == "Tech")].count()
+                            <span class="c"># 48, but once per column - 12 answers</span>
+df[(df["salary"] &gt; 50000) &amp; (df["department"] == "Tech")].value_counts()
+                            <span class="c"># a wall of text. df[...] already dropped the failures.</span>
+((df["salary"] &gt; 50000) &amp; (df["department"] == "Tech")).value_counts()
+                            <span class="c"># False 153 , True 48      &lt;- count the CONDITION</span>
+                            <span class="c"># 153 + 48 = 201. every row accounted for.</span>
 
-<span class="c"># ---- FIND THE GAPS ----</span>
-df.isnull()                       <span class="c"># True/False for all 201 x 12 cells - unreadable</span>
-df.isnull().sum()                 <span class="c"># age 1 , salary 2 , everything else 0</span>
-                                  <span class="c"># True counts as 1, so .sum() counts the blanks</span>
+<span class="c"># ---- 1. SORTING ----</span>
+df["salary"]                     <span class="c"># one column, unsorted</span>
+df.sort_values("salary")         <span class="c"># 33,085 35,118 36,711 ... 52,00,000  ASCENDING by default</span>
+df.sort_values("emp_id")
+df.sort_values("dept_id")
+df.sort_values("name")           <span class="c"># text sorts ALPHABETICALLY - like an attendance register</span>
+df.sort_values("department")
+df.sort_values("experience")
+df.sort_values("height_cm")      <span class="c"># any column works</span>
 
-<span class="c"># ---- FIX THE GAPS: two choices, no correct answer ----</span>
-df.dropna().shape[0]              <span class="c"># 198   - lost THREE rows, not two</span>
-                                  <span class="c">#         the missing AGE is a different person.</span>
-                                  <span class="c">#         dropna drops a row if ANY column is blank.</span>
-df["salary"].fillna(0)            <span class="c"># keeps the row, invents the number</span>
-df["salary"].fillna(0).sum()      <span class="c"># 19034033.0   - but 0 claims they earn NOTHING</span>
-<span class="c"># better fills: .fillna(df["salary"].median())  - safer when there is an outlier</span>
+df.sort_values("department", "salary")     <span class="c"># TypeError - a comma is NOT how you do two</span>
+df.sort_values(["department", "salary"])   <span class="c"># correct: ONE list</span>
+                            <span class="c"># dept first; ties broken by salary. HR: 33,085 35,118 36,711 37,159</span>
+df.sort_values(["department", "salary", "experience", "emp_id"])
+                            <span class="c"># keep adding tiebreakers</span>
+df.sort_values(["department", "salary"], ascending=False)
+                            <span class="c"># ascending defaults to True - that is why it was smallest-first</span>
+df.sort_values(["city", "department", "salary"], ascending=False)
+                            <span class="c"># THE TASK. = SQL's ORDER BY city, department, salary DESC</span>
 
-<span class="c"># ---- THE DUPLICATE ----</span>
-df.duplicated().sum()             <span class="c"># 1</span>
-df = df.drop_duplicates()         <span class="c"># (200, 12)   201 -&gt; 200</span>
-df["department"].value_counts()   <span class="c"># Sales is now 64, NOT 65</span>
-<span class="c"># every departmental number from before this line was wrong by one.</span>
-<span class="c"># CLEAN FIRST, COUNT SECOND.</span>
+<span class="c"># ---- 2. MISSING VALUES: find them ----</span>
+df.isnull()                 <span class="c"># True/False for all 2,412 cells - unreadable</span>
+df.isnull().sum()           <span class="c"># age 1 , salary 2 , everything else 0</span>
+df["age"].isnull()          <span class="c"># one column</span>
+df["age"].isnull().sum()    <span class="c"># 1</span>
+df["age"].isnull().any()    <span class="c"># True   - is there AT LEAST one?</span>
+df["age"].isnull().all()    <span class="c"># False  - are they ALL null?</span>
 
-<span class="c"># ---- TWO SMALL REPAIRS ----</span>
-df["experience"].astype(float)          <span class="c"># int64 -&gt; float64  (day 1, on a column)</span>
-df.rename(columns={"salary": "monthly_pay"})   <span class="c"># dict: old name -&gt; new name</span>
+<span class="c"># ---- 3. MISSING VALUES: remove them ----</span>
+df.dropna()                 <span class="c"># looks like it worked</span>
+df.isnull().sum()           <span class="c"># age 1, salary 2  - NOTHING CHANGED. you threw it away.</span>
+df = df.dropna()            <span class="c"># NOW it is saved</span>
+df.shape                    <span class="c"># (198, 12)  - THREE rows, not two: a different person</span>
+                            <span class="c">#              is missing an AGE. any blank column drops the row.</span>
 
-<span class="c"># ---- GROUPBY: split -&gt; apply -&gt; combine ----</span>
+df = pd.read_csv("employees.csv")        <span class="c"># back to 201</span>
+df = df.dropna(subset="salary")          <span class="c"># (199, 12)  only the 2 blank salaries</span>
+df.isnull().sum()                        <span class="c"># salary 0 , age STILL 1</span>
+df = df.dropna(axis=1)                   <span class="c"># drops the COLUMN, not the row</span>
+df.isnull().sum()                        <span class="c"># the whole AGE column has gone</span>
+                            <span class="c"># axis=0 (default) = rows. axis=1 = columns. same as NumPy.</span>
+                            <span class="c"># "one person hid their age, so I deleted everybody's age."</span>
+
+<span class="c"># ---- 4. MISSING VALUES: fill them ----</span>
+df = pd.read_csv("employees.csv")
+df["salary"].fillna(10)     <span class="c"># every blank salary becomes 10 rupees</span>
+                            <span class="c"># "unknown" will NOT go in - salary is numeric</span>
+df = df["salary"].fillna(10)             <span class="c"># DISASTER: df is now ONE COLUMN.</span>
+                            <span class="c"># every later line fails - there is no "salary" in it any more.</span>
+df = pd.read_csv("employees.csv")        <span class="c"># recover by re-reading</span>
+df1 = df["salary"].fillna(10)            <span class="c"># and using a NEW name</span>
+df1.isnull().sum()          <span class="c"># 0</span>
+
+df["age"].fillna(df["age"].median())     <span class="c"># what you would ACTUALLY do</span>
+df["department"].fillna("unknown")       <span class="c"># and for text</span>
+
+<span class="c"># ---- 5. DUPLICATES ----</span>
+df["dept_id"]               <span class="c"># 1,2,3,4 repeating - obviously duplicated</span>
+df.duplicated()             <span class="c"># True/False per ROW</span>
+df.duplicated().sum()       <span class="c"># 1   - exactly one full copy in this file</span>
+df.drop_duplicates()        <span class="c"># 200 rows</span>
+df.drop_duplicates("department")          <span class="c"># 4 rows: HR, Marketing, Tech, Sales</span>
+df.drop_duplicates(subset="department")   <span class="c"># identical, written with the named parameter</span>
+
+<span class="c"># ---- 6. TYPES, NAMES, NEW COLUMNS ----</span>
+pd.dtypes                   <span class="c"># AttributeError - it belongs to the TABLE, not pandas</span>
+df.dtypes                   <span class="c"># int64 / object / float64 per column</span>
+df["age"].astype(int)       <span class="c"># IntCastingNaNError: cannot convert non-finite values</span>
+                            <span class="c"># there is no integer for "missing". FILL FIRST, CONVERT SECOND.</span>
+df["experience"].astype(int)             <span class="c"># works - no gaps in that column</span>
+df.rename(columns={"rating": "feedback"})     <span class="c"># dict: old name -&gt; new name</span>
+df["bonus"] = df["salary"] * 10          <span class="c"># name a column that does not exist, assign, done</span>
+                            <span class="c"># CAREFUL: this is 10 TIMES the salary. a 10% bonus is * 0.10</span>
+
+<span class="c"># ---- 7. SUMMARISING ONE COLUMN ----</span>
+df.median()                 <span class="c"># TypeError: Cannot convert ['Rahul Sharma' ...]</span>
+                            <span class="c"># there is no middle value of a list of names</span>
+df["salary"].median()       <span class="c"># 68647.0</span>
+df["department"].mode()     <span class="c"># 0  Sales     &lt;- a SERIES, not a value</span>
+df["department"].mode()[0]  <span class="c"># Sales       a column can have two equal winners</span>
+df["city"].mode()[0]        <span class="c"># Chennai     most of our people are in Chennai</span>
+df["salary"].std()          <span class="c"># 364031.90   the SPREAD</span>
+df["salary"].var()          <span class="c"># 132519227501.47</span>
+                            <span class="c"># var = std squared. std = square root of var. same fact.</span>
+
+<span class="c"># ---- 8. GROUPBY: group -&gt; pick a column -&gt; apply a function ----</span>
+df["salary"].mean()         <span class="c"># 95648.41 - the WHOLE COMPANY. useless for hiring an HR.</span>
+
+df.groupby("department")                  <span class="c"># a GroupBy object. prints nothing.</span>
+df.groupby("department")["salary"]        <span class="c"># still nothing - many salaries per group</span>
 df.groupby("department")["salary"].mean()
-<span class="c">#   HR  56705.14 | Marketing 73954.43 | Sales 66640.48 | Tech 189753.54</span>
-<span class="c">#   Tech is DOUBLE everyone. it is the 52-lakh row. nothing warned you.</span>
+<span class="c">#   HR  56705.14 | Marketing 73954.43 | Sales 66534.63 | Tech 189753.54</span>
+<span class="c">#   NOW hiring for HR you quote 56,705 - not 95,648.</span>
+<span class="c">#   many rows in, ONE value out = SQL's aggregate / multi-row function.</span>
 
-df.groupby("department")["salary"].agg(["count", "mean", "max"])
-<span class="c">#              count       mean        max</span>
-<span class="c">#   HR            44   56705.14    80039.0</span>
-<span class="c">#   Marketing     42   73954.43   106170.0</span>
-<span class="c">#   Sales         64   66640.48    93417.0</span>
-<span class="c">#   Tech          48  189753.54  5200000.0</span>
-<span class="c"># count says Tech 48 and HR 44, but value_counts said 49 and 45.</span>
-<span class="c"># the 2 blank salaries are one Tech and one HR. GROUPBY SKIPS BLANKS SILENTLY.</span>
-<span class="c"># this same 49-vs-48 gap comes back in Excel.</span>
+df.groupby("department")["height_cm"].mean()    <span class="c"># all ~168 - a boring, true answer</span>
+df.groupby("department")["experience"].mean()   <span class="c"># HR 7.2 Mkt 9.1 Sales 8.2 Tech 6.6</span>
+df.groupby("department").size()                 <span class="c"># HR 45 Mkt 42 Sales 65 Tech 49</span>
+                            <span class="c"># size works for the same reason mean does: one number per group.</span>
 
-<span class="c"># ---- JOINING: same rows, or same columns? ----</span>
-a = pd.DataFrame({"emp_id":[1,2,3], "name":["Rahul","Priya","Amit"]})
-b = pd.DataFrame({"emp_id":[2,3,4], "bonus":[5000,7000,6000]})
+df.groupby("department")["salary"].aggregate(["count","max","min","mean","sum"])
+<span class="c">#              count        max      min       mean        sum</span>
+<span class="c">#   HR            44    80039.0  33085.0   56705.14  2495026.0</span>
+<span class="c">#   Marketing     42   106170.0  49259.0   73954.43  3106086.0</span>
+<span class="c">#   Sales         65    93417.0  39493.0   66534.63  4324751.0</span>
+<span class="c">#   Tech          48  5200000.0  56727.0  189753.54  9108170.0</span>
+<span class="c"># Tech's MAX is 52 lakh against everyone else's one lakh.</span>
+<span class="c"># count says HR 44 / Tech 48, size said 45 / 49. SIZE COUNTS ROWS,</span>
+<span class="c"># COUNT COUNTS VALUES - the gap is the two blank salaries.</span>
 
-pd.concat([a, b])        <span class="c"># 6 rows, full of NaN - stacks them, columns do not match</span>
-                         <span class="c"># it is vstack with column names. use it for SAME-shape tables.</span>
-pd.merge(a, b, on="emp_id")
-<span class="c">#   emp_id  name   bonus</span>
-<span class="c">#        2  Priya   5000</span>
-<span class="c">#        3  Amit    7000</span>
-<span class="c"># 3 rows + 3 rows = 2 ROWS. Rahul has no bonus, employee 4 has no name.</span>
-<span class="c"># BOTH VANISHED, silently. this default is SQL's INNER JOIN.</span>
-<span class="c"># ALWAYS print len() before and after a merge.</span>
+<span class="c"># ---- 9. JOINING: concat glues, merge matches ----</span>
+a = df.head(3)[["name", "department"]]
+b = df.tail(3)[["name", "department"]]
+pd.concat([a, b])           <span class="c"># 6 rows - three, then three underneath. ROW-wise.</span>
 
-<span class="c"># ---- NAMED, NOT TAUGHT ----</span>
-<span class="c">#   left / right / inner / full outer  -&gt; the join types need their own session</span>
-<span class="c">#   pivot_table, apply, .str, between, isin, to_csv  -&gt; gaps table on PD3</span></code></pre></div>
+a = df.head(3)[["name"]]
+b = df.tail(3)[["salary"]]
+pd.concat([a, b], axis=1)   <span class="c"># COLUMN-wise, and full of NaN:</span>
+<span class="c">#   rows 0,1,2   have a name and no salary</span>
+<span class="c">#   rows 198-200 have a salary and no name - they were never the same people</span>
+<span class="c"># this behaves like a FULL OUTER JOIN. concat matches NOTHING.</span>
+
+employee   = pd.DataFrame({"name": ["Rahul","Priya","Alex"], "dept_id": [1,2,5]})
+department = pd.DataFrame({"dept_id": [1,2], "department": ["Tech","Sales"]})
+<span class="c"># dept_id is the PRIMARY key in department, a FOREIGN key in employee.</span>
+<span class="c"># that shared column is the only reason a join is possible. Alex is in dept 5,</span>
+<span class="c"># which does not exist - on purpose.</span>
+
+pd.merge(employee, department)
+pd.merge(employee, department, on="dept_id")       <span class="c"># always say which column</span>
+<span class="c">#   Rahul 1 Tech | Priya 2 Sales        3 rows in, TWO out. ALEX IS GONE.</span>
+<span class="c">#   that default is SQL's INNER JOIN - only what matches on both sides.</span>
+
+pd.merge(employee, department, on="dept_id", how="left")
+<span class="c">#   Rahul 1 Tech | Priya 2 Sales | Alex 5 NaN    &lt;- kept, with a blank</span>
+pd.merge(employee, department, on="dept_id", how="right")
+<span class="c">#   Alex gone again - nothing extra on the right side</span>
+<span class="c"># ALWAYS print len() before and after a merge. nothing warns you.</span>
+<span class="c"># full outer / natural / cross / self: named only. they belong to SQL.</span></code></pre></div>
  </div>
 </section>
 </div>
@@ -35390,7 +35749,7 @@ pd.merge(a, b, on="emp_id")
 
   <div class="glance">
    <div class="gcell"><b>5</b><span>recordings checked</span></div>
-   <div class="gcell"><b>12</b><span>NumPy gaps</span></div>
+   <div class="gcell"><b>11</b><span>NumPy gaps</span></div>
    <div class="gcell"><b>16</b><span>pandas gaps</span></div>
    <div class="gcell"><b>6</b><span>worth teaching</span></div>
   </div>
@@ -35423,11 +35782,10 @@ pd.merge(a, b, on="emp_id")
    <code>.str.split()</code>. Real name and city columns arrive with stray spaces and mixed case, and
    nothing taught so far can touch them. <b>15 minutes.</b></div></div>
 
-   <div class="erow"><div class="cd">3. &nbsp;join types</div><div class="tx"><b>Named in day 5 and
-   explicitly deferred</b> &mdash; <i>&ldquo;when you learn that, all these things will make much more
-   sense.&rdquo;</i> They know SQL joins already, so this is mapping
-   <code>how="left"</code>/<code>"right"</code>/<code>"outer"</code> onto something they have. The
-   merge that silently lost two rows is the hook. <b>20 minutes.</b></div></div>
+   <div class="erow"><div class="cd">3. &nbsp;to_csv</div><div class="tx"><b>They cannot save
+   anything.</b> Five sessions of cleaning, grouping and joining, and still no way to write a result
+   to a file. One line, and it is the one that lets the work leave the notebook.
+   <b>5 minutes.</b></div></div>
 
    <div class="erow"><div class="cd">4. &nbsp;pivot_table</div><div class="tx"><b>Zero mentions
    anywhere.</b> It is <code>groupby</code> with rows and columns at once, and it is the direct
@@ -35438,9 +35796,10 @@ pd.merge(a, b, on="emp_id")
    down a column.</b> The moment a student wants something pandas has no built-in for, this is the
    answer &mdash; and it is where <code>lambda</code> finally earns its keep. <b>15 minutes.</b></div></div>
 
-   <div class="erow"><div class="cd">6. &nbsp;to_csv</div><div class="tx"><b>They cannot save
-   anything.</b> Five sessions of cleaning and grouping, and no way to write the result to a file.
-   One line, but it is the one that makes the work leave the notebook. <b>5 minutes.</b></div></div>
+   <div class="erow"><div class="cd">6. &nbsp;.corr()</div><div class="tx"><b>Closes a loop.</b> They
+   did Pearson and Spearman by hand in statistics; pandas gives the whole matrix in one call. Also
+   <code>.nunique()</code> and <code>set_index()</code> fit here if the time is there.
+   <b>10 minutes.</b></div></div>
   </div>
  </div>
 </section>
@@ -35477,10 +35836,6 @@ pd.merge(a, b, on="emp_id")
    <div class="erow"><div class="cd">np.percentile()<br>np.quantile()</div><div class="tx">Quartiles
    and percentiles. They have these from statistics and from <code>describe()</code>, just never as a
    NumPy call. <b>Mention only.</b></div></div>
-
-   <div class="erow"><div class="cd">np.var()</div><div class="tx"><b>Variance was explained as a
-   concept</b> in day 5 &mdash; <i>&ldquo;square of standard deviation&rdquo;</i> &mdash; but the
-   function was never run. <code>.std()</code> was. One line to close.</div></div>
 
    <div class="erow"><div class="cd">np.random.seed()</div><div class="tx"><b>Named in day 1 and
    explicitly postponed</b> &mdash; <i>&ldquo;seed we will see later&rdquo;</i>. It makes random
@@ -35535,9 +35890,11 @@ pd.merge(a, b, on="emp_id")
    minutes.</b> Nothing they have cleaned can currently leave the notebook. They can read a file and
    not write one.</div></div>
 
-   <div class="erow"><div class="cd">how="left"<br>how="outer"</div><div class="tx"><b>TEACH.</b> The
-   join types, named and deferred in day 5. They know these from SQL &mdash; this is a mapping
-   exercise, not new material, and it explains the two rows their merge silently dropped.</div></div>
+   <div class="erow"><div class="cd">how="outer"<br>natural / cross / self</div><div class="tx">
+   <b>Partly done.</b> <code>how="left"</code> and <code>how="right"</code> <b>were</b> taught in day
+   5, with Alex in department 5 coming back as <code>NaN</code>. What was only <b>named</b> is full
+   outer, natural, cross and self. Those belong to SQL, so this is a short top-up, not a
+   session.</div></div>
 
    <div class="erow"><div class="cd">.between()<br>.isin()</div><div class="tx">Tidier filtering.
    <code>.between(5, 10)</code> instead of two conditions; <code>.isin(["HR","Tech"])</code> instead of
@@ -35591,13 +35948,12 @@ pd.merge(a, b, on="emp_id")
  <div class="wrap">
   <h2 class="h" style="margin-bottom:18px">Three things that were promised out loud</h2>
   <ul class="l">
-   <li><b>The join types.</b> Day 5, on merge: <i>&ldquo;there is left join, right join, full outer
-   join, inner join... when you learn that all these things will make much more sense.&rdquo;</i> The
-   class has been told this is coming.</li>
+   <li><b>Full outer, natural, cross and self joins.</b> Day 5 named all of them on the way past
+   &mdash; <i>&ldquo;when you learn that all these things will make much more sense.&rdquo;</i> Inner,
+   left and right were taught properly; those four were not.</li>
    <li><b><code>np.random.seed()</code>.</b> Day 1: <i>&ldquo;seed we will see later, we will first see
    the below.&rdquo;</i> Never returned to.</li>
-   <li><b>Variance as a function.</b> Day 5 defined it against standard deviation but only ever ran
-   <code>.std()</code>.</li>
+
   </ul>
 
   <div class="keyline" style="margin-top:20px">
