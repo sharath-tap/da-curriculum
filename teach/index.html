@@ -764,11 +764,11 @@ try{var _t=localStorage.getItem("steep-theme");
      <span class="foot">Full script &middot; 34 steps &middot; closes the reporting loop</span></button>
 
     <button class="dcard full" data-go="x7">
-     <span class="id">EXCEL 7</span><h3>Cutting Text, and Dates That Are Really Numbers</h3>
-     <p>LEFT, RIGHT, MID and FIND, then the date functions &mdash; and the weekday column that does not
-     exist until you build it, at which point <b>48 people turn out to have been hired at a
-     weekend</b>.</p>
-     <span class="foot">Script ready &middot; the best finding in the module</span></button>
+     <span class="id">EXCEL 7</span><h3>Making the Column That Was Never There</h3>
+     <p>LEN, LEFT, RIGHT, MID and FIND, SUBSTITUTE as a detection tool, then dates as numbers &mdash;
+     and the weekday column that does not exist until you build it, at which point <b>48 people turn
+     out to have been hired at a weekend</b>.</p>
+     <span class="foot">Full script &middot; 30 steps &middot; the best finding in the module</span></button>
 
     <button class="dcard full" data-go="x8">
      <span class="id">EXCEL 8</span><h3>Cleaning With Steps, Not Formulas</h3>
@@ -24415,27 +24415,24 @@ L    join_date     2018-01-03        which day of the week was that?</code></pre
 <div class="day" id="x7">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
-  <p class="tag" style="margin-bottom:16px">Excel day 7 &middot; merged class &middot; 90 minutes &middot; full script &middot; text and dates</p>
-  <h1 class="display">Cutting Text,<br>and Dates That<br>Are Really Numbers</h1>
+  <p class="tag" style="margin-bottom:16px">Excel day 7 &middot; merged class &middot; 90 minutes &middot; full script &middot; text and date functions</p>
+  <h1 class="display">Making the Column<br>That Was Never<br>There</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
-   Two column types the module has walked past six times. By the end of this session the
-   <code>join_date</code> column answers a question nobody has asked it &mdash; and the answer is a
-   data-quality problem sitting in plain sight.</p>
+   Yesterday they summarised the columns they were given. Today they <b>build new ones</b> &mdash; and
+   the last one answers a question six sessions of tools could not touch.</p>
   <div class="glance">
+   <div class="gcell"><b>43103</b><span>what a date really is</span></div>
+   <div class="gcell"><b>2</b><span>columns, split by formula</span></div>
    <div class="gcell"><b>48</b><span>people hired at a weekend</span></div>
-   <div class="gcell"><b>129</b><span>names for 200 people</span></div>
-   <div class="gcell"><b>1</b><span>the position a space is at</span></div>
-   <div class="gcell"><b>4295</b><span>days since the first hire</span></div>
+   <div class="gcell"><b>24%</b><span>of the company</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">The finding to drive at</h4>
-   <p style="color:var(--sienna)">Pull the weekday out of <code>join_date</code> and count it.
-   <b style="color:var(--sienna)">Saturday 23, Sunday 25 &mdash; forty-eight of two hundred people
-   started at a weekend.</b> Real companies do not start a quarter of their staff on a Saturday.</p>
-   <p style="color:var(--sienna)">Nobody could have found that with a sort, a filter, a
-   <code>COUNTIF</code> or a pivot table, because <b style="color:var(--sienna)">the weekday was never
-   a column</b>. One function made it one. That is the argument for this entire session, and it is
-   worth ten minutes at the end.</p>
+   <h4 style="color:var(--sienna)">Today's big idea</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">Sometimes the information you need
+   does not exist as a column. You have to derive it.</b></p>
+   <p style="color:var(--sienna)">Full name &rarr; first and last. Joining date &rarr; year, month,
+   tenure, <b style="color:var(--sienna)">and weekday</b>. That last one is the session &mdash; it is
+   the only route to a finding that has been sitting in this file since day 1.</p>
   </div>
  </div>
 </section>
@@ -24444,943 +24441,748 @@ L    join_date     2018-01-03        which day of the week was that?</code></pre
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Open on what they already did to this column, and why it was not enough.</b> On day 2 they
-   split <code>name</code> with Text to Columns. That worked, it was <b>destructive</b>, and it does not
-   update. Today is the formula version. Frame it as the upgrade, not as a new topic.</li>
-   <li><b>The <code>FIND</code> idea is the only hard thing today.</b> <code>LEFT</code> and
-   <code>RIGHT</code> need to know <em>how many</em> characters, and the answer is different on every
-   row. <code>FIND</code> is what makes the count come from the data instead of from you. Give it its
-   own block and do not rush it.</li>
-   <li><b>A date is a number. Prove it in the first two minutes of the dates half.</b> Format a
-   <code>join_date</code> cell as General and let them see <code>43103</code>. Everything about date
-   arithmetic follows from that one fact and nothing makes sense without it.</li>
-   <li><b>Do not teach every date function.</b> <code>TODAY</code>, <code>YEAR</code>,
-   <code>MONTH</code>, <code>WEEKDAY</code>, <code>DAYS</code> and <code>DATEDIF</code> earn their
-   place. <code>NOW</code>, <code>EOMONTH</code>, <code>NETWORKDAYS</code> and the rest can be named
-   and skipped.</li>
-   <li><b><code>DATEDIF</code> is undocumented and you should say so.</b> It does not appear in Excel's
-   function list, it will not autocomplete, and it still works in every version. Students will think
-   they have typed it wrong. Tell them before they do.</li>
-   <li><b>Save the weekend finding for the last fifteen minutes.</b> It is the payoff. If you lead with
-   it, the functions become homework instead of the tools that found it.</li>
+   <li><b>Yesterday ended by pointing at column C and column L.</b> Open on those two. The class has
+   been told, out loud, that nothing they know can answer either one.</li>
+   <li><b>Let the hardcoded LEFT(C2,5) fail on the second row.</b> &ldquo;Karth&rdquo; is the whole
+   argument for <code>FIND</code>, and it has to be seen rather than described.</li>
+   <li><b>Protect the last twenty-five minutes.</b> Sections 29 to 34 are the payoff for the entire
+   module. If the text half overruns, cut CONCAT and the <code>&amp;</code> alternative &mdash; not the
+   weekday block.</li>
+   <li><b>Know that two numbers on this page move.</b> Anything built on <code>TODAY()</code> is
+   different every single day. The weekday counts are fixed; the day counts and the average tenure
+   are not.</li>
   </ol>
+
+  <div class="lbl">On the board &mdash; leave it up all session</div>
+<pre><code>    FIND tells you WHERE.    LEFT / RIGHT tell you WHAT TO TAKE.
+
+        =LEFT(C2, FIND(" ",C2) - 1)              first name
+        =RIGHT(C2, LEN(C2) - FIND(" ",C2))       last name
+
+
+    A DATE IS A NUMBER.      2018-01-03  =  43103
+
+
+    DAYS( end , start )          end first
+    DATEDIF( start , end , "y")  start first      <-- they disagree. check every time.
+
+
+    Original data -> build a column -> count it -> find what was invisible</code></pre>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Three things: why counting characters is the whole problem
-  with text functions, what a date actually is, and why <code>WEEKDAY</code> returning a number is a
-  feature rather than an annoyance.</p>
 
-  <div class="understand">
-   <h5>Part one &middot; text functions all count characters, and that is the difficulty</h5>
-
-   <div class="mth">
-    <div class="mrow"><b>LEFT</b><div><code>LEFT(text, n)</code> &mdash; the first <b>n</b>
-    characters.</div></div>
-    <div class="mrow"><b>RIGHT</b><div><code>RIGHT(text, n)</code> &mdash; the last <b>n</b>
-    characters.</div></div>
-    <div class="mrow"><b>MID</b><div><code>MID(text, start, n)</code> &mdash; <b>n</b> characters
-    beginning at position <b>start</b>. Counting starts at <b>1</b>, not 0.</div></div>
-    <div class="mrow"><b>LEN</b><div><code>LEN(text)</code> &mdash; how many characters there are,
-    <b>spaces included</b>.</div></div>
-    <div class="mrow warn2"><b>the problem</b><div>All of them need a <b>number</b>. On real data that
-    number is <b>different on every row</b> &mdash; Rahul Sharma breaks at 6, Karthik Kumar at
-    8.</div></div>
-   </div>
-
-   <h6>Which is what <code>FIND</code> is for</h6>
-   <p><code>FIND(" ", C2)</code> returns <b>the position of the space</b>. For
-   <code>Rahul Sharma</code> that is <b>6</b>. So the first name is the first <code>6 − 1</code>
-   characters, and that subtraction is the whole trick.</p>
-   <div class="mcalc">=LEFT(C2, FIND(" ",C2) - 1)              Rahul
-=RIGHT(C2, LEN(C2) - FIND(" ",C2))      Sharma</div>
-   <p>Read the second one out loud: <em>take from the right, as many characters as the total length
-   minus where the space is.</em> 12 − 6 = 6, and <code>Sharma</code> is six letters.</p>
-
-   <h6>Why bother, when Text to Columns did this on day 2</h6>
-   <div class="mth">
-    <div class="mrow"><b>Text to Columns</b><div><b>Destructive and one-off.</b> It overwrites, it
-    cannot be undone later, and a new row typed tomorrow is not split.</div></div>
-    <div class="mrow"><b>the formulas</b><div><b>Live.</b> Fix a typo in the name and both halves
-    correct themselves. New row, fill down, done.</div></div>
-    <div class="mrow warn2"><b>so</b><div>Text to Columns to <b>clean up an import once</b>. Formulas
-    for <b>anything that will receive new data.</b></div></div>
-   </div>
-
-   <div class="warn"><b>One honest caveat.</b> All of this assumes <b>exactly one space</b>. Our file
-   has exactly one in all 200 names &mdash; verified. A real name column has middle names, initials and
-   double-barrelled surnames, and then <code>FIND</code> finds only the first space and the formula
-   quietly gets it wrong. <b>Say so, and say that checking is your job.</b></div>
-  </div>
-
-  <div class="understand">
-   <h5>Part two &middot; a date is a number, and everything follows from that</h5>
-
-   <h6>Prove it before you explain it</h6>
-   <p>Click a <code>join_date</code> cell and set the format to <b>General</b>. Rahul Sharma's
-   <code>2018-01-03</code> becomes <b>43103</b>.</p>
-   <p>That is the number of days since <b>1 January 1900</b>, which Excel treats as day 1. A date is
-   that count. The calendar you see is a <b>number format</b> sitting on top of it &mdash; exactly like
-   the currency format on day 6.</p>
-
-   <div class="keyline">
-    <b>Once you accept that, date arithmetic stops being strange.</b><br><br>
-    Subtracting two dates gives a number of days because <b>they were always numbers</b>. Adding 30 to
-    a date gives a date thirty days later. Sorting dates works because sorting numbers works.
-   </div>
-
-   <div class="mth">
-    <h6>The six worth teaching</h6>
-    <div class="mrow"><b>TODAY()</b><div>Today's date. <b>Empty brackets and it still needs
-    them.</b> Recalculates every time the file opens.</div></div>
-    <div class="mrow"><b>YEAR MONTH DAY</b><div>Pull one part out as a number. This is how you group by
-    year in a pivot.</div></div>
-    <div class="mrow"><b>WEEKDAY</b><div>Which day of the week, as a number. <b>1 is Sunday</b> by
-    default, 7 is Saturday.</div></div>
-    <div class="mrow"><b>DAYS</b><div><code>DAYS(end, start)</code> &mdash; days between two dates.
-    <b>End first.</b> Backwards gives a negative.</div></div>
-    <div class="mrow warn2"><b>DATEDIF</b><div>Whole years, months or days between two dates.
-    <b>Undocumented</b> &mdash; it will not autocomplete and it still works.</div></div>
-   </div>
-  </div>
-
-  <div class="understand">
-   <h5>Part three &middot; <code>WEEKDAY</code> returns a number, and that is the point</h5>
-
-   <h6>It looks unhelpful and it is the most useful thing today</h6>
-   <p><code>=WEEKDAY(L2)</code> on 3 January 2018 returns <b>4</b>. Not &ldquo;Wednesday&rdquo;.
-   A number between 1 and 7, where 1 is Sunday.</p>
-   <p>Students want the word. But a <b>number can be counted, compared and tested</b>, and a word
-   cannot be tested as easily. <code>=IF(WEEKDAY(L2)&gt;=6, "weekend", "weekday")</code> is a column
-   you can <code>COUNTIF</code>.</p>
-
-   <h6>And that is how the finding appears</h6>
-   <div class="mcalc">Monday     23        Friday     35
-Tuesday    22        Saturday   23
-Wednesday  26        Sunday     25
-Thursday   46                      ----
-                     total        200</div>
-   <p><b>Forty-eight of two hundred people started at a weekend.</b> Twenty-four per cent. No real
-   company does that.</p>
-   <div class="keyline">
-    <b>This is the first finding in the whole module that needed a column that did not exist.</b><br><br>
-    Sorting could not find it. Filtering could not. <code>COUNTIF</code> could not, and neither could
-    a pivot table &mdash; because <b>the weekday was never in the file</b>. A function had to make it
-    before anything could count it.
-   </div>
-
-   <h6>What to say about the Thursday 46</h6>
-   <p>Somebody will notice Thursday is double Monday. <b>Be careful here and be honest:</b> that is one
-   count on two hundred rows, and it may be nothing. The weekend result is different in kind &mdash; it
-   is not a <em>pattern</em>, it is <b>values that should not exist at all</b>. Teach the difference
-   between an interesting number and an impossible one.</p>
-  </div>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
- <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
- a grey box is a direction for you, not words to say.</p></div>
-</section>
-
-<section style="padding-top:8px">
- <div class="wrap">
-
-  <!-- 0-10 -->
+  <!-- 1 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 10</span><h3>You already split this column once</h3></div>
-   <p class="objective">Open on day 2's work and the reason it was not enough.</p>
-
-   <div class="stage">Cleaned file, 200 rows, data 2 to 201. Scroll to the <b>S</b> and <b>T</b> columns
-   from day 2, where they split the names with Text to Columns.</div>
+   <div class="bhead"><span class="clock">1</span><h3>Say this first</h3></div>
 
    <div class="speak">
-    <p>On day two you split the name column into first and last name. Columns S and T. It worked.</p>
-    <p>Now type a new name into <b>C202</b>, just under the data. Anything you like.</p>
+    <p>Yesterday you built a Summary sheet out of the data you already had. Today is different.</p>
+   </div>
+
+   <div class="keyline"><b>Today we create new information from existing columns.</b></div>
+
+   <div class="speak">
+    <p>The file has a <b>full name</b> &mdash; we will make a first name and a last name. It has a
+    <b>joining date</b> &mdash; we will make a year, a month, a tenure and a weekday.</p>
+    <p>It does <b>not</b> have a weekday column at all. We will build one, and then analyse it.</p>
+    <p>And that is the analyst skill underneath all of it: <b>sometimes the information you need does
+    not exist as a column, and you have to derive it.</b></p>
+   </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">2</span><h3>Why not just use Text to Columns?</h3></div>
+
+   <div class="stage">Go back to the split from day 2 &mdash; <b>S</b> holds the first name,
+   <b>T</b> holds the last.</div>
+
+   <div class="speak">
+    <p>They already did this once, with <code>Data &gt; Text to Columns</code>. So ask why we are
+    doing it again.</p>
+    <p>Prove it instead of explaining it. Go to <b>C202</b>, below the data, and type a new name.</p>
+   </div>
+
+<pre><code>C202    Arun Kumar</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Did S202 and T202 fill in by themselves?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>No. Nothing happened.</p>
+    <p><b>Text to Columns is a one-time operation.</b> It ran once, on the rows that were selected at
+    the time, and then it stopped existing. It is not watching the column.</p>
+    <p>A formula is. New row, drag it down, answer appears. <b>That is the whole reason for
+    today.</b></p>
+   </div>
+
+   <div class="warn"><b>Delete the test row before you go on</b>, or every count for the rest of the
+   session is 201 instead of 200.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">3</span><h3>LEN &mdash; how long is it?</h3></div>
+
+   <div class="stage">Work in a spare column, say <b>AB</b>. <code>C2</code> holds
+   <b>Rahul Sharma</b>.</div>
+
+<pre><code>=LEN(C2)</code></pre>
+
+   <div class="screen">12</div>
+
+   <div class="speak">
+    <p>Make them count it out: five letters, <b>one space</b>, six letters. Twelve.</p>
+    <p>The space counts. That catches people, and it is the thing the next few formulas depend on.</p>
+   </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">4</span><h3>LEFT, RIGHT and MID</h3></div>
+
+<pre><code>=LEFT(C2, 5)        Rahul
+=RIGHT(C2, 6)       Sharma
+=MID(C2, 7, 6)      Sharma</code></pre>
+
+   <div class="speak">
+    <p>All three ask for <b>a number of characters</b>. <code>LEFT</code> counts from the front,
+    <code>RIGHT</code> from the back, <code>MID</code> from a position you choose.</p>
+    <p>And for <code>MID</code>, say it clearly: <b>Excel starts counting at 1, not 0.</b> Character 7
+    is the S of Sharma, because the space is character 6.</p>
+   </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">5</span><h3>Now fill it down, and watch it break</h3></div>
+
+   <div class="speak">
+    <p>Do not warn them. Drag <code>=LEFT(C2,5)</code> down four rows and read the results out.</p>
+   </div>
+
+<pre><code>Rahul Sharma      -&gt;  Rahul        correct
+Karthik Kumar     -&gt;  Karth        WRONG
+Karthik Reddy     -&gt;  Karth        WRONG
+Lakshmi Kumar     -&gt;  Laksh        WRONG</code></pre>
+
+   <div class="speak">
+    <p>And <code>RIGHT</code> is worse, because it looks almost right:</p>
+   </div>
+
+<pre><code>=RIGHT(C3, 6)     -&gt;  " Kumar"     with a space on the front</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why did it work for Rahul and fail for Karthik?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Because <b>we hardcoded the 5.</b> Rahul is five letters. Karthik is seven. Lakshmi is seven.
+    The number has to change for every row, and a typed number cannot.</p>
+    <p>So we need Excel to <b>find the right position by itself.</b></p>
+   </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">6</span><h3>FIND &mdash; teach it on its own first</h3></div>
+
+   <div class="warn"><b>Do not go straight to the combined formula.</b> Put <code>FIND</code> in a cell
+   by itself and let them see what it returns. The nested version is unreadable if they have not met
+   the inside part alone.</div>
+
+<pre><code>=FIND(" ", C2)</code></pre>
+
+   <div class="screen">6</div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;What is that 6?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p><b>The position of the space.</b> Not a count, not a length &mdash; a position.</p>
+    <p>Fill it down and the point makes itself:</p>
+   </div>
+
+<pre><code>Rahul Sharma      6
+Karthik Kumar     8
+Karthik Reddy     8
+Lakshmi Kumar     8
+Arjun Sharma      6
+Sneha Reddy       6</code></pre>
+
+   <div class="keyline">Instead of &ldquo;take five characters&rdquo;, we can now say <b>&ldquo;find
+   where the space is, and work from there.&rdquo;</b></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">7</span><h3>The first name, for any name</h3></div>
+
+   <div class="speak">
+    <p>We want everything <b>before</b> the space. The space is at 6, so we want 5 characters &mdash;
+    one less than where the space is.</p>
+   </div>
+
+<pre><code>=LEFT(C2, FIND(" ",C2) - 1)</code></pre>
+
+   <div class="speak">
+    <p>Fill it down. It handles every one of them, whatever the length:</p>
+   </div>
+
+<pre><code>Rahul Sharma   -&gt;  Rahul
+Karthik Kumar  -&gt;  Karthik
+Lakshmi Kumar  -&gt;  Lakshmi
+Sneha Reddy    -&gt;  Sneha</code></pre>
+
+   <div class="typeit">Read it from the inside out</div>
+<pre><code>        FIND(" ", C2)        where is the space?        -&gt; 6
+              - 1            one before it              -&gt; 5
+   LEFT( C2 ,     )          take that many from the left</code></pre>
+
+   <div class="keyline"><b>FIND tells you where. LEFT takes what comes before it.</b></div>
+  </div>
+
+  <!-- 8 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">8</span><h3>The last name</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Now how do we get the last name?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Let them work the arithmetic on the board before any formula. The whole name is 12 characters.
+    The space is at 6. So there are <b>12 minus 6 = 6</b> characters after it.</p>
+   </div>
+
+<pre><code>=RIGHT(C2, LEN(C2) - FIND(" ",C2))</code></pre>
+
+   <div class="screen">Sharma</div>
+
+   <div class="speak">
+    <p>Check it against a longer one. Karthik Kumar: length 13, space at 8, so 13 &minus; 8 = 5
+    &mdash; and <b>Kumar</b> is exactly five characters.</p>
+   </div>
+
+   <div class="typeit">Inside out again</div>
+<pre><code>   LEN(C2)                  how long is the whole thing?   -&gt; 12
+   FIND(" ", C2)            where is the space?            -&gt;  6
+   LEN - FIND               how many come after it?        -&gt;  6
+   RIGHT( C2 ,   )          take that many from the right</code></pre>
+  </div>
+
+  <!-- 9 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">9</span><h3>Put the two side by side</h3></div>
+
+<pre><code>first name   =LEFT(C2,  FIND(" ",C2) - 1          )
+last name    =RIGHT(C2, LEN(C2) - FIND(" ",C2)    )</code></pre>
+
+   <div class="speak">
+    <p>Same two ingredients, arranged differently. Once they can read these two, they can read
+    almost any nested formula &mdash; and that transfers much further than the formulas
+    themselves.</p>
+   </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10</span><h3>The limitation &mdash; say it out loud</h3></div>
+
+   <div class="speak">
+    <p>These work because <b>every name in this file is exactly two words with one space.</b> That is
+    a fact about our data, not about the formula.</p>
+    <p>Put three awkward cases on the board:</p>
+   </div>
+
+<pre><code>Rahul Kumar Sharma        three words
+A. Kumar                  an initial
+Mary Jane Watson          a middle name</code></pre>
+
+   <div class="speak">
+    <p><code>FIND(" ",C2)</code> only ever finds the <b>first</b> space. On all three it returns a
+    position that produces a wrong answer.</p>
+    <p>And the part that matters:</p>
+   </div>
+
+   <div class="warn"><b>Excel will not show an error.</b> You get a clean, confident, wrong value in
+   every row. Which is the module's running theme, arriving again.</div>
+
+   <div class="keyline"><b>Understand the structure of your data before you apply a formula to
+   it.</b></div>
+  </div>
+
+  <!-- 11 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">11</span><h3>CONCAT &mdash; putting it back together</h3></div>
+
+   <div class="speak">
+    <p>We have just pulled a name apart. Now join things up.</p>
+   </div>
+
+<pre><code>=CONCAT(AE2, ", ", AD2)        Sharma, Rahul
+
+=CONCAT(C2, " (", D2, ")")     Rahul Sharma (HR)</code></pre>
+
+   <div class="speak">
+    <p>The rule to say once: <b>anything in quotes is text you are adding yourself. Anything without
+    quotes is a cell.</b> The <code>", "</code> is the comma and the space you want to see.</p>
+   </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12</span><h3>The &amp; shortcut</h3></div>
+
+<pre><code>=AE2 &amp; ", " &amp; AD2             exactly the same result</code></pre>
+
+   <div class="speak">
+    <p>Both work. Show it, do not dwell on it &mdash; they will meet <code>&amp;</code> in other
+    people's files and need to recognise it.</p>
+    <p><b>For now: CONCAT joins text.</b> Move on.</p>
+   </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">13</span><h3>The invisible space</h3></div>
+
+   <div class="speak">
+    <p>Back to day 2 for a moment. These two look identical on screen:</p>
+   </div>
+
+<pre><code>"Rahul Sharma"
+"Rahul Sharma "        &lt;-- one trailing space</code></pre>
+
+   <div class="speak">
+    <p>Excel treats them as completely different values. That is what breaks a
+    <code>VLOOKUP</code>, a <code>COUNTIF</code>, a match, a join.</p>
    </div>
 
    <div class="qbox">
-    <div class="q">&ldquo;Did it split?&rdquo;</div>
-    <div class="a"><b>No.</b> S202 and T202 are empty. <b>Text to Columns was a one-off</b> &mdash; it
-    ran once and finished. It does not watch the column.</div>
-   </div>
-
-   <div class="speak">
-    <p>Nothing happened. Text to Columns ran once, on the rows that existed at the time, and
-    stopped.</p>
-    <p>It also <b>overwrote</b> whatever was in the next column, which is why I made you check before
-    running it.</p>
-    <p>Today we do the same split with <b>formulas</b>, which means it stays alive. New row, fill down,
-    done. And on the way we meet the functions interviews actually ask about.</p>
-   </div>
-
-   <div class="stage">Delete the test row from C202 before moving on.</div>
-  </div>
-
-  <!-- 10-22 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">10 &ndash; 22</span><h3>LEFT, RIGHT, MID, LEN</h3></div>
-   <p class="objective">The four that cut text. Twelve minutes, on fixed numbers, before the hard
-   part.</p>
-
-   <div class="speak">
-    <p>Four functions, and all four need the same thing from you: <b>a number</b>. How many characters.</p>
-    <p>Go to an empty column &mdash; use <b>AB</b> &mdash; and try them on row 2, which is Rahul
-    Sharma.</p>
-   </div>
-
-   <div class="typeit">AB2 down to AB5, one per row</div>
-<pre><code>=LEN(C2)          <span class="c">how many characters altogether</span>
-=LEFT(C2, <span class="o">5</span>)      <span class="c">first 5</span>
-=RIGHT(C2, <span class="o">6</span>)     <span class="c">last 6</span>
-=MID(C2, <span class="o">7</span>, <span class="o">6</span>)    <span class="c">6 characters starting at position 7</span></code></pre>
-   <div class="screen">12
-Rahul
-Sharma
-Sharma</div>
-
-   <div class="speak">
-    <p><b>Twelve characters</b> in &ldquo;Rahul Sharma&rdquo;. Count them &mdash; five, then a space,
-    then six. The space counts.</p>
-    <p><code>LEFT</code> with 5 gives Rahul. <code>RIGHT</code> with 6 gives Sharma.</p>
-    <p>And <code>MID</code> gives Sharma too, a different way &mdash; start at position 7, take 6. The
-    R of Rahul is position 1, not position 0.</p>
-   </div>
-
-   <div class="qbox">
-    <div class="q">&ldquo;Now fill all four down three rows and look at what happens.&rdquo;</div>
-    <div class="a">Row 3 is <b>Karthik Kumar</b>, 13 characters. <code>LEFT(...,5)</code> gives
-    <code>Karth</code>. <code>RIGHT(...,6)</code> gives <code>_Kumar</code> with a leading space.
-    <b>Every row needs a different number and we typed one.</b></div>
-   </div>
-
-   <div class="screen">AB3   Karth        should be Karthik
-AB4   Karth        should be Karthik
-AB5   Laksh        should be Lakshmi</div>
-
-   <div class="speak">
-    <p>Karth. Karth. Laksh.</p>
-    <p>The formula is doing exactly what I said &mdash; take five. The problem is that <b>five was my
-    number, not the data's number.</b></p>
-    <p>Rahul breaks at five. Karthik breaks at seven. Lakshmi at seven. <b>We need the number to come
-    out of the row.</b></p>
+    <div class="q">&ldquo;So how do you <b>see</b> something invisible?&rdquo;</div>
    </div>
   </div>
 
-  <!-- 22-38 -->
+  <!-- 14 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">22 &ndash; 38</span><h3>FIND &mdash; letting the data count for you</h3></div>
-   <p class="objective">The one genuinely hard idea of the day. Sixteen minutes, built up slowly.</p>
+   <div class="bhead"><span class="clock">14</span><h3>SUBSTITUTE &mdash; make it visible</h3></div>
 
-   <div class="stage">Do <code>FIND</code> completely on its own first. <b>They must see what it returns
-   before they see it inside something else.</b></div>
+<pre><code>=SUBSTITUTE(C2, " ", "&#183;")</code></pre>
 
-   <div class="speak">
-    <p>One more function, on its own, in an empty cell.</p>
-   </div>
-
-   <div class="typeit">AC2, then fill down a few rows</div>
-<pre><code>=FIND(<span class="c">" "</span>, C2)</code></pre>
-   <div class="screen">AC2    6      Rahul Sharma
-AC3    8      Karthik Kumar
-AC4    8      Karthik Reddy
-AC5    8      Lakshmi Kumar
-AC6    6      Arjun Sharma
-AC7    6      Sneha Reddy</div>
-
-   <div class="qbox">
-    <div class="q">&ldquo;What is that number?&rdquo;</div>
-    <div class="a"><b>Where the space is.</b> In Rahul Sharma the space is the 6th character. In
-    Karthik Kumar it is the 8th. <b>The number we needed, and it came from the row.</b></div>
-   </div>
+<pre><code>Rahul Sharma      -&gt;   Rahul&#183;Sharma
+Rahul Sharma      -&gt;   Rahul&#183;Sharma&#183;      a trailing space
+Rahul  Sharma     -&gt;   Rahul&#183;&#183;Sharma       two spaces</code></pre>
 
    <div class="speak">
-    <p>That is the position of the space. And notice it is <b>different on every row</b>, which is
-    exactly what we were missing.</p>
-    <p>So now we put one inside the other.</p>
-    <p>The first name is everything before the space. The space is at 6, so we want the first
-    <b>5</b>. Six minus one.</p>
-   </div>
-
-   <div class="typeit">AD1 a label, then AD2</div>
-<pre><code>=LEFT(C2, FIND(<span class="c">" "</span>, C2) - <span class="o">1</span>)</code></pre>
-   <div class="screen">Rahul
-Karthik
-Karthik
-Lakshmi
-Arjun
-Sneha</div>
-
-   <div class="speak">
-    <p>Every one correct, and we never typed a length.</p>
-    <p>Read it inside out, the way you read <code>INDEX</code> and <code>MATCH</code> on day four.
-    <b><code>FIND</code> works out where the space is. <code>LEFT</code> takes one character fewer than
-    that.</b></p>
-   </div>
-
-   <div class="stage">Now the last name. <b>This one is harder</b> &mdash; make them try before you
-   show it.</div>
-
-   <div class="qbox">
-    <div class="q">&ldquo;Now the last name. You have <code>LEN</code> and you have
-    <code>FIND</code>. How many characters from the right?&rdquo;</div>
-    <div class="a"><b>Total length minus the position of the space.</b> Rahul Sharma is 12 long, space
-    at 6, so 12 − 6 = 6, and Sharma is six letters. <b>Give them two minutes on this</b> &mdash; it is
-    the moment the idea sticks or does not.</div>
-   </div>
-
-   <div class="typeit">AE1 a label, then AE2</div>
-<pre><code>=RIGHT(C2, LEN(C2) - FIND(<span class="c">" "</span>, C2))</code></pre>
-   <div class="screen">Sharma
-Kumar
-Reddy
-Kumar
-Sharma
-Reddy</div>
-
-   <div class="speak">
-    <p>Say it in words: <b>take from the right, as many characters as the length minus where the space
-    is.</b></p>
-    <p>Twelve minus six is six. Sharma. Thirteen minus eight is five. Kumar.</p>
-    <p>And no minus one this time &mdash; because we are counting from the far end, and the space is
-    already excluded.</p>
-   </div>
-
-   <div class="warn"><b>Say the limitation out loud, because it is the honest thing to do.</b> This
-   works because <b>every one of our 200 names has exactly one space</b> &mdash; I checked. Give it a
-   middle name, an initial or a double-barrelled surname and <code>FIND</code> finds only the
-   <em>first</em> space and the last name comes out wrong. <b>No error. Just wrong.</b> Checking that
-   assumption is your job, not Excel's.</div>
-  </div>
-
-  <!-- 38-48 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">38 &ndash; 48</span><h3>Putting text back together, and finding what you cannot see</h3></div>
-   <p class="objective">CONCAT and SUBSTITUTE. Ten minutes, and the second one is a genuine tool.</p>
-
-   <div class="speak">
-    <p>Taking text apart has an opposite. <code>CONCAT</code> joins values into one.</p>
-   </div>
-
-   <div class="typeit">Any empty cell</div>
-<pre><code>=CONCAT(AE2, <span class="c">", "</span>, AD2)                <span class="c">surname-first version</span>
-=CONCAT(C2, <span class="c">" ("</span>, D2, <span class="c">")"</span>)             <span class="c">name with department</span></code></pre>
-   <div class="screen">Sharma, Rahul
-Rahul Sharma (HR)</div>
-
-   <div class="speak">
-    <p>Anything in quotes is text you are adding yourself &mdash; a comma, a space, a bracket. Anything
-    without quotes is a cell.</p>
-    <p>You can also do this with the ampersand: <code>=AE2 &amp; ", " &amp; AD2</code>. Same result.
-    You met <code>&amp;</code> on day three, joining the greater-than sign to a cell.</p>
-   </div>
-
-   <div class="stage">Now <code>SUBSTITUTE</code>, and teach it as a <b>detection tool</b> rather than a
-   replace tool. That is what makes it worth ten minutes.</div>
-
-   <div class="speak">
-    <p>Last text function, and it is the most useful one for real work.</p>
-    <p>On day two I told you a trailing space is invisible and breaks every comparison. And I had to
-    <b>make up five rows</b> to show you, because our file is clean.</p>
-    <p>Here is how you find them for real, without inventing anything.</p>
-   </div>
-
-   <div class="typeit">Any empty cell &mdash; replace every space with a visible character</div>
-<pre><code>=SUBSTITUTE(C2, <span class="c">" "</span>, <span class="c">"&#183;"</span>)</code></pre>
-   <div class="screen">Rahul&#183;Sharma        <span class="c">one space, where it should be</span></div>
-
-   <div class="speak">
-    <p>Now every space is a dot you can see. Fill it down the whole column and scan it.</p>
-    <p>A name with a trailing space would show as <code>Rahul&#183;Sharma&#183;</code>. Two spaces in
-    the middle would show as <code>Rahul&#183;&#183;Sharma</code>. <b>An invisible problem becomes a
-    visible one.</b></p>
+    <p>Swap every space for a dot and the problem is suddenly on screen where anybody can see it.</p>
    </div>
 
    <div class="keyline">
-    <b>This is the technique, and it generalises.</b><br><br>
-    When something invisible is breaking a match, <b>replace it with something visible and look</b>.
-    It beats guessing, and it beats running <code>TRIM</code> on everything and hoping. First find out
-    whether you have a problem.
+    <b>Do not teach SUBSTITUTE as a replace function. Teach it as a detection tool.</b><br><br>
+    invisible problem &rarr; replace it temporarily &rarr; look at it &rarr; now decide how to clean it
    </div>
-
-   <div class="warn"><b>Mention the fourth argument and move on.</b>
-   <code>SUBSTITUTE(C2," ","&#183;",1)</code> replaces <b>only the first</b> space. Useful
-   occasionally, not today. Leave it out and it replaces all of them.</div>
-  </div>
-
-  <!-- 48-60 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">48 &ndash; 60</span><h3>A date is a number</h3></div>
-   <p class="objective">Prove it in two minutes. Everything else today depends on it.</p>
-
-   <div class="stage">Do not explain first. <b>Change the format and let them see it.</b></div>
 
    <div class="speak">
-    <p>Column L is <code>join_date</code>. Click <b>L2</b> &mdash; it says 2018-01-03.</p>
-    <p>Now, on the Home tab, change the number format from Date to <b>General</b>.</p>
+    <p>And the habit underneath: <b>find out whether a problem exists before you start cleaning
+    blindly.</b></p>
    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">15</span><h3>A date is a number</h3></div>
+
+   <div class="stage">Go to column <b>L</b> &mdash; <code>join_date</code>. Click <b>L2</b>.</div>
+
+   <div class="speak">
+    <p>It shows <b>2018-01-03</b>. Now change the format:</p>
+   </div>
+
+<pre><code>Home  &gt;  Number Format  &gt;  General</code></pre>
+
    <div class="screen">43103</div>
 
    <div class="qbox">
     <div class="q">&ldquo;What is 43103?&rdquo;</div>
-    <div class="a">The <b>number of days since 1 January 1900</b>, which Excel calls day 1. <b>A date
-    has always been a number.</b> The calendar you see is a number format sitting on top of it &mdash;
-    exactly like the currency format on day 6.</div>
    </div>
 
    <div class="speak">
-    <p>Forty-three thousand one hundred and three days since the first of January nineteen hundred.</p>
-    <p>That is what Excel has been storing all along. <b>The date you see is a format</b>, the same way
-    &#8377;52,00,000 was a format over 5200000.</p>
-    <p>Put it back to Short Date.</p>
+    <p>It is the number of days since Excel's calendar begins, around <b>1 January 1900</b>. That is
+    what Excel actually stores.</p>
+    <p><b>The date you have been looking at is a format painted on top of a number.</b> Set it back to
+    a date format and it looks like a date again &mdash; nothing underneath changed.</p>
    </div>
-
-   <div class="keyline">
-    <b>Everything about dates follows from this one fact.</b><br><br>
-    Subtracting two dates gives a number of days, because they were always numbers. Adding 30 to a
-    date gives a date thirty days later. Sorting dates works because sorting numbers works. <b>There is
-    no date magic. There is a number with a costume on.</b>
-   </div>
-
-   <div class="typeit">Two quick ones, in any empty cell</div>
-<pre><code>=TODAY()                 <span class="c">today's date. empty brackets, and it needs them</span>
-=L2 + <span class="o">30</span>                 <span class="c">thirty days after Rahul joined</span></code></pre>
-   <div class="screen">23-10-2026
-02-02-2018</div>
-
-   <div class="warn"><b>One thing to say about <code>TODAY()</code>.</b> It recalculates every time the
-   file opens, so a sheet using it says something different next week. <b>That is usually what you
-   want</b> for "days since joining", and it is a problem if you are saving a report that should be
-   frozen. If it must not move, copy the cell and Paste Special as Values.</div>
   </div>
 
-  <!-- 60-74 -->
+  <!-- 16 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">60 &ndash; 74</span><h3>Pulling a date apart, and measuring between two</h3></div>
-   <p class="objective">Four functions, fourteen minutes. One of them is undocumented.</p>
+   <div class="bhead"><span class="clock">16</span><h3>Why that matters</h3></div>
 
    <div class="speak">
-    <p>If a date is a number, we can take it apart. Three functions, one part each.</p>
+    <p>Once a date is a number, arithmetic on it is obvious:</p>
    </div>
 
-   <div class="typeit">AF, AG, AH &mdash; label each, then fill down</div>
-<pre><code>=YEAR(L2)          <span class="c">2018</span>
-=MONTH(L2)         <span class="c">1</span>
-=DAY(L2)           <span class="c">3</span></code></pre>
-   <div class="screen">AF2   2018     AG2    1     AH2    3
-AF3   2024     AG3    7     AH3    2
-AF4   2025     AG4    3     AH4    4
-AF5   2022     AG5   10     AH5   15</div>
+<pre><code>=L2 + 30            thirty days after they joined
+=TODAY()            today's date</code></pre>
 
    <div class="speak">
-    <p>You met <code>YEAR</code> on day six, when we charted hiring by year. Now you have the other
-    two.</p>
-    <p><b>And remember what we found then</b> &mdash; those come back as <b>numbers</b>. Month 1 is
-    January, and Excel will happily average your month column and tell you the average month is 6.4,
-    which is not a fact about anything.</p>
+    <p>That is the whole reason date functions work at all. Subtracting one date from another is just
+    subtracting two numbers.</p>
    </div>
+  </div>
 
-   <div class="stage">Now the two that measure a gap between dates. <b>Warn them about
-   <code>DATEDIF</code> before they type it.</b></div>
+  <!-- 17 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">17</span><h3>TODAY() moves</h3></div>
+
+   <div class="warn"><b>Say this before anybody builds a report on it.</b> <code>TODAY()</code> is not
+   a value, it is a question, and it is asked again every time the file opens. Open this workbook next
+   week and every number built on it has changed.</div>
 
    <div class="speak">
-    <p>Two ways to measure the distance between two dates. First, in days.</p>
+    <p>That is exactly what you want for <i>&ldquo;days since joining&rdquo;</i>. It is exactly what
+    you do not want in a report dated last quarter.</p>
+    <p>If you need it frozen: <b>Copy, then Paste Special &gt; Values.</b> The formula is replaced by
+    the answer it gave on the day you did it.</p>
+   </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18</span><h3>YEAR, MONTH, DAY</h3></div>
+
+<pre><code>=YEAR(L2)        2018
+=MONTH(L2)       1
+=DAY(L2)         3</code></pre>
+
+   <div class="speak">
+    <p>Three pieces, pulled out of one value. This is how you group by year without having a year
+    column &mdash; which is exactly what you did on day 6 to chart hiring over time.</p>
    </div>
 
-   <div class="typeit">AI1 a label, then AI2, filled down</div>
+   <div class="warn"><b>They come back as numbers.</b> January is 1, December is 12. So Excel will
+   happily give you <code>=AVERAGE(month_column)</code> and hand back something like <b>6.4</b>.
+   <br><br>
+   There is no such month. <b>Excel can calculate something that does not mean anything</b> &mdash;
+   the same lesson as the average <code>dept_id</code> on day 6, in a new costume.</div>
+  </div>
+
+  <!-- 19 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">19</span><h3>DAYS &mdash; how long have they been here?</h3></div>
+
 <pre><code>=DAYS(TODAY(), L2)</code></pre>
-   <div class="screen">AI2   3215      Rahul, joined Jan 2018
-AI3    843      Karthik Kumar, joined Jul 2024
-AI4    598      Karthik Reddy, joined Mar 2025
-AI5   1469      Lakshmi Kumar, joined Oct 2022</div>
+
+   <div class="screen">Rahul Sharma &nbsp; 3,224 &nbsp;&middot;&nbsp; Karthik Kumar &nbsp; 852</div>
+
+   <div class="warn"><b>Those two numbers will not match your screen, and that is the point.</b> They
+   are <code>TODAY()</code> values, so they grow by one every day. When this script was written they
+   read 3,215 and 843. <b>Do not put a fixed day-count on the board</b> &mdash; write the formula and
+   let the sheet answer.</div>
+
+   <div class="keyline"><b>End date first, start date second.</b> Reverse them and you get a negative
+   number &mdash; which is a useful clue rather than an error.</div>
+  </div>
+
+  <!-- 20 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">20</span><h3>DATEDIF &mdash; in years</h3></div>
 
    <div class="speak">
-    <p><b>End date first, start date second.</b> Get them the wrong way round and you get a negative
-    number, which is the clue that you have.</p>
-    <p>Three thousand two hundred and fifteen days is hard to read. Most of the time you want years.
-    And for that there is a function I have to warn you about.</p>
+    <p>Three thousand days means nothing to a human. <b>Eight years</b> does.</p>
    </div>
 
-   <div class="warn"><b>Say this before anybody types it.</b> <code>DATEDIF</code> <b>will not
-   autocomplete.</b> Type <code>=DAT</code> and Excel offers DATE, DATEVALUE, DAYS &mdash; not
-   DATEDIF. It is undocumented, left in for compatibility, and it works in every version of Excel.
-   <b>Type it in full and trust it.</b> Students always think they have made a spelling mistake.</div>
+<pre><code>=DATEDIF(L2, TODAY(), "y")</code></pre>
 
-   <div class="typeit">AJ1 a label, then AJ2, filled down</div>
-<pre><code>=DATEDIF(L2, TODAY(), <span class="c">"y"</span>)</code></pre>
-   <div class="screen">AJ2    8       Rahul, 8 full years
-AJ3    2
-AJ4    1
-AJ5    4
-AJ6    4</div>
+<pre><code>Rahul Sharma      8
+Karthik Kumar     2
+Karthik Reddy     1
+Lakshmi Kumar     4</code></pre>
 
    <div class="speak">
-    <p>Eight full years. And note the argument order is the <b>opposite</b> of <code>DAYS</code>
-    &mdash; start date first here, end date second.</p>
-    <p>Yes, that is inconsistent. No, there is no reason. <b>Check the order every time you write
-    either of them.</b></p>
-    <p>The third argument is in quotes: <code>"y"</code> for whole years, <code>"m"</code> for whole
-    months, <code>"d"</code> for days.</p>
+    <p>Complete years only &mdash; it does not round up. The third argument chooses the unit:</p>
    </div>
 
-   <div class="qbox">
-    <div class="q">&ldquo;Sort the tenure column. What is the longest anybody has been here, and the
-    shortest?&rdquo;</div>
-    <div class="a"><b>Eleven years</b> at the top. <b>Zero</b> at the bottom &mdash; somebody joined
-    less than a year ago. The average is <b>5.55 years</b>, which is a genuinely useful number to have
-    about a company and did not exist in the file ten minutes ago.</div>
+<pre><code>"y"    complete years
+"m"    complete months
+"d"    days</code></pre>
+
+   <div class="warn"><b>DATEDIF will not autocomplete.</b> Type <code>=DAT</code> and Excel does not
+   offer it &mdash; it is an old function kept for compatibility and left out of the list. Students
+   will assume they have made a typo and delete it. <b>Tell them beforehand</b> and type it in
+   full.</div>
+  </div>
+
+  <!-- 21 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">21</span><h3>The two argument orders disagree</h3></div>
+
+   <div class="typeit">Put this on the board and leave it there</div>
+<pre><code>=DAYS(    end   , start        )       END first
+=DATEDIF( start , end   , "y"  )       START first</code></pre>
+
+   <div class="speak">
+    <p>There is no logic to it. They were added to Excel at different times by different people.</p>
+    <p><b>Check the order every single time</b> &mdash; and if a tenure comes out negative, or
+    enormous, this is the first thing to look at.</p>
    </div>
   </div>
 
-  <!-- 74-86 -->
+  <!-- 22 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">74 &ndash; 86</span><h3>The column that was never there</h3></div>
-   <p class="objective">The payoff. Twelve minutes, and it is the best finding in the module.</p>
-
-   <div class="stage">This is the close. <b>Build it with them and let the count arrive before you say
-   anything about it.</b></div>
+   <div class="bhead"><span class="clock">22</span><h3>Tenure across the company</h3></div>
 
    <div class="speak">
-    <p>One more date function, and then a question nobody has asked this file.</p>
-    <p><b>Which day of the week do people join on?</b></p>
-    <p>Think about whether you could answer that with anything you know. Sort? Filter?
-    <code>COUNTIF</code>? A pivot table?</p>
+    <p>Fill <code>DATEDIF</code> down all 200 rows, then sort it.</p>
    </div>
+
+<pre><code>longest    11 years
+shortest    0 years
+
+=AVERAGE(AJ2:AJ201)      5.58</code></pre>
+
+   <div class="speak">
+    <p><b>The average employee has been here about five and a half years.</b> That is a real business
+    number &mdash; the kind that goes in a board pack.</p>
+    <p>And then the sentence that matters: <b>this column did not exist in the file.</b> We built it
+    out of a date, twenty minutes ago.</p>
+   </div>
+
+   <div class="warn"><b>The average moves too.</b> It reads <b>5.58</b> today and read 5.55 when this
+   script was written, for the same reason as section 19. The longest and shortest are stable.</div>
+  </div>
+
+  <!-- 23 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">23</span><h3>The question nothing can answer</h3></div>
 
    <div class="qbox">
-    <div class="q">&ldquo;Could any tool from the last six sessions answer that?&rdquo;</div>
-    <div class="a"><b>No. Not one.</b> Because <b>the weekday is not a column in this file.</b> You
-    cannot sort, filter, count or pivot a column that does not exist. <b>Let that land before you
-    move.</b></div>
+    <div class="q">&ldquo;Which day of the week do people join this company?&rdquo;</div>
    </div>
-
-   <div class="typeit">AK1 a label, then AK2, filled down to 201</div>
-<pre><code>=WEEKDAY(L2)</code></pre>
-   <div class="screen">AK2    4      3 Jan 2018 was a Wednesday
-AK3    3      2 Jul 2024 was a Tuesday
-AK4    3
-AK5    7      15 Oct 2022 was a Saturday
-AK6    6
-AK7    5
-
-   1 = Sunday, 2 = Monday ... 7 = Saturday</div>
 
    <div class="speak">
-    <p>A number, not a word. <b>And that is what we want</b>, because a number can be counted and a
-    word is harder to test.</p>
-    <p>Now count them. Seven <code>COUNTIF</code>s, which you have been able to write since day
-    three.</p>
+    <p>Go through the toolkit with them, out loud, and let every one of them fail:</p>
    </div>
 
-   <div class="typeit">Labels in AM, formulas in AN</div>
-<pre><code>AM1  Sunday       AN1  =COUNTIF(AK2:AK201, <span class="o">1</span>)
-AM2  Monday       AN2  =COUNTIF(AK2:AK201, <span class="o">2</span>)
-AM3  Tuesday      AN3  =COUNTIF(AK2:AK201, <span class="o">3</span>)
-AM4  Wednesday    AN4  =COUNTIF(AK2:AK201, <span class="o">4</span>)
-AM5  Thursday     AN5  =COUNTIF(AK2:AK201, <span class="o">5</span>)
-AM6  Friday       AN6  =COUNTIF(AK2:AK201, <span class="o">6</span>)
-AM7  Saturday     AN7  =COUNTIF(AK2:AK201, <span class="o">7</span>)
-AM8  check        AN8  =SUM(AN1:AN7)</code></pre>
-   <div class="screen">Sunday       25
+<pre><code>Sort?          no
+Filter?        no
+COUNTIF?       no
+SUMIF?         no
+VLOOKUP?       no
+Pivot table?   no</code></pre>
+
+   <div class="speak">
+    <p>Six sessions of tools, and not one of them can touch it. <b>Not because the tools are weak
+    &mdash; because the column does not exist.</b></p>
+    <p>This is the idea the whole session has been building to. Let it sit for a moment.</p>
+   </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">24</span><h3>Build the weekday column</h3></div>
+
+<pre><code>=WEEKDAY(L2)</code></pre>
+
+<pre><code>1 = Sunday      5 = Thursday
+2 = Monday      6 = Friday
+3 = Tuesday     7 = Saturday
+4 = Wednesday</code></pre>
+
+   <div class="speak">
+    <p>Check a few by hand so they trust it:</p>
+   </div>
+
+<pre><code>3 Jan 2018    -&gt;  4    Wednesday
+2 Jul 2024    -&gt;  3    Tuesday
+15 Oct 2022   -&gt;  7    Saturday</code></pre>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why does it give a number instead of the word?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Because a number can be <b>counted, sorted, filtered and compared</b>. A word is harder to work
+    with. That is a design decision, and it is about to pay off immediately.</p>
+   </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">25</span><h3>Count each day</h3></div>
+
+<pre><code>Sunday      =COUNTIF(AK2:AK201, 1)
+Monday      =COUNTIF(AK2:AK201, 2)
+Tuesday     =COUNTIF(AK2:AK201, 3)
+Wednesday   =COUNTIF(AK2:AK201, 4)
+Thursday    =COUNTIF(AK2:AK201, 5)
+Friday      =COUNTIF(AK2:AK201, 6)
+Saturday    =COUNTIF(AK2:AK201, 7)
+
+check       =SUM(AN1:AN7)            200</code></pre>
+
+   <div class="speak">
+    <p>Seven <code>COUNTIF</code>s on a column that did not exist half an hour ago. And the check
+    comes back to <b>200</b>, which is how you know you have not miscounted.</p>
+   </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">26</span><h3>Stop. Let them look.</h3></div>
+
+<pre><code>Sunday       25
 Monday       23
 Tuesday      22
 Wednesday    26
 Thursday     46
 Friday       35
 Saturday     23
-check       200</div>
-
-   <div class="stage">Stop. <b>Say nothing.</b> Let them read it.</div>
+             ---
+             200</code></pre>
 
    <div class="qbox">
-    <div class="q">&ldquo;Anything in that list bother you?&rdquo;</div>
-    <div class="a">Somebody will say <b>Thursday, 46</b> &mdash; double Monday. Take it, then redirect:
-    &ldquo;add Saturday and Sunday together.&rdquo; <b>Twenty-three plus twenty-five is forty-eight.
-    Forty-eight of two hundred people started at a weekend.</b></div>
+    <div class="q">&ldquo;Does anything there look strange?&rdquo;</div>
    </div>
+
+   <div class="warn"><b>Do not answer it.</b> Give them a genuine thirty seconds. They will say
+   Thursday, because 46 is obviously the odd one out.</div>
 
    <div class="speak">
-    <p>Saturday twenty-three. Sunday twenty-five. <b>Forty-eight people.</b></p>
-    <p>That is <b>twenty-four per cent of this company</b> starting work on a Saturday or a Sunday.</p>
-    <p>No company does that. Whatever generated these dates was not asked to avoid weekends, and
-    nobody noticed until somebody made a column that did not exist.</p>
+    <p>Take Thursday, agree it is interesting &mdash; and then point somewhere else entirely.</p>
+    <p><b>Add Saturday and Sunday together.</b></p>
    </div>
 
-   <div class="keyline">
-    <b>This is the first finding in the whole module that no earlier tool could have reached.</b><br><br>
-    Sorting could not find it. Filtering could not. <code>COUNTIF</code>, <code>SUMIF</code>, a lookup
-    and a pivot table all could not &mdash; <b>because the weekday was never in the file.</b> A
-    function had to create the column before anything could count it.
-   </div>
+<pre><code>23 + 25  =  48          48 / 200  =  24%</code></pre>
+  </div>
 
-   <div class="stage">Last two minutes of the block, and this distinction matters.</div>
+  <!-- 27 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">27</span><h3>The finding</h3></div>
+
+   <div class="keyline"><b>Twenty-four percent of this company has a joining date on a Saturday or a
+   Sunday.</b></div>
 
    <div class="speak">
-    <p>One more thing, about the Thursday forty-six.</p>
-    <p>Somebody spotted it and they were right to. But be careful: that is <b>one count on two hundred
-    rows</b>, and uneven numbers happen. It might mean something. It might be nothing.</p>
-    <p>The weekend result is <b>a different kind of thing</b>. That is not a pattern that might be
-    noise &mdash; those are <b>values that should not exist at all.</b></p>
+    <p>Say it slowly. Nearly a quarter.</p>
+    <p>No company deliberately starts a quarter of its staff at the weekend. So this is not an
+    interesting pattern &mdash; it is a signal that <b>something is wrong with how these dates were
+    recorded or generated</b>, somewhere upstream of us.</p>
+    <p>And here is the part to land hardest:</p>
    </div>
 
-   <div class="keyline">
-    <b>An interesting number and an impossible number are not the same thing.</b><br><br>
-    Thursday 46 is <b>interesting</b> &mdash; worth a look, might be nothing. Forty-eight weekend
-    start dates is <b>impossible</b> &mdash; something is wrong upstream and you should say so.
-    Knowing which one you are holding is most of the job.
+   <div class="typeit">How we got here</div>
+<pre><code>        join_date
+            |
+        WEEKDAY()                a column that did not exist
+            |
+        COUNTIF                  a tool from day 3
+            |
+        48 weekend joins         a finding nobody could see</code></pre>
+
+   <div class="speak">
+    <p>This file has been open in front of them since day 1. <b>Six sessions, and it was
+    invisible</b> &mdash; not because they lacked a tool, but because they lacked a column.</p>
    </div>
   </div>
 
-  <!-- 86-90 -->
+  <!-- 28 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">86 &ndash; 90</span><h3>Close</h3></div>
+   <div class="bhead"><span class="clock">28</span><h3>Interesting is not the same as impossible</h3></div>
 
-   <div class="typeit">The five lines. If everything else goes, keep these.</div>
-<pre><code>1.  LEFT / RIGHT / MID all need a NUMBER of characters.
-    on real data that number changes every row - so FIND it:
-      =LEFT(C2, FIND(" ",C2) - 1)              first name
-      =RIGHT(C2, LEN(C2) - FIND(" ",C2))       last name
+   <div class="mth">
+    <h6>Two odd numbers, two different reactions</h6>
+    <div class="mrow"><b>Thursday 46</b><div><b>Interesting.</b> Could be a hiring cycle, a batch
+    induction, or just noise. Worth asking about. Not alarming</div></div>
+    <div class="mrow"><b>Weekend 48</b><div><b>Suspicious.</b> It describes something that should
+    barely happen at all. That points at the data, not the business</div></div>
+   </div>
+
+   <div class="keyline">
+    <b>Do not treat every unusual number as an error.</b><br>
+    <b>Do not ignore a number that should not logically exist.</b><br><br>
+    Telling those two apart is most of the job.
+   </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">29</span><h3>The five lines to keep</h3></div>
+
+   <div class="typeit">If everything else goes, keep these</div>
+<pre><code>1   LEFT / RIGHT / MID all need a NUMBER of characters.
+    on real data that number changes every row - so FIND it.
+
+      =LEFT(C2,  FIND(" ",C2) - 1          )      first name
+      =RIGHT(C2, LEN(C2) - FIND(" ",C2)    )      last name
+
     read it INSIDE OUT, like INDEX and MATCH.
 
-2.  SUBSTITUTE is a DETECTION tool, not just a replace tool.
-      =SUBSTITUTE(C2," ","&#183;")   makes invisible spaces visible
+
+2   SUBSTITUTE is a DETECTION tool, not just a replace tool.
+      =SUBSTITUTE(C2," ","&#183;")        makes invisible spaces visible
     find out IF you have a problem before you clean it.
 
-3.  A DATE IS A NUMBER. 2018-01-03 is 43103.
-    the calendar is a number FORMAT on top of it.
-    so subtracting dates works, and adding 30 works.
 
-4.  DAYS(end, start)      <- end first
-    DATEDIF(start, end, "y")  <- start first.  yes, inconsistent.
-    DATEDIF does NOT autocomplete. type it in full anyway.
+3   A DATE IS A NUMBER.     2018-01-03 is 43103.
+    the calendar is a FORMAT on top of it.
+    so =L2+30 works, and so does subtracting two dates.
 
-5.  WEEKDAY returns 1-7, with 1 = SUNDAY.
-    a number can be counted. that is how we found the 48.</code></pre>
+
+4   DAYS(end, start)   but   DATEDIF(start, end, "y")
+    they disagree. check the order every time.
+    DATEDIF will not autocomplete - type it in full.
+
+
+5   WEEKDAY() returns 1=Sunday .. 7=Saturday.
+    a NUMBER, so COUNTIF can count it.
+    that is how 48 weekend joins became visible.</code></pre>
+  </div>
+
+  <!-- 30 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">30</span><h3>Close &mdash; and what changes on Monday</h3></div>
+
+   <div class="typeit">The shape of the whole session</div>
+<pre><code>   Original data
+        |
+   build a NEW column
+        |
+   calculate something new
+        |
+   count / compare / analyse
+        |
+   find what was not visible before
+
+
+   full name   -&gt;  first + last
+   join_date   -&gt;  year + month + day
+   join_date   -&gt;  tenure
+   join_date   -&gt;  WEEKDAY  -&gt;  COUNTIF  -&gt;  48 weekend joins</code></pre>
+
+   <div class="keyline"><b>A good analyst does not only analyse the columns they are given. They know
+   how to build the column that answers the question.</b></div>
 
    <div class="speak">
     <p>Everything today was about making a column that was not there. The first name was not a column.
-    The tenure was not a column. The weekday was not a column.</p>
-    <p>Six sessions of asking this file questions, and the most interesting answer came from a column
-    we had to build first.</p>
-   </div>
-
-   <div class="speak">
-    <p>Next session changes tools. Still Excel, but a different window inside it.</p>
-    <p>Everything you have done for seven sessions, you have done <b>on the sheet, with formulas</b>.
-    Next time we open the <b>Power Query Editor</b>, where you clean data with <b>steps instead of
-    formulas</b> &mdash; and every step is written down, named, and can be undone next month by
-    somebody who was not you.</p>
-    <p>It is also, exactly, the editor inside Power BI. So the next two sessions are the first two
-    sessions of that module, taught early.</p>
+    The tenure was not a column. <b>The weekday was not a column</b> &mdash; and it produced the most
+    interesting thing this file has said in seven sessions.</p>
+    <p>Then set up Monday, because the tool changes.</p>
+    <p>Everything they have done for <b>seven sessions</b> has been on the sheet, with <b>formulas</b>.
+    Next time you open the <b>Power Query Editor</b>, where you clean data with <b>steps</b> instead
+    &mdash; and every step is written down, named, and can be undone next month by somebody who was
+    not you.</p>
+    <p>It is also, exactly, the editor inside <b>Power BI</b>. So the next two sessions are the first
+    two sessions of that module, taught early.</p>
    </div>
   </div>
- </div>
-</section>
 
-<section class="fog">
- <div class="wrap">
-
-  <div class="runsheet">
- <div class="rs-head">
-  <h4>The session, as a run sheet</h4>
-  <p>Everything in order. Eight steps, every formula, every number. If you lose your place, this page
-  alone is enough.</p>
- </div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 10</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">You already split this column once</p>
-   <p class="rs-say"><b>Open on day 2's work.</b> Scroll to columns S and T, then have them type a name
-   into <b>C202</b>.</p>
-   <div class="rs-board"><b>Ask:</b> &ldquo;did it split?&rdquo; &mdash; <b>no.</b> Text to Columns was
-   a <b>one-off</b>, and it <b>overwrote</b> the next column when it ran.<br><br>
-   Today is the formula version: <b>it stays alive.</b> New row, fill down, done. <b>Delete the test
-   row before moving on.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">10 &ndash; 22</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">LEFT, RIGHT, MID, LEN &mdash; on fixed numbers first</p>
-   <div class="rs-code"><pre><code>AB2  =LEN(C2)           12      the space counts
-AB3  =LEFT(C2, <span class="o">5</span>)       Rahul
-AB4  =RIGHT(C2, <span class="o">6</span>)      Sharma
-AB5  =MID(C2, <span class="o">7</span>, <span class="o">6</span>)    Sharma   counting starts at 1, not 0</code></pre></div>
-   <div class="rs-board"><b>Then fill all four down three rows.</b> Row 3 is Karthik Kumar, 13
-   characters &mdash; <code>LEFT(...,5)</code> gives <b>Karth</b>.<br><br>
-   <b>The formula is right. Five was MY number, not the data's.</b> Rahul breaks at 5, Karthik at 7.
-   <b>The number has to come out of the row.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">22 &ndash; 38</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">FIND &mdash; the hard idea. Sixteen minutes.</p>
-   <p class="rs-say"><b>Do FIND on its own first.</b> They must see what it returns before they see it
-   nested.</p>
-   <div class="rs-code"><pre><code>AC2  =FIND(<span class="c">" "</span>, C2)      6  Rahul Sharma
-                        8  Karthik Kumar
-                        8  Karthik Reddy
-                        6  Arjun Sharma</code></pre></div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;what is that number?&rdquo; &mdash; <b>where the space
-   is</b>, and it is <b>different on every row</b>. That is exactly what was missing.</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>AD2  =LEFT(C2, FIND(<span class="c">" "</span>, C2) - <span class="o">1</span>)          Rahul / Karthik / Lakshmi
-AE2  =RIGHT(C2, LEN(C2) - FIND(<span class="c">" "</span>, C2))  Sharma / Kumar / Reddy</code></pre></div>
-   <div class="rs-board"><b>Make them try the RIGHT one before you show it</b> &mdash; two minutes. It
-   is the moment the idea sticks or does not.<br><br>
-   <b>Say it in words:</b> take from the right, as many characters as <b>the length minus where the
-   space is</b>. 12 − 6 = 6, and Sharma is six letters. <b>No minus one this time</b>, because
-   counting from the far end already excludes the space.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Say the limitation.</b> This works because <b>all
-   200 names have exactly one space</b> &mdash; verified. A middle name or an initial and FIND finds
-   only the <em>first</em> space. <b>No error. Just wrong.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">38 &ndash; 48</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">CONCAT, and SUBSTITUTE as a detection tool</p>
-   <div class="rs-code"><pre><code>=CONCAT(AE2, <span class="c">", "</span>, AD2)            Sharma, Rahul
-=CONCAT(C2, <span class="c">" ("</span>, D2, <span class="c">")"</span>)         Rahul Sharma (HR)
-=AE2 &amp; <span class="c">", "</span> &amp; AD2                   same thing with &amp;</code></pre></div>
-   <div class="rs-board">Quotes = text you are adding. No quotes = a cell. They met <code>&amp;</code>
-   on day 3, joining <code>"&gt;"</code> to a cell.</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>=SUBSTITUTE(C2, <span class="c">" "</span>, <span class="c">"&#183;"</span>)       Rahul&#183;Sharma</code></pre></div>
-   <div class="rs-board"><b>Teach it as DETECTION, not replacement.</b> On day 2 you had to <b>invent
-   five rows</b> to show a trailing space. This finds them for real.<br><br>
-   A trailing space shows as <code>Rahul&#183;Sharma&#183;</code>. A double space as
-   <code>Rahul&#183;&#183;Sharma</code>. <b>Replace the invisible with something visible and
-   look.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">48 &ndash; 60</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">A date is a number &mdash; prove it, do not explain it</p>
-   <div class="rs-code"><pre><code>click L2, Home tab, change the format from Date to GENERAL
-
-   43103        days since 1 Jan 1900, which Excel calls day 1</code></pre></div>
-   <div class="rs-board"><b>The date you see is a FORMAT</b> &mdash; same as &#8377;52,00,000 over
-   5200000 on day 6. <b>Put it back to Short Date.</b><br><br>
-   Everything follows: subtracting two dates gives days <b>because they were always numbers</b>.
-   <b>There is no date magic. There is a number with a costume on.</b></div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>=TODAY()        23-10-2026    empty brackets, and it needs them
-=L2 + <span class="o">30</span>        02-02-2018    thirty days after Rahul joined</code></pre></div>
-   <div class="rs-board"><b>TODAY() recalculates every time the file opens.</b> Right for "days since
-   joining", wrong for a frozen report &mdash; Paste Special as Values if it must not move.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">60 &ndash; 74</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Taking a date apart, and measuring a gap</p>
-   <div class="rs-code"><pre><code>=YEAR(L2)   2018      =MONTH(L2)   1      =DAY(L2)   3</code></pre></div>
-   <div class="rs-board">They met YEAR on day 6. <b>These come back as NUMBERS</b> &mdash; Excel will
-   average your month column and say 6.4, which is not a fact about anything. <b>Sixth session, same
-   lesson.</b></div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>AI2  =DAYS(TODAY(), L2)              3215  843  598  1469
-AJ2  =DATEDIF(L2, TODAY(), <span class="c">"y"</span>)        8    2    1     4</code></pre></div>
-   <div class="rs-board"><b>WARN THEM BEFORE THEY TYPE IT:</b> <code>DATEDIF</code> <b>does not
-   autocomplete.</b> Type <code>=DAT</code> and Excel offers DATE, DATEVALUE, DAYS &mdash; not DATEDIF.
-   Undocumented, works everywhere. <b>Type it in full and trust it.</b><br><br>
-   <b>The orders are opposite.</b> DAYS takes <b>end first</b>. DATEDIF takes <b>start first</b>. Yes,
-   inconsistent. <b>Check it every time.</b> Third argument in quotes: "y" "m" "d".</div>
-   <div class="rs-board" style="margin-top:8px"><b>Sort the tenure column:</b> longest <b>11 years</b>,
-   shortest <b>0</b>, average <b>5.55</b>. <b>A useful number that did not exist ten minutes
-   ago.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">74 &ndash; 86</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">The column that was never there &mdash; the payoff</p>
-   <p class="rs-say"><b>Ask first:</b> &ldquo;which day of the week do people join on? Could sorting,
-   filtering, COUNTIF or a pivot answer that?&rdquo; <b>No &mdash; not one.</b> The weekday is not a
-   column. <b>Let it land.</b></p>
-   <div class="rs-code"><pre><code>AK2  =WEEKDAY(L2)        4 = Wednesday     1 = Sunday ... 7 = Saturday
-
-AN1  =COUNTIF(AK2:AK201, <span class="o">1</span>)   Sunday      25
-AN2  =COUNTIF(AK2:AK201, <span class="o">2</span>)   Monday      23
-AN3  =COUNTIF(AK2:AK201, <span class="o">3</span>)   Tuesday     22
-AN4  =COUNTIF(AK2:AK201, <span class="o">4</span>)   Wednesday   26
-AN5  =COUNTIF(AK2:AK201, <span class="o">5</span>)   Thursday    46
-AN6  =COUNTIF(AK2:AK201, <span class="o">6</span>)   Friday      35
-AN7  =COUNTIF(AK2:AK201, <span class="o">7</span>)   Saturday    23
-AN8  =SUM(AN1:AN7)               check      <span class="o">200</span></code></pre></div>
-   <div class="rs-board"><b>Stop. Say nothing.</b> Then: &ldquo;anything bother you?&rdquo; Somebody
-   says <b>Thursday 46</b>. Take it, then redirect: <b>&ldquo;add Saturday and Sunday.&rdquo;</b><br><br>
-   <b>23 + 25 = 48. Twenty-four per cent of the company started at a weekend.</b> No company does
-   that.</div>
-   <div class="rs-board" style="margin-top:8px"><b>The line:</b> sorting could not find this, nor
-   filtering, nor COUNTIF, nor a lookup, nor a pivot &mdash; <b>because the weekday was never in the
-   file.</b> A function had to create the column before anything could count it.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Last two minutes, and the distinction matters:</b>
-   Thursday 46 is <b>interesting</b> &mdash; one count on 200 rows, might be nothing. Forty-eight
-   weekend starts is <b>impossible</b> &mdash; something is wrong upstream. <b>Knowing which one you
-   are holding is most of the job.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">86 &ndash; 90</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Close</p>
-   <div class="rs-code"><pre><code>1. LEFT/RIGHT/MID need a NUMBER. on real data, FIND it.
-   =LEFT(C2, FIND(" ",C2)-1)   =RIGHT(C2, LEN(C2)-FIND(" ",C2))
-2. SUBSTITUTE is a DETECTION tool. =SUBSTITUTE(C2," ","&#183;")
-3. A DATE IS A NUMBER. 2018-01-03 = 43103. the calendar is a format.
-4. DAYS(end,start) / DATEDIF(start,end,"y"). opposite orders.
-   DATEDIF does not autocomplete. type it anyway.
-5. WEEKDAY gives 1-7, 1=SUNDAY. a number can be counted -> the 48.</code></pre></div>
-   <div class="rs-board"><b>The line:</b> everything today made a column that was not there &mdash; the
-   first name, the tenure, the weekday. <b>Seven sessions asking this file questions, and the most
-   interesting answer came from a column we had to build first.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>Set up next session:</b> still Excel, different
-   window. <b>Power Query Editor</b> &mdash; cleaning with <b>steps instead of formulas</b>, each one
-   written down and named. <b>And it is exactly the editor inside Power BI</b>, so the next two
-   sessions are that module's first two, taught early.</div>
-  </div></div>
-
-  </div>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
-  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 4, 7 and 12 are the
-  three that matter. Take each answer from a different person.</p>
-
-  <div class="askq">
-
-   <div class="aq"><div>
-    <q>What do <code>LEFT</code>, <code>RIGHT</code> and <code>MID</code> all need from you?</q>
-    <div class="ans">A <b>number</b> &mdash; how many characters. And on real data that number is
-    <b>different on every row</b>, which is the whole difficulty.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Does <code>LEN</code> count spaces?</q>
-    <div class="ans"><b>Yes.</b> &ldquo;Rahul Sharma&rdquo; is <b>12</b> &mdash; five, a space, and
-    six.</div></div></div>
-
-   <div class="aq"><div>
-    <q>What does <code>FIND(" ", C2)</code> give you back?</q>
-    <div class="ans">The <b>position</b> of the space, not the space itself. <b>6</b> for Rahul Sharma,
-    <b>8</b> for Karthik Kumar.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Why is there a <code>&minus; 1</code> in the first-name formula but not in the last-name one?</q>
-    <div class="ans">Counting from the <b>left</b>, position 6 <em>is</em> the space, so you take one
-    fewer. Counting from the <b>right</b>, length minus position <b>already excludes</b> the
-    space.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Why not just use Text to Columns, which you did on day 2?</q>
-    <div class="ans">Text to Columns is <b>one-off and destructive</b> &mdash; it overwrites, and a new
-    row typed tomorrow is not split. <b>Formulas stay alive.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>What breaks the name formulas?</q>
-    <div class="ans"><b>A second space</b> &mdash; a middle name, an initial, a double-barrelled
-    surname. <code>FIND</code> finds only the first one. <b>No error, just a wrong
-    answer.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>You formatted a date cell as General and got <code>43103</code>. What is that?</q>
-    <div class="ans">The <b>number of days since 1 January 1900</b>. <b>A date has always been a
-    number</b> &mdash; the calendar is a number format on top of it.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Why can you subtract one date from another and get a sensible answer?</q>
-    <div class="ans">Because <b>they were both numbers all along</b>. Nothing special is happening
-    &mdash; it is ordinary subtraction.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Which comes first in <code>DAYS</code>, and which comes first in <code>DATEDIF</code>?</q>
-    <div class="ans"><code>DAYS(<b>end</b>, start)</code>. <code>DATEDIF(<b>start</b>, end, "y")</code>.
-    <b>Opposite orders, for no reason.</b> A negative from DAYS means you have them the wrong way
-    round.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Why will <code>DATEDIF</code> not autocomplete?</q>
-    <div class="ans">It is <b>undocumented</b> &mdash; left in for compatibility and missing from
-    Excel's function list. <b>It still works in every version.</b> Type it in
-    full.</div></div></div>
-
-   <div class="aq"><div>
-    <q><code>WEEKDAY</code> returned 4, not &ldquo;Wednesday&rdquo;. Why is the number better?</q>
-    <div class="ans">Because a <b>number can be counted, compared and tested</b>. That is how seven
-    <code>COUNTIF</code>s produced the weekday table.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Forty-eight people started at a weekend. Why could none of the earlier tools have found that?</q>
-    <div class="ans">Because <b>the weekday was never a column in the file</b>. You cannot sort, filter,
-    count or pivot a column that does not exist. <b>A function had to build it
-    first.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>Thursday has 46 and Monday has 23. Is that the same kind of finding as the weekend one?</q>
-    <div class="ans"><b>No.</b> Thursday 46 is <b>interesting</b> &mdash; one count on 200 rows, and it
-    might be nothing. Forty-eight weekend start dates are <b>impossible</b> &mdash; something is wrong
-    upstream.</div></div></div>
-
-  </div>
- </div>
-</section>
-
-<section>
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
-
-  <div class="qa"><h5>&ldquo;Is there an easier way to split a name?&rdquo;</h5>
-  <p>&ldquo;Three, and you should know all of them. <b>Text to Columns</b> for a one-off import.
-  <b>Flash Fill</b> &mdash; type the first answer, press <code>Ctrl</code>+<code>E</code>, and Excel
-  guesses the pattern, which is brilliant and unpredictable. And <b>TEXTSPLIT</b> if you have Microsoft
-  365. The formula version is the one that works everywhere and that you can explain in an
-  interview.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;What is the difference between <code>FIND</code> and
-  <code>SEARCH</code>?&rdquo;</h5>
-  <p>&ldquo;<code>FIND</code> is case sensitive and <code>SEARCH</code> is not.
-  <code>SEARCH</code> also accepts wildcards. For finding a space it makes no difference at all. For
-  finding a letter it does.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;My formula returned <code>#VALUE!</code>.&rdquo;</h5>
-  <p>&ldquo;Usually <code>FIND</code> did not find what you asked for. <code>FIND(" ", C2)</code> on a
-  name with <b>no space</b> gives <code>#VALUE!</code>, and then everything wrapped around it fails
-  too. Wrap it in <code>IFERROR</code> once you have looked at which rows are
-  failing.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Can I use <code>CONCAT</code> or should it be
-  <code>CONCATENATE</code>?&rdquo;</h5>
-  <p>&ldquo;<code>CONCATENATE</code> is the old one and still works. <code>CONCAT</code> replaced it
-  and accepts ranges. <code>TEXTJOIN</code> is better still, because it takes the separator once rather
-  than between every pair. Use <code>&amp;</code> for two or three things and
-  <code>TEXTJOIN</code> for many.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Why does my date show as <code>#####</code>?&rdquo;</h5>
-  <p>&ldquo;The column is too narrow. Not an error &mdash; double-click the column border. You met this
-  on day one.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Why is 1 Sunday and not Monday?&rdquo;</h5>
-  <p>&ldquo;An American default, and it catches everybody. You can change it with the second argument
-  &mdash; <code>WEEKDAY(L2, 2)</code> makes Monday 1. <b>If you use the second argument, write down
-  which one you used</b>, because the next person reading your sheet will assume the
-  default.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Should we delete the weekend rows?&rdquo;</h5>
-  <p>&ldquo;No &mdash; and this is the same answer as the 52-lakh salary. You do not know yet whether
-  the date is wrong or whether this company genuinely does weekend inductions. <b>Report it and ask
-  whoever owns the data.</b> Deleting a quarter of your rows because they look odd is how you turn a
-  data problem into a reporting problem.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Does pandas do this?&rdquo;</h5>
-  <p>&ldquo;Yes, and more neatly. <code>.str.split()</code> handles the name, and
-  <code>.dt.dayofweek</code> gives you the weekday without the 1-is-Sunday surprise. The reason you are
-  learning the Excel version is that half your career will be spent in files other people built, and
-  those files are full of <code>LEFT</code> and <code>FIND</code>.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Will the next session still be Excel?&rdquo;</h5>
-  <p>&ldquo;Yes. Same file, same application, different window inside it. The Power Query Editor opens
-  from the Data tab. The only thing that changes is that you will clean data with <b>recorded steps</b>
-  rather than formulas &mdash; and that editor is identical to the one inside Power BI, which is why we
-  are doing it now rather than later.&rdquo;</p></div>
  </div>
 </section>
 </div>
