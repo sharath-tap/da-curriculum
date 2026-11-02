@@ -772,10 +772,10 @@ try{var _t=localStorage.getItem("steep-theme");
 
     <button class="dcard full" data-go="x8">
      <span class="id">EXCEL 8</span><h3>Cleaning With Steps, Not Formulas</h3>
-     <p>Power Query, part one. Applied Steps, profiling, the primary key test &mdash;
-     <code>name</code> has 129 distinct values for 200 people &mdash; and Group By. <b>The same editor
-     as Power BI.</b></p>
-     <span class="foot">Script ready &middot; Power BI, early</span></button>
+     <p>Power Query, part one. Applied Steps, distinct against unique, the primary key test &mdash;
+     <code>name</code> has 129 distinct values for 200 people &mdash; and Group By as the fifth route
+     to the same four numbers. <b>The same editor as Power BI.</b></p>
+     <span class="foot">Full script &middot; 25 steps &middot; Power BI, early</span></button>
 
     <button class="dcard full" data-go="x9">
      <span class="id">EXCEL 9</span><h3>The Joins You Already Know, With a Mouse</h3>
@@ -25193,25 +25193,20 @@ Saturday     23
   <h1 class="display">Cleaning With<br>Steps, Not<br>Formulas</h1>
   <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
    Same Excel, same file, a different window inside it. Every clean-up becomes a <b>named step in a
-   list</b> &mdash; which means it can be read, reordered and undone next month by somebody who was
-   not you.</p>
+   list</b> &mdash; which means it can be read, reordered and run again next month by somebody who
+   was not you.</p>
   <div class="glance">
-   <div class="gcell"><b>129</b><span>distinct names, for 200 people</span></div>
+   <div class="gcell"><b>129</b><span>names for 200 people</span></div>
    <div class="gcell"><b>1</b><span>column that can be a key</span></div>
-   <div class="gcell"><b>0</b><span>formulas written</span></div>
-   <div class="gcell"><b>=</b><span>the same editor as Power BI</span></div>
+   <div class="gcell"><b>5th</b><span>route to the same answer</span></div>
+   <div class="gcell"><b>&#8377;1.57L</b><span>Chennai's average, and why</span></div>
   </div>
   <div class="primer" style="background:var(--peach);color:var(--sienna)">
-   <h4 style="color:var(--sienna)">Say this in minute one and mean it</h4>
-   <p style="color:var(--sienna)">The Power Query Editor in Excel and the Power Query Editor in Power BI
-   are <b style="color:var(--sienna)">the same tool</b>. Same ribbon, same Applied Steps panel, same
-   dialogs, same language underneath. <b style="color:var(--sienna)">Today and Thursday are the first
-   two sessions of the Power BI module, taught early</b>, in a file they have known for eight
-   sessions.</p>
-   <p style="color:var(--sienna)">And the finding to drive at: <code>name</code> has
-   <b style="color:var(--sienna)">129 distinct values for 200 people</b>. Seventy-one people share a
-   name with somebody else. <b style="color:var(--sienna)">A name cannot identify a person in this
-   file</b>, and the profiler says so in two numbers.</p>
+   <h4 style="color:var(--sienna)">Today's big idea</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">Do it once. Power Query records the
+   steps. The file arrives again next month and you run the same process.</b></p>
+   <p style="color:var(--sienna)">Everything they cleaned on days 2 and 7 worked &mdash; and left no
+   trace. Nobody else can repeat it, and in six weeks neither can they.</p>
   </div>
  </div>
 </section>
@@ -25220,985 +25215,603 @@ Saturday     23
  <div class="wrap">
   <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
   <ol class="n">
-   <li><b>Work on a copy, and say why.</b> <code>Close &amp; Load</code> writes a new sheet and leaves
-   the original alone, so Power Query is the safest thing in the module &mdash; but they have just spent
-   seven sessions being told to back up, and the habit should not break here.</li>
-   <li><b>Distinct against unique is the one definition to get right.</b> <b>Distinct</b> = how many
-   different values. <b>Unique</b> = how many appear exactly once. They are not synonyms and the whole
-   profiling block collapses if the room has them muddled. Do the seven-value worked example on the
-   board before touching Excel.</li>
-   <li><b>Applied Steps is the point of the session, not a feature of it.</b> Every other tool in this
-   module did something and forgot. This one writes down what it did, in order, in English. Keep
-   pointing at the panel.</li>
-   <li><b>Let them delete a step and watch the data come back.</b> It is the single most reassuring
-   thing in Power Query and it is why people trust it. Thirty seconds, enormous payoff.</li>
-   <li><b>Group By is <code>groupby</code> and they should be told so.</b> They know pandas, they know
-   SQL <code>GROUP BY</code>, and they built the same thing with <code>SUMIF</code> on day 3 and a pivot
-   on day 5. <b>Fourth way to the same answer</b> &mdash; naming that is better than pretending it is
-   new.</li>
-   <li><b>Do not teach the M language.</b> Show the formula bar once, say the steps are writing code
-   for them, and move on. It is the right thing to know exists and the wrong thing to spend ten minutes
-   on.</li>
+   <li><b>Everyone takes a backup first.</b> Power Query does not damage the source, but the habit
+   is the point and it costs ten seconds.</li>
+   <li><b>Do the distinct-versus-unique board example before you touch the software.</b> Seven words,
+   by hand. The profiler numbers mean nothing until those two words are separated.</li>
+   <li><b>The deliberate deletion in section 20 must be undone on screen.</b> Clicking the
+   <code>X</code> and watching the row come back is the whole argument for Applied Steps.</li>
+   <li><b>Group By destroys the detail.</b> Do it last, or Reference the query first &mdash; otherwise
+   you are left with four rows and have to rebuild.</li>
   </ol>
+
+  <div class="lbl">On the board &mdash; leave it up all session</div>
+<pre><code>    DISTINCT  =  how many DIFFERENT values exist
+    UNIQUE    =  how many values appear EXACTLY ONCE
+
+    null counts as a value in both.        DISTINCT &gt;= UNIQUE, always.
+
+
+    A COLUMN CAN IDENTIFY A ROW ONLY IF
+
+        distinct = unique = number of rows        AND        no nulls
+
+        emp_id    200 / 200 / 0 nulls   ->  KEY
+        name      129 /  77 / 0 nulls   ->  no
+        salary    199 / 198 / 2 nulls   ->  no, and the nulls are why</code></pre>
  </div>
 </section>
 
 <section>
  <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
-  <p class="cap" style="margin-bottom:24px">Three things: what Power Query is for and when a formula is
-  the better answer, the distinct-versus-unique definition, and why the primary key test matters on a
-  file they think they know.</p>
 
-  <div class="understand">
-   <h5>Part one &middot; what it is, and when not to use it</h5>
-
-   <h6>The honest description</h6>
-   <p>Power Query is a place to <b>record a sequence of clean-up operations</b> that runs again on new
-   data. You point it at a table, click your way through the fixes, and it keeps a numbered list of
-   everything you did.</p>
-
-   <div class="mth">
-    <div class="mrow"><b>a formula</b><div>Lives <b>in a cell</b>, recalculates instantly, and anybody
-    can see it by clicking the cell.</div></div>
-    <div class="mrow"><b>a query</b><div>Lives <b>beside the sheet</b>, runs when you refresh, and
-    produces a whole table at once.</div></div>
-    <div class="mrow"><b>use a formula</b><div>For something that belongs <b>next to the data</b> and
-    must update the instant a cell changes &mdash; a gap from the average, a tenure
-    column.</div></div>
-    <div class="mrow warn2"><b>use a query</b><div>For <b>the same clean-up every month</b> on a new
-    file, for joining and stacking tables, and for anything you need to <b>hand over with the work
-    visible</b>.</div></div>
-   </div>
-
-   <h6>The argument that actually matters to a fresher</h6>
-   <p>On day 2 they cleaned this file with sort, filter, Remove Duplicates, Find and Replace and Text to
-   Columns. It worked. <b>And none of it was written down.</b> Next month's file arrives and they do all
-   of it again from memory, in whatever order they happen to remember.</p>
-   <div class="keyline">
-    <b>Power Query's real product is not the cleaning. It is the list.</b><br><br>
-    Twelve named steps that anybody can read, reorder, or delete one of. The same twelve ran last month
-    and will run next month in the same order. <b>Day 2 was faster. This is repeatable, and repeatable
-    is what a job pays for.</b>
-   </div>
-  </div>
-
-  <div class="understand">
-   <h5>Part two &middot; distinct and unique are not the same word</h5>
-
-   <h6>The definitions, and they matter</h6>
-   <div class="mth">
-    <div class="mrow"><b>distinct</b><div>How many <b>different values</b> there are. A value that
-    appears five times is counted <b>once</b>.</div></div>
-    <div class="mrow"><b>unique</b><div>How many values appear <b>exactly once</b>. A value that
-    appears five times is <b>not counted at all</b>.</div></div>
-    <div class="mrow warn2"><b>and</b><div><code>null</code> is treated as <b>a value like any
-    other</b> in both counts.</div></div>
-   </div>
-
-   <h6>Do this on the board before you open Excel</h6>
-   <div class="mcalc">a City column, 7 rows:   Pune, Delhi, Pune, Goa, null, Delhi, Agra
-
-   Pune    appears 2x    distinct? yes    unique? NO
-   Delhi   appears 2x    distinct? yes    unique? NO
-   Goa     appears 1x    distinct? yes    unique? yes
-   null    appears 1x    distinct? yes    unique? yes
-   Agra    appears 1x    distinct? yes    unique? yes
-
-   DISTINCT = 5     UNIQUE = 3</div>
-   <p>Distinct is <b>always</b> greater than or equal to unique. If somebody tells you unique is bigger,
-   they have swapped the definitions.</p>
-
-   <h6>What those two numbers tell you about our file</h6>
-   <div class="mcalc">column        distinct   unique   nulls
-
-emp_id             200      200       0
-name               129       77       0
-department           4        0       0
-salary             199      198       2
-age                 39        3       1
-join_date          195      190       0</div>
-   <p><code>department</code> has <b>4 distinct and 0 unique</b> &mdash; four values, every one repeated,
-   none appearing exactly once. That pattern is the signature of a <b>category</b>.</p>
-   <p><code>emp_id</code> has <b>200 and 200</b>. Every value different, every value appearing once.
-   That is the signature of an <b>identifier</b>.</p>
-  </div>
-
-  <div class="understand">
-   <h5>Part three &middot; the primary key test, on a file they think they know</h5>
-
-   <h6>The test, in one line</h6>
-   <p>A column can identify a row only if <b>distinct = unique = the number of rows</b>, <b>and</b> it
-   has <b>no nulls</b>.</p>
-
-   <div class="mth">
-    <div class="mrow"><b>emp_id</b><div>200 / 200 / no nulls. <b>This is the key.</b></div></div>
-    <div class="mrow warn2"><b>name</b><div><b>129 distinct, 77 unique.</b> Seventy-one people share a
-    name with somebody. <b>A name cannot identify a person in this file.</b></div></div>
-    <div class="mrow"><b>salary</b><div><b>198 distinct, 198 unique</b> &mdash; every value different.
-    And it <b>still fails</b>, because two are null. <b>All different is not
-    enough.</b></div></div>
-    <div class="mrow"><b>height_cm</b><div>146 / 108. Not close.</div></div>
-   </div>
-
-   <h6>Why this is worth a block and not a sentence</h6>
-   <p>They have joined tables in SQL for a whole module. Every one of those joins was on a key. <b>This
-   is where you find out whether a column can be one</b>, before you join on it and get silently wrong
-   answers.</p>
-   <div class="keyline">
-    <b>The <code>salary</code> result is the one to dwell on.</b><br><br>
-    Every single value is different. It looks like a perfect identifier by the first half of the test
-    and fails on the second half. <b>Two nulls, and the column is useless as a key</b> &mdash; because
-    two rows would both be &ldquo;the one with no salary&rdquo;.
-   </div>
-  </div>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap"><h2 class="h" style="margin-bottom:10px">The session, minute by minute</h2>
- <p class="cap">Everything in a speech box is meant to be said more or less as written. Everything in
- a grey box is a direction for you, not words to say.</p></div>
-</section>
-
-<section style="padding-top:8px">
- <div class="wrap">
-
-  <!-- 0-12 -->
+  <!-- 1 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">0 &ndash; 12</span><h3>A different window, and why</h3></div>
-   <p class="objective">Open the editor, and name what it is before they touch anything.</p>
-
-   <div class="stage">Cleaned file, 200 rows. <b>Back it up first</b> &mdash; they have been told for
-   seven sessions and the habit should not break today.</div>
+   <div class="bhead"><span class="clock">1</span><h3>Say this first</h3></div>
 
    <div class="speak">
-    <p>On day two you cleaned this file. Sort, filter, Remove Duplicates, Find and Replace, Text to
-    Columns. It worked.</p>
-    <p>Question. <b>Where is the list of what you did?</b></p>
+    <p>For several sessions they have cleaned data directly on the sheet &mdash; sort, filter, Remove
+    Duplicates, Find &amp; Replace, Text to Columns. All of it worked.</p>
+    <p>Now set the problem.</p>
    </div>
 
    <div class="qbox">
-    <div class="q">&ldquo;Next month a new file arrives with the same problems. How do you do it
-    again?&rdquo;</div>
-    <div class="a"><b>From memory.</b> In whatever order you happen to remember, hoping you have not
-    forgotten one. <b>Nothing recorded what you did on Thursday.</b> Let them sit with
-    that.</div>
+    <div class="q">&ldquo;The same file arrives next month with the same problems. How do you repeat
+    everything you just did?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>From memory. And if a colleague has to do it instead of you, they cannot, because there is
-    nothing to read.</p>
-    <p>Today we clean the same file in a different window, where <b>every single thing you do gets
-    written down, named, and listed in order.</b></p>
+    <p>You have to <b>remember</b> every step. And if somebody else has to do it, they have no idea
+    what you did at all.</p>
    </div>
 
-   <div class="typeit">Click any cell inside the data</div>
-<pre><code>  Data  ->  Get &amp; Transform Data  ->  From Table/Range</code></pre>
+   <div class="typeit">What today replaces it with</div>
+<pre><code>   remember what I did               do it ONCE
+          |                               |
+   do it again by hand     ------&gt;   the steps are recorded
+                                          |
+                                     new file arrives
+                                          |
+                                     run the same steps</code></pre>
 
-   <div class="warn"><b>It will ask you to create a table first and the dialog matters.</b> Check the
-   range reads <code>$A$1:$L$201</code> and that <b>My table has headers is ticked</b>. If it is not,
-   your column names become Column1, Column2, and every step afterwards is harder to
-   read.</div>
+   <div class="keyline"><b>Power Query records every transformation as a step.</b> That is the whole
+   session.</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">2</span><h3>Open it</h3></div>
+
+   <div class="stage">Use the cleaned employee file &mdash; <b>200 rows, 12 columns</b>. Take a backup
+   first.</div>
+
+   <div class="typeit">Click any cell inside the data, then</div>
+<pre><code>Data  &gt;  Get &amp; Transform Data  &gt;  From Table/Range</code></pre>
+
+<pre><code>Range:  $A$1:$L$201
+[x] My table has headers</code></pre>
 
    <div class="speak">
-    <p>A whole new window. This is the <b>Power Query Editor</b>.</p>
-    <p>Three things to find before we do anything. The <b>data</b> in the middle. The <b>Queries</b>
-    list on the left, with our one table in it. And on the right, the one that matters &mdash;
-    <b>Applied Steps</b>.</p>
-   </div>
-
-   <div class="screen">APPLIED STEPS
-  Source
-  Changed Type</div>
-
-   <div class="speak">
-    <p>Two steps already, and we have not clicked anything. <b>Source</b> is &ldquo;I read the
-    table&rdquo;. <b>Changed Type</b> is Excel guessing which columns are numbers, text and dates.</p>
-    <p>Click <b>Source</b> and look at the data. Then click <b>Changed Type</b>. You are stepping
-    backwards and forwards through your own work.</p>
-   </div>
-
-   <div class="keyline">
-    <b>Say this now and keep saying it.</b><br><br>
-    This window and the Power Query window inside <b>Power BI</b> are the same tool. Same ribbon, same
-    Applied Steps, same dialogs. <b>Today and Thursday are the first two sessions of the Power BI
-    module, taught early</b> &mdash; on a file you have known for eight sessions instead of one you
-    have never seen.
+    <p>Excel turns the range into a Table first &mdash; that is expected. Check the range ends at
+    <b>201</b> and that the header box is ticked, then OK.</p>
    </div>
   </div>
 
-  <!-- 12-32 -->
+  <!-- 3 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">12 &ndash; 32</span><h3>Profiling &mdash; what the two numbers mean</h3></div>
-   <p class="objective">Twenty minutes. Do the definition on the board before the software.</p>
+   <div class="bhead"><span class="clock">3</span><h3>The window, in three parts</h3></div>
 
-   <div class="stage">Board first. <b>Do not open the profiler until the seven-row example is
-   done</b> &mdash; the whole block fails if distinct and unique are muddled.</div>
+<pre><code>  LEFT          QUERIES         the table you are working on
+  MIDDLE        DATA            the rows themselves
+  RIGHT         APPLIED STEPS   &lt;-- the whole point of today</code></pre>
 
    <div class="speak">
-    <p>Before I show you the tool, two words that are not the same word. Seven rows, on the board.</p>
+    <p>Two steps are already there before they have done anything:</p>
    </div>
 
-   <div class="typeit">On the board &mdash; a City column, 7 rows</div>
-<pre><code>   Pune, Delhi, Pune, Goa, null, Delhi, Agra
+<pre><code>Source
+Changed Type</code></pre>
 
-   Pune    appears 2 times
-   Delhi   appears 2 times
-   Goa     appears 1 time
-   null    appears 1 time
-   Agra    appears 1 time</code></pre>
+   <div class="speak">
+    <p>Click <b>Source</b> &mdash; that is the data exactly as Power Query received it.</p>
+    <p>Click <b>Changed Type</b> &mdash; Power Query has guessed what each column is. Salary and age
+    became numbers, department became text, join_date became a date.</p>
+    <p>So the two steps already read as a sentence: <b>read the data, then work out the types.</b>
+    Power Query was recording from the first second.</p>
+   </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">4</span><h3>This is Power BI's editor</h3></div>
+
+   <div class="keyline"><b>Power Query in Excel and Power Query in Power BI are the same editor.</b>
+   Not similar &mdash; the same one. Same ribbon, same Applied Steps, same dialogs.</div>
+
+   <div class="speak">
+    <p>Say it plainly: <b>the next module has already started.</b> They are learning Power BI's
+    data-preparation tool, inside Excel, where the file is already familiar.</p>
+   </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">5</span><h3>Two questions that sound the same</h3></div>
+
+   <div class="warn"><b>Do this on the board, by hand, before you touch the software.</b> The
+   profiler's numbers are meaningless until these two words come apart.</div>
+
+<pre><code>Pune
+Delhi
+Pune
+Goa
+null
+Delhi
+Agra</code></pre>
 
    <div class="qbox">
-    <div class="q">&ldquo;How many <b>different</b> values are there?&rdquo; then &ldquo;how many appear
-    <b>exactly once</b>?&rdquo;</div>
-    <div class="a"><b>Distinct = 5</b> &mdash; Pune, Delhi, Goa, null, Agra. <b>Unique = 3</b> &mdash;
-    only Goa, null and Agra appear once. <b>Pune and Delhi are distinct but not unique.</b> Make
-    somebody say that sentence.</div>
+    <div class="q">&ldquo;How many <b>different</b> values are there?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p><b>Distinct</b> is how many different values. <b>Unique</b> is how many appear exactly once.</p>
-    <p>Pune is distinct &mdash; it is one of the different values. Pune is <b>not</b> unique &mdash; it
-    appears twice.</p>
-    <p>And <code>null</code> counts as a value in both. It is not ignored.</p>
-    <p><b>Distinct is always bigger than or equal to unique.</b> If you ever get it the other way round,
-    you have swapped the definitions.</p>
+    <p>Pune, Delhi, Goa, null, Agra. <b>Five.</b> That is <b>distinct</b>.</p>
    </div>
 
-   <div class="stage">Now the tool.</div>
+   <div class="qbox">
+    <div class="q">&ldquo;How many appear <b>exactly once</b>?&rdquo;</div>
+   </div>
 
-   <div class="typeit">The View tab &mdash; tick one at a time</div>
-<pre><code>  View  ->  [x] Column distribution
-            [x] Column quality
-            [x] Column profile</code></pre>
+<pre><code>Pune    2 times
+Delhi   2 times
+Goa     1
+null    1
+Agra    1</code></pre>
 
    <div class="speak">
-    <p>Tick <b>Column distribution</b> first. A small bar chart appears above every column with two
-    numbers under it.</p>
-    <p>Look along the row and read them out.</p>
+    <p>Goa, null and Agra. <b>Three.</b> That is <b>unique</b>.</p>
+    <p>And the line that fixes it: <b>Pune is distinct but not unique.</b> It is a different value,
+    and it appears twice.</p>
    </div>
-   <div class="screen">emp_id        200 distinct    200 unique
+
+   <div class="keyline">
+    <b>DISTINCT</b> &mdash; how many different values exist.<br>
+    <b>UNIQUE</b> &mdash; how many appear exactly once.<br><br>
+    <b>null counts as a value in both.</b> And <b>distinct is always &ge; unique</b> &mdash; if you
+    ever get unique larger, you have swapped the definitions.
+   </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">6</span><h3>Turn the profiler on</h3></div>
+
+<pre><code>View  &gt;  Column distribution
+View  &gt;  Column quality
+View  &gt;  Column profile</code></pre>
+
+<pre><code>emp_id        200 distinct    200 unique
 name          129 distinct     77 unique
 department      4 distinct      0 unique
 city            4 distinct      0 unique
 salary        199 distinct    198 unique
-age            39 distinct      3 unique</div>
+age            39 distinct      4 unique</code></pre>
 
-   <div class="qbox">
-    <div class="q">&ldquo;Two hundred people. One hundred and twenty-nine names. What does that
-    mean?&rdquo;</div>
-    <div class="a"><b>Names repeat.</b> Only 77 people have a name nobody else has, so <b>123 rows
-    share a name with somebody</b>. There is more than one Karthik Kumar in this company. <b>Let them
-    work it out from the two numbers rather than telling them.</b></div>
-   </div>
-
-   <div class="speak">
-    <p>One hundred and twenty-nine different names among two hundred people. Seventy-seven of them
-    appear exactly once.</p>
-    <p>Which means <b>a name does not identify a person in this file</b>, and you now know that in two
-    numbers rather than by scrolling.</p>
-   </div>
-
-   <div class="speak">
-    <p>Now look at <code>department</code>. <b>Four distinct, zero unique.</b></p>
-    <p>Four values, and not one of them appears exactly once. <b>That pattern is what a category looks
-    like</b> &mdash; and <code>emp_id</code>, at two hundred and two hundred, is what an identifier
-    looks like.</p>
-    <p>You can tell what a column <em>is</em> from those two numbers, before you read a single
-    value.</p>
-   </div>
-
-   <div class="stage">Now Column quality and Column profile, briefly &mdash; then the primary key
-   test, which is the block's real content.</div>
-
-   <div class="typeit">Tick Column quality &mdash; three percentages under each header</div>
-<pre><code>   Valid     Error     Empty
-
-   salary:   99% valid   0% error   1% empty      <span class="c">the two blanks</span>
-   age:     100% valid   0% error   0% empty      <span class="c">rounds up - there is 1</span></code></pre>
-
-   <div class="warn"><b>The rounding is worth naming.</b> One null in 200 rows rounds to 0% or 1%
-   depending on the column, so <b>a percentage can hide a single bad row.</b> Click the column and read
-   <b>Column profile</b> at the bottom for the actual count. Percentages are for scanning; counts are
-   for deciding.</div>
-
-   <div class="warn"><b>And the one that will embarrass somebody in a job.</b> At the bottom left it
-   says <b>&ldquo;Column profiling based on top 1000 rows&rdquo;</b>. Click it and switch to <b>based
-   on entire data set</b>. Our file has 200 rows so it changes nothing today &mdash; on a hundred
-   thousand rows it is the difference between a real profile and a guess.</div>
+   <div class="warn"><b>Age is 4, not 3.</b> The values appearing exactly once are &minus;4, 32, 210
+   <b>and the null</b>. By the rule you just put on the board, the blank counts &mdash; and it is
+   worth catching out loud, because it is the first place the rule bites.</div>
   </div>
 
-  <!-- 32-44 -->
+  <!-- 7 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">32 &ndash; 44</span><h3>The primary key test</h3></div>
-   <p class="objective">Twelve minutes, and it connects straight to their SQL module.</p>
+   <div class="bhead"><span class="clock">7</span><h3>Read three columns out loud</h3></div>
 
-   <div class="speak">
-    <p>You have spent a whole module joining tables in SQL. Every one of those joins was on a key.</p>
-    <p><b>This is how you find out whether a column can be a key</b>, before you join on it and get
-    quietly wrong answers.</p>
-   </div>
-
-   <div class="typeit">The test, on the board</div>
-<pre><code>  a column can identify a row only if:
-
-     distinct  =  unique  =  the number of rows
-     AND
-     there are no nulls
-
-  both halves. not one.</code></pre>
-
-   <div class="typeit">Check four columns against it</div>
-<pre><code>  column        distinct  unique  nulls   verdict
-
-  emp_id            200     200      0    KEY
-  name              129      77      0    no - names repeat
-  salary            198     198      2    no - and look closely
-  height_cm         146     108      0    no - not close</code></pre>
-
-   <div class="qbox">
-    <div class="q">&ldquo;Look at <code>salary</code>. Every single value is different. Why is it not a
-    key?&rdquo;</div>
-    <div class="a"><b>The two nulls.</b> It passes the first half of the test perfectly and fails the
-    second. <b>All different is not enough</b> &mdash; if you joined on salary, two rows would both be
-    &ldquo;the one with no salary&rdquo;. <b>This is the one to dwell on.</b></div>
+   <div class="mth">
+    <h6>The same two numbers, three different stories</h6>
+    <div class="mrow"><b>name &mdash; 129 / 77</b><div>200 employees, only <b>129 different names</b>,
+    and only 77 that appear once. Names repeat. <b>A name cannot identify an employee</b></div></div>
+    <div class="mrow"><b>department &mdash; 4 / 0</b><div>Four values, <b>not one of them appears
+    once</b>. That is the signature of a <b>category</b>, not an identifier</div></div>
+    <div class="mrow"><b>emp_id &mdash; 200 / 200</b><div>200 rows, 200 different values, every one
+    appearing once. <b>That is what an identifier looks like</b></div></div>
    </div>
 
    <div class="speak">
-    <p>One hundred and ninety-eight distinct, one hundred and ninety-eight unique. Every value in that
-    column is different from every other.</p>
-    <p>And it is still useless as a key, because <b>two rows have no value at all.</b></p>
-    <p>That is why the test has two halves. <b>All different is not enough.</b></p>
-   </div>
-
-   <div class="keyline">
-    <b>And the one that is genuinely surprising.</b><br><br>
-    Most people, handed an employee file, would say the name identifies the person. <b>129 and 77 says
-    it does not</b> &mdash; and you can see that in two seconds, without scrolling, without sorting,
-    without a <code>COUNTIF</code>.
+    <p>Ask which of the three you could safely join another table on. They will get it from the
+    numbers alone, which is exactly the skill.</p>
    </div>
   </div>
 
-  <!-- 44-62 -->
+  <!-- 8 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">44 &ndash; 62</span><h3>Cleaning with steps, and deleting one</h3></div>
-   <p class="objective">The heart of the session. Eighteen minutes, and the delete is the moment.</p>
+   <div class="bhead"><span class="clock">8</span><h3>Column quality, and why the percentage lies</h3></div>
 
-   <div class="stage">Everything here has a day-2 equivalent. <b>Name the equivalent each time</b>
-   &mdash; it is what makes the session feel like an upgrade rather than a restart.</div>
-
-   <div class="speak">
-    <p>Now we clean, and I want you to watch the right-hand panel more than the data.</p>
-    <p>First job: our file has two blank salaries and one blank age. In this window they show as
-    <b>null</b>, in italics. That is what a blank Excel cell looks like in here.</p>
-   </div>
-
-   <div class="typeit">Right-click the <b>age</b> column header</div>
-<pre><code>  Remove Columns  ->  no, not that
-
-  instead: click the column, then
-  Home  ->  Remove Rows  ->  Remove Blank Rows        <span class="c">careful - whole rows</span></code></pre>
+<pre><code>salary    99.0% valid    0% error    1.0% empty
+age       99.5% valid    0% error    0.5% empty</code></pre>
 
    <div class="speak">
-    <p>Actually, stop. Before we remove anything, look at what that would do.</p>
-    <p><b>Remove Blank Rows takes out the entire row</b>, not the blank cell. One missing age and we
-    lose everything else we know about that person &mdash; their salary, their department, their
-    rating.</p>
+    <p>Age is one blank in two hundred. That is <b>half a percent</b>, and depending on rounding the
+    bar may simply show <b>100% valid</b> &mdash; a column with a real gap in it, reported as
+    perfect.</p>
    </div>
 
-   <div class="qbox">
-    <div class="q">&ldquo;Is that what we want?&rdquo;</div>
-    <div class="a"><b>Almost never.</b> Same decision as day 1 with the blank salaries &mdash; a blank
-    means <em>we do not know</em>, and throwing the row away loses eleven things you did know. <b>Do it
-    anyway, so they see it, then undo it.</b></div>
-   </div>
+   <div class="keyline"><b>Percentages are for scanning. Counts are for deciding.</b> Click the column
+   and read the actual number before you act on it.</div>
 
-   <div class="typeit">Do it, look, then undo it</div>
-<pre><code>  click the age column, Home -> Remove Rows -> Remove Blank Rows
-
-     APPLIED STEPS                      row count drops 200 -> 199
-       Source
-       Changed Type
-       Removed Blank Rows      <-- a new step, and it is NAMED
-
-  now click the X beside "Removed Blank Rows"</code></pre>
-   <div class="screen">200 rows again. the person is back.</div>
-
-   <div class="speak">
-    <p>The row came back.</p>
-    <p>Think about what just happened. In the normal Excel window, deleting a row is <b>gone</b>
-    &mdash; you have <code>Ctrl</code>+<code>Z</code> for about as long as the file is open, and after
-    that it is in a backup or nowhere.</p>
-    <p>Here, the delete was <b>a step in a list</b>, and removing the step removed the delete.</p>
-   </div>
-
-   <div class="keyline">
-    <b>This is why people trust Power Query.</b><br><br>
-    Nothing you do here destroys anything. The original table is untouched and every change is an
-    instruction sitting in a list. <b>Delete the instruction and the change never happened.</b><br><br>
-    Compare day 2, where Text to Columns silently overwrote the column next door and the only
-    protection was a backup copy you remembered to make.
-   </div>
-
-   <div class="stage">Now three real cleaning steps, fast. <b>Name the day-2 equivalent for each
-   one.</b></div>
-
-   <div class="typeit">Three steps, and the Applied Steps list after each</div>
-<pre><code>1. select the name column
-   Transform -> Format -> Trim                      <span class="c">= TRIM, day 2</span>
-       step appears: "Trimmed Text"
-
-2. select the department column
-   Transform -> Replace Values -> find HR, replace with Human Resources
-       step appears: "Replaced Value"               <span class="c">= Find &amp; Replace, day 2</span>
-
-3. select the name column
-   Add Column -> Extract -> Text Before Delimiter -> type a space
-       step appears: "Inserted Text Before Delimiter"
-                                                    <span class="c">= day 7's FIND formula,</span>
-                                                    <span class="c">   without the formula</span></code></pre>
-
-   <div class="speak">
-    <p>Look at step three. On Thursday you wrote
-    <code>=LEFT(C2, FIND(" ", C2) - 1)</code> and I made you read it inside out.</p>
-    <p>Here it is two clicks and a space. <b>Same answer, no formula.</b></p>
-   </div>
-
-   <div class="qbox">
-    <div class="q">&ldquo;So was Thursday a waste of time?&rdquo;</div>
-    <div class="a"><b>No &mdash; and the answer is the same as pivot tables on day 5.</b> You know what
-    those two clicks are doing. If the column comes out wrong you can work out why, and if you are in a
-    formula-only file you can still write it. <b>People who only know the button cannot tell when the
-    button is wrong.</b></div>
-   </div>
-
-   <div class="warn"><b>Transform against Add Column, and it catches everybody.</b> The
-   <b>Transform</b> tab changes the column <b>in place</b>. The <b>Add Column</b> tab does the same
-   thing into a <b>new column</b> and keeps the original. The step names tell you which you used
-   &mdash; <code>Trimmed Text</code> against <code>Inserted Trimmed Text</code>. <b>If a column vanished
-   when you meant to add one, you were on the wrong tab.</b></div>
-
-   <div class="speak">
-    <p>One last thing about the list. <b>Click on step two and look at the data.</b> You are seeing the
-    table as it was before steps three and four happened.</p>
-    <p>You can click any step and see the table at that moment. <b>It is a history you can walk
-    through</b>, which is something no amount of Ctrl+Z gives you.</p>
-   </div>
+   <div class="warn"><b>And check what the profiler is even looking at.</b> By default it profiles the
+   <b>top 1,000 rows</b>. On this file that is all 200, so it does not matter today &mdash; on a
+   100,000-row file it would be a guess. Switch it to <b>Column profiling based on entire data
+   set</b> at the bottom of the window.</div>
   </div>
 
-  <!-- 62-78 -->
+  <!-- 9 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">62 &ndash; 78</span><h3>Group By &mdash; the fifth way to the same answer</h3></div>
-   <p class="objective">Sixteen minutes. They have four ways to this answer already and should be
-   told so.</p>
-
-   <div class="speak">
-    <p>One more operation, and you already know what it does four different ways.</p>
-    <p>I want the number of people and the total salary, per department.</p>
-   </div>
+   <div class="bhead"><span class="clock">9</span><h3>The primary key test</h3></div>
 
    <div class="qbox">
-    <div class="q">&ldquo;Name every way you could already get that.&rdquo;</div>
-    <div class="a"><b>Day 3</b> &mdash; <code>COUNTIF</code> and <code>SUMIF</code>, four formulas each.
-    <b>Day 5</b> &mdash; a pivot table, drag two fields. <b>SQL</b> &mdash;
-    <code>GROUP BY department</code>. <b>Pandas</b> &mdash;
-    <code>df.groupby("department")</code>. <b>Take all four from the room.</b></div>
+    <div class="q">&ldquo;In SQL, what did you join two tables on?&rdquo;</div>
    </div>
 
    <div class="speak">
-    <p>Four ways already, and here is the fifth. It is called <b>Group By</b>, which is the same name
-    SQL uses, because it is the same operation.</p>
-   </div>
-
-   <div class="typeit">Select the department column, then Transform &rarr; Group By</div>
-<pre><code>  Group by:          department
-
-  New column name:   headcount
-  Operation:         Count Rows
-
-  then click "Advanced" to add a second one:
-
-  New column name:   total salary
-  Operation:         Sum
-  Column:            salary</code></pre>
-   <div class="screen">department     headcount   total salary
-Sales                 64        4264991
-Tech                  49        9108170
-HR                    45        2495026
-Marketing             42        3106086</div>
-
-   <div class="speak">
-    <p>Four rows. Same four numbers you got with <code>COUNTIF</code> on day three and with a pivot on
-    day five.</p>
-    <p>And notice <b>Count Rows</b> rather than counting a column. It counts rows, so it does not care
-    about the blank salaries &mdash; Tech is 49 here. The <b>Sum</b> skips them, which is why the total
-    is over 48 salaries, not 49.</p>
-   </div>
-
-   <div class="warn"><b>And the thing Group By does that the others do not.</b> It <b>replaces</b> your
-   table. The 200 rows are gone and you have four. That is right if the summary is what you want, and
-   wrong if you still need the detail. <b>Right-click the query in the left-hand pane and choose
-   Reference or Duplicate first</b> if you need both.</div>
-
-   <div class="speak">
-    <p>Which is the real difference from a pivot table. A pivot <b>sits beside</b> your data and leaves
-    it alone. Group By <b>becomes</b> your data.</p>
-   </div>
-
-   <div class="stage">Now load it, and show that the sheet is untouched.</div>
-
-   <div class="typeit">Home &rarr; Close &amp; Load</div>
-<pre><code>  Close &amp; Load            puts the result on a NEW SHEET
-  Close &amp; Load To...      lets you choose: sheet, pivot table, or
-                          connection only (load nothing, just keep the query)</code></pre>
-
-   <div class="speak">
-    <p>A new sheet with four rows. And your original 200-row sheet is <b>exactly as it was</b>.</p>
-    <p>Power Query never edited your data. It read it, worked out what you wanted, and wrote the answer
-    somewhere else.</p>
-   </div>
-
-   <div class="qbox">
-    <div class="q">&ldquo;Now go back in. Right-click the result table &rarr; Table &rarr; Edit
-    Query.&rdquo;</div>
-    <div class="a">The editor opens with <b>every step still listed</b>. That is the whole point &mdash;
-    the work is saved, not just the answer. <b>Next month's file goes through the same list in the same
-    order.</b></div>
-   </div>
-  </div>
-
-  <!-- 78-86 -->
-  <div class="blk">
-   <div class="bhead"><span class="clock">78 &ndash; 86</span><h3>Their turn</h3></div>
-   <p class="objective">Eight minutes. One query, start to finish.</p>
-
-   <div class="stage">Put it on the board and walk the room. <b>The thing to check over shoulders is
-   whether they are on Transform or Add Column.</b></div>
-
-   <div class="speak">
-    <p>One query, from scratch, and load it to a new sheet.</p>
+    <p>A key. So: <b>before you join anything, how do you know a column can actually identify one
+    row?</b> This is the test, and it is two conditions, not one.</p>
    </div>
 
    <div class="typeit">On the board</div>
-<pre><code>  from employees, produce ONE table showing, per city:
+<pre><code>        distinct  =  unique  =  number of rows
 
-      how many people
-      their average salary
+                        AND
 
-  and before you build it, answer from the profiler:
-      is "city" a column you could join on?  why or why not?</code></pre>
+                    NO NULLS</code></pre>
+  </div>
 
-   <div class="typeit">The answer</div>
-<pre><code>  Group by city | Count Rows | Average of salary
+  <!-- 10 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">10</span><h3>Run the test three times</h3></div>
 
-      Chennai      61     <span class="o">156864.75</span>   <span class="c">&lt;-- look at this one</span>
-      Bangalore    54      68355.41
-      Hyderabad    48      71412.88
-      Pune         37      67871.61
-                  ---
-                  200
+<pre><code>emp_id      distinct 200    unique 200    nulls 0    rows 200
+            200 = 200 = 200, no nulls                 -&gt;  KEY
 
-  and the profiler question:
-      city = 4 distinct, 0 unique.  NOT a key.
-      it is a CATEGORY - four values, every one repeated.
-      you join TO a city table ON city, you do not join city to
-      employees expecting one row back.</code></pre>
+name        distinct 129    unique  77    nulls 0    rows 200
+            129 is not 77 is not 200                  -&gt;  not a key
 
-   <div class="qbox">
-    <div class="q">&ldquo;Do your four counts add to two hundred?&rdquo;</div>
-    <div class="a">61 + 54 + 48 + 37 = <b>200</b>. <b>Same check as every session since day
-    three.</b> If it does not, a step earlier in the list dropped rows.</div>
+salary      distinct 199    unique 198    nulls 2    rows 200
+            almost every salary is different ...      -&gt;  not a key</code></pre>
+
+   <div class="speak">
+    <p>Salary is the interesting one, so slow down. A hundred and ninety-eight different values, each
+    appearing exactly once. It <b>looks</b> like it could identify somebody.</p>
+    <p>It fails on the second condition. <b>Two people have no salary at all</b>, and you cannot
+    identify a row by a value it does not have.</p>
    </div>
 
-   <div class="qbox">
-    <div class="q">&ldquo;Chennai averages one lakh fifty-six thousand and the other three are around
-    seventy. Why?&rdquo;</div>
-    <div class="a"><b>She lives in Chennai.</b> Lakshmi Kumar, row 5, 52 lakh. <b>Eighth session, and
-    she has now broken a department average, a pivot, a bonus bill and a city average.</b> If the room
-    spots this without prompting, the module has worked.</div>
+   <div class="keyline"><b>All values being different is not enough.</b> A key needs all different
+   <b>and</b> no missing values. 198 unique with 2 nulls is still not a key.</div>
+  </div>
+
+  <!-- 11 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">11</span><h3>Now clean &mdash; and watch the right-hand panel</h3></div>
+
+   <div class="speak">
+    <p>From here on, every single thing they do appears in <b>Applied Steps</b>. Tell them to watch it
+    rather than the data.</p>
    </div>
 
-   <div class="keyline">
-    <b>A new tool, a new grouping, and the same one person distorting it.</b><br><br>
-    Power Query did not warn you either. <b>No tool in this module has ever warned you</b> &mdash; you
-    caught it because you know this file and you looked at the number before you reported it.
+   <div class="stage">Age has one blank. Power Query shows a blank as <code>null</code>.</div>
+
+   <div class="typeit">Filter it out &mdash; click the arrow on the age column and untick null</div>
+<pre><code>Applied Steps
+
+Source
+Changed Type
+Filtered Rows          &lt;-- new
+
+rows:  200  ->  199</code></pre>
+
+   <div class="warn"><b>A correction worth knowing before you teach it.</b>
+   <code>Home &gt; Remove Rows &gt; Remove Blank Rows</code> removes rows where <b>every</b> cell is
+   empty &mdash; so on this file it removes <b>nothing</b> and the count stays at 200. To drop the row
+   with the missing age you <b>filter the column</b> and untick <code>null</code>, which is what
+   produces the step above.</div>
+  </div>
+
+  <!-- 12 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">12</span><h3>What you just threw away</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;One value was missing. How many did we delete?&rdquo;</div>
+   </div>
+
+<pre><code>age         null        &lt;-- the only thing we did not know
+salary      60,000
+department  Tech
+rating      Good
+name        ...
+city        ...</code></pre>
+
+   <div class="speak">
+    <p>Everything on that row is gone, and we knew all of it. <b>Removing a whole row because one
+    cell is blank is almost always too aggressive</b> &mdash; which is the same judgement they met in
+    pandas with <code>dropna</code>.</p>
    </div>
   </div>
 
-  <!-- 86-90 -->
+  <!-- 13 -->
   <div class="blk">
-   <div class="bhead"><span class="clock">86 &ndash; 90</span><h3>Close</h3></div>
+   <div class="bhead"><span class="clock">13</span><h3>Undo it, and watch what undo means here</h3></div>
 
-   <div class="typeit">The five lines. If everything else goes, keep these.</div>
-<pre><code>1.  Data -> Get &amp; Transform -> From Table/Range
+   <div class="speak">
+    <p>Click the <b>X</b> beside <code>Filtered Rows</code>.</p>
+   </div>
+
+<pre><code>rows:  199  ->  200</code></pre>
+
+   <div class="speak">
+    <p>The row is back. Not recovered, not pasted &mdash; it was never actually deleted.</p>
+   </div>
+
+   <div class="mth">
+    <h6>The difference, stated properly</h6>
+    <div class="mrow"><b>On the sheet</b><div>Delete a row and the row is <b>gone</b>. You are relying
+    on Ctrl+Z and on it still being in the undo history</div></div>
+    <div class="mrow"><b>In Power Query</b><div>The deletion is an <b>instruction</b> in a list. Remove
+    the instruction and the deletion never happened</div></div>
+   </div>
+
+   <div class="keyline"><b>Power Query does not change your data. It keeps a list of instructions for
+   transforming it.</b> That one sentence is the session.</div>
+  </div>
+
+  <!-- 14 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">14</span><h3>Three real clean-ups</h3></div>
+
+   <div class="mth">
+    <h6>Each one appears as a named step</h6>
+    <div class="mrow"><b>Trim</b><div>Select <code>name</code> &rarr; <code>Transform &gt; Format &gt;
+    Trim</code>. Step: <b>Trimmed Text</b>. This is day 7's <code>=TRIM()</code></div></div>
+    <div class="mrow"><b>Replace</b><div>Select <code>department</code> &rarr; <code>Transform &gt;
+    Replace Values</code>, HR &rarr; Human Resources. Step: <b>Replaced Value</b>. This is day 2's
+    Find &amp; Replace</div></div>
+    <div class="mrow"><b>Extract</b><div>Select <code>name</code> &rarr; <code>Add Column &gt; Extract
+    &gt; Text Before Delimiter</code>, delimiter a space. This is day 7's
+    <code>=LEFT(C2,FIND(" ",C2)-1)</code></div></div>
+   </div>
+
+   <div class="speak">
+    <p>Say what that list actually shows: <b>three formulas they wrote by hand are now three menu
+    clicks</b> &mdash; and unlike the formulas, these are written down in order.</p>
+   </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">15</span><h3>Transform or Add Column</h3></div>
+
+<pre><code>TRANSFORM     changes the EXISTING column
+ADD COLUMN    creates a NEW one, original untouched</code></pre>
+
+   <div class="warn"><b>This is the most common confusion in the window.</b> If somebody expected a new
+   column and their original has vanished, they used <b>Transform</b> when they wanted <b>Add
+   Column</b>. The fix is one click on the X &mdash; which is the point of the last section.</div>
+  </div>
+
+  <!-- 16 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">16</span><h3>Walk backwards through it</h3></div>
+
+   <div class="speak">
+    <p>Click <code>Trimmed Text</code>. The grid shows the data <b>at that moment</b>. Click the next
+    step and the next transformation appears.</p>
+    <p>So Applied Steps is not a log of what happened &mdash; it is <b>the process itself</b>, and you
+    can stand at any point in it.</p>
+   </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">17</span><h3>Group By &mdash; the fifth route to the same answer</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Headcount and total salary per department. How could you already do
+    this?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>Let them list it. They have four answers already:</p>
+   </div>
+
+<pre><code>Excel day 3        COUNTIF + SUMIF
+Excel day 5        pivot table
+SQL                GROUP BY department
+pandas             df.groupby("department")
+
+today              Power Query  >  Group By        the fifth</code></pre>
+
+   <div class="keyline"><b>The tool keeps changing. The operation does not.</b> That is worth saying
+   every time one of these appears.</div>
+  </div>
+
+  <!-- 18 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">18</span><h3>Build it</h3></div>
+
+   <div class="typeit">Select <code>department</code>, then Transform &gt; Group By &gt; Advanced</div>
+<pre><code>Group by          department
+
+new column        headcount        operation  Count Rows
+new column        total salary     operation  Sum          column  salary</code></pre>
+
+<pre><code>Department    Headcount    Total Salary
+
+Sales             64         4,264,991
+Tech              49         9,108,170
+HR                45         2,495,026
+Marketing         42         3,106,086</code></pre>
+
+   <div class="speak">
+    <p>And the check they have taken all module: <b>64 + 49 + 45 + 42 = 200.</b></p>
+   </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">19</span><h3>Why Count Rows and not Count of salary</h3></div>
+
+   <div class="speak">
+    <p>Ask it directly, because they have been bitten by this three times now.</p>
+    <p>Tech has <b>49 employees</b>. One of them has no salary. Count the salary column and you get
+    <b>48</b> &mdash; and <b>the person still exists.</b> Only the number is missing.</p>
+   </div>
+
+   <div class="keyline"><b>Count Rows counts people. Count of a column counts values.</b> The same
+   49-against-48 gap appeared in the pivot table and in pandas <code>groupby</code>.</div>
+  </div>
+
+  <!-- 20 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">20</span><h3>Group By eats the table</h3></div>
+
+<pre><code>before    200 rows, 12 columns
+after       4 rows,  3 columns</code></pre>
+
+   <div class="speak">
+    <p>The 200 rows are not hidden. For this query they are <b>gone</b> &mdash; Group By replaces the
+    table with the grouped result.</p>
+    <p>So if the detail is still needed: <b>Reference or Duplicate the query first</b>, and group the
+    copy.</p>
+   </div>
+
+   <div class="mth">
+    <h6>Pivot table and Group By are not the same shape</h6>
+    <div class="mrow"><b>Pivot table</b><div>The summary sits <b>beside</b> the data. The 200 rows are
+    still there on their sheet</div></div>
+    <div class="mrow"><b>Group By</b><div>The query <b>becomes</b> the summary. Nothing sits beside
+    it</div></div>
+   </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">21</span><h3>Close &amp; Load, then open it again</h3></div>
+
+<pre><code>Home  &gt;  Close &amp; Load</code></pre>
+
+   <div class="speak">
+    <p>The result lands on a <b>new sheet</b>. The original 200-row sheet is untouched &mdash; worth
+    pointing at, because they have been nervous about that for twenty minutes.</p>
+    <p>Now right-click the result and choose <code>Table &gt; Edit Query</code>. The editor reopens
+    and <b>every Applied Step is still there.</b></p>
+   </div>
+
+   <div class="keyline"><b>The work was saved, not just the answer.</b> Next month's file runs through
+   the same steps, and nobody has to remember anything.</div>
+  </div>
+
+  <!-- 22 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">22</span><h3>Their turn</h3></div>
+
+   <div class="typeit">On the board</div>
+<pre><code>FROM EMPLOYEES, BUILD ONE TABLE SHOWING, PER CITY
+
+   1.  number of people
+   2.  average salary
+
+AND BEFORE YOU BUILD IT:
+   is city a column you could use as a key?  why or why not?</code></pre>
+
+   <div class="speak">
+    <p>The second question is the real one, and it takes five seconds with the profiler open.</p>
+   </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">23</span><h3>The answer</h3></div>
+
+<pre><code>Transform  >  Group By      city
+
+   headcount        Count Rows
+   average salary   Average      salary</code></pre>
+
+<pre><code>City          Employees    Average Salary
+
+Chennai           61        1,56,864.75
+Bangalore         54           68,355.41
+Hyderabad         48           71,412.88
+Pune              37           67,871.61
+                 ---
+                 200</code></pre>
+
+   <div class="speak">
+    <p>And on the key question: city is <b>4 distinct, 0 unique</b>. Distinct is not unique, and
+    neither is 200. <b>City is a category, not a key</b> &mdash; many employees share one.</p>
+    <p>61 + 54 + 48 + 37 = <b>200</b>. If it had not, something earlier in the step list dropped
+    rows.</p>
+   </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">24</span><h3>Chennai</h3></div>
+
+   <div class="qbox">
+    <div class="q">&ldquo;Why is Chennai one lakh fifty-six, when everywhere else is sixty-eight to
+    seventy-one?&rdquo;</div>
+   </div>
+
+   <div class="speak">
+    <p>They know. <b>&#8377;52,00,000</b>, and by now they know his name &mdash; <b>Lakshmi
+    Kumar</b>, Tech, and as it turns out, Chennai.</p>
+    <p>Then the part that matters. <b>Power Query did not warn us.</b> No tool in eight sessions has
+    ever warned us. It came out because somebody knew the file, looked at the result, and
+    questioned a number that did not fit.</p>
+   </div>
+
+   <div class="keyline"><b>Tools calculate. Analysts interpret.</b></div>
+  </div>
+
+  <!-- 25 -->
+  <div class="blk">
+   <div class="bhead"><span class="clock">25</span><h3>Close &mdash; the five lines, and Thursday</h3></div>
+
+   <div class="typeit">If everything else goes, keep these</div>
+<pre><code>1   Data &gt; Get &amp; Transform &gt; From Table/Range
     SAME EDITOR AS POWER BI. not similar. the same one.
 
-2.  APPLIED STEPS is the product, not a feature.
-    every click becomes a NAMED step. click any step to see the
-    table at that moment. delete a step and the change never happened.
+2   APPLIED STEPS is the product, not a feature.
+    every click becomes a NAMED step.
+    click any step to see the table at that moment.
+    delete a step and the change never happened.
 
-3.  DISTINCT = how many different values
+3   DISTINCT = how many different values
     UNIQUE   = how many appear exactly once
-    null counts as a value in both. distinct >= unique, always.
+    null counts as a value in both.  distinct >= unique, always.
 
-4.  PRIMARY KEY TEST: distinct = unique = row count, AND no nulls.
-      emp_id  200/200/0   -> key
-      name    129/77/0    -> no. 71 people share a name.
-      salary  198/198/2   -> no. all different, still fails.
+4   PRIMARY KEY TEST:  distinct = unique = row count, AND no nulls.
+      emp_id  200/200/0  -> key
+      name    129/ 77/0  -> no. 71 people share a name.
+      salary  199/198/2  -> no. all different, still fails.
 
-5.  GROUP BY = SQL GROUP BY = pandas groupby = day 3's SUMIF
-    = day 5's pivot. fifth route to the same four numbers.
+5   GROUP BY = SQL GROUP BY = pandas groupby = day 3's SUMIF
+             = day 5's pivot table.  the fifth route to the same four numbers.
     but it REPLACES your table. Reference the query first if you
     still need the detail rows.</code></pre>
 
    <div class="speak">
-    <p>Day two cleaned this file faster than today did. <b>And nothing from day two was written
-    down.</b></p>
-    <p>That is the trade. Slower to set up, and then it runs again next month, in order, on a file you
+    <p>Then the honest comparison. <b>Day 2 cleaned this file faster than today did.</b> And nothing
+    from day 2 was written down.</p>
+    <p>That is the trade: slower to set up, and then it runs again next month, in order, on a file you
     have not seen, by somebody who is not you.</p>
-   </div>
-
-   <div class="speak">
-    <p>Thursday we use the other half of this window, and it is the half you already understand.</p>
-    <p><b>Merge</b> joins two tables side by side &mdash; which is a SQL join, with the same six kinds
-    you already know. <b>Append</b> stacks them on top of each other, which is
-    <code>UNION ALL</code>.</p>
-    <p>Then slicers, and a dashboard that somebody else can actually click.</p>
+    <p>Thursday you use <b>the other half of this window</b>, and it is the half they already
+    understand. <b>Merge</b> joins two tables side by side &mdash; a SQL join, with the same kinds
+    they already know. <b>Append</b> stacks them on top of each other, which is
+    <code>UNION ALL</code>. Then slicers, and a dashboard somebody else can actually click.</p>
    </div>
   </div>
- </div>
-</section>
 
-<section class="fog">
- <div class="wrap">
-
-  <div class="runsheet">
- <div class="rs-head">
-  <h4>The session, as a run sheet</h4>
-  <p>Everything in order. Seven steps, every click, every number. If you lose your place, this page
-  alone is enough.</p>
- </div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 12</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">A different window, and why</p>
-   <p class="rs-say"><b>Open on the gap.</b> &ldquo;On day 2 you cleaned this file. <b>Where is the list
-   of what you did?</b>&rdquo; &mdash; there isn't one. Next month: <b>from memory</b>, and a colleague
-   cannot do it at all.</p>
-   <div class="rs-code"><pre><code>click inside the data
-Data -> Get &amp; Transform Data -> From Table/Range
-
-  CHECK the dialog: range $A$1:$L$201, "My table has headers" TICKED
-  (unticked = Column1, Column2, and every later step is unreadable)</code></pre></div>
-   <div class="rs-out">APPLIED STEPS
-  Source
-  Changed Type</div>
-   <div class="rs-board"><b>Two steps already and nobody clicked anything.</b> Source = "I read the
-   table". Changed Type = Excel guessing the column types. <b>Click each one and watch the data.</b>
-   They are stepping through their own work.<br><br>
-   <b>Say it and keep saying it:</b> this window and the Power Query window in <b>Power BI</b> are the
-   same tool. <b>Today and Thursday are that module's first two sessions, taught early.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">12 &ndash; 32</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Profiling &mdash; board first, software second</p>
-   <p class="rs-say"><b>Do NOT open the profiler until the seven-row example is done.</b> The block
-   fails if distinct and unique are muddled.</p>
-   <div class="rs-code"><pre><code>Pune, Delhi, Pune, Goa, null, Delhi, Agra
-
-   DISTINCT = 5     how many DIFFERENT values
-   UNIQUE   = 3     how many appear EXACTLY ONCE  (Goa, null, Agra)
-
-   Pune is distinct but NOT unique.  null counts as a value in both.
-   distinct >= unique, always.</code></pre></div>
-   <div class="rs-board"><b>Make somebody say:</b> &ldquo;Pune is distinct but not unique.&rdquo;</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>View -> [x] Column distribution
-
-  emp_id       200 distinct   200 unique
-  name         <span class="o">129 distinct    77 unique</span>
-  department     4 distinct     0 unique
-  city           4 distinct     0 unique
-  salary       199 distinct   198 unique
-  age           39 distinct     3 unique</code></pre></div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;200 people, 129 names &mdash; what does that mean?&rdquo;
-   <b>Names repeat.</b> 123 rows share a name with somebody. <b>Let them work it out from the two
-   numbers.</b><br><br>
-   <b>department 4/0</b> = the signature of a <b>category</b>. <b>emp_id 200/200</b> = the signature of
-   an <b>identifier</b>. <b>You can tell what a column IS from two numbers.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>Column quality:</b> percentages round &mdash; one
-   null in 200 can show as 0%. <b>Percentages are for scanning, counts are for deciding.</b><br><br>
-   <b>Bottom left:</b> "based on top 1000 rows" &rarr; switch to <b>entire data set</b>. No difference
-   today; on 100,000 rows it is the difference between a profile and a guess.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">32 &ndash; 44</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">The primary key test</p>
-   <p class="rs-say"><b>Connect it to SQL:</b> &ldquo;you spent a module joining tables. Every join was
-   on a key. <b>This is how you find out whether a column can be one</b> &mdash; before you join on it
-   and get quietly wrong answers.&rdquo;</p>
-   <div class="rs-code"><pre><code>  distinct = unique = row count   AND   no nulls      <span class="c">both halves</span>
-
-  emp_id       200  200  0    KEY
-  name         129   77  0    no - names repeat
-  salary       198  198  2    no - and look closely
-  height_cm    146  108  0    no - not close</code></pre></div>
-   <div class="rs-board"><b>Dwell on salary.</b> &ldquo;Every single value is different. Why is it not a
-   key?&rdquo; &mdash; <b>the two nulls.</b> Passes the first half perfectly, fails the second. <b>All
-   different is not enough</b> &mdash; two rows would both be "the one with no salary".</div>
-   <div class="rs-board" style="margin-top:8px"><b>The surprising one:</b> most people handed an
-   employee file would say the <b>name</b> identifies the person. <b>129 and 77 says it does not</b>
-   &mdash; visible in two seconds, no scrolling, no sorting, no COUNTIF.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">44 &ndash; 62</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Cleaning with steps &mdash; and the delete is the moment</p>
-   <p class="rs-say"><b>Watch the right-hand panel more than the data.</b> Blanks show as <b>null</b> in
-   italics here.</p>
-   <div class="rs-code"><pre><code>click the age column
-Home -> Remove Rows -> Remove Blank Rows      200 -> 199
-
-   APPLIED STEPS now has a NAMED step: "Removed Blank Rows"
-
-now click the X beside that step            ->  200 rows. back.</code></pre></div>
-   <div class="rs-board"><b>Ask before doing it:</b> &ldquo;Remove Blank Rows takes the <b>whole
-   row</b>. Is that what we want?&rdquo; &mdash; <b>almost never.</b> One missing age loses the eleven
-   things you did know. <b>Do it anyway so they see it, then undo it.</b><br><br>
-   <b>The point:</b> in normal Excel a delete is gone. Here it was <b>a step in a list</b>, and removing
-   the step removed the delete. <b>Nothing here destroys anything.</b></div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>1. name column      Transform -> Format -> Trim          = TRIM, day 2
-2. department       Transform -> Replace Values          = Find&amp;Replace, day 2
-3. name column      Add Column -> Extract ->
-                    Text Before Delimiter -> a space     = day 7's FIND formula</code></pre></div>
-   <div class="rs-board"><b>Step 3 is the one to stop on.</b> Thursday that was
-   <code>=LEFT(C2, FIND(" ",C2)-1)</code> read inside out. Here it is two clicks.<br><br>
-   <b>Expect:</b> &ldquo;so was Thursday wasted?&rdquo; &mdash; <b>same answer as pivot tables.</b> You
-   know what the clicks do, so you can tell when they are wrong. <b>People who only know the button
-   cannot.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>Transform vs Add Column catches everybody.</b>
-   Transform changes <b>in place</b>; Add Column makes a <b>new column</b>. The step names tell you:
-   <code>Trimmed Text</code> vs <code>Inserted Trimmed Text</code>. <b>Column vanished? Wrong
-   tab.</b><br><br>
-   <b>Finally:</b> click step 2 and look at the data &mdash; <b>a history you can walk through</b>,
-   which no amount of Ctrl+Z gives you.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">62 &ndash; 78</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Group By &mdash; the fifth route to the same answer</p>
-   <p class="rs-say"><b>Ask first:</b> &ldquo;name every way you could already get headcount and total
-   salary per department.&rdquo; <b>Take all four:</b> day 3 COUNTIF/SUMIF &middot; day 5 pivot &middot;
-   SQL GROUP BY &middot; pandas groupby.</p>
-   <div class="rs-code"><pre><code>select department, Transform -> Group By
-
-  Group by          department
-  New column name   headcount      Operation  Count Rows
-  (Advanced)        total salary   Operation  Sum    Column  salary
-
-      Sales      64   4264991
-      Tech       49   9108170
-      HR         45   2495026
-      Marketing  42   3106086</code></pre></div>
-   <div class="rs-board"><b>Count Rows counts rows</b>, so Tech is 49 and the blanks do not matter.
-   <b>Sum skips them</b>, so that total is over 48 salaries, not 49. <b>Same distinction as every
-   session.</b></div>
-   <div class="rs-board" style="margin-top:8px"><b>What Group By does that the others do not: it
-   REPLACES your table.</b> 200 rows gone, four remain. <b>Right-click the query &rarr; Reference or
-   Duplicate first</b> if you need the detail too.<br><br>
-   A pivot <b>sits beside</b> your data. Group By <b>becomes</b> it.</div>
-   <div class="rs-code" style="margin-top:12px"><pre><code>Home -> Close &amp; Load            result on a NEW SHEET, original untouched
-     Close &amp; Load To...          sheet / pivot / connection only
-
-then: right-click the result -> Table -> Edit Query    every step still there</code></pre></div>
-   <div class="rs-board"><b>The work is saved, not just the answer.</b> Next month's file goes through
-   the same list in the same order.</div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">78 &ndash; 86</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Their turn</p>
-   <p class="rs-say"><b>Check over shoulders whether they are on Transform or Add Column.</b> That is
-   the one thing that goes wrong.</p>
-   <div class="rs-code"><pre><code>per city: how many people, and their average salary
-and from the profiler: is "city" a column you could join on?
-
-  Chennai     61   <span class="o">156864.75</span>
-  Bangalore   54    68355.41
-  Hyderabad   48    71412.88
-  Pune        37    67871.61
-             ---
-             200
-
-  city = 4 distinct, 0 unique -> NOT a key. a CATEGORY.</code></pre></div>
-   <div class="rs-board"><b>Ask:</b> &ldquo;Chennai averages 1,56,864 and the rest are around 70,000.
-   Why?&rdquo; &mdash; <b>she lives in Chennai.</b> Lakshmi Kumar, row 5, 52 lakh.<br><br>
-   <b>Eighth session. She has now broken a department average, a pivot, a bonus bill and a city
-   average.</b> If the room spots it unprompted, the module has worked. <b>And Power Query did not warn
-   them either.</b></div>
-  </div></div>
-
- <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">86 &ndash; 90</span></div>
-  <div class="rs-body">
-   <p class="rs-topic">Close</p>
-   <div class="rs-code"><pre><code>1. Data -> Get &amp; Transform -> From Table/Range. SAME EDITOR AS POWER BI.
-2. APPLIED STEPS is the product. named steps, click any one, delete any one.
-3. DISTINCT = different values. UNIQUE = appear exactly once. null counts.
-4. KEY TEST: distinct = unique = rows, AND no nulls.
-   emp_id 200/200/0 key . name 129/77/0 no . salary 198/198/2 no
-5. GROUP BY = SQL = pandas = day 3 SUMIF = day 5 pivot. but it
-   REPLACES your table - Reference the query if you need the detail.</code></pre></div>
-   <div class="rs-board"><b>The honest trade:</b> day 2 cleaned this file faster than today did, <b>and
-   nothing from day 2 was written down</b>. Slower to set up, then it runs again next month, in order,
-   by somebody who is not you.</div>
-   <div class="rs-board" style="margin-top:8px"><b>Set up Thursday:</b> the other half of this window,
-   and the half they already understand. <b>Merge</b> = a SQL join, same six kinds. <b>Append</b> =
-   <code>UNION ALL</code>. Then <b>slicers</b>, and a dashboard somebody else can click.</div>
-  </div></div>
-
-  </div>
- </div>
-</section>
-
-<section class="fog">
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
-  <p class="cap" style="margin-bottom:22px">Thirteen questions, in order. Numbers 3, 6 and 9 are the
-  three that matter. Take each answer from a different person.</p>
-
-  <div class="askq">
-
-   <div class="aq"><div>
-    <q>Where does the Power Query Editor open from, and what else uses the same editor?</q>
-    <div class="ans"><code>Data &rarr; Get &amp; Transform Data &rarr; From Table/Range</code>. And
-    <b>Power BI uses the same one</b> &mdash; not a similar one, the same tool.</div></div></div>
-
-   <div class="aq"><div>
-    <q>What is in the Applied Steps panel, and why does it matter more than the data?</q>
-    <div class="ans">Every action you took, <b>named and in order</b>. It matters because <b>day 2's
-    cleaning was not written down anywhere</b> &mdash; this is.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Define distinct and unique.</q>
-    <div class="ans"><b>Distinct</b> = how many different values. <b>Unique</b> = how many appear
-    exactly once. In Pune, Delhi, Pune, Goa, null, Delhi, Agra: <b>distinct 5, unique
-    3</b>.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Can unique ever be larger than distinct?</q>
-    <div class="ans"><b>No, never.</b> Every unique value is also a distinct value. If you get that
-    result you have swapped the definitions.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Does <code>null</code> count in those two numbers?</q>
-    <div class="ans"><b>Yes</b> &mdash; it is treated as a value like any other in both
-    counts.</div></div></div>
-
-   <div class="aq"><div>
-    <q>What are the two halves of the primary key test?</q>
-    <div class="ans"><b>distinct = unique = the number of rows</b>, <b>and</b> <b>no nulls</b>. Both
-    halves. Not one.</div></div></div>
-
-   <div class="aq"><div>
-    <q><code>salary</code> has 198 distinct and 198 unique. Why is it not a key?</q>
-    <div class="ans"><b>Two nulls.</b> Every value is different, and it still fails, because two rows
-    would both be &ldquo;the one with no salary&rdquo;. <b>All different is not
-    enough.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q><code>name</code> has 129 distinct for 200 rows. What does that tell you?</q>
-    <div class="ans"><b>Names repeat</b> &mdash; only 77 people have a name nobody else has. <b>A name
-    cannot identify a person in this file.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>You deleted some rows, then deleted the step. What happened, and why can normal Excel not do
-    that?</q>
-    <div class="ans"><b>The rows came back.</b> The delete was an <b>instruction in a list</b>, not a
-    change to the data. In the normal window a deleted row is gone once Ctrl+Z runs
-    out.</div></div></div>
-
-   <div class="aq"><div>
-    <q>What is the difference between the Transform tab and the Add Column tab?</q>
-    <div class="ans"><b>Transform changes the column in place. Add Column makes a new one and keeps the
-    original.</b> The step name tells you which:
-    <code>Trimmed&nbsp;Text</code> against <code>Inserted&nbsp;Trimmed&nbsp;Text</code>.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Name four other ways you already knew to get headcount per department.</q>
-    <div class="ans"><code>COUNTIF</code> (day 3), a <b>pivot table</b> (day 5), SQL
-    <code>GROUP BY</code>, and pandas <code>groupby</code>. <b>Group By is the
-    fifth.</b></div></div></div>
-
-   <div class="aq"><div>
-    <q>What does Group By do to your table that a pivot table does not?</q>
-    <div class="ans">It <b>replaces</b> it &mdash; 200 rows become 4. A pivot <b>sits beside</b> your
-    data. <b>Reference or Duplicate the query first</b> if you still need the
-    detail.</div></div></div>
-
-   <div class="aq"><div>
-    <q>Your Chennai average came out at 1,56,864 against about 70,000 everywhere else. What is going
-    on?</q>
-    <div class="ans"><b>Lakshmi Kumar, row 5, 52 lakh, lives in Chennai.</b> Eighth session, and she has
-    now distorted a department average, a pivot, a bonus bill and a city average. <b>Power Query did not
-    warn you either.</b></div></div></div>
-
-  </div>
- </div>
-</section>
-
-<section>
- <div class="wrap">
-  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
-
-  <div class="qa"><h5>&ldquo;Is this Power BI?&rdquo;</h5>
-  <p>&ldquo;It is half of Power BI, inside Excel. The Power Query Editor is where Power BI does all its
-  cleaning and joining, and it is the same window with the same buttons. What Power BI adds on top is the
-  modelling and the visuals. <b>So two of your Power BI sessions are already done.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;What is that code in the formula bar?&rdquo;</h5>
-  <p>&ldquo;It is called M, and every step you click writes a line of it. You can read it, and
-  occasionally you will edit it. <b>You do not need to learn it</b> &mdash; in four years of this work I
-  would expect you to type M by hand perhaps twice. Know it exists so it does not frighten
-  you.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Can I reorder the steps?&rdquo;</h5>
-  <p>&ldquo;Yes &mdash; drag them in the panel. And it matters: trimming before replacing gives a
-  different result from replacing before trimming. <b>If a query stops working after you reorder it, that
-  is a real dependency you have just discovered</b>, not a bug.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Does the query update when the data changes?&rdquo;</h5>
-  <p>&ldquo;Not on its own &mdash; same as a pivot table. <code>Data &rarr; Refresh All</code> runs every
-  query and every pivot in the workbook. <b>Third session running where something does not update
-  itself</b>, so it is worth a habit: refresh on open, refresh after a change, refresh before you send
-  it.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;What is <b>Connection only</b> in Close &amp; Load To?&rdquo;</h5>
-  <p>&ldquo;It keeps the query without writing the result to a sheet. You use it for a table that only
-  exists to be joined to another one &mdash; there is no reason to put a lookup table on a sheet where
-  somebody can edit it. <b>You will use it on Thursday.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Should I clean in Power Query or with formulas?&rdquo;</h5>
-  <p>&ldquo;Formulas for things that belong next to the data and must update the moment a cell changes.
-  Power Query for <b>the same clean-up every month on a new file</b>, for joining and stacking tables,
-  and for anything you have to hand over with the work visible. <b>Most real projects use
-  both.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Why did my column names come out as Column1, Column2?&rdquo;</h5>
-  <p>&ldquo;<b>My table has headers</b> was unticked in the dialog at the start. Excel treated your
-  header row as data. Delete the query and start again with it ticked &mdash; it is faster than fixing
-  it.&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;Is Power Query in Google Sheets?&rdquo;</h5>
-  <p>&ldquo;No. This is the first thing in the module with no Sheets equivalent. If you are on Sheets you
-  would use <code>QUERY()</code> or a script, and neither gives you the Applied Steps list. <b>Worth
-  knowing if a job hands you Sheets rather than Excel.</b>&rdquo;</p></div>
-
-  <div class="qa"><h5>&ldquo;It says my query is slow.&rdquo;</h5>
-  <p>&ldquo;On 200 rows it will not be. On large data the usual cause is doing the filtering late &mdash;
-  if you are going to throw rows away, <b>throw them away in the first step</b>, so every later step has
-  less to work on. That rule carries straight into Power BI.&rdquo;</p></div>
  </div>
 </section>
 </div>
