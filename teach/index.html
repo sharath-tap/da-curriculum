@@ -795,10 +795,10 @@ try{var _t=localStorage.getItem("steep-theme");
     <button class="dcard full" data-go="p2">
      <span class="id">POWER BI 2</span><h3>Delete The Merge. Draw A Line Instead.</h3>
      <p>The first thing Excel genuinely could not do. Throw Wednesday's merge away, build a
-     <b>relationship</b> in Model view, and the 42 Marketing employees return on their own as a row
-     labelled <code>blank</code> &mdash; <b>21% of the company with no floor</b>. Then one duplicate
-     lookup row takes headcount from 200 to <b>264</b>.</p>
-     <span class="foot">Full script &middot; 16 steps &middot; fact, dimension, cardinality</span></button>
+     <b>relationship</b> in Model view, and the 42 Marketing employees come back on their own as a row
+     with <b>no label at all</b> &mdash; <b>21% of the company with no floor</b>. Then one duplicate
+     lookup row: the merge pays out <b>264</b> in silence, the model <b>refuses to load</b>.</p>
+     <span class="foot">Full script &middot; 16 steps + run sheet &middot; 9 Q&amp;A, 13 viva, homework</span></button>
 
     <button class="dcard full" data-go="p3">
      <span class="id">POWER BI 3</span><h3>Writing The Number That Has No Button</h3>
@@ -27369,11 +27369,19 @@ TECH               average  1,89,754        median   85,486
    land.</b></li>
    <li><b>Deleting twenty minutes of their own work on purpose will make somebody uncomfortable.</b>
    Say out loud that you are doing it deliberately, and why, before you click.</li>
-   <li><b>The <code>blank</code> row is the moment of the session.</b> Do not explain it. Put
-   <code>floor</code> on a matrix, wait, and let somebody in the room ask what blank means.</li>
+   <li><b>The <code>blank</code> row is the moment of the session.</b> Do not explain it. It arrives
+   on its own the first time you put a <code>departments</code> column on a matrix &mdash; that is
+   <b>step 9, not step 10</b>. Click, stop talking, and let somebody in the room ask.</li>
    <li><b>Teach cardinality with the words &ldquo;one&rdquo; and &ldquo;many&rdquo;, not with
    arrows.</b> One department has many employees. The lookup table is always the one side. Getting this
    backwards is the most expensive mistake in the module.</li>
+   <li><b>Load <code>departments</code> with Enable load left ON.</b> On Wednesday you loaded it in
+   Excel as <b>Only Create Connection</b>. The Power BI equivalent is unticking <b>Enable load</b>
+   &mdash; and it would end the session at step 6, because a query that does not load <b>never reaches
+   the model and cannot be joined to</b>.</li>
+   <li><b>The blank row has no label on screen.</b> Power BI shows an <b>empty row heading</b>, not the
+   word &ldquo;blank&rdquo;. Say the word out loud yourself or they will hunt for text that is not
+   there.</li>
    <li><b>Do not say the word DAX.</b> Tomorrow. Today's counts are all drag-and-drop.</li>
   </ol>
 
@@ -27476,9 +27484,11 @@ RELATIONSHIP, today:
    <div class="mth">
     <div class="mrow"><b>in a merge</b><div>Row count jumps. <b>If you check the row count you catch
     it.</b></div></div>
-    <div class="mrow"><b>in a model</b><div>Power BI <b>refuses</b> to make it one-to-many and makes it
-    many-to-many instead, and your totals inflate the same way. <b>Check the cardinality it
-    chose.</b></div></div>
+    <div class="mrow warn2"><b>in a model</b><div>If the line already exists, <b>the refresh fails
+    outright</b> &mdash; Power BI will not load a repeated key on the one side, and <b>that refusal is
+    the tool doing you a favour</b>. Draw the line <em>after</em> the duplicate is there and it settles
+    for <b>many-to-many</b> instead &mdash; no error, and the totals inflate exactly like the
+    merge.</div></div>
    </div>
    <div class="keyline">
     <b>The habit, and it is day 1's primary key test again.</b><br><br>
@@ -27525,10 +27535,19 @@ RELATIONSHIP, today:
   Tech         Arun Menon         4
   HR           Kavita Iyer        1
   Legal        Rohit Desai        3</code></pre>
-   <div class="typeit">Get it in, as a lookup not a table</div>
+   <div class="typeit">Get it in &mdash; and leave the load switched ON</div>
 <pre><code>  Home -> Get data -> the departments sheet -> Transform Data
-  right-click the query -> untick  ENABLE LOAD
-  Close &amp; Apply</code></pre>
+  four rows, nothing to clean
+  Close &amp; Apply
+
+  Data view -> TWO tables in the field list now:
+     employees     200 rows
+     departments     4 rows</code></pre>
+   <div class="warn"><b>The one Excel habit you have to drop here.</b> On Wednesday you loaded this
+   table as <b>Only Create Connection</b> so it never landed on a sheet. The Power BI equivalent is
+   <b>right-click the query &rarr; untick Enable load</b> &mdash; and if you do that today, <b>the
+   table never reaches the model and Model view has nothing to draw a line to</b>. A dimension table
+   has to be loaded. <b>Leave Enable load ticked.</b></div>
    <div class="qbox">
     <div class="q">&ldquo;What is still missing from this table?&rdquo;</div>
     <div class="a"><b>Marketing.</b> And <b>Legal has nobody in it.</b> They found both on Wednesday.
@@ -27626,44 +27645,66 @@ RELATIONSHIP, today:
   </div>
 
   <div class="blk">
-   <div class="bhead"><span class="clock">9</span><h3>Prove the line works</h3></div>
-   <div class="stage">Report view. Matrix visual.</div>
+   <div class="bhead"><span class="clock">9</span><h3>Prove the line works &mdash; then stop talking</h3></div>
+   <div class="stage">Report view. Matrix visual. <b>This is the moment of the session. Say nothing
+   after you click.</b></div>
 <pre><code>  Visualizations -> Matrix
      Rows     head           &lt;-- from DEPARTMENTS
      Values   emp_id (Count) &lt;-- from EMPLOYEES</code></pre>
 <pre><code>  Priya Nair      64
   Arun Menon      49
-  Kavita Iyer     45</code></pre>
+  Kavita Iyer     45
+  <span class="o">                42</span>   &lt;-- a fourth row, with no name at all</code></pre>
    <div class="speak">
-    <p>Look at what just happened. <b>Those two columns are in different tables.</b> There is no merged
-    column anywhere. Nothing was copied.</p>
+    <p>First, the thing that worked. <b>Those two columns live in different tables.</b> There is no
+    merged column anywhere. Nothing was copied.</p>
     <p><b>The line did it.</b> Power BI looked up the department for each employee at the moment the
     visual asked.</p>
+   </div>
+   <div class="stage"><b>Now wait.</b> Do not point at the fourth row. Let them find it.</div>
+   <div class="qbox">
+    <div class="q">&ldquo;Sir, what is that last row with nothing in it?&rdquo;</div>
+    <div class="a"><b>Marketing.</b> Forty-two employees whose department is not in the lookup table, so
+    the relationship has nothing to point at. <b>Power BI gives them a row of their own rather than
+    dropping them</b> &mdash; and it carries no name because there is no department row to take a name
+    from.</div>
+   </div>
+   <div class="warn"><b>It shows as an empty heading, not the word &ldquo;blank&rdquo;.</b> Say the word
+   yourself. Everybody in Power BI calls it <b>the blank row</b>, and in the formula bar tomorrow it
+   genuinely is <code>BLANK()</code> &mdash; but on screen today it is just a gap, and they will go
+   looking for text that is not there.</div>
+   <div class="qbox">
+    <div class="q">&ldquo;And Rohit Desai? He was in the table.&rdquo;</div>
+    <div class="a"><b>Legal &mdash; and he is not on the chart at all.</b> Hold that for ninety seconds.
+    It is the other half of today's lesson.</div>
    </div>
   </div>
 
   <div class="blk">
-   <div class="bhead"><span class="clock">10</span><h3>Now put floor on it, and wait</h3></div>
-   <div class="stage"><b>This is the moment of the session. Say nothing after you click.</b></div>
+   <div class="bhead"><span class="clock">10</span><h3>Swap the column, and prove it is the line</h3></div>
+   <div class="stage">Drag <code>head</code> out of Rows. Drop <code>floor</code> in. <b>Change nothing
+   else.</b></div>
 <pre><code>  Rows     floor
   Values   emp_id (Count)</code></pre>
 <pre><code>  floor      employees
       1             45
       2             64
       4             49
-  <span class="o">blank            42</span></code></pre>
-   <div class="stage"><b>Wait. Let somebody ask.</b></div>
-   <div class="qbox">
-    <div class="q">&ldquo;What is blank?&rdquo;</div>
-    <div class="a"><b>Marketing.</b> Forty-two employees whose department is not in the lookup table, so
-    the relationship has nothing to point at. <b>Power BI puts them in a row called blank rather than
-    dropping them.</b></div>
+  <span class="o">                  42</span>
+
+  and floor 3 does not appear at all.</code></pre>
+   <div class="speak">
+    <p>Different column. <b>Same forty-two.</b></p>
+    <p>So the blank row is not something about <code>head</code>. <b>It is about the relationship</b>
+    &mdash; and it will turn up under every single column that table owns.</p>
    </div>
    <div class="qbox">
-    <div class="q">&ldquo;And where is floor 3?&rdquo;</div>
-    <div class="a"><b>Legal.</b> It is in the lookup but no employee works there, so a count of
-    employees has nothing to show for it. <b>It is simply absent.</b></div>
+    <div class="q">&ldquo;So where is floor 3?&rdquo;</div>
+    <div class="a"><b>Legal.</b> It is in the lookup, but <b>no employee works there</b>, so a count of
+    employees has nothing to show for it. <b>It is simply absent</b> &mdash; no row, no zero, no
+    warning.</div>
    </div>
+   <div class="stage">Board, two words, and leave them up: <b>the 42 shout. Legal is silent.</b></div>
   </div>
 
   <div class="blk">
@@ -27680,12 +27721,29 @@ RELATIONSHIP, today:
     question.</b> Here the answer arrived whether you wanted it or not. <b>That is the model earning its
     keep.</b>
    </div>
-   <div class="stage">Then the other direction, and be honest that it is worse.</div>
+   <div class="stage">Now name the one they have already noticed is missing.</div>
    <div class="speak">
-    <p>The <b>right anti join</b> &mdash; Legal, the department with nobody in it &mdash; is
-    <b>invisible</b> on that chart. No blank row. No warning. It just is not there.</p>
-    <p><b>A missing row is much harder to notice than a wrong one.</b> If you need to know which
-    departments have nobody, you still have to go and ask.</p>
+    <p>Floor 3. Legal. The department with nobody in it. That is the <b>right anti join</b> &mdash; and
+    on this chart it is <b>invisible</b>. No row. No zero. No warning. It just is not there.</p>
+    <p><b>A missing row is much harder to notice than a wrong one.</b> The forty-two arrived uninvited.
+    Legal you have to go and ask for.</p>
+   </div>
+   <div class="typeit">And there is a tickbox for it &mdash; today, with no DAX</div>
+<pre><code>  right-click  floor  in the Rows well
+     -> Show items with no data
+
+  floor      employees
+      1             45
+      2             64
+      <span class="o">3</span>                      &lt;-- Legal, finally visible
+      4             49
+                    42</code></pre>
+   <div class="keyline">
+    <b>That is the right anti join, on screen, and it was one click away the whole time.</b><br><br>
+    <b>It is off by default</b> &mdash; which is the whole problem. <b>The setting that hides your
+    missing rows is the setting nobody ever changes.</b> If the option is greyed out, it is because the
+    field well does not support it for that visual; put the column on a <b>table</b> visual instead and
+    it will be there.
    </div>
   </div>
 
@@ -27733,35 +27791,50 @@ RELATIONSHIP, today:
   </div>
 
   <div class="blk">
-   <div class="bhead"><span class="clock">14</span><h3>The duplicate that inflates everything</h3></div>
-   <div class="stage"><b>Do this live.</b> Add a second Sales row to the departments table and refresh.</div>
+   <div class="bhead"><span class="clock">14</span><h3>The duplicate Excel swallowed and Power BI refuses</h3></div>
+   <div class="stage"><b>Do this live.</b> Add a second <code>Sales</code> row to the departments
+   table, save the file, and press <b>Refresh</b>.</div>
 <pre><code>  departments now:
 
      Sales   Priya Nair   2
-     Sales   Priya Nair   2       <-- added by accident
+     Sales   Priya Nair   2       &lt;-- added by accident
      Tech    ...</code></pre>
-   <div class="typeit">Check the relationship</div>
-<pre><code>  Model view -> double-click the line
+   <div class="typeit">Refresh &mdash; and read the error out loud, word for word</div>
+<pre><code>  Home -> Refresh
 
-     Cardinality   Many to many        &lt;-- it changed itself</code></pre>
+  "Column 'department' in Table 'departments' contains a duplicate
+   value 'Sales' and this is not allowed for columns on the one side
+   of a many-to-one relationship."
+
+  the refresh FAILS. nothing loads at all.</code></pre>
    <div class="speak">
-    <p>Power BI could not keep it as one-to-many, because <b>departments is no longer one row per
-    department</b>. So it quietly switched to many-to-many.</p>
+    <p>Read that again, because <b>it is the first time in two modules that a tool has stopped
+    you</b>.</p>
+    <p>You told Power BI that <code>departments</code> holds <b>one row per department</b>. It checked.
+    <b>It is not true any more, so it refused to load the file.</b></p>
    </div>
-<pre><code>  total headcount    200   ->   <span class="o">264</span>
-
-  each of the 64 Sales employees now matches TWO rows.
-  200 + 64 = 264.
-
-  no error. nothing red. the chart just reads high.</code></pre>
+   <div class="keyline">
+    <b>Now put that next to Wednesday.</b><br><br>
+    The same duplicate row, through a <b>merge</b>, gave no error whatsoever. Each of the 64 Sales
+    employees matched two lookup rows and the table quietly became <b>264 rows</b> &mdash; headcount
+    wrong, salary bill 64 salaries too big, <b>nothing red</b>.<br><br>
+    <b>200 + 64 = 264.</b> Same mistake, same arithmetic, two completely different endings. <b>The
+    merge paid out a wrong answer. The model would not start.</b>
+   </div>
+   <div class="warn"><b>One honest caveat, and it matters if you demo this in the other order.</b> The
+   refusal only happens because the line was <em>already</em> there. <b>If the duplicate is in the
+   table before you draw the line</b>, Power BI cannot offer one-to-many at all, so it settles for
+   <b>Many to many</b> &mdash; no error, and the totals then inflate exactly like the merge. <b>So
+   always double-click the line and read the cardinality it chose.</b> &ldquo;Many to many&rdquo; on
+   something you are treating as a lookup means the lookup is broken.</div>
    <div class="keyline">
     <b>And here is day 1's test, doing its second job.</b><br><br>
     <b>Before you join anything to a lookup, check its key is distinct = unique = row count, no
     empties.</b> The exact test you ran on <code>emp_id</code>. <b>A lookup table whose key repeats is
     not a lookup table.</b>
    </div>
-   <div class="stage"><b>Remove the duplicate. Confirm the cardinality goes back to one-to-many and the
-   count goes back to 200</b> before you move on.</div>
+   <div class="stage"><b>Remove the duplicate. Refresh again, confirm it loads, confirm the line reads
+   one-to-many and the count reads 200</b> before you move on.</div>
   </div>
 
   <div class="blk">
@@ -27802,8 +27875,9 @@ RELATIONSHIP, today:
       harder to spot than wrong rows.
 
   4   A LOOKUP WHOSE KEY REPEATS IS NOT A LOOKUP.
-      One duplicate row took headcount from 200 to 264 with no error.
-      Run day 1's key test on every lookup table first.
+      Through a MERGE, one duplicate row took headcount 200 -> 264
+      in silence. Through the MODEL, the refresh refused to run.
+      Run day 1's key test - distinct = unique = row count - first.
 
   5   SAY WHAT THE BLANK MEANS, NOT THAT IT EXISTS.
       "42 employees, 21%, have no floor because Marketing is missing
@@ -27819,6 +27893,310 @@ RELATIONSHIP, today:
    </div>
   </div>
 
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">The whole session on one page</h2>
+  <p class="cap" style="margin-bottom:22px">Eight phases, ninety minutes. If you lose your place, or
+  you are teaching this cold, <b>this block alone is enough</b>.</p>
+
+  <div class="runsheet">
+   <div class="rs-head">
+    <h4>Power BI day 2 &middot; run sheet</h4>
+    <p>Timings are the shape, not a rule. The two that must not be cut are phase 4 and phase 7.</p>
+   </div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">1</span><span class="rs-clock">0 &ndash; 8</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">Say it, then load the lookup</p>
+     <p class="rs-say"><b>Steps 1&ndash;2.</b> Announce that today's work gets deleted on purpose.</p>
+     <div class="rs-code"><pre><code>Get data -> departments sheet -> Close &amp; Apply
+
+  LEAVE  Enable load  TICKED.  unticking it ends the session
+  at phase 3, because the table never reaches the model.</code></pre></div>
+     <div class="rs-board"><b>Ask:</b> &ldquo;what is still missing from this table?&rdquo; &mdash;
+     <b>Marketing is absent, Legal has nobody.</b> They found both on Wednesday. <b>Do not fix
+     either.</b></div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">2</span><span class="rs-clock">8 &ndash; 20</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">Merge one last time, then delete it in front of them</p>
+     <p class="rs-say"><b>Steps 3&ndash;4.</b> Say &ldquo;this is revision&rdquo; and move fast. The
+     order matters &mdash; <b>merge first, delete second</b>.</p>
+     <div class="rs-code"><pre><code>Merge Queries -> Left Outer    "matches 158 of 200 rows"
+expand -> head, floor          200 rows, 42 of them empty
+
+then:  Applied Steps -> X on Merged Queries
+                     -> X on Expanded departments</code></pre></div>
+     <div class="rs-board"><b>Say it out loud before you click the X.</b> Deleting twenty minutes of
+     their own work will make somebody uncomfortable. <b>If you skip straight to the relationship, the
+     point does not land.</b></div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">3</span><span class="rs-clock">20 &ndash; 34</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">Model view, one drag, and the three settings</p>
+     <p class="rs-say"><b>Steps 5&ndash;8.</b> Delete any line Power BI guessed for itself, then let
+     them draw it.</p>
+     <div class="rs-code"><pre><code>drag  departments[department]  onto  employees[department]
+
+double-click the line:
+   Cardinality    One to many   (departments -> employees)
+   Cross filter   Single
+   Make active    yes</code></pre></div>
+     <div class="rs-board"><b>Words, not arrows:</b> &ldquo;one department has many employees.&rdquo;
+     <b>The lookup is always the one side.</b> Filtering flows one way, down from the lookup.
+     <b>Getting this backwards is the most expensive mistake in the module.</b></div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">4</span><span class="rs-clock">34 &ndash; 50</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">The matrix, the fourth row, and the forty-two</p>
+     <p class="rs-say"><b>Steps 9&ndash;11. The peak of the session.</b> Click, then <b>say
+     nothing</b>.</p>
+     <div class="rs-code"><pre><code>Matrix:  Rows  head (DEPARTMENTS) | Values  emp_id Count (EMPLOYEES)
+
+   Priya Nair   64     Arun Menon   49     Kavita Iyer   45
+                42   &lt;-- no label. wait for them to ask.
+
+swap head for floor -> same 42, and floor 3 is missing
+right-click floor -> Show items with no data -> floor 3 appears</code></pre></div>
+     <div class="rs-board"><b>Then name both:</b> the blank row <b>is</b> the left anti join &mdash; the
+     same 42 Marketing people they found with a dropdown on Wednesday, arriving uninvited. Legal is the
+     <b>right anti join, and it is invisible</b>. <b>Missing rows are harder to spot than wrong
+     ones.</b></div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">5</span><span class="rs-clock">50 &ndash; 58</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">Say what the blank means in business words</p>
+     <p class="rs-say"><b>Step 12.</b> Make them write the sentence, not read yours.</p>
+     <div class="rs-code"><pre><code>42 employees - 21% of the company - have no floor recorded,
+because Marketing is missing from the departments table.
+Headcount by floor therefore covers 158 of 200 employees.</code></pre></div>
+     <div class="rs-board"><b>&ldquo;There are 42 blanks&rdquo; is a description, not a finding.</b> One
+     employee in five. <b>Any chart built on floor describes 158 people and calls it everybody</b>
+     &mdash; the sentence has to say so, because the chart will not.</div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">6</span><span class="rs-clock">58 &ndash; 70</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">Fact, dimension, star schema</p>
+     <p class="rs-say"><b>Step 13.</b> Board work. <b>Three words that are on every Power BI job
+     description.</b></p>
+     <div class="rs-code"><pre><code>FACT        employees     200 rows, long and thin, grows monthly
+DIMENSION   departments     4 rows, short and wide, barely changes
+
+one dimension ----> many facts        = the smallest star schema</code></pre></div>
+     <div class="rs-board"><b>Expect the SQL question:</b> &ldquo;is this normalisation?&rdquo; Same
+     instinct, and a star schema <b>deliberately stops short</b> of full normalisation because
+     reporting is faster with fewer joins.</div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">7</span><span class="rs-clock">70 &ndash; 82</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">The duplicate Excel swallowed and Power BI refuses</p>
+     <p class="rs-say"><b>Step 14. Do not cut this.</b> Add a second <code>Sales</code> row, save,
+     Refresh.</p>
+     <div class="rs-code"><pre><code>"Column 'department' in Table 'departments' contains a duplicate
+ value 'Sales' and this is not allowed for columns on the one side
+ of a many-to-one relationship."          -> the refresh FAILS
+
+the SAME duplicate through a MERGE:   200 + 64 = 264 rows, silently</code></pre></div>
+     <div class="rs-board"><b>First time in two modules a tool has stopped them.</b> Then the caveat:
+     if the duplicate is there <b>before</b> the line is drawn, Power BI settles for <b>Many to
+     many</b> and the totals inflate with no error. <b>Always read the cardinality it chose.</b> Remove
+     the duplicate and confirm 200 before moving on.</div>
+    </div></div>
+
+   <div class="rs-step"><div class="rs-when"><span class="rs-n">8</span><span class="rs-clock">82 &ndash; 90</span></div>
+    <div class="rs-body">
+     <p class="rs-topic">When you still merge, and the round-up</p>
+     <p class="rs-say"><b>Steps 15&ndash;16.</b> Five points, then the hook into DAX.</p>
+     <div class="rs-code"><pre><code>MERGE   when you need the value as a REAL COLUMN
+RELATE  when the other table is a LOOKUP you slice by   &lt;-- default
+
+day 3: average salary excluding outliers. one person's share of
+the bill. headcount as a share of the company.  no dropdown
+exists for any of them.</code></pre></div>
+     <div class="rs-board"><b>Interview-ready sentence, make them repeat it:</b> &ldquo;a merge copies
+     columns, a relationship records a rule &mdash; I default to the relationship for
+     lookups.&rdquo;</div>
+    </div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:18px">Questions you will get</h2>
+
+  <div class="qa"><h5>&ldquo;Why is it called a relationship and not a join?&rdquo;</h5>
+  <p>&ldquo;A join is something you <b>run</b> &mdash; it happens once and leaves a table behind. A
+  relationship is something you <b>record</b> &mdash; it sits in the model and gets used again every
+  time a visual is drawn. <b>Same rules, different lifetime.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;If nothing is copied, where does the floor actually come from?&rdquo;</h5>
+  <p>&ldquo;It is fetched at the moment you look. The matrix needs the floor for a Sales employee,
+  Power BI walks the line across to <code>departments</code> and reads it. <b>That lookup happens in
+  memory</b> &mdash; which is the reason the whole model is loaded into memory in the first
+  place.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;What if the two columns have different names?&rdquo;</h5>
+  <p>&ldquo;Makes no difference at all. Names only matter to Power BI's own auto-detect <b>guess</b>.
+  Drag <code>dept</code> onto <code>department</code> and it will join them quite happily. <b>What has
+  to match is the values, not the headings.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I draw two lines between the same two tables?&rdquo;</h5>
+  <p>&ldquo;You can create them, but <b>only one can be active</b>. The others sit there inactive and
+  need a DAX function to switch on for a single calculation. <b>Yes &mdash; but not this
+  week.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Why not just set Cross filter to Both and stop worrying about direction?&rdquo;</h5>
+  <p>&ldquo;Because the moment you have three or four tables, <b>Both</b> can give Power BI two
+  different routes to the same answer. It then either blocks the model or hands you a number you cannot
+  explain. <b>Single is a restriction that keeps the model readable.</b> Switch Both on when you have a
+  reason, never as a default.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;The merge worked. Why is this better?&rdquo;</h5>
+  <p>&ldquo;Three things. <b>The lookup changes in one place.</b> <b>The value is not copied sixty-four
+  times.</b> And <b>the gap announced itself</b> &mdash; the merge hid the same gap as empty cells you
+  only found because you went looking for them.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Is this just VLOOKUP with extra steps?&rdquo;</h5>
+  <p>&ldquo;VLOOKUP copies a value into a cell, once, for one column. A relationship <b>copies
+  nothing</b> and applies to <b>every visual on every page at once</b>. The instinct is the same. The
+  mechanism is not.&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Both tables came out of the same database. Don't they already know each other?&rdquo;</h5>
+  <p>&ldquo;No. <b>Foreign keys do not travel with the data.</b> Power BI guesses from column names and
+  it is your job to confirm the guess. <b>Always open the line and look.</b>&rdquo;</p></div>
+
+  <div class="qa"><h5>&ldquo;Can I just get rid of the blank row?&rdquo;</h5>
+  <p>&ldquo;Not from the model &mdash; <b>it is Power BI telling you the truth</b>. You remove it by
+  fixing the data: put Marketing into the lookup table. <b>If you filter it off the visual instead, the
+  chart quietly starts describing 158 people and calling it the company.</b>&rdquo;</p></div>
+
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Ask them these before they leave</h2>
+  <p class="cap" style="margin-bottom:22px">Thirteen questions. <b>Numbers 3, 5 and 10</b> are the ones
+  that decide whether the session worked.</p>
+
+  <div class="askq">
+
+   <div class="aq"><div>
+    <q>What does a relationship copy?</q>
+    <div class="ans"><b>Nothing at all.</b> It records a rule, and Power BI follows the rule each time a
+    visual asks. <b>The merge is the thing that copies.</b></div></div></div>
+
+   <div class="aq"><div>
+    <q>One department has many employees. Which table goes on the one side?</q>
+    <div class="ans"><b><code>departments</code> &mdash; the lookup.</b> The lookup table is always the
+    one side.</div></div></div>
+
+   <div class="aq"><div>
+    <q>A matrix shows a row with no label and a count of 42. Say what that is in SQL words.</q>
+    <div class="ans"><b>The left anti join.</b> Employees with no matching row in
+    <code>departments</code> &mdash; all 42 of them Marketing.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Legal is in the lookup and has no employees. Where does it appear on a count-of-employees matrix?</q>
+    <div class="ans"><b>Nowhere</b> &mdash; until you right-click the field and tick <b>Show items with
+    no data</b>. That is the right anti join, and it is hidden by default.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Which is harder to spot &mdash; a wrong row or a missing row?</q>
+    <div class="ans"><b>A missing row.</b> A wrong number looks odd and somebody queries it. An absent
+    one looks like nothing at all.</div></div></div>
+
+   <div class="aq"><div>
+    <q>42 of 200 have no floor. Give the percentage, and say what it does to a floor chart.</q>
+    <div class="ans"><b>21%.</b> Every chart built on floor <b>describes 158 people and presents it as
+    everybody</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Cross filter direction is Single. Which way does filtering flow?</q>
+    <div class="ans"><b>From the one side to the many.</b> Pick a department and the employees filter.
+    Pick an employee and the department does not.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Which of your two tables is the fact, and which is the dimension?</q>
+    <div class="ans"><b><code>employees</code> is the fact</b> &mdash; long, thin, grows every month.
+    <b><code>departments</code> is the dimension</b> &mdash; short, wide, barely
+    changes.</div></div></div>
+
+   <div class="aq"><div>
+    <q>Why is it called a star schema?</q>
+    <div class="ans"><b>One fact table in the middle, dimension tables around it.</b> Drawn out, it
+    looks like a star.</div></div></div>
+
+   <div class="aq"><div>
+    <q>You add a duplicate Sales row to departments and refresh. What happens?</q>
+    <div class="ans"><b>The refresh fails.</b> A duplicate value is not allowed on the one side of the
+    relationship, so <b>nothing loads at all</b>.</div></div></div>
+
+   <div class="aq"><div>
+    <q>The same duplicate, through a merge instead. How many rows come back, and why?</q>
+    <div class="ans"><b>264.</b> Each of the 64 Sales employees now matches two lookup rows.
+    <b>200 + 64</b> &mdash; and no error.</div></div></div>
+
+   <div class="aq"><div>
+    <q>A relationship to a lookup table reads &ldquo;Many to many&rdquo;. What has that told you?</q>
+    <div class="ans"><b>The lookup's key repeats.</b> It is not a lookup table yet. Go and fix it before
+    you trust a single total.</div></div></div>
+
+   <div class="aq"><div>
+    <q>When would you still merge instead of drawing a line?</q>
+    <div class="ans">When you need the value as a <b>real column</b> &mdash; to clean it, split it, or
+    build another column out of it.</div></div></div>
+
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Set them this before day 3</h2>
+  <p class="cap" style="margin-bottom:22px">Four tasks on the file they already have. <b>Three of them
+  ask for a prediction before a click</b> &mdash; that is the part that teaches.</p>
+
+  <div class="typeit">Homework &mdash; write the prediction down first, every time</div>
+<pre><code>  1   Add Marketing to departments - floor 6, head: your own name.
+      Refresh. PREDICT what happens to the blank row before you look.
+
+  2   Now delete HR from departments instead. Refresh.
+      PREDICT the blank count before you look. Write the number down.
+
+  3   Put  city  on a matrix with a count of employees.
+      There is no cities table. Explain in one line why there is
+      no blank row this time.
+
+  4   Double-click your relationship. Change Cross filter to Both.
+      Find one number on your report that changes.
+      If nothing changes, say why not.</code></pre>
+
+  <div class="keyline">
+   <b>The answers, for you &mdash; not for the slide.</b><br><br>
+   <b>1.</b> The blank row disappears and <b>floor 6 reads 42</b>. All 200 employees match now, so there
+   is nothing left for Power BI to park.<br><br>
+   <b>2.</b> <b>Blank = 87.</b> The 42 Marketing plus the 45 HR. And <b>floor 1 vanishes from the
+   chart</b> &mdash; HR was floor 1, so the chart loses a row at the same moment it gains 45 to the
+   blank.<br><br>
+   <b>3.</b> Because <code>city</code> is a column of <code>employees</code> itself. <b>No relationship
+   is involved, so there is nothing that can fail to match.</b> The blank row is a symptom of a
+   relationship, not of missing data &mdash; that is the sentence you want back.<br><br>
+   <b>4.</b> <b>Nothing changes, and that is the point.</b> With one fact and one dimension there is
+   only ever one route between them. <b>Direction starts to matter when a second dimension arrives</b>
+   &mdash; which is session 5, the calendar.
+  </div>
  </div>
 </section>
 </div>
