@@ -791,6 +791,22 @@ try{var _t=localStorage.getItem("steep-theme");
      Connections, and the card Excel never made: <b>Tech averages &#8377;1,89,754 and its median is
      &#8377;85,486</b>.</p>
      <span class="foot">Full script &middot; 16 steps &middot; opens the Power BI module</span></button>
+
+    <button class="dcard full" data-go="p2">
+     <span class="id">POWER BI 2</span><h3>Delete The Merge. Draw A Line Instead.</h3>
+     <p>The first thing Excel genuinely could not do. Throw Wednesday's merge away, build a
+     <b>relationship</b> in Model view, and the 42 Marketing employees return on their own as a row
+     labelled <code>blank</code> &mdash; <b>21% of the company with no floor</b>. Then one duplicate
+     lookup row takes headcount from 200 to <b>264</b>.</p>
+     <span class="foot">Full script &middot; 16 steps &middot; fact, dimension, cardinality</span></button>
+
+    <button class="dcard full" data-go="p3">
+     <span class="id">POWER BI 3</span><h3>Writing The Number That Has No Button</h3>
+     <p><b>DAX begins.</b> Measure against calculated column, and the counts that disagree &mdash;
+     <code>COUNT</code> says <b>198</b>, <code>COUNTROWS</code> says <b>200</b>. One wrong divisor costs
+     <b>&#8377;958</b>. Ends on the measure Excel could not write: the average without one person,
+     <b>69,920</b> against a median of 68,841.</p>
+     <span class="foot">Full script &middot; 16 steps &middot; filter context, named late</span></button>
    </div>
 
    <div class="planbanner" style="margin-top:16px">
@@ -27315,6 +27331,1016 @@ TECH               average  1,89,754        median   85,486
  </div>
 </section>
 </div>
+<div class="day" id="p2">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Power BI day 2 &middot; merged class &middot; 90 minutes &middot; full script &middot; the first genuinely new idea</p>
+  <h1 class="display">Delete The<br>Merge. Draw<br>A Line Instead.</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   They spent a session merging two tables into one wide one. Today they throw it away and keep the
+   tables apart &mdash; and <b>the forty-two employees their anti join found come back on their own</b>,
+   under a row labelled <code>blank</code>, without anybody running a join.</p>
+  <div class="glance">
+   <div class="gcell"><b>1</b><span>line replaces the whole merge</span></div>
+   <div class="gcell"><b>42</b><span>reappear as one word</span></div>
+   <div class="gcell"><b>21%</b><span>of the company, uncounted</span></div>
+   <div class="gcell"><b>264</b><span>rows from one duplicate key</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Today's big idea</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">Excel had one answer to two tables:
+   flatten them. Power BI has a better one: leave them alone and draw the join once.</b></p>
+   <p style="color:var(--sienna)">This is the first session in the module where <b style="color:var(--sienna)">Excel
+   genuinely could not do what you are about to do</b>. Everything on day 1 was a button that moved.
+   This is a different way of thinking about data, and it is what the rest of the module stands on.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Reuse Wednesday's broken departments table exactly as it is.</b> Missing <b>Marketing</b>,
+   containing <b>Legal</b> which has nobody in it. Both gaps are what make today work &mdash; without
+   them the model looks perfect and teaches nothing.</li>
+   <li><b>Do the merge first, then delete it, in that order.</b> The whole session turns on them having
+   just done it the flat way. <b>If you skip straight to the relationship, the point does not
+   land.</b></li>
+   <li><b>Deleting twenty minutes of their own work on purpose will make somebody uncomfortable.</b>
+   Say out loud that you are doing it deliberately, and why, before you click.</li>
+   <li><b>The <code>blank</code> row is the moment of the session.</b> Do not explain it. Put
+   <code>floor</code> on a matrix, wait, and let somebody in the room ask what blank means.</li>
+   <li><b>Teach cardinality with the words &ldquo;one&rdquo; and &ldquo;many&rdquo;, not with
+   arrows.</b> One department has many employees. The lookup table is always the one side. Getting this
+   backwards is the most expensive mistake in the module.</li>
+   <li><b>Do not say the word DAX.</b> Tomorrow. Today's counts are all drag-and-drop.</li>
+  </ol>
+
+  <div class="lbl">On the board &mdash; leave it up all session</div>
+<pre><code>    MERGE                           RELATIONSHIP
+    --------------------------      --------------------------
+    in the Power Query Editor       in Model view
+    COPIES columns across           copies NOTHING
+    one wide table                  two tables, kept apart
+    redo it when the lookup         change the lookup once,
+      changes                         everything follows
+    the gap becomes empty cells     the gap becomes a BLANK row
+
+
+    USE MERGE          when you need the value as a real column -
+                       to clean it, split it, build on it
+
+    USE RELATIONSHIP   when the other table is a lookup you slice by -
+                       department, city, calendar, product    <-- DEFAULT</code></pre>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: what a relationship actually is, why the blank
+  row is the anti join in disguise, and the duplicate key that quietly inflates every total.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; what the line actually does</h5>
+   <p>A merge copies data. A relationship does not copy anything &mdash; <b>it records a rule</b>, and
+   Power BI follows the rule whenever a visual needs it.</p>
+   <div class="mcalc">MERGE, on Wednesday:
+
+    employees (200 rows) now physically contains  head  and  floor
+    "Priya Nair" and "2" are written onto 64 Sales rows
+    64 copies of the same two values
+
+
+RELATIONSHIP, today:
+
+    employees        200 rows, 12 columns.  unchanged.
+    departments        4 rows,  3 columns.  unchanged.
+    a line between them on  department
+
+    nothing is copied. the floor for a Sales employee is looked up
+    at the moment a visual asks for it.</div>
+   <div class="mth">
+    <div class="mrow"><b>the payoff</b><div>Rohit Desai moves to floor 5. <b>Change one row in the
+    lookup.</b> With a merge you re-run the merge and every chart built on the old column.</div></div>
+    <div class="mrow"><b>the cost</b><div>You have to get <b>cardinality and direction</b> right. A merge
+    has no settings to get wrong.</div></div>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the blank row is the left anti join</h5>
+   <p>They already know the 42. They found them on Wednesday with a dropdown. Today the model finds them
+   without being asked.</p>
+   <div class="mcalc">put  floor  on rows and a count of employees on values:
+
+    floor      employees
+        1             45          HR
+        2             64          Sales
+        4             49          Tech
+    blank             42          <--  ?
+
+  floor 3 does not appear at all.</div>
+   <div class="mth">
+    <div class="mrow"><b>blank = 42</b><div>Marketing. Their department is not in the lookup, so the
+    relationship has nothing to point at. <b>This is the left anti join, unprompted.</b></div></div>
+    <div class="mrow warn2"><b>no floor 3</b><div>Legal. It is in the lookup and <b>has no
+    employees</b>, so a count of employees gives it nothing to show. <b>This is the right anti
+    join</b> &mdash; and notice it is <em>invisible</em> here.</div></div>
+   </div>
+   <div class="keyline">
+    <b>The two anti joins behave very differently in a model, and that is worth saying.</b><br><br>
+    The left anti join <b>shouts</b> &mdash; a blank row you cannot miss. The right anti join <b>goes
+    silent</b> &mdash; Legal simply is not on the chart, and nothing tells you it exists. <b>Missing
+    rows are harder to spot than wrong rows.</b>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the duplicate key that inflates everything</h5>
+   <p>This is the one real danger of modelling and it is pure arithmetic.</p>
+   <div class="mcalc">departments is supposed to have ONE row per department.
+
+  Suppose somebody adds Sales a second time by accident:
+
+      Sales   Priya Nair    floor 2
+      Sales   Priya Nair    floor 2       <-- duplicate
+      Tech    ...
+
+  MERGE it:   each of the 64 Sales employees matches TWO rows
+              200 + 64  =  264 rows
+
+  Your headcount is now 264. Your salary bill is 64 salaries too big.
+  No error. No warning. The chart just reads high.</div>
+   <div class="mth">
+    <div class="mrow"><b>in a merge</b><div>Row count jumps. <b>If you check the row count you catch
+    it.</b></div></div>
+    <div class="mrow"><b>in a model</b><div>Power BI <b>refuses</b> to make it one-to-many and makes it
+    many-to-many instead, and your totals inflate the same way. <b>Check the cardinality it
+    chose.</b></div></div>
+   </div>
+   <div class="keyline">
+    <b>The habit, and it is day 1's primary key test again.</b><br><br>
+    Before you join anything to a lookup table, <b>check the lookup's key column is distinct = unique =
+    row count, with no empties</b>. The exact test they ran on <code>emp_id</code>. <b>Same rule,
+    second use.</b>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">The session, minute by minute</h2>
+  <p class="cap" style="margin-bottom:24px">Sixteen steps. Fifteen on the merge and its deletion, thirty
+  on the model, twenty-five on what it reveals, the rest on the round-up.</p>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">1</span><h3>Say this first</h3></div>
+   <div class="speak">
+    <p>On Wednesday you joined two tables. You merged <code>departments</code> into
+    <code>employees</code>, expanded it, and ended with one wide table where every employee carried
+    their floor.</p>
+    <p><b>It worked. The numbers were right.</b></p>
+    <p>Today we are going to delete all of that, on purpose, and do it a completely different way.</p>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;Why would we throw away something that worked?&rdquo;</div>
+    <div class="a">Because of what happens next week. <b>Rohit Desai moves to floor 5.</b> With a merge
+    you go back into the editor, re-run it, and check every chart. <b>With what we build today you
+    change one row and you are done.</b></div>
+   </div>
+   <div class="speak">
+    <p>And there is a second reason, which you will see for yourselves in about forty minutes. <b>The
+    new way finds a problem in your data that the merge hid.</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">2</span><h3>Load the lookup, the way you learned</h3></div>
+   <div class="stage">Same four rows as Wednesday. <b>Do not fix the gaps.</b></div>
+<pre><code>  department   head           floor
+  Sales        Priya Nair         2
+  Tech         Arun Menon         4
+  HR           Kavita Iyer        1
+  Legal        Rohit Desai        3</code></pre>
+   <div class="typeit">Get it in, as a lookup not a table</div>
+<pre><code>  Home -> Get data -> the departments sheet -> Transform Data
+  right-click the query -> untick  ENABLE LOAD
+  Close &amp; Apply</code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;What is still missing from this table?&rdquo;</div>
+    <div class="a"><b>Marketing.</b> And <b>Legal has nobody in it.</b> They found both on Wednesday.
+    <b>Leave them &mdash; they are the whole point of today.</b></div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">3</span><h3>Merge it, quickly, one last time</h3></div>
+   <div class="stage"><b>Three minutes. This is revision.</b> Do not re-teach it.</div>
+<pre><code>  Home -> Merge Queries
+     employees . department   +   departments . department
+     Join Kind -> Left Outer
+
+  "158 of 200 rows from the first table match."     <-- they know why
+
+  expand -> head, floor -> UNTICK the prefix box
+  Close &amp; Apply</code></pre>
+   <div class="speak">
+    <p>Two hundred rows, two new columns, <b>and 42 rows with nothing in them</b>. Exactly as
+    Wednesday.</p>
+    <p>Right. <b>Now delete it.</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">4</span><h3>Delete it, and mean it</h3></div>
+   <div class="stage">Back into the editor. <b>Say what you are doing before you click.</b></div>
+<pre><code>  Applied Steps -> click the X on   Merged Queries
+                -> and on           Expanded departments
+  Close &amp; Apply</code></pre>
+   <div class="speak">
+    <p>Twelve columns again. <b>No head, no floor.</b> Two separate tables that know nothing about each
+    other.</p>
+    <p>Watch what I do now, because <b>I am going to get the same answer without copying a single
+    value</b>.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">5</span><h3>Model view, for the first time</h3></div>
+   <div class="stage">Click <b>Model view</b> &mdash; the third icon on the left. <b>The one you told
+   them not to open on day 1.</b></div>
+   <div class="speak">
+    <p>Two boxes. Each is a table, listing its columns.</p>
+    <p>Power BI may have <b>already drawn a line</b> between them &mdash; it guesses when two columns
+    share a name. <b>Never trust that guess. Always open it and look.</b></p>
+   </div>
+   <div class="stage">If a line exists, delete it. <b>They are going to draw it themselves.</b></div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">6</span><h3>Draw the line</h3></div>
+<pre><code>  drag   departments[department]   onto   employees[department]</code></pre>
+   <div class="speak">
+    <p>That is it. <b>That is the whole join.</b></p>
+    <p>No dialog asking which columns. No expand step. No prefix box. <b>One drag, and it is
+    permanent.</b></p>
+   </div>
+   <div class="stage">Double-click the line to open it. <b>Read the three settings out loud.</b></div>
+<pre><code>  Cardinality         One to many   (departments -> employees)
+  Cross filter        Single
+  Make active         yes</code></pre>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">7</span><h3>One and many, in plain words</h3></div>
+   <div class="qbox">
+    <div class="q">&ldquo;One department has how many employees? And one employee belongs to how many departments?&rdquo;</div>
+    <div class="a"><b>One department, many employees. One employee, one department.</b> So departments
+    is the <b>one</b> side and employees is the <b>many</b> side.</div>
+   </div>
+   <div class="speak">
+    <p>Say it as a sentence every time. <b>&ldquo;One department has many employees.&rdquo;</b> The
+    lookup table is always the one side.</p>
+   </div>
+   <div class="warn"><b>Get this backwards and your totals go wrong in a way that is very hard to
+   see.</b> Nothing turns red. The charts just read high. <b>This is the most expensive mistake in the
+   module</b> &mdash; which is why we come back to it in section 14.</div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">8</span><h3>Which way does the filter flow?</h3></div>
+   <div class="stage">Board. Draw an arrow from departments to employees.</div>
+<pre><code>  departments  ---->  employees        filtering flows ONE way
+
+  pick floor 2    ->   you get the 64 Sales employees      YES
+  pick an employee ->  does the department filter?         NO</code></pre>
+   <div class="speak">
+    <p>Filtering flows <b>from the one side to the many side</b>. From the lookup, down into the data.
+    Not back up.</p>
+    <p>That is what <b>Single</b> means in that dropdown. <b>Leave it on Single.</b> There is a
+    &ldquo;Both&rdquo; option and it causes problems you are not ready for yet.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">9</span><h3>Prove the line works</h3></div>
+   <div class="stage">Report view. Matrix visual.</div>
+<pre><code>  Visualizations -> Matrix
+     Rows     head           &lt;-- from DEPARTMENTS
+     Values   emp_id (Count) &lt;-- from EMPLOYEES</code></pre>
+<pre><code>  Priya Nair      64
+  Arun Menon      49
+  Kavita Iyer     45</code></pre>
+   <div class="speak">
+    <p>Look at what just happened. <b>Those two columns are in different tables.</b> There is no merged
+    column anywhere. Nothing was copied.</p>
+    <p><b>The line did it.</b> Power BI looked up the department for each employee at the moment the
+    visual asked.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">10</span><h3>Now put floor on it, and wait</h3></div>
+   <div class="stage"><b>This is the moment of the session. Say nothing after you click.</b></div>
+<pre><code>  Rows     floor
+  Values   emp_id (Count)</code></pre>
+<pre><code>  floor      employees
+      1             45
+      2             64
+      4             49
+  <span class="o">blank            42</span></code></pre>
+   <div class="stage"><b>Wait. Let somebody ask.</b></div>
+   <div class="qbox">
+    <div class="q">&ldquo;What is blank?&rdquo;</div>
+    <div class="a"><b>Marketing.</b> Forty-two employees whose department is not in the lookup table, so
+    the relationship has nothing to point at. <b>Power BI puts them in a row called blank rather than
+    dropping them.</b></div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;And where is floor 3?&rdquo;</div>
+    <div class="a"><b>Legal.</b> It is in the lookup but no employee works there, so a count of
+    employees has nothing to show for it. <b>It is simply absent.</b></div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">11</span><h3>You have met these 42 before</h3></div>
+   <div class="speak">
+    <p>On Wednesday you ran a <b>left anti join</b> and it returned forty-two rows, every one
+    Marketing.</p>
+    <p><b>These are the same forty-two people.</b> You did not run a join today. You did not open the
+    editor. <b>You put a column on a chart and the model told you.</b></p>
+   </div>
+   <div class="keyline">
+    <b>That blank row IS the left anti join.</b><br><br>
+    And notice the difference in how hard you had to look. <b>In Excel you had to think to ask the
+    question.</b> Here the answer arrived whether you wanted it or not. <b>That is the model earning its
+    keep.</b>
+   </div>
+   <div class="stage">Then the other direction, and be honest that it is worse.</div>
+   <div class="speak">
+    <p>The <b>right anti join</b> &mdash; Legal, the department with nobody in it &mdash; is
+    <b>invisible</b> on that chart. No blank row. No warning. It just is not there.</p>
+    <p><b>A missing row is much harder to notice than a wrong one.</b> If you need to know which
+    departments have nobody, you still have to go and ask.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">12</span><h3>Say what the blank means in business words</h3></div>
+   <div class="qbox">
+    <div class="q">&ldquo;Write one sentence for the summary page about that blank row.&rdquo;</div>
+    <div class="a">Not &ldquo;there are 42 blanks&rdquo;. <b>That is a description, not a
+    finding.</b></div>
+   </div>
+<pre><code>  42 employees - 21% of the company - have no floor recorded,
+  because Marketing is missing from the departments table.
+  Headcount by floor therefore covers 158 of 200 employees.</code></pre>
+   <div class="speak">
+    <p>Twenty-one percent. <b>One employee in five.</b></p>
+    <p>Any chart you build on floor is describing <b>158 people and calling it everybody</b>. The
+    sentence has to say that, because the chart will not.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">13</span><h3>Fact and dimension, named once</h3></div>
+   <div class="stage">Board. <b>Two words that are on every Power BI job description.</b></div>
+<pre><code>  FACT TABLE        the things that happened. long and thin.
+                    employees, orders, transactions, visits
+                    -> 200 rows, grows every month
+
+  DIMENSION TABLE   the things you describe them by. short and wide.
+                    departments, cities, a calendar, products
+                    -> 4 rows, barely changes
+
+  one dimension  ---->  many facts
+       (one side)        (many side)</code></pre>
+   <div class="speak">
+    <p>A model is normally <b>one fact table in the middle with dimensions around it</b>. Drawn out it
+    looks like a star, which is why people call it a <b>star schema</b>.</p>
+    <p>You have just built the smallest possible one. <b>One fact, one dimension.</b></p>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;Is this the same as normalisation from SQL?&rdquo;</div>
+    <div class="a"><b>Very close, and it is a good question.</b> Same instinct &mdash; do not repeat
+    data. The difference is that a star schema deliberately stops short of full normalisation, because
+    reporting is faster with fewer joins.</div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">14</span><h3>The duplicate that inflates everything</h3></div>
+   <div class="stage"><b>Do this live.</b> Add a second Sales row to the departments table and refresh.</div>
+<pre><code>  departments now:
+
+     Sales   Priya Nair   2
+     Sales   Priya Nair   2       <-- added by accident
+     Tech    ...</code></pre>
+   <div class="typeit">Check the relationship</div>
+<pre><code>  Model view -> double-click the line
+
+     Cardinality   Many to many        &lt;-- it changed itself</code></pre>
+   <div class="speak">
+    <p>Power BI could not keep it as one-to-many, because <b>departments is no longer one row per
+    department</b>. So it quietly switched to many-to-many.</p>
+   </div>
+<pre><code>  total headcount    200   ->   <span class="o">264</span>
+
+  each of the 64 Sales employees now matches TWO rows.
+  200 + 64 = 264.
+
+  no error. nothing red. the chart just reads high.</code></pre>
+   <div class="keyline">
+    <b>And here is day 1's test, doing its second job.</b><br><br>
+    <b>Before you join anything to a lookup, check its key is distinct = unique = row count, no
+    empties.</b> The exact test you ran on <code>emp_id</code>. <b>A lookup table whose key repeats is
+    not a lookup table.</b>
+   </div>
+   <div class="stage"><b>Remove the duplicate. Confirm the cardinality goes back to one-to-many and the
+   count goes back to 200</b> before you move on.</div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">15</span><h3>So when do you still merge?</h3></div>
+   <div class="qbox">
+    <div class="q">&ldquo;Was Wednesday's merge wrong, then?&rdquo;</div>
+    <div class="a"><b>No.</b> It was the right tool for a different job. Merge and relationship answer
+    different questions.</div>
+   </div>
+<pre><code>  MERGE when       you need the value as a REAL COLUMN -
+                   to clean it, split it, build another column from it,
+                   or group by it inside the editor
+
+  RELATE when      the other table is a LOOKUP you want to slice by -
+                   department, city, calendar, product category
+
+  DEFAULT TO THE RELATIONSHIP. Merging a lookup into a fact table
+  copies it hundreds of times and you redo it when it changes.</code></pre>
+   <div class="speak">
+    <p>In an interview, that distinction is a good answer. <b>&ldquo;Merge copies columns, a
+    relationship records a rule. I default to the relationship for lookups.&rdquo;</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">16</span><h3>Round up, and set up day 3</h3></div>
+   <div class="typeit">Five things, and three are not about Power BI</div>
+<pre><code>  1   A RELATIONSHIP COPIES NOTHING. It records a rule.
+      One drag in Model view replaces the whole merge and expand.
+
+  2   ONE DEPARTMENT HAS MANY EMPLOYEES.
+      The lookup is always the ONE side. Filtering flows one way,
+      from the one side down to the many side. Leave it on Single.
+
+  3   THE BLANK ROW IS THE LEFT ANTI JOIN.
+      42 Marketing employees - 21% of the company - with no floor.
+      The right anti join (Legal) is INVISIBLE. Missing rows are
+      harder to spot than wrong rows.
+
+  4   A LOOKUP WHOSE KEY REPEATS IS NOT A LOOKUP.
+      One duplicate row took headcount from 200 to 264 with no error.
+      Run day 1's key test on every lookup table first.
+
+  5   SAY WHAT THE BLANK MEANS, NOT THAT IT EXISTS.
+      "42 employees, 21%, have no floor because Marketing is missing
+      from the lookup" - not "there are 42 blanks".</code></pre>
+   <div class="speak">
+    <p>Everything you counted today, you counted by <b>dragging a column and letting Power BI pick
+    Count or Sum</b>.</p>
+    <p>That works until you want something it does not offer. <b>Average salary excluding
+    outliers.</b> <b>What percentage of the salary bill one person is.</b> <b>Headcount as a share of
+    the company.</b> There is no dropdown for any of those.</p>
+    <p>Day 3 you write them yourself. <b>That language is called DAX</b>, and it is the last genuinely
+    hard thing in this module.</p>
+   </div>
+  </div>
+
+ </div>
+</section>
+</div>
+<div class="day" id="p3">
+<section style="padding-top:44px;padding-bottom:12px">
+ <div class="wrap">
+  <p class="tag" style="margin-bottom:16px">Power BI day 3 &middot; merged class &middot; 90 minutes &middot; full script &middot; DAX begins</p>
+  <h1 class="display">Writing The<br>Number That<br>Has No Button</h1>
+  <p style="font-size:20px;line-height:1.5;color:var(--slate);margin-top:18px;max-width:670px">
+   Everything so far was dragging a column and letting Power BI choose Count or Sum. <b>Today they write
+   the calculation themselves</b> &mdash; and find out why <code>COUNT</code> says 198 when there are
+   200 people, and why one blank salary moves an average by &#8377;958.</p>
+  <div class="glance">
+   <div class="gcell"><b>198</b><span>what COUNT says</span></div>
+   <div class="gcell"><b>200</b><span>what COUNTROWS says</span></div>
+   <div class="gcell"><b>&#8377;958</b><span>the cost of one wrong divisor</span></div>
+   <div class="gcell"><b>27.4%</b><span>of the salary bill, one person</span></div>
+  </div>
+  <div class="primer" style="background:var(--peach);color:var(--sienna)">
+   <h4 style="color:var(--sienna)">Today's big idea</h4>
+   <p style="color:var(--sienna)"><b style="color:var(--sienna)">A measure is not a number. It is a
+   question, answered again for every cell it lands in.</b></p>
+   <p style="color:var(--sienna)">That one sentence is the whole of DAX and it is the only thing in this
+   session that is genuinely hard. <b style="color:var(--sienna)">Everything else is SQL aggregate
+   functions with different names</b> &mdash; and they have twenty-three sessions of those.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:20px">Before you walk in</h2>
+  <ol class="n">
+   <li><b>Do not define &ldquo;row context&rdquo; and &ldquo;filter context&rdquo; as terms at the
+   start.</b> Teach the behaviour first, name it at section 12 once they have seen it. Leading with the
+   vocabulary loses the room in four minutes.</li>
+   <li><b>The COUNT against COUNTROWS trap at section 9 must be done on screen, side by side.</b> Two
+   cards, 198 and 200, and let them work out which is right. <b>They have met those two blank salaries
+   in five previous sessions.</b></li>
+   <li><b>Every function today has a SQL equivalent they already know.</b> Put it on the board beside
+   the DAX. <code>SUM</code> is <code>SUM</code>. <code>DISTINCTCOUNT</code> is <code>COUNT(DISTINCT
+   x)</code>. <b>Say that early and the fear drops.</b></li>
+   <li><b>Make them type the measures, not copy them.</b> The formula bar autocompletes and that is
+   how they learn the function names. Nine measures typed beats thirty pasted.</li>
+   <li><b>Measure against calculated column is the second hardest idea.</b> Teach it with
+   <em>where</em> and <em>when</em>: a column is computed once per row and stored, a measure is computed
+   per cell at the moment you look. <b>Do not use the word &ldquo;context&rdquo; yet.</b></li>
+   <li><b>If the clock runs short, cut section 15.</b> Never cut 9, 11 or 12.</li>
+  </ol>
+
+  <div class="lbl">On the board &mdash; leave it up all session</div>
+<pre><code>    THEY ALREADY KNOW ALL OF THESE
+
+    SQL                          DAX
+    -------------------------    -------------------------
+    SUM(salary)                  SUM(employees[salary])
+    AVG(salary)                  AVERAGE(employees[salary])
+    COUNT(salary)                COUNT(employees[salary])     non-blank
+    COUNT(*)                     COUNTROWS(employees)         all rows
+    COUNT(DISTINCT name)         DISTINCTCOUNT(employees[name])
+    MIN / MAX                    MIN / MAX
+    a / b  (and the zero bug)    DIVIDE(a, b)                 safe
+
+
+    A MEASURE IS A QUESTION, ANSWERED AGAIN FOR EVERY CELL.</code></pre>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">Understand this yourself first</h2>
+  <p class="cap" style="margin-bottom:24px">Three things: the one idea that makes DAX make sense, the
+  counting functions that disagree, and the divisor mistake that is worth &#8377;958.</p>
+
+  <div class="understand">
+   <h5>Part one &middot; column or measure, and it is about <em>when</em></h5>
+   <div class="mth">
+    <div class="mrow"><b>calculated column</b><div>Computed <b>once per row, when the data loads</b>.
+    Stored in the file. You can see it in Data view. <b>It knows about its own row and nothing
+    else.</b></div></div>
+    <div class="mrow"><b>measure</b><div>Computed <b>when a visual asks</b>, once for every cell.
+    Nothing is stored. <b>It knows about whatever is filtering that cell.</b></div></div>
+   </div>
+   <div class="mcalc">A CALCULATED COLUMN - bonus, 10% of salary
+
+    employees[bonus] = employees[salary] * 0.10
+
+    one answer per employee, 200 answers, stored in the file.
+    makes the file bigger. visible in Data view.
+
+
+A MEASURE - total salary
+
+    Total Salary = SUM(employees[salary])
+
+    ONE formula. But drop it on a chart by department and it
+    answers FOUR times. Add a city slicer and it answers again.
+    nothing is stored.</div>
+   <div class="keyline">
+    <b>The rule of thumb to give them.</b><br><br>
+    <b>Need it as a value on a row, to group by or slice by?</b> Calculated column. <b>Need a number
+    that should change as the reader filters?</b> Measure. <b>When unsure, write a measure</b> &mdash; it
+    costs nothing and it does not bloat the file.
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part two &middot; the two counts, and why they disagree</h5>
+   <div class="mcalc">COUNTROWS(employees)       =  200      every row
+COUNT(employees[salary])   =  198      non-blank salaries only
+COUNT(employees[age])      =  199      one blank age
+
+DISTINCTCOUNT(employees[name])        =  129
+DISTINCTCOUNT(employees[emp_id])      =  200
+DISTINCTCOUNT(employees[department])  =    4</div>
+   <div class="mth">
+    <div class="mrow"><b>headcount</b><div>Always <b><code>COUNTROWS</code></b>. You are counting
+    people, not salaries.</div></div>
+    <div class="mrow warn2"><b>the trap</b><div>Drag <code>salary</code> onto a card and Power BI gives
+    you <b>Count of salary = 198</b> and labels it as if it were a headcount. <b>Nothing says 2 people
+    are missing.</b></div></div>
+   </div>
+   <div class="keyline">
+    <b>Sixth session for those two blank salaries.</b><br><br>
+    Day 1 <code>COUNT</code> 199 of 201. Day 3 twelve-plus-186. Day 4 the bonus bill. Day 5 the pivot
+    grand total. Monday the profiling pane. <b>Today they get a function name.</b>
+   </div>
+  </div>
+
+  <div class="understand">
+   <h5>Part three &middot; the divisor, worth &#8377;958</h5>
+   <p>A real mistake, made constantly, and completely silent.</p>
+   <div class="mcalc">SUM(salary)   =  1,89,74,273        198 salaries, 200 people
+
+  divided by COUNTROWS  (200)  ->   94,871      WRONG
+  divided by COUNT      (198)  ->   95,830      RIGHT
+
+                                     gap  958</div>
+   <div class="mth">
+    <div class="mrow"><b>why</b><div>Dividing by 200 treats the two blanks as <b>people who earn
+    zero</b>. They are not. <b>Their salary is unknown.</b></div></div>
+    <div class="mrow"><b>the fix</b><div>Use <code>AVERAGE()</code>, which ignores blanks by itself.
+    <b>Hand-rolling an average is where the bug comes from.</b></div></div>
+   </div>
+   <div class="keyline">
+    <b>A blank is not a zero.</b><br><br>
+    Day 1's opening lesson, in a new language. <b>Same file, same two rows, same mistake
+    available.</b>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="fog">
+ <div class="wrap">
+  <h2 class="h" style="margin-bottom:8px">The session, minute by minute</h2>
+  <p class="cap" style="margin-bottom:24px">Sixteen steps. Twenty on column against measure, thirty on
+  the functions and their traps, twenty-five on filter context, the rest on the round-up.</p>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">1</span><h3>Say this first</h3></div>
+   <div class="speak">
+    <p>For two sessions you have built charts by <b>dragging a column</b> and letting Power BI decide
+    what to do with it. Count for text, Sum for numbers.</p>
+    <p>It has been making a decision for you every time. <b>Today you take that decision back.</b></p>
+   </div>
+   <div class="stage">Then set up why it matters, with three things they cannot drag.</div>
+<pre><code>  average salary EXCLUDING people over 10 lakh
+  what % of the salary bill one person is
+  headcount as a share of the whole company
+
+  there is no dropdown for any of these.</code></pre>
+   <div class="speak">
+    <p>The language you write them in is called <b>DAX</b>.</p>
+    <p>And before anybody panics &mdash; <b>you already know most of it.</b> You have twenty-three
+    sessions of SQL. <code>SUM</code> is <code>SUM</code>. <code>AVERAGE</code> is <code>AVG</code>.
+    <code>DISTINCTCOUNT</code> is <code>COUNT(DISTINCT x)</code>. <b>The function names are almost all
+    familiar.</b></p>
+    <p>What is new is <b>one idea</b>, and we will spend the session on it.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">2</span><h3>You have been using measures already</h3></div>
+   <div class="stage">Card visual. Drag <code>salary</code> onto it.</div>
+<pre><code>  Sum of salary        1,89,74,273</code></pre>
+   <div class="speak">
+    <p>Nobody wrote that. <b>Power BI wrote it for you.</b> It is called an <b>implicit measure</b>
+    &mdash; the tool guessing what you meant.</p>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;It guessed Sum. When would that guess be wrong?&rdquo;</div>
+    <div class="a">Any column that is a <b>label made of digits</b>. <code>dept_id</code> &mdash; it
+    will happily sum it, or average it to <b>2.33</b>. <b>Sixth time this course.</b> And
+    <code>emp_id</code>, which it will also add up.</div>
+   </div>
+   <div class="speak">
+    <p>Implicit measures are fine for a quick look. <b>They are not good enough for a report somebody
+    else reads</b>, for three reasons: you cannot control the name, you cannot reuse it, and <b>you
+    cannot see what it actually did</b>.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">3</span><h3>Write the first one</h3></div>
+   <div class="typeit">Home tab, or right-click the table in the Fields pane</div>
+<pre><code>  Modeling -> New measure
+
+  Total Salary = SUM(employees[salary])</code></pre>
+   <div class="stage">Make them type it. <b>Point out the autocomplete as it appears.</b></div>
+   <div class="speak">
+    <p>Notice the shape. <b>A name, an equals sign, a formula.</b> That is every measure you will ever
+    write.</p>
+    <p>And notice where it went &mdash; the Fields pane, with a little <b>calculator icon</b> next to
+    it, not a column icon.</p>
+   </div>
+   <div class="warn"><b>Name measures in business English, not code.</b> <code>Total Salary</code>, not
+   <code>sum_sal</code> or <code>m_TotSal</code>. <b>The name is what appears on the chart</b>, and
+   somebody who has never opened Power BI has to read it.</div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">4</span><h3>Watch one formula answer four times</h3></div>
+   <div class="stage">Drop <code>Total Salary</code> onto a bar chart with <code>department</code>.</div>
+<pre><code>  Total Salary  by  department
+
+    Sales       ...
+    Tech        ...
+    HR          ...
+    Marketing   ...</code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;How many times did I write that formula?&rdquo;</div>
+    <div class="a"><b>Once.</b> And it produced four different numbers. <b>Then the grand total, which
+    is a fifth.</b></div>
+   </div>
+   <div class="speak">
+    <p>This is the idea I said we would spend the session on. <b>A measure is not a number. It is a
+    question.</b></p>
+    <p>And the answer depends entirely on <b>which cell it lands in</b>. In the Sales row it only sees
+    Sales employees. Click a city slicer and every number changes again.</p>
+   </div>
+   <div class="keyline">
+    <b>Write this on the board and leave it there.</b><br><br>
+    <b>A MEASURE IS A QUESTION, ANSWERED AGAIN FOR EVERY CELL.</b><br><br>
+    Everything confusing about DAX for the next two sessions comes back to that sentence.
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">5</span><h3>Now a calculated column, for contrast</h3></div>
+   <div class="typeit">Modeling, New column</div>
+<pre><code>  Modeling -> New column
+
+  bonus = employees[salary] * 0.10</code></pre>
+   <div class="stage">Click <b>Data view</b>. <b>Scroll.</b> There it is &mdash; a real column, 200
+   values.</div>
+   <div class="speak">
+    <p>Different thing entirely. <b>This was computed once per row when the file loaded and it is sitting
+    in the file.</b></p>
+    <p>You can see it. You can sort by it. You could group by it. <b>And it made the file
+    bigger.</b></p>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;Row 9 has a blank salary. What is its bonus?&rdquo;</div>
+    <div class="a"><b>Blank, not zero.</b> Blank times anything is blank. <b>Which is correct</b> &mdash;
+    we do not know her salary, so we cannot know her bonus.</div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">6</span><h3>Column or measure &mdash; the actual rule</h3></div>
+<pre><code>  CALCULATED COLUMN              MEASURE
+  -------------------------      -------------------------
+  computed per ROW, on load      computed per CELL, on view
+  stored in the file             stored nowhere
+  visible in Data view           only on a visual
+  sees its own row only          sees whatever filters the cell
+  makes the file bigger          free
+
+  CAN group / slice / sort by    CANNOT group by it</code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;I want a Salary Band column &mdash; low, medium, high &mdash; to slice by. Which one?&rdquo;</div>
+    <div class="a"><b>Calculated column.</b> You need an actual value sitting on each row so it can go
+    in a slicer. <b>A measure cannot be sliced by.</b></div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;I want average salary, and it must update when the reader filters. Which one?&rdquo;</div>
+    <div class="a"><b>Measure.</b> It has to be recalculated every time the filter changes, and a
+    stored column cannot do that.</div>
+   </div>
+   <div class="speak">
+    <p>When you are not sure, <b>write a measure.</b> It costs nothing, it does not make the file
+    bigger, and nine times out of ten it is what you wanted.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">7</span><h3>The SQL translation, on the board</h3></div>
+   <div class="stage"><b>Three minutes. This is the fear-reduction step.</b></div>
+<pre><code>  SQL                          DAX
+  -------------------------    -----------------------------------
+  SUM(salary)                  SUM(employees[salary])
+  AVG(salary)                  AVERAGE(employees[salary])
+  MIN / MAX                    MIN / MAX
+  COUNT(salary)                COUNT(employees[salary])
+  COUNT(*)                     COUNTROWS(employees)
+  COUNT(DISTINCT name)         DISTINCTCOUNT(employees[name])</code></pre>
+   <div class="speak">
+    <p><b>Six out of six, you already knew.</b> The only real difference is that DAX writes the table
+    name as well as the column, because a model has many tables.</p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">8</span><h3>Write four more</h3></div>
+   <div class="stage">Make them type all four. <b>Then put each on its own card.</b></div>
+<pre><code>  Headcount        = COUNTROWS(employees)
+  Avg Salary       = AVERAGE(employees[salary])
+  Median Salary    = MEDIAN(employees[salary])
+  Distinct Names   = DISTINCTCOUNT(employees[name])</code></pre>
+<pre><code>  Headcount          200
+  Avg Salary      95,830
+  Median Salary   68,841
+  Distinct Names     129</code></pre>
+   <div class="speak">
+    <p>Four numbers you have all seen before. <b>Now they have names, and you can reuse them
+    anywhere.</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">9</span><h3>The two counts that disagree</h3></div>
+   <div class="stage"><b>Two cards, side by side. This must be on screen.</b></div>
+<pre><code>  Headcount          = COUNTROWS(employees)          ->  <span class="o">200</span>
+  Salaries On Record = COUNT(employees[salary])      ->  <span class="o">198</span></code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;Two hundred and 198. Which is the headcount?&rdquo;</div>
+    <div class="a"><b>200.</b> <code>COUNT</code> counts <b>values that are not blank</b>, and two
+    salaries are blank. <b>It is counting salaries, not people.</b></div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;Where have those two blanks turned up before?&rdquo;</div>
+    <div class="a"><b>Everywhere.</b> Day 1's <code>COUNT</code>, day 3's twelve-above-plus-186-below,
+    day 4's bonus bill, day 5's pivot grand total, Monday's profiling pane. <b>Sixth session.
+    Today they finally get a name: <code>COUNT</code> ignores blanks, <code>COUNTROWS</code> does
+    not.</b></div>
+   </div>
+   <div class="warn"><b>And this is exactly what an implicit measure does to you.</b> Drag
+   <code>salary</code> onto a card and you get <b>198</b> labelled &ldquo;Count of salary&rdquo;. Put
+   that on a dashboard titled &ldquo;Total Employees&rdquo; and <b>you have published a wrong number
+   with no error anywhere.</b></div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">10</span><h3>Distinct count, and the name problem again</h3></div>
+<pre><code>  Headcount        = COUNTROWS(employees)              ->  200
+  Distinct Names   = DISTINCTCOUNT(employees[name])    ->  <span class="o">129</span>
+  Distinct IDs     = DISTINCTCOUNT(employees[emp_id])  ->  200</code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;If I reported 129 as the headcount, how wrong would I be?&rdquo;</div>
+    <div class="a"><b>Seventy-one people wrong.</b> 129 is how many different names exist. <b>Never
+    count people by name.</b> Count them by the key, or count rows.</div>
+   </div>
+   <div class="speak">
+    <p>Monday's primary key test, as a measure. <b><code>emp_id</code> gives 200 because it is the
+    key. <code>name</code> gives 129 because it is not.</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">11</span><h3>The divisor, and &#8377;958</h3></div>
+   <div class="stage">Write the wrong one on purpose. <b>Do not say it is wrong yet.</b></div>
+<pre><code>  Avg Salary Manual = SUM(employees[salary]) / COUNTROWS(employees)
+  Avg Salary        = AVERAGE(employees[salary])</code></pre>
+<pre><code>  Avg Salary Manual     <span class="o">94,871</span>
+  Avg Salary            <span class="o">95,830</span>
+
+                          gap   958</code></pre>
+   <div class="qbox">
+    <div class="q">&ldquo;Same file, same column. Why do they disagree?&rdquo;</div>
+    <div class="a">The manual one divides by <b>200</b>. There are only <b>198</b> salaries.
+    <b>Dividing by 200 treats the two blanks as people who earn zero</b> &mdash; and their salary is not
+    zero, it is unknown.</div>
+   </div>
+   <div class="keyline">
+    <b>A blank is not a zero.</b><br><br>
+    Day 1's very first lesson, in a new language, on the same two rows. <b>Use
+    <code>AVERAGE()</code> &mdash; it handles blanks correctly by itself. Hand-rolling an average is
+    where the bug comes from.</b>
+   </div>
+   <div class="stage"><b>Delete the manual measure in front of them.</b> It should not survive the
+   session.</div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">12</span><h3>Now name the idea</h3></div>
+   <div class="stage"><b>They have seen it four times. Now give it the words.</b></div>
+<pre><code>  FILTER CONTEXT    what is filtering the cell right now
+
+    Total Salary on the Sales row     -> only Sales employees
+    Total Salary with Chennai clicked -> only Chennai employees
+    Total Salary on the grand total   -> everybody
+
+    ONE formula. The filter context changes. The answer changes.
+
+
+  ROW CONTEXT       which row the formula is sitting on
+
+    bonus = salary * 0.10
+    on row 1, "salary" means row 1's salary.
+    a calculated column has this. a measure does not.</code></pre>
+   <div class="speak">
+    <p>Two phrases. You will hear both in every Power BI interview.</p>
+    <p><b>A calculated column has a row. A measure has a filter.</b> That is the difference, said
+    properly.</p>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;So why can't a measure just say salary * 0.10?&rdquo;</div>
+    <div class="a">Because <b>a measure does not know which row it is on</b> &mdash; it is looking at a
+    whole group of rows. <b>Which salary would it multiply?</b> That is exactly the error Power BI
+    gives you if you try.</div>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">13</span><h3>DIVIDE, and the zero</h3></div>
+<pre><code>  Avg Bonus Bad  = SUM(employees[bonus]) / COUNTROWS(employees)
+  Avg Bonus      = DIVIDE(SUM(employees[bonus]), COUNTROWS(employees))</code></pre>
+   <div class="speak">
+    <p>Both work here. <b>Now imagine a department with nobody in it.</b></p>
+    <p>You have one. <b>Legal.</b> Yesterday's model, the department with no employees.</p>
+   </div>
+<pre><code>  on the Legal row:
+
+    with  /        divide by zero       ->  error, or Infinity
+    with  DIVIDE   divide by zero       ->  blank      (clean)
+
+  DIVIDE(a, b, 0)   ->  put a 0 there instead, if you prefer</code></pre>
+   <div class="warn"><b>Use <code>DIVIDE</code> every time you divide.</b> Not because today's data
+   breaks, but because the day somebody adds an empty department your report shows an error in front of
+   whoever you sent it to.</div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">14</span><h3>The measure Excel could never write</h3></div>
+   <div class="stage"><b>The payoff. The thing there is no dropdown for.</b></div>
+<div class="stage">Use <b><code>CALCULATE</code>'s filter form</b>, and tell them plainly that
+   the full explanation of <code>CALCULATE</code> is tomorrow's whole session.</div>
+<pre><code>  Avg Salary Excl Outliers =
+      CALCULATE( AVERAGE(employees[salary]),
+                 employees[salary] &lt; 1000000 )</code></pre>
+<pre><code>  Avg Salary                      95,830      198 people
+  Avg Salary Excl Outliers        <span class="o">69,920</span>      197 people
+
+  Median Salary                   68,841</code></pre>
+   <div class="speak">
+    <p><b>One person removed. The average fell by nearly twenty-six thousand.</b></p>
+    <p>And look at the third number. <b>Sixty-nine thousand nine hundred against a median of sixty-eight
+    thousand eight hundred.</b> They almost agree.</p>
+    <p>That is what an average looks like when nobody is distorting it. <b>You have now proved that
+    every Tech average you reported for nine sessions was one person.</b></p>
+   </div>
+   <div class="warn"><b>Say clearly that this is not a licence to delete inconvenient people.</b>
+   &ldquo;Excluding outliers&rdquo; must be <b>stated on the report</b>, with the threshold. An average
+   with a hidden exclusion is worse than a wrong average.</div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">15</span><h3>One person as a percentage</h3></div>
+<pre><code>  Lakshmi Share =
+      DIVIDE( CALCULATE( SUM(employees[salary]),
+                         employees[name] = "Lakshmi Kumar" ),
+              SUM(employees[salary]) )</code></pre>
+<pre><code>  Lakshmi Share      <span class="o">27.4%</span>
+
+  one employee out of 200 - 0.5% of the people -
+  is 27.4% of the entire salary bill.</code></pre>
+   <div class="speak">
+    <p>Half a percent of the people. <b>Twenty-seven percent of the money.</b></p>
+    <p>You calculated this on day 6 with a formula in a cell. <b>Now it is a measure that stays correct
+    when somebody filters the page.</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">16</span><h3>Round up, and set up day 4</h3></div>
+   <div class="typeit">Five things, and two are not about DAX</div>
+<pre><code>  1   A MEASURE IS A QUESTION, ANSWERED AGAIN FOR EVERY CELL.
+      One formula, a different answer in every row and every filter.
+      This is the whole of DAX.
+
+  2   COLUMN vs MEASURE is about WHEN.
+      column -> once per row, on load, stored, can be sliced by
+      measure -> per cell, on view, stored nowhere, cannot
+      When unsure, write a measure.
+
+  3   COUNT IGNORES BLANKS. COUNTROWS DOES NOT.
+      COUNT(salary) 198 . COUNTROWS(employees) 200
+      Headcount is always COUNTROWS. And never count people by name
+      - DISTINCTCOUNT(name) is 129, which is 71 people wrong.
+
+  4   A BLANK IS NOT A ZERO - still, in a third language.
+      SUM / COUNTROWS = 94,871 . AVERAGE = 95,830 . gap 958
+      Use AVERAGE. Use DIVIDE. Do not hand-roll either.
+
+  5   AN EXCLUSION MUST BE STATED ON THE REPORT.
+      Avg 95,830 . excluding one person 69,920 . median 68,841
+      The honest number and the hidden number are 26,000 apart.</code></pre>
+   <div class="speak">
+    <p>You used <code>CALCULATE</code> twice today and I did not explain it. <b>That was deliberate.</b></p>
+    <p><code>CALCULATE</code> is the one function that changes the filter context instead of just
+    reading it &mdash; and it is the single most important function in DAX. <b>Day 4 is that function
+    and nothing else.</b></p>
+    <p>And then the thing you cannot do at all yet. <b>Comparing this year to last year.</b> That needs
+    a date table, which is day 5 &mdash; <b>and it is the one place where a Power BI report silently
+    returns blank and gives you no reason at all.</b></p>
+   </div>
+  </div>
+
+ </div>
+</section>
+</div>
 <div class="day" id="ab23">
 <section style="padding-top:44px;padding-bottom:12px">
  <div class="wrap">
@@ -35868,7 +36894,7 @@ pd.merge(employee, department, on="dept_id", how="right")
 </div>
 <script>
 (function(){
- var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","x4","x5","x6","x7","x8","x9","p1","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
+ var views=["home","cov","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13","v1","v2","v3","v4","v5","x1","x2","x3","x4","x5","x6","x7","x8","x9","p1","p2","p3","ab23","ab24","ab25","ab26","ab27","ab28","ab29","n1","n2","n3","pd1","pd2","pd3"];
  var homeBtn=document.getElementById("homeBtn");
 
  function show(id){
