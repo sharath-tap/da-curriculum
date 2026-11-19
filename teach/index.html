@@ -26942,8 +26942,13 @@ click Tech again -> all four move together</code></pre></div>
    <em>&ldquo;where did Rows and Values go?&rdquo;</em></li>
    <li><b>Do not open Model view, and do not say the word DAX.</b> Both are day 2 and day 3. Naming
    them now buys you three questions you have to defer.</li>
-   <li><b>The mean-against-median card at section 15 is the point of the session.</b> If the clock is
+   <li><b>The mean-against-median card at section 12 is the point of the session.</b> If the clock is
    tight, cut the formatting block, never that one.</li>
+   <li><b>Section 15 is the one theory block of the day, and it is not optional.</b>
+   <b>Import, DirectQuery and Live connection</b> &mdash; eight minutes, board and voice, no demo,
+   because there is no database in the room. It is <b>the most commonly asked Power BI question a
+   fresher faces</b> and the module never touches it again unless you say it here. <b>If the clock has
+   genuinely gone, move it to the first eight minutes of day 2</b> &mdash; do not drop it.</li>
   </ol>
 
   <div class="lbl">On the board &mdash; leave it up all session</div>
@@ -27036,8 +27041,9 @@ TECH               average  1,89,754        median   85,486
 <section class="fog">
  <div class="wrap">
   <h2 class="h" style="margin-bottom:8px">The session, minute by minute</h2>
-  <p class="cap" style="margin-bottom:24px">Sixteen steps. Ten on the tool, ten on the Power Query
-  recap, forty building, twenty on the finding and the round-up.</p>
+  <p class="cap" style="margin-bottom:24px">Seventeen steps. Ten on the tool, ten on the Power Query
+  recap, forty building, twenty on the finding and the round-up &mdash; and the last eight on board and
+  voice only, naming Import, DirectQuery and Live connection.</p>
 
   <div class="blk">
    <div class="bhead"><span class="clock">1</span><h3>Say this first</h3></div>
@@ -27318,7 +27324,139 @@ TECH               average  1,89,754        median   85,486
   </div>
 
   <div class="blk">
-   <div class="bhead"><span class="clock">15</span><h3>What took two sessions took twenty minutes</h3></div>
+   <div class="bhead"><span class="clock">15</span><h3>A copy, or no copy &mdash; the three ways to connect</h3></div>
+   <div class="stage">Leave the box from step 14 on the screen and <b>point at the middle line</b>.
+   <b>Eight minutes. No demo &mdash; this one is board and voice only.</b></div>
+   <div class="speak">
+    <p><b>&ldquo;A copy of the data.&rdquo;</b> Read that line again, because it is the most important
+    sentence on the screen and nobody noticed it.</p>
+    <p>Your CSV sits in a folder. <b>The two hundred rows inside the pbix are a photograph of it</b>,
+    taken at the moment you pressed Close &amp; Apply. Change the CSV now and the report does not
+    care &mdash; until you press Refresh.</p>
+    <p><b>That has a name, and it is the first interview question of this module.</b></p>
+   </div>
+   <div class="typeit">Write the name on the board</div>
+<pre><code>  WHAT YOU DID TODAY IS CALLED   ->   IMPORT
+
+    and you were never asked.</code></pre>
+   <div class="speak">
+    <p><b>You were never asked because a file connector has nothing to ask.</b> CSV, Excel, JSON,
+    Parquet, a folder &mdash; those connectors load the rows in and that is the only thing they do.</p>
+    <p>Connect to a <b>database</b> instead &mdash; SQL Server, Oracle, Snowflake, Postgres &mdash; and
+    the dialog grows a pair of radio buttons you have never seen. <b>That is the choice. There are
+    three answers to it and a fresher is expected to know all three.</b></p>
+   </div>
+   <div class="typeit">Board. This table is the answer they will be asked for</div>
+<pre><code>                         IMPORT            DIRECTQUERY        LIVE CONNECTION
+
+  where the data sits     copied into        stays in the       stays in somebody
+                          your pbix          database           else's model
+
+  what the pbix holds     data + model       connection +       the report, and
+                          + report           model + report     almost nothing else
+
+  how fresh is it         as of the last     as of the last     as of that model's
+                          refresh            query it ran       own refresh
+
+  how fast is it          fastest            as fast as the     as fast as that
+                          (in memory)        source is          server is
+
+  who builds the model    you                you, with          nobody. it is
+                                             restrictions       already built
+
+  you connect it to       anything           most databases     Analysis Services,
+                                                                a published Power
+                                                                BI semantic model</code></pre>
+   <div class="keyline">
+    <b>Say the rule of thumb and make them write it down.</b><br><br>
+    <b>Import unless something stops you.</b> That is not my opinion &mdash; it is Microsoft's own
+    published guidance. You leave Import only when one of five things forces you out: <b>latency,
+    size, governance, security, or architecture</b>. If none of those five is true in the room,
+    <b>Import is the right answer and the fast one</b>.
+   </div>
+   <div class="typeit">Where the choice appears &mdash; describe it, do not demo it</div>
+<pre><code>  Get data -> SQL Server database
+
+     Server    [ ................ ]
+     Database  [ ................ ]
+
+     Data Connectivity mode
+        (o) Import
+        ( ) DirectQuery          &lt;- the one they ask about
+
+  Get data -> Power BI semantic model     -> no dialog at all.
+                                             the fields just appear. that is LIVE.</code></pre>
+   <div class="warn"><b>Do not try to demo DirectQuery today.</b> There is no database in this room,
+   and you cannot convert this file either &mdash; <b>Power BI will not flip a finished Import model
+   over to DirectQuery</b>. The mode is chosen when the table is connected, and changing your mind
+   later means connecting again. <b>Say that sentence out loud; it is a trap in itself.</b></div>
+   <div class="qbox">
+    <div class="q">&ldquo;So DirectQuery is real-time?&rdquo;</div>
+    <div class="a"><b>No, and this is the answer that separates a good candidate from a memorised
+    one.</b> DirectQuery means <b>no copy</b>, not live updating. A visual on screen keeps showing the
+    last result it got until something makes it ask again &mdash; you click a slicer, you change pages,
+    you press Refresh. And once it is published, <b>the tiles on a dashboard refresh on a schedule</b>
+    &mdash; hourly by default, and <b>fifteen minutes is as often as you can set it</b>. Nothing
+    anywhere pushes a change to a screen on its own.</div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;Then why would anybody import? Isn't fresher better?&rdquo;</div>
+    <div class="a">Because Import is <b>fast and complete</b> and DirectQuery is neither. Every visual
+    you touch in DirectQuery becomes a query the database has to run <b>while your reader waits</b>,
+    and you inherit that database's bad day. It also comes with real limits: <b>any single query that
+    would return more than 1,000,000 rows simply fails</b>, the service <b>gives up on a query after
+    four minutes</b>, and a pile of modelling features are switched off. <b>Import has none of
+    that.</b></div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;What gets switched off?&rdquo;</div>
+    <div class="a">Keep this to three, and make the third one personal. <b>No automatic date
+    hierarchy</b> &mdash; you must build a date table by hand, which is exactly what we do on day 5.
+    <b>Power Query steps must be ones the database can translate into its own SQL</b>; if a step cannot
+    be pushed down, it breaks. And <b>the median is on Microsoft's own list of expensive
+    calculations</b> in DirectQuery. <b>Today's entire finding was a median.</b> That is what the
+    restriction costs you &mdash; it is not a footnote.</div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;What is a Live connection for, if I cannot model anything?&rdquo;</div>
+    <div class="a">For the day a company hands you <b>a model somebody else already built and
+    governs</b> &mdash; tested, documented, with the security rules in it. You connect, the field list
+    appears with <b>no Power Query window anywhere</b>, and you build the report. You cannot add a
+    calculated table to it, and <b>your own login is passed through to that model every time</b>, so
+    you see exactly the rows you are allowed to see. <b>In a company with a data team, this is the
+    normal way a report gets built.</b></div>
+   </div>
+   <div class="qbox">
+    <div class="q">&ldquo;Can one report use two of them?&rdquo;</div>
+    <div class="a"><b>Yes &mdash; it is called a composite model</b>, and a shared lookup table in one
+    can be set to a third storage mode called <b>Dual</b>. <b>Name both words and stop there.</b> It is
+    the right answer to &ldquo;have you heard of&rdquo; and the wrong place to spend ten minutes on day
+    one.</div>
+   </div>
+   <div class="keyline">
+    <b>The three-sentence answer, for the interview. Make them say it back.</b><br><br>
+    <b>Import</b> copies the data into the model, is the fastest, has every feature, and is only as
+    fresh as the last refresh. <b>DirectQuery</b> leaves the data in the source and queries it when the
+    visual asks, so it is as fresh and as slow as that source, and some modelling is unavailable.
+    <b>Live connection</b> points at a model somebody else owns &mdash; you build reports, not
+    tables.<br><br>
+    <b>And then the sentence that shows you have done it:</b> you pick Import by default, and move off
+    it for latency, size, governance, security or architecture &mdash; <b>and you pick before you
+    connect, because you cannot convert the model afterwards.</b>
+   </div>
+   <div class="speak">
+    <p>Close it with where this goes.</p>
+    <p><b>Everything for the rest of this module is Import</b>, because our data is a two-hundred-row
+    file and the five reasons to leave Import do not apply to it. <b>That is a decision, not an
+    accident, and you now know how to defend it.</b></p>
+    <p>And two of today's loose ends are now tied: <b>the date table on day 5 exists partly because
+    DirectQuery will not give you one</b>, and the median you were so pleased with is the calculation
+    DirectQuery is worst at. <b>The mode you choose decides what you are allowed to find.</b></p>
+   </div>
+  </div>
+
+  <div class="blk">
+   <div class="bhead"><span class="clock">16</span><h3>What took two sessions took twenty minutes</h3></div>
    <div class="stage">Put the two side by side on the board.</div>
 <pre><code>  IN EXCEL, DAYS 7 TO 9              IN POWER BI, TODAY
 
@@ -27339,8 +27477,8 @@ TECH               average  1,89,754        median   85,486
   </div>
 
   <div class="blk">
-   <div class="bhead"><span class="clock">16</span><h3>Round up, and set up day 2</h3></div>
-   <div class="typeit">Five things, and two of them are not about Power BI</div>
+   <div class="bhead"><span class="clock">17</span><h3>Round up, and set up day 2</h3></div>
+   <div class="typeit">Six things, and two of them are not about Power BI</div>
 <pre><code>  1   THE POWER QUERY EDITOR IS THE SAME WINDOW.
       Get data instead of From Table/Range. Close &amp; Apply instead of
       Close &amp; Load. Connection Only is now the Enable load tick box.
@@ -27357,7 +27495,13 @@ TECH               average  1,89,754        median   85,486
 
   5   EVERY CHARTING RULE FROM THE VISUALISATION MODULE STILL APPLIES.
       Start bars at zero. Power BI will happily let you lie and will
-      not warn you.</code></pre>
+      not warn you.
+
+  6   IMPORT, DIRECTQUERY, LIVE CONNECTION.
+      We imported - the pbix holds a copy. DirectQuery leaves the data
+      in the source and queries it per visual. Live points at a model
+      somebody else owns. Import unless latency, size, governance,
+      security or architecture stops you. You choose before you connect.</code></pre>
    <div class="speak">
     <p>Today you moved tools. <b>Tomorrow you learn the thing Excel could not do at all.</b></p>
     <p>On Wednesday you merged the departments table into the employees table &mdash; one wide table,
